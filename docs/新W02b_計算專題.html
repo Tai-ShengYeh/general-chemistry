@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第 2 週延伸　計算專題:化學式與標示判讀</title>
+<style>
+:root{
+  --primary:#1a5276; --primary-dark:#12395a; --accent:#a04c08; --teal:#117a65;
+  --ink:#2c3e50; --muted:#5a6a6b; --bg:#eceff3; --card:#ffffff;
+  --def-bg:#eaf2f8; --key-bg:#fef9e7; --ex-bg:#e8f8f5; --warn-bg:#fdedec;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC","Heiti TC",sans-serif;color:var(--ink)}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#deck{position:relative;width:1280px;height:720px;transform-origin:center center}
+.slide{position:absolute;inset:0;width:1280px;height:720px;background:var(--card);padding:56px 72px 70px;display:none;flex-direction:column;border-top:10px solid var(--primary);overflow:hidden}
+.slide.active{display:flex}
+.slide h2{font-size:36px;color:var(--primary);border-bottom:3px solid var(--accent);padding-bottom:10px;margin-bottom:26px;font-weight:700}
+.slide h2 .en{display:block;font-size:19px;color:var(--muted);font-weight:400;margin-top:4px}
+.slide h3{font-size:26px;color:var(--primary);margin:12px 0 8px}
+.slide p{font-size:24px;line-height:1.55;margin:8px 0}
+.slide ul,.slide ol{font-size:24px;line-height:1.6;margin:8px 0 8px 34px}
+.slide li{margin:7px 0}
+.slide li li{font-size:22px;margin:4px 0}
+.en{color:var(--muted);font-size:.82em}
+.small{font-size:19px;color:var(--muted)}
+.big{font-size:30px}
+.center{text-align:center}
+.hl{color:var(--accent);font-weight:700}
+.hlb{color:var(--primary);font-weight:700}
+.two-col{display:flex;gap:32px;align-items:flex-start}
+.two-col>div{flex:1}
+.box{border-radius:10px;padding:16px 22px;margin:14px 0;font-size:23px;line-height:1.55}
+.def{background:var(--def-bg);border-left:6px solid var(--primary)}
+.key{background:var(--key-bg);border-left:6px solid #f1c40f}
+.warn{background:var(--warn-bg);border-left:6px solid #e74c3c}
+.exbox{background:var(--ex-bg);border-left:6px solid var(--teal)}
+.box .tag{display:inline-block;font-size:17px;font-weight:700;color:#fff;border-radius:5px;padding:2px 10px;margin-bottom:6px}
+.def .tag{background:var(--primary)} .key .tag{background:#8a6d00} .warn .tag{background:#c0392b} .exbox .tag{background:var(--teal)}
+.sol{border-top:2px dashed var(--teal);margin-top:12px;padding-top:10px}
+/* ── 形成性評量：解答兩段式揭露 ───────────────────────── */
+.slide.active .sol{display:none}
+.slide.active.reveal .sol{display:block}
+.sol-hint{margin-top:12px;padding-top:10px;border-top:2px dashed #b9c6c6;font-size:19px;color:#5d6d6e;display:flex;align-items:center;gap:10px}
+.slide.active.reveal .sol-hint{display:none}
+.sol-hint .kbd{display:inline-block;border:1px solid #aab7b8;border-bottom-width:2px;border-radius:5px;padding:1px 9px;font-size:17px;background:#fff;color:#34495e}
+/* ── 隨堂快問 ─────────────────────────────────────────── */
+.slide.quiz{border-top-color:var(--teal)}
+.slide.quiz h2{margin-bottom:14px}
+.slide.quiz h2{color:#0e6655;border-bottom-color:var(--teal)}
+.qbar{background:#e8f8f5;border-left:6px solid var(--teal);border-radius:8px;padding:5px 16px;font-size:18px;color:#0e6655;margin-bottom:4px}
+.q{margin:4px 0;font-size:21px;line-height:1.28}
+.q .qn{display:inline-block;min-width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;background:var(--teal);color:#fff;font-size:16px;font-weight:700;margin-right:7px}
+.opt{display:inline-block;border:1.5px solid #a2d5cd;background:#f2fbf9;color:#0e6655;border-radius:14px;padding:0 11px;margin:1px 4px 1px 0;font-size:19px}
+.quiz .sol{margin-top:5px;padding-top:5px;font-size:18px;line-height:1.26}
+.quiz .sol .ans{color:#c0392b;font-weight:700}
+.quiz .sol .row{margin:3px 0}
+.quiz .sol .row+.row{border-top:1px solid #e5eceb;padding-top:3px}
+.quiz .sol .myth{display:block;font-size:16px;color:#5d6d6e;margin:1px 0 0 0;line-height:1.24}
+@media print{
+  .sol{display:block!important}
+  .sol-hint{display:none!important}
+}
+.eq{text-align:center;font-size:28px;margin:14px 0;font-family:Cambria,"Times New Roman",serif}
+table{border-collapse:collapse;margin:12px auto;font-size:21px;width:100%}
+th{background:var(--primary);color:#fff;padding:8px 12px;font-weight:600}
+td{border:1px solid #d5dbdb;padding:7px 12px;text-align:center}
+tr:nth-child(even) td{background:#f4f6f7}
+.cover{background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 55%,var(--teal) 100%);border-top:none;color:#fff;justify-content:center;align-items:center;text-align:center}
+.cover h1{font-size:58px;letter-spacing:4px;margin-bottom:10px}
+.cover .sub{font-size:30px;opacity:.92;margin:6px 0}
+.cover .en-title{font-size:24px;opacity:.75;margin-bottom:34px}
+.cover .meta{font-size:20px;opacity:.7;margin-top:40px}
+.cover .rule{width:220px;height:4px;background:#f7b955;margin:26px auto}
+.divider{background:linear-gradient(120deg,var(--primary-dark),var(--primary));border-top:none;color:#fff;justify-content:center}
+.divider .secnum{font-size:26px;color:#f7b955;font-weight:700;letter-spacing:2px;margin-bottom:14px}
+.divider h1{font-size:52px;margin-bottom:12px}
+.divider .en-sub{font-size:26px;opacity:.75}
+.divider .items{margin-top:36px;font-size:23px;opacity:.9;line-height:2}
+.foot{position:absolute;left:0;right:0;bottom:0;height:32px;display:flex;justify-content:space-between;align-items:center;padding:0 28px;font-size:14px;color:#5d6d6e;background:#fafbfc;border-top:1px solid #e5e8e8}
+.cover .foot,.divider .foot{background:rgba(0,0,0,.15);color:rgba(255,255,255,.65);border-top:none}
+#bar{position:fixed;top:0;left:0;height:5px;background:var(--accent);width:0;z-index:10;transition:width .2s}
+.flow{display:flex;flex-direction:column;align-items:center;gap:6px}
+.fbox{border:2px solid var(--primary);border-radius:8px;padding:8px 20px;font-size:21px;background:var(--def-bg);text-align:center}
+.frow{display:flex;gap:60px;justify-content:center}
+.arrow{font-size:22px;color:var(--accent)}
+.chip{display:inline-block;background:var(--def-bg);border:1px solid var(--primary);color:var(--primary);border-radius:16px;padding:2px 14px;margin:3px;font-size:20px}
+/* ── 因次分析鐵軌格 ───────────────────────────────────── */
+.rail{border-collapse:collapse;margin:10px auto 6px;font-size:23px}
+.rail td{border:none;padding:5px 20px;text-align:center;background:none;vertical-align:middle}
+.rail td+td{border-left:2px solid var(--muted)}
+.rail tr:first-child td{border-bottom:3px solid var(--ink)}
+.rail td.res{border-left:none;padding-left:14px;font-weight:700;color:var(--accent);font-size:25px}
+.rail tr:first-child td.res{border-bottom:none}
+.rail .bk{display:inline-block;min-width:104px;border-bottom:3px dashed var(--accent);height:27px;vertical-align:-4px}
+.rail .gv{background:var(--def-bg)}
+.railnote{text-align:center;font-size:18px;color:var(--muted);margin-top:2px}
+.fig{display:block;margin:6px auto;flex-shrink:0}
+/* ── 錨點回收頁 ───────────────────────────────────────── */
+.slide.hookback{border-top-color:var(--teal)}
+.slide.hookback h2{color:#0e6655;border-bottom-color:var(--teal)}
+.recall{background:#f4f6f7;border-left:5px solid #95a5a6;border-radius:8px;padding:7px 18px;
+        font-size:20px;line-height:1.34;color:#5d6d6e;margin:0 0 10px}
+.recall b{color:#34495e}
+.ansbox{background:#e8f8f5;border-left:6px solid var(--teal);border-radius:9px;padding:10px 20px;margin:0 0 10px}
+.ansbox h3{font-size:20px;color:#0e6655;margin:0 0 5px}
+.ansbox ul{margin:0 0 0 20px;font-size:19.5px;line-height:1.4}
+.ansbox li{margin:5px 0}
+.lens{background:var(--key-bg);border-left:6px solid #d4a70a;border-radius:9px;padding:10px 20px;
+      font-size:20px;line-height:1.38;margin-bottom:9px}
+.lens .lt{display:block;font-size:16px;font-weight:700;color:#8a6d00;letter-spacing:1px;margin-bottom:2px}
+.nextup{background:#eaf2f8;border-left:5px solid var(--primary);border-radius:8px;padding:8px 18px;
+        font-size:18.5px;line-height:1.4;color:#34495e}
+.nextup .course{display:inline-block;background:#fff;border:1px solid #a2d5cd;color:#0e6655;
+                border-radius:11px;padding:0 8px;font-size:16px;margin-right:4px}
+
+/* ── 食品營養錨點頁 ───────────────────────────────────── */
+.slide.hook{border-top-color:var(--accent)}
+.slide.hook h2{color:#a05000;border-bottom-color:var(--accent)}
+.bigq{background:linear-gradient(100deg,#fff5ea,#fdf0e0);border-left:8px solid var(--accent);border-radius:10px;
+      padding:14px 22px;font-size:26px;line-height:1.4;color:#7a3d00;font-weight:700;margin:4px 0 12px}
+.bigq .qmark{font-size:30px;margin-right:6px}
+.hookcols{display:flex;gap:22px;align-items:stretch;margin-top:4px}
+.hookcols>div{flex:1;border-radius:9px;padding:11px 16px}
+.hk-now{background:#eaf2f8;border-left:5px solid var(--primary)}
+.hk-next{background:#e8f8f5;border-left:5px solid var(--teal)}
+.hookcols h3{font-size:20px;margin:0 0 6px}
+.hk-now h3{color:var(--primary)} .hk-next h3{color:#0e6655}
+.hookcols ul{font-size:19px;line-height:1.4;margin:0 0 0 20px}
+.hookcols li{margin:4px 0}
+.hookcols .course{display:inline-block;background:#fff;border:1px solid #a2d5cd;color:#0e6655;
+                  border-radius:11px;padding:0 8px;font-size:16px;margin-right:4px}
+.canyou{background:var(--key-bg);border-left:6px solid #d4a70a;border-radius:9px;padding:10px 18px;
+        font-size:20px;line-height:1.4;margin-top:12px}
+.canyou b{color:#8a6d00}
+.hookmap{font-size:19px;line-height:1.5}
+.hookmap td{text-align:left;padding:5px 10px}
+.hookmap td:first-child{text-align:center;font-weight:700;color:var(--accent);width:62px}
+@media print{
+  @page{size:1280px 720px;margin:0}
+  html,body{background:#fff}
+  #stage{position:static}
+  #deck{width:auto;height:auto;transform:none!important}
+  .slide{position:relative;display:flex!important;page-break-after:always;margin:0;inset:auto}
+  #bar{display:none}
+}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="stage"><div id="deck">
+
+<!-- 1 -->
+<section class="slide cover">
+  <h1>普通化學(一)</h1>
+  <div class="en-title">General Chemistry I</div>
+  <div class="rule"></div>
+  <div class="sub">第 2 延伸 週:計算專題:化學式與標示判讀</div>
+  <div class="sub">核種符號・平均原子量・質量分率・同位素比值</div>
+  <div class="en-title" style="margin-top:8px">Calculations: Reading a Label from a Chemical Formula</div>
+</section>
+
+<!-- 2 -->
+<section class="slide">
+  <h2>本課學習目標 <span class="en">Learning Objectives</span></h2>
+  <ul>
+    <li>由核種符號讀出質子、中子、<b>電子</b>數(含離子——這一步最常錯)</li>
+    <li>用<b>加權平均</b>算平均原子量,並能<b>反推</b>同位素豐度</li>
+    <li>由化學式算出某元素的<b>質量分率</b>,並<b>雙向</b>換算「化合物 mg ↔ 元素 mg」</li>
+    <li>比較不同鹽類的補充劑,說明「1000 mg」為什麼不等於「補到 1000 mg」</li>
+    <li>計算同位素比值 δ,並用<b>質量平衡</b>推導出蜂蜜摻假的判定式</li>
+  </ul>
+<div class="box key"><span class="tag">本課的主線</span><b>化學式是一份組成的合約。</b>看懂它,包裝上的每一個數字你都能自己驗算一次——而這一課要練的,就是把那個驗算做到熟。</div>
+</section>
+
+<!-- 3 -->
+<section class="slide hook">
+  <h2>計算專題·食品營養錨點:哪一瓶鈣片最划算? <span class="en">Anchor Question</span></h2>
+<div class="box def"><span class="tag">大哉問</span>藥局貨架上五瓶鈣片,標示都寫著「每粒 1000 mg」,價格從 200 到 800 元不等:<br><b>碳酸鈣・磷酸三鈣・檸檬酸鈣・乳酸鈣・葡萄糖酸鈣</b><br>它們補到的<b>鈣</b>一樣多嗎?如果不一樣,差多少?要補到每日建議的 1000 mg 鈣,各要吃幾粒?</div>
+<div class="box exbox"><span class="tag">先猜猜看</span>你覺得含鈣最多與最少的兩瓶,會差到<b>幾倍</b>?(1.5 倍?2 倍?還是更多?答案在本課最後一張)</div>
+</section>
+
+<!-- 4 -->
+<section class="slide divider">
+  <div class="secnum">PART 2b.1</div>
+  <h1>核種符號:三個數字</h1>
+  <div class="en-sub">Reading a Nuclide Symbol</div>
+  <div class="items">質子・中子・電子・離子的電荷怎麼算</div>
+</section>
+
+<!-- 5 -->
+<section class="slide">
+  <h2>三個數字怎麼數 <span class="en">Three Numbers</span></h2>
+  <div class="eq"><sup>A</sup><sub>Z</sub>X<sup>電荷</sup></div>
+  <table><tr><th>要什麼</th><th>怎麼算</th><th>為什麼</th></tr><tr><td><b>質子數</b></td><td>= Z(原子序)</td><td>元素的身分,不會變</td></tr><tr><td><b>中子數</b></td><td>= A − Z</td><td>質量數扣掉質子</td></tr><tr><td><b>電子數</b></td><td>= <span class="hl">Z − 電荷</span></td><td>得失電子改變的是電子,不是質子</td></tr></table>
+<div class="box warn"><span class="tag">這一步幾乎每年都有人錯</span><b>電荷是正的就要「減」。</b>Fe<sup>3+</sup> 是<b>失去</b> 3 個電子 → 電子數 = 26 − 3 = 23。很多人反射性地加上去。<br>記法:<b>正電荷 = 少了電子</b>(電子帶負電,少了負的就變正)。</div>
+</section>
+
+<!-- 6 -->
+<section class="slide">
+  <h2>例題 1:鐵劑裡的三價鐵 <span class="en">Example 1</span></h2>
+  <p>寫出 <sup>56</sup><sub>26</sub>Fe<sup>3+</sup> 的質子、中子、電子數。</p>
+  <div class="sol"><b>解答:</b><br>質子 = Z = <b>26</b>(這是鐵,永遠是 26)<br>中子 = A − Z = 56 − 26 = <b>30</b><br>電子 = Z − 電荷 = 26 − 3 = <span class="hl">23</span><br><b>合理性檢查:</b>帶正電 → 電子一定比質子<b>少</b>。23 &lt; 26,方向正確。<br><b>順帶一提:</b>鐵劑裡有二價(Fe<sup>2+</sup>)與三價(Fe<sup>3+</sup>)兩種,吸收率不同——<b>電荷不是寫好看的,它決定了這個離子在體內的行為</b>。</div>
+</section>
+
+<!-- 7 -->
+<section class="slide">
+  <h2>例題 2:磷與鉀 <span class="en">Example 2</span></h2>
+  <p>(a) <sup>31</sup><sub>15</sub>P<sup>3−</sup>　(b) <sup>40</sup><sub>19</sub>K</p>
+  <div class="sol"><b>解答:</b><br>(a) 質子 15、中子 31 − 15 = <b>16</b>、電子 15 − (−3) = <span class="hl">18</span><br>　<b>負電荷要「減一個負數」= 加。</b>磷酸根裡的磷就是這個狀態。<br>(b) 質子 19、中子 40 − 19 = <b>21</b>、電子 <b>19</b>(中性原子)<br>　<b><sup>40</sup>K 是天然存在的放射性同位素</b>,約占鉀的 0.012%。香蕉、低鈉鹽(以 KCl 取代部分 NaCl)因此都有微量天然放射性——劑量遠低於任何健康顧慮,但它說明了一件事:<b>同一種元素的不同同位素,化學行為相同,核性質可以完全不同。</b></div>
+</section>
+
+<!-- 8 -->
+<section class="slide">
+  <h2>例題 3:反過來寫 <span class="en">Example 3 — Working Backwards</span></h2>
+  <p>某離子有 <b>質子 30、中子 35、電子 28</b>。寫出它的核種符號。</p>
+  <div class="sol"><b>解答:</b><br>① 質子 30 → 查週期表 → <b>Zn</b>(鋅)<br>② A = 30 + 35 = <b>65</b><br>③ 電荷 = 質子 − 電子 = 30 − 28 = <b>+2</b><br>　→ <span class="hl"><sup>65</sup><sub>30</sub>Zn<sup>2+</sup></span><br><b>三個數字互相決定,給任兩個就能推第三個。</b><br><b>易錯:</b>第 ③ 步方向弄反,寫成 2−。判準:<b>電子比質子少 → 帶正電</b>。28 &lt; 30,所以是 2+。</div>
+</section>
+
+<!-- 9 -->
+<section class="slide divider">
+  <div class="secnum">PART 2b.2</div>
+  <h1>平均原子量:加權平均</h1>
+  <div class="en-sub">Weighted Average</div>
+  <div class="items">為什麼不是算術平均・正推與反推豐度</div>
+</section>
+
+<!-- 10 -->
+<section class="slide">
+  <h2>加權平均不是算術平均 <span class="en">Weighted, Not Arithmetic</span></h2>
+  <div class="eq">平均原子量 = Σ (同位素質量 × 該同位素的豐度)</div>
+  <ul>
+    <li>豐度用<b>小數</b>代入(75.76% → 0.7576),全部加起來要等於 1</li>
+    <li>答案一定落在<b>最輕與最重的同位素之間</b>,而且<b>靠近豐度大的那一個</b></li>
+    <li>這就是為什麼週期表上的原子量不是整數</li>
+  </ul>
+<div class="box warn"><span class="tag">最常見的錯</span>把兩個同位素的質量<b>直接相加除以 2</b>。氯若這樣算會得到 (34.97 + 36.97) ÷ 2 = 35.97,但實際是 <b>35.45</b>——因為 <sup>35</sup>Cl 占了四分之三。<b>先問哪一個比較多。</b></div>
+</section>
+
+<!-- 11 -->
+<section class="slide">
+  <h2>例題 4:由豐度算平均(順向) <span class="en">Example 4</span></h2>
+  <p>氯有兩種同位素:<sup>35</sup>Cl 質量 34.96885、豐度 75.76%;<sup>37</sup>Cl 質量 36.96590、豐度 24.24%。平均原子量?</p>
+  <div class="sol"><b>解答:</b><br>34.96885 × 0.7576 = 26.4924<br>36.96590 × 0.2424 = 8.9605<br>相加 = <span class="hl">35.453</span><br><b>合理性檢查(先做這一步再按計算機):</b><sup>35</sup>Cl 占約 3/4 → 答案應該<b>明顯偏向 35</b>。35.45 符合。<br><b>如果算出 35.97,就是用了算術平均。</b></div>
+</section>
+
+<!-- 12 -->
+<section class="slide">
+  <h2>例題 5:反推豐度(反向,較難) <span class="en">Example 5 — Working Backwards</span></h2>
+  <p>銅的平均原子量 63.546,只有兩種同位素:<sup>63</sup>Cu 質量 62.9296、<sup>65</sup>Cu 質量 64.9278。各占多少?</p>
+  <div class="sol"><b>解答:</b><br>設 <sup>63</sup>Cu 的豐度為 x,則 <sup>65</sup>Cu 為 (1 − x)<br>62.9296x + 64.9278(1 − x) = 63.546<br>62.9296x + 64.9278 − 64.9278x = 63.546<br>−1.9982x = −1.3818　→　x = <span class="hl">0.6915 = 69.15%</span><br>所以 <sup>63</sup>Cu 69.15%、<sup>65</sup>Cu <b>30.85%</b><br><b>合理性檢查:</b>63.546 比較靠近 62.93 → 輕的那個應該<b>比較多</b>。69% &gt; 31%,正確。<br><b>固定套路:</b>兩個未知但<b>相加為 1</b> → 設成 x 與 (1 − x),就只剩一個未知數。</div>
+</section>
+
+<!-- 13 -->
+<section class="slide">
+  <h2>例題 6:淡出練習 <span class="en">Example 6 — Faded</span></h2>
+  <p>鎂有三種同位素。已知 <sup>24</sup>Mg 78.99%(23.9850)、<sup>25</sup>Mg 10.00%(24.9858)、<sup>26</sup>Mg 11.01%(25.9826)。請<b>先寫出算式再計算</b>。</p>
+  <table><tr><th>同位素</th><th>質量</th><th>豐度(小數)</th><th>乘積</th></tr><tr><td><sup>24</sup>Mg</td><td>23.9850</td><td>0.7899</td><td><span class="bk"></span></td></tr><tr><td><sup>25</sup>Mg</td><td>24.9858</td><td><span class="bk"></span></td><td><span class="bk"></span></td></tr><tr><td><sup>26</sup>Mg</td><td>25.9826</td><td><span class="bk"></span></td><td><span class="bk"></span></td></tr><tr><td></td><td></td><td><b>總和</b></td><td><span class="bk"></span></td></tr></table>
+  <div class="sol"><b>解答:</b>18.9457 + 2.4986 + 2.8607 = <span class="hl">24.305</span><br><b>檢查:</b>豐度 0.7899 + 0.1000 + 0.1101 = 1.0000 ✓;答案應非常靠近 23.985(因為它占近八成)——24.305 符合。<br><b>三個同位素與兩個的做法完全一樣</b>,只是多一項。難的從來不是同位素的數量,是有沒有先把豐度換成小數。</div>
+</section>
+
+<!-- 14 -->
+<section class="slide divider">
+  <div class="secnum">PART 2b.3</div>
+  <h1>質量分率:化學式能算出「裡面有多少」</h1>
+  <div class="en-sub">Mass Fraction</div>
+  <div class="items">順向・反算・不同鹽類的比較</div>
+</section>
+
+<!-- 15 -->
+<section class="slide">
+  <h2>質量分率的三步 <span class="en">Three Steps</span></h2>
+  <div class="eq">元素的質量分率 = <span style="display:inline-block;text-align:center">該元素在式中的<b>總</b>質量<hr style="margin:2px 0;border:none;border-top:2px solid #1f5f8b">化合物的莫耳質量</span> × 100%</div>
+  <ul>
+    <li>① 由化學式算<b>莫耳質量</b>(有結晶水就要算進去,見第 4 週)</li>
+    <li>② 算該元素的<b>總</b>質量(注意下標:Ca<sub>3</sub> 要乘 3)</li>
+    <li>③ 相除 → 得到「每 100 g 化合物含幾 g 該元素」</li>
+  </ul>
+<div class="box key"><span class="tag">為什麼這一步這麼重要</span><b>包裝上寫的是化合物的重量,你身體要的是元素。</b>兩者差的就是這個比例——而不同鹽類差很多。</div>
+</section>
+
+<!-- 16 -->
+<section class="slide">
+  <h2>例題 7:碳酸鈣的鈣(順向) <span class="en">Example 7</span></h2>
+  <p>一粒碳酸鈣 CaCO<sub>3</sub> 錠標示 1000 mg。含<b>元素鈣</b>多少?(Ca 40.078、C 12.011、O 15.999)</p>
+  <div class="sol"><b>解答:</b><br>① M(CaCO<sub>3</sub>) = 40.078 + 12.011 + 3 × 15.999 = <b>100.09</b><br>② 鈣的質量分率 = 40.078 ÷ 100.09 × 100% = <b>40.04%</b><br>③ 1000 mg × 0.4004 = <span class="hl">400 mg 元素鈣</span><br><b>所以「1000 mg 碳酸鈣」補到的是 400 mg 鈣,不是 1000 mg。</b><br><b>碳酸鈣是所有鈣鹽裡含鈣比例最高的</b>——記住 <b>40%</b> 這個數字,它是後面比較的基準。</div>
+</section>
+
+<!-- 17 -->
+<section class="slide">
+  <h2>例題 8:含結晶水的乳酸鈣 <span class="en">Example 8</span></h2>
+  <p>乳酸鈣通常是五水合物 Ca(C<sub>3</sub>H<sub>5</sub>O<sub>3</sub>)<sub>2</sub>·5H<sub>2</sub>O。一粒 1000 mg 含元素鈣多少?</p>
+  <div class="sol"><b>解答:</b><br>① 無水部分 = 40.078 + 2 × (3×12.011 + 5×1.008 + 3×15.999) = 40.078 + 2 × 89.07 = 218.22<br>② <b>加上結晶水</b>:218.22 + 5 × 18.015 = <b>308.29</b><br>③ 40.078 ÷ 308.29 × 100% = <b>13.00%</b> → 1000 mg 含 <span class="hl">130 mg 鈣</span><br><b>如果忘了把 5 個水算進去:</b>40.078 ÷ 218.22 = 18.37% → 算出 184 mg,<b>高估了 41%</b>。<br><b>這正是第 4 週「標準品與結晶水」的同一個陷阱</b>,只是換到營養標示上——看到 ·nH<sub>2</sub>O 就要問:<b>這個水在不在莫耳質量裡?</b></div>
+</section>
+
+<!-- 18 -->
+<section class="slide">
+  <h2>例題 9:反算(最常卡的方向) <span class="en">Example 9 — Working Backwards</span></h2>
+  <p>醫師建議每日補充 <b>500 mg 元素鈣</b>。若吃碳酸鈣錠,要吃多少<b>毫克</b>的碳酸鈣?</p>
+  <div class="sol"><b>解答:</b><br>順向是「化合物 × 分率 = 元素」,反向就把分率<b>除</b>回去:<br>碳酸鈣需要量 = 500 mg ÷ 0.4004 = <span class="hl">1249 mg</span>(約 1.25 g)<br><b>合理性檢查(這一步比計算重要):</b>化合物裡只有四成是鈣,所以<b>要吃的化合物一定比 500 mg 多</b>。<br>算出比 500 小(例如 500 × 0.4 = 200),就是<b>方向弄反了</b>——這是本課最常見的錯。<br><b>換成葡萄糖酸鈣呢?</b>500 ÷ 0.0931 = <b>5369 mg</b>,超過 5 公克。這就是為什麼補充劑的劑型與鹽類選擇是有現實限制的。</div>
+</section>
+
+<!-- 19 -->
+<section class="slide">
+  <h2>例題 10:五瓶鈣片一起比 <span class="en">Example 10 — The Whole Shelf</span></h2>
+  <table><tr><th>鈣鹽</th><th>莫耳質量</th><th>元素鈣 %</th><th>每 1000 mg 含鈣</th><th>補 500 mg 需要</th></tr><tr><td><b>碳酸鈣</b> CaCO<sub>3</sub></td><td>100.09</td><td><b>40.04%</b></td><td><b>400 mg</b></td><td>1249 mg</td></tr><tr><td>磷酸三鈣 Ca<sub>3</sub>(PO<sub>4</sub>)<sub>2</sub></td><td>310.17</td><td>38.76%</td><td>388 mg</td><td>1290 mg</td></tr><tr><td>檸檬酸鈣 Ca<sub>3</sub>(C<sub>6</sub>H<sub>5</sub>O<sub>7</sub>)<sub>2</sub></td><td>498.43</td><td>24.12%</td><td>241 mg</td><td>2073 mg</td></tr><tr><td>乳酸鈣 ·5H<sub>2</sub>O</td><td>308.29</td><td>13.00%</td><td>130 mg</td><td>3846 mg</td></tr><tr><td><b>葡萄糖酸鈣</b> Ca(C<sub>6</sub>H<sub>11</sub>O<sub>7</sub>)<sub>2</sub></td><td>430.37</td><td><b>9.31%</b></td><td><b>93 mg</b></td><td>5369 mg</td></tr></table>
+<div class="box warn"><span class="tag">同樣寫「1000 mg」,差 4.3 倍</span>碳酸鈣 400 mg vs 葡萄糖酸鈣 93 mg。<b>比價之前要先換算成元素鈣,否則比的是兩個不同的東西。</b>正規標示會另外標「元素鈣 XXX mg」——<b>那一欄才是你要看的。</b></div>
+</section>
+
+<!-- 20 -->
+<section class="slide">
+  <h2>例題 11:換一個元素,同一套方法 <span class="en">Example 11 — Iron</span></h2>
+  <p>鐵劑也是一樣的問題。成人女性鐵的建議攝取量約 15 mg/日。</p>
+  <table><tr><th>鐵鹽</th><th>莫耳質量</th><th>元素鐵 %</th><th>補 15 mg 需要</th></tr><tr><td>反丁烯二酸亞鐵 FeC<sub>4</sub>H<sub>2</sub>O<sub>4</sub></td><td>169.90</td><td><b>32.87%</b></td><td>46 mg</td></tr><tr><td>硫酸亞鐵 FeSO<sub>4</sub>·7H<sub>2</sub>O</td><td>278.01</td><td>20.09%</td><td>75 mg</td></tr><tr><td>葡萄糖酸亞鐵 Fe(C<sub>6</sub>H<sub>11</sub>O<sub>7</sub>)<sub>2</sub></td><td>446.14</td><td><b>12.52%</b></td><td>120 mg</td></tr></table>
+<div class="box def"><span class="tag">注意硫酸亞鐵的結晶水</span>七水合硫酸亞鐵有 <b>7 個結晶水</b>,占了莫耳質量的 45%。忘了算進去會把含鐵率算成 36.8%,<b>高估將近一倍</b>。</div>
+  <p class="small">建議攝取量依年齡、性別與生理狀況不同,請以<b>國人膳食營養素參考攝取量(DRIs)</b>現行版本為準。</p>
+</section>
+
+<!-- 21 -->
+<section class="slide divider">
+  <div class="secnum">PART 2b.4</div>
+  <h1>同位素比值:δ 的計算</h1>
+  <div class="en-sub">Calculating Delta Values</div>
+  <div class="items">正推・反推・混合的質量平衡・推導判定式</div>
+</section>
+
+<!-- 22 -->
+<section class="slide">
+  <h2>δ 的定義與兩個方向 <span class="en">The Delta Notation, Both Ways</span></h2>
+  <div class="eq">δ<sup>13</sup>C (‰) = [ (R<sub>樣品</sub> / R<sub>標準</sub>) − 1 ] × 1000　　R = <sup>13</sup>C/<sup>12</sup>C,R<sub>VPDB</sub> = 0.0111802</div>
+  <table><tr><th>方向</th><th>怎麼做</th></tr><tr><td><b>正推</b>(有 R 求 δ)</td><td>相除 → 減 1 → 乘 1000</td></tr><tr><td><b>反推</b>(有 δ 求 R)</td><td>R = R<sub>標準</sub> × (1 + δ/1000)</td></tr></table>
+<div class="box warn"><span class="tag">兩個最常漏的步驟</span>① <b>忘了減 1</b> → 會得到 1000 左右的數字(比值本身接近 1)。<br>② <b>忘了乘 1000</b> → 會得到 −0.025 而不是 −25‰。<br><b>合理性檢查:有機物的 δ<sup>13</sup>C 幾乎都落在 −5 到 −35‰ 之間。</b>算出正值或上百,一定是漏了一步。</div>
+</section>
+
+<!-- 23 -->
+<section class="slide">
+  <h2>例題 12:由 R 算 δ(順向) <span class="en">Example 12</span></h2>
+  <p>某蜂蜜樣品測得 R = <sup>13</sup>C/<sup>12</sup>C = 0.0109000。δ<sup>13</sup>C 為何?</p>
+  <div class="sol"><b>解答:</b><br>0.0109000 ÷ 0.0111802 = 0.97494<br>(0.97494 − 1) × 1000 = <span class="hl">−25.1‰</span><br><b>判讀:</b>落在 C3 植物的範圍(−22 ~ −30‰)→ <b>看起來是純的 C3 蜜源</b>。<br><b>合理性檢查:</b>R 比標準<b>小</b> → δ 一定是<b>負</b>的。方向正確。</div>
+</section>
+
+<!-- 24 -->
+<section class="slide">
+  <h2>例題 13:由 δ 算 R(反向) <span class="en">Example 13 — Working Backwards</span></h2>
+  <p>純甘蔗糖的 δ<sup>13</sup>C 約 −11.0‰。它的 R 是多少?</p>
+  <div class="sol"><b>解答:</b><br>R = 0.0111802 × (1 + (−11.0/1000)) = 0.0111802 × 0.98900 = <span class="hl">0.0110572</span><br><b>與上一題比較:</b>蜂蜜 0.0109000、甘蔗糖 0.0110572——兩者只差 <b>1.4%</b>,卻足以判定摻假。<br><b>這就是為什麼要用 δ 而不是直接報 R:</b>把「小數點後第四位的差異」放大成「相差 14 個千分點」,人才讀得出來。<b>δ 記號的存在理由,就是讓微小差異變得可比較。</b></div>
+</section>
+
+<!-- 25 -->
+<section class="slide">
+  <h2>例題 14:混合之後會變成多少 <span class="en">Example 14 — Mass Balance</span></h2>
+  <p>把 <b>13.1%</b> 的甘蔗糖(−9.7‰)摻進 δ<sup>13</sup>C = −25.0‰ 的真蜜。混合後的 δ 是多少?</p>
+  <div class="sol"><b>解答(碳的質量平衡):</b><br>δ<sub>混</sub> = 0.131 × (−9.7) + 0.869 × (−25.0) = −1.27 + (−21.73) = <span class="hl">−23.0‰</span><br><br><b>現在把它反過來解 —— 這就是判定式的來源:</b><br>設摻入的 C4 糖比例為 x,真蜜原本的值用<b>蛋白質</b>的 δ 代表:<br>　δ<sub>蜂蜜</sub> = x·δ<sub>C4</sub> + (1 − x)·δ<sub>蛋白</sub><br>　δ<sub>蜂蜜</sub> − δ<sub>蛋白</sub> = x(δ<sub>C4</sub> − δ<sub>蛋白</sub>)<br>　<span class="hl">x = (δ<sub>蛋白</sub> − δ<sub>蜂蜜</sub>) ÷ (δ<sub>蛋白</sub> − (−9.7))</span><br><b>這正是 AOAC 998.12 的公式。</b>它不是一條要背的式子,<b>它是一行質量平衡解出來的</b>——忘了就重推一次。</div>
+</section>
+
+<!-- 26 -->
+<section class="slide">
+  <h2>例題 15:綜合判定 <span class="en">Example 15 — Putting It Together</span></h2>
+  <p>兩瓶蜂蜜送驗,結果如下。哪一瓶不合格?(C4 糖 &gt; 7% 判定摻假)</p>
+  <table><tr><th>樣品</th><th>蜂蜜 δ<sup>13</sup>C</th><th>蛋白質 δ<sup>13</sup>C</th></tr><tr><td>甲</td><td>−25.3‰</td><td>−25.0‰</td></tr><tr><td>乙</td><td>−22.0‰</td><td>−25.5‰</td></tr></table>
+  <div class="sol"><b>解答:</b><br><b>甲:</b>(−25.0 − (−25.3)) ÷ (−25.0 + 9.7) = 0.3 ÷ (−15.3) = <b>−2.0%</b> ≈ 0 → <b>合格</b><br>　<span class="small">(負值不是「負的摻假」,是量測誤差落在 0 附近的正常結果)</span><br><b>乙:</b>(−25.5 − (−22.0)) ÷ (−25.5 + 9.7) = (−3.5) ÷ (−15.8) = <span class="hl">22.2%</span> → <b>遠超過 7%,判定摻假</b><br><b>注意乙的關鍵訊號:</b>蜂蜜比它自己的蛋白質<b>高了 3.5‰</b>。真蜜的兩個值應該幾乎一樣——<b>差距本身就是證據</b>,不必先知道蜜源是什麼。<br><b>判定門檻與方法細節請以主管機關公告的檢驗方法為準。</b></div>
+</section>
+
+<!-- 27 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ①:化學式與標示判讀 <span class="en">Quick Check</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span><sup>65</sup><sub>30</sub>Zn<sup>2+</sup> 的電子數是?<br><span class="opt">A 30</span><span class="opt">B 32</span><span class="opt">C 28</span><span class="opt">D 35</span></div>
+  <div class="q"><span class="qn">2</span>一粒「檸檬酸鈣 1000 mg」(元素鈣 24.12%)與一粒「碳酸鈣 1000 mg」(40.04%)。要補到同樣的鈣,檸檬酸鈣要吃幾粒?<br><span class="opt">A 一樣多</span><span class="opt">B 約 1.7 倍</span><span class="opt">C 約 0.6 倍</span><span class="opt">D 約 2.4 倍</span></div>
+  <div class="q"><span class="qn">3</span>某人算「要補 500 mg 元素鈣需要多少碳酸鈣」,得到 200 mg。請指出他錯在哪裡,並說明用什麼方法可以<b>在按計算機之前</b>就發現。</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. C</span> — 電子 = 質子 − 電荷 = 30 − 2 = 28。<span class="myth">選 B 是把電荷<b>加</b>上去——最常見的錯。記法:<b>正電荷代表少了電子</b>,所以要減。選 D 是把中子數(35)當成電子數。</span></div><div class="row"><span class="ans">2. B</span> — 40.04 ÷ 24.12 = 1.66 ≈ 1.7 倍。<span class="myth">選 C 把比值倒過來。方向檢查:<b>含鈣比例低的那一種,要吃得比較多</b>。檸檬酸鈣的比例較低,所以粒數應該<b>大於</b> 1。</span></div><div class="row"><span class="ans">3. 他把除法做成了乘法</span> — 正確是 500 ÷ 0.4004 = <b>1249 mg</b>;他算的是 500 × 0.4 = 200 mg。<br><b>按計算機之前就能發現的方法:先問方向。</b>碳酸鈣裡只有四成是鈣 → 要拿到 500 mg 鈣,吃進去的化合物<b>一定超過 500 mg</b>。算出 200 mg(比 500 還小)當場就矛盾。<span class="myth">這是本課最重要的一個習慣,而且它適用於<b>每一個</b>雙向換算:<b>先判斷答案應該變大還是變小,再開始算。</b>第 1 週的密度(油比水輕 → 同質量體積更大)、第 4 週的稀釋(濃度變 1/5 → 體積變 5 倍)用的都是同一招。</span></div></div>
+</section>
+
+<!-- 28 -->
+<section class="slide hookback">
+  <h2>回到本週的錨點 <span class="en">Anchor Answered</span></h2>
+  <div class="recall"><b>第 2 延伸 週開場問的是:</b>五瓶都寫 1000 mg 的鈣片,哪一瓶最划算?</div>
+  <div class="ansbox">
+    <h3>用這一週的化學回答</h3>
+    <ul>
+    <li>「1000 mg」指的是<b>整個化合物</b>的質量,不是鈣的質量。要知道補到多少鈣,得由<b>化學式</b>算出鈣的質量分率。</li>
+    <li>五瓶的元素鈣含量:碳酸鈣 <b>40.04%</b>、磷酸三鈣 38.76%、檸檬酸鈣 24.12%、乳酸鈣(五水合)13.00%、葡萄糖酸鈣 <b>9.31%</b>。</li>
+    <li>所以「先猜猜看」的答案是 <b>4.3 倍</b> —— 同樣一粒 1000 mg,碳酸鈣給你 400 mg 鈣,葡萄糖酸鈣只給 93 mg。</li>
+    <li><b>但「含鈣高」不等於「最好」:</b>碳酸鈣需要胃酸才能溶解,檸檬酸鈣不需要,適合胃酸不足者。<b>含量與吸收率是兩個問題</b>,這一課只解決了第一個——但沒有第一個,第二個根本無從比較。</li>
+    </ul>
+  </div>
+  <div class="lens"><span class="lt">這個情境幫你理解的化學是</span>化學式是一份<b>可以驗算的合約</b>。本課練的四種計算——數三個數字、加權平均、質量分率、比值與質量平衡——共同的骨架只有一句:<b>先弄清楚「這個數字量的是什麼」,再決定乘還是除。</b></div>
+  <div class="nextup"><b>接下來在哪裡會再用到:</b><span class="course">營養學</span>補充劑的元素含量與 DRIs 判讀　<span class="course">食品分析</span>同位素比值鑑別與摻假判定　<span class="course">食品化學</span>添加物的化學式與有效成分　<span class="course">分析化學</span>標準品的莫耳質量與檢量線</div>
+</section>
+
+<!-- 29 -->
+<section class="slide">
+  <h2>常見錯誤提醒 <span class="en">Common Pitfalls</span></h2>
+  <table><tr><th>錯誤</th><th>長什麼樣子</th><th>怎麼當場發現</th></tr><tr><td>把化合物當元素</td><td>「1000 mg 碳酸鈣 = 1000 mg 鈣」</td><td><b>看標示有沒有另標「元素鈣」</b></td></tr><tr><td>離子的電子數</td><td>Fe<sup>3+</sup> 算成 29 個電子</td><td>正電荷 → 電子一定<b>比質子少</b></td></tr><tr><td>算術平均</td><td>Cl 算成 35.97</td><td>先問<b>哪一個同位素比較多</b></td></tr><tr><td>反算方向弄反</td><td>500 mg 鈣 → 算成 200 mg 碳酸鈣</td><td>化合物一定<b>比元素重</b></td></tr><tr><td>忘了結晶水</td><td>乳酸鈣算成 18.37%</td><td>看到 <b>·nH<sub>2</sub>O</b> 就問水算進去了沒</td></tr><tr><td>δ 漏一步</td><td>得到 −0.025 或 +975</td><td>δ 應落在 <b>−5 ~ −35‰</b></td></tr></table>
+<div class="box key"><span class="tag">六個檢查有一個共同點</span><b>它們都在按計算機之前就能做。</b>先判斷答案該落在哪個範圍、該變大還是變小——這比算得快重要得多。</div>
+</section>
+
+<!-- 30 -->
+<section class="slide">
+  <h2>本節重點總結 <span class="en">Summary</span></h2>
+  <ul>
+    <li>核種符號:質子 = Z、中子 = A − Z、<b>電子 = Z − 電荷</b>(正電荷要減)</li>
+    <li>平均原子量是<b>加權</b>平均;兩個未知但相加為 1 → 設成 x 與 (1 − x)</li>
+    <li>質量分率 = 元素總質量 ÷ 莫耳質量;<b>有結晶水一定要算進去</b></li>
+    <li><b>順向乘、反向除</b>——而且反向的答案一定比較大</li>
+    <li>δ = (R/R<sub>標準</sub> − 1) × 1000;反推是 R = R<sub>標準</sub>(1 + δ/1000)</li>
+    <li>混合後的 δ 是<b>質量平衡</b>;把它反解就得到摻假判定式,不必背</li>
+    <li><b>「1000 mg」不等於「補到 1000 mg」</b>——五種鈣鹽差 4.3 倍</li>
+  </ul>
+<div class="box key"><span class="tag">帶走一句話</span><b>先問這個數字量的是什麼,再決定乘還是除。</b></div>
+</section>
+
+<!-- 31 -->
+<section class="slide">
+  <h2>重要名詞中英對照 <span class="en">Key Terms</span></h2>
+  <div class="two-col">
+    <div>  <table><tr><th>中文</th><th>English</th></tr><tr><td>核種符號</td><td>nuclide symbol</td></tr><tr><td>質量數</td><td>mass number</td></tr><tr><td>加權平均</td><td>weighted average</td></tr><tr><td>同位素豐度</td><td>isotopic abundance</td></tr><tr><td>質量分率</td><td>mass fraction</td></tr></table></div>
+    <div>  <table><tr><th>中文</th><th>English</th></tr><tr><td>元素鈣／元素鐵</td><td>elemental calcium / iron</td></tr><tr><td>莫耳質量</td><td>molar mass</td></tr><tr><td>質量平衡</td><td>mass balance</td></tr><tr><td>千分率</td><td>per mil (‰)</td></tr><tr><td>摻假</td><td>adulteration</td></tr></table></div>
+  </div>
+</section>
+
+<!-- 32 -->
+<section class="slide">
+  <h2>課後練習(一):符號、平均與分率 <span class="en">Homework I</span></h2>
+<div class="box exbox"><span class="tag">基本題</span>① 寫出 <sup>127</sup>I<sup>−</sup>、<sup>24</sup>Mg<sup>2+</sup>、<sup>32</sup>S<sup>2−</sup> 的質子、中子、電子數。<br>② 溴有 <sup>79</sup>Br(78.9183)與 <sup>81</sup>Br(80.9163),平均原子量 79.904。求兩者的豐度。<br>③ 算出 MgO、ZnSO<sub>4</sub>·7H<sub>2</sub>O、KI 中<b>鎂、鋅、碘</b>的質量分率。</div>
+<div class="box exbox"><span class="tag">應用題</span>④ 市售鋅片標示「葡萄糖酸鋅 100 mg」。查出化學式,算出它含多少元素鋅。<br>⑤ 碘鹽以碘酸鉀 KIO<sub>3</sub> 強化。若要每公斤鹽含 20 mg 碘,應加入多少毫克的碘酸鉀?<span class="small">(這是反算題)</span></div>
+</section>
+
+<!-- 33 -->
+<section class="slide">
+  <h2>課後練習(二):同位素比值 <span class="en">Homework II</span></h2>
+<div class="box exbox"><span class="tag">計算題</span>① 某玉米樣品 R = 0.0110450,求 δ<sup>13</sup>C,並判斷它是 C3 還是 C4 植物。<br>② 某果汁的 δ<sup>13</sup>C = −26.5‰,求它的 R。<br>③ 把 25% 的玉米糖漿(−10.5‰)摻進 δ = −26.0‰ 的蘋果汁,混合後的 δ 是多少?</div>
+<div class="box exbox"><span class="tag">判讀題</span>④ 某蜂蜜:蜂蜜 δ = −21.8‰、蛋白質 δ = −25.2‰。算出 C4 糖比例並判定是否合格(門檻 7%)。<br>⑤ 承上題,若這瓶蜂蜜的蛋白質 δ 測不出來(含量太低),你還能不能判定?<b>請說明理由</b>——這一題沒有數字要算,但它才是這一節真正要問的事。</div>
+<div class="box def"><span class="tag">下一段:第 3 週　莫耳與化學式</span>本課把化學式讀成<b>比例</b>,下週要把比例變成<b>可以秤出來的公克</b>——那個橋樑叫做莫耳。</div>
+</section>
+</div></div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const DECK_INFO='普通化學(一)|第 2 週延伸·計算專題:化學式與標示判讀';
+let cur=0;
+slides.forEach((s,i)=>{
+  const f=document.createElement('div');f.className='foot';
+  f.innerHTML='<span>'+DECK_INFO+'</span><span>'+(i+1)+' / '+slides.length+'</span>';
+  s.appendChild(f);
+});
+slides.forEach(s=>{
+  const sol=s.querySelector('.sol');
+  if(!sol)return;
+  const hint=document.createElement('div');hint.className='sol-hint';
+  hint.innerHTML='<span class="kbd">空白鍵</span><span>先自己想／算，準備好再顯示解答</span>';
+  sol.insertAdjacentElement('beforebegin',hint);
+});
+function show(n){
+  cur=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,i)=>{s.classList.toggle('active',i===cur);s.classList.remove('reveal');});
+  document.getElementById('bar').style.width=((cur+1)/slides.length*100)+'%';
+  location.hash=cur+1;
+}
+function next(){
+  const s=slides[cur];
+  if(s.querySelector('.sol')&&!s.classList.contains('reveal')){s.classList.add('reveal');return;}
+  show(cur+1);
+}
+function prev(){
+  const s=slides[cur];
+  if(s.classList.contains('reveal')){s.classList.remove('reveal');return;}
+  show(cur-1);
+}
+function fit(){
+  const s=Math.min(innerWidth/1280,innerHeight/720);
+  document.getElementById('deck').style.transform='scale('+s+')';
+}
+addEventListener('resize',fit);
+addEventListener('keydown',e=>{
+  if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();next();}
+  else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev();}
+  else if(e.key==='Home')show(0);
+  else if(e.key==='End')show(slides.length-1);
+});
+addEventListener('click',e=>{
+  if(e.target.closest('a'))return;
+  (e.clientX>innerWidth/3)?next():prev();
+});
+let tx=null;
+addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+addEventListener('touchend',e=>{
+  if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;
+  if(dx<-40)next();else if(dx>40)prev();tx=null;
+});
+fit();
+show(parseInt(location.hash.slice(1))-1||0);
+</script>
+</body>
+</html>

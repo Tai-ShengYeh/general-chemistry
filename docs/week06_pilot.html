@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第6週:熱化學|普通化學(一)</title>
+<style>
+:root{
+  --primary:#1a5276; --primary-dark:#12395a; --accent:#a04c08; --teal:#117a65;
+  --ink:#2c3e50; --muted:#5a6a6b; --bg:#eceff3; --card:#ffffff;
+  --def-bg:#eaf2f8; --key-bg:#fef9e7; --ex-bg:#e8f8f5; --warn-bg:#fdedec;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC","Heiti TC",sans-serif;color:var(--ink)}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#deck{position:relative;width:1280px;height:720px;transform-origin:center center}
+.slide{position:absolute;inset:0;width:1280px;height:720px;background:var(--card);padding:56px 72px 70px;display:none;flex-direction:column;border-top:10px solid var(--primary);overflow:hidden}
+.slide.active{display:flex}
+.slide h2{font-size:36px;color:var(--primary);border-bottom:3px solid var(--accent);padding-bottom:10px;margin-bottom:26px;font-weight:700}
+.slide h2 .en{display:block;font-size:19px;color:var(--muted);font-weight:400;margin-top:4px}
+.slide h3{font-size:26px;color:var(--primary);margin:12px 0 8px}
+.slide p{font-size:24px;line-height:1.55;margin:8px 0}
+.slide ul,.slide ol{font-size:24px;line-height:1.6;margin:8px 0 8px 34px}
+.slide li{margin:7px 0}
+.slide li li{font-size:22px;margin:4px 0}
+.en{color:var(--muted);font-size:.82em}
+.small{font-size:19px;color:var(--muted)}
+.big{font-size:30px}
+.center{text-align:center}
+.hl{color:var(--accent);font-weight:700}
+.hlb{color:var(--primary);font-weight:700}
+.two-col{display:flex;gap:32px;align-items:flex-start}
+.two-col>div{flex:1}
+.box{border-radius:10px;padding:16px 22px;margin:14px 0;font-size:23px;line-height:1.55}
+.def{background:var(--def-bg);border-left:6px solid var(--primary)}
+.key{background:var(--key-bg);border-left:6px solid #f1c40f}
+.warn{background:var(--warn-bg);border-left:6px solid #e74c3c}
+.exbox{background:var(--ex-bg);border-left:6px solid var(--teal)}
+.box .tag{display:inline-block;font-size:17px;font-weight:700;color:#fff;border-radius:5px;padding:2px 10px;margin-bottom:6px}
+.def .tag{background:var(--primary)} .key .tag{background:#8a6d00} .warn .tag{background:#c0392b} .exbox .tag{background:var(--teal)}
+.sol{border-top:2px dashed var(--teal);margin-top:12px;padding-top:10px}
+/* ── 形成性評量：解答兩段式揭露 ───────────────────────── */
+.slide.active .sol{display:none}
+.slide.active.reveal .sol{display:block}
+.sol-hint{margin-top:12px;padding-top:10px;border-top:2px dashed #b9c6c6;font-size:19px;color:#5d6d6e;display:flex;align-items:center;gap:10px}
+.slide.active.reveal .sol-hint{display:none}
+.sol-hint .kbd{display:inline-block;border:1px solid #aab7b8;border-bottom-width:2px;border-radius:5px;padding:1px 9px;font-size:17px;background:#fff;color:#34495e}
+/* ── 隨堂快問 ─────────────────────────────────────────── */
+.slide.quiz{border-top-color:var(--teal)}
+.slide.quiz h2{margin-bottom:14px}
+.slide.quiz h2{color:#0e6655;border-bottom-color:var(--teal)}
+.qbar{background:#e8f8f5;border-left:6px solid var(--teal);border-radius:8px;padding:5px 16px;font-size:18px;color:#0e6655;margin-bottom:4px}
+.q{margin:4px 0;font-size:21px;line-height:1.28}
+.q .qn{display:inline-block;min-width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;background:var(--teal);color:#fff;font-size:16px;font-weight:700;margin-right:7px}
+.opt{display:inline-block;border:1.5px solid #a2d5cd;background:#f2fbf9;color:#0e6655;border-radius:14px;padding:0 11px;margin:1px 4px 1px 0;font-size:19px}
+.quiz .sol{margin-top:5px;padding-top:5px;font-size:18px;line-height:1.26}
+.quiz .sol .ans{color:#c0392b;font-weight:700}
+.quiz .sol .row{margin:3px 0}
+.quiz .sol .row+.row{border-top:1px solid #e5eceb;padding-top:3px}
+.quiz .sol .myth{display:block;font-size:16px;color:#5d6d6e;margin:1px 0 0 0;line-height:1.24}
+@media print{
+  .sol{display:block!important}
+  .sol-hint{display:none!important}
+}
+.eq{text-align:center;font-size:28px;margin:14px 0;font-family:Cambria,"Times New Roman",serif}
+table{border-collapse:collapse;margin:12px auto;font-size:21px;width:100%}
+th{background:var(--primary);color:#fff;padding:8px 12px;font-weight:600}
+td{border:1px solid #d5dbdb;padding:7px 12px;text-align:center}
+tr:nth-child(even) td{background:#f4f6f7}
+.cover{background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 55%,var(--teal) 100%);border-top:none;color:#fff;justify-content:center;align-items:center;text-align:center}
+.cover h1{font-size:58px;letter-spacing:4px;margin-bottom:10px}
+.cover .sub{font-size:30px;opacity:.92;margin:6px 0}
+.cover .en-title{font-size:24px;opacity:.75;margin-bottom:34px}
+.cover .meta{font-size:20px;opacity:.7;margin-top:40px}
+.cover .rule{width:220px;height:4px;background:#f7b955;margin:26px auto}
+.divider{background:linear-gradient(120deg,var(--primary-dark),var(--primary));border-top:none;color:#fff;justify-content:center}
+.divider .secnum{font-size:26px;color:#f7b955;font-weight:700;letter-spacing:2px;margin-bottom:14px}
+.divider h1{font-size:52px;margin-bottom:12px}
+.divider .en-sub{font-size:26px;opacity:.75}
+.divider .items{margin-top:36px;font-size:23px;opacity:.9;line-height:2}
+.foot{position:absolute;left:0;right:0;bottom:0;height:32px;display:flex;justify-content:space-between;align-items:center;padding:0 28px;font-size:14px;color:#5d6d6e;background:#fafbfc;border-top:1px solid #e5e8e8}
+.cover .foot,.divider .foot{background:rgba(0,0,0,.15);color:rgba(255,255,255,.65);border-top:none}
+#bar{position:fixed;top:0;left:0;height:5px;background:var(--accent);width:0;z-index:10;transition:width .2s}
+.flow{display:flex;flex-direction:column;align-items:center;gap:6px}
+.fbox{border:2px solid var(--primary);border-radius:8px;padding:8px 20px;font-size:21px;background:var(--def-bg);text-align:center}
+.frow{display:flex;gap:60px;justify-content:center}
+.arrow{font-size:22px;color:var(--accent)}
+.chip{display:inline-block;background:var(--def-bg);border:1px solid var(--primary);color:var(--primary);border-radius:16px;padding:2px 14px;margin:3px;font-size:20px}
+/* ── 因次分析鐵軌格 ───────────────────────────────────── */
+.rail{border-collapse:collapse;margin:10px auto 6px;font-size:23px}
+.rail td{border:none;padding:5px 20px;text-align:center;background:none;vertical-align:middle}
+.rail td+td{border-left:2px solid var(--muted)}
+.rail tr:first-child td{border-bottom:3px solid var(--ink)}
+.rail td.res{border-left:none;padding-left:14px;font-weight:700;color:var(--accent);font-size:25px}
+.rail tr:first-child td.res{border-bottom:none}
+.rail .bk{display:inline-block;min-width:104px;border-bottom:3px dashed var(--accent);height:27px;vertical-align:-4px}
+.rail .gv{background:var(--def-bg)}
+.railnote{text-align:center;font-size:18px;color:var(--muted);margin-top:2px}
+.fig{display:block;margin:6px auto;flex-shrink:0}
+/* ── 錨點回收頁 ───────────────────────────────────────── */
+.slide.hookback{border-top-color:var(--teal)}
+.slide.hookback h2{color:#0e6655;border-bottom-color:var(--teal)}
+.recall{background:#f4f6f7;border-left:5px solid #95a5a6;border-radius:8px;padding:7px 18px;
+        font-size:20px;line-height:1.34;color:#5d6d6e;margin:0 0 10px}
+.recall b{color:#34495e}
+.ansbox{background:#e8f8f5;border-left:6px solid var(--teal);border-radius:9px;padding:10px 20px;margin:0 0 10px}
+.ansbox h3{font-size:20px;color:#0e6655;margin:0 0 5px}
+.ansbox ul{margin:0 0 0 20px;font-size:19.5px;line-height:1.4}
+.ansbox li{margin:5px 0}
+.lens{background:var(--key-bg);border-left:6px solid #d4a70a;border-radius:9px;padding:10px 20px;
+      font-size:20px;line-height:1.38;margin-bottom:9px}
+.lens .lt{display:block;font-size:16px;font-weight:700;color:#8a6d00;letter-spacing:1px;margin-bottom:2px}
+.nextup{background:#eaf2f8;border-left:5px solid var(--primary);border-radius:8px;padding:8px 18px;
+        font-size:18.5px;line-height:1.4;color:#34495e}
+.nextup .course{display:inline-block;background:#fff;border:1px solid #a2d5cd;color:#0e6655;
+                border-radius:11px;padding:0 8px;font-size:16px;margin-right:4px}
+@media print{
+  @page{size:1280px 720px;margin:0}
+  html,body{background:#fff}
+  #stage{position:static}
+  #deck{width:auto;height:auto;transform:none!important}
+  .slide{position:relative;display:flex!important;page-break-after:always;margin:0;inset:auto}
+  #bar{display:none}
+}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="stage"><div id="deck">
+
+<!-- 1 -->
+<section class="slide cover">
+  <h1>普通化學(一)</h1>
+  <div class="en-title">General Chemistry I</div>
+  <div class="rule"></div>
+  <div class="sub">第 6 週:熱化學</div>
+  <div class="sub">能量、焓與 Hess 定律</div>
+  <div class="en-title" style="margin-top:8px">Thermochemistry: Energy, Enthalpy &amp; Hess's Law</div>
+  <div class="meta">對應教材:OpenStax Chemistry 2e — Chapter 5</div>
+</section>
+
+<!-- 2 -->
+<section class="slide">
+  <h2>本週學習目標 <span class="en">Learning Objectives</span></h2>
+  <ul>
+    <li>認識能量的形式、系統與外界,並區分放熱與吸熱反應</li>
+    <li>熟悉能量單位 J、cal、Cal,並掌握比熱與 q = mcΔT 計算</li>
+    <li>了解咖啡杯量熱計(恆壓)與彈卡計量熱計(恆容)的原理</li>
+    <li>理解焓 (enthalpy) 的意義,能正確解讀熱化學方程式</li>
+    <li>會使用 Hess 定律以已知反應熱求未知反應熱</li>
+    <li>會用標準生成焓 ΔH°<sub>f</sub> 計算反應焓變 ΔH°<sub>rxn</sub></li>
+  </ul>
+  <div class="box key"><span class="tag">本週重點</span>q = mcΔT、熱化學方程式的計量、Hess 定律與 ΔH°<sub>f</sub> 是本章四大計算主軸。</div>
+</section>
+
+<!-- 3 -->
+<section class="slide divider">
+  <div class="secnum">PART 5.1</div>
+  <h1>能量的基本概念</h1>
+  <div class="en-sub">Energy Basics</div>
+  <div class="items">能量的形式・熱與功・系統與外界・放熱與吸熱・能量單位</div>
+</section>
+
+<!-- 4 -->
+<section class="slide">
+  <h2>能量的形式 <span class="en">Forms of Energy</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>能量 (energy)</b>:作功或供熱的能力。<br><b>動能 (kinetic energy)</b>:物體因運動而具有的能量。<br><b>位能 (potential energy)</b>:物體因位置或組成而具有的能量。</div>
+  <ul>
+    <li>化學能 (chemical energy) 是一種<span class="hlb">位能</span>,儲存於化學鍵與粒子間的作用力中</li>
+    <li>熱能 (thermal energy) 與粒子的<span class="hlb">隨機運動動能</span>有關;溫度是其平均動能的指標</li>
+    <li>化學反應的本質之一:<span class="hl">位能(化學能)與熱能之間的轉換</span></li>
+  </ul>
+</section>
+
+<!-- 5 -->
+<section class="slide">
+  <h2>熱與功 <span class="en">Heat and Work</span></h2>
+  <div class="two-col">
+    <div>
+      <h3>熱 Heat (q)</h3>
+      <ul>
+        <li>因<b>溫度差</b>而在物體間傳遞的能量</li>
+        <li>自發方向:高溫 → 低溫</li>
+        <li>熱不是物質,是「傳遞中的能量」</li>
+      </ul>
+    </div>
+    <div>
+      <h3>功 Work (w)</h3>
+      <ul>
+        <li>施力使物體移動所傳遞的能量</li>
+        <li>化學上常見:氣體膨脹的<b>壓容功</b> (PV work)</li>
+        <li>例:氣體推動活塞</li>
+      </ul>
+    </div>
+  </div>
+  <div class="box key"><span class="tag">重點</span>熱與功是能量<b>進出系統的兩種方式</b>。能量守恆(熱力學第一定律):能量不會憑空產生或消失,只會轉換形式或轉移位置。</div>
+</section>
+
+<!-- 6 -->
+<section class="slide">
+  <h2>系統與外界 <span class="en">System and Surroundings</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>系統 (system)</b>:我們關注的研究對象(通常是反應物與生成物)。<br><b>外界 (surroundings)</b>:系統以外與之交換能量或物質的一切。</div>
+  <table>
+    <tr><th>系統種類</th><th>物質交換</th><th>能量交換</th><th>例子</th></tr>
+    <tr><td>開放系統 open</td><td>可</td><td>可</td><td>敞口燒杯中的熱水</td></tr>
+    <tr><td>封閉系統 closed</td><td>不可</td><td>可</td><td>加蓋密封的燒瓶</td></tr>
+    <tr><td>孤立系統 isolated</td><td>不可</td><td>不可</td><td>理想保溫瓶</td></tr>
+  </table>
+</section>
+
+<!-- 7 -->
+<section class="slide">
+  <h2>放熱與吸熱反應 <span class="en">Exothermic vs. Endothermic</span></h2>
+  <table>
+    <tr><th></th><th>放熱反應 exothermic</th><th>吸熱反應 endothermic</th></tr>
+    <tr><td>熱流方向</td><td>系統 → 外界</td><td>外界 → 系統</td></tr>
+    <tr><td>外界溫度</td><td>升高(摸起來變熱)</td><td>降低(摸起來變冷)</td></tr>
+    <tr><td>q 的正負(對系統)</td><td>q &lt; 0</td><td>q &gt; 0</td></tr>
+    <tr><td>例子</td><td>燃燒、中和、暖暖包</td><td>光合作用、冰熔化、冷敷包</td></tr>
+  </table>
+  <div class="box warn"><span class="tag">注意</span>正負號一律以<b>系統</b>的觀點定義:系統得到能量為正、失去能量為負。</div>
+</section>
+
+<!-- 8 -->
+<section class="slide">
+  <h2>能量圖 <span class="en">Energy Diagrams</span></h2>
+  <div class="two-col">
+    <div>
+      <h3 class="center">放熱反應</h3>
+      <div class="flow">
+        <div class="fbox">反應物<br><span class="small">位能較高</span></div>
+        <div class="arrow">↓ 釋放熱量 (ΔH &lt; 0)</div>
+        <div class="fbox">生成物<br><span class="small">位能較低</span></div>
+      </div>
+    </div>
+    <div>
+      <h3 class="center">吸熱反應</h3>
+      <div class="flow">
+        <div class="fbox">生成物<br><span class="small">位能較高</span></div>
+        <div class="arrow">↑ 吸收熱量 (ΔH &gt; 0)</div>
+        <div class="fbox">反應物<br><span class="small">位能較低</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="box key" style="margin-top:18px"><span class="tag">重點</span>放熱:生成物能量<b>低於</b>反應物,差額以熱釋出;吸熱則相反。</div>
+</section>
+
+<!-- 9 -->
+<section class="slide">
+  <h2>能量單位 <span class="en">Units of Energy</span></h2>
+  <table>
+    <tr><th>單位</th><th>符號</th><th>定義/換算</th></tr>
+    <tr><td>焦耳 joule</td><td>J</td><td>SI 單位;1 J = 1 kg·m<sup>2</sup>/s<sup>2</sup></td></tr>
+    <tr><td>卡 calorie</td><td>cal</td><td>使 1 g 水升溫 1 °C 所需的熱;1 cal = 4.184 J(定義值)</td></tr>
+    <tr><td>大卡(食物卡)</td><td>Cal</td><td>1 Cal = 1 kcal = 1000 cal = 4184 J</td></tr>
+  </table>
+  <div class="box warn"><span class="tag">注意</span>營養標示的「卡路里」其實是<b>大卡 Cal</b>(千卡)。一份 250 Cal 的點心 = 250,000 cal ≈ 1.05 × 10<sup>6</sup> J!</div>
+</section>
+
+<!-- 10 -->
+<section class="slide divider">
+  <div class="secnum">PART 5.2</div>
+  <h1>比熱與熱量計算</h1>
+  <div class="en-sub">Heat Capacity and Specific Heat</div>
+  <div class="items">熱容量 C・比熱 c・q = mcΔT・熱平衡混合問題</div>
+</section>
+
+<!-- 11 -->
+<section class="slide">
+  <h2>熱容量與比熱 <span class="en">Heat Capacity &amp; Specific Heat</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>熱容量 (heat capacity, C)</b>:使「整個物體」升溫 1 °C 所需的熱量(J/°C,外延性質)。<br><b>比熱 (specific heat, c)</b>:使「1 g 物質」升溫 1 °C 所需的熱量(J/g·°C,強度性質)。</div>
+  <div class="eq">C = m × c&nbsp;&nbsp;;&nbsp;&nbsp;q = C·ΔT = m·c·ΔT</div>
+  <ul>
+    <li>比熱是物質的特性,可用於鑑定物質</li>
+    <li>比熱大 → 同樣吸熱,溫度變化<span class="hlb">小</span>(不易升溫也不易降溫)</li>
+  </ul>
+</section>
+
+<!-- 12 -->
+<section class="slide">
+  <h2>常見物質的比熱 <span class="en">Specific Heats of Substances</span></h2>
+  <table>
+    <tr><th>物質</th><th>c (J/g·°C)</th><th>物質</th><th>c (J/g·°C)</th></tr>
+    <tr><td>水(液)</td><td>4.184</td><td>鋁</td><td>0.897</td></tr>
+    <tr><td>水(冰)</td><td>2.09</td><td>鐵</td><td>0.449</td></tr>
+    <tr><td>乙醇</td><td>2.44</td><td>銅</td><td>0.385</td></tr>
+    <tr><td>水蒸氣</td><td>2.01</td><td>金</td><td>0.129</td></tr>
+  </table>
+  <div class="box key"><span class="tag">重點</span>水的比熱<b>特別大</b>:海洋調節氣候、體溫恆定、汽車引擎用水冷卻,都與此有關。金屬比熱普遍小 → 一曬就燙。</div>
+</section>
+
+<!-- 13 -->
+<section class="slide">
+  <h2>使用 q = mcΔT <span class="en">Using q = mcΔT</span></h2>
+  <div class="eq">q = m · c · ΔT&nbsp;&nbsp;,&nbsp;&nbsp;ΔT = T<sub>末</sub> − T<sub>初</sub></div>
+  <ul>
+    <li>q:熱量 (J);m:質量 (g);c:比熱 (J/g·°C)</li>
+    <li>升溫 → ΔT &gt; 0 → q &gt; 0(吸熱);降溫 → ΔT &lt; 0 → q &lt; 0(放熱)</li>
+    <li>ΔT 用 °C 或 K 計算結果相同(兩尺度的「間隔」一樣大)</li>
+  </ul>
+  <div class="box warn"><span class="tag">注意</span>ΔT 一律是「末溫減初溫」,不要習慣性寫成大減小 — 正負號本身就是資訊!</div>
+</section>
+
+<!-- 14 -->
+<section class="slide">
+  <h2>例題 1:加熱水所需的熱量 <span class="en">Example 1</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>將 250.0 g 的水從 25.0 °C 加熱到 100.0 °C,需要多少熱量?(水的比熱 4.184 J/g·°C)
+  <div class="sol"><b>解:</b><br>
+  ΔT = 100.0 − 25.0 = 75.0 °C<br>
+  q = m·c·ΔT = 250.0 g × 4.184 J/g·°C × 75.0 °C<br>
+  &nbsp;&nbsp;= 78,450 J ≈ <span class="hl">7.85 × 10<sup>4</sup> J = 78.5 kJ</span>(3 位有效數字)<br>
+  q &gt; 0,代表水<span class="hl">吸熱</span>,符合「加熱升溫」的情境。</div></div>
+</section>
+
+<!-- 15 -->
+<section class="slide">
+  <h2>熱平衡 <span class="en">Thermal Equilibrium</span></h2>
+  <ul>
+    <li>高溫物體與低溫物體接觸 → 熱由高溫流向低溫,直到<span class="hlb">兩者末溫相同</span></li>
+    <li>若系統與外界隔絕(理想量熱計),能量守恆給出:</li>
+  </ul>
+  <div class="eq">q<sub>熱者</sub> + q<sub>冷者</sub> = 0&nbsp;&nbsp;⇒&nbsp;&nbsp;q<sub>放</sub> = −q<sub>吸</sub></div>
+  <ul>
+    <li>解題步驟:設共同末溫 T<sub>f</sub>(或代入已知末溫)→ 分別寫出 mcΔT → 令總和為零</li>
+  </ul>
+  <div class="box key"><span class="tag">重點</span>「放出的熱 = 吸收的熱」是所有量熱計算的核心方程式。</div>
+</section>
+
+<!-- 16 -->
+<section class="slide">
+  <h2>例題 2:熱平衡求金屬比熱 <span class="en">Example 2</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>將 50.0 g 金屬塊加熱至 100.0 °C 後,投入 100.0 g、22.0 °C 的水中,末溫為 25.4 °C。求金屬的比熱,並推測其為何種金屬。
+  <div class="sol"><b>解:</b><br>
+  水吸熱:q<sub>水</sub> = 100.0 × 4.184 × (25.4 − 22.0) = 100.0 × 4.184 × 3.4 = 1.42 × 10<sup>3</sup> J<br>
+  金屬放熱:q<sub>金屬</sub> = −q<sub>水</sub> = −1.42 × 10<sup>3</sup> J<br>
+  金屬 ΔT = 25.4 − 100.0 = −74.6 °C<br>
+  c = q / (m·ΔT) = (−1.42 × 10<sup>3</sup>) / (50.0 × (−74.6)) = <span class="hl">0.38 J/g·°C</span>(2 位)<br>
+  與銅 (0.385 J/g·°C) 相符 → 此金屬可能是<span class="hl">銅</span>。</div></div>
+</section>
+
+<!-- 17 -->
+<section class="slide divider">
+  <div class="secnum">PART 5.3</div>
+  <h1>量熱法</h1>
+  <div class="en-sub">Calorimetry</div>
+  <div class="items">咖啡杯量熱計(恆壓)・彈卡計量熱計(恆容)</div>
+</section>
+
+<!-- 18 -->
+<section class="slide">
+  <h2>量熱法的原理 <span class="en">Principle of Calorimetry</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>量熱法 (calorimetry)</b>:藉由測量溫度變化,求反應或物理過程所交換熱量的實驗方法;所用裝置稱<b>量熱計 (calorimeter)</b>。</div>
+  <div class="eq">q<sub>反應</sub> = −q<sub>量熱計內容物</sub></div>
+  <ul>
+    <li>反應放熱 → 量熱計內溶液(或水)升溫;反應吸熱 → 降溫</li>
+    <li>兩種常見裝置:<span class="hlb">咖啡杯量熱計</span>(恆壓)與<span class="hlb">彈卡計量熱計</span>(恆容)</li>
+  </ul>
+</section>
+
+<!-- 19 -->
+<section class="slide">
+  <h2>咖啡杯量熱計(恆壓) <span class="en">Coffee-Cup Calorimeter</span></h2>
+  <ul>
+    <li>構造:兩層保麗龍杯 + 蓋子 + 溫度計 + 攪拌棒</li>
+    <li>敞開於大氣 → <span class="hlb">恆壓</span>條件,測得的熱即 q<sub>p</sub> = ΔH</li>
+    <li>適用:溶液中的反應(中和、溶解、沉澱)</li>
+    <li>常用近似:稀水溶液的密度 ≈ 1.0 g/mL、比熱 ≈ 4.184 J/g·°C</li>
+  </ul>
+  <div class="box key"><span class="tag">重點</span>計算時,吸熱的「m」是<b>全部溶液的總質量</b>(兩溶液相加),不是溶質的質量。</div>
+</section>
+
+<!-- 20 -->
+<section class="slide">
+  <h2>例題 3:中和熱測定 <span class="en">Example 3</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>將 50.0 mL 1.00 M HCl 與 50.0 mL 1.00 M NaOH(均為 22.00 °C)在咖啡杯量熱計中混合,末溫升至 28.90 °C。求每莫耳 H<sub>2</sub>O 生成的中和熱 ΔH。(溶液密度 1.00 g/mL、比熱 4.184 J/g·°C,忽略杯子吸熱)
+  <div class="sol"><b>解:</b><br>
+  總質量 m = (50.0 + 50.0) mL × 1.00 g/mL = 100.0 g;ΔT = 28.90 − 22.00 = 6.90 °C<br>
+  溶液吸熱:q = 100.0 × 4.184 × 6.90 = 2.89 × 10<sup>3</sup> J<br>
+  反應放熱:q<sub>rxn</sub> = −2.89 × 10<sup>3</sup> J<br>
+  n(H<sub>2</sub>O) = 0.0500 L × 1.00 mol/L = 0.0500 mol(HCl、NaOH 恰好完全反應)<br>
+  ΔH = −2.89 × 10<sup>3</sup> J ÷ 0.0500 mol = <span class="hl">−5.77 × 10<sup>4</sup> J/mol = −57.7 kJ/mol</span></div></div>
+</section>
+
+<!-- 21 -->
+<section class="slide">
+  <h2>彈卡計量熱計(恆容) <span class="en">Bomb Calorimeter</span></h2>
+  <ul>
+    <li>試樣置於鋼製「彈」中,充高壓 O<sub>2</sub> 點火燃燒;彈浸於已知量的水中</li>
+    <li>體積固定 → <span class="hlb">恆容</span>條件,測得 q<sub>v</sub> = ΔU(內能變化,與 ΔH 略有差異)</li>
+    <li>適用:燃燒反應(燃料熱值、食物熱量)</li>
+  </ul>
+  <div class="eq">q<sub>rxn</sub> = −C<sub>cal</sub> × ΔT</div>
+  <p>C<sub>cal</sub>:量熱計的總熱容量 (kJ/°C),事先以已知熱量的標準物質(如苯甲酸)校正求得。</p>
+</section>
+
+<!-- 22 -->
+<section class="slide">
+  <h2>例題 4:彈卡計測葡萄糖燃燒熱 <span class="en">Example 4</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>將 1.50 g 葡萄糖 (C<sub>6</sub>H<sub>12</sub>O<sub>6</sub>,摩爾質量 180.16 g/mol) 在彈卡計中完全燃燒,溫度上升 2.36 °C。已知 C<sub>cal</sub> = 9.90 kJ/°C,求葡萄糖每克與每莫耳的燃燒熱。
+  <div class="sol"><b>解:</b><br>
+  量熱計吸熱:q<sub>cal</sub> = C<sub>cal</sub> × ΔT = 9.90 kJ/°C × 2.36 °C = 23.4 kJ<br>
+  反應放熱:q<sub>rxn</sub> = −23.4 kJ<br>
+  每克:−23.4 kJ ÷ 1.50 g = <span class="hl">−15.6 kJ/g</span><br>
+  每莫耳:−15.6 kJ/g × 180.16 g/mol = <span class="hl">−2.81 × 10<sup>3</sup> kJ/mol</span>(3 位有效數字)</div></div>
+</section>
+
+<!-- 23 -->
+<section class="slide divider">
+  <div class="secnum">PART 5.4</div>
+  <h1>焓與熱化學方程式</h1>
+  <div class="en-sub">Enthalpy and Thermochemical Equations</div>
+  <div class="items">內能 U・焓 H = U + PV・ΔH 的規則・熱化學計量</div>
+</section>
+
+<!-- 24 -->
+<section class="slide">
+  <h2>內能與狀態函數 <span class="en">Internal Energy &amp; State Functions</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>內能 (internal energy, U)</b>:系統內所有粒子動能與位能的總和。<br><b>狀態函數 (state function)</b>:其值只取決於系統目前的狀態,與「如何到達」的路徑無關。</div>
+  <ul>
+    <li>第一定律可寫成:ΔU = q + w(熱與功兩種途徑改變內能)</li>
+    <li>U、H、P、V、T 都是狀態函數;<span class="hlb">q 與 w 不是</span>(與路徑有關)</li>
+    <li>類比:登山的「海拔變化」是狀態函數,「走的路程」不是</li>
+  </ul>
+</section>
+
+<!-- 25 -->
+<section class="slide">
+  <h2>焓 <span class="en">Enthalpy</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>焓 (enthalpy)</b>:H = U + PV,是為了方便處理「恆壓過程的熱」而定義的狀態函數。</div>
+  <div class="eq">恆壓且只作壓容功時:q<sub>p</sub> = ΔH</div>
+  <ul>
+    <li>化學反應多在敞開容器(恆定大氣壓)下進行 → ΔH 就是我們量到的反應熱</li>
+    <li>本課程只需<span class="hlb">定性理解</span> H 的定義;計算都從 ΔH 出發</li>
+    <li>ΔH 是狀態函數的差值 → 只看「始態、末態」,這正是 Hess 定律的基礎</li>
+  </ul>
+</section>
+
+<!-- 26 -->
+<section class="slide">
+  <h2>焓變 ΔH <span class="en">Enthalpy Change</span></h2>
+  <div class="eq">ΔH = H<sub>生成物</sub> − H<sub>反應物</sub></div>
+  <table>
+    <tr><th>反應類型</th><th>ΔH 符號</th><th>能量流向</th></tr>
+    <tr><td>放熱 exothermic</td><td>ΔH &lt; 0</td><td>系統 → 外界</td></tr>
+    <tr><td>吸熱 endothermic</td><td>ΔH &gt; 0</td><td>外界 → 系統</td></tr>
+  </table>
+  <div class="box exbox"><span class="tag">示範</span>CH<sub>4</sub>(g) + 2O<sub>2</sub>(g) → CO<sub>2</sub>(g) + 2H<sub>2</sub>O(l)&nbsp;&nbsp;ΔH = −890.4 kJ<br>
+  意義:每燃燒 1 mol CH<sub>4</sub>(按方程式計量),系統放出 890.4 kJ 的熱。</div>
+</section>
+
+<!-- 27 -->
+<section class="slide">
+  <h2>熱化學方程式的規則(一) <span class="en">Rules for Thermochemical Equations</span></h2>
+  <ul>
+    <li><b>係數對應莫耳數:</b>ΔH 的值對應「方程式所寫的莫耳數」;係數可為分數</li>
+    <li><b>狀態必須標明:</b>(s)、(l)、(g)、(aq) 不同,ΔH 就不同</li>
+  </ul>
+  <div class="box exbox"><span class="tag">示範</span>H<sub>2</sub>(g) + ½O<sub>2</sub>(g) → H<sub>2</sub>O(<b>l</b>)&nbsp;&nbsp;ΔH = −285.8 kJ<br>
+  H<sub>2</sub>(g) + ½O<sub>2</sub>(g) → H<sub>2</sub>O(<b>g</b>)&nbsp;&nbsp;ΔH = −241.8 kJ<br>
+  差 44.0 kJ,恰為 1 mol 水的汽化熱!</div>
+  <div class="box warn"><span class="tag">注意</span>忘記標狀態是熱化學最常見的失分原因之一。</div>
+</section>
+
+<!-- 28 -->
+<section class="slide">
+  <h2>熱化學方程式的規則(二) <span class="en">Rules (continued)</span></h2>
+  <ul>
+    <li><b>逆反應:</b>方程式反寫,ΔH <span class="hl">變號</span></li>
+    <li><b>倍數關係:</b>方程式乘以 n,ΔH 也<span class="hl">乘以 n</span></li>
+  </ul>
+  <div class="box exbox"><span class="tag">示範</span>已知 H<sub>2</sub>(g) + ½O<sub>2</sub>(g) → H<sub>2</sub>O(l),ΔH = −285.8 kJ<br>
+  ① 反寫:H<sub>2</sub>O(l) → H<sub>2</sub>(g) + ½O<sub>2</sub>(g),ΔH = <span class="hl">+285.8 kJ</span><br>
+  ② 乘 2:2H<sub>2</sub>(g) + O<sub>2</sub>(g) → 2H<sub>2</sub>O(l),ΔH = <span class="hl">−571.6 kJ</span></div>
+</section>
+
+<!-- 29 -->
+<section class="slide">
+  <h2>例題 5:熱化學計量 <span class="en">Example 5</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>已知 CH<sub>4</sub>(g) + 2O<sub>2</sub>(g) → CO<sub>2</sub>(g) + 2H<sub>2</sub>O(l),ΔH = −890.4 kJ。燃燒 10.0 g 甲烷 (CH<sub>4</sub>,摩爾質量 16.04 g/mol) 可放出多少熱量?
+  <div class="sol"><b>解:</b><br>
+  n(CH<sub>4</sub>) = 10.0 g ÷ 16.04 g/mol = 0.623 mol<br>
+  由方程式:每 1 mol CH<sub>4</sub> 放熱 890.4 kJ<br>
+  q = 0.623 mol × 890.4 kJ/mol = <span class="hl">555 kJ</span>(放熱,3 位有效數字)<br>
+  ΔH 在此如同「換算因子」:(890.4 kJ / 1 mol CH<sub>4</sub>)。</div></div>
+</section>
+
+<!-- 30 -->
+<section class="slide divider">
+  <div class="secnum">PART 5.5</div>
+  <h1>Hess 定律</h1>
+  <div class="en-sub">Hess's Law</div>
+  <div class="items">狀態函數的威力・方程式疊加技巧・例題演練</div>
+</section>
+
+<!-- 31 -->
+<section class="slide">
+  <h2>Hess 定律 <span class="en">Hess's Law</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>Hess 定律</b>:若一反應可寫成數個步驟反應之和,則其 ΔH 等於各步驟 ΔH 之<b>和</b> — 反應熱與路徑無關。</div>
+  <ul>
+    <li>理論基礎:H 是<span class="hlb">狀態函數</span>,只看始態與末態</li>
+    <li>用途:直接測量困難的反應(太慢、有副反應),可用其他已知反應「拼」出來</li>
+  </ul>
+  <div class="flow" style="margin-top:10px">
+    <div class="frow"><div class="fbox">反應物</div><div class="arrow">— 直接一步 ΔH —→</div><div class="fbox">生成物</div></div>
+    <div class="arrow">= 繞道:步驟 1 (ΔH₁) + 步驟 2 (ΔH₂) + ⋯,總和相同</div>
+  </div>
+</section>
+
+<!-- 32 -->
+<section class="slide">
+  <h2>疊加操作技巧 <span class="en">Manipulating Equations</span></h2>
+  <ol>
+    <li>觀察<b>目標方程式</b>:每個物質該在哪一側、係數多少</li>
+    <li>逐一調整已知方程式:<b>反寫</b>(ΔH 變號)、<b>乘倍數</b>(ΔH 同乘)</li>
+    <li>相加所有方程式,<b>消去</b>兩側都出現的中間物</li>
+    <li>ΔH<sub>目標</sub> = 調整後各 ΔH 之和</li>
+  </ol>
+  <div class="box key"><span class="tag">技巧</span>先找「只在一條已知方程式出現」的物質,以它決定該式的方向與倍數,通常一次到位。</div>
+</section>
+
+<!-- 33 -->
+<section class="slide">
+  <h2>例題 6:Hess 定律(一) <span class="en">Example 6</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>求 C(s) + ½O<sub>2</sub>(g) → CO(g) 的 ΔH。已知:<br>
+  (1) C(s) + O<sub>2</sub>(g) → CO<sub>2</sub>(g)&nbsp;&nbsp;ΔH₁ = −393.5 kJ<br>
+  (2) CO(g) + ½O<sub>2</sub>(g) → CO<sub>2</sub>(g)&nbsp;&nbsp;ΔH₂ = −283.0 kJ
+  <div class="sol"><b>解:</b>目標中 CO 在右側 → 把 (2) 反寫:<br>
+  (1) C(s) + O<sub>2</sub>(g) → CO<sub>2</sub>(g)&nbsp;&nbsp;ΔH₁ = −393.5 kJ<br>
+  (2′) CO<sub>2</sub>(g) → CO(g) + ½O<sub>2</sub>(g)&nbsp;&nbsp;ΔH₂′ = +283.0 kJ<br>
+  相加消去 CO<sub>2</sub>,O<sub>2</sub> 剩 ½:C(s) + ½O<sub>2</sub>(g) → CO(g)<br>
+  ΔH = −393.5 + 283.0 = <span class="hl">−110.5 kJ</span><br>
+  (CO 燃燒不易「恰好停在 CO」,故此值難直接測量,Hess 定律正好派上用場。)</div></div>
+</section>
+
+<!-- 34 -->
+<section class="slide">
+  <h2>例題 7:Hess 定律(二) <span class="en">Example 7</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>求乙炔的生成反應 2C(s) + H<sub>2</sub>(g) → C<sub>2</sub>H<sub>2</sub>(g) 的 ΔH。已知:<br>
+  (1) C<sub>2</sub>H<sub>2</sub>(g) + 5/2 O<sub>2</sub>(g) → 2CO<sub>2</sub>(g) + H<sub>2</sub>O(l)&nbsp;&nbsp;ΔH₁ = −1299.5 kJ<br>
+  (2) C(s) + O<sub>2</sub>(g) → CO<sub>2</sub>(g)&nbsp;&nbsp;ΔH₂ = −393.5 kJ<br>
+  (3) H<sub>2</sub>(g) + ½O<sub>2</sub>(g) → H<sub>2</sub>O(l)&nbsp;&nbsp;ΔH₃ = −285.8 kJ
+  <div class="sol"><b>解:</b>C<sub>2</sub>H<sub>2</sub> 需在右側 → (1) 反寫;C 需 2 個 → (2) 乘 2;H<sub>2</sub> 保留 → (3) 不變:<br>
+  ΔH = −ΔH₁ + 2ΔH₂ + ΔH₃ = +1299.5 + 2(−393.5) + (−285.8)<br>
+  &nbsp;&nbsp;= 1299.5 − 787.0 − 285.8 = <span class="hl">+226.7 kJ</span>(吸熱 → 乙炔是高能量燃料)</div></div>
+</section>
+
+<!-- 35 -->
+<section class="slide divider">
+  <div class="secnum">PART 5.6</div>
+  <h1>標準生成焓</h1>
+  <div class="en-sub">Standard Enthalpy of Formation</div>
+  <div class="items">ΔH°f 的定義・常用數值・ΔH°rxn 的計算</div>
+</section>
+
+<!-- 36 -->
+<section class="slide">
+  <h2>標準生成焓 ΔH°<sub>f</sub> <span class="en">Standard Enthalpy of Formation</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>標準生成焓 (ΔH°<sub>f</sub>)</b>:在標準狀態(1 bar、通常 25 °C)下,由<b>最穩定形式的元素</b>生成 1 mol 化合物的焓變。</div>
+  <ul>
+    <li>「°」表示標準狀態 (standard state)</li>
+    <li><span class="hlb">最穩定形式元素的 ΔH°<sub>f</sub> = 0</span>:如 O<sub>2</sub>(g)、N<sub>2</sub>(g)、C(石墨)、Fe(s)</li>
+    <li>但 O<sub>3</sub>(g)、C(鑽石) 不是最穩定形式,其 ΔH°<sub>f</sub> ≠ 0</li>
+  </ul>
+  <div class="box exbox"><span class="tag">示範</span>C(石墨) + O<sub>2</sub>(g) → CO<sub>2</sub>(g),ΔH = −393.5 kJ → ΔH°<sub>f</sub>[CO<sub>2</sub>(g)] = −393.5 kJ/mol</div>
+</section>
+
+<!-- 37 -->
+<section class="slide">
+  <h2>常用 ΔH°<sub>f</sub> 值 <span class="en">Selected Values (25 °C)</span></h2>
+  <table>
+    <tr><th>物質</th><th>ΔH°<sub>f</sub> (kJ/mol)</th><th>物質</th><th>ΔH°<sub>f</sub> (kJ/mol)</th></tr>
+    <tr><td>CO<sub>2</sub>(g)</td><td>−393.5</td><td>CH<sub>4</sub>(g)</td><td>−74.6</td></tr>
+    <tr><td>H<sub>2</sub>O(l)</td><td>−285.8</td><td>NH<sub>3</sub>(g)</td><td>−46.1</td></tr>
+    <tr><td>H<sub>2</sub>O(g)</td><td>−241.8</td><td>NO(g)</td><td>+90.3</td></tr>
+    <tr><td>CO(g)</td><td>−110.5</td><td>C<sub>2</sub>H<sub>5</sub>OH(l)</td><td>−277.6</td></tr>
+    <tr><td>NaCl(s)</td><td>−411.2</td><td>O<sub>2</sub>(g)、N<sub>2</sub>(g)、C(石墨)</td><td>0</td></tr>
+  </table>
+  <p class="small">多數化合物 ΔH°<sub>f</sub> &lt; 0(生成時放熱、比元素穩定);NO 等少數為正。</p>
+</section>
+
+<!-- 38 -->
+<section class="slide">
+  <h2>由 ΔH°<sub>f</sub> 求反應焓 <span class="en">Calculating ΔH°<sub>rxn</sub></span></h2>
+  <div class="eq">ΔH°<sub>rxn</sub> = Σ n·ΔH°<sub>f</sub>(生成物) − Σ m·ΔH°<sub>f</sub>(反應物)</div>
+  <ul>
+    <li>n、m 為平衡方程式的<span class="hlb">係數</span>,務必乘上</li>
+    <li>本質上是 Hess 定律:反應物 → 元素 → 生成物 的想像路徑</li>
+    <li>元素(最穩定態)的項為 0,可直接略去</li>
+  </ul>
+  <div class="box warn"><span class="tag">注意</span>是「生成物 − 反應物」,順序不可顛倒;且要看清楚 H<sub>2</sub>O 是 (l) 還是 (g)。</div>
+</section>
+
+<!-- 39 -->
+<section class="slide">
+  <h2>例題 8:甲烷燃燒的 ΔH°<sub>rxn</sub> <span class="en">Example 8</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>利用 ΔH°<sub>f</sub> 值,計算 CH<sub>4</sub>(g) + 2O<sub>2</sub>(g) → CO<sub>2</sub>(g) + 2H<sub>2</sub>O(l) 的 ΔH°<sub>rxn</sub>。
+  <div class="sol"><b>解:</b><br>
+  生成物:ΔH°<sub>f</sub>[CO<sub>2</sub>(g)] = −393.5;ΔH°<sub>f</sub>[H<sub>2</sub>O(l)] = −285.8(× 2)<br>
+  反應物:ΔH°<sub>f</sub>[CH<sub>4</sub>(g)] = −74.6;O<sub>2</sub>(g) 為元素 = 0<br>
+  ΔH°<sub>rxn</sub> = [(−393.5) + 2(−285.8)] − [(−74.6) + 2(0)]<br>
+  &nbsp;&nbsp;= (−965.1) − (−74.6) = <span class="hl">−890.5 kJ</span><br>
+  與實驗測得的燃燒熱 −890.4 kJ 一致(小差異來自數據修約)。</div></div>
+</section>
+
+<!-- 40 -->
+<section class="slide">
+  <h2>例題 9:氨的燃燒 <span class="en">Example 9</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>計算 4NH<sub>3</sub>(g) + 5O<sub>2</sub>(g) → 4NO(g) + 6H<sub>2</sub>O(g) 的 ΔH°<sub>rxn</sub>。(ΔH°<sub>f</sub>:NH<sub>3</sub>(g) = −46.1、NO(g) = +90.3、H<sub>2</sub>O(g) = −241.8 kJ/mol)
+  <div class="sol"><b>解:</b><br>
+  Σ生成物 = 4(+90.3) + 6(−241.8) = 361.2 − 1450.8 = −1089.6 kJ<br>
+  Σ反應物 = 4(−46.1) + 5(0) = −184.4 kJ<br>
+  ΔH°<sub>rxn</sub> = (−1089.6) − (−184.4) = <span class="hl">−905.2 kJ</span><br>
+  此為工業上 Ostwald 法製硝酸的第一步,為強放熱反應。</div></div>
+</section>
+
+<!-- 41 -->
+<section class="slide">
+  <h2>燃料熱值 vs 食物代謝能 <span class="en">Fuel Heating Value vs Food Metabolizable Energy</span></h2>
+  <table>
+    <tr><th>燃料 / 食物成分</th><th>約略能量</th><th>類型與備註</th></tr>
+    <tr><td>氫氣 H<sub>2</sub></td><td>142 kJ/g</td><td>燃燒熱 gross;產物只有水</td></tr>
+    <tr><td>甲烷(天然氣)</td><td>55 kJ/g</td><td>燃燒熱 gross</td></tr>
+    <tr><td>脂肪 fat</td><td>9 kcal/g ≈ 38 kJ/g</td><td>Atwater 代謝能(營養標示用)</td></tr>
+    <tr><td>醣類 carbohydrate</td><td>4 kcal/g ≈ 17 kJ/g</td><td>Atwater 代謝能(營養標示用)</td></tr>
+    <tr><td>蛋白質 protein</td><td>標示 4;彈卡計 gross ≈ 5.65</td><td>兩者不同!(kcal/g)</td></tr>
+  </table>
+  <div class="box warn"><span class="tag">科學修正</span><b>食物熱量 ≠ 燃燒熱。</b>彈卡計測「總燃燒能量 gross energy」;人體不是彈卡計 — 蛋白質的氮以尿素排出、膳食纖維難消化、吸收 &lt; 100%,故營養標示採「代謝能 metabolizable energy」,以 Atwater 因子計:醣 4、蛋白 4、脂 9、酒精 7 kcal/g(經驗平均值)。</div>
+</section>
+
+<section class="slide">
+  <h2>第 6 週·食品錨點:標示的大卡,是把食物燒掉量到的嗎? <span class="en">Anchor — Is the Label kcal the Bomb-Calorimeter Heat?</span></h2>
+  <div class="box def" style="font-size:21px"><span class="tag">主線</span>彈卡計測的是<b>總燃燒能量 gross(恆容 q<sub>v</sub>=ΔU)</b>;但人體不是彈卡計 — 氮以尿素排出、纖維難消化、吸收&lt;100%,故標示用<b>代謝能(Atwater:醣 4、蛋白 4、脂 9、酒精 7 kcal/g)</b>。</div>
+  <div class="two-col">
+    <div>
+      <h3>本週對應 CLO</h3>
+      <ul>
+        <li><b>CLO5</b> 熱化學:區分燃燒熱(gross)與代謝能(Atwater)</li>
+        <li><b>CLO2</b> 能量單位 J / cal / Cal 與量測(延用)</li>
+      </ul>
+    </div>
+    <div>
+      <h3>平台分工(本週)</h3>
+      <ul>
+        <li><b>Wayground</b>:固定形成性主平台</li>
+        <li><b>Kahoot</b>:開場迷思診斷(3 題)</li>
+        <li><b>輪替 Gimkit</b>(能量快問快答);<b>Edcafe</b> 背景</li>
+      </ul>
+    </div>
+  </div>
+  <div class="box key" style="font-size:20px"><span class="tag">本週成果</span>每組讀一張營養標示,用 Atwater 反推熱量,並說明它為何不等於彈卡計 gross。</div>
+</section>
+
+<section class="slide">
+  <h2>食品錨點:食品能量階梯 — 食物熱量 ≠ 燃燒熱 <span class="en">Food Energy Ladder: Gross (bomb) → Digestible → Metabolizable</span></h2>
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;min-height:0;margin-bottom:12px">
+  <svg xmlns="http://www.w3.org/2000/svg" style="max-width:100%;max-height:100%" viewBox="0 0 1160 412" role="img" aria-labelledby="w6f1-t w6f1-d">
+    <title id="w6f1-t">蛋白質由總燃燒能量遞減到代謝能的階梯與Atwater因子</title>
+    <desc id="w6f1-d">左圖以蛋白質為例的三條遞減水平長條:總燃燒能量(彈卡計gross)每克5.65大卡,先乘消化率0.92扣除糞便損失得可消化能約5.20,再減尿損失1.25(氮以尿素排出人體無法氧化)得代謝能約3.95約等於4。右側列Atwater因子:醣4、蛋白4、脂9、酒精7大卡每克,並說明食物標示熱量不等於彈卡計總燃燒能量,因人體消化吸收不完全且有尿損失,故標示採代謝能;Atwater為經驗平均值。</desc>
+    <defs>
+      <marker id="w6f1-ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#c0392b"/></marker>
+    </defs>
+    <rect x="8" y="6" width="592" height="400" rx="9" fill="#f7f9fb" stroke="#cfd8dc" stroke-width="1.5"/>
+    <text x="304" y="30" text-anchor="middle" font-family="Microsoft JhengHei" font-size="17" font-weight="700" fill="#1a5276">以「蛋白質」為例(kcal/g):兩個數字各有用途</text>
+    <line x1="70" y1="250" x2="560" y2="250" stroke="#95a5a6" stroke-width="1.4"/>
+    <g font-family="Cambria,serif" font-size="15" fill="#7f8c8d" text-anchor="middle">
+      <text x="70" y="270">0</text><text x="210" y="270">2</text><text x="350" y="270">4</text><text x="490" y="270">6</text></g>
+    <text x="315" y="290" text-anchor="middle" font-family="Microsoft JhengHei" font-size="15" fill="#7f8c8d">每克能量 (kcal/g)</text>
+    <text x="74" y="60" font-family="Microsoft JhengHei" font-size="16" fill="#2c3e50">總燃燒能量(彈卡計 gross)</text>
+    <rect x="70" y="66" width="396" height="34" rx="4" fill="#1a5276"/>
+    <text x="476" y="90" font-family="Cambria,serif" font-size="19" font-weight="700" fill="#1a5276">5.65</text>
+    <line x1="486" y1="102" x2="486" y2="130" stroke="#c0392b" stroke-width="2" marker-end="url(#w6f1-ah)"/>
+    <text x="498" y="122" font-family="Microsoft JhengHei" font-size="14" fill="#c0392b">× 0.92 消化率</text>
+    <text x="74" y="128" font-family="Microsoft JhengHei" font-size="16" fill="#2c3e50">可消化能(扣糞便損失)</text>
+    <rect x="70" y="134" width="364" height="34" rx="4" fill="#16a085"/>
+    <text x="444" y="158" font-family="Cambria,serif" font-size="19" font-weight="700" fill="#138d75">5.20</text>
+    <line x1="486" y1="170" x2="486" y2="198" stroke="#c0392b" stroke-width="2" marker-end="url(#w6f1-ah)"/>
+    <text x="498" y="190" font-family="Microsoft JhengHei" font-size="14" fill="#c0392b">− 1.25 尿損失</text>
+    <text x="74" y="196" font-family="Microsoft JhengHei" font-size="16" fill="#2c3e50">代謝能(營養標示用)</text>
+    <rect x="70" y="202" width="277" height="34" rx="4" fill="#e67e22"/>
+    <text x="357" y="226" font-family="Cambria,serif" font-size="19" font-weight="700" fill="#e67e22">3.95 ≈ 4</text>
+    <rect x="70" y="308" width="490" height="44" rx="8" fill="#eaf2f8" stroke="#1a5276" stroke-width="1.4"/>
+    <text x="315" y="336" text-anchor="middle" font-family="Cambria,serif" font-size="17" fill="#2c3e50">5.65 × 0.92 ≈ 5.20 ; 5.20 − 1.25 = 3.95 ≈ 4</text>
+    <text x="315" y="378" text-anchor="middle" font-family="Microsoft JhengHei" font-size="15" fill="#7f8c8d">Atwater 因子為經驗性平均值,非普遍定律;兩數字不可混用</text>
+    <rect x="608" y="6" width="544" height="400" rx="9" fill="#f7f9fb" stroke="#cfd8dc" stroke-width="1.5"/>
+    <text x="880" y="30" text-anchor="middle" font-family="Microsoft JhengHei" font-size="17" font-weight="700" fill="#1a5276">Atwater 因子(代謝能 kcal/g)</text>
+    <g font-family="Microsoft JhengHei">
+      <rect x="628" y="44" width="248" height="60" rx="8" fill="#eaf2f8" stroke="#1a5276" stroke-width="1.4"/>
+      <text x="752" y="70" text-anchor="middle" font-size="16" fill="#2c3e50">醣類 carbohydrate</text>
+      <text x="752" y="94" text-anchor="middle" font-family="Cambria,serif" font-size="22" font-weight="700" fill="#1a5276">4</text>
+      <rect x="884" y="44" width="248" height="60" rx="8" fill="#eaf2f8" stroke="#1a5276" stroke-width="1.4"/>
+      <text x="1008" y="70" text-anchor="middle" font-size="16" fill="#2c3e50">蛋白質 protein</text>
+      <text x="1008" y="94" text-anchor="middle" font-family="Cambria,serif" font-size="22" font-weight="700" fill="#1a5276">4</text>
+      <rect x="628" y="110" width="248" height="60" rx="8" fill="#fdeede" stroke="#e67e22" stroke-width="1.4"/>
+      <text x="752" y="136" text-anchor="middle" font-size="16" fill="#2c3e50">脂肪 fat</text>
+      <text x="752" y="160" text-anchor="middle" font-family="Cambria,serif" font-size="22" font-weight="700" fill="#e67e22">9</text>
+      <rect x="884" y="110" width="248" height="60" rx="8" fill="#eaf2f8" stroke="#1a5276" stroke-width="1.4"/>
+      <text x="1008" y="136" text-anchor="middle" font-size="16" fill="#2c3e50">酒精 alcohol</text>
+      <text x="1008" y="160" text-anchor="middle" font-family="Cambria,serif" font-size="22" font-weight="700" fill="#1a5276">7</text>
+      <text x="880" y="194" text-anchor="middle" font-size="15" fill="#7f8c8d">蛋白質:gross ≈ 5.65,標示 ≈ 4;膳食纖維另計約 2</text>
+    </g>
+    <rect x="628" y="212" width="504" height="126" rx="10" fill="#fdedec" stroke="#e74c3c" stroke-width="2"/>
+    <rect x="628" y="212" width="128" height="30" rx="8" fill="#e74c3c"/>
+    <text x="692" y="233" text-anchor="middle" font-family="Microsoft JhengHei" font-size="16" font-weight="700" fill="#fff">迷思修正</text>
+    <text x="646" y="266" font-family="Microsoft JhengHei" font-size="16" fill="#2c3e50">食物熱量 <tspan font-weight="700" fill="#c0392b">≠</tspan> 燃燒熱。彈卡計燒的是 gross;</text>
+    <text x="646" y="292" font-family="Microsoft JhengHei" font-size="16" fill="#2c3e50">人體不是彈卡計 — 氮排掉、纖維難消化、</text>
+    <text x="646" y="318" font-family="Microsoft JhengHei" font-size="16" fill="#2c3e50">吸收 &lt; 100% → 營養標示用代謝能。</text>
+    <text x="880" y="362" text-anchor="middle" font-family="Microsoft JhengHei" font-size="15" fill="#7f8c8d">彈卡計:恆容 q_v = ΔU;標示能量:代謝能</text>
+    <text x="880" y="386" text-anchor="middle" font-family="Microsoft JhengHei" font-size="15" fill="#7f8c8d">(這一步屬「食品分析漏斗」的⑥校正/⑦結果)</text>
+  </svg>
+  </div>
+  <div class="box exbox"><span class="tag">學生任務 · W6-CLO5</span>用 gross 5.65、消化率 0.92、尿損失 1.25 算蛋白質代謝能(先 ×0.92 再 −1.25),說明標示為何用 4。</div>
+</section>
+
+<section class="slide">
+  <h2>彈卡計的三筆熱帳 + 鍵能收支 <span class="en">Three Heat Terms in a Bomb Calorimeter · Bond-Energy Budget</span></h2>
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;min-height:0;margin-bottom:12px">
+  <svg xmlns="http://www.w3.org/2000/svg" style="max-width:100%;max-height:100%" viewBox="0 0 1160 412" role="img" aria-labelledby="w6f2-t w6f2-d">
+    <title id="w6f2-t">彈式量熱計三項熱量與化學鍵能方向</title>
+    <desc id="w6f2-d">左側彈式量熱計:量熱計總吸熱等於熱容量10.00乘溫升1.95等於正19.50千焦,扣除點火線修正正0.30千焦後,樣品燃燒放熱為負19.20千焦,除以樣品質量0.500克得每克總燃燒能量38.4千焦。三項熱量必須分清楚。右側鍵能:斷開反應物的鍵需吸收能量,形成生成物的鍵釋放能量;以氫加二分之一氧生成水為例,斷鍵685千焦、成鍵926千焦,反應熱等於685減926等於負241千焦每莫耳,說明斷鍵放能是錯的。</desc>
+    <defs>
+      <marker id="w6f2-ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#1a5276"/></marker>
+    </defs>
+    <rect x="8" y="6" width="566" height="400" rx="9" fill="#f7f9fb" stroke="#cfd8dc" stroke-width="1.5"/>
+    <text x="291" y="30" text-anchor="middle" font-family="Microsoft JhengHei" font-size="17" font-weight="700" fill="#1a5276">彈卡計(恆容 q_v = ΔU):三筆熱帳要分清</text>
+    <rect x="32" y="60" width="112" height="150" rx="8" fill="#d6e4f0" stroke="#1a5276" stroke-width="2"/>
+    <text x="88" y="82" text-anchor="middle" font-family="Microsoft JhengHei" font-size="14" fill="#1a5276">水浴</text>
+    <rect x="60" y="104" width="56" height="86" rx="6" fill="#fef4d6" stroke="#e67e22" stroke-width="2"/>
+    <text x="88" y="152" text-anchor="middle" font-family="Microsoft JhengHei" font-size="14" fill="#ca6f1e">鋼彈</text>
+    <text x="88" y="170" text-anchor="middle" font-family="Microsoft JhengHei" font-size="13" fill="#ca6f1e">樣品</text>
+    <line x1="128" y1="52" x2="128" y2="120" stroke="#c0392b" stroke-width="4"/>
+    <circle cx="128" cy="120" r="7" fill="#c0392b"/>
+    <text x="88" y="206" text-anchor="middle" font-family="Cambria,serif" font-size="13" fill="#2c3e50">m=0.500 g</text>
+    <g font-family="Microsoft JhengHei">
+      <rect x="168" y="52" width="392" height="52" rx="8" fill="#eaf2f8" stroke="#1a5276" stroke-width="1.4"/>
+      <text x="182" y="74" font-size="15" fill="#2c3e50">① 量熱計總吸熱 q<tspan baseline-shift="sub">cal,total</tspan> = C<tspan baseline-shift="sub">cal</tspan>·ΔT</text>
+      <text x="182" y="96" font-family="Cambria,serif" font-size="16" font-weight="700" fill="#1a5276">= 10.00 kJ/°C × 1.95 °C = +19.50 kJ</text>
+      <rect x="168" y="110" width="392" height="40" rx="8" fill="#eaf2f8" stroke="#1a5276" stroke-width="1.4"/>
+      <text x="182" y="135" font-size="15" fill="#2c3e50">② 點火線修正 q<tspan baseline-shift="sub">ign</tspan> = <tspan font-family="Cambria,serif" font-weight="700">+0.30 kJ</tspan>(非樣品)</text>
+      <rect x="168" y="156" width="392" height="56" rx="8" fill="#fef4d6" stroke="#b9770e" stroke-width="2"/>
+      <text x="182" y="178" font-size="15" fill="#2c3e50">③ 樣品放熱 q<tspan baseline-shift="sub">sample</tspan> = −(19.50 − 0.30)</text>
+      <text x="182" y="200" font-family="Cambria,serif" font-size="16" font-weight="700" fill="#c0392b">= −19.20 kJ(負號 = 放熱)</text>
+      <rect x="168" y="218" width="392" height="46" rx="8" fill="#e8f4f1" stroke="#16a085" stroke-width="1.4"/>
+      <text x="182" y="246" font-size="15" fill="#2c3e50">④ gross = 19.20 kJ ÷ 0.500 g = <tspan font-family="Cambria,serif" font-weight="700" fill="#138d75">38.4 kJ/g</tspan></text>
+    </g>
+    <text x="291" y="298" text-anchor="middle" font-family="Microsoft JhengHei" font-size="15" fill="#7f8c8d">「總吸熱」「點火修正」「樣品反應」是三筆不同的熱</text>
+    <text x="291" y="322" text-anchor="middle" font-family="Microsoft JhengHei" font-size="15" fill="#7f8c8d">彈卡計測的是 gross energy,不等於人體可用的代謝能</text>
+    <rect x="582" y="6" width="570" height="400" rx="9" fill="#f7f9fb" stroke="#cfd8dc" stroke-width="1.5"/>
+    <text x="867" y="30" text-anchor="middle" font-family="Microsoft JhengHei" font-size="17" font-weight="700" fill="#1a5276">化學鍵能:斷鍵吸能、成鍵放能</text>
+    <rect x="602" y="44" width="530" height="44" rx="8" fill="#fdedec" stroke="#e74c3c" stroke-width="1.6"/>
+    <text x="620" y="72" font-family="Microsoft JhengHei" font-size="16" fill="#2c3e50">斷開反應物的鍵 → <tspan font-weight="700" fill="#c0392b">吸能</tspan>(+ΣD<tspan baseline-shift="sub">斷</tspan>)</text>
+    <rect x="602" y="96" width="530" height="44" rx="8" fill="#e8f4f1" stroke="#16a085" stroke-width="1.6"/>
+    <text x="620" y="124" font-family="Microsoft JhengHei" font-size="16" fill="#2c3e50">形成生成物的鍵 → <tspan font-weight="700" fill="#138d75">放能</tspan>(−ΣD<tspan baseline-shift="sub">成</tspan>)</text>
+    <text x="602" y="168" font-family="Microsoft JhengHei" font-size="16" font-weight="700" fill="#1a5276">以 H₂ + ½O₂ → H₂O(g) 為例:</text>
+    <text x="616" y="196" font-family="Microsoft JhengHei" font-size="16" fill="#2c3e50">斷鍵吸能:H–H(436) + ½ O=O(249) = <tspan font-family="Cambria,serif" font-weight="700" fill="#c0392b">685 kJ</tspan></text>
+    <text x="616" y="224" font-family="Microsoft JhengHei" font-size="16" fill="#2c3e50">成鍵放能:2 × O–H(463) = <tspan font-family="Cambria,serif" font-weight="700" fill="#138d75">926 kJ</tspan></text>
+    <rect x="602" y="240" width="530" height="46" rx="8" fill="#eaf2f8" stroke="#1a5276" stroke-width="1.4"/>
+    <text x="867" y="269" text-anchor="middle" font-family="Cambria,serif" font-size="18" font-weight="700" fill="#1a5276">ΔH ≈ 685 − 926 = −241 kJ/mol(放熱)</text>
+    <rect x="602" y="298" width="530" height="94" rx="10" fill="#fdedec" stroke="#e74c3c" stroke-width="2"/>
+    <rect x="602" y="298" width="150" height="30" rx="8" fill="#e74c3c"/>
+    <text x="677" y="319" text-anchor="middle" font-family="Microsoft JhengHei" font-size="16" font-weight="700" fill="#fff">迷思修正</text>
+    <text x="618" y="352" font-family="Microsoft JhengHei" font-size="16" fill="#2c3e50">「斷鍵會放能」✗ — 斷鍵一定吸能。</text>
+    <text x="618" y="378" font-family="Microsoft JhengHei" font-size="16" fill="#2c3e50">反應淨放熱 = 成鍵放能 − 斷鍵吸能 之差。</text>
+  </svg>
+  </div>
+  <div class="box exbox"><span class="tag">學生任務 · W6-CLO5</span>算出圖中 gross energy;並把「燃燒時斷鍵所以放熱」改寫成兩句科學正確的敘述。</div>
+</section>
+
+<section class="slide">
+  <h2>第 6 週·銜接後續課程 + Kahoot 開場診斷 <span class="en">Bridges + Kahoot Diagnostic</span></h2>
+  <div class="two-col">
+    <div>
+      <div class="box def" style="margin:6px 0;font-size:19px"><span class="tag">銜接 營養學</span>代謝能、Atwater 因子與攝食產熱效應(TEF)在營養學深化;醣解/β-氧化解釋能量從何而來。</div>
+      <div class="box def" style="margin:6px 0;font-size:19px"><span class="tag">銜接 W16</span>溶解熱(ΔH<sub>soln</sub>)、即溶冷敷袋沿用本週吸放熱與 Hess 概念。</div>
+      <div class="box def" style="margin:6px 0;font-size:19px"><span class="tag">銜接 食品加工</span>殺菌、烘焙的熱處理以 q=mcΔT 估熱負荷;冷凍鏈能量管理。</div>
+    </div>
+    <div>
+      <h3>Kahoot(3 題,★ = 正解)</h3>
+      <ol style="font-size:19px;line-height:1.4">
+        <li>「標示大卡 = 彈卡計燒出來的熱」對嗎? 對,一模一樣 / <b>★不對,標示用代謝能</b><br><span class="small">迷思:把 gross 當標示能量</span></li>
+        <li>何者正確? 斷鍵放能、成鍵吸能 / <b>★斷鍵吸能、成鍵放能</b><br><span class="small">迷思:以為「斷鍵放能」</span></li>
+        <li>1 g 何者最多大卡? 醣類 / 蛋白質 / <b>★脂肪(9)</b><br><span class="small">脂肪能量密度最高</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <h2>第 6 週·Wayground 精熟測驗(12 題,計入 CLO) <span class="en">Wayground Mastery Check</span></h2>
+  <div class="two-col" style="gap:20px">
+    <div>
+      <table style="font-size:14px;line-height:1.15">
+        <tr><th style="width:96px">題號</th><th>題目</th><th style="width:104px">答案</th></tr>
+        <tr><td>CLO5-Q01</td><td style="text-align:left">碳水20/蛋白10/脂5 g 標示熱量?(Atwater)</td><td>165 kcal</td></tr>
+        <tr><td>CLO5-Q02</td><td style="text-align:left">蛋白 gross≈5.65 但標示≈4,主因?</td><td>尿損失+消化率</td></tr>
+        <tr><td>CLO5-Q03</td><td style="text-align:left">gross 5.65 ×0.92 −1.25 = 代謝能?</td><td>≈3.95(≈4)</td></tr>
+        <tr><td>CLO5-Q04</td><td style="text-align:left">C_cal=10.0、ΔT=1.95、點火0.30、0.500g</td><td>38.4 kJ/g</td></tr>
+        <tr><td>CLO5-Q05</td><td style="text-align:left">彈卡計恆容測?標示能量對應?</td><td>q_v=ΔU;≈代謝能</td></tr>
+        <tr><td>CLO5-Q06</td><td style="text-align:left">H<sub>2</sub>+½O<sub>2</sub>→H<sub>2</sub>O,斷685成926,ΔH?</td><td>−241 kJ/mol</td></tr>
+      </table>
+    </div>
+    <div>
+      <table style="font-size:14px;line-height:1.15">
+        <tr><th style="width:96px">題號</th><th>題目</th><th style="width:104px">答案</th></tr>
+        <tr><td>CLO5-Q07</td><td style="text-align:left">「零脂食品一定低熱量」對嗎?</td><td>否(醣/蛋白仍4)</td></tr>
+        <tr><td>CLO2-Q08</td><td style="text-align:left">100g 60°C+100g 20°C 同種牛奶末溫?</td><td>40 °C</td></tr>
+        <tr><td>CLO5-Q09</td><td style="text-align:left">由能量階梯讀三者大小順序?</td><td>代謝&lt;可消化&lt;gross</td></tr>
+        <tr><td>CLO2-Q10</td><td style="text-align:left">250 Cal(大卡)= 幾 kcal?</td><td>250 kcal</td></tr>
+        <tr><td>CLO5-Q11</td><td style="text-align:left">含 14 g 酒精,酒精熱量?(7 kcal/g)</td><td>98 kcal</td></tr>
+        <tr><td>CLO2-Q12</td><td style="text-align:left">200 g 牛奶(c≈3.9)20→70°C 需熱?</td><td>≈39 kJ</td></tr>
+      </table>
+    </div>
+  </div>
+  <p class="small" style="margin-top:10px">題號前綴皆為 <b>W06-</b>。<b>1 Cal(大卡)= 1 kcal = 4.184 kJ</b>。建議精熟門檻 10/12;錯題依 CLO5 / CLO2 分流。</p>
+</section>
+
+<section class="slide">
+  <h2>第 6 週·情境案例與四級規準(CLO5) <span class="en">Scenario &amp; 4-Level Rubric</span></h2>
+  <div class="box exbox" style="margin:8px 0;font-size:17px"><span class="tag">情境</span>一份穀物棒的彈卡計結果為 <b>520 kcal</b>;包裝標示 <b>450 kcal</b>。成分:醣類 55 g、蛋白質 10 g、脂肪 20 g。有人在社群貼文寫:「食物真正有 520 kcal,廠商少標 70 kcal。」(a) 用 Atwater 算一般標示估值。(b) 說明 520 與 450 的差異可能來源(食物熱量≠燃燒熱)。(c) 指出還需哪些資料才能判定標示是否合規。(d) 給貼文一句科學回應。</div>
+  <table class="rubric" style="font-size:13.5px;line-height:1.2">
+    <tr><th style="width:150px">面向(配點)</th><th>L4 精熟</th><th>L3 熟練</th><th>L2 發展中</th><th>L1 初階</th></tr>
+    <tr><td>gross / 代謝能區分 <b>30%</b></td><td>清楚區分兩種能量帳的邊界</td><td>區分正確但不完整</td><td>只說「人體不同」</td><td>視為同一量</td></tr>
+    <tr><td>Atwater 計算 <b>25%</b></td><td>55×4+10×4+20×9=440 kcal 全對</td><td>算式對,小瑕疵</td><td>公式對、代入錯</td><td>無有效計算</td></tr>
+    <tr><td>差異來源解釋 <b>25%</b></td><td>消化吸收/尿損失/纖維/因子/捨入</td><td>舉出兩項合理來源</td><td>只說「有誤差」</td><td>無法解釋</td></tr>
+    <tr><td>證據判斷與結論 <b>20%</b></td><td>指出不能逕判造假、須先統一定義</td><td>結論正確、理由略簡</td><td>結論含糊</td><td>直接指控造假</td></tr>
+  </table>
+  <p class="small" style="margin-top:6px"><b>參考:</b>Atwater = 55×4+10×4+20×9 = <b>440 kcal</b>,與標示 450 接近;彈卡計 520 是 gross。差異來自消化吸收與尿損失、纖維、特定因子、捨入與不確定度 → 不能單憑兩值不同判定造假。每面向 4/3/2/1 分,總分 16。</p>
+</section>
+
+<!-- 42 -->
+<section class="slide">
+  <h2>本週重點總結 <span class="en">Summary</span></h2>
+  <ul>
+    <li><b>能量與符號:</b>以系統為準,放熱 q、ΔH &lt; 0;吸熱 q、ΔH &gt; 0</li>
+    <li><b>熱量計算:</b>q = mcΔT;熱平衡時 q<sub>放</sub> = −q<sub>吸</sub>;水的比熱 4.184 J/g·°C 特別大</li>
+    <li><b>量熱法:</b>咖啡杯(恆壓,q<sub>p</sub> = ΔH)vs 彈卡計(恆容,q = −C<sub>cal</sub>ΔT)</li>
+    <li><b>熱化學方程式:</b>係數對應莫耳數、狀態必標、反寫變號、乘倍同乘</li>
+    <li><b>Hess 定律:</b>ΔH 與路徑無關,可疊加方程式求未知反應熱</li>
+    <li><b>標準生成焓:</b>ΔH°<sub>rxn</sub> = Σn ΔH°<sub>f</sub>(生成物) − Σm ΔH°<sub>f</sub>(反應物);元素標準態為 0</li>
+  </ul>
+</section>
+
+<!-- 43 -->
+<section class="slide">
+  <h2>重要名詞中英對照 <span class="en">Key Terms</span></h2>
+  <table>
+    <tr><th>中文</th><th>English</th><th>中文</th><th>English</th></tr>
+    <tr><td>熱化學</td><td>thermochemistry</td><td>焓</td><td>enthalpy</td></tr>
+    <tr><td>系統/外界</td><td>system / surroundings</td><td>狀態函數</td><td>state function</td></tr>
+    <tr><td>放熱/吸熱</td><td>exothermic / endothermic</td><td>熱化學方程式</td><td>thermochemical equation</td></tr>
+    <tr><td>比熱</td><td>specific heat</td><td>Hess 定律</td><td>Hess's law</td></tr>
+    <tr><td>熱容量</td><td>heat capacity</td><td>標準生成焓</td><td>standard enthalpy of formation</td></tr>
+    <tr><td>量熱法</td><td>calorimetry</td><td>燃燒熱</td><td>heat of combustion</td></tr>
+  </table>
+</section>
+
+<!-- 44 -->
+<section class="slide">
+  <h2>課後練習與下週預告 <span class="en">Homework &amp; Preview</span></h2>
+  <h3>課後練習(OpenStax Chemistry 2e, Ch.5)</h3>
+  <ul>
+    <li>q = mcΔT 與熱平衡:5.1–5.2 節相關題(必做)</li>
+    <li>量熱法與熱化學方程式:5.2–5.3 節相關題(必做)</li>
+    <li>Hess 定律與 ΔH°<sub>f</sub>:5.3 節相關題(必做)</li>
+  </ul>
+  <h3>下週預告:原子的電子結構 — 量子理論與軌域(Ch.6.1–6.3)</h3>
+  <ul>
+    <li>電磁波與光子、氫原子光譜與 Bohr 模型</li>
+    <li>物質波、量子數與軌域形狀</li>
+  </ul>
+  <p class="small center" style="margin-top:20px">操作提示:← → 或空白鍵翻頁|Home/End 跳至首末頁|Ctrl+P 可列印成講義</p>
+</section>
+
+</div></div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const DECK_INFO='普通化學(一)|第 6 週:熱化學';
+let cur=0;
+slides.forEach((s,i)=>{
+  const f=document.createElement('div');f.className='foot';
+  f.innerHTML='<span>'+DECK_INFO+'</span><span>'+(i+1)+' / '+slides.length+'</span>';
+  s.appendChild(f);
+});
+slides.forEach(s=>{
+  const sol=s.querySelector('.sol');
+  if(!sol)return;
+  const hint=document.createElement('div');hint.className='sol-hint';
+  hint.innerHTML='<span class="kbd">空白鍵</span><span>先自己想／算，準備好再顯示解答</span>';
+  sol.insertAdjacentElement('beforebegin',hint);
+});
+function show(n){
+  cur=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,i)=>{s.classList.toggle('active',i===cur);s.classList.remove('reveal');});
+  document.getElementById('bar').style.width=((cur+1)/slides.length*100)+'%';
+  location.hash=cur+1;
+}
+function next(){
+  const s=slides[cur];
+  if(s.querySelector('.sol')&&!s.classList.contains('reveal')){s.classList.add('reveal');return;}
+  show(cur+1);
+}
+function prev(){
+  const s=slides[cur];
+  if(s.classList.contains('reveal')){s.classList.remove('reveal');return;}
+  show(cur-1);
+}
+function fit(){
+  const s=Math.min(innerWidth/1280,innerHeight/720);
+  document.getElementById('deck').style.transform='scale('+s+')';
+}
+addEventListener('resize',fit);
+addEventListener('keydown',e=>{
+  if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();next();}
+  else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev();}
+  else if(e.key==='Home')show(0);
+  else if(e.key==='End')show(slides.length-1);
+});
+addEventListener('click',e=>{
+  if(e.target.closest('a'))return;
+  (e.clientX>innerWidth/3)?next():prev();
+});
+let tx=null;
+addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+addEventListener('touchend',e=>{
+  if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;
+  if(dx<-40)next();else if(dx>40)prev();tx=null;
+});
+fit();
+show(parseInt(location.hash.slice(1))-1||0);
+</script>
+</body>
+</html>

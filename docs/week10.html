@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第10週:化學鍵 I — 離子鍵、共價鍵與 Lewis 結構|普通化學(一)</title>
+<style>
+:root{
+  --primary:#1a5276; --primary-dark:#12395a; --accent:#a04c08; --teal:#117a65;
+  --ink:#2c3e50; --muted:#5a6a6b; --bg:#eceff3; --card:#ffffff;
+  --def-bg:#eaf2f8; --key-bg:#fef9e7; --ex-bg:#e8f8f5; --warn-bg:#fdedec;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC","Heiti TC",sans-serif;color:var(--ink)}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#deck{position:relative;width:1280px;height:720px;transform-origin:center center}
+.slide{position:absolute;inset:0;width:1280px;height:720px;background:var(--card);padding:56px 72px 70px;display:none;flex-direction:column;border-top:10px solid var(--primary);overflow:hidden}
+.slide.active{display:flex}
+.slide h2{font-size:36px;color:var(--primary);border-bottom:3px solid var(--accent);padding-bottom:10px;margin-bottom:26px;font-weight:700}
+.slide h2 .en{display:block;font-size:19px;color:var(--muted);font-weight:400;margin-top:4px}
+.slide h3{font-size:26px;color:var(--primary);margin:12px 0 8px}
+.slide p{font-size:24px;line-height:1.55;margin:8px 0}
+.slide ul,.slide ol{font-size:24px;line-height:1.6;margin:8px 0 8px 34px}
+.slide li{margin:7px 0}
+.slide li li{font-size:22px;margin:4px 0}
+.en{color:var(--muted);font-size:.82em}
+.small{font-size:19px;color:var(--muted)}
+.big{font-size:30px}
+.center{text-align:center}
+.hl{color:var(--accent);font-weight:700}
+.hlb{color:var(--primary);font-weight:700}
+.two-col{display:flex;gap:32px;align-items:flex-start}
+.two-col>div{flex:1}
+.box{border-radius:10px;padding:16px 22px;margin:14px 0;font-size:23px;line-height:1.55}
+.def{background:var(--def-bg);border-left:6px solid var(--primary)}
+.key{background:var(--key-bg);border-left:6px solid #f1c40f}
+.warn{background:var(--warn-bg);border-left:6px solid #e74c3c}
+.exbox{background:var(--ex-bg);border-left:6px solid var(--teal)}
+.box .tag{display:inline-block;font-size:17px;font-weight:700;color:#fff;border-radius:5px;padding:2px 10px;margin-bottom:6px}
+.def .tag{background:var(--primary)} .key .tag{background:#8a6d00} .warn .tag{background:#c0392b} .exbox .tag{background:var(--teal)}
+.sol{border-top:2px dashed var(--teal);margin-top:12px;padding-top:10px}
+/* ── 形成性評量：解答兩段式揭露 ───────────────────────── */
+.slide.active .sol{display:none}
+.slide.active.reveal .sol{display:block}
+.sol-hint{margin-top:12px;padding-top:10px;border-top:2px dashed #b9c6c6;font-size:19px;color:#5d6d6e;display:flex;align-items:center;gap:10px}
+.slide.active.reveal .sol-hint{display:none}
+.sol-hint .kbd{display:inline-block;border:1px solid #aab7b8;border-bottom-width:2px;border-radius:5px;padding:1px 9px;font-size:17px;background:#fff;color:#34495e}
+/* ── 隨堂快問 ─────────────────────────────────────────── */
+.slide.quiz{border-top-color:var(--teal)}
+.slide.quiz h2{margin-bottom:14px}
+.slide.quiz h2{color:#0e6655;border-bottom-color:var(--teal)}
+.qbar{background:#e8f8f5;border-left:6px solid var(--teal);border-radius:8px;padding:5px 16px;font-size:18px;color:#0e6655;margin-bottom:4px}
+.q{margin:4px 0;font-size:21px;line-height:1.28}
+.q .qn{display:inline-block;min-width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;background:var(--teal);color:#fff;font-size:16px;font-weight:700;margin-right:7px}
+.opt{display:inline-block;border:1.5px solid #a2d5cd;background:#f2fbf9;color:#0e6655;border-radius:14px;padding:0 11px;margin:1px 4px 1px 0;font-size:19px}
+.quiz .sol{margin-top:5px;padding-top:5px;font-size:18px;line-height:1.26}
+.quiz .sol .ans{color:#c0392b;font-weight:700}
+.quiz .sol .row{margin:3px 0}
+.quiz .sol .row+.row{border-top:1px solid #e5eceb;padding-top:3px}
+.quiz .sol .myth{display:block;font-size:16px;color:#5d6d6e;margin:1px 0 0 0;line-height:1.24}
+@media print{
+  .sol{display:block!important}
+  .sol-hint{display:none!important}
+}
+.eq{text-align:center;font-size:28px;margin:14px 0;font-family:Cambria,"Times New Roman",serif}
+table{border-collapse:collapse;margin:12px auto;font-size:21px;width:100%}
+th{background:var(--primary);color:#fff;padding:8px 12px;font-weight:600}
+td{border:1px solid #d5dbdb;padding:7px 12px;text-align:center}
+tr:nth-child(even) td{background:#f4f6f7}
+.cover{background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 55%,var(--teal) 100%);border-top:none;color:#fff;justify-content:center;align-items:center;text-align:center}
+.cover h1{font-size:58px;letter-spacing:4px;margin-bottom:10px}
+.cover .sub{font-size:30px;opacity:.92;margin:6px 0}
+.cover .en-title{font-size:24px;opacity:.75;margin-bottom:34px}
+.cover .meta{font-size:20px;opacity:.7;margin-top:40px}
+.cover .rule{width:220px;height:4px;background:#f7b955;margin:26px auto}
+.divider{background:linear-gradient(120deg,var(--primary-dark),var(--primary));border-top:none;color:#fff;justify-content:center}
+.divider .secnum{font-size:26px;color:#f7b955;font-weight:700;letter-spacing:2px;margin-bottom:14px}
+.divider h1{font-size:52px;margin-bottom:12px}
+.divider .en-sub{font-size:26px;opacity:.75}
+.divider .items{margin-top:36px;font-size:23px;opacity:.9;line-height:2}
+.foot{position:absolute;left:0;right:0;bottom:0;height:32px;display:flex;justify-content:space-between;align-items:center;padding:0 28px;font-size:14px;color:#5d6d6e;background:#fafbfc;border-top:1px solid #e5e8e8}
+.cover .foot,.divider .foot{background:rgba(0,0,0,.15);color:rgba(255,255,255,.65);border-top:none}
+#bar{position:fixed;top:0;left:0;height:5px;background:var(--accent);width:0;z-index:10;transition:width .2s}
+.flow{display:flex;flex-direction:column;align-items:center;gap:6px}
+.fbox{border:2px solid var(--primary);border-radius:8px;padding:8px 20px;font-size:21px;background:var(--def-bg);text-align:center}
+.frow{display:flex;gap:60px;justify-content:center}
+.arrow{font-size:22px;color:var(--accent)}
+.chip{display:inline-block;background:var(--def-bg);border:1px solid var(--primary);color:var(--primary);border-radius:16px;padding:2px 14px;margin:3px;font-size:20px}
+/* ── 因次分析鐵軌格 ───────────────────────────────────── */
+.rail{border-collapse:collapse;margin:10px auto 6px;font-size:23px}
+.rail td{border:none;padding:5px 20px;text-align:center;background:none;vertical-align:middle}
+.rail td+td{border-left:2px solid var(--muted)}
+.rail tr:first-child td{border-bottom:3px solid var(--ink)}
+.rail td.res{border-left:none;padding-left:14px;font-weight:700;color:var(--accent);font-size:25px}
+.rail tr:first-child td.res{border-bottom:none}
+.rail .bk{display:inline-block;min-width:104px;border-bottom:3px dashed var(--accent);height:27px;vertical-align:-4px}
+.rail .gv{background:var(--def-bg)}
+.railnote{text-align:center;font-size:18px;color:var(--muted);margin-top:2px}
+.fig{display:block;margin:6px auto;flex-shrink:0}
+/* ── 錨點回收頁 ───────────────────────────────────────── */
+.slide.hookback{border-top-color:var(--teal)}
+.slide.hookback h2{color:#0e6655;border-bottom-color:var(--teal)}
+.recall{background:#f4f6f7;border-left:5px solid #95a5a6;border-radius:8px;padding:7px 18px;
+        font-size:20px;line-height:1.34;color:#5d6d6e;margin:0 0 10px}
+.recall b{color:#34495e}
+.ansbox{background:#e8f8f5;border-left:6px solid var(--teal);border-radius:9px;padding:10px 20px;margin:0 0 10px}
+.ansbox h3{font-size:20px;color:#0e6655;margin:0 0 5px}
+.ansbox ul{margin:0 0 0 20px;font-size:19.5px;line-height:1.4}
+.ansbox li{margin:5px 0}
+.lens{background:var(--key-bg);border-left:6px solid #d4a70a;border-radius:9px;padding:10px 20px;
+      font-size:20px;line-height:1.38;margin-bottom:9px}
+.lens .lt{display:block;font-size:16px;font-weight:700;color:#8a6d00;letter-spacing:1px;margin-bottom:2px}
+.nextup{background:#eaf2f8;border-left:5px solid var(--primary);border-radius:8px;padding:8px 18px;
+        font-size:18.5px;line-height:1.4;color:#34495e}
+.nextup .course{display:inline-block;background:#fff;border:1px solid #a2d5cd;color:#0e6655;
+                border-radius:11px;padding:0 8px;font-size:16px;margin-right:4px}
+
+/* ── 食品營養錨點頁 ───────────────────────────────────── */
+.slide.hook{border-top-color:var(--accent)}
+.slide.hook h2{color:#a05000;border-bottom-color:var(--accent)}
+.bigq{background:linear-gradient(100deg,#fff5ea,#fdf0e0);border-left:8px solid var(--accent);border-radius:10px;
+      padding:14px 22px;font-size:26px;line-height:1.4;color:#7a3d00;font-weight:700;margin:4px 0 12px}
+.bigq .qmark{font-size:30px;margin-right:6px}
+.hookcols{display:flex;gap:22px;align-items:stretch;margin-top:4px}
+.hookcols>div{flex:1;border-radius:9px;padding:11px 16px}
+.hk-now{background:#eaf2f8;border-left:5px solid var(--primary)}
+.hk-next{background:#e8f8f5;border-left:5px solid var(--teal)}
+.hookcols h3{font-size:20px;margin:0 0 6px}
+.hk-now h3{color:var(--primary)} .hk-next h3{color:#0e6655}
+.hookcols ul{font-size:19px;line-height:1.4;margin:0 0 0 20px}
+.hookcols li{margin:4px 0}
+.hookcols .course{display:inline-block;background:#fff;border:1px solid #a2d5cd;color:#0e6655;
+                  border-radius:11px;padding:0 8px;font-size:16px;margin-right:4px}
+.canyou{background:var(--key-bg);border-left:6px solid #d4a70a;border-radius:9px;padding:10px 18px;
+        font-size:20px;line-height:1.4;margin-top:12px}
+.canyou b{color:#8a6d00}
+.hookmap{font-size:19px;line-height:1.5}
+.hookmap td{text-align:left;padding:5px 10px}
+.hookmap td:first-child{text-align:center;font-weight:700;color:var(--accent);width:62px}
+@media print{
+  @page{size:1280px 720px;margin:0}
+  html,body{background:#fff}
+  #stage{position:static}
+  #deck{width:auto;height:auto;transform:none!important}
+  .slide{position:relative;display:flex!important;page-break-after:always;margin:0;inset:auto}
+  #bar{display:none}
+}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="stage"><div id="deck">
+
+<!-- 1 -->
+<section class="slide cover">
+  <h1>普通化學(一)</h1>
+  <div class="en-title">General Chemistry I</div>
+  <div class="rule"></div>
+  <div class="sub">第 10 週:化學鍵 I</div>
+  <div class="sub">離子鍵、共價鍵與 Lewis 結構</div>
+  <div class="en-title" style="margin-top:8px">Chemical Bonding I: Ionic &amp; Covalent Bonds, Lewis Structures</div>
+  <div class="meta">對應教材:OpenStax Chemistry 2e — Sections 7.1–7.3</div>
+</section>
+
+<!-- 2 -->
+<section class="slide">
+  <h2>本週學習目標 <span class="en">Learning Objectives</span></h2>
+  <ul>
+    <li>理解化學鍵形成的共同驅動力:<span class="hlb">降低系統能量</span></li>
+    <li>說明離子鍵的形成(電子轉移)與離子化合物的性質</li>
+    <li>定性比較晶格能 (lattice energy) 的大小</li>
+    <li>說明共價鍵的形成(電子共享)、鍵長與鍵能的關係</li>
+    <li>用電負度 (electronegativity) 差判斷鍵的極性</li>
+    <li>依五步驟畫出分子與多原子離子的 Lewis 結構</li>
+  </ul>
+  <div class="box key"><span class="tag">本週重點</span>Lewis 結構是後續 VSEPR、分子形狀與混成軌域的基礎,務必練到熟!</div>
+</section>
+
+<!-- 3 -->
+<section class="slide hook">
+  <h2>第 10 週·食品營養錨點：為什麼維生素 A 會中毒，維生素 C 只是尿出去？ <span class="en">Anchor Question</span></h2>
+  <div class="bigq"><span class="qmark">?</span>維生素 A 吃過量會累積在肝臟造成中毒，維生素 C 吃過量卻大多隨尿排掉。<b>光看結構式</b>就能預測嗎？</div>
+  <div class="hookcols">
+    <div class="hk-now"><h3>這一週要用到的化學</h3><ul><li>電負度與鍵的極性</li><li>離子鍵 vs 共價鍵</li><li>Lewis 結構</li><li>八隅體與其例外</li></ul></div>
+    <div class="hk-next"><h3>之後在哪裡會再遇到</h3><ul><li><span class="course">營養學</span>脂溶性 vs 水溶性維生素、儲存與毒性</li><li><span class="course">生物化學</span>官能基、生物分子的結構</li><li><span class="course">食品化學</span>營養素在加工中的流失途徑</li></ul></div>
+  </div>
+  <div class="canyou"><b>本週結束時，你應該能回答：</b>從一個結構式，你能不能一眼判斷它偏水溶還是偏脂溶？</div><div class="canyou" style="background:#f4f6f7;border-left-color:#95a5a6"><b>先猜猜看：</b>視黃醇 C₂₀H₃₀O 只有 1 個 OH；抗壞血酸 C₆H₈O₆ 有 4 個氧。哪個溶於水？</div>
+</section>
+
+<!-- 4 -->
+<section class="slide divider">
+  <div class="secnum">PART 7.1</div>
+  <h1>離子鍵</h1>
+  <div class="en-sub">Ionic Bonding</div>
+  <div class="items">化學鍵的驅動力・電子轉移・離子化合物性質・晶格能</div>
+</section>
+
+<!-- 5 -->
+<section class="slide">
+  <h2>為什麼會形成化學鍵? <span class="en">Why Do Bonds Form?</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>化學鍵 (chemical bond)</b>:使原子(或離子)結合在一起的強吸引力。</div>
+  <ul>
+    <li>共同驅動力:結合後系統的<span class="hl">總能量比分開的原子更低</span>,更穩定</li>
+    <li>自然界傾向朝「低能量」狀態變化,放出能量</li>
+    <li>斷鍵必須<b>吸收</b>能量;形成鍵會<b>釋放</b>能量</li>
+  </ul>
+  <div class="box key"><span class="tag">重點</span>「原子想要八隅體」只是記憶口訣,真正的原因是<span class="hlb">能量降低</span>。</div>
+</section>
+
+<!-- 6 -->
+<section class="slide">
+  <h2>化學鍵的三大類型 <span class="en">Three Types of Bonds</span></h2>
+  <table>
+    <tr><th>類型</th><th>形成方式</th><th>常見組合</th><th>例子</th></tr>
+    <tr><td>離子鍵 ionic bond</td><td>電子<b>轉移</b>,正負離子靜電吸引</td><td>金屬+非金屬</td><td>NaCl、MgO</td></tr>
+    <tr><td>共價鍵 covalent bond</td><td>電子<b>共享</b></td><td>非金屬+非金屬</td><td>H<sub>2</sub>O、CO<sub>2</sub></td></tr>
+    <tr><td>金屬鍵 metallic bond</td><td>電子<b>離域</b>(電子海)</td><td>金屬+金屬</td><td>Cu、Fe、合金</td></tr>
+  </table>
+  <p class="small">分類是連續光譜的簡化:許多鍵介於「純離子」與「純共價」之間(見 7.2 電負度)。</p>
+</section>
+
+<!-- 7 -->
+<section class="slide">
+  <h2>離子的形成 <span class="en">Formation of Ions</span></h2>
+  <div class="two-col">
+    <div>
+      <h3>陽離子 Cation</h3>
+      <ul>
+        <li>金屬原子<b>失去</b>價電子</li>
+        <li>Na → Na<sup>+</sup> + e<sup>−</sup></li>
+        <li>主族金屬常形成<b>鈍氣電子組態</b></li>
+      </ul>
+    </div>
+    <div>
+      <h3>陰離子 Anion</h3>
+      <ul>
+        <li>非金屬原子<b>獲得</b>電子</li>
+        <li>Cl + e<sup>−</sup> → Cl<sup>−</sup></li>
+        <li>亦形成鈍氣電子組態(等電子)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="box key"><span class="tag">重點</span>Na<sup>+</sup>(2,8)與 Ne 等電子;Cl<sup>−</sup>(2,8,8)與 Ar 等電子 — 這就是主族離子電荷可預測的原因。</div>
+</section>
+
+<!-- 8 -->
+<section class="slide">
+  <h2>例題 1:預測離子與電子組態 <span class="en">Example 1</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>預測下列原子最可能形成的單原子離子,並寫出離子的電子組態:<br>
+  (a) Mg&nbsp;&nbsp;(b) Al&nbsp;&nbsp;(c) S&nbsp;&nbsp;(d) N
+  <div class="sol"><b>解:</b>主族元素傾向達到鈍氣組態:<br>
+  (a) Mg([Ne]3s<sup>2</sup>)失 2 電子 → <span class="hl">Mg<sup>2+</sup></span>:[Ne]<br>
+  (b) Al([Ne]3s<sup>2</sup>3p<sup>1</sup>)失 3 電子 → <span class="hl">Al<sup>3+</sup></span>:[Ne]<br>
+  (c) S([Ne]3s<sup>2</sup>3p<sup>4</sup>)得 2 電子 → <span class="hl">S<sup>2−</sup></span>:[Ar]<br>
+  (d) N([He]2s<sup>2</sup>2p<sup>3</sup>)得 3 電子 → <span class="hl">N<sup>3−</sup></span>:[Ne]</div></div>
+</section>
+
+<!-- 9 -->
+<section class="slide">
+  <h2>離子鍵的形成:以 NaCl 為例 <span class="en">Formation of NaCl</span></h2>
+  <div class="flow">
+    <div class="frow">
+      <div class="fbox">Na 原子<br><span class="small">[Ne]3s<sup>1</sup>,易失電子</span></div>
+      <div class="fbox">Cl 原子<br><span class="small">[Ne]3s<sup>2</sup>3p<sup>5</sup>,易得電子</span></div>
+    </div>
+    <div class="arrow">↓ 電子轉移 Na → Cl</div>
+    <div class="frow">
+      <div class="fbox">Na<sup>+</sup><br><span class="small">[Ne] 組態</span></div>
+      <div class="fbox">Cl<sup>−</sup><br><span class="small">[Ar] 組態</span></div>
+    </div>
+    <div class="arrow">↓ 正負離子靜電吸引</div>
+    <div class="fbox"><b>NaCl 離子晶體</b><br><span class="small">每個 Na<sup>+</sup> 被 6 個 Cl<sup>−</sup> 包圍(反之亦然)</span></div>
+  </div>
+  <p class="small">注意:固態 NaCl 中沒有「NaCl 分子」,化學式代表離子的最簡整數比(式量單位 formula unit)。</p>
+</section>
+
+<!-- 10 -->
+<section class="slide">
+  <h2>離子化合物的性質 <span class="en">Properties of Ionic Compounds</span></h2>
+  <ul>
+    <li><b>高熔點、高沸點</b>:靜電吸引力強,需大量能量破壞晶格(NaCl 熔點 801 °C)</li>
+    <li><b>硬而脆 (brittle)</b>:受力使同號離子相鄰 → 互斥 → 沿晶面碎裂</li>
+    <li><b>固態不導電</b>:離子被固定在晶格中無法移動</li>
+    <li><b>熔融態或水溶液可導電</b>:離子成為可移動的電荷載子</li>
+    <li>多可溶於水等極性溶劑(依晶格能與水合能競爭而定)</li>
+  </ul>
+  <div class="box warn"><span class="tag">常見誤區</span>「離子化合物導電」須註明狀態 — <b>固態不導電</b>,熔融或溶解後才導電。</div>
+</section>
+
+<!-- 11 -->
+<section class="slide">
+  <h2>晶格能 <span class="en">Lattice Energy</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>晶格能 (lattice energy, ΔH<sub>lattice</sub>)</b>:1 mol 離子晶體分解為氣態離子所需的能量(定義為正值)。<br>例:NaCl(s) → Na<sup>+</sup>(g) + Cl<sup>−</sup>(g),ΔH<sub>lattice</sub> = 769 kJ/mol</div>
+  <div class="eq">ΔH<sub>lattice</sub> ∝ Q<sup>+</sup>·Q<sup>−</sup> / d&nbsp;&nbsp;(Q:離子電荷,d:離子中心間距)</div>
+  <ul>
+    <li><span class="hl">電荷越大</span> → 晶格能越大(影響最顯著)</li>
+    <li><span class="hl">離子越小(距離 d 越小)</span> → 晶格能越大</li>
+    <li>晶格能越大 → 熔點越高、硬度越大、越難溶解</li>
+  </ul>
+</section>
+
+<!-- 12 -->
+<section class="slide">
+  <h2>例題 2:晶格能排序 <span class="en">Example 2</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>將下列化合物依晶格能由大到小排序:NaF、NaCl、MgO、CaO
+  <div class="sol"><b>解:</b>先比電荷,再比距離。<br>
+  ① 電荷乘積:MgO 與 CaO 為 (2+)(2−) = 4;NaF 與 NaCl 為 (1+)(1−) = 1 → 前兩者遠大於後兩者<br>
+  ② 距離:Mg<sup>2+</sup> &lt; Ca<sup>2+</sup> → MgO 的 d 較小 → MgO &gt; CaO<br>
+  ③ F<sup>−</sup> &lt; Cl<sup>−</sup> → NaF 的 d 較小 → NaF &gt; NaCl<br>
+  排序:<span class="hl">MgO &gt; CaO &gt; NaF &gt; NaCl</span></div></div>
+  <div class="box key"><span class="tag">技巧</span>比較晶格能:<b>電荷優先,距離其次</b>。電荷差一級,影響通常大於半徑差異。</div>
+</section>
+
+<!-- 13 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ①:離子鍵與晶格能 <span class="en">Quick Check 1</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>下列何者的<b>晶格能最大</b>?<br><span class="opt">A NaCl</span><span class="opt">B KCl</span><span class="opt">C MgO</span><span class="opt">D NaBr</span></div>
+  <div class="q"><span class="qn">2</span>離子化合物熔點高、質脆、固態不導電但熔融後導電。「<b>質脆</b>」的原因是?<br><span class="opt">A 離子鍵太弱</span><span class="opt">B 受力錯位後同電荷相鄰而互斥</span><span class="opt">C 晶體含空隙</span><span class="opt">D 離子太重</span></div>
+  <div class="q"><span class="qn">3</span>Na 失去一個電子要吸收能量、Cl 得到電子只放出少量能量。<b>那 NaCl 為什麼還是會自發形成?</b></div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. C(MgO)</span> — 晶格能 ∝ Q<sub>+</sub>Q<sub>−</sub>/d。MgO 是 <b>+2 與 −2</b>,電荷乘積是 NaCl 的 4 倍。<span class="myth"><b>電荷優先於距離</b>。選 A/B/D 的同學只比了離子大小 —— 但那三個都是 ±1,先比電荷就能直接選出 C,不必比半徑。</span></div><div class="row"><span class="ans">2. B</span> — 晶格錯開一層後,原本相鄰的正負離子變成<b>同號相鄰</b>,強烈互斥使晶體沿該面裂開。<span class="myth">選 A 剛好相反:離子鍵很強,所以熔點高。<b>「硬」與「脆」不衝突</b> —— 金屬因為電子海可以滑動所以延展,離子晶體不行。</span></div><div class="row"><span class="ans">3. 因為晶格能非常大</span> — 形成離子對本身能量不划算,但<b>大量離子堆積成晶格</b>時放出的晶格能(NaCl 約 −788 kJ/mol)遠超過游離能的代價。<span class="myth">重點:<b>不能只看單一步驟就判斷反應會不會發生</b>,要看整體能量收支 —— 這正是下週 Born-Haber 循環要正式處理的事。</span></div></div>
+</section>
+<!-- 14 -->
+<section class="slide divider">
+  <div class="secnum">PART 7.2</div>
+  <h1>共價鍵與電負度</h1>
+  <div class="en-sub">Covalent Bonding and Electronegativity</div>
+  <div class="items">電子共享・H<sub>2</sub> 位能曲線・鍵長與鍵能・電負度與鍵的極性</div>
+</section>
+
+<!-- 15 -->
+<section class="slide">
+  <h2>共價鍵:電子共享 <span class="en">Covalent Bond: Sharing Electrons</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>共價鍵 (covalent bond)</b>:兩原子共享一對(或多對)電子而形成的鍵;共享電子同時被兩個原子核吸引,使能量降低。</div>
+  <ul>
+    <li>常見於非金屬與非金屬之間(游離能都高,不易轉移電子)</li>
+    <li>共價化合物多為分子;熔點、沸點一般<b>低於</b>離子化合物</li>
+    <li>H· + ·H → H:H(每個 H 周圍如同 He 的 2 電子組態)</li>
+  </ul>
+</section>
+
+<!-- 16 -->
+<section class="slide">
+  <h2>H<sub>2</sub> 的位能曲線 <span class="en">Potential Energy Curve of H<sub>2</sub></span></h2>
+  <div class="two-col">
+    <div>
+      <ul>
+        <li>兩 H 原子距離很遠:能量定為 0(無交互作用)</li>
+        <li>逐漸靠近:吸引力使能量<b>下降</b></li>
+        <li>到達<span class="hl">能量最低點</span>:此距離 = <b>鍵長</b> 74 pm</li>
+        <li>再靠近:核−核互斥,能量急遽<b>上升</b></li>
+      </ul>
+    </div>
+    <div>
+      <svg class="fig" role="img" aria-labelledby="w10f1-t w10f1-d" width="520" height="292" viewBox="0 0 520 292" xmlns="http://www.w3.org/2000/svg">
+        <title id="w10f1-t">氫分子的位能曲線</title>
+        <desc id="w10f1-d">橫軸為核間距、縱軸為位能。兩原子相距很遠時位能為零；靠近時吸引力使位能下降，在核間距 74 皮米處達到最低點負 436 千焦每莫耳，即鍵長與鍵能；再靠近則核與核互斥，位能急遽上升。</desc>
+        <defs><marker id="w10f1-axh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5a6a6b"/></marker><marker id="w10f1-d1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a04c08"/></marker></defs>
+        <line x1="66" y1="208" x2="496" y2="208" stroke="#5a6a6b" stroke-width="2" marker-end="url(#w10f1-axh)"/>
+        <line x1="66" y1="208" x2="66" y2="42" stroke="#5a6a6b" stroke-width="2" marker-end="url(#w10f1-axh)"/>
+        <text x="496" y="232" font-size="17" fill="#5a6a6b" text-anchor="end">核間距 (pm)</text>
+        <text x="70" y="36" font-size="17" fill="#5a6a6b" text-anchor="start">位能</text>
+        <line x1="66" y1="120" x2="486" y2="120" stroke="#d5dbdb" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="6 5"/>
+        <text x="56" y="126" font-size="17" fill="#5a6a6b" text-anchor="end">0</text>
+        <path d="M66.0,46 L70.1,46 L74.2,83.7 L78.3,120.8 L82.4,148.9 L86.5,169.8 L90.6,184.9 L94.7,195.4 L98.8,202.2 L102.9,206.1 L107.0,207.8 L111.1,207.8 L115.2,206.5 L119.3,204.2 L123.4,201.2 L127.5,197.7 L131.6,193.9 L135.7,190.0 L139.8,185.9 L143.9,181.9 L148.0,177.9 L152.1,174.0 L156.2,170.2 L160.3,166.6 L164.4,163.2 L168.5,160.0 L172.6,156.9 L176.7,154.1 L180.8,151.4 L184.9,148.9 L189.0,146.6 L193.1,144.4 L197.2,142.4 L201.3,140.6 L205.4,138.9 L209.5,137.3 L213.6,135.9 L217.7,134.5 L221.8,133.3 L225.9,132.2 L230.0,131.1 L234.1,130.2 L238.2,129.3 L242.3,128.5 L246.4,127.8 L250.5,127.1 L254.6,126.5 L258.7,125.9 L262.8,125.4 L266.9,124.9 L271.0,124.5 L275.1,124.1 L279.2,123.8 L283.3,123.4 L287.4,123.1 L291.5,122.9 L295.6,122.6 L299.7,122.4 L303.8,122.2 L307.9,122.0 L312.0,121.8 L316.1,121.6 L320.2,121.5 L324.3,121.4 L328.4,121.2 L332.5,121.1 L336.6,121.0 L340.7,120.9 L344.8,120.9 L348.9,120.8 L353.0,120.7 L357.1,120.7 L361.2,120.6 L365.3,120.5 L369.4,120.5 L373.5,120.5 L377.6,120.4 L381.7,120.4 L385.8,120.3 L389.9,120.3 L394.0,120.3 L398.1,120.3 L402.2,120.2 L406.3,120.2 L410.4,120.2 L414.5,120.2 L418.6,120.2 L422.7,120.1 L426.8,120.1 L430.9,120.1 L435.0,120.1 L439.1,120.1 L443.2,120.1 L447.3,120.1 L451.4,120.1 L455.5,120.1 L459.6,120.1 L463.7,120.1 L467.8,120.1 L471.9,120.0 L476.0,120.0" fill="none" stroke="#1f5f8b" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="108.95238095238096" y1="208" x2="108.95238095238096" y2="120" stroke="#a04c08" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 4"/>
+        <circle cx="108.95238095238096" cy="208" r="6" fill="#a04c08"/>
+        <text x="108.95238095238096" y="236" font-size="18" fill="#a04c08" text-anchor="middle" font-weight="700">74 pm</text>
+        <text x="108.95238095238096" y="258" font-size="16" fill="#5a6a6b" text-anchor="middle">= 鍵長</text>
+        <line x1="74.95238095238096" y1="120" x2="74.95238095238096" y2="204" stroke="#a04c08" stroke-width="2" marker-end="url(#w10f1-d1)" stroke-linecap="round"/>
+        <text x="126.95238095238096" y="180" font-size="18" fill="#a04c08" text-anchor="start" font-weight="700">436 kJ/mol</text>
+        <text x="126.95238095238096" y="202" font-size="16" fill="#5a6a6b" text-anchor="start">= 鍵能（井的深度）</text>
+        <text x="430" y="108" font-size="17" fill="#5a6a6b" text-anchor="end">分離：能量 0</text>
+        <text x="150" y="62" font-size="17" fill="#c0392b" text-anchor="middle" font-weight="700">核−核互斥</text>
+        <text x="260" y="282" font-size="17" fill="#2c3e50" text-anchor="middle" font-weight="700">最低點的深度 = 鍵能；位置 = 鍵長</text>
+      </svg>
+    </div>
+  </div>
+  <div class="box key"><span class="tag">重點</span>鍵能 (bond energy):斷開 1 mol 該鍵所需能量。H–H 鍵能 = 436 kJ/mol。</div>
+</section>
+
+<!-- 17 -->
+<section class="slide">
+  <h2>單鍵、雙鍵、參鍵 <span class="en">Single, Double, Triple Bonds</span></h2>
+  <table>
+    <tr><th>鍵</th><th>共享電子對</th><th>鍵長 (pm)</th><th>鍵能 (kJ/mol)</th></tr>
+    <tr><td>C–C 單鍵 single bond</td><td>1 對</td><td>154</td><td>346</td></tr>
+    <tr><td>C=C 雙鍵 double bond</td><td>2 對</td><td>134</td><td>602</td></tr>
+    <tr><td>C≡C 參鍵 triple bond</td><td>3 對</td><td>120</td><td>835</td></tr>
+  </table>
+  <div class="box key"><span class="tag">趨勢</span>同一對原子:鍵數(鍵級)越多 → <span class="hl">鍵長越短、鍵能越大</span>。<br>注意:雙鍵鍵能 &lt; 2 × 單鍵鍵能(π 重疊效率較低,第 13 週詳述)。</div>
+</section>
+
+<!-- 18 -->
+<section class="slide">
+  <h2>例題 3:鍵長與鍵能比較 <span class="en">Example 3</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>(a) 比較 N–N、N=N、N≡N 的鍵長與鍵能大小。<br>(b) C–O 與 C=O 何者鍵長較短?CO<sub>2</sub> 中的碳氧鍵屬於哪種?
+  <div class="sol"><b>解:</b><br>
+  (a) 鍵長:<span class="hl">N–N &gt; N=N &gt; N≡N</span>;鍵能:<span class="hl">N≡N &gt; N=N &gt; N–N</span>(945 &gt; 418 &gt; 163 kJ/mol)。N<sub>2</sub> 的參鍵極強,是氮氣化性安定的原因。<br>
+  (b) <span class="hl">C=O 較短</span>(123 pm &lt; 143 pm)。CO<sub>2</sub> 的 Lewis 結構為 O=C=O,兩個碳氧鍵皆為<span class="hl">雙鍵</span>。</div></div>
+</section>
+
+<!-- 19 -->
+<section class="slide">
+  <h2>電負度 <span class="en">Electronegativity</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>電負度 (electronegativity, EN)</b>:原子在<b>鍵結中</b>吸引共享電子的能力。由 Pauling 提出的標度最常用(無單位)。</div>
+  <ul>
+    <li>F 最大:EN = 4.0;往左、往下遞減;Cs、Fr 最小約 0.7</li>
+    <li>常用數值:F 4.0 &gt; O 3.5 &gt; N ≈ Cl 3.0 &gt; C 2.5 &gt; H 2.1</li>
+    <li>金屬電負度低(易失電子),非金屬電負度高(易吸電子)</li>
+  </ul>
+  <div class="box warn"><span class="tag">辨析</span>電負度是「鍵中」的相對吸引力(計算而得);電子親和力 (electron affinity) 是「孤立氣態原子」得電子的能量變化(可測量)。兩者概念不同!</div>
+</section>
+
+<!-- 20 -->
+<section class="slide">
+  <h2>電負度的週期趨勢 <span class="en">Periodic Trends of EN</span></h2>
+  <div class="two-col">
+    <div>
+      <ul>
+        <li>同週期<b>由左至右遞增</b>(有效核電荷增加)</li>
+        <li>同族<b>由上至下遞減</b>(原子半徑增大)</li>
+        <li>右上角最大(F),左下角最小(Cs、Fr)</li>
+        <li>鈍氣通常不列(早期認為不成鍵)</li>
+      </ul>
+    </div>
+    <div>
+      <div class="fbox">電負度趨勢圖(示意)<br><br>小 ──────────→ 大<br>│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↑ F 4.0<br>│&nbsp;&nbsp;&nbsp;&nbsp;週期表<br>↓ Cs 0.7<br><span class="small">右上大、左下小,與游離能趨勢相同</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 21 -->
+<section class="slide">
+  <h2>鍵的極性:連續的光譜 <span class="en">Bond Polarity</span></h2>
+  <div class="flow">
+    <div class="frow">
+      <div class="fbox"><b>非極性共價鍵</b><br>nonpolar covalent<br><span class="small">均等共享<br>H–H、Cl–Cl</span></div>
+      <div class="fbox"><b>極性共價鍵</b><br>polar covalent<br><span class="small">不均等共享<br>H–Cl、O–H</span></div>
+      <div class="fbox"><b>離子鍵</b><br>ionic<br><span class="small">電子(近乎)完全轉移<br>Na<sup>+</sup>Cl<sup>−</sup></span></div>
+    </div>
+    <div class="arrow">← ΔEN 小&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ΔEN 大 →</div>
+  </div>
+  <div class="box def"><span class="tag">定義</span>極性鍵中,電負度大的原子帶部分負電荷 <b>δ−</b>,另一端帶部分正電荷 <b>δ+</b>。例:<sup>δ+</sup>H–Cl<sup>δ−</sup></div>
+</section>
+
+<!-- 22 -->
+<section class="slide">
+  <h2>ΔEN 判斷準則 <span class="en">Classifying Bonds by ΔEN</span></h2>
+  <table>
+    <tr><th>ΔEN(電負度差)</th><th>鍵的類型</th><th>例子</th></tr>
+    <tr><td>≈ 0(&lt; 0.4)</td><td>非極性共價鍵</td><td>H–H (0)、C–H (0.4)</td></tr>
+    <tr><td>0.4 – 1.8</td><td>極性共價鍵</td><td>H–Cl (0.9)、O–H (1.4)</td></tr>
+    <tr><td>&gt; 1.8</td><td>離子鍵(為主)</td><td>NaCl (2.1)、MgO (2.3)</td></tr>
+  </table>
+  <div class="box warn"><span class="tag">注意</span>界線是<b>人為的近似</b>,並非絕對。最可靠的經驗判斷:金屬+非金屬 → 傾向離子鍵;非金屬+非金屬 → 共價鍵。HF(ΔEN 1.9)仍是共價分子!</div>
+</section>
+
+<!-- 23 -->
+<section class="slide">
+  <h2>例題 4:鍵極性判斷與排序 <span class="en">Example 4</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>(EN:H 2.1、C 2.5、N 3.0、O 3.5、F 4.0、Na 0.9、Cl 3.0)<br>
+  (a) 將 C–H、O–H、N–H、F–H 依極性由小到大排序,並標出 δ+/δ−。<br>
+  (b) 判斷 NaF、ICl、Br<sub>2</sub> 各屬何種鍵。
+  <div class="sol"><b>解:</b><br>
+  (a) ΔEN:C–H 0.4 &lt; N–H 0.9 &lt; O–H 1.4 &lt; F–H 1.9 → 極性 <span class="hl">C–H &lt; N–H &lt; O–H &lt; F–H</span>;皆為 H 端 δ+、另一原子端 δ−。<br>
+  (b) NaF:金屬+非金屬,ΔEN = 3.1 → <span class="hl">離子鍵</span>;ICl:兩非金屬,ΔEN 小 → <span class="hl">極性共價鍵</span>;Br<sub>2</sub>:同元素,ΔEN = 0 → <span class="hl">非極性共價鍵</span>。</div></div>
+</section>
+
+<!-- 24 -->
+<section class="slide">
+  <h2>離子化合物 vs 共價化合物 <span class="en">Ionic vs. Covalent Compounds</span></h2>
+  <table>
+    <tr><th></th><th>離子化合物</th><th>共價(分子)化合物</th></tr>
+    <tr><td>組成粒子</td><td>正、負離子</td><td>分子</td></tr>
+    <tr><td>常見組合</td><td>金屬 + 非金屬</td><td>非金屬 + 非金屬</td></tr>
+    <tr><td>熔點/沸點</td><td>高</td><td>一般較低</td></tr>
+    <tr><td>導電性</td><td>熔融/水溶液導電</td><td>多不導電(酸例外)</td></tr>
+    <tr><td>例子</td><td>NaCl、CaCO<sub>3</sub></td><td>H<sub>2</sub>O、CO<sub>2</sub>、C<sub>6</sub>H<sub>12</sub>O<sub>6</sub></td></tr>
+  </table>
+</section>
+
+<!-- 25 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ②:共價鍵與電負度 <span class="en">Quick Check 2</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>下列鍵的<b>極性最大</b>?<br><span class="opt">A C–H</span><span class="opt">B O–H</span><span class="opt">C C–C</span><span class="opt">D N–H</span></div>
+  <div class="q"><span class="qn">2</span>由單鍵到參鍵(C–C、C=C、C≡C),下列敘述何者正確?<br><span class="opt">A 鍵長變長、鍵能變小</span><span class="opt">B 鍵長變短、鍵能變大</span><span class="opt">C 鍵長變短、鍵能變小</span><span class="opt">D 兩者皆不變</span></div>
+  <div class="q"><span class="qn">3</span>ΔEN 的分界(0.4 / 1.8)是<b>硬性規定</b>嗎?為什麼課本說鍵的極性是「連續的光譜」?</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B(O–H)</span> — O 的電負度 3.5 最高,與 H(2.1)差 1.4。<span class="myth">N–H 差 1.0、C–H 差 0.4、C–C 為 0。<b>先查兩端電負度再相減</b>,不要靠印象;這個排序在下下週判斷分子極性與氫鍵時要一直用。</span></div><div class="row"><span class="ans">2. B</span> — 鍵級越高 → 原子被拉得越近 → 鍵長越短、鍵能越大。<span class="myth">三者是<b>綁在一起的一組關係</b>:鍵級 ↑、鍵長 ↓、鍵能 ↑。記住這個連動,W11 用鍵能估算反應熱、W13 比較 O<sub>2</sub> 系列時都能直接套。</span></div><div class="row"><span class="ans">3. 不是硬性規定,是方便的參考線</span> — 電子共享的不均勻程度是<b>連續變化</b>的,從完全均分(C–C)到幾乎完全轉移(NaCl)之間沒有真正的斷點。<span class="myth">所以 ΔEN = 1.7 與 1.9 的兩個鍵性質幾乎一樣,卻被分到不同類。<b>分類是為了方便討論,不是自然界的分界</b> —— 這個態度在後面談「離子性百分比」時很重要。</span></div></div>
+</section>
+<!-- 26 -->
+<section class="slide divider">
+  <div class="secnum">PART 7.3</div>
+  <h1>Lewis 符號與 Lewis 結構</h1>
+  <div class="en-sub">Lewis Symbols and Lewis Structures</div>
+  <div class="items">元素點式・八隅體規則・五步驟畫法・多重鍵・多原子離子</div>
+</section>
+
+<!-- 27 -->
+<section class="slide">
+  <h2>Lewis 符號 <span class="en">Lewis Symbols</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>Lewis 符號 (Lewis symbol)</b>:以元素符號代表原子核與內層電子,周圍的點代表<b>價電子</b>的表示法。</div>
+  <ul>
+    <li>只畫<span class="hlb">價電子</span>(主族元素:價電子數 = 族數 A)</li>
+    <li>四個方位先各放 1 點,再開始配對(Hund 規則精神)</li>
+    <li>例:Na·&nbsp;&nbsp;·Mg·&nbsp;&nbsp;·Ċ·(4 點)&nbsp;&nbsp;:N̈·(5 點)&nbsp;&nbsp;:Ö:(6 點)&nbsp;&nbsp;:F̈:(7 點)</li>
+  </ul>
+</section>
+
+<!-- 28 -->
+<section class="slide">
+  <h2>第 1–2 週期元素的 Lewis 符號 <span class="en">Lewis Symbols: Periods 1–2</span></h2>
+  <table>
+    <tr><th>元素</th><th>價電子數</th><th>Lewis 符號(文字近似)</th><th>成鍵傾向</th></tr>
+    <tr><td>H</td><td>1</td><td>H·</td><td>形成 1 鍵</td></tr>
+    <tr><td>C</td><td>4</td><td>·C·(上下左右各 1)</td><td>形成 4 鍵</td></tr>
+    <tr><td>N</td><td>5</td><td>:N·(1 對 + 3 單)</td><td>3 鍵 + 1 孤對</td></tr>
+    <tr><td>O</td><td>6</td><td>:O:(2 對 + 2 單)</td><td>2 鍵 + 2 孤對</td></tr>
+    <tr><td>F</td><td>7</td><td>:F:(3 對 + 1 單)</td><td>1 鍵 + 3 孤對</td></tr>
+    <tr><td>Ne</td><td>8</td><td>:Ne:(4 對)</td><td>不成鍵</td></tr>
+  </table>
+  <p class="small">未配對的單電子數 ≈ 傾向形成的共價鍵數 — 這是快速檢查 Lewis 結構的好工具。</p>
+</section>
+
+<!-- 29 -->
+<section class="slide">
+  <h2>八隅體規則 <span class="en">Octet Rule</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>八隅體規則 (octet rule)</b>:主族原子成鍵時,傾向藉由得、失或共享電子,使周圍擁有 8 個價電子(如鈍氣組態)。</div>
+  <ul>
+    <li>H 例外:只需 <span class="hl">2 個電子</span>(duet,如 He)</li>
+    <li>周圍電子 = 鍵結電子(每鍵 2 個)+ 未鍵結的孤對電子 (lone pair)</li>
+    <li>適用大多數第二週期化合物;例外(BF<sub>3</sub>、PCl<sub>5</sub>、NO 等)第 11 週討論</li>
+  </ul>
+  <div class="box key"><span class="tag">術語</span>成鍵電子對 (bonding pair):被共享的電子對;孤對電子 (lone pair):未參與鍵結的電子對。</div>
+</section>
+
+<!-- 30 -->
+<section class="slide">
+  <h2>Lewis 結構繪製五步驟 <span class="en">Five Steps for Lewis Structures</span></h2>
+  <div class="flow">
+    <div class="fbox"><b>① 算總價電子數</b>(各原子價電子相加;陰離子加電荷數、陽離子減電荷數)</div>
+    <div class="arrow">↓</div>
+    <div class="fbox"><b>② 排骨架</b>:電負度最小者當中心原子(H 永遠在端點),先以單鍵連接</div>
+    <div class="arrow">↓</div>
+    <div class="fbox"><b>③ 分配剩餘電子</b>:先補滿<b>端原子</b>八隅體(以孤對形式)</div>
+    <div class="arrow">↓</div>
+    <div class="fbox"><b>④ 剩餘電子放中心原子</b></div>
+    <div class="arrow">↓</div>
+    <div class="fbox"><b>⑤ 中心不足八隅體?</b>把端原子孤對移入 → 形成雙鍵/參鍵</div>
+  </div>
+</section>
+
+<!-- 31 -->
+<section class="slide">
+  <h2>例題 5:H<sub>2</sub>O 的 Lewis 結構 <span class="en">Example 5</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>畫出水 H<sub>2</sub>O 的 Lewis 結構。
+  <div class="sol"><b>解:</b><br>
+  ① 總價電子:2(1) + 6 = <span class="hl">8 個</span>(4 對)<br>
+  ② 骨架:H–O–H(O 為中心,用去 2 對)<br>
+  ③ H 只需 2 電子,已滿足;剩 2 對<br>
+  ④ 剩餘 2 對放在 O 上成孤對<br>
+  結構:<b>H–Ö–H</b>(O 上有 2 對孤對)<br>
+  檢查:O 周圍 = 2 鍵(4e)+ 2 孤對(4e)= 8 ✓;總電子 8 ✓</div></div>
+</section>
+
+<!-- 32 -->
+<section class="slide">
+  <h2>例題 6:NH<sub>3</sub> 與 CH<sub>4</sub> <span class="en">Example 6</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>畫出氨 NH<sub>3</sub> 與甲烷 CH<sub>4</sub> 的 Lewis 結構,並指出孤對數。
+  <div class="sol"><b>解:</b><br>
+  <b>NH<sub>3</sub></b>:價電子 = 5 + 3(1) = 8(4 對)。骨架 3 個 N–H 用 3 對,剩 1 對放 N 上。<br>
+  → N 有 <span class="hl">3 個鍵 + 1 對孤對</span>(8e ✓)<br>
+  <b>CH<sub>4</sub></b>:價電子 = 4 + 4(1) = 8(4 對)。骨架 4 個 C–H 恰用完。<br>
+  → C 有 <span class="hl">4 個鍵、0 孤對</span>(8e ✓)<br>
+  對照 Lewis 符號:N 有 3 個單電子 → 3 鍵;C 有 4 個單電子 → 4 鍵 ✓</div></div>
+</section>
+
+<!-- 33 -->
+<section class="slide">
+  <h2>需要多重鍵的情況 <span class="en">When Multiple Bonds Are Needed</span></h2>
+  <ul>
+    <li>步驟 ①–④ 完成後,若<span class="hlb">中心原子不足 8 電子</span> → 執行步驟 ⑤</li>
+    <li>將端原子的孤對「移入」兩原子之間,形成雙鍵或參鍵</li>
+    <li>移入 1 對 → 雙鍵;移入 2 對 → 參鍵</li>
+  </ul>
+  <div class="box key"><span class="tag">檢查清單</span>畫完必查三件事:<br>① 總電子數正確?&nbsp;&nbsp;② 每個原子滿足八隅體(H 為 2)?&nbsp;&nbsp;③ 電子沒有多算或漏算?</div>
+</section>
+
+<!-- 34 -->
+<section class="slide">
+  <h2>例題 7:CO<sub>2</sub> 的 Lewis 結構 <span class="en">Example 7</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>畫出二氧化碳 CO<sub>2</sub> 的 Lewis 結構。
+  <div class="sol"><b>解:</b><br>
+  ① 總價電子:4 + 2(6) = <span class="hl">16 個</span>(8 對)<br>
+  ② 骨架:O–C–O(C 電負度較小,為中心;用 2 對)<br>
+  ③ 剩 6 對補端原子:每個 O 放 3 對 → 用完<br>
+  ④⑤ 檢查中心:C 只有 4 電子,不足!→ 每個 O 各移入 1 對孤對<br>
+  結構:<b>:Ö=C=Ö:</b>(每個 O 上剩 2 對孤對)<br>
+  檢查:C = 2 雙鍵 = 8e ✓;每個 O = 1 雙鍵 + 2 孤對 = 8e ✓;總電子 16 ✓</div></div>
+</section>
+
+<!-- 35 -->
+<section class="slide">
+  <h2>例題 8:N<sub>2</sub> 與 HCN <span class="en">Example 8</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>畫出氮氣 N<sub>2</sub> 與氰化氫 HCN 的 Lewis 結構。
+  <div class="sol"><b>解:</b><br>
+  <b>N<sub>2</sub></b>:價電子 = 10(5 對)。單鍵 N–N 後各補孤對無法滿足八隅體 → 需<span class="hl">參鍵</span>:<br>
+  <b>:N≡N:</b>(每個 N 各 1 對孤對;各原子 6 + 2 = 8e ✓)<br>
+  <b>HCN</b>:價電子 = 1 + 4 + 5 = 10(5 對)。骨架 H–C–N(C 為中心)。<br>
+  H–C 用 1 對、C–N 用 1 對,剩 3 對;補 N 之後 C 僅 4e → N 的 2 對移入成參鍵:<br>
+  <b>H–C≡N:</b>(N 上 1 對孤對;C = 8e ✓、N = 8e ✓、H = 2e ✓)</div></div>
+</section>
+
+<!-- 36 -->
+<section class="slide">
+  <h2>多原子離子的 Lewis 結構 <span class="en">Polyatomic Ions</span></h2>
+  <ul>
+    <li>步驟與分子相同,只差在<span class="hlb">步驟 ① 電子數要修正</span>:</li>
+    <li>陰離子:總價電子 <b>加上</b> 負電荷數(如 NO<sub>3</sub><sup>−</sup> 加 1)</li>
+    <li>陽離子:總價電子 <b>減去</b> 正電荷數(如 NH<sub>4</sub><sup>+</sup> 減 1)</li>
+    <li>整個結構加<b>方括號</b>,右上角標明電荷:[ ⋯ ]<sup>−</sup></li>
+  </ul>
+  <div class="box warn"><span class="tag">注意</span>電荷屬於<b>整個離子</b>,不專屬某個原子(形式電荷是另一回事,第 11 週介紹)。</div>
+</section>
+
+<!-- 37 -->
+<section class="slide">
+  <h2>例題 9:NO<sub>3</sub><sup>−</sup> 的 Lewis 結構 <span class="en">Example 9</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>畫出硝酸根離子 NO<sub>3</sub><sup>−</sup> 的 Lewis 結構。
+  <div class="sol"><b>解:</b><br>
+  ① 總價電子:5 + 3(6) + 1(負電荷)= <span class="hl">24 個</span>(12 對)<br>
+  ② 骨架:N 居中,3 個 N–O 單鍵(用 3 對)<br>
+  ③ 剩 9 對補 3 個 O(每個 3 對)→ 用完<br>
+  ④⑤ N 僅 6e → 由 1 個 O 移入 1 對形成 1 個 N=O 雙鍵<br>
+  結構:[O=N(–O:)(–O:)]<sup>−</sup>,即 <b>1 個雙鍵 + 2 個單鍵</b>;單鍵 O 各 3 對孤對、雙鍵 O 有 2 對<br>
+  檢查:N = 8e ✓;三種等價寫法 → 共振(第 11 週)</div></div>
+</section>
+
+<!-- 38 -->
+<section class="slide">
+  <h2>例題 10:SO<sub>4</sub><sup>2−</sup> 的 Lewis 結構 <span class="en">Example 10</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>畫出硫酸根離子 SO<sub>4</sub><sup>2−</sup> 的 Lewis 結構(以滿足八隅體的形式)。
+  <div class="sol"><b>解:</b><br>
+  ① 總價電子:6 + 4(6) + 2 = <span class="hl">32 個</span>(16 對)<br>
+  ② 骨架:S 居中,4 個 S–O 單鍵(用 4 對)<br>
+  ③ 剩 12 對補 4 個 O,每個 O 放 3 對 → 恰用完<br>
+  ④ 中心 S = 4 鍵 = 8e,已滿足八隅體 → 不需多重鍵<br>
+  結構:[ S 接 4 個 –Ö:(各 3 對孤對)]<sup>2−</sup><br>
+  檢查:總電子 32 ✓、S 8e ✓、各 O 8e ✓</div></div>
+</section>
+
+<!-- 39 -->
+<section class="slide">
+  <h2>例題 11:綜合練習 <span class="en">Example 11</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>畫出下列各物種的 Lewis 結構:(a) OF<sub>2</sub>&nbsp;&nbsp;(b) NH<sub>4</sub><sup>+</sup>&nbsp;&nbsp;(c) CH<sub>2</sub>O(甲醛,C 為中心)
+  <div class="sol"><b>解:</b><br>
+  (a) 價電子 6 + 14 = 20(10 對):<b>:F̈–Ö–F̈:</b>,O 上 2 對孤對、每個 F 上 3 對 ✓<br>
+  (b) 價電子 5 + 4 − 1 = 8(4 對):<b>[H–N(–H)(–H)–H]<sup>+</sup></b>,N 形成 4 鍵、無孤對 ✓<br>
+  (c) 價電子 4 + 2 + 6 = 12(6 對):骨架 H–C(–H)–O,補 O 3 對後 C 僅 6e → O 移入 1 對成 C=O:<br>
+  <b>H<sub>2</sub>C=Ö:</b>(O 上 2 對孤對;C = 8e ✓)</div></div>
+</section>
+
+<!-- 40 -->
+<section class="slide">
+  <h2>常見錯誤總整理 <span class="en">Common Mistakes</span></h2>
+  <div class="box warn"><span class="tag">錯誤 1</span>總電子數算錯 — 離子忘記加/減電荷數。<b>先算對電子數,結構才可能對!</b></div>
+  <div class="box warn"><span class="tag">錯誤 2</span>把 H 放在中心,或讓 H 有 2 個鍵 — H 永遠只形成 1 個鍵、在端點。</div>
+  <div class="box warn"><span class="tag">錯誤 3</span>中心原子不足 8 電子卻不造多重鍵;或畫完不檢查每個原子的八隅體。</div>
+  <div class="box key"><span class="tag">好習慣</span>畫完數兩次:① 結構中的總電子數 = 步驟①的數字;② 每個原子周圍電子數(H:2,其他:8)。</div>
+</section>
+
+<!-- 41 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ③:Lewis 結構 <span class="en">Quick Check 3</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>畫 Lewis 結構時,<b>第一步</b>應該做什麼?<br><span class="opt">A 把所有原子用單鍵連起來</span><span class="opt">B 計算價電子總數</span><span class="opt">C 決定中心原子</span><span class="opt">D 補足八隅體</span></div>
+  <div class="q"><span class="qn">2</span>CO<sub>2</sub> 的 Lewis 結構中,C 與 O 之間是?<br><span class="opt">A 兩個單鍵</span><span class="opt">B 兩個雙鍵</span><span class="opt">C 一單一參</span><span class="opt">D 兩個參鍵</span></div>
+  <div class="q"><span class="qn">3</span>NO<sub>3</sub><sup>−</sup> 有 <b>24</b> 個價電子。這個 24 是怎麼算的?那個負電荷怎麼處理?</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B(先數價電子總數)</span> — 價電子總數決定了你手上有多少電子可以分配,是整個流程的預算。<span class="myth">選 A/C 的同學跳過了預算就開始畫,最後常常電子不夠或多出來。<b>先數總數,才知道畫完要對帳。</b></span></div><div class="row"><span class="ans">2. B(兩個雙鍵)</span> — O=C=O。若用單鍵,C 只有 4 個電子,不足八隅體。<span class="myth">判斷時機:<b>把電子分配完後若中心原子不足八隅體,才把孤對移來形成多重鍵</b>。不要一開始就猜有沒有雙鍵。</span></div><div class="row"><span class="ans">3. 24 = 5(N) + 3×6(O) + 1(負電荷)</span> — 陰離子<b>多帶的電子要加進去</b>;若是陽離子則要減掉。<span class="myth">這是多原子離子最常見的失分點。口訣:<b>負加正減</b>。少加那 1 個電子,畫出來的結構會少一對孤對,形式電荷也會全錯。</span></div></div>
+</section>
+<!-- 42 -->
+<section class="slide hookback">
+  <h2>回到本週的錨點 <span class="en">Anchor Answered</span></h2>
+  <div class="recall"><b>第 10 週開場問的是:</b>維生素 A 過量會累積在肝臟中毒,維生素 C 過量卻大多隨尿排掉。光看結構式能預測嗎?</div>
+  <div class="ansbox">
+    <h3>用這一週的化學回答</h3>
+    <ul>
+    <li><b>可以。</b>判準是分子裡<b>極性基團與碳氫骨架的比例</b> —— 而極性來自電負度差造成的鍵極性。</li>
+    <li>視黃醇 C<sub>20</sub>H<sub>30</sub>O:20 個碳的長碳氫鏈,只掛 <b>1 個 OH</b> → 幾乎整支都是非極性 → <b>脂溶</b>,儲存在肝臟與脂肪組織 → 會累積 → 過量中毒。</li>
+    <li>抗壞血酸 C<sub>6</sub>H<sub>8</sub>O<sub>6</sub>:只有 6 個碳卻有 <b>6 個氧、4 個 OH</b> → 大量氫鍵位點 → <b>水溶</b>,隨尿排出 → 不易累積。</li>
+    <li>所以「先猜猜看」的答案是<b>抗壞血酸溶於水</b>;脂溶性維生素(A、D、E、K)才需要訂上限攝取量 UL。</li>
+    </ul>
+  </div>
+  <div class="lens"><span class="lt">這個情境幫你理解的化學是</span>從結構式讀出生理行為,走的是這條鏈:<b>電負度差 → 鍵極性 → 分子極性 → 溶解度 → 在人體裡的去向</b>。這一週先建立前兩段;<b>形狀</b>如何影響分子極性,下下週 VSEPR 再補上最關鍵的一段。</div>
+  <div class="nextup"><b>接下來在哪裡會再用到:</b><span class="course">營養學</span>脂溶性 vs 水溶性維生素、UL 上限　<span class="course">生物化學</span>細胞膜運輸與儲存</div>
+</section>
+<!-- 43 -->
+<section class="slide">
+  <h2>本週重點總結(上) <span class="en">Summary (1/2)</span></h2>
+  <ul>
+    <li><b>成鍵驅動力:</b>降低系統能量;斷鍵吸熱、成鍵放熱</li>
+    <li><b>離子鍵:</b>電子轉移 → 正負離子靜電吸引;離子化合物高熔點、脆、熔融/水溶液導電</li>
+    <li><b>晶格能:</b>∝ Q<sup>+</sup>Q<sup>−</sup>/d;電荷大、距離小 → 晶格能大(電荷優先)</li>
+    <li><b>共價鍵:</b>電子共享;位能曲線最低點對應鍵長與鍵能</li>
+    <li><b>鍵級越高:</b>鍵長越短、鍵能越大(C–C &lt; C=C &lt; C≡C)</li>
+  </ul>
+</section>
+
+<!-- 44 -->
+<section class="slide">
+  <h2>本週重點總結(下) <span class="en">Summary (2/2)</span></h2>
+  <ul>
+    <li><b>電負度:</b>F 4.0 最大,右上大、左下小;ΔEN 判斷鍵型(0.4 / 1.8 分界)</li>
+    <li><b>極性共價鍵:</b>電負度大者 δ−、小者 δ+</li>
+    <li><b>八隅體規則:</b>主族原子傾向 8 電子(H 為 2)</li>
+    <li><b>Lewis 結構五步驟:</b>算電子 → 排骨架 → 補端原子 → 補中心 → 不足造多重鍵</li>
+    <li><b>多原子離子:</b>陰離子加電荷、陽離子減電荷,加方括號標電荷</li>
+  </ul>
+</section>
+
+<!-- 45 -->
+<section class="slide">
+  <h2>重要名詞中英對照 <span class="en">Key Terms</span></h2>
+  <table>
+    <tr><th>中文</th><th>English</th><th>中文</th><th>English</th></tr>
+    <tr><td>離子鍵</td><td>ionic bond</td><td>電負度</td><td>electronegativity</td></tr>
+    <tr><td>共價鍵</td><td>covalent bond</td><td>極性共價鍵</td><td>polar covalent bond</td></tr>
+    <tr><td>晶格能</td><td>lattice energy</td><td>八隅體規則</td><td>octet rule</td></tr>
+    <tr><td>鍵長</td><td>bond length</td><td>Lewis 結構</td><td>Lewis structure</td></tr>
+    <tr><td>鍵能</td><td>bond energy</td><td>孤對電子</td><td>lone pair</td></tr>
+    <tr><td>價電子</td><td>valence electron</td><td>成鍵電子對</td><td>bonding pair</td></tr>
+  </table>
+</section>
+
+<!-- 46 -->
+<section class="slide">
+  <h2>課後練習與下週預告 <span class="en">Homework &amp; Preview</span></h2>
+  <h3>課後練習(OpenStax Chemistry 2e, Ch.7)</h3>
+  <ul>
+    <li>離子形成與晶格能比較:7.1 節相關題</li>
+    <li>電負度與鍵極性判斷:7.2 節相關題(必做)</li>
+    <li>Lewis 結構繪製:7.3 節相關題(必做,至少 10 個分子/離子)</li>
+  </ul>
+  <h3>下週預告:化學鍵 II — 形式電荷、共振與鍵能(Ch.7.4–7.5)</h3>
+  <ul>
+    <li>用形式電荷挑選最佳 Lewis 結構;共振結構與離域</li>
+    <li>八隅體規則的例外;用鍵能估算反應熱;Born-Haber 循環</li>
+  </ul>
+  <p class="small center" style="margin-top:20px">操作提示:← → 或空白鍵翻頁|Home/End 跳至首末頁|Ctrl+P 可列印成講義</p>
+</section>
+
+</div></div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const DECK_INFO='普通化學(一)|第 10 週:化學鍵 I:離子鍵、共價鍵與 Lewis 結構';
+let cur=0;
+slides.forEach((s,i)=>{
+  const f=document.createElement('div');f.className='foot';
+  f.innerHTML='<span>'+DECK_INFO+'</span><span>'+(i+1)+' / '+slides.length+'</span>';
+  s.appendChild(f);
+});
+slides.forEach(s=>{
+  const sol=s.querySelector('.sol');
+  if(!sol)return;
+  const hint=document.createElement('div');hint.className='sol-hint';
+  hint.innerHTML='<span class="kbd">空白鍵</span><span>先自己想／算，準備好再顯示解答</span>';
+  sol.insertAdjacentElement('beforebegin',hint);
+});
+function show(n){
+  cur=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,i)=>{s.classList.toggle('active',i===cur);s.classList.remove('reveal');});
+  document.getElementById('bar').style.width=((cur+1)/slides.length*100)+'%';
+  location.hash=cur+1;
+}
+function next(){
+  const s=slides[cur];
+  if(s.querySelector('.sol')&&!s.classList.contains('reveal')){s.classList.add('reveal');return;}
+  show(cur+1);
+}
+function prev(){
+  const s=slides[cur];
+  if(s.classList.contains('reveal')){s.classList.remove('reveal');return;}
+  show(cur-1);
+}
+function fit(){
+  const s=Math.min(innerWidth/1280,innerHeight/720);
+  document.getElementById('deck').style.transform='scale('+s+')';
+}
+addEventListener('resize',fit);
+addEventListener('keydown',e=>{
+  if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();next();}
+  else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev();}
+  else if(e.key==='Home')show(0);
+  else if(e.key==='End')show(slides.length-1);
+});
+addEventListener('click',e=>{
+  if(e.target.closest('a'))return;
+  (e.clientX>innerWidth/3)?next():prev();
+});
+let tx=null;
+addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+addEventListener('touchend',e=>{
+  if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;
+  if(dx<-40)next();else if(dx>40)prev();tx=null;
+});
+fit();
+show(parseInt(location.hash.slice(1))-1||0);
+</script>
+</body>
+</html>

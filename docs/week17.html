@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第17週:學期總複習(期末考範圍 Ch.7–11)|普通化學(一)</title>
+<style>
+:root{
+  --primary:#1a5276; --primary-dark:#12395a; --accent:#a04c08; --teal:#117a65;
+  --ink:#2c3e50; --muted:#5a6a6b; --bg:#eceff3; --card:#ffffff;
+  --def-bg:#eaf2f8; --key-bg:#fef9e7; --ex-bg:#e8f8f5; --warn-bg:#fdedec;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC","Heiti TC",sans-serif;color:var(--ink)}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#deck{position:relative;width:1280px;height:720px;transform-origin:center center}
+.slide{position:absolute;inset:0;width:1280px;height:720px;background:var(--card);padding:56px 72px 70px;display:none;flex-direction:column;border-top:10px solid var(--primary);overflow:hidden}
+.slide.active{display:flex}
+.slide h2{font-size:36px;color:var(--primary);border-bottom:3px solid var(--accent);padding-bottom:10px;margin-bottom:26px;font-weight:700}
+.slide h2 .en{display:block;font-size:19px;color:var(--muted);font-weight:400;margin-top:4px}
+.slide h3{font-size:26px;color:var(--primary);margin:12px 0 8px}
+.slide p{font-size:24px;line-height:1.55;margin:8px 0}
+.slide ul,.slide ol{font-size:24px;line-height:1.6;margin:8px 0 8px 34px}
+.slide li{margin:7px 0}
+.slide li li{font-size:22px;margin:4px 0}
+.en{color:var(--muted);font-size:.82em}
+.small{font-size:19px;color:var(--muted)}
+.big{font-size:30px}
+.center{text-align:center}
+.hl{color:var(--accent);font-weight:700}
+.hlb{color:var(--primary);font-weight:700}
+.two-col{display:flex;gap:32px;align-items:flex-start}
+.two-col>div{flex:1}
+.box{border-radius:10px;padding:16px 22px;margin:14px 0;font-size:23px;line-height:1.55}
+.def{background:var(--def-bg);border-left:6px solid var(--primary)}
+.key{background:var(--key-bg);border-left:6px solid #f1c40f}
+.warn{background:var(--warn-bg);border-left:6px solid #e74c3c}
+.exbox{background:var(--ex-bg);border-left:6px solid var(--teal)}
+.box .tag{display:inline-block;font-size:17px;font-weight:700;color:#fff;border-radius:5px;padding:2px 10px;margin-bottom:6px}
+.def .tag{background:var(--primary)} .key .tag{background:#8a6d00} .warn .tag{background:#c0392b} .exbox .tag{background:var(--teal)}
+.sol{border-top:2px dashed var(--teal);margin-top:12px;padding-top:10px}
+/* ── 形成性評量：解答兩段式揭露 ───────────────────────── */
+.slide.active .sol{display:none}
+.slide.active.reveal .sol{display:block}
+.sol-hint{margin-top:12px;padding-top:10px;border-top:2px dashed #b9c6c6;font-size:19px;color:#5d6d6e;display:flex;align-items:center;gap:10px}
+.slide.active.reveal .sol-hint{display:none}
+.sol-hint .kbd{display:inline-block;border:1px solid #aab7b8;border-bottom-width:2px;border-radius:5px;padding:1px 9px;font-size:17px;background:#fff;color:#34495e}
+/* ── 隨堂快問 ─────────────────────────────────────────── */
+.slide.quiz{border-top-color:var(--teal)}
+.slide.quiz h2{margin-bottom:14px}
+.slide.quiz h2{color:#0e6655;border-bottom-color:var(--teal)}
+.qbar{background:#e8f8f5;border-left:6px solid var(--teal);border-radius:8px;padding:5px 16px;font-size:18px;color:#0e6655;margin-bottom:4px}
+.q{margin:4px 0;font-size:21px;line-height:1.28}
+.q .qn{display:inline-block;min-width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;background:var(--teal);color:#fff;font-size:16px;font-weight:700;margin-right:7px}
+.opt{display:inline-block;border:1.5px solid #a2d5cd;background:#f2fbf9;color:#0e6655;border-radius:14px;padding:0 11px;margin:1px 4px 1px 0;font-size:19px}
+.quiz .sol{margin-top:5px;padding-top:5px;font-size:18px;line-height:1.26}
+.quiz .sol .ans{color:#c0392b;font-weight:700}
+.quiz .sol .row{margin:3px 0}
+.quiz .sol .row+.row{border-top:1px solid #e5eceb;padding-top:3px}
+.quiz .sol .myth{display:block;font-size:16px;color:#5d6d6e;margin:1px 0 0 0;line-height:1.24}
+@media print{
+  .sol{display:block!important}
+  .sol-hint{display:none!important}
+}
+.eq{text-align:center;font-size:28px;margin:14px 0;font-family:Cambria,"Times New Roman",serif}
+table{border-collapse:collapse;margin:12px auto;font-size:21px;width:100%}
+th{background:var(--primary);color:#fff;padding:8px 12px;font-weight:600}
+td{border:1px solid #d5dbdb;padding:7px 12px;text-align:center}
+tr:nth-child(even) td{background:#f4f6f7}
+.cover{background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 55%,var(--teal) 100%);border-top:none;color:#fff;justify-content:center;align-items:center;text-align:center}
+.cover h1{font-size:58px;letter-spacing:4px;margin-bottom:10px}
+.cover .sub{font-size:30px;opacity:.92;margin:6px 0}
+.cover .en-title{font-size:24px;opacity:.75;margin-bottom:34px}
+.cover .meta{font-size:20px;opacity:.7;margin-top:40px}
+.cover .rule{width:220px;height:4px;background:#f7b955;margin:26px auto}
+.divider{background:linear-gradient(120deg,var(--primary-dark),var(--primary));border-top:none;color:#fff;justify-content:center}
+.divider .secnum{font-size:26px;color:#f7b955;font-weight:700;letter-spacing:2px;margin-bottom:14px}
+.divider h1{font-size:52px;margin-bottom:12px}
+.divider .en-sub{font-size:26px;opacity:.75}
+.divider .items{margin-top:36px;font-size:23px;opacity:.9;line-height:2}
+.foot{position:absolute;left:0;right:0;bottom:0;height:32px;display:flex;justify-content:space-between;align-items:center;padding:0 28px;font-size:14px;color:#5d6d6e;background:#fafbfc;border-top:1px solid #e5e8e8}
+.cover .foot,.divider .foot{background:rgba(0,0,0,.15);color:rgba(255,255,255,.65);border-top:none}
+#bar{position:fixed;top:0;left:0;height:5px;background:var(--accent);width:0;z-index:10;transition:width .2s}
+.flow{display:flex;flex-direction:column;align-items:center;gap:6px}
+.fbox{border:2px solid var(--primary);border-radius:8px;padding:8px 20px;font-size:21px;background:var(--def-bg);text-align:center}
+.frow{display:flex;gap:60px;justify-content:center}
+.arrow{font-size:22px;color:var(--accent)}
+.chip{display:inline-block;background:var(--def-bg);border:1px solid var(--primary);color:var(--primary);border-radius:16px;padding:2px 14px;margin:3px;font-size:20px}
+/* ── 因次分析鐵軌格 ───────────────────────────────────── */
+.rail{border-collapse:collapse;margin:10px auto 6px;font-size:23px}
+.rail td{border:none;padding:5px 20px;text-align:center;background:none;vertical-align:middle}
+.rail td+td{border-left:2px solid var(--muted)}
+.rail tr:first-child td{border-bottom:3px solid var(--ink)}
+.rail td.res{border-left:none;padding-left:14px;font-weight:700;color:var(--accent);font-size:25px}
+.rail tr:first-child td.res{border-bottom:none}
+.rail .bk{display:inline-block;min-width:104px;border-bottom:3px dashed var(--accent);height:27px;vertical-align:-4px}
+.rail .gv{background:var(--def-bg)}
+.railnote{text-align:center;font-size:18px;color:var(--muted);margin-top:2px}
+.fig{display:block;margin:6px auto;flex-shrink:0}
+/* ── 錨點回收頁 ───────────────────────────────────────── */
+.slide.hookback{border-top-color:var(--teal)}
+.slide.hookback h2{color:#0e6655;border-bottom-color:var(--teal)}
+.recall{background:#f4f6f7;border-left:5px solid #95a5a6;border-radius:8px;padding:7px 18px;
+        font-size:20px;line-height:1.34;color:#5d6d6e;margin:0 0 10px}
+.recall b{color:#34495e}
+.ansbox{background:#e8f8f5;border-left:6px solid var(--teal);border-radius:9px;padding:10px 20px;margin:0 0 10px}
+.ansbox h3{font-size:20px;color:#0e6655;margin:0 0 5px}
+.ansbox ul{margin:0 0 0 20px;font-size:19.5px;line-height:1.4}
+.ansbox li{margin:5px 0}
+.lens{background:var(--key-bg);border-left:6px solid #d4a70a;border-radius:9px;padding:10px 20px;
+      font-size:20px;line-height:1.38;margin-bottom:9px}
+.lens .lt{display:block;font-size:16px;font-weight:700;color:#8a6d00;letter-spacing:1px;margin-bottom:2px}
+.nextup{background:#eaf2f8;border-left:5px solid var(--primary);border-radius:8px;padding:8px 18px;
+        font-size:18.5px;line-height:1.4;color:#34495e}
+.nextup .course{display:inline-block;background:#fff;border:1px solid #a2d5cd;color:#0e6655;
+                border-radius:11px;padding:0 8px;font-size:16px;margin-right:4px}
+
+/* ── 食品營養錨點頁 ───────────────────────────────────── */
+.slide.hook{border-top-color:var(--accent)}
+.slide.hook h2{color:#a05000;border-bottom-color:var(--accent)}
+.bigq{background:linear-gradient(100deg,#fff5ea,#fdf0e0);border-left:8px solid var(--accent);border-radius:10px;
+      padding:14px 22px;font-size:26px;line-height:1.4;color:#7a3d00;font-weight:700;margin:4px 0 12px}
+.bigq .qmark{font-size:30px;margin-right:6px}
+.hookcols{display:flex;gap:22px;align-items:stretch;margin-top:4px}
+.hookcols>div{flex:1;border-radius:9px;padding:11px 16px}
+.hk-now{background:#eaf2f8;border-left:5px solid var(--primary)}
+.hk-next{background:#e8f8f5;border-left:5px solid var(--teal)}
+.hookcols h3{font-size:20px;margin:0 0 6px}
+.hk-now h3{color:var(--primary)} .hk-next h3{color:#0e6655}
+.hookcols ul{font-size:19px;line-height:1.4;margin:0 0 0 20px}
+.hookcols li{margin:4px 0}
+.hookcols .course{display:inline-block;background:#fff;border:1px solid #a2d5cd;color:#0e6655;
+                  border-radius:11px;padding:0 8px;font-size:16px;margin-right:4px}
+.canyou{background:var(--key-bg);border-left:6px solid #d4a70a;border-radius:9px;padding:10px 18px;
+        font-size:20px;line-height:1.4;margin-top:12px}
+.canyou b{color:#8a6d00}
+.hookmap{font-size:19px;line-height:1.5}
+.hookmap td{text-align:left;padding:5px 10px}
+.hookmap td:first-child{text-align:center;font-weight:700;color:var(--accent);width:62px}
+@media print{
+  @page{size:1280px 720px;margin:0}
+  html,body{background:#fff}
+  #stage{position:static}
+  #deck{width:auto;height:auto;transform:none!important}
+  .slide{position:relative;display:flex!important;page-break-after:always;margin:0;inset:auto}
+  #bar{display:none}
+}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="stage"><div id="deck">
+
+<!-- 1 -->
+<section class="slide cover">
+  <h1>普通化學(一)</h1>
+  <div class="en-title">General Chemistry I</div>
+  <div class="rule"></div>
+  <div class="sub">第 17 週:學期總複習</div>
+  <div class="sub">期末考範圍總整理</div>
+  <div class="en-title" style="margin-top:8px">Final Exam Review: Chapters 7–11</div>
+  <div class="meta">對應教材:OpenStax Chemistry 2e — Ch.7、8、9、10、11</div>
+</section>
+
+<!-- 2 -->
+<section class="slide">
+  <h2>期末考說明 <span class="en">Final Exam Information</span></h2>
+  <table>
+    <tr><th>項目</th><th>內容</th></tr>
+    <tr><td>時間</td><td>第 18 週上課時段(依學校行事曆)</td></tr>
+    <tr><td>範圍</td><td>第 10–17 週授課內容(OpenStax Ch.7–11)</td></tr>
+    <tr><td>題型</td><td>選擇題(觀念)+計算/繪圖題(Lewis 結構、VSEPR、氣體、依數性質)</td></tr>
+    <tr><td>攜帶物品</td><td>計算機(必備)、文具;週期表由試卷提供</td></tr>
+  </table>
+  <div class="box key"><span class="tag">提醒</span>期末不考期中範圍的獨立題目,但莫耳計算、有效數字、單位換算是<b>全程通用</b>的基本功。</div>
+</section>
+
+<!-- 3 -->
+<section class="slide hook">
+  <h2>本學期的 16 個問題 <span class="en">The 16 Anchor Questions</span></h2>
+  <p style="font-size:20px;margin:2px 0 8px">複習的第一步不是翻投影片，是<b>先確認你能回答這 16 個問題</b>。答不出來的，回去看那一週。</p>
+  <div class="two-col" style="gap:26px">
+    <div><table class="hookmap">
+      <tr><td>W1</td><td>標示的「糖 5.2 g」可信到第幾位？</td></tr>
+      <tr><td>W2</td><td>兩瓶都寫 1000 mg 的鈣片，補到的鈣一樣多嗎？</td></tr>
+      <tr><td>W3</td><td>「鈉 1800 mg」等於幾克鹽？</td></tr>
+      <tr><td>W4</td><td>蛋糕為什麼會膨？小蘇打 vs 泡打粉</td></tr>
+      <tr><td>W5</td><td>一瓶油「壞了」沒有？怎麼用滴定回答</td></tr>
+      <tr><td>W6</td><td>標示的大卡是燒出來的嗎？</td></tr>
+      <tr><td>W7</td><td>胡蘿蔔為什麼是橙色？分光光度計怎麼運作？</td></tr>
+      <tr><td>W8</td><td>鐵劑為什麼配柳橙汁，不配茶或牛奶？</td></tr>
+    </table></div>
+    <div><table class="hookmap">
+      <tr><td>W10</td><td>維生素 A 會中毒，維生素 C 為何只是尿出去？</td></tr>
+      <tr><td>W11</td><td>紫甘藍加醋變紅、加鹼變藍綠，為什麼？</td></tr>
+      <tr><td>W12</td><td>油水不互溶、酒精可以；反式脂肪為何是固體？</td></tr>
+      <tr><td>W13</td><td>油耗味從哪來？氧氣為什麼是元凶？</td></tr>
+      <tr><td>W14</td><td>洋芋片包裝為什麼充氮氣？</td></tr>
+      <tr><td>W15</td><td>蛋白凝固、巧克力起霜，為什麼回不去？</td></tr>
+      <tr><td>W16</td><td>蜜餞為何不壞？美乃滋為何不分層？</td></tr>
+      <tr><td>W17</td><td>——把上面 16 題串起來，就是這學期</td></tr>
+    </table></div>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="slide">
+  <h2>複習路線圖 <span class="en">Review Roadmap</span></h2>
+  <div class="flow">
+    <div class="frow">
+      <div class="fbox"><b>單元 1</b><br>化學鍵與 Lewis 結構<br><span class="small">Ch.7</span></div>
+      <div class="fbox"><b>單元 2</b><br>分子形狀與混成<br><span class="small">Ch.7.6+8</span></div>
+      <div class="fbox"><b>單元 3</b><br>氣體<br><span class="small">Ch.9</span></div>
+    </div>
+    <div class="frow" style="margin-top:14px">
+      <div class="fbox"><b>單元 4</b><br>液體與固體<br><span class="small">Ch.10</span></div>
+      <div class="fbox"><b>單元 5</b><br>溶液與膠體<br><span class="small">Ch.11</span></div>
+    </div>
+  </div>
+  <p class="center" style="margin-top:20px">每單元:觀念地圖 → 必背重點 → 代表例題詳解</p>
+</section>
+
+<!-- 5 -->
+<section class="slide divider">
+  <div class="secnum">UNIT 1|Ch.7</div>
+  <h1>化學鍵與 Lewis 結構</h1>
+  <div class="en-sub">Chemical Bonding &amp; Lewis Structures</div>
+  <div class="items">鍵型判斷・Lewis 結構・形式電荷・共振・八隅體例外</div>
+</section>
+
+<!-- 6 -->
+<section class="slide">
+  <h2>單元 1 觀念地圖 <span class="en">Concept Map</span></h2>
+  <div class="flow">
+    <div class="fbox"><b>化學鍵</b>:原子結合以降低能量</div>
+    <div class="arrow">↓ 依電子行為分類</div>
+    <div class="frow">
+      <div class="fbox">離子鍵<br><span class="small">電子轉移<br>金屬+非金屬</span></div>
+      <div class="fbox">共價鍵<br><span class="small">電子共享<br>非金屬+非金屬</span></div>
+      <div class="fbox">金屬鍵<br><span class="small">電子海<br>金屬</span></div>
+    </div>
+  </div>
+  <div class="box key" style="margin-top:16px"><span class="tag">關鍵</span>離子化合物看<b>晶格能</b>(電荷↑、半徑↓ → 晶格能↑);共價分子看<b>鍵能與鍵長</b>(參鍵&gt;雙鍵&gt;單鍵)。</div>
+</section>
+
+<!-- 7 -->
+<section class="slide">
+  <h2>鍵型判斷:電負度差 <span class="en">Bond Polarity by ΔEN</span></h2>
+  <table>
+    <tr><th>ΔEN(概略)</th><th>鍵型</th><th>例子</th></tr>
+    <tr><td>&lt; 0.4</td><td>非極性共價鍵 nonpolar covalent</td><td>C–H、Cl–Cl</td></tr>
+    <tr><td>0.4 – 1.8</td><td>極性共價鍵 polar covalent</td><td>H–O、C–F</td></tr>
+    <tr><td>&gt; 1.8(金屬+非金屬)</td><td>離子鍵 ionic</td><td>NaCl、MgO</td></tr>
+  </table>
+  <ul>
+    <li>電負度週期趨勢:<span class="hlb">右上大、左下小</span>(F 最大 4.0)</li>
+    <li>極性共價鍵以 δ⁺/δ⁻ 標示部分電荷,偶極矩指向電負度大者</li>
+  </ul>
+</section>
+
+<!-- 8 -->
+<section class="slide">
+  <h2>Lewis 結構五步驟+形式電荷 <span class="en">Lewis Structures &amp; Formal Charge</span></h2>
+  <ol>
+    <li>算總價電子數(陰離子加、陽離子減電荷數)</li>
+    <li>畫骨架:電負度最小者當中心原子(H 永遠在末端)</li>
+    <li>末端原子補滿八隅體</li>
+    <li>剩餘電子放中心原子</li>
+    <li>中心不足八隅體 → 將末端孤對移入形成多重鍵</li>
+  </ol>
+  <div class="eq">形式電荷 FC = 價電子數 − 未鍵結電子數 − ½(鍵結電子數)</div>
+  <div class="box key"><span class="tag">選結構</span>FC 越接近 0 越好;負 FC 應落在<b>電負度較大</b>的原子上。</div>
+</section>
+
+<!-- 9 -->
+<section class="slide">
+  <h2>共振與八隅體例外 <span class="en">Resonance &amp; Octet Exceptions</span></h2>
+  <div class="two-col">
+    <div>
+      <h3>共振 resonance</h3>
+      <ul>
+        <li>多個等價 Lewis 結構 → 真實為<b>共振混成體</b></li>
+        <li>經典例:O<sub>3</sub>、NO<sub>3</sub><sup>−</sup>、CO<sub>3</sub><sup>2−</sup></li>
+        <li>鍵級 = 總鍵數 ÷ 鍵位置數(NO<sub>3</sub><sup>−</sup> 為 4/3)</li>
+      </ul>
+    </div>
+    <div>
+      <h3>八隅體例外</h3>
+      <ul>
+        <li>奇電子:NO、NO<sub>2</sub>(自由基)</li>
+        <li>缺電子:BF<sub>3</sub>、BeH<sub>2</sub></li>
+        <li>擴充八隅體:PCl<sub>5</sub>、SF<sub>6</sub>、XeF<sub>4</sub>(限第 3 週期以後)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="slide">
+  <h2>鍵能與反應熱 <span class="en">Bond Energies &amp; ΔH</span></h2>
+  <div class="eq">ΔH<sub>rxn</sub> ≈ Σ(斷鍵鍵能) − Σ(生成鍵鍵能)</div>
+  <ul>
+    <li>斷鍵<span class="hl">吸熱</span>(+)、生成鍵<span class="hl">放熱</span>(−)</li>
+    <li>結果為負 → 放熱反應(生成的鍵比斷掉的鍵更強)</li>
+    <li>此法為<b>估算</b>(平均鍵能),精確值用 ΔH°f 法</li>
+  </ul>
+  <div class="box warn"><span class="tag">易錯</span>Born-Haber 循環:本課程定義 <b>ΔH<sub>lattice</sub> = 把 1 mol 固體拆成氣態離子所需的能量(正值、吸熱)</b>,如 NaCl 為 +788 kJ/mol;循環中「氣態離子 → 固體」那一步要代入 <b>−ΔH<sub>lattice</sub></b>。別忘了昇華能與解離能都要計入。</div>
+</section>
+
+<!-- 11 -->
+<section class="slide">
+  <h2>單元 1 代表例題 <span class="en">Unit 1 Example</span></h2>
+  <div class="box exbox"><span class="tag">例題 1</span>畫出 OCN⁻(氰酸根)可能的 Lewis 結構,並以形式電荷判斷最佳結構。
+  <div class="sol"><b>解:</b>總價電子 = 6+4+5+1 = 16。骨架 O–C–N(C 電負度最小當中心)。三種結構:<br>
+  (a) O≡C–N:FC = O(+1)、C(0)、N(−2)<br>
+  (b) O=C=N:FC = O(0)、C(0)、N(−1)<br>
+  (c) O–C≡N:FC = O(−1)、C(0)、N(0)<br>
+  判斷:(b)、(c) 的形式電荷都接近 0,皆為重要共振式;其中 <span class="hl">(c) 的負形式電荷落在電負度最大的 O 上,是最主要的貢獻結構</span>,(b) 次之(負電荷在電負度較小的 N 上)。(a) 貢獻最小 — N 帶 −2、O 帶 +1,既電荷分離大、又把正電荷放在電負度最大的原子上。<br><b>判斷順序:</b>① 形式電荷絕對值愈小愈好 → ② 負形式電荷放在電負度<b>愈大</b>的原子上。</div></div>
+</section>
+
+<!-- 12 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ①:跨章提取:鍵結 <span class="en">Retrieval 1</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span><span class='small'>[W10]</span> 下列鍵的極性最大?<br><span class="opt">A C–H</span><span class="opt">B O–H</span><span class="opt">C C–C</span><span class="opt">D C–N</span></div>
+  <div class="q"><span class="qn">2</span><span class='small'>[W11]</span> NO<sub>3</sub><sup>−</sup> 的三個 N–O 鍵:<br><span class="opt">A 一長兩短</span><span class="opt">B 完全等長,鍵級 1.33</span><span class="opt">C 兩長一短</span><span class="opt">D 鍵級皆為 1</span></div>
+  <div class="q"><span class="qn">3</span><span class='small'>[W6→W11]</span> 「打斷化學鍵會放出能量」對嗎?若不對,燃燒的熱從哪裡來?</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B(O–H)</span> — O(3.5)與 H(2.1)的 ΔEN = 1.4,四者中最大。<span class="myth">考前提醒:<b>先查電負度再相減</b>,不要靠印象排序。</span></div><div class="row"><span class="ans">2. B</span> — 共振使電子離域,三個鍵完全等價,鍵級 = 4/3 ≈ 1.33。<span class="myth"><b>共振不是混合物、也不是快速跳動</b> —— 這是每年都有人答錯的地方。</span></div><div class="row"><span class="ans">3. 錯。斷鍵吸能、成鍵放能</span> — 燃燒放熱是因為<b>成鍵放出的能量大於斷鍵吸收的能量</b>,差額才是放出的熱。<span class="myth">這題 W6 教過、W11 用鍵能估算 ΔH 時再用一次。<b>[M04]</b> 若你現在還會遲疑,考前務必回去看 W6 的能量圖。</span></div></div>
+</section>
+<!-- 13 -->
+<section class="slide divider">
+  <div class="secnum">UNIT 2|Ch.7.6 + Ch.8</div>
+  <h1>分子形狀與混成軌域</h1>
+  <div class="en-sub">Molecular Geometry &amp; Hybridization</div>
+  <div class="items">VSEPR・AX<sub>m</sub>E<sub>n</sub> 總表・極性・混成・分子軌域</div>
+</section>
+
+<!-- 14 -->
+<section class="slide">
+  <h2>AX<sub>m</sub>E<sub>n</sub> 總表(電子群 2–4) <span class="en">VSEPR Table (1/2)</span></h2>
+  <table>
+    <tr><th>電子群</th><th>類型</th><th>分子形狀</th><th>鍵角</th><th>例子</th></tr>
+    <tr><td>2</td><td>AX<sub>2</sub></td><td>直線 linear</td><td>180°</td><td>CO<sub>2</sub></td></tr>
+    <tr><td>3</td><td>AX<sub>3</sub></td><td>平面三角 trigonal planar</td><td>120°</td><td>BF<sub>3</sub></td></tr>
+    <tr><td>3</td><td>AX<sub>2</sub>E</td><td>角形 bent</td><td>&lt;120°</td><td>SO<sub>2</sub></td></tr>
+    <tr><td>4</td><td>AX<sub>4</sub></td><td>四面體 tetrahedral</td><td>109.5°</td><td>CH<sub>4</sub></td></tr>
+    <tr><td>4</td><td>AX<sub>3</sub>E</td><td>三角錐 trigonal pyramidal</td><td>107°</td><td>NH<sub>3</sub></td></tr>
+    <tr><td>4</td><td>AX<sub>2</sub>E<sub>2</sub></td><td>角形 bent</td><td>104.5°</td><td>H<sub>2</sub>O</td></tr>
+  </table>
+</section>
+
+<!-- 15 -->
+<section class="slide">
+  <h2>AX<sub>m</sub>E<sub>n</sub> 總表(電子群 5–6) <span class="en">VSEPR Table (2/2)</span></h2>
+  <table>
+    <tr><th>電子群</th><th>類型</th><th>分子形狀</th><th>例子</th></tr>
+    <tr><td>5</td><td>AX<sub>5</sub></td><td>雙三角錐 trigonal bipyramidal</td><td>PCl<sub>5</sub></td></tr>
+    <tr><td>5</td><td>AX<sub>4</sub>E</td><td>蹺蹺板 seesaw</td><td>SF<sub>4</sub></td></tr>
+    <tr><td>5</td><td>AX<sub>3</sub>E<sub>2</sub></td><td>T 形 T-shaped</td><td>ClF<sub>3</sub></td></tr>
+    <tr><td>5</td><td>AX<sub>2</sub>E<sub>3</sub></td><td>直線 linear</td><td>XeF<sub>2</sub>、I<sub>3</sub><sup>−</sup></td></tr>
+    <tr><td>6</td><td>AX<sub>6</sub></td><td>八面體 octahedral</td><td>SF<sub>6</sub></td></tr>
+    <tr><td>6</td><td>AX<sub>5</sub>E</td><td>四角錐 square pyramidal</td><td>BrF<sub>5</sub></td></tr>
+    <tr><td>6</td><td>AX<sub>4</sub>E<sub>2</sub></td><td>平面四方 square planar</td><td>XeF<sub>4</sub></td></tr>
+  </table>
+  <p class="small">記法:孤對優先佔雙三角錐的「赤道」位、八面體的「對位」。</p>
+</section>
+
+<!-- 16 -->
+<section class="slide">
+  <h2>一條龍判斷流程 <span class="en">One Flow: VSEPR → Hybridization → Polarity</span></h2>
+  <div class="flow">
+    <div class="fbox">畫 Lewis 結構</div>
+    <div class="arrow">↓</div>
+    <div class="fbox">數中心原子<b>電子群</b>(多重鍵算 1 群)→ 電子群幾何</div>
+    <div class="arrow">↓</div>
+    <div class="fbox">扣掉孤對 → <b>分子形狀</b>;電子群數 → <b>混成</b>(2:sp、3:sp²、4:sp³、5:sp³d、6:sp³d²)</div>
+    <div class="arrow">↓</div>
+    <div class="fbox">鍵偶極是否抵消?→ <b>分子極性</b></div>
+  </div>
+  <div class="box key" style="margin-top:12px"><span class="tag">極性速判</span>末端原子全同且無孤對(AX<sub>n</sub> 對稱形)→ 非極性;有孤對或末端不同 → 通常極性(平面四方 XeF<sub>4</sub>、直線 XeF<sub>2</sub> 例外:對稱抵消)。</div>
+</section>
+
+<!-- 17 -->
+<section class="slide">
+  <h2>σ/π 鍵與混成 <span class="en">Sigma/Pi Bonds &amp; Hybridization</span></h2>
+  <ul>
+    <li>單鍵 = 1σ;雙鍵 = 1σ + 1π;參鍵 = 1σ + 2π</li>
+    <li>π 鍵由<b>未混成的 p 軌域</b>側向重疊形成</li>
+    <li>乙烯 C<sub>2</sub>H<sub>4</sub>:C 為 sp²,C=C 中 1σ+1π,共 5σ+1π</li>
+    <li>乙炔 C<sub>2</sub>H<sub>2</sub>:C 為 sp,C≡C 中 1σ+2π,共 3σ+2π</li>
+  </ul>
+  <div class="box warn"><span class="tag">易錯</span>混成數 = 電子群數(σ 鍵 + 孤對),與 π 鍵無關。有雙鍵的 C 不一定是 sp³!</div>
+</section>
+
+<!-- 18 -->
+<section class="slide">
+  <h2>分子軌域理論重點 <span class="en">MO Theory Essentials</span></h2>
+  <div class="eq">鍵級 bond order = (成鍵電子數 − 反鍵電子數) / 2</div>
+  <ul>
+    <li>鍵級 0 → 分子不存在(He<sub>2</sub>);鍵級越大 → 鍵越強越短</li>
+    <li>能階順序:O<sub>2</sub>、F<sub>2</sub> 為 σ<sub>2p</sub> &lt; π<sub>2p</sub>;B<sub>2</sub>、C<sub>2</sub>、N<sub>2</sub> 為 π<sub>2p</sub> &lt; σ<sub>2p</sub></li>
+    <li><span class="hlb">O<sub>2</sub> 順磁性</span>(π*<sub>2p</sub> 兩個未成對電子)— Lewis 畫不出來,MO 理論的代表性成功</li>
+    <li>N<sub>2</sub> 鍵級 3(逆磁)、O<sub>2</sub> 鍵級 2(順磁)、O<sub>2</sub><sup>2−</sup> 鍵級 1</li>
+  </ul>
+</section>
+
+<!-- 19 -->
+<section class="slide">
+  <h2>單元 2 代表例題 <span class="en">Unit 2 Example</span></h2>
+  <div class="box exbox"><span class="tag">例題 2</span>對 SF<sub>4</sub> 回答:(a) 電子群幾何 (b) 分子形狀 (c) 中心原子混成 (d) 極性。
+  <div class="sol"><b>解:</b><br>
+  S 價電子 6,與 4 個 F 形成 4 個 σ 鍵,剩 2 電子 = 1 孤對 → 電子群 = 4σ+1E = 5<br>
+  (a) 電子群幾何:<span class="hl">雙三角錐</span>(孤對佔赤道位)<br>
+  (b) 分子形狀:AX<sub>4</sub>E = <span class="hl">蹺蹺板形 (seesaw)</span><br>
+  (c) 5 個電子群 → <span class="hl">sp³d</span> 混成<br>
+  (d) 形狀不對稱,鍵偶極不抵消 → <span class="hl">極性分子</span></div></div>
+</section>
+
+<!-- 20 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ②:跨章提取:形狀與鍵結理論 <span class="en">Retrieval 2</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span><span class='small'>[W12]</span> H<sub>2</sub>O 的電子群幾何與分子形狀分別是?<br><span class="opt">A 都是角形</span><span class="opt">B 四面體、角形</span><span class="opt">C 平面三角、角形</span><span class="opt">D 都是四面體</span></div>
+  <div class="q"><span class="qn">2</span><span class='small'>[W13]</span> C≡C 中 σ 與 π 各幾個?<br><span class="opt">A 3 σ</span><span class="opt">B 1 σ + 2 π</span><span class="opt">C 2 σ + 1 π</span><span class="opt">D 3 π</span></div>
+  <div class="q"><span class="qn">3</span><span class='small'>[W13]</span> O<sub>2</sub> 為什麼是順磁性?Lewis 結構為什麼預測錯?</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B</span> — 4 群 → 電子群幾何四面體;2 對孤對不算形狀 → 角形。<span class="myth"><b>電子群幾何看全部,分子形狀只看原子。</b>混用這兩個詞是 W12 最常見的失分點。</span></div><div class="row"><span class="ans">2. B(1 σ + 2 π)</span> — 任何多重鍵只有<b>一個</b> σ。<span class="myth">計數規則:第一個鍵是 σ,其餘都是 π。</span></div><div class="row"><span class="ans">3. 因為兩個電子分占簡併的 π* 且自旋平行</span> — MO 顯示 O<sub>2</sub> 有<b>兩個未成對電子</b>;Lewis 的 O=O 把電子全部畫成配對,因此預測逆磁性 —— 與液態氧被磁鐵吸住的事實不符。<span class="myth">這是「理論被實驗判決」的標準案例,也是本學期最值得記住的一個故事。</span></div></div>
+</section>
+<!-- 21 -->
+<section class="slide divider">
+  <div class="secnum">UNIT 3|Ch.9</div>
+  <h1>氣體</h1>
+  <div class="en-sub">Gases</div>
+  <div class="items">理想氣體方程式・分壓・氣體計量・KMT・真實氣體</div>
+</section>
+
+<!-- 22 -->
+<section class="slide">
+  <h2>氣體公式總表 <span class="en">Gas Law Formulas</span></h2>
+  <table>
+    <tr><th>公式</th><th>用途</th><th>備註</th></tr>
+    <tr><td>PV = nRT</td><td>單一狀態</td><td>R = 0.08206 L·atm/mol·K</td></tr>
+    <tr><td>P₁V₁/T₁ = P₂V₂/T₂</td><td>狀態變化</td><td>n 固定;T 必用 K</td></tr>
+    <tr><td>d = PM/RT</td><td>密度/求莫耳質量</td><td>M = dRT/P</td></tr>
+    <tr><td>P<sub>total</sub> = P<sub>A</sub>+P<sub>B</sub>+…</td><td>混合氣體</td><td>P<sub>A</sub> = X<sub>A</sub>·P<sub>total</sub></td></tr>
+    <tr><td>u<sub>rms</sub> = √(3RT/M)</td><td>分子速率</td><td>R = 8.314、M 用 kg/mol</td></tr>
+    <tr><td>r₁/r₂ = √(M₂/M₁)</td><td>Graham 逸散定律</td><td>輕者快</td></tr>
+  </table>
+</section>
+
+<!-- 23 -->
+<section class="slide">
+  <h2>單位陷阱與 KMT 重點 <span class="en">Pitfalls &amp; Kinetic Molecular Theory</span></h2>
+  <div class="box warn"><span class="tag">四大陷阱</span>
+  ① 溫度一律換成 <b>K</b>&nbsp;&nbsp;② 壓力單位配合 R(atm ↔ 0.08206;Pa ↔ 8.314)<br>
+  ③ 排水集氣:P<sub>氣體</sub> = P<sub>大氣</sub> − P<sub>水蒸氣</sub>&nbsp;&nbsp;④ u<sub>rms</sub> 計算 M 要用 <b>kg/mol</b></div>
+  <ul>
+    <li>KMT:氣體粒子體積可忽略、無吸引力、彈性碰撞、<b>平均動能 ∝ 絕對溫度</b></li>
+    <li>同溫下各氣體平均動能相同 → 分子量小者跑得快</li>
+    <li>真實氣體在<span class="hlb">高壓、低溫</span>偏離理想(van der Waals:a 修正吸引力、b 修正體積)</li>
+  </ul>
+</section>
+
+<!-- 24 -->
+<section class="slide">
+  <h2>單元 3 代表例題 <span class="en">Unit 3 Example</span></h2>
+  <div class="box exbox"><span class="tag">例題 3</span>將 2.40 g NaN₃(M = 65.0 g/mol)完全分解:2NaN₃(s) → 2Na(s) + 3N₂(g)。求 25 °C、1.00 atm 下產生 N₂ 的體積。
+  <div class="sol"><b>解:</b><br>
+  ① mol NaN₃ = 2.40 ÷ 65.0 = 0.0369 mol<br>
+  ② 莫耳比:mol N₂ = 0.0369 × (3/2) = 0.0554 mol<br>
+  ③ V = nRT/P = 0.0554 × 0.08206 × 298 ÷ 1.00 = <span class="hl">1.35 L</span><br>
+  檢查:單位 L ✓、3 位有效數字 ✓(這正是安全氣囊的化學!)</div></div>
+</section>
+
+<!-- 25 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ③:跨章提取:氣體 <span class="en">Retrieval 3</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span><span class='small'>[W14]</span> 用 PV = nRT 時,溫度必須用?<br><span class="opt">A °C</span><span class="opt">B K</span><span class="opt">C °F</span><span class="opt">D 皆可</span></div>
+  <div class="q"><span class="qn">2</span><span class='small'>[W14]</span> 同溫下 H<sub>2</sub> 與 CO<sub>2</sub> 的平均動能:<br><span class="opt">A H<sub>2</sub> 較大</span><span class="opt">B CO<sub>2</sub> 較大</span><span class="opt">C 相同</span><span class="opt">D 無法比較</span></div>
+  <div class="q"><span class="qn">3</span><span class='small'>[W1→W14]</span> 某生算出氣體莫耳質量為 0.044 g/mol。<b>不必重算</b>,你怎麼知道一定錯?</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B(K)</span> — 所有氣體定律的 T 都是絕對溫度。<span class="myth">考卷上最廉價的失分。<b>看到 T 就先換 K</b>,養成反射動作。</span></div><div class="row"><span class="ans">2. C(相同)</span> — 平均動能<b>只由溫度決定</b>。<span class="myth">H<sub>2</sub> 跑得比較快,但動能相同 —— 質量小就必須速度快。<b>速率與動能是兩件事。</b></span></div><div class="row"><span class="ans">3. 數量級不合理</span> — 任何氣體的莫耳質量至少是 H<sub>2</sub> 的 2 g/mol,<b>0.044 小了三個數量級</b>,顯然是把 44 g/mol 的單位換算做反了。<span class="myth">這正是 W1 教的收尾動作:<b>算完問「數量級合理嗎」</b>。它在考場上能救回的分數,比多背一個公式多。<b>[M02 家族]</b></span></div></div>
+</section>
+<!-- 26 -->
+<section class="slide divider">
+  <div class="secnum">UNIT 4|Ch.10</div>
+  <h1>液體與固體</h1>
+  <div class="en-sub">Liquids and Solids</div>
+  <div class="items">分子間作用力・相變與加熱曲線・蒸氣壓・相圖・固體分類</div>
+</section>
+
+<!-- 27 -->
+<section class="slide">
+  <h2>IMF 判斷流程圖 <span class="en">Identifying Intermolecular Forces</span></h2>
+<svg class="fig" role="img" aria-labelledby="w17f1-t w17f1-d" width="1000" height="224" viewBox="0 0 1000 224" xmlns="http://www.w3.org/2000/svg">
+        <title id="w17f1-t">分子間作用力的判斷流程</title>
+        <desc id="w17f1-d">先問是否為離子化合物，是則為離子鍵；否則問分子是否有極性，無極性只有分散力；有極性再問是否有氫接在氮氧氟上，有則為氫鍵、否則為偶極−偶極力。分散力在所有分子中都存在。</desc>
+        <defs><marker id="w17f1-f1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5a6a6b"/></marker></defs>
+        <rect x="60" y="56" width="176" height="52" fill="#eaf2f8" rx="8" stroke="#1f5f8b" stroke-width="2.5"/>
+        <text x="148" y="88" font-size="18" fill="#1f5f8b" text-anchor="middle" font-weight="700">離子化合物？</text>
+        <rect x="272" y="56" width="176" height="52" fill="#eaf2f8" rx="8" stroke="#1f5f8b" stroke-width="2.5"/>
+        <text x="360" y="88" font-size="18" fill="#1f5f8b" text-anchor="middle" font-weight="700">分子有極性？</text>
+        <rect x="484" y="56" width="176" height="52" fill="#eaf2f8" rx="8" stroke="#1f5f8b" stroke-width="2.5"/>
+        <text x="572" y="88" font-size="18" fill="#1f5f8b" text-anchor="middle" font-weight="700">有 H–N/O/F？</text>
+        <rect x="60" y="150" width="176" height="54" fill="#fff" rx="8" stroke="#c0392b" stroke-width="2.5"/>
+        <text x="148" y="174" font-size="18" fill="#c0392b" text-anchor="middle" font-weight="700">離子鍵</text>
+        <text x="148" y="196" font-size="16" fill="#5a6a6b" text-anchor="middle">最強</text>
+        <rect x="272" y="150" width="176" height="54" fill="#fff" rx="8" stroke="#5a6a6b" stroke-width="2.5"/>
+        <text x="360" y="174" font-size="18" fill="#5a6a6b" text-anchor="middle" font-weight="700">只有分散力</text>
+        <text x="360" y="196" font-size="16" fill="#5a6a6b" text-anchor="middle">最弱</text>
+        <rect x="484" y="150" width="176" height="54" fill="#fff" rx="8" stroke="#117a65" stroke-width="2.5"/>
+        <text x="572" y="174" font-size="18" fill="#117a65" text-anchor="middle" font-weight="700">偶極−偶極</text>
+        <text x="572" y="196" font-size="16" fill="#5a6a6b" text-anchor="middle">中等</text>
+        <rect x="696" y="150" width="176" height="54" fill="#fff" rx="8" stroke="#a04c08" stroke-width="2.5"/>
+        <text x="784" y="174" font-size="18" fill="#a04c08" text-anchor="middle" font-weight="700">氫鍵</text>
+        <text x="784" y="196" font-size="16" fill="#5a6a6b" text-anchor="middle">強</text>
+        <line x1="236" y1="82" x2="272" y2="82" stroke="#5a6a6b" stroke-width="2.4" marker-end="url(#w17f1-f1)" stroke-linecap="round"/>
+        <text x="254" y="74" font-size="16" fill="#5a6a6b" text-anchor="middle">否</text>
+        <line x1="448" y1="82" x2="484" y2="82" stroke="#5a6a6b" stroke-width="2.4" marker-end="url(#w17f1-f1)" stroke-linecap="round"/>
+        <text x="466" y="74" font-size="16" fill="#5a6a6b" text-anchor="middle">否</text>
+        <line x1="660" y1="82" x2="784" y2="146" stroke="#5a6a6b" stroke-width="2.4" marker-end="url(#w17f1-f1)" stroke-linecap="round"/>
+        <text x="690" y="96" font-size="16" fill="#a04c08" text-anchor="middle" font-weight="700">是</text>
+        <line x1="148" y1="112" x2="148" y2="146" stroke="#5a6a6b" stroke-width="2.4" marker-end="url(#w17f1-f1)" stroke-linecap="round"/>
+        <text x="160" y="134" font-size="16" fill="#5a6a6b" text-anchor="start">是</text>
+        <line x1="360" y1="112" x2="360" y2="146" stroke="#5a6a6b" stroke-width="2.4" marker-end="url(#w17f1-f1)" stroke-linecap="round"/>
+        <text x="372" y="134" font-size="16" fill="#5a6a6b" text-anchor="start">否</text>
+        <line x1="572" y1="112" x2="572" y2="146" stroke="#5a6a6b" stroke-width="2.4" marker-end="url(#w17f1-f1)" stroke-linecap="round"/>
+        <text x="584" y="134" font-size="16" fill="#5a6a6b" text-anchor="start">否</text>
+        <rect x="20" y="20" width="960" height="0" fill="#fff" rx="0"/>
+        <text x="500" y="30" font-size="18" fill="#2c3e50" text-anchor="middle" font-weight="700">由上而下問三個問題，答案就是主要的分子間作用力</text>
+        <text x="500" y="218" font-size="17" fill="#5a6a6b" text-anchor="middle">分散力在所有分子中都存在；分子越大、接觸面積越大，分散力越強</text>
+      </svg>
+  <div class="box key" style="margin-top:10px"><span class="tag">比沸點</span>IMF 越強沸點越高;同為分散力時比分子量與形狀(直鏈 &gt; 支鏈)。</div>
+</section>
+
+<!-- 28 -->
+<section class="slide">
+  <h2>相變、蒸氣壓與相圖 <span class="en">Phase Changes, Vapor Pressure &amp; Diagrams</span></h2>
+  <div class="two-col">
+    <div>
+      <h3>加熱曲線計算要訣</h3>
+      <ul>
+        <li>斜線段(升溫):q = mcΔT(注意各態 c 不同)</li>
+        <li>平台段(相變):q = n·ΔH<sub>fus</sub> 或 n·ΔH<sub>vap</sub></li>
+        <li>總熱量 = 各段相加;<b>單位統一</b>(J ↔ kJ、g ↔ mol)</li>
+      </ul>
+    </div>
+    <div>
+      <h3>蒸氣壓與相圖</h3>
+      <ul>
+        <li>IMF 強 → 蒸氣壓低 → 沸點高</li>
+        <li>沸騰:蒸氣壓 = 外壓</li>
+        <li>三相點、臨界點;<b>水的固液線負斜率</b>(加壓熔化)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 29 -->
+<section class="slide">
+  <h2>固體四大類比較 <span class="en">Types of Crystalline Solids</span></h2>
+  <table>
+    <tr><th>類型</th><th>組成粒子</th><th>作用力</th><th>性質</th><th>例子</th></tr>
+    <tr><td>離子晶體</td><td>陰陽離子</td><td>離子鍵</td><td>高熔點、脆、熔融導電</td><td>NaCl</td></tr>
+    <tr><td>分子晶體</td><td>分子</td><td>IMF</td><td>低熔點、軟</td><td>冰、乾冰</td></tr>
+    <tr><td>共價網狀</td><td>原子</td><td>共價鍵</td><td>極高熔點、極硬</td><td>鑽石、SiO<sub>2</sub></td></tr>
+    <tr><td>金屬晶體</td><td>金屬原子</td><td>金屬鍵</td><td>導電導熱、延展性</td><td>Cu、Fe</td></tr>
+  </table>
+  <p class="small">單位晶胞原子數:簡單立方 1、體心 bcc 2、面心 fcc 4(角×1/8、面×1/2、體內×1)。</p>
+</section>
+
+<!-- 30 -->
+<section class="slide">
+  <h2>單元 4 代表例題 <span class="en">Unit 4 Example</span></h2>
+  <div class="box exbox"><span class="tag">例題 4</span>將 18.0 g 冰(0 °C)完全變成 100 °C 的水蒸氣,共需多少 kJ?(c<sub>水</sub> = 4.18 J/g·°C;ΔH<sub>fus</sub> = 6.01 kJ/mol;ΔH<sub>vap</sub> = 40.7 kJ/mol;M = 18.0 g/mol → n = 1.00 mol)
+  <div class="sol"><b>解:</b>分三段:<br>
+  ① 熔化:q₁ = 1.00 mol × 6.01 kJ/mol = 6.01 kJ<br>
+  ② 升溫 0→100 °C:q₂ = 18.0 g × 4.18 J/g·°C × 100 °C = 7524 J ≈ 7.52 kJ<br>
+  ③ 汽化:q₃ = 1.00 mol × 40.7 kJ/mol = 40.7 kJ<br>
+  總計 q = 6.01 + 7.52 + 40.7 = <span class="hl">54.2 kJ</span><br>
+  觀察:汽化吸熱最多 — 這就是流汗散熱有效的原因。</div></div>
+</section>
+
+<!-- 31 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ④:跨章提取:液體與固體 <span class="en">Retrieval 4</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span><span class='small'>[W15]</span> 水沸騰時被破壞的是?<br><span class="opt">A O–H 共價鍵</span><span class="opt">B 分子間氫鍵</span><span class="opt">C 兩者都斷</span><span class="opt">D 氧原子核</span></div>
+  <div class="q"><span class="qn">2</span><span class='small'>[W15]</span> 水的相圖中固–液線斜率為負,代表加壓會使?<br><span class="opt">A 冰融化</span><span class="opt">B 水結冰</span><span class="opt">C 無變化</span><span class="opt">D 直接昇華</span></div>
+  <div class="q"><span class="qn">3</span><span class='small'>[W15]</span> 石墨與鑽石都是純碳,為什麼一個軟一個硬、一個導電一個不導電?</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B(分子間氫鍵)</span> — 沸騰是物理變化,共價鍵不斷。<span class="myth"><b>[M01][M05]</b> 這題從 W1 一路考到 W15,如果你現在還會猶豫,那是本學期最該補的一個觀念。</span></div><div class="row"><span class="ans">2. A(冰融化)</span> — 負斜率 → 加壓有利密度較大的液態。<span class="myth">水是少數固相密度小於液相的物質,冰浮在水上是同一件事的另一面。</span></div><div class="row"><span class="ans">3. 因為結構不同,不是組成不同</span> — 鑽石 sp³ 三維網狀 → 硬、不導電;石墨 sp² 層狀,<b>層間只有分散力</b> → 可滑動、軟,層內離域 π 電子 → 導電。<span class="myth"><b>同素異形體是「結構決定性質」最乾淨的證明</b>:組成完全相同,唯一的變因是排列。</span></div></div>
+</section>
+<!-- 32 -->
+<section class="slide divider">
+  <div class="secnum">UNIT 5|Ch.11</div>
+  <h1>溶液與膠體</h1>
+  <div class="en-sub">Solutions and Colloids</div>
+  <div class="items">濃度單位・溶解原理・依數性質・van't Hoff 因子</div>
+</section>
+
+<!-- 33 -->
+<section class="slide">
+  <h2>濃度單位比較表 <span class="en">Concentration Units</span></h2>
+  <table>
+    <tr><th>單位</th><th>定義</th><th>何時使用</th></tr>
+    <tr><td>體積莫耳濃度 M</td><td>mol 溶質 / L 溶液</td><td>化學計量、滲透壓</td></tr>
+    <tr><td>重量莫耳濃度 m</td><td>mol 溶質 / kg 溶劑</td><td>ΔT<sub>b</sub>、ΔT<sub>f</sub>(不隨溫度變)</td></tr>
+    <tr><td>莫耳分率 X</td><td>mol 成分 / 總 mol</td><td>Raoult 定律、分壓</td></tr>
+    <tr><td>質量百分率 %</td><td>g 溶質 / g 溶液 ×100%</td><td>一般濃度表示</td></tr>
+    <tr><td>ppm / ppb</td><td>×10⁶ / ×10⁹</td><td>微量成分</td></tr>
+  </table>
+  <div class="box warn"><span class="tag">易錯</span>M 是「溶液體積」、m 是「溶劑質量」;M↔m 互換需要<b>溶液密度</b>。</div>
+</section>
+
+<!-- 34 -->
+<section class="slide">
+  <h2>依數性質四公式 <span class="en">Colligative Properties</span></h2>
+  <table>
+    <tr><th>性質</th><th>公式</th><th>備註</th></tr>
+    <tr><td>蒸氣壓下降</td><td>P<sub>溶液</sub> = X<sub>溶劑</sub>·P°<sub>溶劑</sub></td><td>Raoult 定律</td></tr>
+    <tr><td>沸點上升</td><td>ΔT<sub>b</sub> = i·K<sub>b</sub>·m</td><td>水 K<sub>b</sub> = 0.512 °C/m</td></tr>
+    <tr><td>凝固點下降</td><td>ΔT<sub>f</sub> = i·K<sub>f</sub>·m</td><td>水 K<sub>f</sub> = 1.86 °C/m</td></tr>
+    <tr><td>滲透壓</td><td>Π = i·MRT</td><td>M 用體積莫耳濃度、T 用 K</td></tr>
+  </table>
+  <div class="box key"><span class="tag">van't Hoff 因子 i</span>非電解質 i = 1;NaCl 理想 i = 2;CaCl<sub>2</sub> 理想 i = 3(實際略小,因離子對)。依數性質只看<b>粒子總數</b>,不看種類。</div>
+</section>
+
+<!-- 35 -->
+<section class="slide">
+  <h2>單元 5 代表例題 <span class="en">Unit 5 Example</span></h2>
+  <div class="box exbox"><span class="tag">例題 5</span>將 1.20 g 某非電解質溶於 50.0 g 水,測得凝固點為 −0.250 °C。求其莫耳質量。(K<sub>f</sub> = 1.86 °C/m)
+  <div class="sol"><b>解:</b><br>
+  ① ΔT<sub>f</sub> = 0 − (−0.250) = 0.250 °C<br>
+  ② m = ΔT<sub>f</sub> / K<sub>f</sub> = 0.250 ÷ 1.86 = 0.134 mol/kg<br>
+  ③ mol 溶質 = 0.134 × 0.0500 kg = 6.72×10<sup>−3</sup> mol<br>
+  ④ M = 1.20 g ÷ 6.72×10<sup>−3</sup> mol = <span class="hl">179 g/mol</span><br>
+  依數性質測分子量是期末的經典題型 — 四步驟務必熟練!</div></div>
+</section>
+
+<!-- 36 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ⑤:跨章提取:溶液 <span class="en">Retrieval 5</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span><span class='small'>[W16]</span> 0.1 m 的下列水溶液,凝固點最低的是?<br><span class="opt">A 葡萄糖</span><span class="opt">B NaCl</span><span class="opt">C CaCl<sub>2</sub></span><span class="opt">D 相同</span></div>
+  <div class="q"><span class="qn">2</span><span class='small'>[W3→W16]</span> 從 100 mL 的 0.10 M 溶液取出 10 mL,濃度是?<br><span class="opt">A 0.010 M</span><span class="opt">B 0.10 M</span><span class="opt">C 1.0 M</span><span class="opt">D 無法判斷</span></div>
+  <div class="q"><span class="qn">3</span><span class='small'>[W1→W16]</span> 蜜餞含水量不低卻不易腐敗。用<b>依數性質</b>解釋,並說明它與「凝固點下降」共用的是哪一個原理。</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. C(CaCl<sub>2</sub>)</span> — i = 3,粒子最多。<span class="myth"><b>看到電解質先問解離成幾個粒子</b> —— 漏掉 van't Hoff 因子是本章最常見的錯。</span></div><div class="row"><span class="ans">2. B(0.10 M)</span> — 濃度是<b>強度性質</b>,取多少出來都不變。<span class="myth">這題 W3 問過。與 W1「鋁塊切一半密度變不變」是同一個迷思 —— <b>本學期問了三次,考卷上還會再問一次。</b></span></div><div class="row"><span class="ans">3. 因為糖降低了水活性</span> — 大量糖分子與水形成氫鍵,使<b>自由水</b>減少 → 微生物無水可用。量化它的 a<sub>w</sub> = p/p<sub>0</sub>,<b>正是依數性質裡的蒸氣壓下降</b>。<span class="myth">共用的原理是:<b>溶質粒子的數目降低了溶劑的有效濃度</b>。蒸氣壓下降、沸點上升、凝固點下降、滲透壓、水活性 —— 五個名字,同一件事。</span></div></div>
+</section>
+<!-- 37 -->
+<section class="slide">
+  <h2>全範圍公式總表(1/2) <span class="en">Formula Sheet (1/2)</span></h2>
+  <table>
+    <tr><th>主題</th><th>公式</th></tr>
+    <tr><td>形式電荷</td><td>FC = 價電子 − 孤對電子 − ½鍵結電子</td></tr>
+    <tr><td>鍵能估算</td><td>ΔH ≈ Σ斷鍵 − Σ生成鍵</td></tr>
+    <tr><td>MO 鍵級</td><td>BO = (成鍵e⁻ − 反鍵e⁻)/2</td></tr>
+    <tr><td>理想氣體</td><td>PV = nRT;d = PM/RT</td></tr>
+    <tr><td>分壓</td><td>P<sub>A</sub> = X<sub>A</sub>·P<sub>total</sub></td></tr>
+    <tr><td>分子速率</td><td>u<sub>rms</sub> = √(3RT/M);r₁/r₂ = √(M₂/M₁)</td></tr>
+  </table>
+</section>
+
+<!-- 38 -->
+<section class="slide">
+  <h2>全範圍公式總表(2/2) <span class="en">Formula Sheet (2/2)</span></h2>
+  <table>
+    <tr><th>主題</th><th>公式</th></tr>
+    <tr><td>加熱曲線</td><td>q = mcΔT(升溫);q = nΔH(相變)</td></tr>
+    <tr><td>Raoult 定律</td><td>P<sub>溶液</sub> = X<sub>溶劑</sub>·P°</td></tr>
+    <tr><td>沸點/凝固點</td><td>ΔT<sub>b</sub> = iK<sub>b</sub>m;ΔT<sub>f</sub> = iK<sub>f</sub>m</td></tr>
+    <tr><td>滲透壓</td><td>Π = iMRT</td></tr>
+    <tr><td>亨利定律</td><td>C<sub>g</sub> = k·P<sub>g</sub></td></tr>
+    <tr><td>常數</td><td>R = 0.08206 L·atm/mol·K = 8.314 J/mol·K</td></tr>
+  </table>
+</section>
+
+<!-- 39 -->
+<section class="slide">
+  <h2>常見錯誤 TOP 8 <span class="en">Common Mistakes</span></h2>
+  <ol>
+    <li>VSEPR 忘記「多重鍵算 1 個電子群」</li>
+    <li>混淆「電子群幾何」與「分子形狀」(AX<sub>2</sub>E<sub>2</sub> 是角形不是四面體)</li>
+    <li>有雙鍵的碳寫成 sp³(應由電子群數判斷)</li>
+    <li>氣體計算忘記把 °C 換成 K</li>
+    <li>排水集氣忘記扣水蒸氣壓</li>
+    <li>M(莫耳濃度)與 m(重量莫耳濃度)混用</li>
+    <li>電解質依數性質忘記乘 van't Hoff 因子 i</li>
+    <li>加熱曲線只算升溫段、漏算相變平台的熱量</li>
+  </ol>
+</section>
+
+<!-- 40 -->
+<section class="slide">
+  <h2>考前檢核清單 <span class="en">Pre-Exam Checklist</span></h2>
+  <ul>
+    <li>☐ 能獨立畫出任意小分子的 Lewis 結構並算形式電荷</li>
+    <li>☐ AX<sub>m</sub>E<sub>n</sub> 總表:看到分子式 30 秒內說出形狀、混成、極性</li>
+    <li>☐ 熟記 R 的兩個值與適用單位;氣體五大公式能靈活套用</li>
+    <li>☐ 能排序:給定分子組,依 IMF 比較沸點/蒸氣壓</li>
+    <li>☐ 加熱曲線分段計算完整做過至少 2 題</li>
+    <li>☐ 依數性質四公式+i 因子;會用凝固點下降反求分子量</li>
+    <li>☐ 檢查計算機為考試允許機型、電力充足</li>
+  </ul>
+</section>
+
+<!-- 41 -->
+<section class="slide">
+  <h2>應試策略 <span class="en">Exam Strategy</span></h2>
+  <ul>
+    <li><b>先易後難:</b>先掃一遍全卷,選擇題快速拿分,計算題挑熟悉的先做</li>
+    <li><b>計算題步驟分:</b>寫出公式、代入(含單位)、逐步計算 — 即使結果錯也有過程分</li>
+    <li><b>單位與有效數字:</b>最後檢查每題答案的單位與位數</li>
+    <li><b>畫圖題:</b>Lewis 結構記得標孤對電子與電荷;VSEPR 註明鍵角</li>
+    <li><b>時間分配:</b>依配分比例分配;卡住超過 3 分鐘先跳過</li>
+  </ul>
+  <div class="box key"><span class="tag">最後提醒</span>與其熬夜刷新題,不如把本週複習的 5 題代表例題與檢核清單完整走一遍。</div>
+</section>
+
+<!-- 42 -->
+<section class="slide cover">
+  <h1>祝考試順利!</h1>
+  <div class="rule"></div>
+  <div class="sub">Good Luck on Your Final Exam!</div>
+  <div class="en-title" style="margin-top:20px">第 18 週:期末考(範圍 Ch.7–11)</div>
+  <div class="meta">普通化學(一)・學期總複習到此結束<br>下學期「普通化學(二)」:化學動力學、平衡、酸鹼、熱力學、電化學</div>
+</section>
+
+</div></div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const DECK_INFO='普通化學(一)|第 17 週:學期總複習(期末考範圍 Ch.7–11)';
+let cur=0;
+slides.forEach((s,i)=>{
+  const f=document.createElement('div');f.className='foot';
+  f.innerHTML='<span>'+DECK_INFO+'</span><span>'+(i+1)+' / '+slides.length+'</span>';
+  s.appendChild(f);
+});
+slides.forEach(s=>{
+  const sol=s.querySelector('.sol');
+  if(!sol)return;
+  const hint=document.createElement('div');hint.className='sol-hint';
+  hint.innerHTML='<span class="kbd">空白鍵</span><span>先自己想／算，準備好再顯示解答</span>';
+  sol.insertAdjacentElement('beforebegin',hint);
+});
+function show(n){
+  cur=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,i)=>{s.classList.toggle('active',i===cur);s.classList.remove('reveal');});
+  document.getElementById('bar').style.width=((cur+1)/slides.length*100)+'%';
+  location.hash=cur+1;
+}
+function next(){
+  const s=slides[cur];
+  if(s.querySelector('.sol')&&!s.classList.contains('reveal')){s.classList.add('reveal');return;}
+  show(cur+1);
+}
+function prev(){
+  const s=slides[cur];
+  if(s.classList.contains('reveal')){s.classList.remove('reveal');return;}
+  show(cur-1);
+}
+function fit(){
+  const s=Math.min(innerWidth/1280,innerHeight/720);
+  document.getElementById('deck').style.transform='scale('+s+')';
+}
+addEventListener('resize',fit);
+addEventListener('keydown',e=>{
+  if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();next();}
+  else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev();}
+  else if(e.key==='Home')show(0);
+  else if(e.key==='End')show(slides.length-1);
+});
+addEventListener('click',e=>{
+  if(e.target.closest('a'))return;
+  (e.clientX>innerWidth/3)?next():prev();
+});
+let tx=null;
+addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+addEventListener('touchend',e=>{
+  if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;
+  if(dx<-40)next();else if(dx>40)prev();tx=null;
+});
+fit();
+show(parseInt(location.hash.slice(1))-1||0);
+</script>
+</body>
+</html>

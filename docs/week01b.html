@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>普通化學(一) — 計算專題:單位、密度與劑量評估</title>
+<style>
+:root{
+  --primary:#1a5276; --primary-dark:#12395a; --accent:#a04c08; --teal:#117a65;
+  --ink:#2c3e50; --muted:#5a6a6b; --bg:#eceff3; --card:#ffffff;
+  --def-bg:#eaf2f8; --key-bg:#fef9e7; --ex-bg:#e8f8f5; --warn-bg:#fdedec;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC","Heiti TC",sans-serif;color:var(--ink)}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#deck{position:relative;width:1280px;height:720px;transform-origin:center center}
+.slide{position:absolute;inset:0;width:1280px;height:720px;background:var(--card);padding:56px 72px 70px;display:none;flex-direction:column;border-top:10px solid var(--primary);overflow:hidden}
+.slide.active{display:flex}
+.slide h2{font-size:36px;color:var(--primary);border-bottom:3px solid var(--accent);padding-bottom:10px;margin-bottom:26px;font-weight:700}
+.slide h2 .en{display:block;font-size:19px;color:var(--muted);font-weight:400;margin-top:4px}
+.slide h3{font-size:26px;color:var(--primary);margin:12px 0 8px}
+.slide p{font-size:24px;line-height:1.55;margin:8px 0}
+.slide ul,.slide ol{font-size:24px;line-height:1.6;margin:8px 0 8px 34px}
+.slide li{margin:7px 0}
+.slide li li{font-size:22px;margin:4px 0}
+.en{color:var(--muted);font-size:.82em}
+.small{font-size:19px;color:var(--muted)}
+.big{font-size:30px}
+.center{text-align:center}
+.hl{color:var(--accent);font-weight:700}
+.hlb{color:var(--primary);font-weight:700}
+.two-col{display:flex;gap:32px;align-items:flex-start}
+.two-col>div{flex:1}
+.box{border-radius:10px;padding:16px 22px;margin:14px 0;font-size:23px;line-height:1.55}
+.def{background:var(--def-bg);border-left:6px solid var(--primary)}
+.key{background:var(--key-bg);border-left:6px solid #f1c40f}
+.warn{background:var(--warn-bg);border-left:6px solid #e74c3c}
+.exbox{background:var(--ex-bg);border-left:6px solid var(--teal)}
+.box .tag{display:inline-block;font-size:17px;font-weight:700;color:#fff;border-radius:5px;padding:2px 10px;margin-bottom:6px}
+.def .tag{background:var(--primary)} .key .tag{background:#8a6d00} .warn .tag{background:#c0392b} .exbox .tag{background:var(--teal)}
+.sol{border-top:2px dashed var(--teal);margin-top:12px;padding-top:10px}
+.eq{text-align:center;font-size:28px;margin:14px 0;font-family:Cambria,"Times New Roman",serif}
+table{border-collapse:collapse;margin:12px auto;font-size:21px;width:100%}
+th{background:var(--primary);color:#fff;padding:8px 12px;font-weight:600}
+td{border:1px solid #d5dbdb;padding:7px 12px;text-align:center}
+tr:nth-child(even) td{background:#f4f6f7}
+.cover{background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 55%,var(--teal) 100%);border-top:none;color:#fff;justify-content:center;align-items:center;text-align:center}
+.cover h1{font-size:58px;letter-spacing:4px;margin-bottom:10px}
+.cover .sub{font-size:30px;opacity:.92;margin:6px 0}
+.cover .en-title{font-size:24px;opacity:.75;margin-bottom:34px}
+.cover .meta{font-size:20px;opacity:.7;margin-top:40px}
+.cover .rule{width:220px;height:4px;background:#f7b955;margin:26px auto}
+.divider{background:linear-gradient(120deg,var(--primary-dark),var(--primary));border-top:none;color:#fff;justify-content:center}
+.divider .secnum{font-size:26px;color:#f7b955;font-weight:700;letter-spacing:2px;margin-bottom:14px}
+.divider h1{font-size:52px;margin-bottom:12px}
+.divider .en-sub{font-size:26px;opacity:.75}
+.divider .items{margin-top:36px;font-size:23px;opacity:.9;line-height:2}
+.foot{position:absolute;left:0;right:0;bottom:0;height:32px;display:flex;justify-content:space-between;align-items:center;padding:0 28px;font-size:14px;color:#5d6d6e;background:#fafbfc;border-top:1px solid #e5e8e8}
+.cover .foot,.divider .foot{background:rgba(0,0,0,.15);color:rgba(255,255,255,.65);border-top:none}
+#bar{position:fixed;top:0;left:0;height:5px;background:var(--accent);width:0;z-index:10;transition:width .2s}
+.flow{display:flex;flex-direction:column;align-items:center;gap:6px}
+.fbox{border:2px solid var(--primary);border-radius:8px;padding:8px 20px;font-size:21px;background:var(--def-bg);text-align:center}
+.frow{display:flex;gap:60px;justify-content:center}
+.arrow{font-size:22px;color:var(--accent)}
+.chip{display:inline-block;background:var(--def-bg);border:1px solid var(--primary);color:var(--primary);border-radius:16px;padding:2px 14px;margin:3px;font-size:20px}
+/* ── 因次分析鐵軌格 ───────────────────────────────────── */
+.rail{border-collapse:collapse;margin:10px auto 6px;font-size:23px}
+.rail td{border:none;padding:5px 20px;text-align:center;background:none;vertical-align:middle}
+.rail td+td{border-left:2px solid var(--muted)}
+.rail tr:first-child td{border-bottom:3px solid var(--ink)}
+.rail td.res{border-left:none;padding-left:14px;font-weight:700;color:var(--accent);font-size:25px}
+.rail tr:first-child td.res{border-bottom:none}
+.rail .bk{display:inline-block;min-width:104px;border-bottom:3px dashed var(--accent);height:27px;vertical-align:-4px}
+.rail .gv{background:var(--def-bg)}
+.railnote{text-align:center;font-size:18px;color:var(--muted);margin-top:2px}
+.fig{display:block;margin:6px auto;flex-shrink:0}
+
+/* ── 形成性評量：解答兩段式揭露 ───────────────────────── */
+.slide.active .sol{display:none}
+.slide.active.reveal .sol{display:block}
+.sol-hint{margin-top:12px;padding-top:10px;border-top:2px dashed #b9c6c6;font-size:19px;color:#5d6d6e;display:flex;align-items:center;gap:10px}
+.slide.active.reveal .sol-hint{display:none}
+.sol-hint .kbd{display:inline-block;border:1px solid #aab7b8;border-bottom-width:2px;border-radius:5px;padding:1px 9px;font-size:17px;background:#fff;color:#34495e}
+/* ── 隨堂快問 ─────────────────────────────────────────── */
+.slide.quiz{border-top-color:var(--teal)}
+.slide.quiz h2{margin-bottom:14px}
+.slide.quiz h2{color:#0e6655;border-bottom-color:var(--teal)}
+.qbar{background:#e8f8f5;border-left:6px solid var(--teal);border-radius:8px;padding:5px 16px;font-size:18px;color:#0e6655;margin-bottom:4px}
+.q{margin:4px 0;font-size:21px;line-height:1.28}
+.q .qn{display:inline-block;min-width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;background:var(--teal);color:#fff;font-size:16px;font-weight:700;margin-right:7px}
+.opt{display:inline-block;border:1.5px solid #a2d5cd;background:#f2fbf9;color:#0e6655;border-radius:14px;padding:0 11px;margin:1px 4px 1px 0;font-size:19px}
+.quiz .sol{margin-top:5px;padding-top:5px;font-size:18px;line-height:1.26}
+.quiz .sol .ans{color:#c0392b;font-weight:700}
+.quiz .sol .row+.row{border-top:1px solid #e5eceb;padding-top:3px}
+.quiz .sol .myth{display:block;font-size:16px;color:#5d6d6e;margin:1px 0 0 0;line-height:1.24}
+.quiz .sol .row{margin:3px 0}
+@media print{
+  .sol{display:block!important}
+  .sol-hint{display:none!important}
+}
+
+/* ── 食品營養錨點頁 ───────────────────────────────────── */
+.slide.hook{border-top-color:var(--accent)}
+.slide.hook h2{color:#a05000;border-bottom-color:var(--accent)}
+.bigq{background:linear-gradient(100deg,#fff5ea,#fdf0e0);border-left:8px solid var(--accent);border-radius:10px;
+      padding:14px 22px;font-size:26px;line-height:1.4;color:#7a3d00;font-weight:700;margin:4px 0 12px}
+.bigq .qmark{font-size:30px;margin-right:6px}
+.hookcols{display:flex;gap:22px;align-items:stretch;margin-top:4px}
+.hookcols>div{flex:1;border-radius:9px;padding:11px 16px}
+.hk-now{background:#eaf2f8;border-left:5px solid var(--primary)}
+.hk-next{background:#e8f8f5;border-left:5px solid var(--teal)}
+.hookcols h3{font-size:20px;margin:0 0 6px}
+.hk-now h3{color:var(--primary)} .hk-next h3{color:#0e6655}
+.hookcols ul{font-size:19px;line-height:1.4;margin:0 0 0 20px}
+.hookcols li{margin:4px 0}
+.hookcols .course{display:inline-block;background:#fff;border:1px solid #a2d5cd;color:#0e6655;
+                  border-radius:11px;padding:0 8px;font-size:16px;margin-right:4px}
+.canyou{background:var(--key-bg);border-left:6px solid #d4a70a;border-radius:9px;padding:10px 18px;
+        font-size:20px;line-height:1.4;margin-top:12px}
+.canyou b{color:#8a6d00}
+.hookmap{font-size:19px;line-height:1.5}
+.hookmap td{text-align:left;padding:5px 10px}
+.hookmap td:first-child{text-align:center;font-weight:700;color:var(--accent);width:62px}
+/* ── 錨點回收頁 ───────────────────────────────────────── */
+.slide.hookback{border-top-color:var(--teal)}
+.slide.hookback h2{color:#0e6655;border-bottom-color:var(--teal)}
+.recall{background:#f4f6f7;border-left:5px solid #95a5a6;border-radius:8px;padding:7px 18px;
+        font-size:20px;line-height:1.34;color:#5d6d6e;margin:0 0 10px}
+.recall b{color:#34495e}
+.ansbox{background:#e8f8f5;border-left:6px solid var(--teal);border-radius:9px;padding:10px 20px;margin:0 0 10px}
+.ansbox h3{font-size:20px;color:#0e6655;margin:0 0 5px}
+.ansbox ul{margin:0 0 0 20px;font-size:19.5px;line-height:1.4}
+.ansbox li{margin:5px 0}
+.lens{background:var(--key-bg);border-left:6px solid #d4a70a;border-radius:9px;padding:10px 20px;
+      font-size:20px;line-height:1.38;margin-bottom:9px}
+.lens .lt{display:block;font-size:16px;font-weight:700;color:#8a6d00;letter-spacing:1px;margin-bottom:2px}
+.nextup{background:#eaf2f8;border-left:5px solid var(--primary);border-radius:8px;padding:8px 18px;
+        font-size:18.5px;line-height:1.4;color:#34495e}
+.nextup .course{display:inline-block;background:#fff;border:1px solid #a2d5cd;color:#0e6655;
+                border-radius:11px;padding:0 8px;font-size:16px;margin-right:4px}
+@media print{
+  @page{size:1280px 720px;margin:0}
+  html,body{background:#fff}
+  #stage{position:static}
+  #deck{width:auto;height:auto;transform:none!important}
+  .slide{position:relative;display:flex!important;page-break-after:always;margin:0;inset:auto}
+  #bar{display:none}
+}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="stage"><div id="deck">
+<!-- 1 -->
+<section class="slide cover">
+  <h1>普通化學(一)</h1>
+  <div class="rule"></div>
+  <div class="sub">計算專題:單位、密度與劑量評估</div>
+  <div class="en-title">Calculations: Units, Density, and Dose Assessment</div>
+  <div class="meta">第 1 週延伸 · 因次分析的實戰應用<br>對應教材:OpenStax Chemistry 2e Ch.1</div>
+</section>
+<!-- 2 -->
+<section class="slide">
+  <h2>本課學習目標 <span class="en">Learning Objectives</span></h2>
+  <ul>
+    <li>能在英制與公制之間換算質量、體積與長度</li>
+    <li>能把密度當成<b>雙向</b>換算因子使用(體積→質量、質量→體積)</li>
+    <li>能把三段以上的換算<b>串成一條式子</b>,中途不算出數字</li>
+    <li>能完成一次<b>ADI 風險評估</b>:由食品濃度算到佔 ADI 的百分比</li>
+    <li>能用 <b>DRI</b> 判斷一份食物提供了多少比例的營養需求,並區分 RDA 與 UL</li>
+    <li>能處理 <b>ppb / μg</b> 等級的殘留計算,並把「佔 ADI 幾 %」<b>反算成可理解的份量</b></li>
+  </ul>
+  <div class="box key"><span class="tag">為什麼另開一節</span>這些計算單看每一步都不難,<b>錯誤幾乎都發生在「串接」與「單位不一致」</b>。本節不教新化學,只練一件事:把長鏈拆開、一段一段接。</div>
+</section>
+<!-- 3 -->
+<section class="slide hook">
+  <h2>計算專題·食品營養錨點:這罐飲料要喝幾罐才超標? <span class="en">Anchor Question</span></h2>
+  <div class="bigq"><span class="qmark">?</span>同一罐飲料,對 60 kg 的大人和 25 kg 的小孩,「安全份量」會一樣嗎?</div>
+  <div class="hookcols">
+    <div class="hk-now"><h3>這一節要用到的化學</h3><ul><li>英制↔公制換算</li><li>密度作為雙向換算因子</li><li>多段串接的因次分析</li><li>體重歸一化與比值</li></ul></div>
+    <div class="hk-next"><h3>之後在哪裡會再遇到</h3><ul><li><span class="course">食品衛生安全</span>添加物 ADI 與暴露評估</li><li><span class="course">營養學</span>DRIs 與膳食評估</li><li><span class="course">分析化學</span>檢驗結果與法規限量比對</li></ul></div>
+  </div>
+  <div class="canyou"><b>本節結束時,你應該能回答:</b>為什麼 ADI 的單位一定要寫成「mg/kg 體重/天」而不是「mg/天」?</div>
+</section>
+<!-- 4 -->
+<section class="slide divider">
+  <div class="secnum">PART 1</div>
+  <h1>英制與公制</h1>
+  <div class="en-sub">Imperial and Metric Units</div>
+  <div class="items">為什麼還要學英制・六個必要的換算・體重與食譜</div>
+</section>
+<!-- 5 -->
+<section class="slide">
+  <h2>為什麼食營科系還要學英制? <span class="en">Why Imperial Still Matters</span></h2>
+  <ul>
+    <li><b>國外文獻與資料庫</b>:USDA 營養資料庫、多數英文期刊以 oz、lb、fl oz 呈現份量</li>
+    <li><b>進口食品標示</b>與國外食譜:cup、tbsp、fl oz</li>
+    <li><b>臨床與體位資料</b>:國外研究常以 lb 記錄體重,而 ADI、藥物劑量都要 kg</li>
+    <li><b>餐飲現場</b>:牛排以 <b>oz</b> 計(8 oz ≈ 227 g、10 oz ≈ 284 g、12 oz ≈ 340 g),殘留評估卻要 kg</li>
+  </ul>
+  <div class="box warn"><span class="tag">最容易出錯的地方</span><b>fl oz(液量盎司,體積)與 oz(盎司,質量)是兩個不同的單位</b>,中文都叫「盎司」。看到 oz 先問:它量的是重量還是體積?</div>
+</section>
+<!-- 6 -->
+<section class="slide">
+  <h2>必要的單位換算 <span class="en">Conversions You Need</span></h2>
+  <table>
+    <tr><th>類別</th><th>等式</th><th>備註</th></tr>
+    <tr><td rowspan="2">質量</td><td>1 lb = 453.59 g</td><td>= 0.45359 kg(定義值)</td></tr>
+    <tr><td>1 oz = 28.35 g</td><td>常衡盎司,量<b>質量</b></td></tr>
+    <tr><td rowspan="3">體積</td><td>1 fl oz = 29.57 mL</td><td>美制,量<b>體積</b></td></tr>
+    <tr><td>1 cup = 8 fl oz = 236.6 mL</td><td>美制量杯</td></tr>
+    <tr><td>1 qt(夸脫)= 32 fl oz = 946.4 mL</td><td>美式瓶裝汽水常見規格</td></tr>
+    <tr><td>長度</td><td>1 in = 2.54 cm</td><td>定義值,不限有效位數</td></tr>
+    <tr><td>溫度</td><td>°F = (9/5)°C + 32</td><td>不是換算因子,是<b>公式</b></td></tr>
+  </table>
+  <div class="box key"><span class="tag">注意最後一列</span>溫度<b>不能</b>用換算因子乘 —— 因為兩個尺度的<b>零點不同</b>。凡是零點不同的量(°C/°F)都要用公式,不能用因次分析。</div>
+</section>
+<!-- 7 -->
+<section class="slide">
+  <h2>例題 1:體重 lb → kg <span class="en">Example 1</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>一篇美國研究記錄受試者體重 <b>150 lb</b>。要拿來算 ADI,必須先換成 kg。
+  <table class="rail">
+    <tr><td class="gv">150 lb</td><td>453.59 g</td><td>1 kg</td><td class="res">= 68.0 kg</td></tr>
+    <tr><td class="gv">&nbsp;</td><td>1 lb</td><td>1000 g</td><td class="res">&nbsp;</td></tr>
+  </table>
+  <div class="sol"><b>解:</b>150 × 453.59 ÷ 1000 = <span class="hl">68.0 kg</span>(3 位有效數字)<br>
+  <span class="small">路線是 lb → g → kg,兩個箭頭兩個因子。也可以直接用 1 lb = 0.45359 kg 一步到位 —— 兩種都對,重點是<b>單位要能相消</b>。</span></div></div>
+  <div class="box key"><span class="tag">快速估算</span>lb 除以 2.2 ≈ kg。150/2.2 ≈ 68 ✓ —— 算完用它檢查數量級。</div>
+</section>
+<!-- 8 -->
+<section class="slide">
+  <h2>例題 2:食譜 fl oz → mL <span class="en">Example 2</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>美國食譜寫「牛奶 <b>12 fl oz</b>」。台灣的量杯只有 mL 刻度,要倒多少 mL?
+  <div class="sol"><b>解:</b>12 fl oz × (29.57 mL / 1 fl oz) = <span class="hl">355 mL</span><br>
+  <span class="small">355 mL 正好是一般鋁罐飲料的容量 —— 因為那本來就是 12 fl oz 的罐子。</span></div></div>
+  <div class="box warn"><span class="tag">陷阱</span>若題目寫的是「牛奶 <b>12 oz</b>」(沒有 fl),那是<b>質量</b> 12 × 28.35 = 340 g,不是 355 mL。兩者數字接近但意義完全不同 —— 而牛奶密度不是 1,340 g 的牛奶其實只有 330 mL。</div>
+</section>
+<!-- 9 -->
+<section class="slide divider">
+  <div class="secnum">PART 2</div>
+  <h1>密度:質量與體積的雙向橋</h1>
+  <div class="en-sub">Density as a Two-Way Conversion Factor</div>
+  <div class="items">兩個方向・反向換算・三段串接</div>
+</section>
+<!-- 10 -->
+<section class="slide">
+  <h2>密度可以往兩個方向走 <span class="en">Density Works Both Ways</span></h2>
+<svg class="fig" role="img" aria-labelledby="w1bf2-t w1bf2-d" width="940" height="250" viewBox="0 0 940 250" xmlns="http://www.w3.org/2000/svg">
+        <title id="w1bf2-t">密度是質量與體積之間的雙向橋</title>
+        <desc id="w1bf2-d">左邊是體積、右邊是質量。由體積求質量時乘以密度，由質量求體積時除以密度，也就是把密度的分子分母上下顛倒。兩個方向用的是同一個等式。</desc>
+        <defs><marker id="w1bf2-d1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a04c08"/></marker><marker id="w1bf2-d2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f5f8b"/></marker></defs>
+        <rect x="92" y="78" width="216" height="80" fill="#eaf2f8" rx="10" stroke="#1f5f8b" stroke-width="2.5"/>
+        <text x="200" y="112" font-size="24" fill="#1f5f8b" text-anchor="middle" font-weight="700">體積 V</text>
+        <text x="200" y="142" font-size="18" fill="#5a6a6b" text-anchor="middle">mL、L、cm³</text>
+        <rect x="632" y="78" width="216" height="80" fill="#e8f8f5" rx="10" stroke="#117a65" stroke-width="2.5"/>
+        <text x="740" y="112" font-size="24" fill="#117a65" text-anchor="middle" font-weight="700">質量 m</text>
+        <text x="740" y="142" font-size="18" fill="#5a6a6b" text-anchor="middle">g、kg</text>
+        <line x1="312" y1="100" x2="628" y2="100" stroke="#a04c08" stroke-width="3" marker-end="url(#w1bf2-d1)" stroke-linecap="round"/>
+        <text x="470" y="88" font-size="20" fill="#a04c08" text-anchor="middle" font-weight="700">× 密度  (g/mL)</text>
+        <line x1="628" y1="140" x2="312" y2="140" stroke="#1f5f8b" stroke-width="3" marker-end="url(#w1bf2-d2)" stroke-linecap="round"/>
+        <text x="470" y="164" font-size="20" fill="#1f5f8b" text-anchor="middle" font-weight="700">÷ 密度,也就是 × (1 mL / 密度 g)</text>
+        <rect x="80" y="186" width="780" height="56" fill="#fdf6e3" rx="9" stroke="#8a6d00" stroke-width="2.5"/>
+        <text x="470" y="210" font-size="19" fill="#8a6d00" text-anchor="middle" font-weight="700">同一個等式,兩個方向 —— 要哪個方向,就把密度那個分數上下顛倒</text>
+        <text x="470" y="234" font-size="18" fill="#2c3e50" text-anchor="middle">判準永遠一樣:讓不要的單位上下相消</text>
+      </svg>
+</section>
+<!-- 11 -->
+<section class="slide">
+  <h2>例題 3:體積 → 質量(順向) <span class="en">Example 3</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>沙拉油密度 <b>0.92 g/mL</b>。食譜要 <b>250 mL</b> 沙拉油,質量是多少 g?
+  <table class="rail">
+    <tr><td class="gv">250 mL</td><td>0.92 g</td><td class="res">= 230 g</td></tr>
+    <tr><td class="gv">&nbsp;</td><td>1 mL</td><td class="res">&nbsp;</td></tr>
+  </table>
+  <div class="sol"><b>解:</b>250 × 0.92 = <span class="hl">230 g</span>(2 位有效數字)<br>
+  <span class="small">mL 上下相消,剩下 g ✓ 這個方向多數學生沒問題。</span></div></div>
+</section>
+<!-- 12 -->
+<section class="slide">
+  <h2>例題 4:質量 → 體積(反向,常卡) <span class="en">Example 4</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>同一瓶沙拉油(<b>0.92 g/mL</b>)。今天要秤 <b>500 g</b>,要量幾 mL?
+  <table class="rail">
+    <tr><td class="gv">500 g</td><td>1 mL</td><td class="res">= 543 mL</td></tr>
+    <tr><td class="gv">&nbsp;</td><td>0.92 g</td><td class="res">&nbsp;</td></tr>
+  </table>
+  <div class="sol"><b>解:</b>500 ÷ 0.92 = <span class="hl">543 mL</span><br>
+  <span class="small"><b>密度的分數被上下顛倒了</b> —— 因為這次要消掉的是 g,所以 g 必須在分母。<br>
+  合理性檢查:油比水輕,同樣質量會佔<b>比較大</b>的體積 → 543 > 500 ✓ 若算成 460 mL(乘了 0.92),方向就反了。</span></div></div>
+</section>
+<!-- 13 -->
+<section class="slide">
+  <h2>例題 5:三段串接 <span class="en">Example 5 — Chaining Three Links</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>美國食譜要 <b>1 cup</b> 全脂牛奶(密度 <b>1.03 g/mL</b>,每 <b>100 g 含鈣 113 mg</b>)。這杯牛奶提供多少 mg 鈣?
+  <div class="railnote" style="margin:4px 0 2px"><b>先畫路線:</b>　cup → mL → g 牛奶 → mg 鈣　<span style="color:#5a6a6b">(4 個單位 → 3 個箭頭 → 3 個因子)</span></div>
+  <table class="rail">
+    <tr><td class="gv">1 cup</td><td>236.6 mL</td><td>1.03 g</td><td>113 mg 鈣</td><td class="res">= 275 mg</td></tr>
+    <tr><td class="gv">&nbsp;</td><td>1 cup</td><td>1 mL</td><td>100 g 牛奶</td><td class="res">&nbsp;</td></tr>
+  </table>
+  <div class="sol"><b>解:</b>236.6 × 1.03 × 1.13 = <span class="hl">275 mg 鈣</span><br>
+  <span class="small">一次乘到底,中途不要算出 236.6 或 243.7 再重新開始 —— 那會提早捨入,也會失去單位相消的檢查。<br>這杯牛奶約佔成人每日鈣建議量(1000 mg)的 <b>28%</b>。</span></div></div>
+</section>
+<!-- 14 -->
+<section class="slide divider">
+  <div class="secnum">PART 3</div>
+  <h1>劑量評估:ADI</h1>
+  <div class="en-sub">Acceptable Daily Intake</div>
+  <div class="items">ADI 是什麼・為什麼要除以體重・四段路線・反算安全份量</div>
+</section>
+<!-- 15 -->
+<section class="slide">
+  <h2>ADI:每日可接受攝取量 <span class="en">Acceptable Daily Intake</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>ADI</b> = 人終生每日攝取,仍不致產生可察覺健康風險的量。單位是 <span class="hl">mg / kg 體重 / 天</span>。</div>
+  <ul>
+    <li>怎麼訂出來的:動物試驗找出<b>無可見不良作用劑量 (NOAEL)</b>,再<b>除以安全係數</b>(通常 100:種間差 10 × 個體差 10)</li>
+    <li>所以 ADI 已內含約 100 倍安全邊際 —— 偶爾超過一點<b>不等於</b>中毒</li>
+    <li>它是<b>長期平均</b>的概念,不是單次上限</li>
+  </ul>
+  <div class="box warn"><span class="tag">單位是重點</span>ADI 的分母有「kg 體重」。你算出來的攝取量若只是 <b>mg/天</b>,<b>還不能拿去比</b> —— 必須先除以體重。這一步是本節最常漏掉的。</div>
+</section>
+<!-- 16 -->
+<section class="slide">
+  <h2>ADI 評估的標準路線 <span class="en">The Standard Route</span></h2>
+<svg class="fig" role="img" aria-labelledby="w1bf1-t w1bf1-d" width="1000" height="296" viewBox="0 0 1000 296" xmlns="http://www.w3.org/2000/svg">
+        <title id="w1bf1-t">ADI 風險評估的標準路線</title>
+        <desc id="w1bf1-d">五個節點依序為：食品中的添加物濃度、每日吃進多少食品、每日攝入的添加物毫克數、除以體重得到每公斤體重每日毫克數、最後除以 ADI 得到佔 ADI 的百分比。前兩段是單位換算，第三段是體重歸一化，第四段是與標準值相比。</desc>
+        <defs><marker id="w1bf1-ad" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2c3e50"/></marker></defs>
+        <text x="500" y="34" font-size="20" fill="#1f5f8b" text-anchor="middle" font-weight="700">四段路線:兩段換算 + 一次除以體重 + 一次比標準</text>
+        <rect x="4" y="88" width="176" height="60" fill="#eaf2f8" rx="9" stroke="#1f5f8b" stroke-width="2.5"/>
+        <text x="92" y="114" font-size="19" fill="#2c3e50" text-anchor="middle" font-weight="700">食品中濃度</text>
+        <text x="92" y="138" font-size="17" fill="#1f5f8b" text-anchor="middle" font-weight="700">mg/kg 食品</text>
+        <line x1="184" y1="118" x2="206" y2="118" stroke="#2c3e50" stroke-width="2.6" marker-end="url(#w1bf1-ad)" stroke-linecap="round"/>
+        <rect x="212" y="88" width="176" height="60" fill="#fff" rx="9" stroke="#5a6a6b" stroke-width="2.5"/>
+        <text x="300" y="114" font-size="19" fill="#2c3e50" text-anchor="middle" font-weight="700">每日食用量</text>
+        <text x="300" y="138" font-size="17" fill="#5a6a6b" text-anchor="middle" font-weight="700">g 食品/天</text>
+        <line x1="392" y1="118" x2="406" y2="118" stroke="#2c3e50" stroke-width="2.6" marker-end="url(#w1bf1-ad)" stroke-linecap="round"/>
+        <rect x="412" y="88" width="176" height="60" fill="#fff" rx="9" stroke="#5a6a6b" stroke-width="2.5"/>
+        <text x="500" y="114" font-size="19" fill="#2c3e50" text-anchor="middle" font-weight="700">每日攝入量</text>
+        <text x="500" y="138" font-size="17" fill="#5a6a6b" text-anchor="middle" font-weight="700">mg/天</text>
+        <line x1="592" y1="118" x2="606" y2="118" stroke="#2c3e50" stroke-width="2.6" marker-end="url(#w1bf1-ad)" stroke-linecap="round"/>
+        <rect x="612" y="88" width="176" height="60" fill="#fff" rx="9" stroke="#5a6a6b" stroke-width="2.5"/>
+        <text x="700" y="114" font-size="19" fill="#2c3e50" text-anchor="middle" font-weight="700">每公斤體重</text>
+        <text x="700" y="138" font-size="17" fill="#5a6a6b" text-anchor="middle" font-weight="700">mg/kg bw/天</text>
+        <line x1="792" y1="118" x2="814" y2="118" stroke="#2c3e50" stroke-width="2.6" marker-end="url(#w1bf1-ad)" stroke-linecap="round"/>
+        <rect x="820" y="88" width="176" height="60" fill="#e8f8f5" rx="9" stroke="#117a65" stroke-width="2.5"/>
+        <text x="908" y="114" font-size="19" fill="#2c3e50" text-anchor="middle" font-weight="700">佔 ADI</text>
+        <text x="908" y="138" font-size="17" fill="#117a65" text-anchor="middle" font-weight="700">%</text>
+        <text x="196.0" y="176" font-size="17" fill="#a04c08" text-anchor="middle" font-weight="700">× 每日食用量</text>
+        <text x="196.0" y="198" font-size="16" fill="#5a6a6b" text-anchor="middle">(單位換算)</text>
+        <text x="400.0" y="176" font-size="17" fill="#a04c08" text-anchor="middle" font-weight="700">× 1 g/1000 mg 等</text>
+        <text x="400.0" y="198" font-size="16" fill="#5a6a6b" text-anchor="middle">(單位換算)</text>
+        <text x="600.0" y="176" font-size="17" fill="#c0392b" text-anchor="middle" font-weight="700">÷ 體重 (kg)</text>
+        <text x="600.0" y="198" font-size="16" fill="#5a6a6b" text-anchor="middle">← 關鍵的一步</text>
+        <text x="804.0" y="176" font-size="17" fill="#117a65" text-anchor="middle" font-weight="700">÷ ADI × 100%</text>
+        <text x="804.0" y="198" font-size="16" fill="#5a6a6b" text-anchor="middle">(比標準值)</text>
+        <rect x="120" y="216" width="760" height="68" fill="#fdedec" rx="9" stroke="#c0392b" stroke-width="2.5"/>
+        <text x="500" y="242" font-size="19" fill="#c0392b" text-anchor="middle" font-weight="700">為什麼一定要除以體重?同一瓶飲料,60 kg 成人與 25 kg 兒童的每公斤劑量差 2.4 倍</text>
+        <text x="500" y="268" font-size="18" fill="#2c3e50" text-anchor="middle">ADI 的單位是 mg/kg 體重/天 —— 沒有除以體重,你算出來的數字根本不能跟它比</text>
+      </svg>
+</section>
+<!-- 17 -->
+<section class="slide">
+  <h2>例題 6:阿斯巴甜 — 同一罐,兩個答案 <span class="en">Example 6</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>某無糖汽水每罐(355 mL)含阿斯巴甜約 <b>180 mg</b>,ADI = <b>40 mg/kg 體重/天</b>。分別計算 <b>60 kg 成人</b>與 <b>25 kg 兒童</b>喝一罐佔 ADI 的百分比。
+  <div class="sol"><b>解:</b>先算每公斤體重的攝入量,再比 ADI。<br>
+  成人:180 mg ÷ 60 kg = <b>3.0</b> mg/kg/天 → 3.0/40 = <span class="hl">7.5% ADI</span><br>
+  兒童:180 mg ÷ 25 kg = <b>7.2</b> mg/kg/天 → 7.2/40 = <span class="hl">18% ADI</span><br>
+  <span class="small">同一罐飲料,兒童的每公斤劑量是成人的 <b>2.4 倍</b>(60/25) —— 這就是風險評估必須除以體重的理由。</span></div></div>
+</section>
+<!-- 18 -->
+<section class="slide">
+  <h2>例題 7:反算「幾罐才會超標」 <span class="en">Example 7 — Working Backwards</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>承上。要達到 ADI,成人與兒童各要喝幾罐?
+  <div class="sol"><b>解:</b>先算「這個人一天的 ADI 總量」,再除以每罐含量。<br>
+  成人:40 mg/kg/天 × 60 kg = 2400 mg → 2400 ÷ 180 = <span class="hl">13 罐</span><br>
+  兒童:40 × 25 = 1000 mg → 1000 ÷ 180 = <span class="hl">5.6 罐</span><br>
+  <span class="small">ADI 乘上體重後,單位從 mg/kg/天 變回 mg/天 —— <b>體重在這裡是換算因子,不是「除法規則」</b>。<br>這也是回答家長提問的標準做法:與其說「安不安全」,不如給一個可理解的份量。</span></div></div>
+  <div class="box key"><span class="tag">兩題的關係</span>例題 6 是順算(份量 → %ADI),例題 7 是反算(ADI → 份量)。<b>同一條路線,反方向走</b> —— 每個因子上下顛倒即可。</div>
+</section>
+<!-- 19 -->
+<section class="slide">
+  <h2>例題 8:苯甲酸(淡出練習) <span class="en">Example 8 — Faded</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>某飲料苯甲酸含量為法規上限 <b>600 mg/kg</b>,ADI = <b>5 mg/kg 體重/天</b>。一瓶 <b>500 mL</b>(密度視為 1.00 g/mL)。60 kg 成人喝一瓶佔 ADI 幾 %?
+  <div class="railnote" style="margin:4px 0 2px"><b>路線:</b>　mL → g 飲料 → mg 苯甲酸 → mg/kg 體重 → %ADI</div>
+  <table class="rail">
+    <tr><td class="gv">500 mL</td><td><span class="bk"></span></td><td><span class="bk"></span></td><td class="res">= ? mg</td></tr>
+    <tr><td class="gv">&nbsp;</td><td><span class="bk"></span></td><td><span class="bk"></span></td><td class="res">&nbsp;</td></tr>
+  </table>
+  <div class="sol"><b>解:</b>500 mL × (1.00 g/1 mL) × (600 mg/1000 g) = <b>300 mg</b><br>
+  300 ÷ 60 kg = 5.0 mg/kg/天 → <span class="hl">恰好 100% ADI</span>;若是 25 kg 兒童則為 <span class="hl">240%</span>。<br>
+  <span class="small"><b>但別誤讀</b>:600 mg/kg 是<b>法規上限</b>,市售產品通常遠低於此。這題要傳達的是「上限值本身就是以體重推算出來的」,不是「喝一瓶就危險」。</span></div></div>
+</section>
+<!-- 20 -->
+<section class="slide">
+  <h2>例題 9:份量本身就是變數 — 美式 1 qt 汽水 <span class="en">Example 9 — Portion Size Matters</span></h2>
+  <div class="box exbox" style="margin:8px 0;padding:11px 22px"><span class="tag">例題</span>同一款汽水、同樣是法規上限 <b>600 mg/kg</b> 苯甲酸,但美式瓶裝是 <b>1 夸脫 (qt)</b>,含糖汽水密度 <b>1.04 g/mL</b>。60 kg 成人喝完一瓶佔 ADI(5 mg/kg 體重/天)幾 %?
+  <div class="railnote" style="margin:4px 0 2px"><b>路線:</b>　qt → mL → g 汽水 → mg 苯甲酸 → mg/kg 體重 → %ADI</div>
+  <div class="sol"><b>解:</b>1 qt × (946.4 mL/1 qt) × (1.04 g/1 mL) × (600 mg/1000 g) = <b>591 mg</b><br>
+  591 ÷ 60 kg = 9.84 mg/kg/天 → <span class="hl">197% ADI</span>(25 kg 兒童:472%)</div></div>
+  <table style="margin:6px auto;font-size:21px">
+    <tr><th>瓶裝規格</th><th>體積</th><th>苯甲酸</th><th>60 kg 成人</th><th>25 kg 兒童</th></tr>
+    <tr><td>台灣常見</td><td>500 mL</td><td>300 mg</td><td>100% ADI</td><td>240% ADI</td></tr>
+    <tr><td>美式 1 qt</td><td>946 mL</td><td>591 mg</td><td><span class="hl">197% ADI</span></td><td><span class="hl">472% ADI</span></td></tr>
+  </table>
+  <div class="box key" style="margin:6px 0;padding:10px 22px"><span class="tag">重點</span>同一種飲料、同一個法規上限,只因為<b>份量不同</b>,結論就差一倍。所以暴露評估必須搭配<b>各國自己的飲食調查資料</b> —— 法規限量訂得再嚴,若份量估錯,評估就沒有意義。</div>
+</section>
+<!-- 21 -->
+<section class="slide">
+  <h2>例題 10:清潔劑殘留 — 四級銨 <span class="en">Example 10 — Sanitizer Residue</span></h2>
+  <div class="box exbox" style="margin:6px 0;padding:9px 22px"><span class="tag">例題</span><b>四級銨 (QAC)</b> 是裝瓶線的殺菌消毒劑,<b>不是添加物</b> —— 沖洗不完全才會殘留。以苯扎氯銨為例:ADI = <b>0.1 mg/kg 體重/天</b>、殘留限量 <b>0.1 mg/kg</b>。同一瓶 <b>500 mL</b> 汽水(密度 1.04),60 kg 成人佔 ADI 幾 %?
+  <div class="sol">500 mL × 1.04 = 520 g = 0.520 kg × (0.1 mg/kg) = <b>0.052 mg</b> → ÷ 60 kg = <span class="hl">0.87% ADI</span>;要達 ADI 需 <b>115 瓶</b>。</div></div>
+  <table style="margin:4px auto;font-size:19px">
+    <tr><th>同一瓶 500 mL 汽水</th><th>限量</th><th>一瓶含量</th><th>60 kg 成人</th><th>達 ADI 需</th></tr>
+    <tr><td>苯甲酸(<b>刻意添加</b>的防腐劑)</td><td>600 mg/kg</td><td>300 mg</td><td>100% ADI</td><td>1 瓶</td></tr>
+    <tr><td>四級銨(<b>非刻意</b>的清潔劑殘留)</td><td>0.1 mg/kg</td><td>0.052 mg</td><td>0.87% ADI</td><td><span class="hl">115 瓶</span></td></tr>
+  </table>
+  <div class="box warn" style="margin:6px 0;padding:9px 22px"><span class="tag">別誤讀</span>限量差 <b>6000 倍,不代表四級銨比較毒</b>。添加物的限量是「有防腐效果、且吃下去仍在 ADI 內」的<b>使用</b>上限;清潔劑殘留沒有存在理由,限量訂在<b>技術可達到的最低值</b>。<span class="small">（以 EFSA/EU 為例,我國依現行公告。）</span></div>
+</section>
+<!-- 22 -->
+<section class="slide">
+  <h2>例題 11:瘦肉精殘留的風險評估 <span class="en">Example 11 — Ractopamine Residue</span></h2>
+  <div class="box def" style="margin:6px 0;padding:9px 22px"><span class="tag">先看單位</span><b>ppb</b>(十億分之一)= <b>μg/kg</b>。所以「殘留 10 ppb」就是「每 <b>公斤</b>肉含 10 <b>微克</b>」。<br>注意 <b>ADI 的單位是 μg</b>,不是 mg —— 差三個數量級,這是本題最常出錯的地方。</div>
+  <div class="box exbox" style="margin:6px 0;padding:11px 22px"><span class="tag">例題</span>牛肌肉的萊克多巴胺殘留標準為 <b>10 ppb</b>,JECFA 的 ADI = <b>1 μg/kg 體重/天</b>。一位 <b>60 kg</b> 成人吃一客 <b>10 oz</b> 牛排(假設殘留剛好在標準上限),佔 ADI 幾 %?
+  <div class="railnote" style="margin:4px 0 2px"><b>路線:</b>　oz → g 牛肉 → kg 牛肉 → μg 殘留 → μg/kg 體重 → %ADI</div>
+  <div class="sol"><b>解:</b>10 oz × (28.35 g/1 oz) = 283.5 g = 0.2835 kg<br>
+  0.2835 kg × (10 μg/1 kg) = <b>2.84 μg</b>　→　2.84 ÷ 60 kg = 0.047 μg/kg/天 → <span class="hl">4.7% ADI</span><br>
+  <span class="small">25 kg 兒童同一客牛排:0.113 μg/kg/天 = <b>11.3% ADI</span></span></div></div>
+  <div class="box warn" style="margin:6px 0;padding:10px 22px"><span class="tag">本題的假設要說清楚</span>此估算假設<b>每一口都剛好在標準上限</b>,是刻意保守的最壞情況;實際抽驗殘留通常遠低於上限,且這只是<b>單一食物</b>的估算,不是完整的總膳食暴露評估。<span class="small">（法規值請以衛福部最新公告為準。）</span></div>
+</section>
+<!-- 23 -->
+<section class="slide">
+  <h2>例題 12:反算 — 要吃多少才會達到 ADI? <span class="en">Example 12 — Working Backwards</span></h2>
+  <div class="box exbox" style="margin:10px 0"><span class="tag">例題</span>承上題。若牛肉殘留都在標準上限 <b>10 ppb</b>,一位 60 kg 成人一天要吃多少牛肉,才會達到 ADI?
+  <div class="sol"><b>解:</b>先算這個人一天的 ADI 總量,再回推肉量。<br>
+  ① ADI 總量 = 1 μg/kg 體重/天 × 60 kg = <b>60 μg/天</b><br>
+  ② 肉量 = 60 μg ÷ (10 μg/kg 肉) = <span class="hl">6.0 kg 牛肉/天</span><br>
+  ③ 換算成牛排 = 6000 g ÷ 28.35 g/oz = 212 oz ≈ <span class="hl">21 客 10 oz 牛排</span>,而且要<b>每天</b>吃</div></div>
+  <div class="box key"><span class="tag">為什麼要會反算</span>「佔 ADI 4.7%」對一般人沒有感覺,但「要每天吃 21 客牛排」是聽得懂的。<b>把百分比翻譯成份量,是食品風險溝通最有用的一步</b> —— 而它只是同一條路線反著走,每個因子上下顛倒。</div>
+</section>
+<!-- 24 -->
+<section class="slide divider">
+  <div class="secnum">PART 4</div>
+  <h1>營養充足性:DRIs</h1>
+  <div class="en-sub">Dietary Reference Intakes</div>
+  <div class="items">四個名詞・一份食物佔多少・RDA 與 UL 兩邊都要看</div>
+</section>
+<!-- 25 -->
+<section class="slide">
+  <h2>DRIs 的四個名詞 <span class="en">EAR, RDA, AI, UL</span></h2>
+  <table>
+    <tr><th>縮寫</th><th>中文</th><th>意義</th></tr>
+    <tr><td><b>EAR</b></td><td>估計平均需要量</td><td>能滿足<b>50%</b> 該族群的量 —— 用於評估<b>群體</b></td></tr>
+    <tr><td><b>RDA</b></td><td>建議攝取量</td><td>能滿足 <b>97–98%</b> 的量 = EAR + 2 SD —— 用於<b>個人</b>目標</td></tr>
+    <tr><td><b>AI</b></td><td>足夠攝取量</td><td>資料不足以定 RDA 時採用的替代值(如鈣)</td></tr>
+    <tr><td><b>UL</b></td><td>上限攝取量</td><td>長期攝取<b>不致危害</b>的最高量 —— 不是建議量</td></tr>
+  </table>
+  <div class="box warn"><span class="tag">最常見的誤解</span>RDA 是<b>目標</b>、UL 是<b>天花板</b>,兩者之間是安全區。「吃越多越好」在營養素上幾乎都不成立 —— 尤其脂溶性維生素與礦物質。</div>
+</section>
+<!-- 26 -->
+<section class="slide">
+  <h2>例題 13:一杯牛奶提供多少鈣? <span class="en">Example 13</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>承例題 5,一杯(1 cup)全脂牛奶提供 <b>275 mg</b> 鈣。成人鈣 AI = <b>1000 mg/天</b>。這杯佔每日需要的幾 %?一天喝 3 杯呢?
+  <div class="sol"><b>解:</b>275 ÷ 1000 × 100% = <span class="hl">28%</span>;3 杯 = 825 mg = <span class="hl">83%</span><br>
+  <span class="small">3 杯仍在 UL(2500 mg)之內。但要注意:<b>%DRI 只回答「夠不夠」,不回答「會不會過量」</b> —— 過量要另外對照 UL,那是兩個不同的判斷。</span></div></div>
+  <div class="box key"><span class="tag">路線一樣</span>%DRI 與 %ADI 完全同構:<b>攝入量 ÷ 標準值 × 100%</b>。差別只在 ADI 的標準值要先乘體重,DRI 的標準值本身就是每人每天的量。</div>
+</section>
+<!-- 27 -->
+<section class="slide">
+  <h2>例題 14:鐵 — 兩邊都要看 <span class="en">Example 14 — RDA and UL</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>成年女性鐵 RDA = <b>15 mg/天</b>,UL = <b>40 mg/天</b>。<br>(a) 一份 100 g 牛肉含鐵 2.6 mg,佔 RDA 幾 %?　(b) 某鐵劑一顆提供元素鐵 65 mg,佔 UL 幾 %?
+  <div class="sol"><b>解:</b>(a) 2.6 ÷ 15 × 100% = <span class="hl">17%</span> —— 要靠多樣飲食累積<br>
+  (b) 65 ÷ 40 × 100% = <span class="hl">162%</span>,<b>單顆就超過上限</b><br>
+  <span class="small">補充劑需由醫療人員評估後使用。<br><b>提醒:</b>這裡的 65 mg 是<b>元素鐵</b>;若標示寫「硫酸亞鐵 325 mg」,要先用百分組成換算 —— 和第 2 週的鈣片題是同一件事。</span></div></div>
+</section>
+<!-- 28 -->
+<section class="slide quiz">
+  <h2>隨堂快問:劑量計算 <span class="en">Quick Check</span></h2>
+  <div class="qbar"><b>個人作答 3 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>某添加物 ADI = 2 mg/kg 體重/天。60 kg 的人每天最多可攝取多少?<br><span class="opt">A 2 mg</span><span class="opt">B 30 mg</span><span class="opt">C 120 mg</span><span class="opt">D 無法判斷</span></div>
+  <div class="q"><span class="qn">2</span>沙拉油密度 0.92 g/mL。要量 <b>460 g</b>,需要多少 mL?<br><span class="opt">A 423 mL</span><span class="opt">B 460 mL</span><span class="opt">C 500 mL</span><span class="opt">D 需要更多資料</span></div>
+  <div class="q"><span class="qn">3</span>某人一天的鈣攝取是 AI 的 <b>120%</b>,而 UL 是 AI 的 <b>2.5 倍</b>。他過量了嗎?請說明判斷依據。</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. C(120 mg)</span> — 2 mg/kg/天 × 60 kg = 120 mg/天。<span class="myth">選 A 的同學把 ADI 直接當成每日總量,忘了分母有「kg 體重」;選 B 是把體重除下去而非乘上去,<b>方向反了</b>。體重在這裡是換算因子:mg/kg × kg = mg。</span></div><div class="row"><span class="ans">2. C(500 mL)</span> — 460 ÷ 0.92 = 500。<span class="myth">選 A 的同學乘了 0.92(方向反)。合理性檢查:油比水輕,同質量體積應該<b>更大</b>,460 g 的油必然多於 460 mL。</span></div><div class="row"><span class="ans">3. 沒有過量</span> — 120% AI 遠低於 UL(250% AI)。<span class="myth">關鍵是<b>「達標」與「過量」比較的是不同對象</b>:超過 RDA/AI 只代表需要量已滿足,要超過 <b>UL</b> 才談得上過量。混為一談是營養評估最常見的錯誤。</span></div></div>
+</section>
+<!-- 29 -->
+<section class="slide hookback">
+  <h2>回到本節的錨點 <span class="en">Anchor Answered</span></h2>
+  <div class="recall"><b>開場問的是:</b>同一罐飲料,對 60 kg 的大人和 25 kg 的小孩,「安全份量」會一樣嗎?</div>
+  <div class="ansbox">
+    <h3>用這一節的計算回答</h3>
+    <ul>
+      <li><b>不一樣,差距就是體重比。</b>一罐含阿斯巴甜 180 mg:成人 3.0、兒童 7.2 mg/kg 體重/天,差 <b>2.4 倍</b>。</li>
+      <li>換算成份量:成人約 <b>13 罐</b>才達 ADI,兒童只要 <b>5.6 罐</b>。</li>
+      <li>所以 ADI 的單位<b>必須</b>是 mg/kg 體重/天 —— 只寫 mg/天 的標準無法同時適用於不同體型的人。</li>
+      <li>但別過度解讀:ADI 已內含約 100 倍安全係數,且是<b>終生每日</b>的平均概念。</li>
+    </ul>
+  </div>
+  <div class="lens"><span class="lt">這個情境幫你理解的化學是</span>因次分析不只是「換單位」。<b>ADI 評估、DRI 評估、藥物劑量,全都是同一條式子:把攝入量換到與標準值相同的單位,再相除。</b>單位一致,比較才有意義。</div>
+  <div class="nextup"><b>接下來在哪裡會再用到:</b><span class="course">食品衛生安全</span>添加物暴露評估　<span class="course">營養學</span>膳食調查與 DRIs 判讀　<span class="course">分析化學</span>檢驗值與法規限量比對</div>
+</section>
+<!-- 30 -->
+<section class="slide">
+  <h2>常見錯誤提醒 <span class="en">Common Pitfalls</span></h2>
+  <ul>
+    <li>把 <b>oz(質量)</b>與 <b>fl oz(體積)</b>當成同一個單位</li>
+    <li>溫度用換算因子相乘 —— °C/°F <b>零點不同</b>,必須用公式</li>
+    <li>密度只會往一個方向用;質量→體積時忘記把密度<b>上下顛倒</b></li>
+    <li>拿 <b>mg/天</b>直接去比 <b>mg/kg 體重/天</b> 的 ADI,<b>漏掉除以體重</b></li>
+    <li>反算份量時把體重除下去(應該是<b>乘</b>上去)</li>
+    <li>把「超過 RDA」當成「過量」—— 過量要比 <b>UL</b></li>
+    <li>殘留題把 <b>μg 當成 mg</b>(差 1000 倍),或把 ppb 讀成 mg/kg</li>
+    <li>多段串接時中途算出數字再重新開始 → 提早捨入,且失去單位相消的檢查</li>
+  </ul>
+</section>
+<!-- 31 -->
+<section class="slide">
+  <h2>本節重點總結 <span class="en">Summary</span></h2>
+  <ul>
+    <li><b>英制↔公制:</b>lb 453.59 g・oz 28.35 g・fl oz 29.57 mL・cup 236.6 mL・in 2.54 cm(定義值)</li>
+    <li><b>密度是雙向橋:</b>體積→質量 ×密度;質量→體積 ÷密度(把分數顛倒)</li>
+    <li><b>長鏈的做法:</b>先畫單位路線 → 再掛因子 → 一次乘到底</li>
+    <li><b>ADI 評估:</b>攝入 mg/天 ÷ 體重 = mg/kg 體重/天,再 ÷ ADI × 100%</li>
+    <li><b>反算份量:</b>ADI × 體重 = 每日總量,再除以單份含量 —— 把 % 翻譯成份量,風險溝通才有效</li>
+    <li><b>殘留計算:</b>ppb = μg/kg;注意 ADI 可能以 <b>μg</b> 表示,與 mg 差三個數量級</li>
+    <li><b>DRI 評估:</b>攝入 ÷ RDA(或 AI)= 夠不夠;攝入 ÷ UL = 會不會過量。<b>兩個問題要分開問</b></li>
+  </ul>
+  <div class="box key"><span class="tag">一句話</span>這一整節只有一個方法:<b>把兩個要比較的量換到相同單位,再相除。</b>剩下的都是路線規劃。</div>
+</section>
+<!-- 32 -->
+<section class="slide">
+  <h2>重要名詞中英對照 <span class="en">Key Terms</span></h2>
+  <table>
+    <tr><th>中文</th><th>英文</th><th>中文</th><th>英文</th></tr>
+    <tr><td>換算因子</td><td>conversion factor</td><td>每日可接受攝取量</td><td>ADI</td></tr>
+    <tr><td>因次分析</td><td>dimensional analysis</td><td>無可見不良作用劑量</td><td>NOAEL</td></tr>
+    <tr><td>密度</td><td>density</td><td>安全係數</td><td>safety factor</td></tr>
+    <tr><td>液量盎司</td><td>fluid ounce (fl oz)</td><td>膳食營養素參考攝取量</td><td>DRIs</td></tr>
+    <tr><td>常衡盎司</td><td>ounce (oz)</td><td>建議攝取量</td><td>RDA</td></tr>
+    <tr><td>磅</td><td>pound (lb)</td><td>上限攝取量</td><td>UL</td></tr>
+  </table>
+</section>
+<!-- 33 -->
+<section class="slide">
+  <h2>課後練習(一):換算與密度 <span class="en">Homework I</span></h2>
+  <ol>
+    <li>某美國食譜要 <b>2 cups</b> 鮮奶油(密度 0.99 g/mL)。換算成 g。</li>
+    <li>蜂蜜密度 1.42 g/mL。要 <b>300 g</b> 蜂蜜,需量幾 mL?(注意方向)</li>
+    <li>某醬油每 100 mL 含鈉 5800 mg。一湯匙(15 mL)含鈉幾 mg?佔每日上限 2400 mg 幾 %?</li>
+    <li>一客 <b>12 oz</b> 牛排等於幾 g?幾 kg?</li>
+  </ol>
+  <div class="box key"><span class="tag">作答要求</span>每題都必須<b>先寫出單位路線</b>,再列出完整的一條式子(不可中途算出數字),最後檢查單位與數量級。</div>
+</section>
+<!-- 34 -->
+<section class="slide">
+  <h2>課後練習(二):劑量評估 <span class="en">Homework II</span></h2>
+  <ol>
+    <li>某防腐劑 ADI = 0.5 mg/kg 體重/天。某食品含該防腐劑 200 mg/kg,一位 55 kg 成人每天吃 150 g,佔 ADI 幾 %?</li>
+    <li>承上題,這位成人一天最多可吃多少 g 該食品才不超過 ADI?</li>
+    <li>維生素 C 成人 RDA = 100 mg、UL = 2000 mg。某發泡錠一顆含 1000 mg。(a) 佔 RDA 幾 %?(b) 一天兩顆會超過 UL 嗎?</li>
+    <li>某肉品的動物用藥殘留標準為 <b>40 ppb</b>,ADI = 2 μg/kg 體重/天。一位 50 kg 的人吃 <b>8 oz</b>,佔 ADI 幾 %?</li>
+    <li>承上題,這個人一天最多可吃幾 oz 該肉品?請把答案翻譯成「幾客 8 oz 的份量」。</li>
+  </ol>
+  <div class="box warn"><span class="tag">提醒</span>第 4、5 題的 ADI 用的是 <b>μg</b>,殘留標準用的是 <b>ppb</b> —— 動筆前先把單位對齊。</div>
+</section>
+</div></div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const DECK_INFO='普通化學(一)|計算專題:單位、密度與劑量評估';
+let cur=0;
+slides.forEach((s,i)=>{
+  const f=document.createElement('div');f.className='foot';
+  f.innerHTML='<span>'+DECK_INFO+'</span><span>'+(i+1)+' / '+slides.length+'</span>';
+  s.appendChild(f);
+});
+slides.forEach(s=>{
+  const sol=s.querySelector('.sol');
+  if(!sol)return;
+  const hint=document.createElement('div');hint.className='sol-hint';
+  hint.innerHTML='<span class="kbd">空白鍵</span><span>先自己想／算，準備好再顯示解答</span>';
+  sol.insertAdjacentElement('beforebegin',hint);
+});
+function show(n){
+  cur=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,i)=>{s.classList.toggle('active',i===cur);s.classList.remove('reveal');});
+  document.getElementById('bar').style.width=((cur+1)/slides.length*100)+'%';
+  location.hash=cur+1;
+}
+function next(){
+  const s=slides[cur];
+  if(s.querySelector('.sol')&&!s.classList.contains('reveal')){s.classList.add('reveal');return;}
+  show(cur+1);
+}
+function prev(){
+  const s=slides[cur];
+  if(s.classList.contains('reveal')){s.classList.remove('reveal');return;}
+  show(cur-1);
+}
+function fit(){
+  const s=Math.min(innerWidth/1280,innerHeight/720);
+  document.getElementById('deck').style.transform='scale('+s+')';
+}
+addEventListener('resize',fit);
+addEventListener('keydown',e=>{
+  if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();next();}
+  else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev();}
+  else if(e.key==='Home')show(0);
+  else if(e.key==='End')show(slides.length-1);
+});
+addEventListener('click',e=>{
+  if(e.target.closest('a'))return;
+  (e.clientX>innerWidth/3)?next():prev();
+});
+let tx=null;
+addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+addEventListener('touchend',e=>{
+  if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;
+  if(dx<-40)next();else if(dx>40)prev();tx=null;
+});
+addEventListener('hashchange',()=>{const n=parseInt(location.hash.slice(1))-1;if(n!==cur&&!isNaN(n))show(n);});
+fit();
+show(parseInt(location.hash.slice(1))-1||0);
+</script>
+</body>
+</html>

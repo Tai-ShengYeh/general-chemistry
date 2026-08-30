@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第 16 週:氧化還原、脂質氧化與抗氧化</title>
+<style>
+:root{
+  --primary:#1a5276; --primary-dark:#12395a; --accent:#a04c08; --teal:#117a65;
+  --ink:#2c3e50; --muted:#5a6a6b; --bg:#eceff3; --card:#ffffff;
+  --def-bg:#eaf2f8; --key-bg:#fef9e7; --ex-bg:#e8f8f5; --warn-bg:#fdedec;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC","Heiti TC",sans-serif;color:var(--ink)}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#deck{position:relative;width:1280px;height:720px;transform-origin:center center}
+.slide{position:absolute;inset:0;width:1280px;height:720px;background:var(--card);padding:56px 72px 70px;display:none;flex-direction:column;border-top:10px solid var(--primary);overflow:hidden}
+.slide.active{display:flex}
+.slide h2{font-size:36px;color:var(--primary);border-bottom:3px solid var(--accent);padding-bottom:10px;margin-bottom:26px;font-weight:700}
+.slide h2 .en{display:block;font-size:19px;color:var(--muted);font-weight:400;margin-top:4px}
+.slide h3{font-size:26px;color:var(--primary);margin:12px 0 8px}
+.slide p{font-size:24px;line-height:1.55;margin:8px 0}
+.slide ul,.slide ol{font-size:24px;line-height:1.6;margin:8px 0 8px 34px}
+.slide li{margin:7px 0}
+.slide li li{font-size:22px;margin:4px 0}
+.en{color:var(--muted);font-size:.82em}
+.small{font-size:19px;color:var(--muted)}
+.big{font-size:30px}
+.center{text-align:center}
+.hl{color:var(--accent);font-weight:700}
+.hlb{color:var(--primary);font-weight:700}
+.two-col{display:flex;gap:32px;align-items:flex-start}
+.two-col>div{flex:1}
+.box{border-radius:10px;padding:16px 22px;margin:14px 0;font-size:23px;line-height:1.55}
+.def{background:var(--def-bg);border-left:6px solid var(--primary)}
+.key{background:var(--key-bg);border-left:6px solid #f1c40f}
+.warn{background:var(--warn-bg);border-left:6px solid #e74c3c}
+.exbox{background:var(--ex-bg);border-left:6px solid var(--teal)}
+.box .tag{display:inline-block;font-size:17px;font-weight:700;color:#fff;border-radius:5px;padding:2px 10px;margin-bottom:6px}
+.def .tag{background:var(--primary)} .key .tag{background:#8a6d00} .warn .tag{background:#c0392b} .exbox .tag{background:var(--teal)}
+.sol{border-top:2px dashed var(--teal);margin-top:12px;padding-top:10px}
+/* ── 形成性評量：解答兩段式揭露 ───────────────────────── */
+.slide.active .sol{display:none}
+.slide.active.reveal .sol{display:block}
+.sol-hint{margin-top:12px;padding-top:10px;border-top:2px dashed #b9c6c6;font-size:19px;color:#5d6d6e;display:flex;align-items:center;gap:10px}
+.slide.active.reveal .sol-hint{display:none}
+.sol-hint .kbd{display:inline-block;border:1px solid #aab7b8;border-bottom-width:2px;border-radius:5px;padding:1px 9px;font-size:17px;background:#fff;color:#34495e}
+/* ── 隨堂快問 ─────────────────────────────────────────── */
+.slide.quiz{border-top-color:var(--teal)}
+.slide.quiz h2{margin-bottom:14px}
+.slide.quiz h2{color:#0e6655;border-bottom-color:var(--teal)}
+.qbar{background:#e8f8f5;border-left:6px solid var(--teal);border-radius:8px;padding:5px 16px;font-size:18px;color:#0e6655;margin-bottom:4px}
+.q{margin:4px 0;font-size:21px;line-height:1.28}
+.q .qn{display:inline-block;min-width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;background:var(--teal);color:#fff;font-size:16px;font-weight:700;margin-right:7px}
+.opt{display:inline-block;border:1.5px solid #a2d5cd;background:#f2fbf9;color:#0e6655;border-radius:14px;padding:0 11px;margin:1px 4px 1px 0;font-size:19px}
+.quiz .sol{margin-top:5px;padding-top:5px;font-size:18px;line-height:1.26}
+.quiz .sol .ans{color:#c0392b;font-weight:700}
+.quiz .sol .row{margin:3px 0}
+.quiz .sol .row+.row{border-top:1px solid #e5eceb;padding-top:3px}
+.quiz .sol .myth{display:block;font-size:16px;color:#5d6d6e;margin:1px 0 0 0;line-height:1.24}
+@media print{
+  .sol{display:block!important}
+  .sol-hint{display:none!important}
+}
+.eq{text-align:center;font-size:28px;margin:14px 0;font-family:Cambria,"Times New Roman",serif}
+table{border-collapse:collapse;margin:12px auto;font-size:21px;width:100%}
+th{background:var(--primary);color:#fff;padding:8px 12px;font-weight:600}
+td{border:1px solid #d5dbdb;padding:7px 12px;text-align:center}
+tr:nth-child(even) td{background:#f4f6f7}
+.cover{background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 55%,var(--teal) 100%);border-top:none;color:#fff;justify-content:center;align-items:center;text-align:center}
+.cover h1{font-size:58px;letter-spacing:4px;margin-bottom:10px}
+.cover .sub{font-size:30px;opacity:.92;margin:6px 0}
+.cover .en-title{font-size:24px;opacity:.75;margin-bottom:34px}
+.cover .meta{font-size:20px;opacity:.7;margin-top:40px}
+.cover .rule{width:220px;height:4px;background:#f7b955;margin:26px auto}
+.divider{background:linear-gradient(120deg,var(--primary-dark),var(--primary));border-top:none;color:#fff;justify-content:center}
+.divider .secnum{font-size:26px;color:#f7b955;font-weight:700;letter-spacing:2px;margin-bottom:14px}
+.divider h1{font-size:52px;margin-bottom:12px}
+.divider .en-sub{font-size:26px;opacity:.75}
+.divider .items{margin-top:36px;font-size:23px;opacity:.9;line-height:2}
+.foot{position:absolute;left:0;right:0;bottom:0;height:32px;display:flex;justify-content:space-between;align-items:center;padding:0 28px;font-size:14px;color:#5d6d6e;background:#fafbfc;border-top:1px solid #e5e8e8}
+.cover .foot,.divider .foot{background:rgba(0,0,0,.15);color:rgba(255,255,255,.65);border-top:none}
+#bar{position:fixed;top:0;left:0;height:5px;background:var(--accent);width:0;z-index:10;transition:width .2s}
+.flow{display:flex;flex-direction:column;align-items:center;gap:6px}
+.fbox{border:2px solid var(--primary);border-radius:8px;padding:8px 20px;font-size:21px;background:var(--def-bg);text-align:center}
+.frow{display:flex;gap:60px;justify-content:center}
+.arrow{font-size:22px;color:var(--accent)}
+.chip{display:inline-block;background:var(--def-bg);border:1px solid var(--primary);color:var(--primary);border-radius:16px;padding:2px 14px;margin:3px;font-size:20px}
+/* ── 因次分析鐵軌格 ───────────────────────────────────── */
+.rail{border-collapse:collapse;margin:10px auto 6px;font-size:23px}
+.rail td{border:none;padding:5px 20px;text-align:center;background:none;vertical-align:middle}
+.rail td+td{border-left:2px solid var(--muted)}
+.rail tr:first-child td{border-bottom:3px solid var(--ink)}
+.rail td.res{border-left:none;padding-left:14px;font-weight:700;color:var(--accent);font-size:25px}
+.rail tr:first-child td.res{border-bottom:none}
+.rail .bk{display:inline-block;min-width:104px;border-bottom:3px dashed var(--accent);height:27px;vertical-align:-4px}
+.rail .gv{background:var(--def-bg)}
+.railnote{text-align:center;font-size:18px;color:var(--muted);margin-top:2px}
+.fig{display:block;margin:6px auto;flex-shrink:0}
+/* ── 錨點回收頁 ───────────────────────────────────────── */
+.slide.hookback{border-top-color:var(--teal)}
+.slide.hookback h2{color:#0e6655;border-bottom-color:var(--teal)}
+.recall{background:#f4f6f7;border-left:5px solid #95a5a6;border-radius:8px;padding:7px 18px;
+        font-size:20px;line-height:1.34;color:#5d6d6e;margin:0 0 10px}
+.recall b{color:#34495e}
+.ansbox{background:#e8f8f5;border-left:6px solid var(--teal);border-radius:9px;padding:10px 20px;margin:0 0 10px}
+.ansbox h3{font-size:20px;color:#0e6655;margin:0 0 5px}
+.ansbox ul{margin:0 0 0 20px;font-size:19.5px;line-height:1.4}
+.ansbox li{margin:5px 0}
+.lens{background:var(--key-bg);border-left:6px solid #d4a70a;border-radius:9px;padding:10px 20px;
+      font-size:20px;line-height:1.38;margin-bottom:9px}
+.lens .lt{display:block;font-size:16px;font-weight:700;color:#8a6d00;letter-spacing:1px;margin-bottom:2px}
+.nextup{background:#eaf2f8;border-left:5px solid var(--primary);border-radius:8px;padding:8px 18px;
+        font-size:18.5px;line-height:1.4;color:#34495e}
+.nextup .course{display:inline-block;background:#fff;border:1px solid #a2d5cd;color:#0e6655;
+                border-radius:11px;padding:0 8px;font-size:16px;margin-right:4px}
+
+/* ── 食品營養錨點頁 ───────────────────────────────────── */
+.slide.hook{border-top-color:var(--accent)}
+.slide.hook h2{color:#a05000;border-bottom-color:var(--accent)}
+.bigq{background:linear-gradient(100deg,#fff5ea,#fdf0e0);border-left:8px solid var(--accent);border-radius:10px;
+      padding:14px 22px;font-size:26px;line-height:1.4;color:#7a3d00;font-weight:700;margin:4px 0 12px}
+.bigq .qmark{font-size:30px;margin-right:6px}
+.hookcols{display:flex;gap:22px;align-items:stretch;margin-top:4px}
+.hookcols>div{flex:1;border-radius:9px;padding:11px 16px}
+.hk-now{background:#eaf2f8;border-left:5px solid var(--primary)}
+.hk-next{background:#e8f8f5;border-left:5px solid var(--teal)}
+.hookcols h3{font-size:20px;margin:0 0 6px}
+.hk-now h3{color:var(--primary)} .hk-next h3{color:#0e6655}
+.hookcols ul{font-size:19px;line-height:1.4;margin:0 0 0 20px}
+.hookcols li{margin:4px 0}
+.hookcols .course{display:inline-block;background:#fff;border:1px solid #a2d5cd;color:#0e6655;
+                  border-radius:11px;padding:0 8px;font-size:16px;margin-right:4px}
+.canyou{background:var(--key-bg);border-left:6px solid #d4a70a;border-radius:9px;padding:10px 18px;
+        font-size:20px;line-height:1.4;margin-top:12px}
+.canyou b{color:#8a6d00}
+.hookmap{font-size:19px;line-height:1.5}
+.hookmap td{text-align:left;padding:5px 10px}
+.hookmap td:first-child{text-align:center;font-weight:700;color:var(--accent);width:62px}
+@media print{
+  @page{size:1280px 720px;margin:0}
+  html,body{background:#fff}
+  #stage{position:static}
+  #deck{width:auto;height:auto;transform:none!important}
+  .slide{position:relative;display:flex!important;page-break-after:always;margin:0;inset:auto}
+  #bar{display:none}
+}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="stage"><div id="deck">
+
+<!-- 1 -->
+<section class="slide cover">
+  <h1>普通化學(一)</h1>
+  <div class="en-title">General Chemistry I</div>
+  <div class="rule"></div>
+  <div class="sub">第 16 週:氧化還原、脂質氧化與抗氧化</div>
+  <div class="sub">油耗味、褐變與抗氧化劑</div>
+  <div class="en-title" style="margin-top:8px">Redox, Lipid Oxidation and Antioxidants</div>
+</section>
+
+<!-- 2 -->
+<section class="slide">
+  <h2>本週學習目標 <span class="en">Learning Objectives</span></h2>
+  <ul>
+    <li>以<b>半反應</b>拆解氧化還原,並用標準電位 E° 判斷反應會不會自發</li>
+    <li>說明 <b>O<sub>2</sub> 是雙自由基</b>,以及這為何是脂質氧化的起點</li>
+    <li>描述<b>自由基鏈鎖</b>的起始／傳遞／終止,並解釋為何一次起始造成大量氧化</li>
+    <li>說明<b>不飽和度</b>與氧化速率的關係,並連到過氧化價 PV 與酸價 AV</li>
+    <li>區分抗氧化劑的<b>三種機制</b>:供氫終止鏈鎖、螯合金屬、清除氧</li>
+    <li>解釋<b>酵素性褐變</b>與三種抑制法各自對應的化學原理</li>
+    <li>區分<b>梅納反應</b>與<b>焦糖化</b>,並說明梅納反應的兩面性</li>
+  </ul>
+<div class="box key"><span class="tag">本週重點</span>油耗味與褐變看起來是兩件事,其實都在問同一句話:<b>電子跑到哪裡去了?</b></div>
+</section>
+
+<!-- 3 -->
+<section class="slide">
+  <h2>第 16 週·食品營養錨點:油放久為什麼有油耗味? <span class="en">This Week's Anchor</span></h2>
+<div class="box def"><span class="tag">大哉問</span>一瓶開過的沙拉油放了半年,聞起來有一股「油耗味」——那個味道是什麼分子?從哪裡來的?<br>蘋果切開放著會變褐色,酪梨、香蕉、馬鈴薯也一樣。<br>這兩件事,看起來完全無關,其實<b>都是同一個東西造成的</b>。</div>
+<div class="box exbox"><span class="tag">先猜猜看</span>橄欖油、沙拉油(大豆油)、亞麻仁油,哪一種最容易產生油耗味?為什麼?(答案在本週最後一張)</div>
+</section>
+
+<!-- 4 -->
+<section class="slide">
+  <h2>本週知識地圖 <span class="en">Roadmap</span></h2>
+  <table><tr><th>段落</th><th>在問什麼</th><th>關鍵詞</th></tr><tr><td>PART 1</td><td>怎麼判斷電子會往哪邊跑?</td><td>半反應・E°・自發性</td></tr><tr><td>PART 2</td><td>為什麼「氧」特別會惹事?</td><td>O<sub>2</sub> 雙自由基・自旋限制</td></tr><tr><td>PART 3</td><td>油是怎麼一步步壞掉的?</td><td>起始/傳遞/終止・PV 與 AV</td></tr><tr><td>PART 4</td><td>抗氧化劑怎麼擋?</td><td>供氫・螯合・清除氧</td></tr><tr><td>PART 5</td><td>褐變是怎麼回事?</td><td>PPO・梅納反應・焦糖化</td></tr></table>
+<div class="box def"><span class="tag">這一週把很多東西接起來</span>W5 的氧化還原、W7 的酸價與過氧化價、W9 的不飽和脂肪酸結構、W14 的 pH 與酵素、W15 的蛋白質變性——本週會全部再用一次。</div>
+</section>
+
+<!-- 5 -->
+<section class="slide divider">
+  <div class="secnum">PART 16.1</div>
+  <h1>氧化還原的深化</h1>
+  <div class="en-sub">Redox Revisited</div>
+  <div class="items">半反應・標準電位 E°・自發性的方向</div>
+</section>
+
+<!-- 6 -->
+<section class="slide">
+  <h2>回顧:氧化與還原 <span class="en">A Quick Review</span></h2>
+  <table><tr><th></th><th>氧化 Oxidation</th><th>還原 Reduction</th></tr><tr><td>電子</td><td><b>失去</b>電子</td><td><b>得到</b>電子</td></tr><tr><td>氧化數</td><td>上升</td><td>下降</td></tr><tr><td>自己是</td><td><b>還原劑</b>(把別人還原)</td><td><b>氧化劑</b>(把別人氧化)</td></tr><tr><td>食品例子</td><td>油脂被氧化 → 油耗味</td><td>O<sub>2</sub> 被還原 → 水或過氧化物</td></tr></table>
+<div class="box warn"><span class="tag">最頑固的名詞迷思</span><b>氧化劑自己被還原。</b>「氧化劑」講的是它對別人做的事,不是它自己發生的事。看到這兩個詞,固定動作是先問:<b>誰的氧化數上升?</b></div>
+</section>
+
+<!-- 7 -->
+<section class="slide">
+  <h2>半反應 <span class="en">Half-Reactions</span></h2>
+  <p>把氧化還原拆成兩個「半邊」,電子的去向就一目了然:</p>
+  <div class="eq">氧化半反應　Zn → Zn<sup>2+</sup> + 2e<sup>−</sup></div>
+  <div class="eq">還原半反應　Cu<sup>2+</sup> + 2e<sup>−</sup> → Cu</div>
+  <ul>
+    <li>兩邊的<b>電子數必須相同</b>,相加時才會消掉</li>
+    <li>拆成半反應之後,配平就只剩「數電子」這一件事</li>
+    <li>每個半反應都可以量出一個<b>標準電位 E°</b>,代表它「多想要電子」</li>
+  </ul>
+<div class="box key"><span class="tag">為什麼要拆</span><b>因為電子是從一邊流到另一邊的。</b>拆開來寫,你才看得到誰給、誰收——這也是電池與電子傳遞鏈的基本語言。</div>
+</section>
+
+<!-- 8 -->
+<section class="slide">
+  <h2>標準電位 E° 與自發性 <span class="en">Standard Potentials</span></h2>
+  <p>E° 越<b>正</b>越容易得到電子(氧化力強),越<b>負</b>越容易失去電子(還原力強)。組起來:<span class="hl">E°<sub>cell</sub> = E°(還原端) − E°(氧化端)</span>,<b>&gt; 0 即自發</b>。</p>
+  <table><tr><th>半反應</th><th>E°′ (V, pH 7)</th><th>在食品裡的角色</th></tr><tr><td>O<sub>2</sub> + 4H<sup>+</sup> + 4e<sup>−</sup> → 2H<sub>2</sub>O</td><td>+0.82</td><td>很強的氧化劑——這就是問題的來源</td></tr><tr><td>Fe<sup>3+</sup> + e<sup>−</sup> → Fe<sup>2+</sup></td><td>+0.77</td><td>催化脂質氧化的金屬</td></tr><tr><td>脫氫抗壞血酸 + 2H<sup>+</sup> + 2e<sup>−</sup> → 抗壞血酸</td><td>+0.08</td><td>容易被氧化 → 當抗氧化劑</td></tr><tr><td>Zn<sup>2+</sup> + 2e<sup>−</sup> → Zn</td><td>−0.76</td><td>很強的還原劑</td></tr></table>
+<div class="box warn"><span class="tag">基準要一致</span>本表是 <b>pH 7 的 E°′</b>。課本常見的 O<sub>2</sub>/H<sub>2</sub>O = +1.23 V 是 <b>pH 0</b> 的值,<b>兩個基準不能混在同一個相減裡</b>。</div>
+</section>
+
+<!-- 9 -->
+<section class="slide">
+  <h2>食品裡常見的氧化還原 <span class="en">Redox in Foods</span></h2>
+  <table><tr><th>現象</th><th>誰被氧化</th><th>誰被還原</th><th>結果</th></tr><tr><td>油脂酸敗</td><td>不飽和脂肪酸</td><td>O<sub>2</sub></td><td>油耗味</td></tr><tr><td>蔬果褐變</td><td>多酚</td><td>O<sub>2</sub></td><td>褐色素</td></tr><tr><td>維生素 C 流失</td><td>抗壞血酸</td><td>O<sub>2</sub></td><td>營養價值下降</td></tr><tr><td>肉的變色</td><td>肌紅蛋白 Fe<sup>2+</sup></td><td>O<sub>2</sub></td><td>鮮紅 → 褐色</td></tr><tr><td>費林試液測還原糖</td><td>還原糖</td><td>Cu<sup>2+</sup></td><td>磚紅色 Cu<sub>2</sub>O 沉澱</td></tr></table>
+<div class="box key"><span class="tag">看出共通點了嗎</span>前四列的<b>氧化劑都是 O<sub>2</sub></b>。食品劣變之所以幾乎都與「放在空氣中」有關,原因就在這裡——這也是 PART 2 要專門處理氧的理由。</div>
+</section>
+
+<!-- 10 -->
+<section class="slide">
+  <h2>例題 1:判斷會不會自發 <span class="en">Example 1</span></h2>
+  <p>抗壞血酸(維生素 C)能不能被空氣中的 O<sub>2</sub> 氧化?</p>
+  <div class="sol"><b>解答:</b><br>O<sub>2</sub> 當<b>氧化劑</b>(被還原):E°′ = +0.82 V<br>抗壞血酸當<b>還原劑</b>(被氧化):其還原半反應 E°′ = +0.08 V<br>E°′<sub>cell</sub> = 0.82 − 0.08 = <span class="hl">+0.74 V &gt; 0</span> → <b>自發</b><br>(兩個都取 pH 7 的 E°′,基準才一致。)<br><b>所以:</b>果汁開封後維生素 C 會慢慢流失,這是熱力學上必然會發生的事。<br><b>但要注意:</b>E° 只說「會不會發生」,不說「多快」。維生素 C 在冷藏、避光、密封下可以撐很久——<b>那是動力學的事</b>。這與 W14「ΔH 為負不代表反應很快」是同一個區分。</div>
+</section>
+
+<!-- 11 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ①:氧化還原與自發性 <span class="en">Quick Check 1</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>在 2Fe<sup>2+</sup> + H<sub>2</sub>O<sub>2</sub> → 2Fe<sup>3+</sup> + 2OH<sup>−</sup> 中,何者為<b>還原劑</b>?<br><span class="opt">A H<sub>2</sub>O<sub>2</sub></span><span class="opt">B Fe<sup>2+</sup></span><span class="opt">C Fe<sup>3+</sup></span><span class="opt">D OH<sup>−</sup></span></div>
+  <div class="q"><span class="qn">2</span>某組合算出 E°<sub>cell</sub> = −0.45 V。這表示?<br><span class="opt">A 反應很慢</span><span class="opt">B 反應在標準狀態下<b>不自發</b>,逆向才自發</span><span class="opt">C 反應會放熱</span><span class="opt">D 算錯了,E° 不能是負的</span></div>
+  <div class="q"><span class="qn">3</span>維生素 C 被氧氣氧化是自發的,為什麼冷藏的柳橙汁還能保留大部分的維生素 C?</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B</span> — Fe<sup>2+</sup> 的氧化數由 +2 升到 +3 → 失去電子 → 它是還原劑。<span class="myth">選 A 是最常見的錯:H<sub>2</sub>O<sub>2</sub> 在這裡<b>得到</b>電子被還原,它是<b>氧化劑</b>。固定動作:<b>先標氧化數,誰上升誰就是還原劑。</b>(附帶一提,這個反應叫 Fenton 反應,是食品中金屬離子催化氧化的關鍵一步。)</span></div><div class="row"><span class="ans">2. B</span> — E°<sub>cell</sub> &lt; 0 代表正向不自發;把方向反過來就是自發的。<span class="myth">選 A 把<b>熱力學</b>(會不會)與<b>動力學</b>(多快)混為一談。選 D 誤以為電位不能為負——負值只代表方向,不代表錯誤。</span></div><div class="row"><span class="ans">3. 因為速率很慢</span> — 自發只說「熱力學上允許」,不說「多快發生」。低溫降低反應速率、避光減少起始、密封減少 O<sub>2</sub> 接觸,三者都是<b>動力學</b>的手段。<span class="myth">這是本課程反覆出現的同一個區分:<b>「會不會」與「多快」是兩個獨立的問題。</b>整個食品保存的技術,幾乎都是在<b>不改變熱力學的前提下,把速率壓到夠慢</b>。</span></div></div>
+</section>
+
+<!-- 12 -->
+<section class="slide divider">
+  <div class="secnum">PART 16.2</div>
+  <h1>為什麼是氧</h1>
+  <div class="en-sub">Why Oxygen</div>
+  <div class="items">O<sub>2</sub> 是雙自由基・自旋限制・金屬離子的角色</div>
+</section>
+
+<!-- 13 -->
+<section class="slide">
+  <h2>O<sub>2</sub> 的一個奇怪事實 <span class="en">O₂ Is Paramagnetic</span></h2>
+  <ul>
+    <li>用一般的路易斯結構寫 O<sub>2</sub>,會得到 O=O、所有電子成對 → 應該是<b>反磁性</b></li>
+    <li>但實驗上:<b>液態氧會被磁鐵吸住</b> → 它是<b>順磁性</b>的</li>
+    <li>路易斯結構在這裡是<b>錯的</b>。分子軌域理論給出正確答案:O<sub>2</sub> 有<b>兩個未成對電子</b>,分別在兩個 π* 軌域上</li>
+  </ul>
+<div class="box def"><span class="tag">所以 O<sub>2</sub> 是雙自由基</span><b>自由基</b>就是帶有未成對電子的物種。O<sub>2</sub> 身上有兩個 —— 我們呼吸的氣體,本質上是一個雙自由基。</div>
+<div class="box key"><span class="tag">這是分子軌域理論在食品營養最有價值的一次出場</span>它解釋了為什麼<b>氧</b>會是食品劣變的核心角色。</div>
+</section>
+
+<!-- 14 -->
+<section class="slide">
+  <h2>那為什麼食物不會馬上燒起來 <span class="en">The Spin Restriction</span></h2>
+  <ul>
+    <li>O<sub>2</sub> 的兩個未成對電子<b>自旋方向相同</b>(三重態)</li>
+    <li>大多數有機分子的電子<b>全部成對</b>(單重態)</li>
+    <li>兩者直接反應會違反自旋守恆 → <b>自旋限制</b> → 反應非常慢</li>
+    <li>這就是為什麼油可以放在空氣中,而不是一碰到氧就燒起來</li>
+  </ul>
+<div class="box warn"><span class="tag">但也因此</span>O<sub>2</sub> 需要有人「開個頭」:<b>過渡金屬離子、光、熱、既有的過氧化物</b>都能提供起始。一旦起始,後面就是自由基的世界——自由基彼此反應<b>沒有自旋限制</b>,跑得飛快。</div>
+</section>
+
+<!-- 15 -->
+<section class="slide">
+  <h2>金屬離子:最常見的起始者 <span class="en">Metals as Initiators</span></h2>
+  <ul>
+    <li>微量的 <b>Fe</b>、<b>Cu</b> 就足以催化(ppm 等級)</li>
+    <li>它們把既有的氫過氧化物 ROOH 分解成自由基,製造更多起始點</li>
+    <li>來源:原料本身、加工設備、水質、包裝</li>
+  </ul>
+  <div class="eq">Fe<sup>2+</sup> + ROOH → Fe<sup>3+</sup> + RO• + OH<sup>−</sup></div>
+<div class="box key"><span class="tag">所以會有螯合劑</span>EDTA、檸檬酸、多磷酸鹽把金屬離子<b>綁起來</b>,讓它沒有辦法參與反應。這是 PART 4 三類抗氧化劑之一,而且它<b>本身完全不抗氧化</b>——它只是把催化劑關起來。</div>
+</section>
+
+<!-- 16 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ②:O₂ 為什麼特別 <span class="en">Quick Check 2</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>關於 O<sub>2</sub> 的電子結構,下列何者<b>正確</b>?<br><span class="opt">A 路易斯結構 O=O 完全正確,所有電子成對</span><span class="opt">B 分子軌域理論顯示它有兩個未成對電子,是雙自由基</span><span class="opt">C 它是離子化合物</span><span class="opt">D 它的電子全部在 σ 軌域</span></div>
+  <div class="q"><span class="qn">2</span>既然 O<sub>2</sub> 是很強的氧化劑(E°′ = +0.82 V),為什麼食用油放在空氣中不會立刻氧化完?<br><span class="opt">A 因為 E° 其實很小</span><span class="opt">B 因為油不會與氧反應</span><span class="opt">C 因為自旋限制使直接反應很慢,需要起始者</span><span class="opt">D 因為油的密度比空氣大</span></div>
+  <div class="q"><span class="qn">3</span>為什麼在油裡加入<b>微量</b>的 EDTA 就能明顯延長保存期?它並不是抗氧化劑本身。</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B</span> — 液態氧被磁鐵吸住是實驗事實,只有分子軌域理論解釋得了。<span class="myth">選 A 是課本圖示造成的印象——<b>路易斯結構在 O<sub>2</sub> 上是錯的</b>,這也是為什麼我們需要分子軌域理論。這一題是本週唯一用到 MO 的地方,但它撐起了整週的內容。</span></div><div class="row"><span class="ans">2. C</span> — 自旋限制讓三重態的 O<sub>2</sub> 難以直接與單重態的有機分子反應。<span class="myth">選 A 誤解了 E° 的意義(它是熱力學,不是速率)。選 B 與事實矛盾——油確實會氧化,只是慢。<b>「不自發」與「很慢」是兩件不同的事。</b></span></div><div class="row"><span class="ans">3. 因為它綁住的是催化劑</span> — 金屬離子是<b>催化劑</b>,一個離子可以反覆製造起始點;ppm 等級的金屬就能造成大量氧化,所以 ppm 等級的螯合劑也就足以擋住它。<span class="myth">這一題的價值在於分清<b>「參與反應的量」與「催化反應的量」</b>:催化劑不被消耗,所以少量就有大效果——反過來,對付它也只需要少量。</span></div></div>
+</section>
+
+<!-- 17 -->
+<section class="slide divider">
+  <div class="secnum">PART 16.3</div>
+  <h1>脂質氧化的自由基鏈鎖</h1>
+  <div class="en-sub">The Radical Chain</div>
+  <div class="items">起始・傳遞・終止・不飽和度・PV 與 AV</div>
+</section>
+
+<!-- 18 -->
+<section class="slide">
+  <h2>自由基鏈鎖反應 <span class="en">The Chain Reaction</span></h2>
+<svg class="fig" role="img" aria-labelledby="w16f1-t w16f1-d" width="1020" height="300" viewBox="0 0 1020 300" xmlns="http://www.w3.org/2000/svg">
+        <title id="w16f1-t">脂質氧化的自由基鏈鎖反應</title>
+        <desc id="w16f1-d">三個階段。起始階段由金屬離子、光或熱奪走脂肪酸的一個氫,生成脂質自由基。傳遞階段是一個循環:脂質自由基與氧結合成過氧自由基,過氧自由基再從另一個脂肪酸奪氫,生成氫過氧化物並產生新的脂質自由基,因此一次起始可以造成大量氧化。終止階段是兩個自由基互相結合成非自由基產物。</desc>
+        <defs><marker id="w16f1-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a04c08"/></marker><marker id="w16f1-ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f5f8b"/></marker><marker id="w16f1-ah3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f5f8b"/></marker></defs>
+        <rect x="30" y="60" width="250" height="96" fill="#fbeee4" rx="10" stroke="#a04c08" stroke-width="2.5"/>
+        <text x="155" y="88" font-size="18" fill="#a04c08" text-anchor="middle" font-weight="700">① 起始 Initiation</text>
+        <text x="155" y="114" font-size="20" fill="#2c3e50" text-anchor="middle" font-weight="700">RH → R•</text>
+        <text x="155" y="140" font-size="16" fill="#5a6a6b" text-anchor="middle">金屬離子・光・熱奪走一個 H</text>
+        <line x1="286" y1="108" x2="340" y2="108" stroke="#a04c08" stroke-width="3" marker-end="url(#w16f1-ah)" stroke-linecap="round"/>
+        <rect x="348" y="44" width="330" height="190" fill="#eaf2f8" rx="10" stroke="#1f5f8b" stroke-width="2.5"/>
+        <text x="513" y="72" font-size="18" fill="#1f5f8b" text-anchor="middle" font-weight="700">② 傳遞 Propagation</text>
+        <text x="513" y="108" font-size="19" fill="#2c3e50" text-anchor="middle" font-weight="700">R• + O₂ → ROO•</text>
+        <text x="513" y="146" font-size="19" fill="#2c3e50" text-anchor="middle" font-weight="700">ROO• + RH → ROOH + R•</text>
+        <path d="M 400 166 C 372 196 660 196 636 172" fill="none" stroke="#1f5f8b" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5"/>
+        <line x1="648" y1="180" x2="630" y2="164" stroke="#1f5f8b" stroke-width="2.6" marker-end="url(#w16f1-ah2)" stroke-linecap="round"/>
+        <text x="513" y="212" font-size="16" fill="#c0392b" text-anchor="middle" font-weight="700">新的 R• 又回到上一行 → 自我循環</text>
+        <line x1="684" y1="138" x2="738" y2="138" stroke="#1f5f8b" stroke-width="3" marker-end="url(#w16f1-ah3)" stroke-linecap="round"/>
+        <rect x="746" y="60" width="250" height="96" fill="#e8f8f5" rx="10" stroke="#117a65" stroke-width="2.5"/>
+        <text x="871" y="88" font-size="18" fill="#117a65" text-anchor="middle" font-weight="700">③ 終止 Termination</text>
+        <text x="871" y="114" font-size="19" fill="#2c3e50" text-anchor="middle" font-weight="700">R• + R• → R–R</text>
+        <text x="871" y="140" font-size="16" fill="#5a6a6b" text-anchor="middle">兩個自由基互相結合</text>
+        <rect x="30" y="250" width="966" height="40" fill="#fdecea" rx="8" stroke="#c0392b" stroke-width="2.5"/>
+        <text x="513" y="276" font-size="18" fill="#c0392b" text-anchor="middle" font-weight="700">一次起始 → 上千次傳遞。這就是為什麼油「一旦開始壞,就壞得很快」</text>
+      </svg>
+<div class="box warn"><span class="tag">關鍵在「傳遞」是個循環</span>每消耗一個 RH,就產生一個新的 R• 回到起點。所以<b>一次起始可以引發上千次氧化</b>——這就是油品劣變的自催化本質。</div>
+</section>
+
+<!-- 19 -->
+<section class="slide">
+  <h2>為什麼不飽和度越高越容易氧化 <span class="en">Unsaturation Matters</span></h2>
+  <p>被奪走的是<b>雙鍵之間</b>那個碳上的氫(雙烯丙基位):生成的自由基能被<b>共振</b>分散、比較穩定,所以特別容易被拔走。<b>雙鍵越多 → 這種位置越多 → 越容易起始。</b></p>
+  <table><tr><th>脂肪酸</th><th>雙鍵數</th><th>相對氧化速率<br>(以油酸為 1)</th><th>主要來源</th></tr><tr><td>硬脂酸 stearic</td><td>0</td><td>幾乎不氧化</td><td>動物脂、可可脂</td></tr><tr><td>油酸 oleic</td><td>1</td><td><b>1</b></td><td>橄欖油、苦茶油</td></tr><tr><td>亞麻油酸 linoleic</td><td>2</td><td><b>10–12</b></td><td>大豆油、葵花油</td></tr><tr><td>次亞麻油酸 linolenic</td><td>3</td><td><b>20–25</b></td><td>亞麻仁油、紫蘇油</td></tr></table>
+<div class="box key"><span class="tag">一個實用的推論</span><b>越健康的油,越怕放。</b>所以亞麻仁油要冷藏避光小瓶裝,橄欖油寬容得多。</div>
+</section>
+
+<!-- 20 -->
+<section class="slide">
+  <h2>油耗味是什麼分子 <span class="en">What Rancidity Smells Like</span></h2>
+  <ul>
+    <li><b>氫過氧化物 ROOH 本身無味</b>——它是<b>初級</b>產物</li>
+    <li>ROOH 不穩定,會裂解成<b>醛</b>、<b>酮</b>、短鏈酸等<b>次級</b>產物</li>
+    <li>真正聞得到的「油耗味」是這些次級產物,例如己醛(hexanal)</li>
+  </ul>
+  <table><tr><th>指標</th><th>量的是什麼</th><th>對應階段</th></tr><tr><td><b>過氧化價 PV</b></td><td>氫過氧化物的量</td><td>初級——<b>還沒聞到味道</b></td></tr><tr><td><b>酸價 AV</b></td><td>游離脂肪酸(水解產生)</td><td>另一條路徑:水解酸敗</td></tr><tr><td>TBA 值／茴香胺值</td><td>醛類等次級產物</td><td>次級——已經有味道</td></tr></table>
+<div class="box warn"><span class="tag">為什麼 PV 會「先升後降」</span>ROOH 一邊生成一邊分解。氧化嚴重到後期,PV 反而下降——<b>單看 PV 低不能斷定油是新鮮的</b>,要與次級指標一起看。這正是第 7 週說「方法決定了你量到什麼」的延伸。</div>
+</section>
+
+<!-- 21 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ③:脂質氧化 <span class="en">Quick Check 3</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>下列油脂,何者在相同條件下<b>最容易</b>氧化?<br><span class="opt">A 椰子油(幾乎全是飽和)</span><span class="opt">B 橄欖油(以油酸為主)</span><span class="opt">C 亞麻仁油(次亞麻油酸多)</span><span class="opt">D 可可脂(飽和為主)</span></div>
+  <div class="q"><span class="qn">2</span>某油品測得過氧化價 PV 很低。可以據此判定它<b>新鮮</b>嗎?<br><span class="opt">A 可以,PV 低就是新鮮</span><span class="opt">B 不一定,可能是氧化後期 ROOH 已大量分解</span><span class="opt">C 可以,PV 是唯一指標</span><span class="opt">D 不能,因為 PV 與氧化無關</span></div>
+  <div class="q"><span class="qn">3</span>自由基鏈鎖的三個階段中,哪一個階段的<b>次數</b>最多?這對保存策略有什麼意義?</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. C</span> — 雙鍵越多,雙烯丙基位越多,越容易被奪氫起始。<span class="myth">選 A/D 的飽和油脂沒有雙鍵,最穩定——這是為什麼油炸店偏好高飽和油脂。<b>「營養價值高」與「安定性好」在油脂上常常是相反的</b>,這不是矛盾,是要權衡的兩件事。</span></div><div class="row"><span class="ans">2. B</span> — ROOH 一邊生成一邊分解,氧化後期 PV 會回落。<span class="myth">選 A/C 把單一指標當成結論。<b>PV 低有兩種可能:還沒開始壞,或已經壞透了。</b>要區分,必須配合次級產物指標(TBA、茴香胺值)或感官評估。這與 W7「酸價量的是游離脂肪酸,不是全部的劣變」是同一個思路。</span></div><div class="row"><span class="ans">3. 傳遞</span> — 傳遞是一個<b>自我循環</b>,一次起始可以引發上千次;起始與終止各只發生一次。<span class="myth">保存策略因此有兩個方向:<b>減少起始</b>(避光、除金屬、降溫、除氧)與<b>加速終止</b>(加鏈鎖終止型抗氧化劑)。<b>而傳遞本身很難直接擋</b>——所以真正有效的做法是「不要讓它開始」,一旦開始就要靠抗氧化劑把鏈截斷。</span></div></div>
+</section>
+
+<!-- 22 -->
+<section class="slide divider">
+  <div class="secnum">PART 16.4</div>
+  <h1>抗氧化劑</h1>
+  <div class="en-sub">Antioxidants</div>
+  <div class="items">供氫終止鏈鎖・螯合金屬・清除氧・為什麼要複方</div>
+</section>
+
+<!-- 23 -->
+<section class="slide">
+  <h2>三類抗氧化劑 <span class="en">Three Mechanisms</span></h2>
+<svg class="fig" role="img" aria-labelledby="w16f2-t w16f2-d" width="1020" height="300" viewBox="0 0 1020 300" xmlns="http://www.w3.org/2000/svg">
+        <title id="w16f2-t">三類抗氧化劑的作用點</title>
+        <desc id="w16f2-d">同一條自由基鏈鎖上標出三個不同的介入點。螯合劑在起始之前綁住金屬離子;氧清除劑移除傳遞階段所需的氧氣;鏈鎖終止型抗氧化劑提供氫原子給過氧自由基,使鏈鎖中斷。三者機制不同,常合併使用。</desc>
+        <defs><marker id="w16f2-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5a6a6b"/></marker><marker id="w16f2-ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5a6a6b"/></marker><marker id="w16f2-ah3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5a6a6b"/></marker></defs>
+        <rect x="88" y="88" width="124" height="56" fill="#f4f8fa" rx="8" stroke="#5a6a6b" stroke-width="2"/>
+        <text x="150" y="124" font-size="21" fill="#2c3e50" text-anchor="middle" font-weight="700">RH</text>
+        <line x1="216" y1="116" x2="322" y2="116" stroke="#5a6a6b" stroke-width="2.6" marker-end="url(#w16f2-ah)" stroke-linecap="round"/>
+        <rect x="328" y="88" width="124" height="56" fill="#f4f8fa" rx="8" stroke="#5a6a6b" stroke-width="2"/>
+        <text x="390" y="124" font-size="21" fill="#2c3e50" text-anchor="middle" font-weight="700">R•</text>
+        <line x1="456" y1="116" x2="562" y2="116" stroke="#5a6a6b" stroke-width="2.6" marker-end="url(#w16f2-ah2)" stroke-linecap="round"/>
+        <rect x="568" y="88" width="124" height="56" fill="#f4f8fa" rx="8" stroke="#5a6a6b" stroke-width="2"/>
+        <text x="630" y="124" font-size="21" fill="#2c3e50" text-anchor="middle" font-weight="700">ROO•</text>
+        <line x1="696" y1="116" x2="802" y2="116" stroke="#5a6a6b" stroke-width="2.6" marker-end="url(#w16f2-ah3)" stroke-linecap="round"/>
+        <rect x="808" y="88" width="124" height="56" fill="#f4f8fa" rx="8" stroke="#5a6a6b" stroke-width="2"/>
+        <text x="870" y="124" font-size="21" fill="#2c3e50" text-anchor="middle" font-weight="700">ROOH</text>
+        <text x="270" y="72" font-size="16" fill="#5a6a6b" text-anchor="middle">+ 金屬/光</text>
+        <text x="510" y="72" font-size="16" fill="#5a6a6b" text-anchor="middle">+ O₂</text>
+        <text x="750" y="72" font-size="16" fill="#5a6a6b" text-anchor="middle">+ RH</text>
+        <rect x="18" y="190" width="304" height="92" fill="#fbeee4" rx="10" stroke="#a04c08" stroke-width="2.5"/>
+        <text x="170" y="218" font-size="18" fill="#a04c08" text-anchor="middle" font-weight="700">螯合劑</text>
+        <text x="170" y="242" font-size="16" fill="#2c3e50" text-anchor="middle">EDTA・檸檬酸</text>
+        <text x="170" y="266" font-size="16" fill="#5a6a6b" text-anchor="middle">綁住金屬 → 不讓它起始</text>
+        <rect x="358" y="190" width="304" height="92" fill="#eaf2f8" rx="10" stroke="#1f5f8b" stroke-width="2.5"/>
+        <text x="510" y="218" font-size="18" fill="#1f5f8b" text-anchor="middle" font-weight="700">氧清除劑</text>
+        <text x="510" y="242" font-size="16" fill="#2c3e50" text-anchor="middle">抗壞血酸・脫氧劑</text>
+        <text x="510" y="266" font-size="16" fill="#5a6a6b" text-anchor="middle">拿掉 O₂ → 傳遞跑不動</text>
+        <rect x="698" y="190" width="304" height="92" fill="#e8f8f5" rx="10" stroke="#117a65" stroke-width="2.5"/>
+        <text x="850" y="218" font-size="18" fill="#117a65" text-anchor="middle" font-weight="700">鏈鎖終止型</text>
+        <text x="850" y="242" font-size="16" fill="#2c3e50" text-anchor="middle">BHA・BHT・生育醇</text>
+        <text x="850" y="266" font-size="16" fill="#5a6a6b" text-anchor="middle">供出 H → 自由基被馴服</text>
+        <line x1="170" y1="182" x2="210" y2="150" stroke="#a04c08" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="5 4"/>
+        <line x1="510" y1="182" x2="510" y2="150" stroke="#1f5f8b" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="5 4"/>
+        <line x1="850" y1="182" x2="660" y2="150" stroke="#117a65" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="5 4"/>
+        <text x="510" y="46" font-size="19" fill="#2c3e50" text-anchor="middle" font-weight="700">打斷同一條鏈,三個不同的位置</text>
+      </svg>
+<div class="box warn"><span class="tag">不要把它們當成同一件事</span>三者作用在<b>不同的位置</b>,所以常常合併使用(例如 BHA + 檸檬酸)。<b>「抗氧化劑」是一個功能名稱,不是一種機制。</b></div>
+</section>
+
+<!-- 24 -->
+<section class="slide">
+  <h2>鏈鎖終止型:供出一個氫 <span class="en">Chain-Breaking Antioxidants</span></h2>
+  <div class="eq">ROO• + AH → ROOH + A•　　(A• 很穩定,不再繼續奪氫)</div>
+  <ul>
+    <li>關鍵在生成的 <b>A•</b> 被<b>共振</b>穩定,不足以再去攻擊別的分子 → 鏈鎖<b>斷了</b></li>
+    <li>合成:BHA、BHT、TBHQ、沒食子酸丙酯</li>
+    <li>天然:<b>生育醇</b>(維生素 E)、迷迭香萃取物、多酚類</li>
+    <li>維生素 E 存在於細胞膜,做的正是同一件事——保護膜上的不飽和脂肪酸</li>
+  </ul>
+<div class="box key"><span class="tag">所以維生素 E 是「犧牲打」</span>它保護脂質的方式是<b>讓自己先被氧化</b>。這也是為什麼抗氧化劑會被消耗完,保護就結束了。</div>
+</section>
+
+<!-- 25 -->
+<section class="slide">
+  <h2>螯合型與清除氧型 <span class="en">Chelators and Scavengers</span></h2>
+  <div class="two-col">
+    <div><b>螯合劑</b>  <ul>
+    <li>EDTA、檸檬酸、多磷酸鹽</li>
+    <li>把 Fe/Cu <b>包起來</b>,催化不了</li>
+    <li>本身不接觸自由基</li>
+    <li>用量極少(ppm 等級)</li>
+  </ul></div>
+    <div><b>氧清除劑</b>  <ul>
+    <li>抗壞血酸、異抗壞血酸鈉</li>
+    <li>搶先與 O<sub>2</sub> 反應</li>
+    <li>也能<b>再生</b>被消耗的生育醇</li>
+    <li>真空/充氮包裝是物理版</li>
+  </ul></div>
+  </div>
+<div class="box def"><span class="tag">為什麼抗壞血酸有時反而促氧化</span>在有<b>游離金屬離子</b>的體系裡,抗壞血酸會把 Fe<sup>3+</sup> 還原回 Fe<sup>2+</sup>,反而讓催化循環繼續下去。<b>所以它常與螯合劑一起用</b>——這說明「抗氧化劑」不是加了就一定好,要看整個體系。</div>
+</section>
+
+<!-- 26 -->
+<section class="slide">
+  <h2>例題 2:為一款產品設計對策 <span class="en">Example 2</span></h2>
+  <p>一款堅果醬:高油脂、多元不飽和、透明瓶裝、常溫販售、製程中使用不鏽鋼設備。請提出<b>四個</b>不同機制的對策。</p>
+  <div class="sol"><b>解答(每一項對應一個不同的環節):</b><br>① <b>換不透光包裝</b> → 減少<b>光</b>起始。<br>② <b>充氮或真空封裝</b> → 移除<b>O<sub>2</sub></b>,傳遞跑不動。<br>③ <b>添加螯合劑</b>(檸檬酸/EDTA)→ 綁住設備溶出的微量 <b>金屬</b>。<br>④ <b>添加生育醇或 BHA</b> → <b>終止鏈鎖</b>。<br>(⑤ 冷藏販售 → 降低所有步驟的<b>速率</b>。)<br><b>重點:</b>這五項<b>不是重複</b>,它們打的是鏈鎖上五個不同的位置。能把對策一一對應到機制,才是真的懂了這條鏈。</div>
+</section>
+
+<!-- 27 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ④:抗氧化劑 <span class="en">Quick Check 4</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>BHT 抗氧化的<b>主要機制</b>是?<br><span class="opt">A 螯合金屬離子</span><span class="opt">B 提供氫原子給過氧自由基,終止鏈鎖</span><span class="opt">C 與氧氣直接反應把氧用掉</span><span class="opt">D 降低油品的 pH</span></div>
+  <div class="q"><span class="qn">2</span>EDTA 常被加在油脂食品中,但它本身不與自由基反應。它的作用是?<br><span class="opt">A 直接清除自由基</span><span class="opt">B 把催化氧化的金屬離子綁住,減少<b>起始</b></span><span class="opt">C 提高油的沸點</span><span class="opt">D 中和游離脂肪酸</span></div>
+  <div class="q"><span class="qn">3</span>抗壞血酸通常是抗氧化劑,但在某些體系裡反而會<b>促進</b>氧化。為什麼?這對配方設計有什麼提醒?</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B</span> — BHT 是典型的鏈鎖終止型:供出氫,生成的自由基被共振穩定。<span class="myth">選 A 是螯合劑的機制、選 C 是氧清除劑的機制。<b>三類抗氧化劑打的是鏈鎖上不同的位置</b>,把它們混為一談,就無法解釋為什麼配方要用複方。</span></div><div class="row"><span class="ans">2. B</span> — 金屬是催化劑,綁住它等於關掉一個持續製造起始點的來源。<span class="myth">選 A 把螯合劑當成自由基清除劑。<b>EDTA 完全不接觸自由基</b>,它處理的是<b>上游</b>——這正是它與 BHT 的分工。</span></div><div class="row"><span class="ans">3. 因為它會把 Fe³⁺ 還原回 Fe²⁺</span> — 在有游離金屬的體系中,抗壞血酸把失活的 Fe<sup>3+</sup> 還原成能繼續催化的 Fe<sup>2+</sup>,使 Fenton 型的起始循環持續下去。<span class="myth">提醒是:<b>抗氧化劑的效果取決於整個體系,不是它自己的性質。</b>所以實務上抗壞血酸常與螯合劑併用——先把金屬關起來,它才只做好事。「加了抗氧化劑就一定更安定」是一個要小心的假設。</span></div></div>
+</section>
+
+<!-- 28 -->
+<section class="slide">
+  <h2>抗氧化劑的法規面 <span class="en">The Regulatory Side</span></h2>
+  <ul>
+    <li>抗氧化劑屬<b>食品添加物</b>,使用範圍與限量由主管機關公告,不是想加多少就加多少</li>
+    <li>常見規範方式:限定<b>可用的食品類別</b>、<b>最大使用量</b>(常以 g/kg 表示)</li>
+    <li>標示上會看到:BHA、BHT、TBHQ、沒食子酸丙酯、<b>混合濃縮生育醇</b>、L-抗壞血酸鈉</li>
+    <li>天然來源(生育醇、迷迭香萃取)通常規範較寬,但<b>「天然」不等於無限制</b></li>
+  </ul>
+<div class="box warn"><span class="tag">本張不列具體數值</span>限量會隨公告版本與食品類別改變。要用的時候請直接查<b>衛福部食藥署「食品添加物使用範圍及限量暨規格標準」</b>第(六)類抗氧化劑,不要憑印象或引用舊講義。<b>會查法規,比背下某一個數字更重要。</b></div>
+<div class="box exbox"><span class="tag">課堂任務</span>拿出手機拍一張你手邊任何包裝食品的成分表,找出抗氧化劑(如果有),說出它屬於本週三類中的哪一類。</div>
+</section>
+
+<!-- 29 -->
+<section class="slide divider">
+  <div class="secnum">PART 16.5</div>
+  <h1>褐變</h1>
+  <div class="en-sub">Browning</div>
+  <div class="items">酵素性褐變・三種抑制法・梅納反應・焦糖化</div>
+</section>
+
+<!-- 30 -->
+<section class="slide">
+  <h2>酵素性褐變:蘋果為什麼變褐 <span class="en">Enzymatic Browning</span></h2>
+  <ul>
+    <li>蘋果、馬鈴薯、酪梨、香蕉的細胞裡本來就有<b>多酚</b>與<b>多酚氧化酶 PPO</b></li>
+    <li>完整的細胞把兩者<b>分開</b>放;切開破壞細胞 → 兩者相遇,再加上空氣中的 O<sub>2</sub></li>
+    <li>多酚 → <b>醌</b> → 自行聚合 → 褐色素(melanins)</li>
+    <li>PPO 的活性中心含<b>銅</b>,而且需要 <b>O<sub>2</sub></b> 才能作用</li>
+  </ul>
+<div class="box key"><span class="tag">所以要三個東西同時在場</span><b>受質(多酚)、酵素(PPO)、氧氣。</b>拿掉任何一個,褐變就停——這就是下一張三種抑制法的來源。</div>
+</section>
+
+<!-- 31 -->
+<section class="slide">
+  <h2>三種抑制法,三個不同的原理 <span class="en">Three Ways to Stop It</span></h2>
+<svg class="fig" role="img" aria-labelledby="w16f3-t w16f3-d" width="1020" height="292" viewBox="0 0 1020 292" xmlns="http://www.w3.org/2000/svg">
+        <title id="w16f3-t">酵素性褐變的三種抑制法</title>
+        <desc id="w16f3-d">中央是褐變反應:多酚在多酚氧化酶與氧的作用下變成醌,再聚合成褐色素。三種抑制法分別作用於不同的環節:檸檬汁降低 pH 使酵素離開最適範圍、燙漂以熱使酵素變性失活、隔絕氧氣則移除反應必需的受質。</desc>
+        <defs><marker id="w16f3-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f5f8b"/></marker><marker id="w16f3-ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f5f8b"/></marker></defs>
+        <rect x="86" y="62" width="148" height="68" fill="#f4f8fa" rx="8" stroke="#5a6a6b" stroke-width="2"/>
+        <text x="160" y="94" font-size="20" fill="#2c3e50" text-anchor="middle" font-weight="700">多酚</text>
+        <text x="160" y="118" font-size="16" fill="#5a6a6b" text-anchor="middle">phenols</text>
+        <line x1="238" y1="96" x2="418" y2="96" stroke="#1f5f8b" stroke-width="3" marker-end="url(#w16f3-ah)" stroke-linecap="round"/>
+        <rect x="426" y="62" width="148" height="68" fill="#f4f8fa" rx="8" stroke="#5a6a6b" stroke-width="2"/>
+        <text x="500" y="94" font-size="20" fill="#2c3e50" text-anchor="middle" font-weight="700">醌</text>
+        <text x="500" y="118" font-size="16" fill="#5a6a6b" text-anchor="middle">quinones</text>
+        <line x1="578" y1="96" x2="758" y2="96" stroke="#1f5f8b" stroke-width="3" marker-end="url(#w16f3-ah2)" stroke-linecap="round"/>
+        <rect x="766" y="62" width="148" height="68" fill="#f4f8fa" rx="8" stroke="#5a6a6b" stroke-width="2"/>
+        <text x="840" y="94" font-size="20" fill="#2c3e50" text-anchor="middle" font-weight="700">褐色素</text>
+        <text x="840" y="118" font-size="16" fill="#5a6a6b" text-anchor="middle">melanins</text>
+        <text x="330" y="74" font-size="17" fill="#1f5f8b" text-anchor="middle" font-weight="700">PPO + O₂</text>
+        <text x="670" y="74" font-size="17" fill="#1f5f8b" text-anchor="middle" font-weight="700">自行聚合</text>
+        <rect x="18" y="176" width="308" height="100" fill="#fbeee4" rx="10" stroke="#a04c08" stroke-width="2.5"/>
+        <text x="172" y="204" font-size="18" fill="#a04c08" text-anchor="middle" font-weight="700">① 檸檬汁</text>
+        <text x="172" y="230" font-size="16" fill="#2c3e50" text-anchor="middle">把 pH 降到 3 以下</text>
+        <text x="172" y="258" font-size="16" fill="#5a6a6b" text-anchor="middle">酵素離開最適 pH（沒壞）</text>
+        <rect x="356" y="176" width="308" height="100" fill="#fdecea" rx="10" stroke="#c0392b" stroke-width="2.5"/>
+        <text x="510" y="204" font-size="18" fill="#c0392b" text-anchor="middle" font-weight="700">② 燙漂</text>
+        <text x="510" y="230" font-size="16" fill="#2c3e50" text-anchor="middle">短時間高溫</text>
+        <text x="510" y="258" font-size="16" fill="#5a6a6b" text-anchor="middle">酵素蛋白變性（真的壞了）</text>
+        <rect x="694" y="176" width="308" height="100" fill="#e8f8f5" rx="10" stroke="#117a65" stroke-width="2.5"/>
+        <text x="848" y="204" font-size="18" fill="#117a65" text-anchor="middle" font-weight="700">③ 泡水／真空</text>
+        <text x="848" y="230" font-size="16" fill="#2c3e50" text-anchor="middle">隔絕空氣</text>
+        <text x="848" y="258" font-size="16" fill="#5a6a6b" text-anchor="middle">拿掉受質 O₂（酵素還在）</text>
+        <line x1="172" y1="168" x2="300" y2="136" stroke="#a04c08" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="5 4"/>
+        <line x1="510" y1="168" x2="360" y2="136" stroke="#c0392b" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="5 4"/>
+        <line x1="848" y1="168" x2="400" y2="136" stroke="#117a65" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="5 4"/>
+        <text x="510" y="34" font-size="19" fill="#2c3e50" text-anchor="middle" font-weight="700">三種做法，三個不同的原理 —— 不是同一招的三種版本</text>
+      </svg>
+<div class="box warn"><span class="tag">這是本週最值得想清楚的一張</span>三種家常做法看起來都是「防止變色」,但一個是<b>改變環境</b>、一個是<b>破壞酵素</b>、一個是<b>移除受質</b>。把它們當成「同一招的三種版本」,就錯過了整個重點。</div>
+</section>
+
+<!-- 32 -->
+<section class="slide">
+  <h2>非酵素性褐變:梅納反應 <span class="en">The Maillard Reaction</span></h2>
+  <div class="eq">還原糖 + 胺基(胺基酸/蛋白質) → … → 褐色素 + 大量香氣分子</div>
+  <ul>
+    <li><b>不需要酵素</b>,靠加熱推動;麵包皮、烤肉、咖啡、醬油的顏色與香氣都來自它</li>
+    <li>需要<b>還原糖</b>(葡萄糖、果糖、乳糖)——蔗糖本身不是還原糖</li>
+    <li>在 <b>a<sub>w</sub> ≈ 0.6–0.7</b> 時最快(第 13 週的水活性又出現了)</li>
+    <li>產生的香氣分子有數百種,是「熟食味道」的主要來源</li>
+  </ul>
+<div class="box warn"><span class="tag">兩面性</span>梅納反應同時是<b>風味的來源</b>與<b>丙烯醯胺的來源</b>。天門冬醯胺 + 還原糖在 120 °C 以上會生成丙烯醯胺(高溫油炸的洋芋片、薯條)。<b>同一個反應,好處與風險一起來——這正是食品加工要拿捏的地方。</b></div>
+</section>
+
+<!-- 33 -->
+<section class="slide">
+  <h2>梅納反應的條件 <span class="en">What Drives the Maillard Reaction</span></h2>
+  <table><tr><th>條件</th><th>有利於梅納反應</th><th>為什麼</th></tr><tr><td>溫度</td><td>越高越快(約 110 °C 以上明顯)</td><td>活化能高,是熱驅動的反應</td></tr><tr><td>水活性 a<sub>w</sub></td><td><b>0.6–0.7 最快</b></td><td>太乾:分子動不了;太濕:反應物被稀釋</td></tr><tr><td>pH</td><td>偏鹼較快</td><td>胺基要以<b>未質子化</b>的形式才有反應性</td></tr><tr><td>糖的種類</td><td><b>還原糖</b>才行</td><td>需要開鏈態的醛基;蔗糖要先水解</td></tr><tr><td>胺基的來源</td><td>游離胺基酸 > 蛋白質</td><td>游離的胺基比較容易接觸到糖</td></tr></table>
+<div class="box key"><span class="tag">兩個回收</span><b>a<sub>w</sub> 又出現了</b>(第 13 週):它同時決定微生物長不長、也決定梅納跑多快,而且兩者的最適區間<b>不一樣</b>。<b>pH 的影響</b>則是第 14 週「胺基在不同 pH 下帶不帶電」的直接應用。</div>
+</section>
+
+<!-- 34 -->
+<section class="slide">
+  <h2>例題 3:為什麼冷藏的馬鈴薯炸起來比較黑 <span class="en">Example 3</span></h2>
+  <p>馬鈴薯冷藏(4 °C)保存後拿去油炸,顏色明顯比常溫保存的深,丙烯醯胺也較高。為什麼?</p>
+  <div class="sol"><b>解答:</b><br>低溫會誘發馬鈴薯的<b>低溫糖化</b>:澱粉被分解成<b>還原糖</b>(葡萄糖、果糖)。<br>梅納反應需要還原糖當受質 → <b>受質變多 → 反應更快 → 顏色更深、丙烯醯胺更多</b>。<br><b>對策:</b>薯條用的馬鈴薯建議存放在 8–10 °C(不要冷藏);已經冷藏過的可先在常溫回溫數週(reconditioning)讓還原糖回降。<br><b>這一題的推理鏈:</b>保存溫度 → 澱粉代謝 → 受質濃度 → 反應速率 → 產物。<b>五個環節都是化學,但起點是一個看似無關的生活決定。</b></div>
+</section>
+
+<!-- 35 -->
+<section class="slide">
+  <h2>梅納反應 vs 焦糖化 <span class="en">Maillard vs Caramelization</span></h2>
+  <table><tr><th></th><th>梅納反應</th><th>焦糖化</th></tr><tr><td>需要什麼</td><td>還原糖 <b>+ 胺基</b></td><td><b>只要糖</b></td></tr><tr><td>起始溫度</td><td>較低(約 110–140 °C 起)</td><td>較高(蔗糖約 160 °C 以上)</td></tr><tr><td>產物</td><td>褐色素 + 大量含氮香氣分子</td><td>褐色素 + 焦糖香氣(無含氮)</td></tr><tr><td>典型例子</td><td>麵包皮、烤肉、咖啡、醬油</td><td>焦糖布丁、炒糖色、太妃糖</td></tr><tr><td>判斷關鍵</td><td><b>有沒有蛋白質/胺基酸在場</b></td><td>純糖加熱</td></tr></table>
+<div class="box key"><span class="tag">一句話分開它們</span><b>看有沒有胺基。</b>烤麵包是梅納(有麵筋蛋白),煮焦糖是焦糖化(只有糖)。牛奶焦糖同時有糖與乳蛋白,所以<b>兩者都在跑</b>。</div>
+</section>
+
+<!-- 36 -->
+<section class="slide">
+  <h2>梅納反應的另一面:丙烯醯胺 <span class="en">The Other Side: Acrylamide</span></h2>
+  <p><b>天門冬醯胺</b>(asparagine)+ 還原糖,在約 <b>120 °C 以上</b>生成<b>丙烯醯胺</b>,主要出現在高溫油炸/烘烤的高澱粉食品(薯條、洋芋片、餅乾、咖啡);IARC 列為 <b>2A 類</b>。它與香氣、色澤來自<b>同一個反應</b>。</p>
+  <table><tr><th>減量做法</th><th>對應的化學</th></tr><tr><td>馬鈴薯不冷藏(避免澱粉轉為還原糖)</td><td>減少<b>受質</b></td></tr><tr><td>油炸前先泡水或燙漂</td><td>洗掉表面的糖與天門冬醯胺</td></tr><tr><td>降低油溫、炸到金黃就好、不要深褐</td><td>降低<b>溫度</b>與反應程度</td></tr><tr><td>添加天門冬醯胺酶</td><td>把受質先分解掉</td></tr></table>
+<div class="box warn"><span class="tag">這一張的意義</span><b>「加工食品有害」是一個太粗的結論。</b>知道是哪個反應、哪個受質、哪個溫度,才有辦法真的把風險降下來。</div>
+</section>
+
+<!-- 37 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ⑤:褐變 <span class="en">Quick Check 5</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>切開的蘋果泡在<b>檸檬水</b>裡不容易變褐,主要原因是?<br><span class="opt">A 檸檬酸把 PPO 蛋白煮熟變性</span><span class="opt">B 降低 pH 使 PPO 離開最適範圍而失去活性</span><span class="opt">C 檸檬水隔絕了所有氧氣</span><span class="opt">D 檸檬酸把褐色素漂白</span></div>
+  <div class="q"><span class="qn">2</span>麵包烤出金黃色外皮,主要屬於?<br><span class="opt">A 焦糖化,因為麵包含糖</span><span class="opt">B 酵素性褐變,因為有酵素</span><span class="opt">C 梅納反應,因為同時有還原糖與蛋白質</span><span class="opt">D 脂質氧化</span></div>
+  <div class="q"><span class="qn">3</span>「燙漂」與「泡檸檬水」都能防止蔬果褐變,但它們的化學原理<b>不同</b>。請說明差別,並各舉一個「這一招會失效」的情況。</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B</span> — 酵素有最適 pH;PPO 在 pH 3 以下活性大幅下降,但蛋白質並沒有被破壞。<span class="myth">選 A 把「降 pH」與「熱變性」混為一談——這正是三種抑制法必須分清楚的地方。選 C 誇大了:泡水確實減少接觸氧,但檸檬水的主要機制是 pH。選 D 把「防止生成」誤解成「把已生成的去掉」。</span></div><div class="row"><span class="ans">2. C</span> — 麵團同時有還原糖與麵筋蛋白的胺基,加熱即進行梅納反應。<span class="myth">選 A 忽略了<b>胺基</b>這個關鍵條件——判準就是「有沒有胺基在場」。選 B 錯在梅納反應<b>不需要酵素</b>;而且烘烤的高溫早就讓酵素變性了。</span></div><div class="row"><span class="ans">3. 一個是可逆的環境改變,一個是不可逆的蛋白質變性</span> — <b>泡檸檬水</b>:降 pH 讓 PPO 離開最適範圍,酵素<b>沒壞</b>——失效情況:把果肉撈出來洗掉酸、pH 回升,褐變會重新開始。<br><b>燙漂</b>:熱使 PPO 蛋白<b>變性失活</b>,不可逆——失效情況:燙漂時間不足或溫度不夠,酵素只是部分失活;而且燙漂會改變質地與流失水溶性維生素,生鮮沙拉用不了。<span class="myth">這一題是本週的綜合題:它要求你同時使用 <b>W14 的酵素最適 pH</b>、<b>W15 的蛋白質變性</b>與<b>本週的褐變機制</b>,並且說得出<b>每一招的邊界條件</b>。能講出「什麼時候會失效」,才代表你懂的是機制而不是口訣。</span></div></div>
+</section>
+
+<!-- 38 -->
+<section class="slide hookback">
+  <h2>回到本週的錨點 <span class="en">Anchor Answered</span></h2>
+  <div class="recall"><b>第 16 週開場問的是:</b>油放久為什麼有油耗味?蘋果切開為什麼變褐色?</div>
+  <div class="ansbox">
+    <h3>用這一週的化學回答</h3>
+    <ul>
+    <li>兩者的共同主角是 <b>O<sub>2</sub></b>。它是<b>雙自由基</b>(分子軌域理論的結論,路易斯結構在這裡是錯的),也是很強的氧化劑。</li>
+    <li><b>油耗味</b>:金屬、光或熱起始出脂質自由基 → 與 O<sub>2</sub> 形成過氧自由基 → 奪走下一個脂肪酸的氫,<b>自我循環</b>。初級產物 ROOH 無味,裂解成的<b>醛類</b>才是聞到的油耗味。</li>
+    <li><b>褐變</b>:切開細胞讓多酚與 PPO 相遇,加上 O<sub>2</sub> 生成醌並聚合成褐色素。三種抑制法各自拿掉<b>環境、酵素、受質</b>其中之一。</li>
+    <li>所以「先猜猜看」的答案是<b>亞麻仁油</b>:次亞麻油酸有三個雙鍵,雙烯丙基位最多,氧化速率約為油酸的 20 倍。<b>越健康的油越怕放。</b></li>
+    </ul>
+  </div>
+  <div class="lens"><span class="lt">這個情境幫你理解的化學是</span>氧化還原是一把<b>追蹤電子的工具</b>。把「油壞了」「蘋果變黑了」「維生素 C 流失了」翻譯成「電子從哪裡跑到哪裡」,這些看似無關的劣變就成為同一件事,而每一種保存手段也就對應到這條路徑上的一個具體位置。</div>
+  <div class="nextup"><b>接下來在哪裡會再用到:</b><span class="course">食品化學</span>脂質氧化、抗氧化劑與褐變控制　<span class="course">食品加工</span>包裝、充氮、燙漂與貨架期　<span class="course">生物化學</span>NAD⁺/FAD、電子傳遞鏈與自由基防禦　<span class="course">營養學</span>抗氧化營養素與氧化壓力</div>
+</section>
+
+<!-- 39 -->
+<section class="slide">
+  <h2>本週重點總結 <span class="en">Summary</span></h2>
+  <ul>
+    <li>氧化 = 失電子、氧化數上升;<b>氧化劑自己被還原</b></li>
+    <li>E°<sub>cell</sub> &gt; 0 → 自發。但 <b>E° 不說速率</b>——保存技術幾乎都在處理速率</li>
+    <li><b>O<sub>2</sub> 是雙自由基</b>(順磁性);自旋限制讓它不會立刻反應,但需要有人起始</li>
+    <li>自由基鏈鎖:起始 → <b>傳遞(自我循環)</b> → 終止;一次起始造成上千次氧化</li>
+    <li>雙鍵越多越易氧化(雙烯丙基位);<b>越健康的油越怕放</b></li>
+    <li>PV 量初級產物、<b>PV 低不等於新鮮</b>;抗氧化劑三類機制不同,常複方</li>
+    <li>酵素性褐變要三個條件同時在場;三種抑制法對應<b>三個不同原理</b></li>
+    <li><b>梅納反應要胺基,焦糖化只要糖</b>;梅納同時帶來風味與丙烯醯胺</li>
+  </ul>
+<div class="box key"><span class="tag">帶走一句話</span>看到任何「食物壞掉」的現象,先問:<b>電子跑到哪裡去了?</b></div>
+</section>
+
+<!-- 40 -->
+<section class="slide">
+  <h2>重要名詞中英對照 <span class="en">Key Terms</span></h2>
+  <div class="two-col">
+    <div>  <table><tr><th>中文</th><th>English</th></tr><tr><td>半反應</td><td>half-reaction</td></tr><tr><td>標準電位</td><td>standard potential</td></tr><tr><td>自由基</td><td>free radical</td></tr><tr><td>順磁性</td><td>paramagnetic</td></tr><tr><td>鏈鎖反應</td><td>chain reaction</td></tr><tr><td>氫過氧化物</td><td>hydroperoxide</td></tr><tr><td>過氧化價</td><td>peroxide value (PV)</td></tr></table></div>
+    <div>  <table><tr><th>中文</th><th>English</th></tr><tr><td>酸敗／油耗</td><td>rancidity</td></tr><tr><td>抗氧化劑</td><td>antioxidant</td></tr><tr><td>螯合劑</td><td>chelating agent</td></tr><tr><td>多酚氧化酶</td><td>polyphenol oxidase (PPO)</td></tr><tr><td>燙漂</td><td>blanching</td></tr><tr><td>梅納反應</td><td>Maillard reaction</td></tr><tr><td>焦糖化</td><td>caramelization</td></tr></table></div>
+  </div>
+</section>
+
+<!-- 41 -->
+<section class="slide">
+  <h2>課後練習與學期回顧 <span class="en">Homework &amp; Looking Back</span></h2>
+<div class="box exbox"><span class="tag">課後練習</span>① 完成本週的<b>課後精熟測驗</b>。<br>② 找三款市售油品,抄下成分表中的抗氧化劑,判斷各屬三類中的哪一類。<br>③ 切四片蘋果,分別:不處理／泡檸檬水／泡鹽水／燙 30 秒後冰鎮,每 10 分鐘記錄一次顏色,並用本週的機制解釋差異。</div>
+<div class="box def"><span class="tag">這學期的化學,回到食物上</span>從第 1 週「營養標示的數字可信到第幾位」開始,我們用了 16 週把<b>測量、莫耳、反應、能量、結構、溶液、酸鹼、氧化還原</b>一一接到食品與營養的具體問題上。<br>它們是你在<b>食品化學、分析化學、生物化學、營養學</b>裡每週都要用的語言。<br><b>法規數值請以衛福部食藥署現行公告為準</b>(抗氧化劑限量、丙烯醯胺參考值等);化學機制不因數值調整而改變。</div>
+</section>
+</div></div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const DECK_INFO='普通化學(一)|新課綱 第 16 週:氧化還原與抗氧化';
+let cur=0;
+slides.forEach((s,i)=>{
+  const f=document.createElement('div');f.className='foot';
+  f.innerHTML='<span>'+DECK_INFO+'</span><span>'+(i+1)+' / '+slides.length+'</span>';
+  s.appendChild(f);
+});
+slides.forEach(s=>{
+  const sol=s.querySelector('.sol');
+  if(!sol)return;
+  const hint=document.createElement('div');hint.className='sol-hint';
+  hint.innerHTML='<span class="kbd">空白鍵</span><span>先自己想／算，準備好再顯示解答</span>';
+  sol.insertAdjacentElement('beforebegin',hint);
+});
+function show(n){
+  cur=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,i)=>{s.classList.toggle('active',i===cur);s.classList.remove('reveal');});
+  document.getElementById('bar').style.width=((cur+1)/slides.length*100)+'%';
+  location.hash=cur+1;
+}
+function next(){
+  const s=slides[cur];
+  if(s.querySelector('.sol')&&!s.classList.contains('reveal')){s.classList.add('reveal');return;}
+  show(cur+1);
+}
+function prev(){
+  const s=slides[cur];
+  if(s.classList.contains('reveal')){s.classList.remove('reveal');return;}
+  show(cur-1);
+}
+function fit(){
+  const s=Math.min(innerWidth/1280,innerHeight/720);
+  document.getElementById('deck').style.transform='scale('+s+')';
+}
+addEventListener('resize',fit);
+addEventListener('keydown',e=>{
+  if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();next();}
+  else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev();}
+  else if(e.key==='Home')show(0);
+  else if(e.key==='End')show(slides.length-1);
+});
+addEventListener('click',e=>{
+  if(e.target.closest('a'))return;
+  (e.clientX>innerWidth/3)?next():prev();
+});
+let tx=null;
+addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+addEventListener('touchend',e=>{
+  if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;
+  if(dx<-40)next();else if(dx>40)prev();tx=null;
+});
+fit();
+show(parseInt(location.hash.slice(1))-1||0);
+</script>
+</body>
+</html>

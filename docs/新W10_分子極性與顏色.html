@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新課綱 第 10 週:分子極性、共軛與顏色</title>
+<style>
+:root{
+  --primary:#1a5276; --primary-dark:#12395a; --accent:#a04c08; --teal:#117a65;
+  --ink:#2c3e50; --muted:#5a6a6b; --bg:#eceff3; --card:#ffffff;
+  --def-bg:#eaf2f8; --key-bg:#fef9e7; --ex-bg:#e8f8f5; --warn-bg:#fdedec;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC","Heiti TC",sans-serif;color:var(--ink)}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#deck{position:relative;width:1280px;height:720px;transform-origin:center center}
+.slide{position:absolute;inset:0;width:1280px;height:720px;background:var(--card);padding:56px 72px 70px;display:none;flex-direction:column;border-top:10px solid var(--primary);overflow:hidden}
+.slide.active{display:flex}
+.slide h2{font-size:36px;color:var(--primary);border-bottom:3px solid var(--accent);padding-bottom:10px;margin-bottom:26px;font-weight:700}
+.slide h2 .en{display:block;font-size:19px;color:var(--muted);font-weight:400;margin-top:4px}
+.slide h3{font-size:26px;color:var(--primary);margin:12px 0 8px}
+.slide p{font-size:24px;line-height:1.55;margin:8px 0}
+.slide ul,.slide ol{font-size:24px;line-height:1.6;margin:8px 0 8px 34px}
+.slide li{margin:7px 0}
+.slide li li{font-size:22px;margin:4px 0}
+.en{color:var(--muted);font-size:.82em}
+.small{font-size:19px;color:var(--muted)}
+.big{font-size:30px}
+.center{text-align:center}
+.hl{color:var(--accent);font-weight:700}
+.hlb{color:var(--primary);font-weight:700}
+.two-col{display:flex;gap:32px;align-items:flex-start}
+.two-col>div{flex:1}
+.box{border-radius:10px;padding:16px 22px;margin:14px 0;font-size:23px;line-height:1.55}
+.def{background:var(--def-bg);border-left:6px solid var(--primary)}
+.key{background:var(--key-bg);border-left:6px solid #f1c40f}
+.warn{background:var(--warn-bg);border-left:6px solid #e74c3c}
+.exbox{background:var(--ex-bg);border-left:6px solid var(--teal)}
+.box .tag{display:inline-block;font-size:17px;font-weight:700;color:#fff;border-radius:5px;padding:2px 10px;margin-bottom:6px}
+.def .tag{background:var(--primary)} .key .tag{background:#8a6d00} .warn .tag{background:#c0392b} .exbox .tag{background:var(--teal)}
+.sol{border-top:2px dashed var(--teal);margin-top:12px;padding-top:10px}
+/* ── 形成性評量：解答兩段式揭露 ───────────────────────── */
+.slide.active .sol{display:none}
+.slide.active.reveal .sol{display:block}
+.sol-hint{margin-top:12px;padding-top:10px;border-top:2px dashed #b9c6c6;font-size:19px;color:#5d6d6e;display:flex;align-items:center;gap:10px}
+.slide.active.reveal .sol-hint{display:none}
+.sol-hint .kbd{display:inline-block;border:1px solid #aab7b8;border-bottom-width:2px;border-radius:5px;padding:1px 9px;font-size:17px;background:#fff;color:#34495e}
+/* ── 隨堂快問 ─────────────────────────────────────────── */
+.slide.quiz{border-top-color:var(--teal)}
+.slide.quiz h2{margin-bottom:14px}
+.slide.quiz h2{color:#0e6655;border-bottom-color:var(--teal)}
+.qbar{background:#e8f8f5;border-left:6px solid var(--teal);border-radius:8px;padding:5px 16px;font-size:18px;color:#0e6655;margin-bottom:4px}
+.q{margin:4px 0;font-size:21px;line-height:1.28}
+.q .qn{display:inline-block;min-width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;background:var(--teal);color:#fff;font-size:16px;font-weight:700;margin-right:7px}
+.opt{display:inline-block;border:1.5px solid #a2d5cd;background:#f2fbf9;color:#0e6655;border-radius:14px;padding:0 11px;margin:1px 4px 1px 0;font-size:19px}
+.quiz .sol{margin-top:5px;padding-top:5px;font-size:18px;line-height:1.26}
+.quiz .sol .ans{color:#c0392b;font-weight:700}
+.quiz .sol .row{margin:3px 0}
+.quiz .sol .row+.row{border-top:1px solid #e5eceb;padding-top:3px}
+.quiz .sol .myth{display:block;font-size:16px;color:#5d6d6e;margin:1px 0 0 0;line-height:1.24}
+@media print{
+  .sol{display:block!important}
+  .sol-hint{display:none!important}
+}
+.eq{text-align:center;font-size:28px;margin:14px 0;font-family:Cambria,"Times New Roman",serif}
+table{border-collapse:collapse;margin:12px auto;font-size:21px;width:100%}
+th{background:var(--primary);color:#fff;padding:8px 12px;font-weight:600}
+td{border:1px solid #d5dbdb;padding:7px 12px;text-align:center}
+tr:nth-child(even) td{background:#f4f6f7}
+.cover{background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 55%,var(--teal) 100%);border-top:none;color:#fff;justify-content:center;align-items:center;text-align:center}
+.cover h1{font-size:58px;letter-spacing:4px;margin-bottom:10px}
+.cover .sub{font-size:30px;opacity:.92;margin:6px 0}
+.cover .en-title{font-size:24px;opacity:.75;margin-bottom:34px}
+.cover .meta{font-size:20px;opacity:.7;margin-top:40px}
+.cover .rule{width:220px;height:4px;background:#f7b955;margin:26px auto}
+.divider{background:linear-gradient(120deg,var(--primary-dark),var(--primary));border-top:none;color:#fff;justify-content:center}
+.divider .secnum{font-size:26px;color:#f7b955;font-weight:700;letter-spacing:2px;margin-bottom:14px}
+.divider h1{font-size:52px;margin-bottom:12px}
+.divider .en-sub{font-size:26px;opacity:.75}
+.divider .items{margin-top:36px;font-size:23px;opacity:.9;line-height:2}
+.foot{position:absolute;left:0;right:0;bottom:0;height:32px;display:flex;justify-content:space-between;align-items:center;padding:0 28px;font-size:14px;color:#5d6d6e;background:#fafbfc;border-top:1px solid #e5e8e8}
+.cover .foot,.divider .foot{background:rgba(0,0,0,.15);color:rgba(255,255,255,.65);border-top:none}
+#bar{position:fixed;top:0;left:0;height:5px;background:var(--accent);width:0;z-index:10;transition:width .2s}
+.flow{display:flex;flex-direction:column;align-items:center;gap:6px}
+.fbox{border:2px solid var(--primary);border-radius:8px;padding:8px 20px;font-size:21px;background:var(--def-bg);text-align:center}
+.frow{display:flex;gap:60px;justify-content:center}
+.arrow{font-size:22px;color:var(--accent)}
+.chip{display:inline-block;background:var(--def-bg);border:1px solid var(--primary);color:var(--primary);border-radius:16px;padding:2px 14px;margin:3px;font-size:20px}
+/* ── 因次分析鐵軌格 ───────────────────────────────────── */
+.rail{border-collapse:collapse;margin:10px auto 6px;font-size:23px}
+.rail td{border:none;padding:5px 20px;text-align:center;background:none;vertical-align:middle}
+.rail td+td{border-left:2px solid var(--muted)}
+.rail tr:first-child td{border-bottom:3px solid var(--ink)}
+.rail td.res{border-left:none;padding-left:14px;font-weight:700;color:var(--accent);font-size:25px}
+.rail tr:first-child td.res{border-bottom:none}
+.rail .bk{display:inline-block;min-width:104px;border-bottom:3px dashed var(--accent);height:27px;vertical-align:-4px}
+.rail .gv{background:var(--def-bg)}
+.railnote{text-align:center;font-size:18px;color:var(--muted);margin-top:2px}
+.fig{display:block;margin:6px auto;flex-shrink:0}
+/* ── 錨點回收頁 ───────────────────────────────────────── */
+.slide.hookback{border-top-color:var(--teal)}
+.slide.hookback h2{color:#0e6655;border-bottom-color:var(--teal)}
+.recall{background:#f4f6f7;border-left:5px solid #95a5a6;border-radius:8px;padding:7px 18px;
+        font-size:20px;line-height:1.34;color:#5d6d6e;margin:0 0 10px}
+.recall b{color:#34495e}
+.ansbox{background:#e8f8f5;border-left:6px solid var(--teal);border-radius:9px;padding:10px 20px;margin:0 0 10px}
+.ansbox h3{font-size:20px;color:#0e6655;margin:0 0 5px}
+.ansbox ul{margin:0 0 0 20px;font-size:19.5px;line-height:1.4}
+.ansbox li{margin:5px 0}
+.lens{background:var(--key-bg);border-left:6px solid #d4a70a;border-radius:9px;padding:10px 20px;
+      font-size:20px;line-height:1.38;margin-bottom:9px}
+.lens .lt{display:block;font-size:16px;font-weight:700;color:#8a6d00;letter-spacing:1px;margin-bottom:2px}
+.nextup{background:#eaf2f8;border-left:5px solid var(--primary);border-radius:8px;padding:8px 18px;
+        font-size:18.5px;line-height:1.4;color:#34495e}
+.nextup .course{display:inline-block;background:#fff;border:1px solid #a2d5cd;color:#0e6655;
+                border-radius:11px;padding:0 8px;font-size:16px;margin-right:4px}
+
+/* ── 食品營養錨點頁 ───────────────────────────────────── */
+.slide.hook{border-top-color:var(--accent)}
+.slide.hook h2{color:#a05000;border-bottom-color:var(--accent)}
+.bigq{background:linear-gradient(100deg,#fff5ea,#fdf0e0);border-left:8px solid var(--accent);border-radius:10px;
+      padding:14px 22px;font-size:26px;line-height:1.4;color:#7a3d00;font-weight:700;margin:4px 0 12px}
+.bigq .qmark{font-size:30px;margin-right:6px}
+.hookcols{display:flex;gap:22px;align-items:stretch;margin-top:4px}
+.hookcols>div{flex:1;border-radius:9px;padding:11px 16px}
+.hk-now{background:#eaf2f8;border-left:5px solid var(--primary)}
+.hk-next{background:#e8f8f5;border-left:5px solid var(--teal)}
+.hookcols h3{font-size:20px;margin:0 0 6px}
+.hk-now h3{color:var(--primary)} .hk-next h3{color:#0e6655}
+.hookcols ul{font-size:19px;line-height:1.4;margin:0 0 0 20px}
+.hookcols li{margin:4px 0}
+.hookcols .course{display:inline-block;background:#fff;border:1px solid #a2d5cd;color:#0e6655;
+                  border-radius:11px;padding:0 8px;font-size:16px;margin-right:4px}
+.canyou{background:var(--key-bg);border-left:6px solid #d4a70a;border-radius:9px;padding:10px 18px;
+        font-size:20px;line-height:1.4;margin-top:12px}
+.canyou b{color:#8a6d00}
+.hookmap{font-size:19px;line-height:1.5}
+.hookmap td{text-align:left;padding:5px 10px}
+.hookmap td:first-child{text-align:center;font-weight:700;color:var(--accent);width:62px}
+@media print{
+  @page{size:1280px 720px;margin:0}
+  html,body{background:#fff}
+  #stage{position:static}
+  #deck{width:auto;height:auto;transform:none!important}
+  .slide{position:relative;display:flex!important;page-break-after:always;margin:0;inset:auto}
+  #bar{display:none}
+}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="stage"><div id="deck">
+
+<!-- 1 -->
+<section class="slide cover">
+  <h1>普通化學(一)</h1>
+  <div class="en-title">General Chemistry I</div>
+  <div class="rule"></div>
+  <div class="sub">第 10 週:分子極性、共軛與顏色</div>
+  <div class="sub">VSEPR・偶極矩・共振・Beer–Lambert</div>
+  <div class="en-title" style="margin-top:8px">Molecular Geometry, Polarity, Conjugation and Color</div>
+</section>
+
+<!-- 2 -->
+<section class="slide">
+  <h2>本週學習目標 <span class="en">Learning Objectives</span></h2>
+  <ul>
+    <li>用 <b>VSEPR</b> 由電子群數與孤對數判斷分子的形狀與鍵角</li>
+    <li>由鍵偶極與分子的<b>對稱性</b>判斷整個分子有沒有偶極矩</li>
+    <li>畫出<b>共振</b>結構,並理解真實結構是共振混成</li>
+    <li>說明<b>共軛系統的長度</b>如何決定分子吸收的光波長與呈現的顏色</li>
+    <li>會用 <b>Beer–Lambert 定律</b> A = εbc 做比色定量</li>
+    <li>能解釋蔬果的顏色從何而來、加熱與 pH 為何會使它改變</li>
+  </ul>
+<div class="box key"><span class="tag">本週重點</span>上週看的是<b>一個鍵</b>,本週看的是<b>整個分子</b>:形狀決定極性,共軛長度決定顏色。</div>
+</section>
+
+<!-- 3 -->
+<section class="slide hook">
+  <h2>第 10 週·食品營養錨點：胡蘿蔔為什麼是橙色？ <span class="en">Anchor Question</span></h2>
+  <div class="bigq"><span class="qmark">?</span>胡蘿蔔是橙色、番茄是紅色、菠菜是綠色。顏色從哪來？而分析化學的<b>分光光度計</b>，為什麼能靠「顏色」測出濃度？</div>
+  <div class="hookcols">
+    <div class="hk-now"><h3>這一週要用到的化學</h3><ul><li>光的波長、頻率與能量</li><li>原子的能階與吸收/發射</li><li>電子躍遷</li><li>軌域與量子數</li></ul></div>
+    <div class="hk-next"><h3>之後在哪裡會再遇到</h3><ul><li><span class="course">分析化學</span>UV-Vis 分光光度法、Beer–Lambert 定律</li><li><span class="course">食品化學</span>天然色素、褐變程度測定</li><li><span class="course">食品分析</span>比色法定量</li></ul></div>
+  </div>
+  <div class="canyou"><b>本週結束時，你應該能回答：</b>為什麼分子「吸收」藍光，我們看到的卻是橙色？</div><div class="canyou" style="background:#f4f6f7;border-left-color:#95a5a6"><b>先猜猜看：</b>把胡蘿蔔素的溶液稀釋一半，顏色會變淡——那「淡」可以量化嗎？</div>
+</section>
+
+<!-- 4 -->
+<section class="slide">
+  <h2>本週知識地圖 <span class="en">Roadmap</span></h2>
+  <table><tr><th>段落</th><th>在問什麼</th><th>關鍵詞</th></tr><tr><td>PART 1</td><td>分子是什麼形狀?</td><td>VSEPR・電子群幾何</td></tr><tr><td>PART 2</td><td>孤對電子怎麼影響形狀?</td><td>角形・三角錐・鍵角壓縮</td></tr><tr><td>PART 3</td><td>整個分子有沒有極性?</td><td>偶極矩・對稱抵消</td></tr><tr><td>PART 4</td><td>一個結構不夠用怎麼辦?</td><td>共振・鍵級</td></tr><tr><td>PART 5</td><td>顏色從哪裡來?</td><td>共軛・吸收光譜・Beer–Lambert</td></tr></table>
+<div class="box def"><span class="tag">一條主線</span><b>形狀 → 極性 → 溶解性</b>(接上週),以及<b>共軛長度 → 吸收波長 → 顏色</b>(接食品品質)。兩條線都從「電子在哪裡」出發。</div>
+</section>
+
+<!-- 5 -->
+<section class="slide divider">
+  <div class="secnum">PART 10.1</div>
+  <h1>VSEPR 理論基礎</h1>
+  <div class="en-sub">Basics of VSEPR Theory</div>
+  <div class="items">基本假設・電子群的計算・電子群幾何 vs 分子形狀</div>
+</section>
+
+<!-- 6 -->
+<section class="slide">
+  <h2>VSEPR 理論的基本假設 <span class="en">The VSEPR Postulate</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>價殼層電子對互斥理論 (Valence Shell Electron Pair Repulsion, VSEPR)</b>:中心原子價殼層的電子群彼此<b>靜電互斥</b>,會在空間中排列成<b>相距最遠</b>的幾何位置,使互斥最小、能量最低。</div>
+    <ul>
+    <li>輸入:Lewis 結構(所以上兩週的功夫是前提!)</li>
+    <li>輸出:三維幾何形狀與近似鍵角</li>
+    <li>只需數<span class="hl">中心原子周圍的電子群數</span>即可預測形狀</li>
+  </ul>
+</section>
+
+<!-- 7 -->
+<section class="slide">
+  <h2>電子群的計算 <span class="en">Counting Electron Groups</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>電子群 (electron group / electron domain)</b>:中心原子周圍占據一個空間方位的電子集合。每一項各算 <b>1 群</b>:<br>① 單鍵&nbsp;&nbsp;② 雙鍵&nbsp;&nbsp;③ 參鍵&nbsp;&nbsp;④ 孤對電子&nbsp;&nbsp;⑤ 單電子(自由基)</div>
+  <div class="box warn"><span class="tag">最常錯</span>多重鍵不論幾對電子,都<b>只算 1 群</b>!CO<sub>2</sub> 的 C:2 個雙鍵 = 2 群(不是 4 群)。</div>
+  <p>例:H<sub>2</sub>O 的 O = 2 鍵 + 2 孤對 = <span class="hlb">4 群</span>;HCN 的 C = 1 單鍵 + 1 參鍵 = <span class="hlb">2 群</span></p>
+</section>
+
+<!-- 8 -->
+<section class="slide">
+  <h2>例題 1:數電子群 <span class="en">Example 1</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>數出下列各中心原子的電子群數:<br>
+  (a) CO<sub>2</sub> 的 C&nbsp;&nbsp;(b) SO<sub>2</sub> 的 S&nbsp;&nbsp;(c) NH<sub>3</sub> 的 N&nbsp;&nbsp;(d) SF<sub>6</sub> 的 S
+  <div class="sol"><b>解:</b>先畫 Lewis 結構再數:<br>
+  (a) O=C=O:2 個雙鍵 → <span class="hl">2 群</span><br>
+  (b) SO<sub>2</sub>(O=S–O 共振,S 上 1 孤對):2 個鍵 + 1 孤對 → <span class="hl">3 群</span><br>
+  (c) NH<sub>3</sub>:3 個 N–H + 1 孤對 → <span class="hl">4 群</span><br>
+  (d) SF<sub>6</sub>:6 個 S–F、無孤對 → <span class="hl">6 群</span></div></div>
+</section>
+
+<!-- 9 -->
+<section class="slide">
+  <h2>AX<sub>m</sub>E<sub>n</sub> 記號 <span class="en">The AX<sub>m</sub>E<sub>n</sub> Notation</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>A</b>:中心原子;<b>X</b>:鍵結原子(m 個);<b>E</b>:中心原子上的孤對電子(n 對)。<br>電子群總數 = m + n。</div>
+  <ul>
+    <li>H<sub>2</sub>O → AX<sub>2</sub>E<sub>2</sub>(2 鍵 + 2 孤對,共 4 群)</li>
+    <li>NH<sub>3</sub> → AX<sub>3</sub>E(3 鍵 + 1 孤對,共 4 群)</li>
+    <li>CO<sub>2</sub> → AX<sub>2</sub>(2 群、無孤對)</li>
+  </ul>
+  <div class="box key"><span class="tag">重點</span>同樣是「4 群」,m 與 n 的組合不同 → <b>分子形狀不同</b>。這就是下一個關鍵區分。</div>
+</section>
+
+<!-- 10 -->
+<section class="slide">
+  <h2>電子群幾何 vs 分子形狀 <span class="en">Electron-Pair Geometry vs. Molecular Structure</span></h2>
+  <table>
+    <tr><th></th><th>電子群幾何<br>electron-pair geometry</th><th>分子形狀<br>molecular structure</th></tr>
+    <tr><td>描述對象</td><td><b>所有</b>電子群(含孤對)的排列</td><td>只看<b>原子</b>(X)的排列</td></tr>
+    <tr><td>由何決定</td><td>電子群總數 m + n</td><td>電子群幾何中拿掉孤對後的樣子</td></tr>
+    <tr><td>H<sub>2</sub>O 為例</td><td>四面體(4 群)</td><td>角形/彎曲形(只看 2 個 H)</td></tr>
+  </table>
+  <div class="box warn"><span class="tag">必考觀念</span>「H<sub>2</sub>O 的電子群幾何是四面體、分子形狀是角形」— 兩個名詞務必分開回答!</div>
+</section>
+
+<!-- 11 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ①:VSEPR 基礎 <span class="en">Quick Check 1</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>計算電子群時,一個<b>雙鍵</b>算幾個電子群?<br><span class="opt">A 0</span><span class="opt">B 1</span><span class="opt">C 2</span><span class="opt">D 4</span></div>
+  <div class="q"><span class="qn">2</span>AX<sub>3</sub>E 的<b>電子群幾何</b>與<b>分子形狀</b>分別是?<br><span class="opt">A 都是四面體</span><span class="opt">B 電子群四面體、分子三角錐</span><span class="opt">C 電子群三角錐、分子四面體</span><span class="opt">D 都是平面三角</span></div>
+  <div class="q"><span class="qn">3</span>為什麼判斷分子形狀時<b>孤對電子要算進電子群,卻不算進形狀</b>?</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B(1 個)</span> — VSEPR 只看<b>方向</b>:單鍵、雙鍵、參鍵都只指向一個方向,各算 1 群。<span class="myth">選 C/D 的同學把電子<b>數</b>當成群<b>數</b>。口訣:<b>一個原子或一對孤對 = 一群,不管鍵級。</b></span></div><div class="row"><span class="ans">2. B</span> — 電子群幾何看<b>全部 4 群</b>(四面體);分子形狀只看<b>3 個原子</b>(三角錐)。<span class="myth">這是本週最核心的區分。NH<sub>3</sub> 就是 AX<sub>3</sub>E —— 說它「是四面體」或「是平面三角」都錯。</span></div><div class="row"><span class="ans">3. 因為形狀是由原子核的位置定義的</span> — 孤對電子<b>會佔空間、會推開別人</b>(所以要算進電子群決定排列),但<b>看不見、不是原子</b>,所以不算進形狀的名稱。<span class="myth">延伸:孤對比成鍵對更「胖」(只被一個核吸引),所以會<b>壓縮</b>相鄰鍵角 —— 這就是 NH<sub>3</sub> 是 107° 而非 109.5° 的原因。</span></div></div>
+</section>
+
+<!-- 12 -->
+<section class="slide divider">
+  <div class="secnum">PART 10.2</div>
+  <h1>五種基本電子群幾何</h1>
+  <div class="en-sub">The Five Basic Electron-Pair Geometries</div>
+  <div class="items">直線・平面三角・四面體・雙三角錐・八面體</div>
+</section>
+
+<!-- 13 -->
+<section class="slide">
+  <h2>2 群:直線 <span class="en">Linear (180°)</span></h2>
+  <div class="two-col">
+    <div>
+      <ul>
+        <li>2 個電子群相距最遠 → 反向排列</li>
+        <li>鍵角 <span class="hl">180°</span></li>
+        <li>例:BeCl<sub>2</sub>(Cl–Be–Cl)、CO<sub>2</sub>(O=C=O)</li>
+        <li>HCN(H–C≡N)也是直線</li>
+      </ul>
+    </div>
+    <div>
+      <div class="fbox" style="font-size:26px">X ―― A ―― X<br><span class="small">180°,三原子成一直線</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 14 -->
+<section class="slide">
+  <h2>3 群:平面三角 <span class="en">Trigonal Planar (120°)</span></h2>
+  <div class="two-col">
+    <div>
+      <ul>
+        <li>3 群指向正三角形的三個頂點</li>
+        <li>鍵角 <span class="hl">120°</span>,四個原子共平面</li>
+        <li>例:BF<sub>3</sub>、SO<sub>3</sub>、NO<sub>3</sub><sup>−</sup>、CO<sub>3</sub><sup>2−</sup></li>
+        <li>甲醛 H<sub>2</sub>C=O 的 C 也是 3 群</li>
+      </ul>
+    </div>
+    <div>
+      <div class="fbox" style="font-size:24px">&nbsp;&nbsp;&nbsp;&nbsp;X<br>&nbsp;&nbsp;&nbsp;&nbsp;│<br>&nbsp;&nbsp;&nbsp;&nbsp;A<br>&nbsp;&nbsp;╱&nbsp;&nbsp;&nbsp;╲<br>X&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X<br><span class="small">120°,共平面</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 15 -->
+<section class="slide">
+  <h2>4 群:四面體 <span class="en">Tetrahedral (109.5°)</span></h2>
+  <div class="two-col">
+    <div>
+      <ul>
+        <li>4 群指向正四面體的四個頂點</li>
+        <li>鍵角 <span class="hl">109.5°</span>(<b>不是</b>平面的 90°!)</li>
+        <li>例:CH<sub>4</sub>、CCl<sub>4</sub>、NH<sub>4</sub><sup>+</sup>、SO<sub>4</sub><sup>2−</sup></li>
+        <li>立體結構:1 鍵朝上,3 鍵如三腳架朝下</li>
+      </ul>
+    </div>
+    <div>
+      <svg class="fig" role="img" aria-labelledby="w12f1-t w12f1-d" width="520" height="292" viewBox="0 0 520 292" xmlns="http://www.w3.org/2000/svg">
+        <title id="w12f1-t">四面體幾何的立體表示</title>
+        <desc id="w12f1-d">中心原子 A 連接四個 X。兩根一般鍵向上分開，一根實心楔形鍵朝向觀察者、一根虛線楔形鍵指向紙面後方，四個 X 之間以淺色虛線連成四面體輪廓，鍵角標示 109.5 度。</desc>
+        <polygon points="140,58 325,58 330,218 148,228" fill="#e8f8f5" stroke="#d5dbdb" stroke-width="2" stroke-linejoin="round" stroke-dasharray="6 5" opacity="0.9"/>
+        <line x1="140" y1="58" x2="330" y2="218" stroke="#d5dbdb" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 5"/>
+        <line x1="325" y1="58" x2="148" y2="228" stroke="#d5dbdb" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 5"/>
+        <line x1="232" y1="140" x2="140" y2="58" stroke="#2c3e50" stroke-width="3" stroke-linecap="round"/>
+        <line x1="232" y1="140" x2="325" y2="58" stroke="#2c3e50" stroke-width="3" stroke-linecap="round"/>
+        <polygon points="232,140 142.9,223.2 153.1,232.8" fill="#2c3e50"/>
+        <line x1="247.6" y1="153.9" x2="249.1" y2="152.1" stroke="#2c3e50" stroke-width="2.4" stroke-linecap="butt"/>
+        <line x1="263.2" y1="167.8" x2="266.1" y2="164.2" stroke="#2c3e50" stroke-width="2.4" stroke-linecap="butt"/>
+        <line x1="278.8" y1="181.7" x2="283.2" y2="176.3" stroke="#2c3e50" stroke-width="2.4" stroke-linecap="butt"/>
+        <line x1="294.4" y1="195.7" x2="300.2" y2="188.3" stroke="#2c3e50" stroke-width="2.4" stroke-linecap="butt"/>
+        <line x1="310.0" y1="209.6" x2="317.3" y2="200.4" stroke="#2c3e50" stroke-width="2.4" stroke-linecap="butt"/>
+        <line x1="325.6" y1="223.5" x2="334.4" y2="212.5" stroke="#2c3e50" stroke-width="2.4" stroke-linecap="butt"/>
+        <path d="M186.2,111.4 A54,54 0 0 1 277.8,111.4" fill="none" stroke="#a04c08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="232.0" y="58.3" font-size="18" fill="#a04c08" text-anchor="middle" font-weight="700">109.5°</text>
+        <circle cx="140" cy="58" r="20" fill="#fff" stroke="#117a65" stroke-width="2.5"/>
+        <text x="140" y="64.65" font-size="19" fill="#117a65" text-anchor="middle" font-weight="700">X</text>
+        <circle cx="325" cy="58" r="20" fill="#fff" stroke="#117a65" stroke-width="2.5"/>
+        <text x="325" y="64.65" font-size="19" fill="#117a65" text-anchor="middle" font-weight="700">X</text>
+        <circle cx="148" cy="228" r="20" fill="#fff" stroke="#117a65" stroke-width="2.5"/>
+        <text x="148" y="234.65" font-size="19" fill="#117a65" text-anchor="middle" font-weight="700">X</text>
+        <circle cx="330" cy="218" r="20" fill="#fff" stroke="#117a65" stroke-width="2.5"/>
+        <text x="330" y="224.65" font-size="19" fill="#117a65" text-anchor="middle" font-weight="700">X</text>
+        <circle cx="232" cy="140" r="23" fill="#fff" stroke="#1f5f8b" stroke-width="2.5"/>
+        <text x="232" y="147.35" font-size="21" fill="#1f5f8b" text-anchor="middle" font-weight="700">A</text>
+        <text x="400" y="128" font-size="17" fill="#2c3e50" text-anchor="start" font-weight="700">▬ 朝向你</text>
+        <text x="400" y="154" font-size="17" fill="#5a6a6b" text-anchor="start">⁞ 朝向後方</text>
+        <text x="400" y="182" font-size="16" fill="#5a6a6b" text-anchor="start">灰虛線 =</text>
+        <text x="400" y="204" font-size="16" fill="#5a6a6b" text-anchor="start">四面體輪廓</text>
+      </svg>
+    </div>
+  </div>
+  <div class="box warn"><span class="tag">注意</span>在紙上畫成「十字」容易誤以為 90° — 真實 CH<sub>4</sub> 是立體四面體,所有 H–C–H 皆 109.5°。</div>
+</section>
+
+<!-- 16 -->
+<section class="slide">
+  <h2>5 群:雙三角錐 <span class="en">Trigonal Bipyramidal (90°/120°)</span></h2>
+  <div class="two-col">
+    <div>
+      <ul>
+        <li>兩種<b>不等價</b>位置:</li>
+        <li><b>赤道 (equatorial)</b> 3 個:彼此 120°</li>
+        <li><b>軸向 (axial)</b> 2 個:與赤道成 90°</li>
+        <li>例:PCl<sub>5</sub>、PF<sub>5</sub></li>
+        <li>孤對電子優先占<span class="hl">赤道</span>位置(90° 互斥較少)</li>
+      </ul>
+    </div>
+    <div>
+      <svg class="fig" role="img" aria-labelledby="w12f2-t w12f2-d" width="520" height="292" viewBox="0 0 520 292" xmlns="http://www.w3.org/2000/svg">
+        <title id="w12f2-t">雙三角錐幾何的立體表示</title>
+        <desc id="w12f2-d">中心原子 A 有兩個軸向位置在正上與正下、彼此 180 度，三個赤道位置在中間平面彼此相隔 120 度，其中一個朝向觀察者、一個指向後方。軸向與赤道之間為 90 度。</desc>
+        <ellipse cx="205" cy="146" rx="104" ry="34" fill="none" stroke="#d5dbdb" stroke-width="2" opacity="0.95"/>
+        <polygon points="205,38 88,126 205,254 272,216" fill="#e8f8f5" stroke="#d5dbdb" stroke-width="2" stroke-linejoin="round" stroke-dasharray="6 5" opacity="0.55"/>
+        <line x1="205" y1="146" x2="205" y2="38" stroke="#2c3e50" stroke-width="3" stroke-linecap="round"/>
+        <line x1="205" y1="146" x2="205" y2="254" stroke="#2c3e50" stroke-width="3" stroke-linecap="round"/>
+        <line x1="205" y1="146" x2="88" y2="126" stroke="#2c3e50" stroke-width="3" stroke-linecap="round"/>
+        <polygon points="205,146 266.9,220.8 277.1,211.2" fill="#2c3e50"/>
+        <line x1="219.2" y1="136.9" x2="217.8" y2="135.1" stroke="#2c3e50" stroke-width="2.4" stroke-linecap="butt"/>
+        <line x1="233.4" y1="127.9" x2="230.6" y2="124.1" stroke="#2c3e50" stroke-width="2.4" stroke-linecap="butt"/>
+        <line x1="247.6" y1="118.8" x2="243.4" y2="113.2" stroke="#2c3e50" stroke-width="2.4" stroke-linecap="butt"/>
+        <line x1="261.8" y1="109.7" x2="256.2" y2="102.3" stroke="#2c3e50" stroke-width="2.4" stroke-linecap="butt"/>
+        <line x1="276.0" y1="100.7" x2="269.0" y2="91.3" stroke="#2c3e50" stroke-width="2.4" stroke-linecap="butt"/>
+        <line x1="290.2" y1="91.6" x2="281.8" y2="80.4" stroke="#2c3e50" stroke-width="2.4" stroke-linecap="butt"/>
+        <path d="M163.0,146.0 A42,42 0 0 1 179.1,112.9" fill="none" stroke="#a04c08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="143.9" y="121.8" font-size="16" fill="#a04c08" text-anchor="middle" font-weight="700">120°</text>
+        <path d="M235,116 A 42,42 0 0 1 247,146" fill="none" stroke="#117a65" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="279" y="120" font-size="16" fill="#117a65" text-anchor="middle" font-weight="700">90°</text>
+        <circle cx="88" cy="126" r="17" fill="#fff" stroke="#117a65" stroke-width="2.5"/>
+        <text x="88" y="131.95" font-size="17" fill="#117a65" text-anchor="middle" font-weight="700">X</text>
+        <circle cx="272" cy="216" r="17" fill="#fff" stroke="#117a65" stroke-width="2.5"/>
+        <text x="272" y="221.95" font-size="17" fill="#117a65" text-anchor="middle" font-weight="700">X</text>
+        <circle cx="286" cy="86" r="17" fill="#fff" stroke="#117a65" stroke-width="2.5"/>
+        <text x="286" y="91.95" font-size="17" fill="#117a65" text-anchor="middle" font-weight="700">X</text>
+        <circle cx="205" cy="38" r="17" fill="#fff" stroke="#1f5f8b" stroke-width="2.5"/>
+        <text x="205" y="43.95" font-size="17" fill="#1f5f8b" text-anchor="middle" font-weight="700">X</text>
+        <circle cx="205" cy="254" r="17" fill="#fff" stroke="#1f5f8b" stroke-width="2.5"/>
+        <text x="205" y="259.95" font-size="17" fill="#1f5f8b" text-anchor="middle" font-weight="700">X</text>
+        <circle cx="205" cy="146" r="20" fill="#fff" stroke="#1f5f8b" stroke-width="2.5"/>
+        <text x="205" y="152.65" font-size="19" fill="#1f5f8b" text-anchor="middle" font-weight="700">A</text>
+        <text x="378" y="52" font-size="17" fill="#1f5f8b" text-anchor="start" font-weight="700">軸向 axial</text>
+        <text x="378" y="76" font-size="16" fill="#5a6a6b" text-anchor="start">2 個，互成 180°</text>
+        <text x="378" y="176" font-size="17" fill="#117a65" text-anchor="start" font-weight="700">赤道 equatorial</text>
+        <text x="378" y="200" font-size="16" fill="#5a6a6b" text-anchor="start">3 個，互成 120°</text>
+        <text x="378" y="226" font-size="16" fill="#a04c08" text-anchor="start" font-weight="700">孤對優先占這裡</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- 17 -->
+<section class="slide">
+  <h2>6 群:八面體 <span class="en">Octahedral (90°)</span></h2>
+  <div class="two-col">
+    <div>
+      <ul>
+        <li>6 群指向八面體六個頂點,<b>全部等價</b></li>
+        <li>相鄰鍵角皆 <span class="hl">90°</span>(對位 180°)</li>
+        <li>例:SF<sub>6</sub>、PF<sub>6</sub><sup>−</sup></li>
+        <li>可視為「上下各 1 + 中間正方形 4」</li>
+      </ul>
+    </div>
+    <div>
+      <svg class="fig" role="img" aria-labelledby="w12f3-t w12f3-d" width="520" height="292" viewBox="0 0 520 292" xmlns="http://www.w3.org/2000/svg">
+        <title id="w12f3-t">八面體幾何的立體表示</title>
+        <desc id="w12f3-d">中心原子 A 上下各連一個 X，中間平面四個 X 構成正方形，其中一個朝向觀察者、一個指向後方。相鄰鍵角皆為 90 度，對位為 180 度，六個位置完全等價。</desc>
+        <polygon points="218,38 330,146 218,254 106,146" fill="#e8f8f5" stroke="#d5dbdb" stroke-width="2" stroke-linejoin="round" stroke-dasharray="6 5" opacity="0.6"/>
+        <polygon points="106,146 274,90 330,146 162,202" fill="none" stroke="#d5dbdb" stroke-width="2" stroke-linejoin="round" stroke-dasharray="6 5" opacity="0.9"/>
+        <line x1="218" y1="146" x2="218" y2="38" stroke="#2c3e50" stroke-width="3" stroke-linecap="round"/>
+        <line x1="218" y1="146" x2="218" y2="254" stroke="#2c3e50" stroke-width="3" stroke-linecap="round"/>
+        <line x1="218" y1="146" x2="106" y2="146" stroke="#2c3e50" stroke-width="3" stroke-linecap="round"/>
+        <line x1="218" y1="146" x2="330" y2="146" stroke="#2c3e50" stroke-width="3" stroke-linecap="round"/>
+        <polygon points="218,146 157.1,197.1 166.9,206.9" fill="#2c3e50"/>
+        <line x1="228.2" y1="137.5" x2="226.5" y2="135.8" stroke="#2c3e50" stroke-width="2.4" stroke-linecap="butt"/>
+        <line x1="238.3" y1="129.0" x2="235.0" y2="125.7" stroke="#2c3e50" stroke-width="2.4" stroke-linecap="butt"/>
+        <line x1="248.5" y1="120.5" x2="243.5" y2="115.5" stroke="#2c3e50" stroke-width="2.4" stroke-linecap="butt"/>
+        <line x1="258.6" y1="112.0" x2="252.0" y2="105.4" stroke="#2c3e50" stroke-width="2.4" stroke-linecap="butt"/>
+        <line x1="268.8" y1="103.5" x2="260.5" y2="95.2" stroke="#2c3e50" stroke-width="2.4" stroke-linecap="butt"/>
+        <line x1="278.9" y1="94.9" x2="269.1" y2="85.1" stroke="#2c3e50" stroke-width="2.4" stroke-linecap="butt"/>
+        <path d="M218,98 A 48,48 0 0 0 170,146" fill="none" stroke="#a04c08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="178" y="110" font-size="17" fill="#a04c08" text-anchor="end" font-weight="700">90°</text>
+        <circle cx="218" cy="38" r="19" fill="#fff" stroke="#117a65" stroke-width="2.5"/>
+        <text x="218" y="44.3" font-size="18" fill="#117a65" text-anchor="middle" font-weight="700">X</text>
+        <circle cx="218" cy="254" r="19" fill="#fff" stroke="#117a65" stroke-width="2.5"/>
+        <text x="218" y="260.3" font-size="18" fill="#117a65" text-anchor="middle" font-weight="700">X</text>
+        <circle cx="106" cy="146" r="19" fill="#fff" stroke="#117a65" stroke-width="2.5"/>
+        <text x="106" y="152.3" font-size="18" fill="#117a65" text-anchor="middle" font-weight="700">X</text>
+        <circle cx="330" cy="146" r="19" fill="#fff" stroke="#117a65" stroke-width="2.5"/>
+        <text x="330" y="152.3" font-size="18" fill="#117a65" text-anchor="middle" font-weight="700">X</text>
+        <circle cx="162" cy="202" r="19" fill="#fff" stroke="#117a65" stroke-width="2.5"/>
+        <text x="162" y="208.3" font-size="18" fill="#117a65" text-anchor="middle" font-weight="700">X</text>
+        <circle cx="274" cy="90" r="19" fill="#fff" stroke="#117a65" stroke-width="2.5"/>
+        <text x="274" y="96.3" font-size="18" fill="#117a65" text-anchor="middle" font-weight="700">X</text>
+        <circle cx="218" cy="146" r="22" fill="#fff" stroke="#1f5f8b" stroke-width="2.5"/>
+        <text x="218" y="153.0" font-size="20" fill="#1f5f8b" text-anchor="middle" font-weight="700">A</text>
+        <text x="382" y="128" font-size="17" fill="#5a6a6b" text-anchor="start">六個位置</text>
+        <text x="382" y="154" font-size="17" fill="#1f5f8b" text-anchor="start" font-weight="700">完全等價</text>
+        <text x="382" y="182" font-size="16" fill="#5a6a6b" text-anchor="start">對位 180°</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- 18 -->
+<section class="slide">
+  <h2>五種電子群幾何總表 <span class="en">Summary of the Five Geometries</span></h2>
+  <table>
+    <tr><th>電子群數</th><th>電子群幾何</th><th>English</th><th>理想鍵角</th><th>無孤對例子</th></tr>
+    <tr><td>2</td><td>直線</td><td>linear</td><td>180°</td><td>CO<sub>2</sub></td></tr>
+    <tr><td>3</td><td>平面三角</td><td>trigonal planar</td><td>120°</td><td>BF<sub>3</sub></td></tr>
+    <tr><td>4</td><td>四面體</td><td>tetrahedral</td><td>109.5°</td><td>CH<sub>4</sub></td></tr>
+    <tr><td>5</td><td>雙三角錐</td><td>trigonal bipyramidal</td><td>90°、120°</td><td>PCl<sub>5</sub></td></tr>
+    <tr><td>6</td><td>八面體</td><td>octahedral</td><td>90°</td><td>SF<sub>6</sub></td></tr>
+  </table>
+  <div class="box key"><span class="tag">必背</span>這張表是本章的骨幹:電子群數 → 幾何 → 鍵角,一條龍記熟。</div>
+</section>
+
+<!-- 19 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ②:五種基本幾何 <span class="en">Quick Check 2</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>CH<sub>4</sub> 的 H–C–H 鍵角是?<br><span class="opt">A 90°</span><span class="opt">B 104.5°</span><span class="opt">C 109.5°</span><span class="opt">D 120°</span></div>
+  <div class="q"><span class="qn">2</span>雙三角錐(5 群)中,孤對電子會優先占據哪個位置?<br><span class="opt">A 軸向</span><span class="opt">B 赤道</span><span class="opt">C 隨機</span><span class="opt">D 兩者能量相同</span></div>
+  <div class="q"><span class="qn">3</span>為什麼四面體在紙上常被畫成「十字」,而那樣畫<b>會誤導</b>?</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. C(109.5°)</span> — 正四面體的鍵角。<span class="myth">選 A 的同學被平面「十字」畫法誤導 —— 那是第 3 題要處理的。<b>CH<sub>4</sub> 的四個 H 不在同一平面上。</b></span></div><div class="row"><span class="ans">2. B(赤道)</span> — 赤道位置只有<b>兩個</b> 90° 的鄰居,軸向有<b>三個</b>。孤對互斥強,選鄰居少的位置。<span class="myth">判準永遠一樣:<b>讓最強的互斥出現得最少</b>。這條規則決定了 SF<sub>4</sub>、ClF<sub>3</sub>、XeF<sub>2</sub> 的形狀,值得記牢。</span></div><div class="row"><span class="ans">3. 因為十字看起來像 90°,實際是 109.5°</span> — 平面投影把立體角度壓扁了。<span class="myth">正確畫法是<b>兩根一般鍵 + 一根楔形(朝前) + 一根虛線(朝後)</b>。這不是美觀問題 —— 學生若腦中是十字,後面判斷分子極性(向量相加)一定出錯。</span></div></div>
+</section>
+
+<!-- 20 -->
+<section class="slide divider">
+  <div class="secnum">PART 10.3</div>
+  <h1>孤對電子與分子形狀</h1>
+  <div class="en-sub">Lone Pairs and Molecular Shapes</div>
+  <div class="items">互斥強弱順序・AX<sub>m</sub>E<sub>n</sub> 各形狀・鍵角壓縮・判斷流程與例題</div>
+</section>
+
+<!-- 21 -->
+<section class="slide">
+  <h2>孤對電子的互斥較強 <span class="en">Lone Pairs Repel More</span></h2>
+  <div class="eq">互斥強度:孤對–孤對 &gt; 孤對–鍵對 &gt; 鍵對–鍵對</div>
+  <ul>
+    <li>孤對電子只受<b>一個</b>原子核吸引 → 電子雲較「胖」、佔空間較大</li>
+    <li>結果 1:孤對會<span class="hl">壓縮</span>相鄰的鍵角</li>
+    <li>結果 2:在不等價位置中,孤對優先占<span class="hl">互斥較小</span>的位置(雙三角錐的赤道、八面體的對位)</li>
+  </ul>
+</section>
+
+<!-- 22 -->
+<section class="slide">
+  <h2>3 群含孤對:AX<sub>2</sub>E 角形 <span class="en">Bent (from Trigonal Planar)</span></h2>
+  <div class="two-col">
+    <div>
+      <ul>
+        <li>電子群幾何:平面三角(3 群)</li>
+        <li>分子形狀:<span class="hl">角形 (bent)</span></li>
+        <li>鍵角略小於 120°(孤對壓縮)</li>
+        <li>例:SO<sub>2</sub>(119°)、O<sub>3</sub>、NO<sub>2</sub><sup>−</sup></li>
+      </ul>
+    </div>
+    <div>
+      <div class="fbox" style="font-size:24px">&nbsp;&nbsp;E(孤對)<br>&nbsp;&nbsp;&nbsp;&nbsp;A<br>&nbsp;&nbsp;╱&nbsp;&nbsp;╲<br>X&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X<br><span class="small">形狀只看 X:角形,&lt;120°</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 23 -->
+<section class="slide">
+  <h2>4 群含孤對:AX<sub>3</sub>E 與 AX<sub>2</sub>E<sub>2</sub> <span class="en">Trigonal Pyramidal &amp; Bent</span></h2>
+  <div class="two-col">
+    <div>
+      <h3>AX<sub>3</sub>E:三角錐</h3>
+      <ul>
+        <li>trigonal pyramidal</li>
+        <li>例:NH<sub>3</sub>(107°)、PCl<sub>3</sub>、H<sub>3</sub>O<sup>+</sup></li>
+        <li>N 在頂點、3 個 H 為底面</li>
+      </ul>
+    </div>
+    <div>
+      <h3>AX<sub>2</sub>E<sub>2</sub>:角形</h3>
+      <ul>
+        <li>bent / angular</li>
+        <li>例:H<sub>2</sub>O(104.5°)、H<sub>2</sub>S、OF<sub>2</sub></li>
+        <li>2 孤對壓縮更多 → 角度更小</li>
+      </ul>
+    </div>
+  </div>
+  <div class="box key"><span class="tag">重點</span>兩者的<b>電子群幾何都是四面體</b>;拿掉孤對後「看得見的形狀」不同。</div>
+</section>
+
+<!-- 24 -->
+<section class="slide">
+  <h2>孤對電子壓縮鍵角 <span class="en">Bond Angle Compression</span></h2>
+  <table>
+    <tr><th>分子</th><th>記號</th><th>孤對數</th><th>實測鍵角</th></tr>
+    <tr><td>CH<sub>4</sub></td><td>AX<sub>4</sub></td><td>0</td><td>109.5°</td></tr>
+    <tr><td>NH<sub>3</sub></td><td>AX<sub>3</sub>E</td><td>1</td><td>107°</td></tr>
+    <tr><td>H<sub>2</sub>O</td><td>AX<sub>2</sub>E<sub>2</sub></td><td>2</td><td>104.5°</td></tr>
+  </table>
+  <div class="box key"><span class="tag">趨勢</span>同為 4 群:孤對每多一對,鍵角再被壓小 2–3° — 這組數字(109.5 → 107 → 104.5)是必背經典!</div>
+</section>
+
+<!-- 25 -->
+<section class="slide">
+  <h2>多重鍵也會壓縮鄰角 <span class="en">Multiple Bonds Occupy More Space</span></h2>
+  <ul>
+    <li>多重鍵電子密度高、較「胖」→ 互斥略強於單鍵(效應類似孤對)</li>
+    <li>甲醛 H<sub>2</sub>C=O(3 群、平面三角):理想 120°,實測 H–C–H 僅 <span class="hl">116°</span>、H–C=O 為 122°</li>
+    <li>互斥強度總排序:孤對 &gt; 多重鍵 &gt; 單鍵</li>
+  </ul>
+  <div class="box key"><span class="tag">應用</span>考題若問「實際鍵角與理想值的偏差」,先找孤對,再找多重鍵 — 兩者都會把其餘鍵角壓小。</div>
+</section>
+
+<!-- 26 -->
+<section class="slide">
+  <h2>判斷分子形狀的流程 <span class="en">Procedure for Predicting Shapes</span></h2>
+  <div class="flow">
+    <div class="fbox"><b>① 畫 Lewis 結構</b>(第 10–11 週的方法)</div>
+    <div class="arrow">↓</div>
+    <div class="fbox"><b>② 數中心原子電子群數</b>(多重鍵算 1 群)→ 決定電子群幾何</div>
+    <div class="arrow">↓</div>
+    <div class="fbox"><b>③ 寫出 AX<sub>m</sub>E<sub>n</sub></b>(區分鍵結原子與孤對)</div>
+    <div class="arrow">↓</div>
+    <div class="fbox"><b>④ 放置孤對</b>(5 群→赤道;6 群 2 孤對→對位)→ 讀出分子形狀與鍵角</div>
+  </div>
+</section>
+
+<!-- 27 -->
+<section class="slide">
+  <h2>例題 2:SF<sub>4</sub> 的形狀 <span class="en">Example 2</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>預測 SF<sub>4</sub> 的電子群幾何與分子形狀。
+  <div class="sol"><b>解:</b><br>
+  ① Lewis:價電子 6 + 4(7) = 34;4 個 S–F 鍵 + 各 F 三對孤對,剩 1 對放 S 上(S 有 10e,擴充八隅體)<br>
+  ② S 的電子群:4 鍵 + 1 孤對 = <span class="hl">5 群</span> → 電子群幾何:<span class="hl">雙三角錐</span><br>
+  ③ 記號:AX<sub>4</sub>E<br>
+  ④ 孤對放赤道 → 分子形狀:<span class="hl">蹺蹺板形 (seesaw)</span><br>
+  鍵角:略小於 90°(軸向 F)與 120°(赤道 F)。</div></div>
+</section>
+
+<!-- 28 -->
+<section class="slide">
+  <h2>例題 3:ClF<sub>3</sub> 與 XeF<sub>2</sub> <span class="en">Example 3</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>預測 ClF<sub>3</sub> 與 XeF<sub>2</sub> 的分子形狀。
+  <div class="sol"><b>解:</b><br>
+  <b>ClF<sub>3</sub></b>:價電子 7 + 21 = 28;3 鍵 + 中心 Cl 上 2 孤對 = 5 群 → 雙三角錐幾何,AX<sub>3</sub>E<sub>2</sub>;<br>
+  2 孤對占赤道 → <span class="hl">T 形</span>(F–Cl–F 約 87.5°,略小於 90°)<br>
+  <b>XeF<sub>2</sub></b>:價電子 8 + 14 = 22;2 鍵 + 中心 Xe 上 3 孤對 = 5 群 → AX<sub>2</sub>E<sub>3</sub>;<br>
+  3 孤對佔滿赤道 → 2 個 F 在軸向 → <span class="hl">直線形</span>(180°)</div></div>
+</section>
+
+<!-- 29 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ③:孤對與分子形狀 <span class="en">Quick Check 3</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>H<sub>2</sub>O 的鍵角(104.5°)比 CH<sub>4</sub>(109.5°)小,原因是?<br><span class="opt">A 氧比碳小</span><span class="opt">B 兩對孤對的互斥把鍵角壓小</span><span class="opt">C 氫比較輕</span><span class="opt">D 水是極性分子</span></div>
+  <div class="q"><span class="qn">2</span>SF<sub>4</sub>(AX<sub>4</sub>E)的分子形狀是?<br><span class="opt">A 四面體</span><span class="opt">B 蹺蹺板 (seesaw)</span><span class="opt">C 平面四方</span><span class="opt">D 雙三角錐</span></div>
+  <div class="q"><span class="qn">3</span>CO<sub>2</sub> 與 H<sub>2</sub>O 都是三原子分子,<b>為什麼一個直線、一個彎曲?</b></div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B</span> — 互斥強度:<b>孤對–孤對 &gt; 孤對–成鍵 &gt; 成鍵–成鍵</b>。<span class="myth">NH<sub>3</sub>(一對孤對)107°、H<sub>2</sub>O(兩對)104.5° —— <b>孤對越多,鍵角被壓得越小</b>,這個遞減順序本身就是證據。</span></div><div class="row"><span class="ans">2. B(蹺蹺板)</span> — 5 群 → 雙三角錐骨架;孤對占赤道,剩下 4 個原子呈蹺蹺板。<span class="myth">選 A 的同學數了原子數卻忘了孤對。<b>先數電子群定骨架,再扣掉孤對看形狀</b> —— 兩步驟不能跳。</span></div><div class="row"><span class="ans">3. 因為中心原子的孤對數不同</span> — CO<sub>2</sub> 的 C 有 <b>2 群、0 孤對</b> → 直線;H<sub>2</sub>O 的 O 有 <b>4 群、2 孤對</b> → 角形。<span class="myth"><b>原子數相同不代表形狀相同</b> —— 決定形狀的是電子群數與孤對數,不是原子數。這個判斷直接接到下一節的分子極性:同樣三原子,一個沒極性、一個是極性的代表。</span></div></div>
+</section>
+
+<!-- 30 -->
+<section class="slide divider">
+  <div class="secnum">PART 10.4</div>
+  <h1>分子極性</h1>
+  <div class="en-sub">Molecular Polarity and Dipole Moment</div>
+  <div class="items">鍵偶極・偶極矩・對稱抵消原則・極性與物性</div>
+</section>
+
+<!-- 31 -->
+<section class="slide">
+  <h2>鍵偶極與分子偶極矩 <span class="en">Bond Dipoles and Dipole Moment</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>鍵偶極 (bond dipole)</b>:極性鍵上的電荷分離,是向量(由 δ+ 指向 δ−)。<br><b>分子偶極矩 (dipole moment, μ)</b>:整個分子所有鍵偶極的<b>向量和</b>,單位:德拜 (Debye, D)。</div>
+  <ul>
+    <li>μ ≠ 0 → <b>極性分子 (polar molecule)</b>;μ = 0 → <b>非極性分子</b></li>
+    <li>判斷分子極性需要兩個資訊:<span class="hl">鍵是否極性</span> + <span class="hl">分子形狀</span></li>
+  </ul>
+</section>
+
+<!-- 32 -->
+<section class="slide">
+  <h2>對稱抵消原則 <span class="en">Symmetry and Cancellation</span></h2>
+  <ul>
+    <li>相同的端原子<b>對稱</b>分布於中心原子周圍 → 鍵偶極向量和為 0 → 非極性</li>
+    <li>會完全抵消的形狀:<span class="hlb">直線 AX<sub>2</sub>、平面三角 AX<sub>3</sub>、四面體 AX<sub>4</sub>、雙三角錐 AX<sub>5</sub>、八面體 AX<sub>6</sub>、平面四方 AX<sub>4</sub>E<sub>2</sub>、直線 AX<sub>2</sub>E<sub>3</sub></span>(端原子皆相同時)</li>
+    <li>破壞對稱的兩種方式:① 中心原子有「不對稱」孤對&nbsp;&nbsp;② 端原子不全相同</li>
+  </ul>
+  <div class="box key"><span class="tag">口訣</span>「形狀對稱 + 端原子相同 → 非極性;其餘 → 極性」。</div>
+</section>
+
+<!-- 33 -->
+<section class="slide">
+  <h2>經典對比:CO<sub>2</sub> vs H<sub>2</sub>O <span class="en">CO<sub>2</sub> vs. H<sub>2</sub>O</span></h2>
+  <div class="two-col">
+    <div>
+      <h3>CO<sub>2</sub>:非極性</h3>
+      <ul>
+        <li>C=O 鍵有極性(ΔEN = 1.0)</li>
+        <li>但直線形 O=C=O,兩鍵偶極<b>等大反向</b></li>
+        <li>向量和 = 0 → <span class="hl">μ = 0</span></li>
+      </ul>
+      <div class="fbox">←δ− O=C=O δ−→<br><span class="small">兩箭頭抵消</span></div>
+    </div>
+    <div>
+      <h3>H<sub>2</sub>O:極性</h3>
+      <ul>
+        <li>O–H 鍵極性大(ΔEN = 1.4)</li>
+        <li>角形 104.5°,兩鍵偶極<b>不反向</b></li>
+        <li>合成向量指向 O → <span class="hl">μ = 1.85 D</span></li>
+      </ul>
+      <div class="fbox">&nbsp;&nbsp;&nbsp;Ö&nbsp;←合力<br>&nbsp;╱&nbsp;&nbsp;╲<br>H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;H<br><span class="small">兩箭頭合成不為零</span></div>
+    </div>
+  </div>
+  <p class="small">「有極性鍵」不代表「是極性分子」— 形狀決定是否抵消。</p>
+</section>
+
+<!-- 34 -->
+<section class="slide">
+  <h2>判斷分子極性的流程 <span class="en">Procedure for Predicting Polarity</span></h2>
+  <div class="flow">
+    <div class="fbox"><b>① 各鍵是否為極性鍵?</b>(ΔEN &gt; 0.4)</div>
+    <div class="arrow">↓ 全為非極性鍵 → 分子非極性;含極性鍵 → 續判</div>
+    <div class="fbox"><b>② 用 VSEPR 定出分子形狀</b></div>
+    <div class="arrow">↓</div>
+    <div class="fbox"><b>③ 鍵偶極向量相加</b>:形狀對稱且端原子全相同 → 抵消</div>
+    <div class="arrow">↓</div>
+    <div class="frow">
+      <div class="fbox">向量和 = 0<br><span class="small">非極性分子</span></div>
+      <div class="fbox">向量和 ≠ 0<br><span class="small">極性分子</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 35 -->
+<section class="slide">
+  <h2>例題 7:CCl<sub>4</sub> 與 CHCl<sub>3</sub> <span class="en">Example 7</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>判斷 CCl<sub>4</sub>(四氯化碳)與 CHCl<sub>3</sub>(氯仿)是否為極性分子。
+  <div class="sol"><b>解:</b>兩者皆為四面體(4 群、AX<sub>4</sub> 型):<br>
+  <b>CCl<sub>4</sub></b>:4 個相同的 C–Cl 鍵偶極呈完美四面體對稱 → 向量和 = 0 → <span class="hl">非極性</span><br>
+  <b>CHCl<sub>3</sub></b>:1 個 C–H 取代了 C–Cl,對稱被破壞 → 鍵偶極無法抵消 → <span class="hl">極性</span>(μ = 1.04 D),偶極指向 Cl<sub>3</sub> 端<br>
+  <span class="small">通則:AX<sub>4</sub> 型中端原子只要「不全相同」幾乎必為極性。</span></div></div>
+</section>
+
+<!-- 36 -->
+<section class="slide">
+  <h2>例題 8:綜合判斷極性 <span class="en">Example 8</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>判斷下列分子是否為極性:(a) BF<sub>3</sub>&nbsp;&nbsp;(b) NH<sub>3</sub>&nbsp;&nbsp;(c) XeF<sub>4</sub>&nbsp;&nbsp;(d) SF<sub>4</sub>
+  <div class="sol"><b>解:</b>先定形狀,再看對稱:<br>
+  (a) BF<sub>3</sub>:平面三角 AX<sub>3</sub>,3 個相同鍵偶極互成 120° 抵消 → <span class="hl">非極性</span><br>
+  (b) NH<sub>3</sub>:三角錐 AX<sub>3</sub>E,3 個 N–H 偶極同指向下方合成 → <span class="hl">極性</span>(μ = 1.47 D)<br>
+  (c) XeF<sub>4</sub>:平面四方 AX<sub>4</sub>E<sub>2</sub>,4 個鍵偶極兩兩對消、2 孤對對位 → <span class="hl">非極性</span><br>
+  (d) SF<sub>4</sub>:蹺蹺板 AX<sub>4</sub>E,孤對造成不對稱 → <span class="hl">極性</span></div></div>
+</section>
+
+<!-- 37 -->
+<section class="slide">
+  <h2>極性與物理性質 <span class="en">Polarity and Physical Properties</span></h2>
+  <ul>
+    <li>極性分子之間有<b>偶極–偶極吸引力</b> → 沸點通常較同大小的非極性分子高</li>
+    <li>「<span class="hlb">同類互溶 (like dissolves like)</span>」:極性溶質溶於極性溶劑(水),非極性溶質溶於非極性溶劑(己烷)</li>
+    <li>實驗現象:帶電棒可偏折極性液體(水)的細流,對非極性液體(己烷)無效</li>
+    <li>微波爐加熱:利用 H<sub>2</sub>O 分子偶極隨電場翻轉</li>
+  </ul>
+  <div class="box key"><span class="tag">預告</span>分子間作用力(倫敦分散力、偶極–偶極力、氫鍵)將於<span class="hl">第 11 週</span>「液體與固體」(Ch.10)完整討論。</div>
+</section>
+
+<!-- 38 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ④:分子極性 <span class="en">Quick Check 4</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>CO<sub>2</sub> 有兩個極性鍵,整個分子卻<b>沒有極性</b>。為什麼?<br><span class="opt">A 兩個鍵都不極性</span><span class="opt">B 直線對稱,兩個偶極大小相等方向相反而抵消</span><span class="opt">C 碳沒有電負度</span><span class="opt">D 氧太多</span></div>
+  <div class="q"><span class="qn">2</span>下列何者是<b>極性分子</b>?<br><span class="opt">A CCl<sub>4</sub></span><span class="opt">B CO<sub>2</sub></span><span class="opt">C CHCl<sub>3</sub></span><span class="opt">D BF<sub>3</sub></span></div>
+  <div class="q"><span class="qn">3</span>反式脂肪與順式脂肪的化學式可以完全相同,物理性質卻差很多。<b>用形狀解釋</b>。</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B</span> — 偶極是<b>向量</b>,方向相反時相加為零。<span class="myth">所以判斷分子極性一定是兩步:<b>先看鍵有沒有極性,再看形狀會不會抵消</b>。少了第二步,CO<sub>2</sub>、CCl<sub>4</sub>、BF<sub>3</sub> 全部會判錯。</span></div><div class="row"><span class="ans">2. C(CHCl<sub>3</sub>)</span> — A、B、D 都是<b>對稱</b>結構,偶極互相抵消;CHCl<sub>3</sub> 少了一個 Cl,對稱被破壞。<span class="myth">從 CCl<sub>4</sub> 到 CHCl<sub>3</sub> 只換掉一個原子,分子就從非極性變極性 —— <b>對稱性是關鍵,不是鍵的數目。</b></span></div><div class="row"><span class="ans">3. 因為順式雙鍵讓碳鏈折彎</span> — 反式接近直鏈,分子能<b>緊密堆疊</b> → 分子間接觸面積大 → 作用力強 → 熔點高(室溫固態);順式折彎,堆不緊 → 熔點低(室溫液態)。<span class="myth"><b>同樣的原子、同樣的鍵,形狀不同就是不同的物質。</b>這也是為什麼營養標示要分順式與反式 —— 形狀直接影響它在人體內的行為。</span></div></div>
+</section>
+
+<!-- 39 -->
+<section class="slide divider">
+  <div class="secnum">PART 10.5</div>
+  <h1>共振</h1>
+  <div class="en-sub">Resonance</div>
+  <div class="items">電子離域・共振結構・共振混成體・鍵級與實測鍵長</div>
+</section>
+
+<!-- 40 -->
+<section class="slide">
+  <h2>共振的概念 <span class="en">Concept of Resonance</span></h2>
+  <div class="box def"><span class="tag">定義</span>當一個分子/離子可畫出<b>兩個以上僅電子位置不同</b>(原子位置相同)的合理 Lewis 結構時,這些結構稱為<b>共振結構 (resonance structures)</b>,以雙箭頭 ↔ 連接。</div>
+  <ul>
+    <li>真實分子是所有共振結構的<b>平均</b>:<span class="hl">共振混成體 (resonance hybrid)</span></li>
+    <li>本質:電子(通常是 π 電子)<b>離域 (delocalization)</b> 分布在多個原子間</li>
+    <li>離域使能量降低 → 共振使分子<b>更穩定</b></li>
+  </ul>
+<svg class="fig" role="img" aria-labelledby="w11f1-t w11f1-d" width="1000" height="200" viewBox="0 0 1000 200" xmlns="http://www.w3.org/2000/svg">
+        <title id="w11f1-t">臭氧的共振與真實結構</title>
+        <desc id="w11f1-d">臭氧的兩個共振結構分別把雙鍵畫在左邊或右邊，兩者以雙箭頭相連。真實的臭氧不是兩者的混合物，也不會在兩者之間跳動，而是兩個等長、鍵級各為 1.5 的鍵所構成的單一結構。</desc>
+        <defs><marker id="w11f1-rz" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2c3e50"/></marker></defs>
+        <line x1="68" y1="100" x2="126" y2="62" stroke="#2c3e50" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="126" y1="62" x2="184" y2="100" stroke="#2c3e50" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="74" y1="91" x2="119" y2="70" stroke="#2c3e50" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="68" cy="100" r="17" fill="#fff" stroke="#1f5f8b" stroke-width="2.4"/>
+        <text x="68" y="106" font-size="18" fill="#1f5f8b" text-anchor="middle" font-weight="700">O</text>
+        <circle cx="126" cy="62" r="17" fill="#fff" stroke="#1f5f8b" stroke-width="2.4"/>
+        <text x="126" y="68" font-size="18" fill="#1f5f8b" text-anchor="middle" font-weight="700">O</text>
+        <circle cx="184" cy="100" r="17" fill="#fff" stroke="#1f5f8b" stroke-width="2.4"/>
+        <text x="184" y="106" font-size="18" fill="#1f5f8b" text-anchor="middle" font-weight="700">O</text>
+        <line x1="302" y1="100" x2="360" y2="62" stroke="#2c3e50" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="360" y1="62" x2="418" y2="100" stroke="#2c3e50" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="367" y1="70" x2="412" y2="91" stroke="#2c3e50" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="302" cy="100" r="17" fill="#fff" stroke="#1f5f8b" stroke-width="2.4"/>
+        <text x="302" y="106" font-size="18" fill="#1f5f8b" text-anchor="middle" font-weight="700">O</text>
+        <circle cx="360" cy="62" r="17" fill="#fff" stroke="#1f5f8b" stroke-width="2.4"/>
+        <text x="360" y="68" font-size="18" fill="#1f5f8b" text-anchor="middle" font-weight="700">O</text>
+        <circle cx="418" cy="100" r="17" fill="#fff" stroke="#1f5f8b" stroke-width="2.4"/>
+        <text x="418" y="106" font-size="18" fill="#1f5f8b" text-anchor="middle" font-weight="700">O</text>
+        <line x1="222" y1="78" x2="264" y2="78" stroke="#2c3e50" stroke-width="2.5" marker-start="url(#w11f1-rz)" marker-end="url(#w11f1-rz)"/>
+        <text x="243" y="148" font-size="18" fill="#5a6a6b" text-anchor="middle" font-weight="700">共振結構（紙上的兩種畫法）</text>
+        <line x1="520" y1="20" x2="520" y2="160" stroke="#d5dbdb" stroke-width="2" stroke-linecap="round" stroke-dasharray="7 6"/>
+        <line x1="642" y1="100" x2="700" y2="62" stroke="#117a65" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="662.6242100584869" y1="96.05168903663802" x2="688.1442100584869" y2="79.33168903663802" stroke="#117a65" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="5 4"/>
+        <line x1="700" y1="62" x2="758" y2="100" stroke="#117a65" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="711.8557899415131" y1="79.33168903663802" x2="737.3757899415131" y2="96.05168903663802" stroke="#117a65" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="5 4"/>
+        <circle cx="642" cy="100" r="17" fill="#fff" stroke="#117a65" stroke-width="2.4"/>
+        <text x="642" y="106" font-size="18" fill="#117a65" text-anchor="middle" font-weight="700">O</text>
+        <circle cx="700" cy="62" r="17" fill="#fff" stroke="#117a65" stroke-width="2.4"/>
+        <text x="700" y="68" font-size="18" fill="#117a65" text-anchor="middle" font-weight="700">O</text>
+        <circle cx="758" cy="100" r="17" fill="#fff" stroke="#117a65" stroke-width="2.4"/>
+        <text x="758" y="106" font-size="18" fill="#117a65" text-anchor="middle" font-weight="700">O</text>
+        <text x="700" y="148" font-size="18" fill="#117a65" text-anchor="middle" font-weight="700">真實結構：兩鍵等長，鍵級 1.5</text>
+        <text x="700" y="176" font-size="17" fill="#c0392b" text-anchor="middle" font-weight="700">不是混合物，也不會來回跳動</text>
+        <text x="243" y="176" font-size="17" fill="#5a6a6b" text-anchor="middle">只是人類記號的限制</text>
+      </svg>
+</section>
+
+<!-- 41 -->
+<section class="slide">
+  <h2>畫共振結構的規則 <span class="en">Rules for Drawing Resonance Structures</span></h2>
+  <ul>
+    <li>只能移動<span class="hl">電子</span>(通常是 π 電子與孤對電子),<b>原子位置不可動</b></li>
+    <li>每個共振結構都必須是<b>合理的 Lewis 結構</b>(電子數正確、八隅體規則)</li>
+    <li>各結構的<b>總電荷相同</b>、未成對電子數相同</li>
+    <li>以雙箭頭 <b>↔</b> 連接(注意:不是平衡符號 ⇌!)</li>
+  </ul>
+  <div class="box warn"><span class="tag">辨析</span>↔ 表示「同一物種的不同畫法」;⇌ 表示「兩種真實物種之間的動態平衡」。移動了原子就不是共振,而是異構物或不同反應。</div>
+</section>
+
+<!-- 42 -->
+<section class="slide">
+  <h2>例題 3:O<sub>3</sub> 的共振結構 <span class="en">Example 3</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>畫出臭氧 O<sub>3</sub>(18 電子)的共振結構,並預測兩個 O–O 鍵的鍵長關係。
+  <div class="sol"><b>解:</b>骨架 O–O–O,依五步驟得中心 O 不足八隅體 → 造一個雙鍵,雙鍵可在左或右:<br>
+  <div class="eq">:Ö–Ö=Ö: &nbsp;↔&nbsp; :Ö=Ö–Ö:</div>
+  兩結構能量相同、貢獻相等 → 真實 O<sub>3</sub> 是兩者的混成:<br>
+  兩鍵完全等價,鍵級 = (1+2)/2 = <span class="hl">1.5</span>;實測兩鍵皆為 <span class="hl">128 pm</span>,介於 O–O 單鍵(148 pm)與 O=O 雙鍵(121 pm)之間 ✓</div></div>
+</section>
+
+<!-- 43 -->
+<section class="slide">
+  <h2>例題 4:NO<sub>3</sub><sup>−</sup> 與 CO<sub>3</sub><sup>2−</sup> 的共振 <span class="en">Example 4</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>NO<sub>3</sub><sup>−</sup>(24 電子)與 CO<sub>3</sub><sup>2−</sup>(24 電子)各有幾個共振結構?鍵級各為何?
+  <div class="sol"><b>解:</b>兩者結構同型:中心原子接 3 個 O,其中 1 個雙鍵、2 個單鍵。<br>
+  雙鍵可放在 3 個 O 的任一個 → 各有 <span class="hl">3 個共振結構</span>。<br>
+  鍵級 = 總鍵數 ÷ 鍵的位置數 = (2+1+1)/3 = <span class="hl">4/3 ≈ 1.33</span><br>
+  預測:三個鍵完全等長,長度介於單鍵與雙鍵之間 — 與實驗相符(NO<sub>3</sub><sup>−</sup> 三鍵皆 124 pm)。</div></div>
+</section>
+
+<!-- 44 -->
+<section class="slide">
+  <h2>鍵級與實測鍵長 <span class="en">Bond Order and Bond Length</span></h2>
+  <div class="eq">平均鍵級 = 該位置的總鍵數 ÷ 等價位置數</div>
+  <table>
+    <tr><th>物種</th><th>共振結構數</th><th>平均鍵級</th><th>實測鍵長</th></tr>
+    <tr><td>O<sub>3</sub></td><td>2</td><td>1.5</td><td>128 pm(兩鍵等長)</td></tr>
+    <tr><td>NO<sub>3</sub><sup>−</sup></td><td>3</td><td>1.33</td><td>124 pm(三鍵等長)</td></tr>
+    <tr><td>C<sub>6</sub>H<sub>6</sub> 苯</td><td>2</td><td>1.5</td><td>139 pm(六鍵等長)</td></tr>
+  </table>
+  <p class="small">「所有等價鍵等長」是共振(離域)最直接的實驗證據。</p>
+</section>
+
+<!-- 45 -->
+<section class="slide">
+  <h2>共振的常見誤解 <span class="en">Misconceptions about Resonance</span></h2>
+  <div class="box warn"><span class="tag">誤解 1</span>「分子在各共振結構之間快速跳動」— 錯!真實分子<b>永遠只有一種</b>結構(混成體),不會來回變換。</div>
+  <div class="box warn"><span class="tag">誤解 2</span>「共振結構是真實存在的異構物」— 錯!單一共振結構只是<b>紙上的近似</b>,混成體才接近真實。</div>
+  <div class="box key"><span class="tag">比喻</span>騾 = 馬與驢的「混成」:騾不是一下當馬、一下當驢;馬和驢也各自不是騾。共振混成體亦然。</div>
+</section>
+
+<!-- 46 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ⑤:共振 <span class="en">Quick Check 5</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>O<sub>3</sub> 有兩個共振結構。真實的臭氧分子是?<br><span class="opt">A 兩種結構各半的混合物</span><span class="opt">B 在兩種結構間快速跳動</span><span class="opt">C 兩鍵等長的單一結構</span><span class="opt">D 一長一短兩種鍵</span></div>
+  <div class="q"><span class="qn">2</span>NO<sub>3</sub><sup>−</sup> 有三個共振結構,其 N–O 鍵級為?<br><span class="opt">A 1</span><span class="opt">B 1.33</span><span class="opt">C 1.5</span><span class="opt">D 2</span></div>
+  <div class="q"><span class="qn">3</span>如果共振只是「紙上的畫法」,<b>那為什麼實測鍵長真的介於單鍵與雙鍵之間?</b></div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. C</span> — 真實結構是<b>單一的共振混成體</b>,兩個 O–O 鍵完全等長。<span class="myth">選 A/B 是最頑固的兩個迷思。<b>共振不是混合物,也不是快速切換</b> —— 分子隨時都是那一個結構,只是我們的 Lewis 記號畫不出來。就像騾不是「一下是馬一下是驢」。</span></div><div class="row"><span class="ans">2. B(1.33)</span> — 4 個成鍵電子對分給 3 個 N–O 位置 → 4/3 ≈ 1.33。<span class="myth">算法:<b>總鍵數 ÷ 位置數</b>。O<sub>3</sub> 是 3/2 = 1.5、NO<sub>3</sub><sup>−</sup> 是 4/3。鍵級能直接預測鍵長排序,是很好用的檢查。</span></div><div class="row"><span class="ans">3. 因為電子確實是離域的</span> — 實驗看到的等長鍵,正說明電子<b>不是定域在某兩個原子之間</b>,而是散布在整個分子骨架上。<span class="myth">所以「共振是紙上的畫法」這句話要講清楚:<b>限制在人類的記號系統,不在自然界</b>。分子沒有問題,是 Lewis 結構這套語言不夠用。</span></div></div>
+</section>
+
+<!-- 47 -->
+<section class="slide divider">
+  <div class="secnum">PART 10.6</div>
+  <h1>光、共軛與顏色</h1>
+  <div class="en-sub">Light, Conjugation and Color</div>
+  <div class="items">為什麼分子會有顏色・共軛長度・Beer–Lambert 定律</div>
+</section>
+
+<!-- 48 -->
+<section class="slide">
+  <h2>分子為什麼會有顏色 <span class="en">Why Molecules Are Colored</span></h2>
+  <ul>
+    <li>分子吸收特定波長的光,把電子從低能階激發到高能階</li>
+    <li>我們看到的顏色,是<b>沒有被吸收</b>的那些光 → 吸收色的<b>互補色</b></li>
+    <li>吸收的波長由<b>能階差</b>決定:能階差越<b>小</b>,吸收的波長越<b>長</b></li>
+  </ul>
+  <table><tr><th>吸收的波長</th><th>吸收的顏色</th><th>看起來是</th></tr><tr><td>400–430 nm</td><td>紫</td><td>黃綠</td></tr><tr><td>430–480 nm</td><td><b>藍</b></td><td><b>橙黃</b></td></tr><tr><td>480–560 nm</td><td>綠</td><td>紅紫</td></tr><tr><td>560–620 nm</td><td>黃</td><td>藍</td></tr></table>
+<div class="box key"><span class="tag">所以「橙色」的意思是</span>這個分子把<b>藍光</b>吸走了。下一張要問:什麼樣的結構會剛好吸收藍光?</div>
+</section>
+
+<!-- 49 -->
+<section class="slide">
+  <h2>共軛系統:顏色的來源 <span class="en">Conjugation</span></h2>
+  <p><b>共軛</b>= 單雙鍵交替,π 電子在整段骨架上<b>離域</b>。共軛越<b>長</b> → 能階差越<b>小</b> → 吸收波長越<b>長</b>;短共軛只吸紫外光(無色),夠長才吸到可見光。</p>
+  <table><tr><th>色素</th><th>共軛雙鍵數</th><th>吸收峰</th><th>顏色</th></tr><tr><td>β-胡蘿蔔素</td><td><b>11</b></td><td>約 450 nm(藍)</td><td><b>橙</b></td></tr><tr><td>茄紅素</td><td>11</td><td>約 470 nm</td><td>紅</td></tr><tr><td>葉綠素 a</td><td>大環共軛 + Mg<sup>2+</sup></td><td>430 / 660 nm</td><td>綠</td></tr><tr><td>花青素</td><td>隨 pH 改變共軛</td><td>隨 pH 移動</td><td>紅↔紫↔藍</td></tr></table>
+<div class="box def"><span class="tag">接得起來了嗎</span>這正是第 14 週紫甘藍指示劑的原理:<b>pH 改變共軛 → 改變吸收波長 → 改變顏色。</b></div>
+</section>
+
+<!-- 50 -->
+<section class="slide">
+  <h2>煮久了為什麼變色 <span class="en">Why Cooking Changes Color</span></h2>
+  <table><tr><th>現象</th><th>分子發生什麼事</th><th>對策</th></tr><tr><td>綠色蔬菜煮久變<b>橄欖褐</b></td><td>酸使葉綠素的 <b>Mg<sup>2+</sup> 被 H<sup>+</sup> 取代</b> → 脫鎂葉綠素</td><td>快速汆燙、不加蓋(讓有機酸揮發)</td></tr><tr><td>胡蘿蔔素久煮<b>褪色</b></td><td>順反異構化與<b>氧化裂解</b>,共軛被切斷</td><td>縮短加熱、避免與空氣接觸</td></tr><tr><td>紫甘藍遇酸變<b>紅</b>、遇鹼變<b>藍綠</b></td><td>花青素的結構隨 pH 改變 → 共軛改變</td><td>(這是可逆的,而且被拿來當指示劑)</td></tr><tr><td>蝦蟹煮熟變<b>紅</b></td><td>蝦紅素原本被蛋白質包住呈藍灰,加熱使蛋白質<b>變性</b>釋出色素</td><td>(這是想要的變化)</td></tr></table>
+<div class="box key"><span class="tag">共同的邏輯</span>顏色改變 = <b>共軛系統或它的環境被改變了</b>。不論是被酸、被氧、被熱,問題都回到同一個地方。</div>
+</section>
+
+<!-- 51 -->
+<section class="slide">
+  <h2>Beer–Lambert 定律 <span class="en">The Beer–Lambert Law</span></h2>
+  <div class="eq">A = ε b c　　(A = 吸光度、ε = 莫耳吸光係數、b = 光徑、c = 濃度)</div>
+  <ul>
+    <li>吸光度 <b>A 與濃度 c 成正比</b> → 可以用來<b>定量</b></li>
+    <li>做法:配一系列已知濃度 → 量 A → 畫<b>檢量線</b> → 由未知樣品的 A 反推 c</li>
+    <li>ε 是物質的特徵,與波長有關 → 所以要選在<b>吸收峰</b>的波長量</li>
+    <li>適用範圍有限:濃度太高時偏離直線(分子間開始互相影響)</li>
+  </ul>
+<div class="box def"><span class="tag">為什麼食品分析離不開它</span>總酚、花青素、鐵、磷、蛋白質(Bradford 法)、還原糖(DNS 法)——這些例行檢驗幾乎全是比色法。<b>這條式子是分析化學實驗課的日常。</b></div>
+</section>
+
+<!-- 52 -->
+<section class="slide">
+  <h2>例題:用檢量線定量 <span class="en">Example: A Calibration Curve</span></h2>
+  <p>以 450 nm 測 β-胡蘿蔔素,檢量線為 <b>A = 0.196 c</b>(c 的單位為 μg/mL,光徑 1.00 cm)。某胡蘿蔔萃取液稀釋 20 倍後測得 A = 0.412。原液的濃度是多少?</p>
+  <div class="sol"><b>解答:</b><br>稀釋液:c = 0.412 ÷ 0.196 = <b>2.10 μg/mL</b><br>原液:2.10 × 20 = <span class="hl">42.0 μg/mL</span><br><b>兩個最常見的錯誤:</b><br>① <b>忘記乘回稀釋倍數</b>——量到的是稀釋液,不是原液。<br>② 在吸光度太高(A &gt; 1.5)時仍直接代入——<b>超出線性範圍要先稀釋再測</b>,不能硬算。<br><b>為什麼要稀釋到 A 落在 0.2–0.8:</b>太低訊號淹在雜訊裡,太高則偏離線性。這與滴定要控制在適當體積是同一種思路。</div>
+</section>
+
+<!-- 53 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ⑥:共軛、顏色與比色定量 <span class="en">Quick Check 6</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>β-胡蘿蔔素看起來是橙色,代表它主要吸收哪一種光?<br><span class="opt">A 橙光</span><span class="opt">B 藍光</span><span class="opt">C 紅光</span><span class="opt">D 不吸收任何光</span></div>
+  <div class="q"><span class="qn">2</span>兩個色素分子,A 有 5 個共軛雙鍵、B 有 11 個。下列何者<b>正確</b>?<br><span class="opt">A A 吸收的波長較長</span><span class="opt">B B 吸收的波長較長,能階差較小</span><span class="opt">C 兩者吸收波長相同</span><span class="opt">D 共軛數與顏色無關</span></div>
+  <div class="q"><span class="qn">3</span>綠色蔬菜煮太久會變橄欖褐色。請說明分子層次發生了什麼,並提出<b>兩個</b>可以減輕的做法及其理由。</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B</span> — 看到的顏色是吸收色的互補色;橙的互補色是藍。<span class="myth">選 A 是最直覺但錯誤的答案——<b>我們看到的是「剩下來」的光,不是被吸收的光</b>。這個轉換是讀懂吸收光譜的第一步。</span></div><div class="row"><span class="ans">2. B</span> — 共軛越長,π 電子離域範圍越大,能階差越小,吸收波長越長。<span class="myth">選 A 方向弄反。記法:<b>共軛長 → 能階差小 → 波長長</b>(E = hc/λ,E 小則 λ 大)。這也是為什麼很短的共軛只吸紫外光、看起來無色。</span></div><div class="row"><span class="ans">3. 葉綠素的鎂被氫取代</span> — 加熱使細胞破裂釋出<b>有機酸</b>,H<sup>+</sup> 把葉綠素中心的 <b>Mg<sup>2+</sup> 取代</b>掉,生成脫鎂葉綠素(pheophytin),吸收光譜改變 → 橄欖褐色。<br><b>做法一:縮短加熱時間</b>(快速汆燙後冰鎮)→ 減少酸與葉綠素接觸的時間。<br><b>做法二:不加蓋</b>→ 讓揮發性有機酸逸出,鍋內 pH 不會一直下降。<span class="myth">這一題要你把<b>第 14 週的 pH</b>、<b>本週的共軛與顏色</b>與<b>加工操作</b>接起來。「不要蓋鍋蓋」是一句廚房口訣,但它背後是一個明確的化學機制——<b>知道機制,才知道它什麼時候有效。</b></span></div></div>
+</section>
+
+<!-- 54 -->
+<section class="slide hookback">
+  <h2>回到本週的錨點 <span class="en">Anchor Answered</span></h2>
+  <div class="recall"><b>第 10 週開場問的是:</b>胡蘿蔔為什麼是橙色?煮久了為什麼變色?</div>
+  <div class="ansbox">
+    <h3>用這一週的化學回答</h3>
+    <ul>
+    <li>顏色來自<b>共軛系統</b>。β-胡蘿蔔素有 <b>11 個共軛雙鍵</b>,π 電子離域範圍大、能階差小,吸收約 450 nm 的<b>藍光</b>。</li>
+    <li>我們看到的是<b>沒被吸收</b>的光 —— 藍的互補色就是<b>橙</b>。</li>
+    <li>煮久了變色,是因為<b>共軛系統或它的環境被破壞</b>:胡蘿蔔素被氧化裂解、葉綠素的 Mg<sup>2+</sup> 被酸取代成脫鎂葉綠素。</li>
+    <li>而同一條原理反過來就是<b>比色定量</b>:A = εbc 讓「顏色深淺」變成可以測量的濃度。</li>
+    </ul>
+  </div>
+  <div class="lens"><span class="lt">這個情境幫你理解的化學是</span>分子的形狀決定它<b>極不極性</b>,共軛的長度決定它<b>吸收什麼光</b>。兩者都是「電子分布在哪裡」的結果——所以顏色不是外加的裝飾,而是結構的直接證據,也因此可以拿來做定量。</div>
+  <div class="nextup"><b>接下來在哪裡會再用到:</b><span class="course">食品化學</span>天然色素的穩定性與護色　<span class="course">分析化學</span>比色法、檢量線與分光光度計　<span class="course">食品加工</span>汆燙、護色與包裝避光　<span class="course">營養學</span>類胡蘿蔔素與抗氧化營養素</div>
+</section>
+
+<!-- 55 -->
+<section class="slide">
+  <h2>本週重點總結 <span class="en">Summary</span></h2>
+  <ul>
+    <li>VSEPR:先數<b>電子群</b>,再看有幾個是孤對,才決定分子形狀</li>
+    <li><b>孤對互斥較強</b>,會壓縮鍵角(CH<sub>4</sub> 109.5° → NH<sub>3</sub> 107° → H<sub>2</sub>O 104.5°)</li>
+    <li>分子有沒有極性 = 鍵偶極的<b>向量和</b>會不會抵消 → <b>對稱就抵消</b></li>
+    <li>CO<sub>2</sub> 有極性鍵但<b>無</b>極性;H<sub>2</sub>O 兩者皆有</li>
+    <li><b>共振</b>:真實結構是混成,不是在幾個結構之間跳</li>
+    <li><b>共軛越長 → 能階差越小 → 吸收波長越長</b></li>
+    <li>看到的顏色是吸收色的<b>互補色</b></li>
+    <li>Beer–Lambert A = εbc:吸光度正比於濃度 → 比色定量的基礎</li>
+  </ul>
+<div class="box key"><span class="tag">帶走一句話</span><b>形狀決定極性,共軛決定顏色。</b>兩者都在問同一件事:電子在哪裡。</div>
+</section>
+
+<!-- 56 -->
+<section class="slide">
+  <h2>重要名詞中英對照 <span class="en">Key Terms</span></h2>
+  <table>
+    <tr><th>中文</th><th>English</th><th>中文</th><th>English</th></tr>
+    <tr><td>價殼層電子對互斥理論</td><td>VSEPR theory</td><td>蹺蹺板形</td><td>seesaw</td></tr>
+    <tr><td>電子群</td><td>electron group</td><td>T 形</td><td>T-shaped</td></tr>
+    <tr><td>電子群幾何</td><td>electron-pair geometry</td><td>四角錐</td><td>square pyramidal</td></tr>
+    <tr><td>分子形狀</td><td>molecular structure</td><td>平面四方</td><td>square planar</td></tr>
+    <tr><td>四面體</td><td>tetrahedral</td><td>鍵偶極</td><td>bond dipole</td></tr>
+    <tr><td>三角錐</td><td>trigonal pyramidal</td><td>偶極矩</td><td>dipole moment</td></tr>
+  </table>
+</section>
+
+<!-- 57 -->
+<section class="slide">
+  <h2>課後練習與下週預告 <span class="en">Homework and Next Week</span></h2>
+<div class="box exbox"><span class="tag">課後練習</span>① VSEPR 形狀與分子極性判斷習題各三題。<br>② 查出茄紅素、葉黃素、花青素的結構,數出共軛雙鍵數,與它們的顏色對照,看規律是否成立。<br>③ 給一組檢量線數據,算出未知樣品的濃度並注意稀釋倍數。</div>
+<div class="box def"><span class="tag">下週:分子間作用力與相變</span>蛋白質為什麼一加熱就凝固?巧克力為什麼會「起霜」?<br>本週講的是<b>分子內</b>的結構,下週要問<b>分子之間</b>怎麼互相吸引——以及為什麼這決定了熔點、沸點與食品的質地。</div>
+</section>
+</div></div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const DECK_INFO='普通化學(一)|新課綱 第 10 週:分子極性、共軛與顏色';
+let cur=0;
+slides.forEach((s,i)=>{
+  const f=document.createElement('div');f.className='foot';
+  f.innerHTML='<span>'+DECK_INFO+'</span><span>'+(i+1)+' / '+slides.length+'</span>';
+  s.appendChild(f);
+});
+slides.forEach(s=>{
+  const sol=s.querySelector('.sol');
+  if(!sol)return;
+  const hint=document.createElement('div');hint.className='sol-hint';
+  hint.innerHTML='<span class="kbd">空白鍵</span><span>先自己想／算，準備好再顯示解答</span>';
+  sol.insertAdjacentElement('beforebegin',hint);
+});
+function show(n){
+  cur=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,i)=>{s.classList.toggle('active',i===cur);s.classList.remove('reveal');});
+  document.getElementById('bar').style.width=((cur+1)/slides.length*100)+'%';
+  location.hash=cur+1;
+}
+function next(){
+  const s=slides[cur];
+  if(s.querySelector('.sol')&&!s.classList.contains('reveal')){s.classList.add('reveal');return;}
+  show(cur+1);
+}
+function prev(){
+  const s=slides[cur];
+  if(s.classList.contains('reveal')){s.classList.remove('reveal');return;}
+  show(cur-1);
+}
+function fit(){
+  const s=Math.min(innerWidth/1280,innerHeight/720);
+  document.getElementById('deck').style.transform='scale('+s+')';
+}
+addEventListener('resize',fit);
+addEventListener('keydown',e=>{
+  if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();next();}
+  else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev();}
+  else if(e.key==='Home')show(0);
+  else if(e.key==='End')show(slides.length-1);
+});
+addEventListener('click',e=>{
+  if(e.target.closest('a'))return;
+  (e.clientX>innerWidth/3)?next():prev();
+});
+let tx=null;
+addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+addEventListener('touchend',e=>{
+  if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;
+  if(dx<-40)next();else if(dx>40)prev();tx=null;
+});
+fit();
+show(parseInt(location.hash.slice(1))-1||0);
+</script>
+</body>
+</html>

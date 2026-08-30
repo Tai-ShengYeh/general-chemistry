@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第13週:進階鍵結理論 — 混成軌域與分子軌域|普通化學(一)</title>
+<style>
+:root{
+  --primary:#1a5276; --primary-dark:#12395a; --accent:#a04c08; --teal:#117a65;
+  --ink:#2c3e50; --muted:#5a6a6b; --bg:#eceff3; --card:#ffffff;
+  --def-bg:#eaf2f8; --key-bg:#fef9e7; --ex-bg:#e8f8f5; --warn-bg:#fdedec;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC","Heiti TC",sans-serif;color:var(--ink)}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#deck{position:relative;width:1280px;height:720px;transform-origin:center center}
+.slide{position:absolute;inset:0;width:1280px;height:720px;background:var(--card);padding:56px 72px 70px;display:none;flex-direction:column;border-top:10px solid var(--primary);overflow:hidden}
+.slide.active{display:flex}
+.slide h2{font-size:36px;color:var(--primary);border-bottom:3px solid var(--accent);padding-bottom:10px;margin-bottom:26px;font-weight:700}
+.slide h2 .en{display:block;font-size:19px;color:var(--muted);font-weight:400;margin-top:4px}
+.slide h3{font-size:26px;color:var(--primary);margin:12px 0 8px}
+.slide p{font-size:24px;line-height:1.55;margin:8px 0}
+.slide ul,.slide ol{font-size:24px;line-height:1.6;margin:8px 0 8px 34px}
+.slide li{margin:7px 0}
+.slide li li{font-size:22px;margin:4px 0}
+.en{color:var(--muted);font-size:.82em}
+.small{font-size:19px;color:var(--muted)}
+.big{font-size:30px}
+.center{text-align:center}
+.hl{color:var(--accent);font-weight:700}
+.hlb{color:var(--primary);font-weight:700}
+.two-col{display:flex;gap:32px;align-items:flex-start}
+.two-col>div{flex:1}
+.box{border-radius:10px;padding:16px 22px;margin:14px 0;font-size:23px;line-height:1.55}
+.def{background:var(--def-bg);border-left:6px solid var(--primary)}
+.key{background:var(--key-bg);border-left:6px solid #f1c40f}
+.warn{background:var(--warn-bg);border-left:6px solid #e74c3c}
+.exbox{background:var(--ex-bg);border-left:6px solid var(--teal)}
+.box .tag{display:inline-block;font-size:17px;font-weight:700;color:#fff;border-radius:5px;padding:2px 10px;margin-bottom:6px}
+.def .tag{background:var(--primary)} .key .tag{background:#8a6d00} .warn .tag{background:#c0392b} .exbox .tag{background:var(--teal)}
+.sol{border-top:2px dashed var(--teal);margin-top:12px;padding-top:10px}
+/* ── 形成性評量：解答兩段式揭露 ───────────────────────── */
+.slide.active .sol{display:none}
+.slide.active.reveal .sol{display:block}
+.sol-hint{margin-top:12px;padding-top:10px;border-top:2px dashed #b9c6c6;font-size:19px;color:#5d6d6e;display:flex;align-items:center;gap:10px}
+.slide.active.reveal .sol-hint{display:none}
+.sol-hint .kbd{display:inline-block;border:1px solid #aab7b8;border-bottom-width:2px;border-radius:5px;padding:1px 9px;font-size:17px;background:#fff;color:#34495e}
+/* ── 隨堂快問 ─────────────────────────────────────────── */
+.slide.quiz{border-top-color:var(--teal)}
+.slide.quiz h2{margin-bottom:14px}
+.slide.quiz h2{color:#0e6655;border-bottom-color:var(--teal)}
+.qbar{background:#e8f8f5;border-left:6px solid var(--teal);border-radius:8px;padding:5px 16px;font-size:18px;color:#0e6655;margin-bottom:4px}
+.q{margin:4px 0;font-size:21px;line-height:1.28}
+.q .qn{display:inline-block;min-width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;background:var(--teal);color:#fff;font-size:16px;font-weight:700;margin-right:7px}
+.opt{display:inline-block;border:1.5px solid #a2d5cd;background:#f2fbf9;color:#0e6655;border-radius:14px;padding:0 11px;margin:1px 4px 1px 0;font-size:19px}
+.quiz .sol{margin-top:5px;padding-top:5px;font-size:18px;line-height:1.26}
+.quiz .sol .ans{color:#c0392b;font-weight:700}
+.quiz .sol .row{margin:3px 0}
+.quiz .sol .row+.row{border-top:1px solid #e5eceb;padding-top:3px}
+.quiz .sol .myth{display:block;font-size:16px;color:#5d6d6e;margin:1px 0 0 0;line-height:1.24}
+@media print{
+  .sol{display:block!important}
+  .sol-hint{display:none!important}
+}
+.eq{text-align:center;font-size:28px;margin:14px 0;font-family:Cambria,"Times New Roman",serif}
+table{border-collapse:collapse;margin:12px auto;font-size:21px;width:100%}
+th{background:var(--primary);color:#fff;padding:8px 12px;font-weight:600}
+td{border:1px solid #d5dbdb;padding:7px 12px;text-align:center}
+tr:nth-child(even) td{background:#f4f6f7}
+.cover{background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 55%,var(--teal) 100%);border-top:none;color:#fff;justify-content:center;align-items:center;text-align:center}
+.cover h1{font-size:58px;letter-spacing:4px;margin-bottom:10px}
+.cover .sub{font-size:30px;opacity:.92;margin:6px 0}
+.cover .en-title{font-size:24px;opacity:.75;margin-bottom:34px}
+.cover .meta{font-size:20px;opacity:.7;margin-top:40px}
+.cover .rule{width:220px;height:4px;background:#f7b955;margin:26px auto}
+.divider{background:linear-gradient(120deg,var(--primary-dark),var(--primary));border-top:none;color:#fff;justify-content:center}
+.divider .secnum{font-size:26px;color:#f7b955;font-weight:700;letter-spacing:2px;margin-bottom:14px}
+.divider h1{font-size:52px;margin-bottom:12px}
+.divider .en-sub{font-size:26px;opacity:.75}
+.divider .items{margin-top:36px;font-size:23px;opacity:.9;line-height:2}
+.foot{position:absolute;left:0;right:0;bottom:0;height:32px;display:flex;justify-content:space-between;align-items:center;padding:0 28px;font-size:14px;color:#5d6d6e;background:#fafbfc;border-top:1px solid #e5e8e8}
+.cover .foot,.divider .foot{background:rgba(0,0,0,.15);color:rgba(255,255,255,.65);border-top:none}
+#bar{position:fixed;top:0;left:0;height:5px;background:var(--accent);width:0;z-index:10;transition:width .2s}
+.flow{display:flex;flex-direction:column;align-items:center;gap:6px}
+.fbox{border:2px solid var(--primary);border-radius:8px;padding:8px 20px;font-size:21px;background:var(--def-bg);text-align:center}
+.frow{display:flex;gap:60px;justify-content:center}
+.arrow{font-size:22px;color:var(--accent)}
+.chip{display:inline-block;background:var(--def-bg);border:1px solid var(--primary);color:var(--primary);border-radius:16px;padding:2px 14px;margin:3px;font-size:20px}
+/* ── 因次分析鐵軌格 ───────────────────────────────────── */
+.rail{border-collapse:collapse;margin:10px auto 6px;font-size:23px}
+.rail td{border:none;padding:5px 20px;text-align:center;background:none;vertical-align:middle}
+.rail td+td{border-left:2px solid var(--muted)}
+.rail tr:first-child td{border-bottom:3px solid var(--ink)}
+.rail td.res{border-left:none;padding-left:14px;font-weight:700;color:var(--accent);font-size:25px}
+.rail tr:first-child td.res{border-bottom:none}
+.rail .bk{display:inline-block;min-width:104px;border-bottom:3px dashed var(--accent);height:27px;vertical-align:-4px}
+.rail .gv{background:var(--def-bg)}
+.railnote{text-align:center;font-size:18px;color:var(--muted);margin-top:2px}
+.fig{display:block;margin:6px auto;flex-shrink:0}
+/* ── 錨點回收頁 ───────────────────────────────────────── */
+.slide.hookback{border-top-color:var(--teal)}
+.slide.hookback h2{color:#0e6655;border-bottom-color:var(--teal)}
+.recall{background:#f4f6f7;border-left:5px solid #95a5a6;border-radius:8px;padding:7px 18px;
+        font-size:20px;line-height:1.34;color:#5d6d6e;margin:0 0 10px}
+.recall b{color:#34495e}
+.ansbox{background:#e8f8f5;border-left:6px solid var(--teal);border-radius:9px;padding:10px 20px;margin:0 0 10px}
+.ansbox h3{font-size:20px;color:#0e6655;margin:0 0 5px}
+.ansbox ul{margin:0 0 0 20px;font-size:19.5px;line-height:1.4}
+.ansbox li{margin:5px 0}
+.lens{background:var(--key-bg);border-left:6px solid #d4a70a;border-radius:9px;padding:10px 20px;
+      font-size:20px;line-height:1.38;margin-bottom:9px}
+.lens .lt{display:block;font-size:16px;font-weight:700;color:#8a6d00;letter-spacing:1px;margin-bottom:2px}
+.nextup{background:#eaf2f8;border-left:5px solid var(--primary);border-radius:8px;padding:8px 18px;
+        font-size:18.5px;line-height:1.4;color:#34495e}
+.nextup .course{display:inline-block;background:#fff;border:1px solid #a2d5cd;color:#0e6655;
+                border-radius:11px;padding:0 8px;font-size:16px;margin-right:4px}
+
+/* ── 食品營養錨點頁 ───────────────────────────────────── */
+.slide.hook{border-top-color:var(--accent)}
+.slide.hook h2{color:#a05000;border-bottom-color:var(--accent)}
+.bigq{background:linear-gradient(100deg,#fff5ea,#fdf0e0);border-left:8px solid var(--accent);border-radius:10px;
+      padding:14px 22px;font-size:26px;line-height:1.4;color:#7a3d00;font-weight:700;margin:4px 0 12px}
+.bigq .qmark{font-size:30px;margin-right:6px}
+.hookcols{display:flex;gap:22px;align-items:stretch;margin-top:4px}
+.hookcols>div{flex:1;border-radius:9px;padding:11px 16px}
+.hk-now{background:#eaf2f8;border-left:5px solid var(--primary)}
+.hk-next{background:#e8f8f5;border-left:5px solid var(--teal)}
+.hookcols h3{font-size:20px;margin:0 0 6px}
+.hk-now h3{color:var(--primary)} .hk-next h3{color:#0e6655}
+.hookcols ul{font-size:19px;line-height:1.4;margin:0 0 0 20px}
+.hookcols li{margin:4px 0}
+.hookcols .course{display:inline-block;background:#fff;border:1px solid #a2d5cd;color:#0e6655;
+                  border-radius:11px;padding:0 8px;font-size:16px;margin-right:4px}
+.canyou{background:var(--key-bg);border-left:6px solid #d4a70a;border-radius:9px;padding:10px 18px;
+        font-size:20px;line-height:1.4;margin-top:12px}
+.canyou b{color:#8a6d00}
+.hookmap{font-size:19px;line-height:1.5}
+.hookmap td{text-align:left;padding:5px 10px}
+.hookmap td:first-child{text-align:center;font-weight:700;color:var(--accent);width:62px}
+@media print{
+  @page{size:1280px 720px;margin:0}
+  html,body{background:#fff}
+  #stage{position:static}
+  #deck{width:auto;height:auto;transform:none!important}
+  .slide{position:relative;display:flex!important;page-break-after:always;margin:0;inset:auto}
+  #bar{display:none}
+}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="stage"><div id="deck">
+
+<!-- 1 -->
+<section class="slide cover">
+  <h1>普通化學(一)</h1>
+  <div class="en-title">General Chemistry I</div>
+  <div class="rule"></div>
+  <div class="sub">第 13 週:進階鍵結理論</div>
+  <div class="sub">混成軌域與分子軌域</div>
+  <div class="en-title" style="margin-top:8px">Advanced Theories of Bonding: Hybridization &amp; Molecular Orbitals</div>
+  <div class="meta">對應教材:OpenStax Chemistry 2e — Chapter 8</div>
+</section>
+
+<!-- 2 -->
+<section class="slide">
+  <h2>本週學習目標 <span class="en">Learning Objectives</span></h2>
+  <ul>
+    <li>說明 Lewis/VSEPR 模型的限制,以及為何需要量子力學鍵結理論</li>
+    <li>用價鍵理論 (valence bond theory) 描述軌域重疊,區分 σ 鍵與 π 鍵</li>
+    <li>由電子群數判斷中心原子的混成 (hybridization):sp、sp²、sp³、sp³d、sp³d²</li>
+    <li>描述乙烯、乙炔中多重鍵的鍵結;計算分子中 σ/π 鍵數</li>
+    <li>畫出簡單雙原子分子的 MO 能階圖,計算鍵級 (bond order)</li>
+    <li>用 MO 理論解釋 O<sub>2</sub> 的順磁性、判斷物種磁性</li>
+  </ul>
+  <div class="box key"><span class="tag">本週重點</span>三套理論各有擅場:Lewis 數電子、VB/混成解釋形狀與鍵、MO 解釋磁性與能量。</div>
+</section>
+
+<!-- 3 -->
+<section class="slide hook">
+  <h2>第 13 週·食品營養錨點：油放久了為什麼有「油耗味」？氧氣為什麼是元凶？ <span class="en">Anchor Question</span></h2>
+  <div class="bigq"><span class="qmark">?</span>油耗味來自脂質氧化。但空氣中的氧氣看起來很溫和——<b>為什麼它能引發這麼激烈的連鎖反應？</b></div>
+  <div class="hookcols">
+    <div class="hk-now"><h3>這一週要用到的化學</h3><ul><li>σ 鍵與 π 鍵</li><li>sp / sp² / sp³ 混成</li><li>分子軌域與鍵級</li><li>順磁性與未成對電子</li></ul></div>
+    <div class="hk-next"><h3>之後在哪裡會再遇到</h3><ul><li><span class="course">食品化學</span>脂質氧化、抗氧化劑、貨架期</li><li><span class="course">營養學</span>自由基與抗氧化營養素</li><li><span class="course">生物化學</span>氧化壓力、電子傳遞鏈</li></ul></div>
+  </div>
+  <div class="canyou"><b>本週結束時，你應該能回答：</b>O₂ 為什麼是「雙自由基」？這跟油會酸敗有什麼關係？</div><div class="canyou" style="background:#f4f6f7;border-left-color:#95a5a6"><b>先猜猜看：</b>氧氣分子有沒有未成對電子？液態氧會不會被磁鐵吸住？</div>
+</section>
+
+<!-- 4 -->
+<section class="slide divider">
+  <div class="secnum">PART 1</div>
+  <h1>為什麼需要新理論?</h1>
+  <div class="en-sub">Why More Theories?</div>
+  <div class="items">Lewis/VSEPR 的不足・兩大量子鍵結理論概觀</div>
+</section>
+
+<!-- 5 -->
+<section class="slide">
+  <h2>Lewis 與 VSEPR 的不足 <span class="en">Limitations of Lewis/VSEPR</span></h2>
+  <ul>
+    <li>能預測形狀,卻<b>說不出鍵是怎麼形成的</b>(電子「共享」的物理本質?)</li>
+    <li>無法解釋<b>鍵能、鍵長的定量差異</b>與激發態、光譜</li>
+    <li>經典失敗案例:<span class="hl">O<sub>2</sub> 具順磁性</span>(被磁鐵吸引)— Lewis 結構 :Ö=Ö: 中電子全成對,預測應為反磁性!</li>
+    <li>無法解釋 H<sub>2</sub><sup>+</sup>(只有 1 個電子,沒有「電子對」)為何存在</li>
+  </ul>
+  <div class="box key"><span class="tag">出路</span>把量子力學的「軌域」帶進鍵結 → 價鍵理論 (VB) 與分子軌域理論 (MO)。</div>
+</section>
+
+<!-- 6 -->
+<section class="slide">
+  <h2>兩大量子鍵結理論概觀 <span class="en">VB vs. MO at a Glance</span></h2>
+  <table>
+    <tr><th></th><th>價鍵理論 valence bond (VB)</th><th>分子軌域理論 molecular orbital (MO)</th></tr>
+    <tr><td>基本圖像</td><td>原子軌域<b>局部重疊</b>成鍵</td><td>原子軌域組合成<b>全分子</b>的新軌域</td></tr>
+    <tr><td>電子歸屬</td><td>電子屬於「某條鍵」</td><td>電子屬於「整個分子」</td></tr>
+    <tr><td>擅長</td><td>直觀、連結 Lewis/VSEPR、混成</td><td>磁性、鍵級、光譜、離域</td></tr>
+    <tr><td>本週角色</td><td>PART 2–3</td><td>PART 4</td></tr>
+  </table>
+</section>
+
+<!-- 7 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ①:為什麼需要新理論 <span class="en">Quick Check 1</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>Lewis 結構與 VSEPR <b>無法</b>解釋下列哪一件事?<br><span class="opt">A 分子的形狀</span><span class="opt">B 價電子如何分配</span><span class="opt">C O<sub>2</sub> 為什麼有磁性</span><span class="opt">D 八隅體規則</span></div>
+  <div class="q"><span class="qn">2</span>價鍵理論(VB)與分子軌域理論(MO)的<b>根本差異</b>是?<br><span class="opt">A VB 較新</span><span class="opt">B VB 認為電子定域在兩原子間,MO 認為電子屬於整個分子</span><span class="opt">C MO 只能用於離子</span><span class="opt">D 兩者結論完全相同</span></div>
+  <div class="q"><span class="qn">3</span>既然 MO 理論比較完整,<b>為什麼還要學 Lewis 結構?</b></div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. C</span> — O<sub>2</sub> 的順磁性是 Lewis/VSEPR <b>完全預測不到</b>的 —— 這正是需要 MO 的理由。<span class="myth">本週的敘事線就是這一題:<b>一個理論的價值,在於它能解釋前一個理論解釋不了的東西。</b></span></div><div class="row"><span class="ans">2. B</span> — VB 是<b>定域</b>觀點(軌域重疊成鍵),MO 是<b>離域</b>觀點(原子軌域組成遍及全分子的分子軌域)。<span class="myth">兩者不是誰對誰錯,而是<b>不同解析度的工具</b>。VB 直觀、適合談形狀與混成;MO 適合談磁性、鍵級與光譜。</span></div><div class="row"><span class="ans">3. 因為它便宜且夠用</span> — Lewis 結構<b>幾秒鐘就能畫出來</b>,且足以判斷形狀、極性與反應位置 —— 有機化學整本書都在用它。<span class="myth">科學上常態是<b>多個模型並用,按問題選工具</b>,不是新的取代舊的。要談磁性才換 MO,要談形狀 Lewis + VSEPR 就夠。</span></div></div>
+</section>
+<!-- 8 -->
+<section class="slide divider">
+  <div class="secnum">PART 2</div>
+  <h1>價鍵理論與混成軌域</h1>
+  <div class="en-sub">Valence Bond Theory and Hybrid Orbitals</div>
+  <div class="items">軌域重疊・σ 鍵與 π 鍵・sp / sp² / sp³ / sp³d / sp³d²</div>
+</section>
+
+<!-- 9 -->
+<section class="slide">
+  <h2>價鍵理論:軌域重疊 <span class="en">Orbital Overlap</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>價鍵理論 (valence bond theory)</b>:當兩原子的半滿價軌域<b>重疊 (overlap)</b>,自旋相反的兩個電子配對,即形成共價鍵;重疊越有效,鍵越強。</div>
+  <ul>
+    <li>H<sub>2</sub>:兩個 1s 軌域重疊 → 對應第 10 週的位能曲線最低點</li>
+    <li>HCl:H 的 1s 與 Cl 的 3p 重疊</li>
+    <li>鍵長 = 重疊達最佳(吸引 vs 斥力平衡)時的核間距</li>
+  </ul>
+</section>
+
+<!-- 10 -->
+<section class="slide">
+  <h2>σ 鍵 <span class="en">Sigma (σ) Bonds</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>σ 鍵 (sigma bond)</b>:軌域沿<b>核間軸</b>「頭對頭 (end-to-end)」重疊,電子密度集中在兩核連線上。</div>
+  <ul>
+    <li>可由 s–s(H<sub>2</sub>)、s–p(HCl)、p–p 頭對頭(F<sub>2</sub>)、或混成軌域重疊形成</li>
+    <li>重疊效率高 → σ 鍵較強</li>
+    <li>可繞鍵軸<b>自由旋轉</b>(單鍵可旋轉的原因)</li>
+    <li><span class="hlb">所有單鍵都是 σ 鍵;任何鍵的第一條都是 σ</span></li>
+  </ul>
+</section>
+
+<!-- 11 -->
+<section class="slide">
+  <h2>π 鍵 <span class="en">Pi (π) Bonds</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>π 鍵 (pi bond)</b>:兩個平行 p 軌域「側對側 (side-by-side)」重疊,電子密度分布於鍵軸<b>上、下(或前後)兩側</b>,鍵軸上為節面。</div>
+  <ul>
+    <li>重疊效率較低 → π 鍵較 σ 鍵弱(C=C 611 &lt; 2 × C–C 345)</li>
+    <li>π 鍵<b>限制旋轉</b> → 雙鍵有順反異構(cis/trans)</li>
+    <li>雙鍵 = 1 σ + 1 π;參鍵 = 1 σ + 2 π</li>
+  </ul>
+</section>
+
+<!-- 12 -->
+<section class="slide">
+  <h2>σ 鍵 vs π 鍵 <span class="en">σ vs. π Comparison</span></h2>
+  <table>
+    <tr><th></th><th>σ 鍵</th><th>π 鍵</th></tr>
+    <tr><td>重疊方式</td><td>頭對頭(沿鍵軸)</td><td>側對側(平行 p 軌域)</td></tr>
+    <tr><td>電子密度位置</td><td>兩核連線上</td><td>鍵軸上下兩側</td></tr>
+    <tr><td>強度</td><td>較強</td><td>較弱</td></tr>
+    <tr><td>旋轉</td><td>可自由旋轉</td><td>旋轉會破壞重疊</td></tr>
+    <tr><td>出現場合</td><td>每條鍵的第 1 條</td><td>雙鍵第 2 條、參鍵第 2、3 條</td></tr>
+  </table>
+</section>
+
+<!-- 13 -->
+<section class="slide">
+  <h2>為什麼需要「混成」? <span class="en">Why Hybridization?</span></h2>
+  <ul>
+    <li>C 的基態:[He]2s<sup>2</sup>2p<sup>2</sup> → 只有 <b>2 個</b>半滿軌域,卻要解釋 CH<sub>4</sub> 的 <b>4 個等價鍵</b></li>
+    <li>且 s 與 p 軌域方向(球形、互相垂直 90°)無法解釋 <b>109.5°</b> 鍵角</li>
+  </ul>
+  <div class="box def"><span class="tag">定義</span><b>混成 (hybridization)</b>:同一原子的數個價軌域「混合」成同數目、能量相同、方向符合 VSEPR 幾何的<b>混成軌域 (hybrid orbitals)</b>。</div>
+  <div class="box key"><span class="tag">守恆</span>n 個原子軌域混成 → 恰得 <span class="hl">n 個</span>混成軌域(軌域數守恆)。混成是數學模型,不是可觀察的物理過程。</div>
+</section>
+
+<!-- 14 -->
+<section class="slide">
+  <h2>sp 混成:BeCl<sub>2</sub> <span class="en">sp Hybridization (Linear)</span></h2>
+  <div class="two-col">
+    <div>
+      <ul>
+        <li>1 個 s + 1 個 p → <span class="hl">2 個 sp</span> 軌域,夾角 <b>180°</b></li>
+        <li>剩 2 個 p 軌域未混成(空)</li>
+        <li>Be:2s<sup>2</sup> → 激發 → 2s<sup>1</sup>2p<sup>1</sup> → 混成 sp</li>
+        <li>2 個 sp 各與 Cl 的 3p 重疊 → 2 條 σ 鍵</li>
+      </ul>
+    </div>
+    <div>
+      <div class="fbox">能量圖(文字示意)<br>――p&nbsp;&nbsp;――p&nbsp;(未混成,空)<br>―↑―sp&nbsp;&nbsp;―↑―sp<br><span class="small">基態 2s²  →  激發+混成 → 2 個半滿 sp</span></div>
+    </div>
+  </div>
+  <p class="small">直線幾何(2 電子群)↔ sp 混成。CO<sub>2</sub> 的 C 也是 sp。</p>
+</section>
+
+<!-- 15 -->
+<section class="slide">
+  <h2>sp² 混成:BF<sub>3</sub> <span class="en">sp² Hybridization (Trigonal Planar)</span></h2>
+  <div class="two-col">
+    <div>
+      <ul>
+        <li>1 個 s + 2 個 p → <span class="hl">3 個 sp²</span> 軌域,共平面、夾角 <b>120°</b></li>
+        <li>剩 <b>1 個 p</b> 垂直於平面(未混成)</li>
+        <li>B 的 3 個 sp² 與 3 個 F 形成 σ 鍵</li>
+        <li>未混成 p 軌域是形成 π 鍵的關鍵(見乙烯)</li>
+      </ul>
+    </div>
+    <div>
+      <div class="fbox">能量圖(文字示意)<br>――p(未混成)<br>―↑―sp²&nbsp;―↑―sp²&nbsp;―↑―sp²<br><span class="small">3 個半滿 sp²,平面三角指向</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 16 -->
+<section class="slide">
+  <h2>sp³ 混成:CH<sub>4</sub> <span class="en">sp³ Hybridization (Tetrahedral)</span></h2>
+  <div class="two-col">
+    <div>
+      <ul>
+        <li>1 個 s + 3 個 p → <span class="hl">4 個 sp³</span> 軌域,指向四面體頂點,夾角 <b>109.5°</b></li>
+        <li>C:2s<sup>2</sup>2p<sup>2</sup> → 激發 → 2s<sup>1</sup>2p<sup>3</sup> → 混成 → 4 個半滿 sp³</li>
+        <li>與 4 個 H 的 1s 重疊 → 4 條等價 σ 鍵 ✓</li>
+      </ul>
+    </div>
+    <div>
+      <div class="fbox">能量圖(文字示意)<br>基態:―↑↓―2s&nbsp;&nbsp;―↑―2p&nbsp;―↑―2p&nbsp;――2p<br>↓ 激發+混成<br>―↑―sp³ ―↑―sp³ ―↑―sp³ ―↑―sp³<br><span class="small">4 個等能量半滿軌域</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 17 -->
+<section class="slide">
+  <h2>孤對電子也占混成軌域:NH<sub>3</sub>、H<sub>2</sub>O <span class="en">Lone Pairs in Hybrid Orbitals</span></h2>
+  <ul>
+    <li><b>NH<sub>3</sub></b>:N 為 4 電子群 → sp³;3 個 sp³ 成 σ 鍵,<span class="hl">1 個 sp³ 裝孤對</span></li>
+    <li><b>H<sub>2</sub>O</b>:O 為 4 電子群 → sp³;2 個成鍵、<span class="hl">2 個裝孤對</span></li>
+    <li>混成數看的是<b>電子群數</b>(含孤對),不是只看鍵數 — 與 VSEPR 完全一致</li>
+  </ul>
+  <div class="box warn"><span class="tag">常見錯誤</span>「H<sub>2</sub>O 只有 2 條鍵所以是 sp 混成」— 錯!O 有 4 個電子群,是 <b>sp³</b>。</div>
+</section>
+
+<!-- 18 -->
+<section class="slide">
+  <h2>sp³d 混成:PCl<sub>5</sub> <span class="en">sp³d Hybridization</span></h2>
+  <div class="two-col">
+    <div>
+      <ul>
+        <li>1 s + 3 p + 1 d → <span class="hl">5 個 sp³d</span> 軌域 → 雙三角錐(90°/120°)</li>
+        <li>P([Ne]3s<sup>2</sup>3p<sup>3</sup>)激發後 5 個半滿軌域 → 5 條 σ 鍵</li>
+        <li>SF<sub>4</sub>(AX<sub>4</sub>E)、XeF<sub>2</sub>(AX<sub>2</sub>E<sub>3</sub>)亦為 sp³d</li>
+      </ul>
+    </div>
+    <div>
+      <div class="fbox">能量圖(文字示意)<br>―↑―×5&nbsp;sp³d<br><span class="small">5 個混成軌域;需第 3 週期以上(有 3d 可用)</span></div>
+    </div>
+  </div>
+  <p class="small">註:d 軌域參與混成的模型有爭議,但普化課程仍以此模型對應擴充八隅體。</p>
+</section>
+
+<!-- 19 -->
+<section class="slide">
+  <h2>sp³d² 混成:SF<sub>6</sub> <span class="en">sp³d² Hybridization</span></h2>
+  <div class="two-col">
+    <div>
+      <ul>
+        <li>1 s + 3 p + 2 d → <span class="hl">6 個 sp³d²</span> 軌域 → 八面體(90°)</li>
+        <li>S 激發後 6 個半滿軌域 → 與 6 個 F 形成 6 條 σ 鍵</li>
+        <li>BrF<sub>5</sub>(AX<sub>5</sub>E)、XeF<sub>4</sub>(AX<sub>4</sub>E<sub>2</sub>)亦為 sp³d²</li>
+      </ul>
+    </div>
+    <div>
+      <div class="fbox">能量圖(文字示意)<br>―↑―×6&nbsp;sp³d²<br><span class="small">6 個混成軌域指向八面體頂點</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 20 -->
+<section class="slide">
+  <h2>電子群數 → 混成 對照表 <span class="en">Electron Groups → Hybridization</span></h2>
+  <table>
+    <tr><th>電子群數</th><th>混成</th><th>幾何</th><th>夾角</th><th>例子</th></tr>
+    <tr><td>2</td><td>sp</td><td>直線</td><td>180°</td><td>BeCl<sub>2</sub>、CO<sub>2</sub></td></tr>
+    <tr><td>3</td><td>sp²</td><td>平面三角</td><td>120°</td><td>BF<sub>3</sub>、SO<sub>2</sub></td></tr>
+    <tr><td>4</td><td>sp³</td><td>四面體</td><td>109.5°</td><td>CH<sub>4</sub>、NH<sub>3</sub>、H<sub>2</sub>O</td></tr>
+    <tr><td>5</td><td>sp³d</td><td>雙三角錐</td><td>90°/120°</td><td>PCl<sub>5</sub>、SF<sub>4</sub></td></tr>
+    <tr><td>6</td><td>sp³d²</td><td>八面體</td><td>90°</td><td>SF<sub>6</sub>、XeF<sub>4</sub></td></tr>
+  </table>
+  <div class="box key"><span class="tag">口訣</span>電子群數 = 混成軌域數:「2 sp、3 sp²、4 sp³、5 加 d、6 加 d²」。先 VSEPR、後混成,一步到位。</div>
+</section>
+
+<!-- 21 -->
+<section class="slide">
+  <h2>例題 1:判斷混成(基礎) <span class="en">Example 1</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>判斷下列中心原子的混成:(a) CO<sub>2</sub> 的 C&nbsp;&nbsp;(b) H<sub>2</sub>O 的 O&nbsp;&nbsp;(c) NH<sub>4</sub><sup>+</sup> 的 N&nbsp;&nbsp;(d) SO<sub>3</sub> 的 S
+  <div class="sol"><b>解:</b>數電子群 → 對照表:<br>
+  (a) O=C=O:2 群 → <span class="hl">sp</span><br>
+  (b) 2 鍵 + 2 孤對 = 4 群 → <span class="hl">sp³</span><br>
+  (c) 4 鍵 + 0 孤對 = 4 群 → <span class="hl">sp³</span>(與 CH<sub>4</sub> 等電子)<br>
+  (d) 3 鍵 + 0 孤對 = 3 群 → <span class="hl">sp²</span></div></div>
+</section>
+
+<!-- 22 -->
+<section class="slide">
+  <h2>例題 2:判斷混成(擴充八隅體) <span class="en">Example 2</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>判斷下列中心原子的混成與分子形狀:(a) SF<sub>4</sub>&nbsp;&nbsp;(b) XeF<sub>4</sub>&nbsp;&nbsp;(c) I<sub>3</sub><sup>−</sup> 的中心 I
+  <div class="sol"><b>解:</b><br>
+  (a) SF<sub>4</sub>:4 鍵 + 1 孤對 = 5 群 → <span class="hl">sp³d</span>;形狀:蹺蹺板<br>
+  (b) XeF<sub>4</sub>:4 鍵 + 2 孤對 = 6 群 → <span class="hl">sp³d²</span>;形狀:平面四方<br>
+  (c) I<sub>3</sub><sup>−</sup>:2 鍵 + 3 孤對 = 5 群 → <span class="hl">sp³d</span>;形狀:直線<br>
+  <span class="small">混成看「電子群總數」,形狀看「拿掉孤對後的原子排列」— 兩者由同一張表出發。</span></div></div>
+</section>
+
+<!-- 23 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ②:混成軌域 <span class="en">Quick Check 2</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>CH<sub>4</sub> 的碳採用什麼混成?<br><span class="opt">A sp</span><span class="opt">B sp²</span><span class="opt">C sp³</span><span class="opt">D sp³d</span></div>
+  <div class="q"><span class="qn">2</span>H<sub>2</sub>O 的氧是幾群?採用什麼混成?<br><span class="opt">A 2 群,sp</span><span class="opt">B 3 群,sp²</span><span class="opt">C 4 群,sp³</span><span class="opt">D 不混成</span></div>
+  <div class="q"><span class="qn">3</span>為什麼碳需要「混成」?<b>如果不混成會預測出什麼錯誤結果?</b></div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. C(sp³)</span> — 4 個電子群 → sp³。<span class="myth">對照表只有一條規則:<b>電子群數 2/3/4/5/6 → sp/sp²/sp³/sp³d/sp³d²</b>。先數群,再查表,不要背分子。</span></div><div class="row"><span class="ans">2. C(4 群,sp³)</span> — 2 個成鍵 + <b>2 對孤對</b> = 4 群。<span class="myth">選 A/B 的同學忘了<b>孤對也占混成軌域</b>。這也解釋了為什麼水的鍵角接近四面體角(104.5°)而不是 90°。</span></div><div class="row"><span class="ans">3. 不混成會預測 CH<sub>4</sub> 有兩種不同的 C–H 鍵</span> — 碳基態是 2s<sup>2</sup>2p<sup>2</sup>,只有 2 個未成對電子 → 預測只能形成 <b>2 個</b>鍵,且角度 90°。<span class="myth">實驗事實是<b>四個完全等價的鍵、109.5°</b>。混成正是為了讓理論對上這個事實而提出的 —— <b>它是修補,不是憑空的規定。</b></span></div></div>
+</section>
+<!-- 24 -->
+<section class="slide divider">
+  <div class="secnum">PART 3</div>
+  <h1>多重鍵的鍵結</h1>
+  <div class="en-sub">Multiple Bonds in VB Theory</div>
+  <div class="items">乙烯 C<sub>2</sub>H<sub>4</sub>・乙炔 C<sub>2</sub>H<sub>2</sub>・σ/π 鍵的計數</div>
+</section>
+
+<!-- 25 -->
+<section class="slide">
+  <h2>乙烯 C<sub>2</sub>H<sub>4</sub>:sp² + π <span class="en">Ethylene: sp² + π</span></h2>
+  <ul>
+    <li>每個 C:3 電子群(2 C–H + 1 C–C)→ <span class="hl">sp² 混成</span>,平面、約 120°</li>
+    <li>C–C 之間:sp²–sp² 頭對頭 → <b>1 條 σ 鍵</b></li>
+    <li>每個 C 剩 1 個未混成 p 軌域(垂直分子平面)→ 側對側重疊 → <b>1 條 π 鍵</b></li>
+    <li>C=C 雙鍵 = <span class="hlb">1 σ + 1 π</span>;π 鍵鎖住旋轉 → 整個分子共平面</li>
+  </ul>
+  <div class="box key"><span class="tag">結構</span>H<sub>2</sub>C=CH<sub>2</sub>:σ 骨架(5 條 σ:4 條 C–H + 1 條 C–C)+ 1 條 π 覆蓋在 C–C 上下。</div>
+</section>
+
+<!-- 26 -->
+<section class="slide">
+  <h2>乙炔 C<sub>2</sub>H<sub>2</sub>:sp + 2π <span class="en">Acetylene: sp + 2π</span></h2>
+  <ul>
+    <li>每個 C:2 電子群(1 C–H + 1 C–C)→ <span class="hl">sp 混成</span>,直線 180°</li>
+    <li>C–C 之間:sp–sp → <b>1 條 σ 鍵</b></li>
+    <li>每個 C 剩 <b>2 個</b>未混成 p 軌域(互相垂直)→ 形成 <b>2 條 π 鍵</b>(上下一條、前後一條)</li>
+    <li>C≡C 參鍵 = <span class="hlb">1 σ + 2 π</span>;H–C≡C–H 四原子共線</li>
+  </ul>
+  <div class="box key"><span class="tag">類推</span>N<sub>2</sub>(:N≡N:)同理:1 σ + 2 π;HCN 的 C 也是 sp。</div>
+</section>
+
+<!-- 27 -->
+<section class="slide">
+  <h2>σ/π 鍵的計數規則 <span class="en">Counting σ and π Bonds</span></h2>
+  <div class="box def"><span class="tag">規則</span>單鍵 = 1 σ;雙鍵 = 1 σ + 1 π;參鍵 = 1 σ + 2 π。<br>→ σ 鍵總數 = 「鍵的連線數」;π 鍵總數 = Σ(每條多重鍵的額外鍵數)。</div>
+  <ul>
+    <li>先畫出正確的 Lewis 結構,再逐鍵分類</li>
+    <li>共振物種以單一共振結構計數即可(除非題目另有指定)</li>
+  </ul>
+</section>
+
+<!-- 28 -->
+<section class="slide">
+  <h2>例題 3:計算 σ/π 鍵數 <span class="en">Example 3</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>數出下列分子中 σ 鍵與 π 鍵的數目:<br>(a) 甲醛 H<sub>2</sub>C=O&nbsp;&nbsp;(b) HCN&nbsp;&nbsp;(c) 醋酸 CH<sub>3</sub>COOH
+  <div class="sol"><b>解:</b><br>
+  (a) 2 條 C–H(2σ)+ C=O(1σ+1π)→ <span class="hl">3 σ、1 π</span><br>
+  (b) H–C(1σ)+ C≡N(1σ+2π)→ <span class="hl">2 σ、2 π</span><br>
+  (c) 結構 CH<sub>3</sub>–C(=O)–O–H:3 C–H + C–C + C=O + C–O + O–H<br>
+  σ:3 + 1 + 1 + 1 + 1 = <span class="hl">7 σ</span>;π:僅 C=O 貢獻 <span class="hl">1 π</span></div></div>
+</section>
+
+<!-- 29 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ③:多重鍵的鍵結 <span class="en">Quick Check 3</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>C≡C 參鍵中,σ 鍵與 π 鍵各有幾個?<br><span class="opt">A 3 個 σ</span><span class="opt">B 1 σ + 2 π</span><span class="opt">C 2 σ + 1 π</span><span class="opt">D 3 個 π</span></div>
+  <div class="q"><span class="qn">2</span>為什麼 C=C 雙鍵<b>不能自由旋轉</b>,C–C 單鍵卻可以?<br><span class="opt">A 雙鍵太短</span><span class="opt">B 旋轉會破壞 π 鍵的側向重疊</span><span class="opt">C 雙鍵帶電</span><span class="opt">D 其實雙鍵也能旋轉</span></div>
+  <div class="q"><span class="qn">3</span>乙烯 C<sub>2</sub>H<sub>4</sub> 是<b>平面</b>分子。用混成與 π 鍵解釋為什麼。</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B(1 σ + 2 π)</span> — 任何多重鍵中<b>只有一個 σ</b>,其餘都是 π。<span class="myth">計數規則:<b>每對原子之間第一個鍵是 σ,第二、三個是 π</b>。這條規則讓你不必畫圖就能數出 σ/π 數目。</span></div><div class="row"><span class="ans">2. B</span> — π 鍵靠 p 軌域的<b>側向</b>重疊,一旦旋轉,重疊就被破壞,能量大幅升高。<span class="myth">這正是<b>順式/反式異構</b>存在的原因 —— 不能旋轉,兩種排列才能各自穩定存在。直接接到 W12 的反式脂肪。</span></div><div class="row"><span class="ans">3. 因為 sp² 混成本身是平面的,且 π 鍵要求 p 軌域平行</span> — 兩個碳都是 <b>sp²</b>(3 群)→ 各自的三個 σ 鍵共平面;未混成的 p 軌域垂直於該平面,<b>必須互相平行才能側向重疊</b>形成 π 鍵。<span class="myth">所以平面性不是巧合,是 π 鍵的<b>幾何要求</b>。若分子扭轉,π 鍵就斷了 —— 這也回答了第 2 題。</span></div></div>
+</section>
+<!-- 30 -->
+<section class="slide divider">
+  <div class="secnum">PART 4</div>
+  <h1>分子軌域理論</h1>
+  <div class="en-sub">Molecular Orbital (MO) Theory</div>
+  <div class="items">成鍵與反鍵軌域・鍵級・第二週期雙原子分子・O<sub>2</sub> 的順磁性</div>
+</section>
+
+<!-- 31 -->
+<section class="slide">
+  <h2>MO 理論的基本概念 <span class="en">Bonding and Antibonding Orbitals</span></h2>
+  <div class="box def"><span class="tag">定義</span>n 個原子軌域組合 → n 個<b>分子軌域 (molecular orbitals)</b>,屬於整個分子:<br>
+  <b>成鍵軌域 (bonding, σ)</b>:波同相疊加,核間電子密度增加,能量<b>比原子軌域低</b>。<br>
+  <b>反鍵軌域 (antibonding, σ*)</b>:波反相相消,核間有節面,能量<b>比原子軌域高</b>。</div>
+  <ul>
+    <li>電子填入 MO 的規則與原子相同:低能量優先 (Aufbau)、包立不相容、Hund 規則</li>
+    <li>成鍵電子使分子穩定;反鍵電子抵消穩定性</li>
+  </ul>
+</section>
+
+<!-- 32 -->
+<section class="slide">
+  <h2>H<sub>2</sub> 的 MO 能階圖 <span class="en">MO Diagram of H<sub>2</sub></span></h2>
+  <div class="two-col">
+    <div>
+      <ul>
+        <li>兩個 1s 軌域 → σ<sub>1s</sub>(低)+ σ*<sub>1s</sub>(高)</li>
+        <li>H<sub>2</sub> 的 2 個電子都填入 σ<sub>1s</sub></li>
+        <li>組態:<b>(σ<sub>1s</sub>)<sup>2</sup></b> → 穩定分子</li>
+      </ul>
+    </div>
+    <div>
+      <div class="fbox">能階圖(文字示意)<br>&nbsp;&nbsp;&nbsp;――σ*<sub>1s</sub>(空)<br>1s─&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;─1s<br>&nbsp;&nbsp;&nbsp;─↑↓─σ<sub>1s</sub><br><span class="small">左右:H 原子軌域;中間:H<sub>2</sub> 分子軌域</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 33 -->
+<section class="slide">
+  <h2>鍵級 <span class="en">Bond Order</span></h2>
+  <div class="eq">鍵級 = (成鍵電子數 − 反鍵電子數) ÷ 2</div>
+  <ul>
+    <li>鍵級 1、2、3 ≈ 單、雙、參鍵;<b>分數鍵級</b>(如 0.5)也可能存在</li>
+    <li>鍵級越大 → 鍵越強、越短</li>
+    <li><span class="hl">鍵級 = 0 → 分子不存在</span>(不比分離原子穩定)</li>
+  </ul>
+  <div class="box key"><span class="tag">MO 的優勢</span>能處理奇數電子(H<sub>2</sub><sup>+</sup> 鍵級 0.5,確實存在!)— Lewis 的「電子對」辦不到。</div>
+</section>
+
+<!-- 34 -->
+<section class="slide">
+  <h2>例題 4:H<sub>2</sub>、H<sub>2</sub><sup>+</sup>、He<sub>2</sub> <span class="en">Example 4</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>寫出 H<sub>2</sub>、H<sub>2</sub><sup>+</sup>、He<sub>2</sub> 的 MO 組態與鍵級,並判斷何者可穩定存在。
+  <div class="sol"><b>解:</b>可用軌域:σ<sub>1s</sub>、σ*<sub>1s</sub>:<br>
+  H<sub>2</sub>(2e):(σ<sub>1s</sub>)<sup>2</sup>,鍵級 = (2−0)/2 = <span class="hl">1</span> → 穩定 ✓<br>
+  H<sub>2</sub><sup>+</sup>(1e):(σ<sub>1s</sub>)<sup>1</sup>,鍵級 = (1−0)/2 = <span class="hl">0.5</span> → 存在(鍵較弱)✓<br>
+  He<sub>2</sub>(4e):(σ<sub>1s</sub>)<sup>2</sup>(σ*<sub>1s</sub>)<sup>2</sup>,鍵級 = (2−2)/2 = <span class="hl">0</span> → <b>不存在</b>:成鍵的穩定被反鍵完全抵消 — 這解釋了 He 為單原子氣體!</div></div>
+</section>
+
+<!-- 35 -->
+<section class="slide">
+  <h2>第二週期雙原子分子的 MO <span class="en">Second-Period Diatomics</span></h2>
+  <ul>
+    <li>2s → σ<sub>2s</sub>、σ*<sub>2s</sub>;2p(每原子 3 個)→ σ<sub>2p</sub>、π<sub>2p</sub>(×2)、π*<sub>2p</sub>(×2)、σ*<sub>2p</sub></li>
+    <li>p 軌域沿鍵軸者頭對頭 → σ<sub>2p</sub>;垂直鍵軸者側對側 → 兩個<b>簡併</b>的 π<sub>2p</sub></li>
+    <li>合計 8 個分子軌域,最多容納 16 個電子(價電子部分)</li>
+  </ul>
+  <div class="box key"><span class="tag">填法</span>價電子總數 → 由低到高填;簡併的 π 軌域遵守 Hund 規則(先單獨佔據、自旋平行)。</div>
+</section>
+
+<!-- 36 -->
+<section class="slide">
+  <h2>能階順序的差異 <span class="en">Two Orderings of MO Levels</span></h2>
+  <div class="two-col">
+    <div>
+      <h3>O<sub>2</sub>、F<sub>2</sub>、Ne<sub>2</sub></h3>
+      <div class="fbox" style="font-size:19px">σ*<sub>2p</sub><br>π*<sub>2p</sub> π*<sub>2p</sub><br>π<sub>2p</sub> π<sub>2p</sub><br><b>σ<sub>2p</sub></b> ←較低<br>σ*<sub>2s</sub><br>σ<sub>2s</sub></div>
+    </div>
+    <div>
+      <h3>B<sub>2</sub>、C<sub>2</sub>、N<sub>2</sub></h3>
+      <div class="fbox" style="font-size:19px">σ*<sub>2p</sub><br>π*<sub>2p</sub> π*<sub>2p</sub><br><b>σ<sub>2p</sub></b> ←升高!<br>π<sub>2p</sub> π<sub>2p</sub><br>σ*<sub>2s</sub><br>σ<sub>2s</sub></div>
+    </div>
+  </div>
+  <p class="small">原因:Z 較小時 2s–2p 軌域混合 (s-p mixing) 明顯,把 σ<sub>2p</sub> 推到 π<sub>2p</sub> 之上;O、F 核電荷大、2s 與 2p 能量差大,混合弱。</p>
+</section>
+
+<!-- 37 -->
+<section class="slide">
+  <h2>N<sub>2</sub> 的 MO 組態 <span class="en">MO Configuration of N<sub>2</sub></span></h2>
+  <ul>
+    <li>價電子:2 × 5 = 10 個;用 B/C/N 順序(π 在 σ<sub>2p</sub> 之下)</li>
+    <li>組態:(σ<sub>2s</sub>)<sup>2</sup>(σ*<sub>2s</sub>)<sup>2</sup>(π<sub>2p</sub>)<sup>4</sup>(σ<sub>2p</sub>)<sup>2</sup></li>
+    <li>鍵級 = (8 − 2)/2 = <span class="hl">3</span> → 與 Lewis 的參鍵 :N≡N: 一致</li>
+    <li>所有電子成對 → <b>反磁性 (diamagnetic)</b>;鍵能 945 kJ/mol,極安定</li>
+  </ul>
+</section>
+
+<!-- 38 -->
+<section class="slide">
+  <h2>O<sub>2</sub>:MO 理論的勝利 <span class="en">O<sub>2</sub>: A Triumph of MO Theory</span></h2>
+  <ul>
+    <li>價電子:12 個;用 O/F 順序填入:</li>
+    <li>組態:(σ<sub>2s</sub>)<sup>2</sup>(σ*<sub>2s</sub>)<sup>2</sup>(σ<sub>2p</sub>)<sup>2</sup>(π<sub>2p</sub>)<sup>4</sup><span class="hl">(π*<sub>2p</sub>)<sup>2</sup></span></li>
+    <li>最後 2 個電子依 Hund 規則<b>分占兩個簡併 π*</b> 軌域、自旋平行 → <span class="hl">2 個未成對電子</span></li>
+    <li>鍵級 = (8 − 4)/2 = <span class="hl">2</span>(與 Lewis 雙鍵一致)</li>
+  </ul>
+  <div class="box key"><span class="tag">實驗驗證</span>液態 O<sub>2</sub> 會被磁鐵吸住(順磁性)— Lewis 無法解釋、MO 自然導出,是 MO 理論的招牌成就!</div>
+<svg class="fig" role="img" aria-labelledby="w13f1-t w13f1-d" width="940" height="170" viewBox="0 0 940 170" xmlns="http://www.w3.org/2000/svg">
+        <title id="w13f1-t">氧分子的分子軌域能階圖</title>
+        <desc id="w13f1-d">左右為兩個氧原子的 2p 軌域，中間為分子軌域。價電子填入後，最後兩個電子分別進入兩個簡併的 pi 反鍵軌域且自旋平行，使氧分子帶有兩個未成對電子、呈順磁性，鍵級為 2。</desc>
+        <line x1="36.0" y1="104" x2="56.0" y2="104" stroke="#2c3e50" stroke-width="3" stroke-linecap="round"/>
+        <line x1="62.0" y1="104" x2="82.0" y2="104" stroke="#2c3e50" stroke-width="3" stroke-linecap="round"/>
+        <line x1="88.0" y1="104" x2="108.0" y2="104" stroke="#2c3e50" stroke-width="3" stroke-linecap="round"/>
+        <text x="72" y="130" font-size="17" fill="#5a6a6b" text-anchor="middle">2p</text>
+        <text x="72" y="34" font-size="17" fill="#5a6a6b" text-anchor="middle" font-weight="700">O 原子</text>
+        <line x1="472.0" y1="104" x2="492.0" y2="104" stroke="#2c3e50" stroke-width="3" stroke-linecap="round"/>
+        <line x1="498.0" y1="104" x2="518.0" y2="104" stroke="#2c3e50" stroke-width="3" stroke-linecap="round"/>
+        <line x1="524.0" y1="104" x2="544.0" y2="104" stroke="#2c3e50" stroke-width="3" stroke-linecap="round"/>
+        <text x="508" y="130" font-size="17" fill="#5a6a6b" text-anchor="middle">2p</text>
+        <text x="508" y="34" font-size="17" fill="#5a6a6b" text-anchor="middle" font-weight="700">O 原子</text>
+        <line x1="263.0" y1="34" x2="317.0" y2="34" stroke="#2c3e50" stroke-width="3" stroke-linecap="round"/>
+        <text x="324.0" y="40" font-size="17" fill="#2c3e50" text-anchor="start">σ*<tspan dy='3' font-size='16'>2p</tspan></text>
+        <line x1="236.0" y1="66" x2="280.0" y2="66" stroke="#2c3e50" stroke-width="3" stroke-linecap="round"/>
+        <text x="250" y="61" font-size="17" fill="#c0392b" text-anchor="middle" font-weight="700">↑</text>
+        <line x1="300.0" y1="66" x2="344.0" y2="66" stroke="#2c3e50" stroke-width="3" stroke-linecap="round"/>
+        <text x="314" y="61" font-size="17" fill="#c0392b" text-anchor="middle" font-weight="700">↑</text>
+        <text x="351.0" y="72" font-size="17" fill="#2c3e50" text-anchor="start">π*<tspan dy='3' font-size='16'>2p</tspan></text>
+        <line x1="263.0" y1="116" x2="317.0" y2="116" stroke="#2c3e50" stroke-width="3" stroke-linecap="round"/>
+        <text x="282" y="111" font-size="17" fill="#c0392b" text-anchor="middle" font-weight="700">↑</text>
+        <text x="298" y="111" font-size="17" fill="#c0392b" text-anchor="middle" font-weight="700">↓</text>
+        <text x="324.0" y="122" font-size="17" fill="#2c3e50" text-anchor="start">σ<tspan dy='3' font-size='16'>2p</tspan></text>
+        <line x1="236.0" y1="150" x2="280.0" y2="150" stroke="#2c3e50" stroke-width="3" stroke-linecap="round"/>
+        <text x="250" y="145" font-size="17" fill="#c0392b" text-anchor="middle" font-weight="700">↑</text>
+        <text x="266" y="145" font-size="17" fill="#c0392b" text-anchor="middle" font-weight="700">↓</text>
+        <line x1="300.0" y1="150" x2="344.0" y2="150" stroke="#2c3e50" stroke-width="3" stroke-linecap="round"/>
+        <text x="314" y="145" font-size="17" fill="#c0392b" text-anchor="middle" font-weight="700">↑</text>
+        <text x="330" y="145" font-size="17" fill="#c0392b" text-anchor="middle" font-weight="700">↓</text>
+        <text x="351.0" y="156" font-size="17" fill="#2c3e50" text-anchor="start">π<tspan dy='3' font-size='16'>2p</tspan></text>
+        <line x1="46" y1="104" x2="276" y2="114" stroke="#d5dbdb" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="4 4"/>
+        <line x1="72" y1="104" x2="276" y2="114" stroke="#d5dbdb" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="4 4"/>
+        <line x1="98" y1="104" x2="276" y2="114" stroke="#d5dbdb" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="4 4"/>
+        <line x1="482" y1="104" x2="304" y2="114" stroke="#d5dbdb" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="4 4"/>
+        <line x1="508" y1="104" x2="304" y2="114" stroke="#d5dbdb" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="4 4"/>
+        <line x1="534" y1="104" x2="304" y2="114" stroke="#d5dbdb" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="4 4"/>
+        <rect x="600" y="34" width="330" height="62" fill="#fdedec" rx="8" stroke="#c0392b" stroke-width="2.5"/>
+        <text x="765" y="58" font-size="18" fill="#c0392b" text-anchor="middle" font-weight="700">π* 兩電子自旋平行、未配對</text>
+        <text x="765" y="82" font-size="18" fill="#c0392b" text-anchor="middle" font-weight="700">→ 順磁性、雙自由基</text>
+        <text x="765" y="122" font-size="18" fill="#2c3e50" text-anchor="middle" font-weight="700">鍵級 = (8 − 4) / 2 = 2</text>
+        <text x="765" y="148" font-size="17" fill="#5a6a6b" text-anchor="middle">Lewis 的 O=O 預測不出這件事</text>
+      </svg>
+</section>
+
+<!-- 39 -->
+<section class="slide">
+  <h2>順磁性與反磁性 <span class="en">Paramagnetism vs. Diamagnetism</span></h2>
+  <table>
+    <tr><th></th><th>順磁性 paramagnetic</th><th>反磁性 diamagnetic</th></tr>
+    <tr><td>電子情況</td><td>有<b>未成對</b>電子</td><td>電子<b>全部成對</b></td></tr>
+    <tr><td>對磁場</td><td>被吸引</td><td>被微弱排斥</td></tr>
+    <tr><td>例子</td><td>O<sub>2</sub>、B<sub>2</sub>、NO</td><td>N<sub>2</sub>、F<sub>2</sub>、CO</td></tr>
+  </table>
+  <div class="box key"><span class="tag">判斷法</span>寫出 MO 組態 → 檢查簡併軌域(π、π*)是否出現單占電子即可。</div>
+</section>
+
+<!-- 40 -->
+<section class="slide">
+  <h2>鍵級、鍵長、鍵能:O<sub>2</sub> 系列 <span class="en">Bond Order Trends: O<sub>2</sub> Species</span></h2>
+  <table>
+    <tr><th>物種</th><th>價電子</th><th>π* 電子</th><th>鍵級</th><th>鍵長 (pm)</th></tr>
+    <tr><td>O<sub>2</sub><sup>+</sup></td><td>11</td><td>1</td><td>2.5</td><td>112</td></tr>
+    <tr><td>O<sub>2</sub></td><td>12</td><td>2</td><td>2</td><td>121</td></tr>
+    <tr><td>O<sub>2</sub><sup>−</sup></td><td>13</td><td>3</td><td>1.5</td><td>128</td></tr>
+    <tr><td>O<sub>2</sub><sup>2−</sup></td><td>14</td><td>4</td><td>1</td><td>149</td></tr>
+  </table>
+  <p class="small">加入的電子進入<b>反鍵</b> π* → 鍵級下降、鍵長變長。MO 能定量預測這個趨勢,VB/Lewis 不能。</p>
+</section>
+
+<!-- 41 -->
+<section class="slide">
+  <h2>例題 5:MO 組態、鍵級與磁性 <span class="en">Example 5</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>寫出 O<sub>2</sub><sup>2−</sup>(過氧離子)的 MO 組態,計算鍵級並判斷磁性。
+  <div class="sol"><b>解:</b>價電子 = 12 + 2 = 14:<br>
+  (σ<sub>2s</sub>)<sup>2</sup>(σ*<sub>2s</sub>)<sup>2</sup>(σ<sub>2p</sub>)<sup>2</sup>(π<sub>2p</sub>)<sup>4</sup>(π*<sub>2p</sub>)<sup>4</sup><br>
+  鍵級 = (8 − 6)/2 = <span class="hl">1</span>(對應過氧化物中的 O–O 單鍵)<br>
+  π* 全滿、無未成對電子 → <span class="hl">反磁性</span><br>
+  <span class="small">對照:H<sub>2</sub>O<sub>2</sub> 中 O–O 鍵長 149 pm,確為單鍵 ✓</span></div></div>
+</section>
+
+<!-- 42 -->
+<section class="slide">
+  <h2>例題 6:綜合比較 N<sub>2</sub>、O<sub>2</sub>、F<sub>2</sub> <span class="en">Example 6</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>用 MO 理論比較 N<sub>2</sub>、O<sub>2</sub>、F<sub>2</sub>:鍵級、磁性,並排出鍵能大小。
+  <div class="sol"><b>解:</b><br>
+  N<sub>2</sub>(10 價e):鍵級 3、反磁性<br>
+  O<sub>2</sub>(12 價e):鍵級 2、<span class="hl">順磁性</span>(2 個未成對 π* 電子)<br>
+  F<sub>2</sub>(14 價e):(…)(π*<sub>2p</sub>)<sup>4</sup>,鍵級 = (8−6)/2 = 1、反磁性<br>
+  鍵級 3 &gt; 2 &gt; 1 → 鍵能:<span class="hl">N<sub>2</sub> &gt; O<sub>2</sub> &gt; F<sub>2</sub></span>(945 &gt; 498 &gt; 159 kJ/mol ✓)</div></div>
+</section>
+
+<!-- 43 -->
+<section class="slide">
+  <h2>三種鍵結理論比較 <span class="en">Comparing the Three Theories</span></h2>
+  <table>
+    <tr><th></th><th>Lewis</th><th>價鍵/混成 (VB)</th><th>分子軌域 (MO)</th></tr>
+    <tr><td>圖像</td><td>點與線(電子對)</td><td>軌域重疊、混成</td><td>全分子的軌域能階</td></tr>
+    <tr><td>難易</td><td>最簡單</td><td>中等</td><td>最抽象</td></tr>
+    <tr><td>能解釋</td><td>電子計數、八隅體</td><td>形狀、σ/π、旋轉限制</td><td>磁性、分數鍵級、光譜</td></tr>
+    <tr><td>失手處</td><td>O<sub>2</sub> 磁性、自由基</td><td>O<sub>2</sub> 磁性、離域</td><td>多原子分子較繁瑣</td></tr>
+    <tr><td>使用時機</td><td>快速草圖</td><td>形狀與鍵的描述</td><td>磁性/穩定性判斷</td></tr>
+  </table>
+  <div class="box key"><span class="tag">心法</span>理論是工具箱:題目問什麼,就拿對應的工具 — 三者互補、不互斥。</div>
+</section>
+
+<!-- 44 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ④:分子軌域理論 <span class="en">Quick Check 4</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>He<sub>2</sub> 的鍵級是 0,代表?<br><span class="opt">A 鍵非常強</span><span class="opt">B 分子不存在(不會形成穩定的 He<sub>2</sub>)</span><span class="opt">C 分子是自由基</span><span class="opt">D 鍵級算錯了</span></div>
+  <div class="q"><span class="qn">2</span>O<sub>2</sub> 是<b>順磁性</b>的,MO 理論如何解釋?<br><span class="opt">A σ*2p 有兩個電子</span><span class="opt">B 兩個簡併的 π*2p 各填一個電子、自旋平行</span><span class="opt">C 所有電子都配對</span><span class="opt">D 氧原子本身有磁性</span></div>
+  <div class="q"><span class="qn">3</span>Lewis 結構把 O<sub>2</sub> 畫成 O=O,電子全部配對,<b>預測它是逆磁性</b>。實驗卻相反。這件事的意義是什麼?</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B</span> — 鍵級 = (成鍵 − 反鍵)/2 = 0 → <b>沒有淨鍵結</b>,分子不穩定。<span class="myth">鍵級是 MO 理論最實用的輸出:<b>&gt;0 才可能存在,數值越大鍵越強越短</b>。He<sub>2</sub> 的鍵級 0 正好解釋了為什麼氦是單原子氣體。</span></div><div class="row"><span class="ans">2. B</span> — 依 Hund 規則,兩個電子分別進入兩個簡併的 π* 軌域且自旋平行 → <b>兩個未成對電子</b>。<span class="myth">判決性證據:<b>液態氧會被磁鐵吸住</b>。這不是理論爭辯,是看得見的實驗。</span></div><div class="row"><span class="ans">3. 它是「理論被實驗判決」的標準案例</span> — MO 理論的價值不在於它比較複雜,而在於<b>它預測對了 Lewis 預測錯的東西</b>。<span class="myth">而且這個「錯」有實際後果:O<sub>2</sub> 帶未成對電子 = <b>雙自由基</b>,能引發脂質氧化的連鎖反應 —— 那就是油耗味的來源,也是本週錨點的答案。</span></div></div>
+</section>
+<!-- 45 -->
+<section class="slide hookback">
+  <h2>回到本週的錨點 <span class="en">Anchor Answered</span></h2>
+  <div class="recall"><b>第 13 週開場問的是:</b>油耗味來自脂質氧化。但空氣中的氧氣看起來很溫和 —— 為什麼它能引發這麼激烈的連鎖反應?</div>
+  <div class="ansbox">
+    <h3>用這一週的化學回答</h3>
+    <ul>
+    <li>因為 <b>O<sub>2</sub> 本身就是雙自由基</b>。MO 理論顯示它最後兩個電子填進兩個<b>簡併的 π* 反鍵軌域</b>,依 Hund 規則各佔一個、自旋平行 → 有<b>兩個未成對電子</b>。</li>
+    <li>Lewis 結構 O=O 把電子全部畫成配對,<b>預測 O<sub>2</sub> 是逆磁性 —— 這是錯的</b>。</li>
+    <li>判決性證據:<b>液態氧會被磁鐵吸住</b>(順磁性)。MO 對,Lewis 錯。</li>
+    <li>有未成對電子,O<sub>2</sub> 就能奪取脂肪酸的氫,啟動<b>自由基連鎖反應</b>(起始 → 增長 → 終止),生成氫過氧化物,再裂解成小分子醛酮 —— 那就是油耗味。</li>
+    </ul>
+  </div>
+  <div class="lens"><span class="lt">這個情境幫你理解的化學是</span>分子軌域理論不是「比較複雜的 Lewis 結構」。它的價值在於<b>預測了 Lewis 結構預測錯的東西</b> —— 而那個「錯」,剛好就是食品保存最大的敵人。</div>
+  <div class="nextup"><b>接下來在哪裡會再用到:</b><span class="course">食品化學</span>脂質氧化、抗氧化劑、PV 值　<span class="course">生物化學</span>活性氧與自由基傷害</div>
+</section>
+<!-- 46 -->
+<section class="slide">
+  <h2>本週重點總結 <span class="en">Summary</span></h2>
+  <ul>
+    <li><b>VB 理論:</b>半滿軌域重疊成鍵;σ(頭對頭、可旋轉)、π(側對側、鎖旋轉)</li>
+    <li><b>混成:</b>電子群數 → 混成:2 sp、3 sp²、4 sp³、5 sp³d、6 sp³d²</li>
+    <li><b>多重鍵:</b>雙鍵 = σ+π(乙烯 sp²);參鍵 = σ+2π(乙炔 sp)</li>
+    <li><b>MO:</b>成鍵/反鍵軌域;鍵級 = (成鍵e − 反鍵e)/2;鍵級 0 → 不存在(He<sub>2</sub>)</li>
+    <li><b>O<sub>2</sub> 順磁性:</b>2 個單占 π* 電子 — MO 理論的代表性成就</li>
+  </ul>
+</section>
+
+<!-- 47 -->
+<section class="slide">
+  <h2>重要名詞中英對照 <span class="en">Key Terms</span></h2>
+  <table>
+    <tr><th>中文</th><th>English</th><th>中文</th><th>English</th></tr>
+    <tr><td>價鍵理論</td><td>valence bond theory</td><td>分子軌域</td><td>molecular orbital</td></tr>
+    <tr><td>軌域重疊</td><td>orbital overlap</td><td>成鍵軌域</td><td>bonding orbital</td></tr>
+    <tr><td>σ 鍵 / π 鍵</td><td>sigma / pi bond</td><td>反鍵軌域</td><td>antibonding orbital</td></tr>
+    <tr><td>混成軌域</td><td>hybrid orbital</td><td>鍵級</td><td>bond order</td></tr>
+    <tr><td>混成</td><td>hybridization</td><td>順磁性</td><td>paramagnetism</td></tr>
+    <tr><td>簡併軌域</td><td>degenerate orbitals</td><td>反磁性</td><td>diamagnetism</td></tr>
+  </table>
+</section>
+
+<!-- 48 -->
+<section class="slide">
+  <h2>課後練習與下週預告 <span class="en">Homework &amp; Preview</span></h2>
+  <h3>課後練習(OpenStax Chemistry 2e, Ch.8)</h3>
+  <ul>
+    <li>σ/π 鍵辨識與混成判斷:8.1–8.3 節相關題(必做)</li>
+    <li>多重鍵分子的鍵結描述:8.3 節相關題</li>
+    <li>MO 組態、鍵級與磁性:8.4 節相關題(必做,含 O<sub>2</sub> 系列)</li>
+  </ul>
+  <h3>下週預告:氣體(Ch.9)</h3>
+  <ul>
+    <li>氣體壓力與測量、理想氣體定律 PV = nRT</li>
+    <li>氣體化學計量、分壓定律、氣體動力論</li>
+  </ul>
+  <p class="small center" style="margin-top:20px">操作提示:← → 或空白鍵翻頁|Home/End 跳至首末頁|Ctrl+P 可列印成講義</p>
+</section>
+
+</div></div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const DECK_INFO='普通化學(一)|第 13 週:進階鍵結理論:混成軌域與分子軌域';
+let cur=0;
+slides.forEach((s,i)=>{
+  const f=document.createElement('div');f.className='foot';
+  f.innerHTML='<span>'+DECK_INFO+'</span><span>'+(i+1)+' / '+slides.length+'</span>';
+  s.appendChild(f);
+});
+slides.forEach(s=>{
+  const sol=s.querySelector('.sol');
+  if(!sol)return;
+  const hint=document.createElement('div');hint.className='sol-hint';
+  hint.innerHTML='<span class="kbd">空白鍵</span><span>先自己想／算，準備好再顯示解答</span>';
+  sol.insertAdjacentElement('beforebegin',hint);
+});
+function show(n){
+  cur=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,i)=>{s.classList.toggle('active',i===cur);s.classList.remove('reveal');});
+  document.getElementById('bar').style.width=((cur+1)/slides.length*100)+'%';
+  location.hash=cur+1;
+}
+function next(){
+  const s=slides[cur];
+  if(s.querySelector('.sol')&&!s.classList.contains('reveal')){s.classList.add('reveal');return;}
+  show(cur+1);
+}
+function prev(){
+  const s=slides[cur];
+  if(s.classList.contains('reveal')){s.classList.remove('reveal');return;}
+  show(cur-1);
+}
+function fit(){
+  const s=Math.min(innerWidth/1280,innerHeight/720);
+  document.getElementById('deck').style.transform='scale('+s+')';
+}
+addEventListener('resize',fit);
+addEventListener('keydown',e=>{
+  if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();next();}
+  else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev();}
+  else if(e.key==='Home')show(0);
+  else if(e.key==='End')show(slides.length-1);
+});
+addEventListener('click',e=>{
+  if(e.target.closest('a'))return;
+  (e.clientX>innerWidth/3)?next():prev();
+});
+let tx=null;
+addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+addEventListener('touchend',e=>{
+  if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;
+  if(dx<-40)next();else if(dx>40)prev();tx=null;
+});
+fit();
+show(parseInt(location.hash.slice(1))-1||0);
+</script>
+</body>
+</html>

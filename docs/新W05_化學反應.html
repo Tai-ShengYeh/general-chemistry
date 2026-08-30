@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新課綱 第 5 週:化學反應與四大反應類型</title>
+<style>
+:root{
+  --primary:#1a5276; --primary-dark:#12395a; --accent:#a04c08; --teal:#117a65;
+  --ink:#2c3e50; --muted:#5a6a6b; --bg:#eceff3; --card:#ffffff;
+  --def-bg:#eaf2f8; --key-bg:#fef9e7; --ex-bg:#e8f8f5; --warn-bg:#fdedec;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC","Heiti TC",sans-serif;color:var(--ink)}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#deck{position:relative;width:1280px;height:720px;transform-origin:center center}
+.slide{position:absolute;inset:0;width:1280px;height:720px;background:var(--card);padding:56px 72px 70px;display:none;flex-direction:column;border-top:10px solid var(--primary);overflow:hidden}
+.slide.active{display:flex}
+.slide h2{font-size:36px;color:var(--primary);border-bottom:3px solid var(--accent);padding-bottom:10px;margin-bottom:26px;font-weight:700}
+.slide h2 .en{display:block;font-size:19px;color:var(--muted);font-weight:400;margin-top:4px}
+.slide h3{font-size:26px;color:var(--primary);margin:12px 0 8px}
+.slide p{font-size:24px;line-height:1.55;margin:8px 0}
+.slide ul,.slide ol{font-size:24px;line-height:1.6;margin:8px 0 8px 34px}
+.slide li{margin:7px 0}
+.slide li li{font-size:22px;margin:4px 0}
+.en{color:var(--muted);font-size:.82em}
+.small{font-size:19px;color:var(--muted)}
+.big{font-size:30px}
+.center{text-align:center}
+.hl{color:var(--accent);font-weight:700}
+.hlb{color:var(--primary);font-weight:700}
+.two-col{display:flex;gap:32px;align-items:flex-start}
+.two-col>div{flex:1}
+.box{border-radius:10px;padding:16px 22px;margin:14px 0;font-size:23px;line-height:1.55}
+.def{background:var(--def-bg);border-left:6px solid var(--primary)}
+.key{background:var(--key-bg);border-left:6px solid #f1c40f}
+.warn{background:var(--warn-bg);border-left:6px solid #e74c3c}
+.exbox{background:var(--ex-bg);border-left:6px solid var(--teal)}
+.box .tag{display:inline-block;font-size:17px;font-weight:700;color:#fff;border-radius:5px;padding:2px 10px;margin-bottom:6px}
+.def .tag{background:var(--primary)} .key .tag{background:#8a6d00} .warn .tag{background:#c0392b} .exbox .tag{background:var(--teal)}
+.sol{border-top:2px dashed var(--teal);margin-top:12px;padding-top:10px}
+/* ── 形成性評量：解答兩段式揭露 ───────────────────────── */
+.slide.active .sol{display:none}
+.slide.active.reveal .sol{display:block}
+.sol-hint{margin-top:12px;padding-top:10px;border-top:2px dashed #b9c6c6;font-size:19px;color:#5d6d6e;display:flex;align-items:center;gap:10px}
+.slide.active.reveal .sol-hint{display:none}
+.sol-hint .kbd{display:inline-block;border:1px solid #aab7b8;border-bottom-width:2px;border-radius:5px;padding:1px 9px;font-size:17px;background:#fff;color:#34495e}
+/* ── 隨堂快問 ─────────────────────────────────────────── */
+.slide.quiz{border-top-color:var(--teal)}
+.slide.quiz h2{margin-bottom:14px}
+.slide.quiz h2{color:#0e6655;border-bottom-color:var(--teal)}
+.qbar{background:#e8f8f5;border-left:6px solid var(--teal);border-radius:8px;padding:5px 16px;font-size:18px;color:#0e6655;margin-bottom:4px}
+.q{margin:4px 0;font-size:21px;line-height:1.28}
+.q .qn{display:inline-block;min-width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;background:var(--teal);color:#fff;font-size:16px;font-weight:700;margin-right:7px}
+.opt{display:inline-block;border:1.5px solid #a2d5cd;background:#f2fbf9;color:#0e6655;border-radius:14px;padding:0 11px;margin:1px 4px 1px 0;font-size:19px}
+.quiz .sol{margin-top:5px;padding-top:5px;font-size:18px;line-height:1.26}
+.quiz .sol .ans{color:#c0392b;font-weight:700}
+.quiz .sol .row{margin:3px 0}
+.quiz .sol .row+.row{border-top:1px solid #e5eceb;padding-top:3px}
+.quiz .sol .myth{display:block;font-size:16px;color:#5d6d6e;margin:1px 0 0 0;line-height:1.24}
+@media print{
+  .sol{display:block!important}
+  .sol-hint{display:none!important}
+}
+.eq{text-align:center;font-size:28px;margin:14px 0;font-family:Cambria,"Times New Roman",serif}
+table{border-collapse:collapse;margin:12px auto;font-size:21px;width:100%}
+th{background:var(--primary);color:#fff;padding:8px 12px;font-weight:600}
+td{border:1px solid #d5dbdb;padding:7px 12px;text-align:center}
+tr:nth-child(even) td{background:#f4f6f7}
+.cover{background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 55%,var(--teal) 100%);border-top:none;color:#fff;justify-content:center;align-items:center;text-align:center}
+.cover h1{font-size:58px;letter-spacing:4px;margin-bottom:10px}
+.cover .sub{font-size:30px;opacity:.92;margin:6px 0}
+.cover .en-title{font-size:24px;opacity:.75;margin-bottom:34px}
+.cover .meta{font-size:20px;opacity:.7;margin-top:40px}
+.cover .rule{width:220px;height:4px;background:#f7b955;margin:26px auto}
+.divider{background:linear-gradient(120deg,var(--primary-dark),var(--primary));border-top:none;color:#fff;justify-content:center}
+.divider .secnum{font-size:26px;color:#f7b955;font-weight:700;letter-spacing:2px;margin-bottom:14px}
+.divider h1{font-size:52px;margin-bottom:12px}
+.divider .en-sub{font-size:26px;opacity:.75}
+.divider .items{margin-top:36px;font-size:23px;opacity:.9;line-height:2}
+.foot{position:absolute;left:0;right:0;bottom:0;height:32px;display:flex;justify-content:space-between;align-items:center;padding:0 28px;font-size:14px;color:#5d6d6e;background:#fafbfc;border-top:1px solid #e5e8e8}
+.cover .foot,.divider .foot{background:rgba(0,0,0,.15);color:rgba(255,255,255,.65);border-top:none}
+#bar{position:fixed;top:0;left:0;height:5px;background:var(--accent);width:0;z-index:10;transition:width .2s}
+.flow{display:flex;flex-direction:column;align-items:center;gap:6px}
+.fbox{border:2px solid var(--primary);border-radius:8px;padding:8px 20px;font-size:21px;background:var(--def-bg);text-align:center}
+.frow{display:flex;gap:60px;justify-content:center}
+.arrow{font-size:22px;color:var(--accent)}
+.chip{display:inline-block;background:var(--def-bg);border:1px solid var(--primary);color:var(--primary);border-radius:16px;padding:2px 14px;margin:3px;font-size:20px}
+/* ── 因次分析鐵軌格 ───────────────────────────────────── */
+.rail{border-collapse:collapse;margin:10px auto 6px;font-size:23px}
+.rail td{border:none;padding:5px 20px;text-align:center;background:none;vertical-align:middle}
+.rail td+td{border-left:2px solid var(--muted)}
+.rail tr:first-child td{border-bottom:3px solid var(--ink)}
+.rail td.res{border-left:none;padding-left:14px;font-weight:700;color:var(--accent);font-size:25px}
+.rail tr:first-child td.res{border-bottom:none}
+.rail .bk{display:inline-block;min-width:104px;border-bottom:3px dashed var(--accent);height:27px;vertical-align:-4px}
+.rail .gv{background:var(--def-bg)}
+.railnote{text-align:center;font-size:18px;color:var(--muted);margin-top:2px}
+.fig{display:block;margin:6px auto;flex-shrink:0}
+/* ── 錨點回收頁 ───────────────────────────────────────── */
+.slide.hookback{border-top-color:var(--teal)}
+.slide.hookback h2{color:#0e6655;border-bottom-color:var(--teal)}
+.recall{background:#f4f6f7;border-left:5px solid #95a5a6;border-radius:8px;padding:7px 18px;
+        font-size:20px;line-height:1.34;color:#5d6d6e;margin:0 0 10px}
+.recall b{color:#34495e}
+.ansbox{background:#e8f8f5;border-left:6px solid var(--teal);border-radius:9px;padding:10px 20px;margin:0 0 10px}
+.ansbox h3{font-size:20px;color:#0e6655;margin:0 0 5px}
+.ansbox ul{margin:0 0 0 20px;font-size:19.5px;line-height:1.4}
+.ansbox li{margin:5px 0}
+.lens{background:var(--key-bg);border-left:6px solid #d4a70a;border-radius:9px;padding:10px 20px;
+      font-size:20px;line-height:1.38;margin-bottom:9px}
+.lens .lt{display:block;font-size:16px;font-weight:700;color:#8a6d00;letter-spacing:1px;margin-bottom:2px}
+.nextup{background:#eaf2f8;border-left:5px solid var(--primary);border-radius:8px;padding:8px 18px;
+        font-size:18.5px;line-height:1.4;color:#34495e}
+.nextup .course{display:inline-block;background:#fff;border:1px solid #a2d5cd;color:#0e6655;
+                border-radius:11px;padding:0 8px;font-size:16px;margin-right:4px}
+
+/* ── 食品營養錨點頁 ───────────────────────────────────── */
+.slide.hook{border-top-color:var(--accent)}
+.slide.hook h2{color:#a05000;border-bottom-color:var(--accent)}
+.bigq{background:linear-gradient(100deg,#fff5ea,#fdf0e0);border-left:8px solid var(--accent);border-radius:10px;
+      padding:14px 22px;font-size:26px;line-height:1.4;color:#7a3d00;font-weight:700;margin:4px 0 12px}
+.bigq .qmark{font-size:30px;margin-right:6px}
+.hookcols{display:flex;gap:22px;align-items:stretch;margin-top:4px}
+.hookcols>div{flex:1;border-radius:9px;padding:11px 16px}
+.hk-now{background:#eaf2f8;border-left:5px solid var(--primary)}
+.hk-next{background:#e8f8f5;border-left:5px solid var(--teal)}
+.hookcols h3{font-size:20px;margin:0 0 6px}
+.hk-now h3{color:var(--primary)} .hk-next h3{color:#0e6655}
+.hookcols ul{font-size:19px;line-height:1.4;margin:0 0 0 20px}
+.hookcols li{margin:4px 0}
+.hookcols .course{display:inline-block;background:#fff;border:1px solid #a2d5cd;color:#0e6655;
+                  border-radius:11px;padding:0 8px;font-size:16px;margin-right:4px}
+.canyou{background:var(--key-bg);border-left:6px solid #d4a70a;border-radius:9px;padding:10px 18px;
+        font-size:20px;line-height:1.4;margin-top:12px}
+.canyou b{color:#8a6d00}
+.hookmap{font-size:19px;line-height:1.5}
+.hookmap td{text-align:left;padding:5px 10px}
+.hookmap td:first-child{text-align:center;font-weight:700;color:var(--accent);width:62px}
+@media print{
+  @page{size:1280px 720px;margin:0}
+  html,body{background:#fff}
+  #stage{position:static}
+  #deck{width:auto;height:auto;transform:none!important}
+  .slide{position:relative;display:flex!important;page-break-after:always;margin:0;inset:auto}
+  #bar{display:none}
+}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="stage"><div id="deck">
+
+<!-- 1 -->
+<section class="slide cover">
+  <h1>普通化學(一)</h1>
+  <div class="en-title">General Chemistry I</div>
+  <div class="rule"></div>
+  <div class="sub">第 5 週:化學反應</div>
+  <div class="sub">反應式與反應類型</div>
+  <div class="en-title" style="margin-top:8px">Chemical Reactions: Equations and Reaction Types</div>
+  <div class="meta">對應教材:OpenStax Chemistry 2e — Chapter 4.1–4.3</div>
+</section>
+
+<!-- 2 -->
+<section class="slide">
+  <h2>本週學習目標 <span class="en">Learning Objectives</span></h2>
+  <ul>
+    <li>正確書寫並平衡化學反應式,標明狀態符號 (s)/(l)/(g)/(aq)</li>
+    <li>區分強/弱電解質與非電解質</li>
+    <li>由分子方程式寫出完全離子方程式與淨離子方程式</li>
+    <li>熟記溶解度規則,預測沉澱反應</li>
+    <li>認識 Arrhenius 與 Brønsted-Lowry 酸鹼定義、強酸強鹼與中和反應</li>
+    <li>指定氧化數,判斷氧化還原反應與氧化劑/還原劑</li>
+    <li>能說明沉澱、酸鹼、氧化還原三類反應各自對應的<b>食品分析方法</b></li>
+  </ul>
+  <div class="box key"><span class="tag">本週重點</span>沉澱、酸鹼、氧化還原是水溶液中三大反應類型,貫穿整個普化課程 —— 也正是食品分析的<b>三大滴定法</b>。</div>
+</section>
+
+<!-- 3 -->
+<section class="slide hook">
+  <h2>第 5 週·食品營養錨點：蛋糕為什麼會膨？小蘇打和泡打粉差在哪？ <span class="en">Anchor Question</span></h2>
+  <div class="bigq"><span class="qmark">?</span>食譜有時候要你加<b>小蘇打</b>，有時候要<b>泡打粉</b>，有時候還要另外加檸檬汁或優格。為什麼？</div>
+  <div class="hookcols">
+    <div class="hk-now"><h3>這一週要用到的化學</h3><ul><li>化學反應式與平衡係數</li><li>分解反應、酸鹼中和</li><li>沉澱反應與溶解度規則</li><li>氧化還原的辨識</li></ul></div>
+    <div class="hk-next"><h3>之後在哪裡會再遇到</h3><ul><li><span class="course">食品化學</span>膨脹劑、酸鹼與質地</li><li><span class="course">食品加工</span>配方設計</li><li><span class="course">分析化學</span>沉澱與重量分析</li></ul></div>
+  </div>
+  <div class="canyou"><b>本週結束時，你應該能回答：</b>為什麼只加小蘇打的蛋糕會有鹼味、還帶黃斑？</div><div class="canyou" style="background:#f4f6f7;border-left-color:#95a5a6"><b>先猜猜看：</b>小蘇打受熱分解，產生的氣體是什麼？</div>
+</section>
+
+<!-- 4 -->
+<section class="slide divider">
+  <div class="secnum">PART 5.1</div>
+  <h1>化學反應式與平衡</h1>
+  <div class="en-sub">Writing and Balancing Chemical Equations</div>
+  <div class="items">反應式的意義・狀態符號・平衡原則與步驟</div>
+</section>
+
+<!-- 5 -->
+<section class="slide">
+  <h2>化學反應式的意義 <span class="en">Chemical Equations</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>化學反應式 (chemical equation)</b>:以化學式與係數表示反應的符號語言。<br>反應物 (reactants) → 生成物 (products)</div>
+  <table>
+    <tr><th>狀態符號</th><th>(s)</th><th>(l)</th><th>(g)</th><th>(aq)</th></tr>
+    <tr><td>意義</td><td>固體 solid</td><td>液體 liquid</td><td>氣體 gas</td><td>水溶液 aqueous</td></tr>
+  </table>
+  <ul>
+    <li>「→」讀作「生成」;可逆反應用「⇌」</li>
+    <li>條件(加熱 Δ、催化劑)可註於箭頭上方</li>
+  </ul>
+</section>
+
+<!-- 6 -->
+<section class="slide">
+  <h2>係數傳達的訊息 <span class="en">Information in an Equation</span></h2>
+  <div class="eq">CH<sub>4</sub>(g) + 2O<sub>2</sub>(g) → CO<sub>2</sub>(g) + 2H<sub>2</sub>O(l)</div>
+  <ul>
+    <li><b>分子層次:</b>1 個 CH<sub>4</sub> 分子與 2 個 O<sub>2</sub> 分子反應</li>
+    <li><b>莫耳層次:</b>1 mol CH<sub>4</sub> 與 2 mol O<sub>2</sub> 反應,生成 1 mol CO<sub>2</sub> 與 2 mol H<sub>2</sub>O</li>
+    <li>係數比 = 分子個數比 = <span class="hl">莫耳數比</span>(下週化學計量的基礎)</li>
+    <li>係數比<span class="hlb">不是質量比</span>!</li>
+  </ul>
+</section>
+
+<!-- 7 -->
+<section class="slide">
+  <h2>平衡反應式的原則 <span class="en">Principles of Balancing</span></h2>
+  <ul>
+    <li>依據<b>質量守恆定律</b>:反應前後<span class="hlb">各元素的原子數必須相等</span></li>
+    <li>只能調整<span class="hl">係數 (coefficients)</span>,<b>絕不可更改化學式的下標</b></li>
+    <li>係數應化為<b>最簡整數比</b></li>
+    <li>係數 1 慣例上省略不寫</li>
+  </ul>
+  <div class="box warn"><span class="tag">注意</span>把 H<sub>2</sub>O 改成 H<sub>2</sub>O<sub>2</sub> 來「平衡」是大錯 — 改下標就變成另一種物質!</div>
+</section>
+
+<!-- 8 -->
+<section class="slide">
+  <h2>平衡步驟(觀察法) <span class="en">Balancing by Inspection</span></h2>
+  <ol>
+    <li>寫出正確的反應物與生成物<b>化學式</b>(骨架方程式)</li>
+    <li>從<b>出現次數最少、最複雜</b>的元素開始平衡</li>
+    <li>多原子離子若反應前後不變,可視為一個整體</li>
+    <li>單質(如 O<sub>2</sub>、Fe)<b>留到最後</b>平衡</li>
+    <li>檢查:逐一清點各元素原子數;必要時將分數係數同乘化整</li>
+  </ol>
+</section>
+
+<!-- 9 -->
+<section class="slide">
+  <h2>例題 1:平衡反應式 <span class="en">Example 1</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>平衡下列反應式:<br>(a) N<sub>2</sub>(g) + H<sub>2</sub>(g) → NH<sub>3</sub>(g)&nbsp;&nbsp;&nbsp;(b) Al(s) + O<sub>2</sub>(g) → Al<sub>2</sub>O<sub>3</sub>(s)
+  <div class="sol"><b>解:</b><br>
+  (a) 先平衡 N:NH<sub>3</sub> 前加 2 → N<sub>2</sub> + H<sub>2</sub> → 2NH<sub>3</sub>(右側 H = 6)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;再平衡 H:H<sub>2</sub> 前加 3 → <span class="hl">N<sub>2</sub>(g) + 3H<sub>2</sub>(g) → 2NH<sub>3</sub>(g)</span> ✓<br>
+  (b) 平衡 O:最小公倍數 6 → 3O<sub>2</sub> 對 2Al<sub>2</sub>O<sub>3</sub>(O 各 6)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;平衡 Al:右側 4 個 → Al 前加 4 → <span class="hl">4Al(s) + 3O<sub>2</sub>(g) → 2Al<sub>2</sub>O<sub>3</sub>(s)</span> ✓</div></div>
+</section>
+
+<!-- 10 -->
+<section class="slide">
+  <h2>例題 2:平衡燃燒反應 <span class="en">Example 2</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>平衡乙烷的燃燒反應:C<sub>2</sub>H<sub>6</sub>(g) + O<sub>2</sub>(g) → CO<sub>2</sub>(g) + H<sub>2</sub>O(g)
+  <div class="sol"><b>解:</b>順序:C → H → O(O<sub>2</sub> 是單質,最後平衡)<br>
+  ① C:2 → CO<sub>2</sub> 前加 2&nbsp;&nbsp;② H:6 → H<sub>2</sub>O 前加 3<br>
+  ③ 右側 O = 4 + 3 = 7 → O<sub>2</sub> 前需 7/2:C<sub>2</sub>H<sub>6</sub> + (7/2)O<sub>2</sub> → 2CO<sub>2</sub> + 3H<sub>2</sub>O<br>
+  ④ 全式 × 2 化為整數:<span class="hl">2C<sub>2</sub>H<sub>6</sub>(g) + 7O<sub>2</sub>(g) → 4CO<sub>2</sub>(g) + 6H<sub>2</sub>O(g)</span><br>
+  檢查:C 4=4、H 12=12、O 14=14 ✓</div></div>
+  <div class="box key"><span class="tag">技巧</span>碳氫化合物燃燒:固定順序「C → H → O」幾乎一定成功。</div>
+</section>
+
+<!-- 11 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ①:反應式與平衡 <span class="en">Quick Check 1</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>平衡 H<sub>2</sub> + O<sub>2</sub> → H<sub>2</sub>O 時,下列做法何者<b>正確</b>?<br><span class="opt">A 把 H<sub>2</sub>O 改成 H<sub>2</sub>O<sub>2</sub></span><span class="opt">B 在 H<sub>2</sub>O 前加係數 2</span><span class="opt">C 把 O<sub>2</sub> 改成 O</span><span class="opt">D 兩邊各加一個 O</span></div>
+  <div class="q"><span class="qn">2</span>2H<sub>2</sub> + O<sub>2</sub> → 2H<sub>2</sub>O。下列敘述何者<b>正確</b>?<br><span class="opt">A 2 g H<sub>2</sub> 配 1 g O<sub>2</sub></span><span class="opt">B 2 mol H<sub>2</sub> 配 1 mol O<sub>2</sub></span><span class="opt">C 質量比為 2 : 1</span><span class="opt">D 反應後總分子數不變</span></div>
+  <div class="q"><span class="qn">3</span>為什麼平衡反應式時<b>只能改係數,不能改下標</b>?</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B</span> — 只調整係數,不動化學式。<span class="myth">選 A/C 的同學為了配平而<b>改了物質本身</b> —— H<sub>2</sub>O<sub>2</sub> 是過氧化氫,不是水。這是最嚴重的一種錯:方程式配平了,但描述的已經不是原來那個反應。</span></div><div class="row"><span class="ans">2. B</span> — 係數是<b>莫耳比</b>(同溫同壓下也是氣體體積比)。<span class="myth">選 A/C 把係數當質量比:2 mol H<sub>2</sub> = 4.03 g、1 mol O<sub>2</sub> = 32.00 g,質量比是 1 : 7.94。選 D 錯在 3 個分子變成 2 個 —— <b>質量守恆,分子數不守恆</b>。<b>[M03]</b></span></div><div class="row"><span class="ans">3. 因為下標代表物質的身分</span> — 改下標等於換成另一種物質;改係數只是改「用了幾個」。<b>配平的前提是反應物與產物已經確定</b>,配平只能調整數量。<span class="myth">延伸:所以配平前一定要先確認產物是什麼。這也是為什麼「先寫出正確的反應式」比「會配平」更重要。</span></div></div>
+</section>
+
+<!-- 12 -->
+<section class="slide divider">
+  <div class="secnum">PART 5.2</div>
+  <h1>電解質與離子方程式</h1>
+  <div class="en-sub">Electrolytes and Ionic Equations</div>
+  <div class="items">強/弱電解質・分子方程式・完全離子式・淨離子式</div>
+</section>
+
+<!-- 13 -->
+<section class="slide">
+  <h2>電解質與非電解質 <span class="en">Electrolytes and Nonelectrolytes</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>電解質 (electrolyte)</b>:溶於水後解離出離子、使溶液導電的物質。<br><b>非電解質 (nonelectrolyte)</b>:溶於水不解離、溶液不導電的物質。</div>
+  <ul>
+    <li>電解質:酸、鹼、鹽類(NaCl、HCl、NaOH⋯)</li>
+    <li>非電解質:糖、酒精、尿素等多數分子化合物</li>
+    <li>導電原因:溶液中有<span class="hl">可自由移動的離子</span></li>
+  </ul>
+</section>
+
+<!-- 14 -->
+<section class="slide">
+  <h2>強電解質與弱電解質 <span class="en">Strong vs. Weak Electrolytes</span></h2>
+  <table>
+    <tr><th></th><th>強電解質 strong</th><th>弱電解質 weak</th><th>非電解質 non-</th></tr>
+    <tr><td>解離程度</td><td>~100% 完全解離</td><td>部分解離(⇌)</td><td>不解離</td></tr>
+    <tr><td>導電性</td><td>強</td><td>弱</td><td>不導電</td></tr>
+    <tr><td>例子</td><td>強酸、強鹼、可溶性鹽</td><td>弱酸(CH<sub>3</sub>COOH)、弱鹼(NH<sub>3</sub>)</td><td>蔗糖、乙醇</td></tr>
+    <tr><td>方程式寫法</td><td>拆成離子</td><td>保留分子式</td><td>保留分子式</td></tr>
+  </table>
+  <div class="box key"><span class="tag">重點</span>NaCl(aq) 實際上是 Na<sup>+</sup>(aq) + Cl<sup>−</sup>(aq);醋酸則以 CH<sub>3</sub>COOH ⇌ CH<sub>3</sub>COO<sup>−</sup> + H<sup>+</sup> 部分解離。</div>
+</section>
+
+<!-- 15 -->
+<section class="slide">
+  <h2>三種方程式 <span class="en">Molecular, Complete Ionic, Net Ionic</span></h2>
+<svg class="fig" role="img" aria-labelledby="w04f1-t w04f1-d" width="940" height="430" viewBox="0 0 940 430" xmlns="http://www.w3.org/2000/svg">
+        <title id="w04f1-t">分子式、完全離子式與淨離子式</title>
+        <desc id="w04f1-d">以硝酸銀與氯化鈉為例。分子式寫成完整化合物；完全離子式把可溶的強電解質拆成離子；淨離子式刪去兩邊都出現的旁觀離子，只留下真正反應的銀離子與氯離子。</desc>
+        <defs><marker id="w04f1-dn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5a6a6b"/></marker></defs>
+        <rect x="20" y="8" width="900" height="84" fill="#eaf2f8" rx="10" stroke="#1f5f8b" stroke-width="2.5"/>
+        <text x="38" y="40" font-size="21" fill="#1f5f8b" text-anchor="start" font-weight="700">分子式</text>
+        <text x="470" y="74" font-size="24" fill="#2c3e50" text-anchor="middle">AgNO₃(aq) + NaCl(aq) → AgCl(s) + NaNO₃(aq)</text>
+        <line x1="470" y1="98" x2="470" y2="118" stroke="#5a6a6b" stroke-width="2.6" marker-end="url(#w04f1-dn)" stroke-linecap="round"/>
+        <text x="486" y="118" font-size="18" fill="#5a6a6b" text-anchor="start">拆開可溶強電解質</text>
+        <rect x="20" y="134" width="900" height="84" fill="#eaf2f8" rx="10" stroke="#1f5f8b" stroke-width="2.5"/>
+        <text x="38" y="166" font-size="21" fill="#1f5f8b" text-anchor="start" font-weight="700">完全離子式</text>
+        <text x="470" y="200" font-size="22" fill="#2c3e50" text-anchor="middle">Ag⁺ + NO₃⁻ + Na⁺ + Cl⁻ → AgCl(s) + Na⁺ + NO₃⁻</text>
+        <line x1="470" y1="224" x2="470" y2="244" stroke="#5a6a6b" stroke-width="2.6" marker-end="url(#w04f1-dn)" stroke-linecap="round"/>
+        <text x="486" y="244" font-size="18" fill="#5a6a6b" text-anchor="start">刪去旁觀離子 Na⁺、NO₃⁻</text>
+        <rect x="20" y="260" width="900" height="84" fill="#e8f8f5" rx="10" stroke="#117a65" stroke-width="2.5"/>
+        <text x="38" y="292" font-size="21" fill="#117a65" text-anchor="start" font-weight="700">淨離子式</text>
+        <text x="470" y="326" font-size="26" fill="#2c3e50" text-anchor="middle">Ag⁺(aq) + Cl⁻(aq) → AgCl(s)</text>
+        <rect x="20" y="358" width="900" height="52" fill="#fdedec" rx="10" stroke="#c0392b" stroke-width="2.5"/>
+        <text x="470" y="390" font-size="21" fill="#c0392b" text-anchor="middle" font-weight="700">沉澱、弱電解質、氣體、水 → 不可拆</text>
+      </svg>
+</section>
+
+<!-- 16 -->
+<section class="slide">
+  <h2>旁觀離子 <span class="en">Spectator Ions</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>旁觀離子 (spectator ions)</b>:反應前後<b>形態完全不變</b>的離子,在完全離子方程式兩邊同時出現,可消去。</div>
+  <ul>
+    <li>它們留在溶液中「圍觀」,不參與化學變化</li>
+    <li>淨離子方程式凸顯<span class="hl">反應的本質</span>,不同組合的反應可能有相同的淨離子式</li>
+    <li>檢查:淨離子方程式的<b>原子數與總電荷</b>都要平衡</li>
+  </ul>
+</section>
+
+<!-- 17 -->
+<section class="slide">
+  <h2>例題 3:寫出淨離子方程式 <span class="en">Example 3</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>硝酸銀與氯化鈉水溶液混合,生成氯化銀沉澱。寫出三種方程式。
+  <div class="sol"><b>解:</b><br>
+  分子方程式:AgNO<sub>3</sub>(aq) + NaCl(aq) → AgCl(s) + NaNO<sub>3</sub>(aq)<br>
+  完全離子式:Ag<sup>+</sup> + NO<sub>3</sub><sup>−</sup> + Na<sup>+</sup> + Cl<sup>−</sup> → AgCl(s) + Na<sup>+</sup> + NO<sub>3</sub><sup>−</sup><br>
+  消去旁觀離子 Na<sup>+</sup>、NO<sub>3</sub><sup>−</sup>:<br>
+  淨離子式:<span class="hl">Ag<sup>+</sup>(aq) + Cl<sup>−</sup>(aq) → AgCl(s)</span><br>
+  檢查:電荷 (+1)+(−1) = 0 = 右側 ✓</div></div>
+</section>
+
+<!-- 18 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ②:電解質與淨離子式 <span class="en">Quick Check 2</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>下列何者是<b>強電解質</b>?<br><span class="opt">A 醋酸 CH<sub>3</sub>COOH</span><span class="opt">B 蔗糖</span><span class="opt">C NaCl</span><span class="opt">D 乙醇</span></div>
+  <div class="q"><span class="qn">2</span>寫淨離子方程式時,下列何者<b>不可</b>拆成離子?<br><span class="opt">A 水溶液中的 NaCl</span><span class="opt">B 水溶液中的 HCl</span><span class="opt">C 沉澱的 AgCl</span><span class="opt">D 水溶液中的 KNO<sub>3</sub></span></div>
+  <div class="q"><span class="qn">3</span>NaCl 水溶液會導電,固體 NaCl 卻不導電。<b>為什麼?</b></div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. C</span> — 強電解質 = 在水中<b>幾乎完全解離</b>成離子。<span class="myth">選 A 的同學把「酸」當成「強電解質」—— 醋酸是<b>弱</b>電解質,只有少部分解離。強弱看的是<b>解離程度</b>,不是酸鹼性,也不是濃度。</span></div><div class="row"><span class="ans">2. C</span> — 沉澱、弱電解質、氣體、水<b>都不拆</b>。<span class="myth">選 B 的同學以為酸都要拆 —— <b>只有強酸</b>才拆。判準是:它在水中是不是以離子形式存在?AgCl 是固體,離子被鎖在晶格裡。</span></div><div class="row"><span class="ans">3. 因為固體中離子被鎖在晶格,不能移動</span> — 導電需要<b>可自由移動的帶電粒子</b>。溶解後 Na<sup>+</sup> 與 Cl<sup>−</sup> 分散於水中可以移動;熔融態同樣能導電。<span class="myth">所以判斷導電性要問兩件事:<b>有沒有離子</b>、<b>離子能不能動</b>。少問第二個,就會誤以為固體鹽也導電。</span></div></div>
+</section>
+
+<!-- 19 -->
+<section class="slide divider">
+  <div class="secnum">PART 5.3</div>
+  <h1>沉澱反應</h1>
+  <div class="en-sub">Precipitation Reactions</div>
+  <div class="items">溶解度規則・沉澱的預測</div>
+</section>
+
+<!-- 20 -->
+<section class="slide">
+  <h2>沉澱反應 <span class="en">Precipitation Reactions</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>沉澱反應</b>:兩種可溶性鹽的水溶液混合,陰陽離子交換後生成<b>不溶性固體(沉澱,precipitate)</b>的反應。</div>
+  <ul>
+    <li>屬於<b>複分解反應 (double displacement / metathesis)</b>:AX + BY → AY + BX</li>
+    <li>判斷是否沉澱 → 查<span class="hl">溶解度規則 (solubility rules)</span></li>
+    <li>應用:離子檢驗、水處理、重量分析(下週)</li>
+  </ul>
+</section>
+
+<!-- 21 -->
+<section class="slide">
+  <h2>溶解度規則(必背) <span class="en">Solubility Rules</span></h2>
+  <table>
+    <tr><th>離子</th><th>溶解性</th><th>重要例外</th></tr>
+    <tr><td>第 1 族(Na<sup>+</sup>, K<sup>+</sup>⋯)、NH<sub>4</sub><sup>+</sup></td><td>皆可溶</td><td>無</td></tr>
+    <tr><td>NO<sub>3</sub><sup>−</sup>、C<sub>2</sub>H<sub>3</sub>O<sub>2</sub><sup>−</sup></td><td>皆可溶</td><td>無</td></tr>
+    <tr><td>Cl<sup>−</sup>、Br<sup>−</sup>、I<sup>−</sup></td><td>多可溶</td><td>Ag<sup>+</sup>、Pb<sup>2+</sup>、Hg<sub>2</sub><sup>2+</sup> 不溶</td></tr>
+    <tr><td>SO<sub>4</sub><sup>2−</sup></td><td>多可溶</td><td>Ba<sup>2+</sup>、Pb<sup>2+</sup>、Ca<sup>2+</sup>、Sr<sup>2+</sup> 不/微溶</td></tr>
+    <tr><td>CO<sub>3</sub><sup>2−</sup>、PO<sub>4</sub><sup>3−</sup>、S<sup>2−</sup></td><td>多<b>不</b>溶</td><td>第 1 族與 NH<sub>4</sub><sup>+</sup> 鹽可溶</td></tr>
+    <tr><td>OH<sup>−</sup></td><td>多<b>不</b>溶</td><td>第 1 族可溶;Ba<sup>2+</sup>、Ca<sup>2+</sup> 微溶</td></tr>
+  </table>
+  <div class="box key"><span class="tag">口訣</span>「硝酸鹽、醋酸鹽、鹼金屬鹽、銨鹽 — 全都可溶」先記住,再記鹵化物與硫酸鹽的例外。</div>
+</section>
+
+<!-- 22 -->
+<section class="slide">
+  <h2>沉澱預測步驟 <span class="en">Predicting Precipitates</span></h2>
+  <ol>
+    <li>寫出兩溶液中的所有離子</li>
+    <li>交換配對:陽離子 A + 陰離子 Y、陽離子 B + 陰離子 X</li>
+    <li>用溶解度規則檢查兩個新組合:<b>有不溶者 → 生成沉澱</b></li>
+    <li>兩個組合都可溶 → <span class="hl">無反應 (no reaction, NR)</span></li>
+    <li>寫出平衡的分子方程式與淨離子方程式</li>
+  </ol>
+</section>
+
+<!-- 23 -->
+<section class="slide">
+  <h2>例題 4:沉澱預測(一) <span class="en">Example 4</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>混合 Ba(NO<sub>3</sub>)<sub>2</sub>(aq) 與 Na<sub>2</sub>SO<sub>4</sub>(aq),是否產生沉澱?寫出分子與淨離子方程式。
+  <div class="sol"><b>解:</b>離子:Ba<sup>2+</sup>、NO<sub>3</sub><sup>−</sup>、Na<sup>+</sup>、SO<sub>4</sub><sup>2−</sup><br>
+  交換配對:BaSO<sub>4</sub>(硫酸鹽例外:Ba<sup>2+</sup> <span class="hl">不溶</span>)、NaNO<sub>3</sub>(硝酸鹽可溶)<br>
+  分子方程式:Ba(NO<sub>3</sub>)<sub>2</sub>(aq) + Na<sub>2</sub>SO<sub>4</sub>(aq) → BaSO<sub>4</sub>(s) + 2NaNO<sub>3</sub>(aq)<br>
+  淨離子式:<span class="hl">Ba<sup>2+</sup>(aq) + SO<sub>4</sub><sup>2−</sup>(aq) → BaSO<sub>4</sub>(s)</span>(白色沉澱)</div></div>
+</section>
+
+<!-- 24 -->
+<section class="slide">
+  <h2>例題 5:沉澱預測(二) <span class="en">Example 5</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>判斷下列混合是否反應:<br>(a) Pb(NO<sub>3</sub>)<sub>2</sub>(aq) + KI(aq)&nbsp;&nbsp;&nbsp;(b) KCl(aq) + NaNO<sub>3</sub>(aq)
+  <div class="sol"><b>解:</b><br>
+  (a) 配對:PbI<sub>2</sub>(碘化物例外:Pb<sup>2+</sup> 不溶)、KNO<sub>3</sub>(可溶)→ 有反應<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;Pb(NO<sub>3</sub>)<sub>2</sub> + 2KI → PbI<sub>2</sub>(s) + 2KNO<sub>3</sub>;淨離子式:<span class="hl">Pb<sup>2+</sup> + 2I<sup>−</sup> → PbI<sub>2</sub>(s)</span>(亮黃色)<br>
+  (b) 配對:KNO<sub>3</sub>、NaCl 皆可溶 → <span class="hl">無反應 (NR)</span>,所有離子皆為旁觀離子</div></div>
+</section>
+
+<!-- 25 -->
+<section class="slide">
+  <h2>沉澱反應在食品分析:測食鹽含量 <span class="en">Mohr Titration</span></h2>
+  <div class="box def" style="margin:10px 0;padding:12px 22px"><span class="tag">問題</span>泡麵標示「鈉 1800 mg」—— 廠商是怎麼<b>測</b>出來的?答案就是你剛學的沉澱反應。</div>
+  <table style="margin:8px auto">
+    <tr><th style="width:120px">步驟</th><th>反應</th><th>看到什麼</th></tr>
+    <tr><td><b>滴定</b></td><td style="text-align:left">Ag<sup>+</sup> + Cl<sup>−</sup> → <b>AgCl(s)</b></td><td>白色沉澱不斷生成</td></tr>
+    <tr><td><b>終點</b></td><td style="text-align:left">2Ag<sup>+</sup> + CrO<sub>4</sub><sup>2−</sup> → <b>Ag<sub>2</sub>CrO<sub>4</sub>(s)</b></td><td><span class="hl">磚紅色</span>出現且不褪</td></tr>
+  </table>
+  <div class="box key" style="margin:8px 0;padding:11px 22px"><span class="tag">為什麼行得通</span>AgCl 的溶解度(1.3×10<sup>−5</sup> M)比 Ag<sub>2</sub>CrO<sub>4</sub>(6.5×10<sup>−5</sup> M)<b>小約 5 倍</b> → Cl<sup>−</sup> 一定<b>先被沉澱乾淨</b>,多滴的那一滴 Ag<sup>+</sup> 才輪得到鉻酸根。指示劑本身就是一個沉澱反應。</div>
+  <div class="box exbox" style="margin:8px 0;padding:11px 22px"><span class="tag">接回第 3 週</span>滴定算出 n(Cl<sup>−</sup>) → n(NaCl) → 乘 39.3% 得<b>鈉的 mg 數</b>,就是營養標示上那個數字。<span class="small" style="font-size:17px">(條件:pH 6.5–10。太酸鉻酸根會轉成重鉻酸根,太鹼則 Ag<sup>+</sup> 生成 Ag<sub>2</sub>O 沉澱。)</span></div>
+</section>
+
+<!-- 26 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ③:沉澱預測 <span class="en">Quick Check 3</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>AgNO<sub>3</sub> 與 NaCl 水溶液混合,沉澱是?<br><span class="opt">A NaNO<sub>3</sub></span><span class="opt">B AgCl</span><span class="opt">C 兩者都沉澱</span><span class="opt">D 無沉澱</span></div>
+  <div class="q"><span class="qn">2</span>下列哪一組混合後<b>不會</b>產生沉澱?<br><span class="opt">A BaCl<sub>2</sub> + Na<sub>2</sub>SO<sub>4</sub></span><span class="opt">B KNO<sub>3</sub> + NaCl</span><span class="opt">C Pb(NO<sub>3</sub>)<sub>2</sub> + KI</span><span class="opt">D AgNO<sub>3</sub> + K<sub>2</sub>CrO<sub>4</sub></span></div>
+  <div class="q"><span class="qn">3</span>莫爾法用 K<sub>2</sub>CrO<sub>4</sub> 當指示劑測氯離子。<b>為什麼終點時才出現磚紅色,而不是一開始就出現?</b></div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B</span> — 硝酸鹽<b>全部可溶</b>,所以 NaNO<sub>3</sub> 不會沉澱;AgCl 難溶。<span class="myth">選 A 的同學溶解度規則背反了。<b>最好用的兩條:硝酸鹽全溶、鹼金屬鹽全溶</b> —— 先用這兩條刪掉一半選項。</span></div><div class="row"><span class="ans">2. B</span> — K<sup>+</sup>、Na<sup>+</sup> 都是鹼金屬,NO<sub>3</sub><sup>−</sup>、Cl<sup>−</sup> 交叉配對後仍全溶。<span class="myth">A 生成 BaSO<sub>4</sub>、C 生成 PbI<sub>2</sub>、D 生成 Ag<sub>2</sub>CrO<sub>4</sub>,都是常見沉澱。<b>固定動作:交叉配對後,對兩個新組合各查一次規則。</b></span></div><div class="row"><span class="ans">3. 因為 AgCl 比 Ag<sub>2</sub>CrO<sub>4</sub> 難溶得多</span> — 加入的 Ag<sup>+</sup> 會<b>優先</b>與 Cl<sup>−</sup> 結合。只有等 Cl<sup>−</sup> 幾乎耗盡,多滴的那一滴 Ag<sup>+</sup> 才輪得到鉻酸根 → 磚紅色出現 = 終點。<span class="myth">這題的價值在於:<b>指示劑本身也是一個沉澱反應</b>,而且它能當指示劑的唯一理由,就是它比目標沉澱「更容易溶」。這條推理在 W16 講溶解度平衡時會再用一次。</span></div></div>
+</section>
+
+<!-- 27 -->
+<section class="slide divider">
+  <div class="secnum">PART 5.4</div>
+  <h1>酸鹼反應</h1>
+  <div class="en-sub">Acid–Base Reactions</div>
+  <div class="items">Arrhenius 與 Brønsted-Lowry 定義・強酸強鹼・中和反應</div>
+</section>
+
+<!-- 28 -->
+<section class="slide">
+  <h2>Arrhenius 酸鹼定義 <span class="en">Arrhenius Definition</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>酸 (acid)</b>:溶於水解離出 H<sup>+</sup>(氫離子)的物質。<br><b>鹼 (base)</b>:溶於水解離出 OH<sup>−</sup>(氫氧根離子)的物質。</div>
+  <ul>
+    <li>HCl → H<sup>+</sup> + Cl<sup>−</sup>;NaOH → Na<sup>+</sup> + OH<sup>−</sup></li>
+    <li>H<sup>+</sup> 在水中實際以<b>水合氫離子 (hydronium ion) H<sub>3</sub>O<sup>+</sup></b> 存在</li>
+    <li>侷限:只適用於水溶液,也無法解釋 NH<sub>3</sub> 為何是鹼</li>
+  </ul>
+</section>
+
+<!-- 29 -->
+<section class="slide">
+  <h2>Brønsted-Lowry 酸鹼定義(簡介) <span class="en">Brønsted-Lowry Definition</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>酸</b>:質子 (H<sup>+</sup>) 的<b>提供者</b> (proton donor);<b>鹼</b>:質子的<b>接受者</b> (proton acceptor)。</div>
+  <div class="eq">NH<sub>3</sub>(aq) + H<sub>2</sub>O(l) ⇌ NH<sub>4</sub><sup>+</sup>(aq) + OH<sup>−</sup>(aq)</div>
+  <ul>
+    <li>NH<sub>3</sub> 接受質子 → 是鹼;H<sub>2</sub>O 提供質子 → 此處是酸</li>
+    <li>範圍比 Arrhenius 更廣,不限水溶液;詳細內容於酸鹼平衡章節再深入</li>
+  </ul>
+</section>
+
+<!-- 30 -->
+<section class="slide">
+  <h2>常見強酸與強鹼(必背) <span class="en">Common Strong Acids and Bases</span></h2>
+  <div class="two-col">
+    <div>
+      <h3>強酸(6 種)</h3>
+      <table>
+        <tr><th>化學式</th><th>名稱</th></tr>
+        <tr><td>HCl / HBr / HI</td><td>氫氯酸/氫溴酸/氫碘酸</td></tr>
+        <tr><td>HNO<sub>3</sub></td><td>硝酸</td></tr>
+        <tr><td>H<sub>2</sub>SO<sub>4</sub></td><td>硫酸</td></tr>
+        <tr><td>HClO<sub>4</sub></td><td>過氯酸</td></tr>
+      </table>
+    </div>
+    <div>
+      <h3>強鹼</h3>
+      <table>
+        <tr><th>化學式</th><th>名稱</th></tr>
+        <tr><td>LiOH / NaOH / KOH</td><td>第 1 族氫氧化物</td></tr>
+        <tr><td>Ca(OH)<sub>2</sub></td><td>氫氧化鈣</td></tr>
+        <tr><td>Sr(OH)<sub>2</sub> / Ba(OH)<sub>2</sub></td><td>氫氧化鍶/鋇</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="box key"><span class="tag">重點</span>不在此表的酸鹼幾乎都是<b>弱酸/弱鹼</b>(如 CH<sub>3</sub>COOH、HF、NH<sub>3</sub>),寫離子方程式時<b>不拆</b>。</div>
+</section>
+
+<!-- 31 -->
+<section class="slide">
+  <h2>中和反應與鹽 <span class="en">Neutralization and Salts</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>中和反應 (neutralization)</b>:酸 + 鹼 → <b>鹽 (salt)</b> + 水。<br>鹽 = 由酸的陰離子與鹼的陽離子組成的離子化合物。</div>
+  <div class="eq">HCl(aq) + NaOH(aq) → NaCl(aq) + H<sub>2</sub>O(l)</div>
+  <ul>
+    <li>強酸 + 強鹼的淨離子方程式皆為:<span class="hl">H<sup>+</sup>(aq) + OH<sup>−</sup>(aq) → H<sub>2</sub>O(l)</span></li>
+    <li>應用:制酸劑中和胃酸、處理酸性廢水</li>
+  </ul>
+</section>
+
+<!-- 32 -->
+<section class="slide">
+  <h2>例題 6:中和反應方程式 <span class="en">Example 6</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>寫出醋酸 CH<sub>3</sub>COOH(弱酸)與 NaOH 水溶液反應的分子方程式與淨離子方程式。
+  <div class="sol"><b>解:</b><br>
+  分子方程式:CH<sub>3</sub>COOH(aq) + NaOH(aq) → CH<sub>3</sub>COONa(aq) + H<sub>2</sub>O(l)<br>
+  醋酸是<b>弱電解質不拆</b>;NaOH、CH<sub>3</sub>COONa 是強電解質要拆:<br>
+  CH<sub>3</sub>COOH + Na<sup>+</sup> + OH<sup>−</sup> → CH<sub>3</sub>COO<sup>−</sup> + Na<sup>+</sup> + H<sub>2</sub>O<br>
+  淨離子式:<span class="hl">CH<sub>3</sub>COOH(aq) + OH<sup>−</sup>(aq) → CH<sub>3</sub>COO<sup>−</sup>(aq) + H<sub>2</sub>O(l)</span><br>
+  (與強酸的 H<sup>+</sup> + OH<sup>−</sup> → H<sub>2</sub>O 不同!)</div></div>
+</section>
+
+<!-- 33 -->
+<section class="slide">
+  <h2>酸鹼反應在食品分析:測蛋白質 <span class="en">Kjeldahl Method</span></h2>
+  <div class="box def" style="margin:10px 0;padding:12px 22px"><span class="tag">問題</span>營養標示的「蛋白質 8.0 g」怎麼來的?<b>沒有人去秤蛋白質</b> —— 是量氮,再乘一個係數。</div>
+  <table style="margin:8px auto">
+    <tr><th style="width:96px">步驟</th><th>做什麼</th><th>反應</th></tr>
+    <tr><td><b>① 消化</b></td><td style="text-align:left">濃 H<sub>2</sub>SO<sub>4</sub> + 觸媒,加熱</td><td>有機氮 → NH<sub>4</sub><sup>+</sup></td></tr>
+    <tr><td><b>② 蒸餾</b></td><td style="text-align:left">加過量強鹼</td><td>NH<sub>4</sub><sup>+</sup> + OH<sup>−</sup> → <b>NH<sub>3</sub>↑</b> + H<sub>2</sub>O</td></tr>
+    <tr><td><b>③ 滴定</b></td><td style="text-align:left">用標準酸吸收並滴定</td><td><span class="hl">酸鹼中和</span> → 回推 n(N)</td></tr>
+  </table>
+  <div class="eq" style="font-size:24px;margin:8px 0">粗蛋白 % = 氮 % × <b>6.25</b>　<span style="font-size:19px;color:#5a6a6b">(蛋白質平均含氮 16%,100/16 = 6.25;乳品用 6.38、小麥 5.70)</span></div>
+  <div class="box warn" style="margin:8px 0;padding:11px 22px"><span class="tag">方法的漏洞</span>它量的是<b>總氮</b>,不是蛋白質 —— 所以叫「<b>粗</b>蛋白」。三聚氰胺 C<sub>3</sub>H<sub>6</sub>N<sub>6</sub> 含氮高達 <span class="hl">66.6%</span>(蛋白質只有 16%),摻進去會讓數字暴增。2008 年毒奶粉事件鑽的正是這個化學漏洞。<b>方法決定了你量到什麼。</b></div>
+</section>
+
+<!-- 34 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ④:酸鹼與中和 <span class="en">Quick Check 4</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>下列何者<b>不是</b>中和反應的必然結果?<br><span class="opt">A 生成鹽</span><span class="opt">B 生成水</span><span class="opt">C 溶液必為中性 pH 7</span><span class="opt">D 可用滴定追蹤</span></div>
+  <div class="q"><span class="qn">2</span>依 Brønsted-Lowry 定義,下列何者可以<b>既當酸又當鹼</b>?<br><span class="opt">A HCl</span><span class="opt">B NaOH</span><span class="opt">C H<sub>2</sub>O</span><span class="opt">D NaCl</span></div>
+  <div class="q"><span class="qn">3</span>凱氏定氮法測到的是<b>總氮</b>再乘 6.25。<b>為什麼叫「粗」蛋白?</b>這個方法在什麼情況下會被鑽漏洞?</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. C</span> — 強酸弱鹼鹽(如 NH<sub>4</sub>Cl)水解後偏酸,弱酸強鹼鹽偏鹼。<span class="myth">選 C 是最頑固的迷思之一:<b>「中和」是化學計量上的恰好反應,不保證產物溶液是中性</b>。這在 W14 講鹽的水解時會正式處理。</span></div><div class="row"><span class="ans">2. C(H<sub>2</sub>O)</span> — 水可以給出質子成 OH<sup>−</sup>,也可以接受質子成 H<sub>3</sub>O<sup>+</sup> —— 兩性 (amphoteric)。<span class="myth">Brønsted-Lowry 的重點是<b>質子的轉移</b>,而不是物質固定屬於哪一類。同一個分子在不同對象面前角色會換 —— 這是比 Arrhenius 更有力的地方。</span></div><div class="row"><span class="ans">3. 因為它量的是氮,不是蛋白質</span> — 任何含氮物質都會被算進去,所以只能稱「粗」蛋白。<span class="myth">漏洞:<b>三聚氰胺 C<sub>3</sub>H<sub>6</sub>N<sub>6</sub> 含氮 66.6%</b>(蛋白質只有 16%),摻入後總氮暴增、讀數變高。2008 年毒奶粉事件鑽的正是這一點。<b>方法決定了你量到什麼。</b></span></div></div>
+</section>
+
+<!-- 35 -->
+<section class="slide divider">
+  <div class="secnum">PART 5.5</div>
+  <h1>氧化還原反應</h1>
+  <div class="en-sub">Oxidation–Reduction (Redox) Reactions</div>
+  <div class="items">氧化數・氧化劑與還原劑・常見反應類型</div>
+</section>
+
+<!-- 36 -->
+<section class="slide">
+  <h2>氧化與還原 <span class="en">Oxidation and Reduction</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>氧化 (oxidation)</b>:失去電子,氧化數<b>上升</b>。<br><b>還原 (reduction)</b>:獲得電子,氧化數<b>下降</b>。兩者必同時發生。</div>
+  <div class="eq">Zn(s) + Cu<sup>2+</sup>(aq) → Zn<sup>2+</sup>(aq) + Cu(s)</div>
+  <ul>
+    <li>Zn:0 → +2(失 2e<sup>−</sup>,被氧化);Cu<sup>2+</sup>:+2 → 0(得 2e<sup>−</sup>,被還原)</li>
+    <li>英文口訣:<b>LEO</b> says <b>GER</b>(Lose Electrons = Oxidation;Gain Electrons = Reduction)</li>
+  </ul>
+</section>
+
+<!-- 37 -->
+<section class="slide">
+  <h2>氧化數規則 <span class="en">Oxidation Number Rules</span></h2>
+  <ol>
+    <li>元素態(單質)氧化數 = <b>0</b>(如 Fe、O<sub>2</sub>、P<sub>4</sub>)</li>
+    <li>單原子離子氧化數 = 其電荷(Na<sup>+</sup> 為 +1、S<sup>2−</sup> 為 −2)</li>
+    <li>F 恆為 −1;H 通常 +1(金屬氫化物中為 −1,如 NaH)</li>
+    <li>O 通常 −2(過氧化物中 −1,如 H<sub>2</sub>O<sub>2</sub>;OF<sub>2</sub> 中 +2)</li>
+    <li>中性化合物中氧化數總和 = 0;多原子離子中總和 = 離子電荷</li>
+  </ol>
+  <div class="box key"><span class="tag">重點</span>規則有優先順序:編號越前面越優先,衝突時以前者為準。</div>
+</section>
+
+<!-- 38 -->
+<section class="slide">
+  <h2>例題 7:指定氧化數 <span class="en">Example 7</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>求下列<b>畫底線</b>元素的氧化數:(a) KMnO<sub>4</sub> 中的 Mn&nbsp;&nbsp;(b) Cr<sub>2</sub>O<sub>7</sub><sup>2−</sup> 中的 Cr&nbsp;&nbsp;(c) NH<sub>3</sub> 中的 N&nbsp;&nbsp;(d) NaH 中的 H
+  <div class="sol"><b>解:</b><br>
+  (a) K = +1、O = −2:(+1) + Mn + 4(−2) = 0 → Mn = <span class="hl">+7</span><br>
+  (b) 2Cr + 7(−2) = −2 → 2Cr = +12 → Cr = <span class="hl">+6</span><br>
+  (c) H = +1:N + 3(+1) = 0 → N = <span class="hl">−3</span><br>
+  (d) Na = +1(第 1 族):+1 + H = 0 → H = <span class="hl">−1</span>(金屬氫化物特例)</div></div>
+</section>
+
+<!-- 39 -->
+<section class="slide">
+  <h2>氧化劑與還原劑 <span class="en">Oxidizing and Reducing Agents</span></h2>
+  <table>
+    <tr><th></th><th>氧化劑 oxidizing agent</th><th>還原劑 reducing agent</th></tr>
+    <tr><td>自身變化</td><td><b>被還原</b>(氧化數下降)</td><td><b>被氧化</b>(氧化數上升)</td></tr>
+    <tr><td>電子流向</td><td>獲得電子</td><td>失去電子</td></tr>
+    <tr><td>作用</td><td>使對方氧化</td><td>使對方還原</td></tr>
+    <tr><td>常見例子</td><td>O<sub>2</sub>、KMnO<sub>4</sub>、Cl<sub>2</sub></td><td>活性金屬(Zn、Na)、H<sub>2</sub>、C</td></tr>
+  </table>
+  <div class="box warn"><span class="tag">注意</span>「氧化劑自己被還原」— 名稱描述的是它對<b>對方</b>的作用,最容易搞反!</div>
+</section>
+
+<!-- 40 -->
+<section class="slide">
+  <h2>例題 8:判斷氧化還原 <span class="en">Example 8</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>Zn(s) + 2HCl(aq) → ZnCl<sub>2</sub>(aq) + H<sub>2</sub>(g)。判斷此反應是否為氧化還原反應;若是,指出氧化劑與還原劑。
+  <div class="sol"><b>解:</b>標出氧化數:<br>
+  Zn:0 → +2(上升,<span class="hl">被氧化</span>);H:+1 → 0(下降,<span class="hl">被還原</span>);Cl:−1 → −1(不變)<br>
+  氧化數有變化 → 是氧化還原反應 ✓<br>
+  還原劑 = 被氧化者 = <span class="hl">Zn</span>;氧化劑 = 含被還原元素者 = <span class="hl">HCl</span></div></div>
+  <div class="box key"><span class="tag">技巧</span>判斷是否為氧化還原:看有無元素的氧化數改變。單質出現或消失,幾乎必是氧化還原。</div>
+</section>
+
+<!-- 41 -->
+<section class="slide">
+  <h2>反應類型:化合與分解 <span class="en">Combination &amp; Decomposition</span></h2>
+  <div class="two-col">
+    <div>
+      <h3>化合反應 A + B → AB</h3>
+      <ul>
+        <li>2Mg(s) + O<sub>2</sub>(g) → 2MgO(s)</li>
+        <li>N<sub>2</sub>(g) + 3H<sub>2</sub>(g) → 2NH<sub>3</sub>(g)</li>
+      </ul>
+    </div>
+    <div>
+      <h3>分解反應 AB → A + B</h3>
+      <ul>
+        <li>CaCO<sub>3</sub>(s) → CaO(s) + CO<sub>2</sub>(g)</li>
+        <li>2H<sub>2</sub>O<sub>2</sub>(aq) → 2H<sub>2</sub>O(l) + O<sub>2</sub>(g)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="box key"><span class="tag">重點</span>涉及單質的化合/分解反應必為氧化還原;CaCO<sub>3</sub> 分解則不是(各元素氧化數皆未變)。</div>
+</section>
+
+<!-- 42 -->
+<section class="slide">
+  <h2>單取代反應與活性序 <span class="en">Single Displacement &amp; Activity Series</span></h2>
+  <div class="eq">A + BX → AX + B&nbsp;&nbsp;例:Zn(s) + CuSO<sub>4</sub>(aq) → ZnSO<sub>4</sub>(aq) + Cu(s)</div>
+  <div class="box def" style="font-size:21px;margin:10px 0"><span class="tag">定義</span><b>活性序 (activity series)</b>:金屬依失電子傾向排列;<b>活性大的金屬可取代活性小的金屬離子</b>(或酸中的 H)。</div>
+  <p class="center">K &gt; <span class="hl">Ca &gt; Na</span> &gt; Mg &gt; Al &gt; Zn &gt; Fe &gt; Ni &gt; Sn &gt; Pb &gt; <span class="hl">(H)</span> &gt; Cu &gt; Hg &gt; Ag &gt; Au</p>
+  <ul>
+    <li>H 之前的金屬可與酸反應放出 H<sub>2</sub>;Cu、Hg、Ag、Au 不與鹽酸反應</li>
+    <li style="font-size:22px">Cu + ZnSO<sub>4</sub> → 無反應(Cu 活性小於 Zn)</li>
+  </ul>
+  <div class="box warn" style="margin:8px 0;font-size:21px"><span class="tag">注意</span>K、Ca、Na 遇水即反應(2Na + 2H<sub>2</sub>O → 2NaOH + H<sub>2</sub>),<b>不可</b>用於水溶液單取代 — 不會發生 2Na + CuSO<sub>4</sub> → Na<sub>2</sub>SO<sub>4</sub> + Cu。</div>
+</section>
+
+<!-- 43 -->
+<section class="slide">
+  <h2>燃燒反應 <span class="en">Combustion Reactions</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>燃燒 (combustion)</b>:物質與 O<sub>2</sub> 快速反應並放出大量熱與光,屬氧化還原反應。</div>
+  <ul>
+    <li>碳氫化合物完全燃燒:C<sub>x</sub>H<sub>y</sub> + O<sub>2</sub> → <span class="hl">CO<sub>2</sub> + H<sub>2</sub>O</span></li>
+    <li>例:C<sub>3</sub>H<sub>8</sub>(g) + 5O<sub>2</sub>(g) → 3CO<sub>2</sub>(g) + 4H<sub>2</sub>O(g)(液化石油氣)</li>
+    <li>氧氣不足時不完全燃燒 → 產生 CO(有毒)或碳粒</li>
+  </ul>
+</section>
+
+<!-- 44 -->
+<section class="slide">
+  <h2>例題 9:反應類型綜合判斷 <span class="en">Example 9</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>判斷下列反應的類型(可複選),並指出何者為氧化還原:<br>
+  (a) 2Mg + O<sub>2</sub> → 2MgO&nbsp;&nbsp;(b) CaCO<sub>3</sub> → CaO + CO<sub>2</sub><br>
+  (c) Fe + CuSO<sub>4</sub> → FeSO<sub>4</sub> + Cu&nbsp;&nbsp;(d) AgNO<sub>3</sub> + NaCl → AgCl↓ + NaNO<sub>3</sub>
+  <div class="sol"><b>解:</b><br>
+  (a) <span class="hl">化合 + 燃燒 + 氧化還原</span>(Mg 0→+2、O 0→−2)<br>
+  (b) <span class="hl">分解</span>;氧化數皆未變 → 非氧化還原<br>
+  (c) <span class="hl">單取代 + 氧化還原</span>(Fe 為還原劑、CuSO<sub>4</sub> 為氧化劑)<br>
+  (d) <span class="hl">複分解(沉澱)</span>;非氧化還原</div></div>
+</section>
+
+<!-- 45 -->
+<section class="slide">
+  <h2>水溶液反應類型總覽 <span class="en">Overview of Reaction Types</span></h2>
+  <table>
+    <tr><th>類型</th><th>驅動力/特徵</th><th>淨離子式核心</th></tr>
+    <tr><td>沉澱反應</td><td>生成不溶性固體</td><td>M<sup>n+</sup> + X<sup>m−</sup> → MX(s)</td></tr>
+    <tr><td>酸鹼中和</td><td>生成水(與鹽)</td><td>H<sup>+</sup> + OH<sup>−</sup> → H<sub>2</sub>O</td></tr>
+    <tr><td>氧化還原</td><td>電子轉移、氧化數改變</td><td>例:Zn + Cu<sup>2+</sup> → Zn<sup>2+</sup> + Cu</td></tr>
+  </table>
+  <div class="box key"><span class="tag">重點</span>拿到反應先問三個問題:會沉澱嗎?是酸鹼嗎?氧化數有變嗎?</div>
+</section>
+
+<!-- 46 -->
+<section class="slide">
+  <h2>氧化還原在食品分析:三個常見檢驗 <span class="en">Redox Titrations in Food</span></h2>
+  <table style="margin:10px auto">
+    <tr><th style="width:150px">測什麼</th><th>反應</th><th>終點</th></tr>
+    <tr><td><b>維生素 C</b><br><span class="small" style="font-size:17px">果汁、鮮食</span></td>
+        <td style="text-align:left">抗壞血酸 + I<sub>2</sub> → 脫氫抗壞血酸 + 2I<sup>−</sup> + 2H<sup>+</sup><br><span class="small" style="font-size:17px">莫耳比 <b>1 : 1</b>;維生素 C 是還原劑</span></td>
+        <td>澱粉指示劑<br>轉<span class="hl">藍</span></td></tr>
+    <tr><td><b>還原糖</b><br><span class="small" style="font-size:17px">費林/本氏試液</span></td>
+        <td style="text-align:left">Cu<sup>2+</sup>(藍) + 還原糖 →(鹼性,Δ) <b>Cu<sub>2</sub>O(s)</b> + 糖酸<br><span class="small" style="font-size:17px">糖被氧化、銅被還原</span></td>
+        <td><span class="hl">磚紅色沉澱</span></td></tr>
+    <tr><td><b>油脂酸敗</b><br><span class="small" style="font-size:17px">過氧化價 PV</span></td>
+        <td style="text-align:left">過氧化物 + 2I<sup>−</sup> → I<sub>2</sub>,再以 Na<sub>2</sub>S<sub>2</sub>O<sub>3</sub> 滴定<br><span class="small" style="font-size:17px">氧化程度越高 → 放出的 I<sub>2</sub> 越多</span></td>
+        <td>藍色<span class="hl">褪去</span></td></tr>
+  </table>
+  <div class="box key" style="margin:8px 0;padding:11px 22px"><span class="tag">注意這一列</span>還原糖那一項<b>同時是氧化還原反應與沉澱反應</b> —— 反應分類是<b>看問題的角度</b>,不是互斥的抽屜。同一個反應可以既轉移電子、又生成難溶固體。</div>
+</section>
+
+<!-- 47 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ⑤:氧化還原 <span class="en">Quick Check 5</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>Zn + Cu<sup>2+</sup> → Zn<sup>2+</sup> + Cu。何者為<b>氧化劑</b>?<br><span class="opt">A Zn</span><span class="opt">B Cu<sup>2+</sup></span><span class="opt">C Zn<sup>2+</sup></span><span class="opt">D Cu</span></div>
+  <div class="q"><span class="qn">2</span>H<sub>2</sub>SO<sub>4</sub> 中 S 的氧化數是?<br><span class="opt">A +2</span><span class="opt">B +4</span><span class="opt">C +6</span><span class="opt">D −2</span></div>
+  <div class="q"><span class="qn">3</span>費林試液測還原糖:Cu<sup>2+</sup>(藍) → Cu<sub>2</sub>O(磚紅沉澱)。<b>這個反應同時屬於哪兩類?</b>說明理由。</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B</span> — 氧化劑<b>自己被還原</b>(Cu<sup>2+</sup> → Cu),同時使別人氧化。<span class="myth">選 A 是最頑固的名詞迷思。記法:<b>氧化劑做的是「氧化別人」這件事,所以自己一定被還原</b>。看到「氧化劑」就先問:誰的氧化數下降?</span></div><div class="row"><span class="ans">2. C(+6)</span> — 2(+1) + x + 4(−2) = 0 → x = +6。<span class="myth">選 B 的同學把 SO<sub>3</sub><sup>2−</sup> 的 +4 套過來。<b>氧化數要每一題重算,不能靠印象</b> —— 同一個元素在不同化合物裡差很多。</span></div><div class="row"><span class="ans">3. 氧化還原 + 沉澱</span> — 銅由 +2 被<b>還原</b>成 +1(糖被氧化)→ 氧化還原;生成的 Cu<sub>2</sub>O 是難溶固體 → 沉澱。<span class="myth">重點:<b>反應分類是「看問題的角度」,不是互斥的抽屜</b>。同一個反應可以既轉移電子、又生成難溶固體。硬要二選一,反而看不懂它為什麼能用來檢驗還原糖。</span></div></div>
+</section>
+
+<!-- 48 -->
+<section class="slide hookback">
+  <h2>回到本週的錨點 <span class="en">Anchor Answered</span></h2>
+  <div class="recall"><b>第 5 週開場問的是:</b>食譜有時要加小蘇打,有時要泡打粉,有時還要另外加檸檬汁或優格。為什麼?</div>
+  <div class="ansbox">
+    <h3>用這一週的化學回答</h3>
+    <ul>
+    <li>小蘇打受熱分解:<b>2 NaHCO<sub>3</sub> →(Δ) Na<sub>2</sub>CO<sub>3</sub> + H<sub>2</sub>O + CO<sub>2</sub></b> —— 產生的氣體是 <b>CO<sub>2</sub></b>,它把麵糊撐開。</li>
+    <li>但<b>剩下的 Na<sub>2</sub>CO<sub>3</sub> 是鹼</b>:帶鹼味,而且鹼性使麵粉裡的類黃酮呈黃色 → 這就是鹼味與黃斑的來源。</li>
+    <li>所以要加<b>酸</b>(檸檬汁、優格、塔塔粉)把碳酸鈉中和掉,順便在室溫下就先放出一部分 CO<sub>2</sub>。</li>
+    <li><b>泡打粉 = 小蘇打 + 固體酸 + 澱粉</b>,比例已經配好,所以食譜用泡打粉時就不必再另外加酸。</li>
+    </ul>
+  </div>
+  <div class="lens"><span class="lt">這個情境幫你理解的化學是</span>判斷一個反應,不能只看<b>你要的產物</b>,還要看<b>剩下什麼</b>。而這一週的三類反應還有另一個身分:<b>沉澱→測食鹽、酸鹼→測蛋白質、氧化還原→測維生素 C 與油脂酸敗</b> —— 反應類型就是食品分析的三大滴定法。</div>
+  <div class="nextup"><b>接下來在哪裡會再用到:</b><span class="course">食品分析</span>莫爾法、凱氏定氮法、碘量法　<span class="course">食品加工</span>膨脹劑與雙效泡打粉　<span class="course">食品化學</span>pH 對色素與梅納反應的影響</div>
+</section>
+
+<!-- 49 -->
+<section class="slide">
+  <h2>本週重點總結 <span class="en">Summary</span></h2>
+  <ul>
+    <li><b>平衡反應式:</b>只調係數不改下標;化整數比;燃燒依 C → H → O</li>
+    <li><b>離子方程式:</b>可溶強電解質才拆;刪旁觀離子得淨離子式(查原子與電荷平衡)</li>
+    <li><b>沉澱:</b>交換配對 + 溶解度規則;都可溶則無反應</li>
+    <li><b>酸鹼:</b>強酸 6 種、強鹼為 1 族與 Ca/Sr/Ba 氫氧化物;強酸強鹼中和淨離子式 H<sup>+</sup> + OH<sup>−</sup> → H<sub>2</sub>O</li>
+    <li><b>氧化還原:</b>氧化數上升 = 被氧化 = 還原劑;下降 = 被還原 = 氧化劑</li>
+  </ul>
+</section>
+
+<!-- 50 -->
+<section class="slide">
+  <h2>重要名詞中英對照 <span class="en">Key Terms</span></h2>
+  <table>
+    <tr><th>中文</th><th>English</th><th>中文</th><th>English</th></tr>
+    <tr><td>化學反應式</td><td>chemical equation</td><td>沉澱</td><td>precipitate</td></tr>
+    <tr><td>係數</td><td>coefficient</td><td>溶解度規則</td><td>solubility rules</td></tr>
+    <tr><td>電解質</td><td>electrolyte</td><td>中和反應</td><td>neutralization</td></tr>
+    <tr><td>淨離子方程式</td><td>net ionic equation</td><td>氧化數</td><td>oxidation number</td></tr>
+    <tr><td>旁觀離子</td><td>spectator ion</td><td>氧化劑/還原劑</td><td>oxidizing / reducing agent</td></tr>
+    <tr><td>複分解反應</td><td>metathesis reaction</td><td>活性序</td><td>activity series</td></tr>
+  </table>
+</section>
+
+<!-- 51 -->
+<section class="slide">
+  <h2>課後練習與下週預告 <span class="en">Homework &amp; Preview</span></h2>
+  <h3>課後練習(OpenStax Chemistry 2e, Ch.4.1–4.3)</h3>
+  <ul>
+    <li>平衡反應式:4.1 節相關題(必做)</li>
+    <li>沉澱與淨離子方程式:4.2 節相關題(必做,背熟溶解度規則)</li>
+    <li>氧化數與氧化還原判斷:4.2–4.3 節相關題</li>
+  </ul>
+  <h3>下週預告:化學計量 — 限量試劑與產率(Ch.4.4–4.5)</h3>
+  <ul>
+    <li>mass–mass 計算、限量試劑、百分產率</li>
+    <li>酸鹼滴定與重量分析</li>
+  </ul>
+  <p class="small center" style="margin-top:20px">操作提示:← → 或空白鍵翻頁|Home/End 跳至首末頁|Ctrl+P 可列印成講義</p>
+</section>
+</div></div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const DECK_INFO='普通化學(一)|新課綱 第 5 週:化學反應與反應類型';
+let cur=0;
+slides.forEach((s,i)=>{
+  const f=document.createElement('div');f.className='foot';
+  f.innerHTML='<span>'+DECK_INFO+'</span><span>'+(i+1)+' / '+slides.length+'</span>';
+  s.appendChild(f);
+});
+slides.forEach(s=>{
+  const sol=s.querySelector('.sol');
+  if(!sol)return;
+  const hint=document.createElement('div');hint.className='sol-hint';
+  hint.innerHTML='<span class="kbd">空白鍵</span><span>先自己想／算，準備好再顯示解答</span>';
+  sol.insertAdjacentElement('beforebegin',hint);
+});
+function show(n){
+  cur=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,i)=>{s.classList.toggle('active',i===cur);s.classList.remove('reveal');});
+  document.getElementById('bar').style.width=((cur+1)/slides.length*100)+'%';
+  location.hash=cur+1;
+}
+function next(){
+  const s=slides[cur];
+  if(s.querySelector('.sol')&&!s.classList.contains('reveal')){s.classList.add('reveal');return;}
+  show(cur+1);
+}
+function prev(){
+  const s=slides[cur];
+  if(s.classList.contains('reveal')){s.classList.remove('reveal');return;}
+  show(cur-1);
+}
+function fit(){
+  const s=Math.min(innerWidth/1280,innerHeight/720);
+  document.getElementById('deck').style.transform='scale('+s+')';
+}
+addEventListener('resize',fit);
+addEventListener('keydown',e=>{
+  if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();next();}
+  else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev();}
+  else if(e.key==='Home')show(0);
+  else if(e.key==='End')show(slides.length-1);
+});
+addEventListener('click',e=>{
+  if(e.target.closest('a'))return;
+  (e.clientX>innerWidth/3)?next():prev();
+});
+let tx=null;
+addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+addEventListener('touchend',e=>{
+  if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;
+  if(dx<-40)next();else if(dx>40)prev();tx=null;
+});
+fit();
+show(parseInt(location.hash.slice(1))-1||0);
+</script>
+</body>
+</html>

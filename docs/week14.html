@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第14週:氣體 — 氣體定律與動力分子理論|普通化學(一)</title>
+<style>
+:root{
+  --primary:#1a5276; --primary-dark:#12395a; --accent:#a04c08; --teal:#117a65;
+  --ink:#2c3e50; --muted:#5a6a6b; --bg:#eceff3; --card:#ffffff;
+  --def-bg:#eaf2f8; --key-bg:#fef9e7; --ex-bg:#e8f8f5; --warn-bg:#fdedec;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC","Heiti TC",sans-serif;color:var(--ink)}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#deck{position:relative;width:1280px;height:720px;transform-origin:center center}
+.slide{position:absolute;inset:0;width:1280px;height:720px;background:var(--card);padding:56px 72px 70px;display:none;flex-direction:column;border-top:10px solid var(--primary);overflow:hidden}
+.slide.active{display:flex}
+.slide h2{font-size:36px;color:var(--primary);border-bottom:3px solid var(--accent);padding-bottom:10px;margin-bottom:26px;font-weight:700}
+.slide h2 .en{display:block;font-size:19px;color:var(--muted);font-weight:400;margin-top:4px}
+.slide h3{font-size:26px;color:var(--primary);margin:12px 0 8px}
+.slide p{font-size:24px;line-height:1.55;margin:8px 0}
+.slide ul,.slide ol{font-size:24px;line-height:1.6;margin:8px 0 8px 34px}
+.slide li{margin:7px 0}
+.slide li li{font-size:22px;margin:4px 0}
+.en{color:var(--muted);font-size:.82em}
+.small{font-size:19px;color:var(--muted)}
+.big{font-size:30px}
+.center{text-align:center}
+.hl{color:var(--accent);font-weight:700}
+.hlb{color:var(--primary);font-weight:700}
+.two-col{display:flex;gap:32px;align-items:flex-start}
+.two-col>div{flex:1}
+.box{border-radius:10px;padding:16px 22px;margin:14px 0;font-size:23px;line-height:1.55}
+.def{background:var(--def-bg);border-left:6px solid var(--primary)}
+.key{background:var(--key-bg);border-left:6px solid #f1c40f}
+.warn{background:var(--warn-bg);border-left:6px solid #e74c3c}
+.exbox{background:var(--ex-bg);border-left:6px solid var(--teal)}
+.box .tag{display:inline-block;font-size:17px;font-weight:700;color:#fff;border-radius:5px;padding:2px 10px;margin-bottom:6px}
+.def .tag{background:var(--primary)} .key .tag{background:#8a6d00} .warn .tag{background:#c0392b} .exbox .tag{background:var(--teal)}
+.sol{border-top:2px dashed var(--teal);margin-top:12px;padding-top:10px}
+/* ── 形成性評量：解答兩段式揭露 ───────────────────────── */
+.slide.active .sol{display:none}
+.slide.active.reveal .sol{display:block}
+.sol-hint{margin-top:12px;padding-top:10px;border-top:2px dashed #b9c6c6;font-size:19px;color:#5d6d6e;display:flex;align-items:center;gap:10px}
+.slide.active.reveal .sol-hint{display:none}
+.sol-hint .kbd{display:inline-block;border:1px solid #aab7b8;border-bottom-width:2px;border-radius:5px;padding:1px 9px;font-size:17px;background:#fff;color:#34495e}
+/* ── 隨堂快問 ─────────────────────────────────────────── */
+.slide.quiz{border-top-color:var(--teal)}
+.slide.quiz h2{margin-bottom:14px}
+.slide.quiz h2{color:#0e6655;border-bottom-color:var(--teal)}
+.qbar{background:#e8f8f5;border-left:6px solid var(--teal);border-radius:8px;padding:5px 16px;font-size:18px;color:#0e6655;margin-bottom:4px}
+.q{margin:4px 0;font-size:21px;line-height:1.28}
+.q .qn{display:inline-block;min-width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;background:var(--teal);color:#fff;font-size:16px;font-weight:700;margin-right:7px}
+.opt{display:inline-block;border:1.5px solid #a2d5cd;background:#f2fbf9;color:#0e6655;border-radius:14px;padding:0 11px;margin:1px 4px 1px 0;font-size:19px}
+.quiz .sol{margin-top:5px;padding-top:5px;font-size:18px;line-height:1.26}
+.quiz .sol .ans{color:#c0392b;font-weight:700}
+.quiz .sol .row{margin:3px 0}
+.quiz .sol .row+.row{border-top:1px solid #e5eceb;padding-top:3px}
+.quiz .sol .myth{display:block;font-size:16px;color:#5d6d6e;margin:1px 0 0 0;line-height:1.24}
+@media print{
+  .sol{display:block!important}
+  .sol-hint{display:none!important}
+}
+.eq{text-align:center;font-size:28px;margin:14px 0;font-family:Cambria,"Times New Roman",serif}
+table{border-collapse:collapse;margin:12px auto;font-size:21px;width:100%}
+th{background:var(--primary);color:#fff;padding:8px 12px;font-weight:600}
+td{border:1px solid #d5dbdb;padding:7px 12px;text-align:center}
+tr:nth-child(even) td{background:#f4f6f7}
+.cover{background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 55%,var(--teal) 100%);border-top:none;color:#fff;justify-content:center;align-items:center;text-align:center}
+.cover h1{font-size:58px;letter-spacing:4px;margin-bottom:10px}
+.cover .sub{font-size:30px;opacity:.92;margin:6px 0}
+.cover .en-title{font-size:24px;opacity:.75;margin-bottom:34px}
+.cover .meta{font-size:20px;opacity:.7;margin-top:40px}
+.cover .rule{width:220px;height:4px;background:#f7b955;margin:26px auto}
+.divider{background:linear-gradient(120deg,var(--primary-dark),var(--primary));border-top:none;color:#fff;justify-content:center}
+.divider .secnum{font-size:26px;color:#f7b955;font-weight:700;letter-spacing:2px;margin-bottom:14px}
+.divider h1{font-size:52px;margin-bottom:12px}
+.divider .en-sub{font-size:26px;opacity:.75}
+.divider .items{margin-top:36px;font-size:23px;opacity:.9;line-height:2}
+.foot{position:absolute;left:0;right:0;bottom:0;height:32px;display:flex;justify-content:space-between;align-items:center;padding:0 28px;font-size:14px;color:#5d6d6e;background:#fafbfc;border-top:1px solid #e5e8e8}
+.cover .foot,.divider .foot{background:rgba(0,0,0,.15);color:rgba(255,255,255,.65);border-top:none}
+#bar{position:fixed;top:0;left:0;height:5px;background:var(--accent);width:0;z-index:10;transition:width .2s}
+.flow{display:flex;flex-direction:column;align-items:center;gap:6px}
+.fbox{border:2px solid var(--primary);border-radius:8px;padding:8px 20px;font-size:21px;background:var(--def-bg);text-align:center}
+.frow{display:flex;gap:60px;justify-content:center}
+.arrow{font-size:22px;color:var(--accent)}
+.chip{display:inline-block;background:var(--def-bg);border:1px solid var(--primary);color:var(--primary);border-radius:16px;padding:2px 14px;margin:3px;font-size:20px}
+/* ── 因次分析鐵軌格 ───────────────────────────────────── */
+.rail{border-collapse:collapse;margin:10px auto 6px;font-size:23px}
+.rail td{border:none;padding:5px 20px;text-align:center;background:none;vertical-align:middle}
+.rail td+td{border-left:2px solid var(--muted)}
+.rail tr:first-child td{border-bottom:3px solid var(--ink)}
+.rail td.res{border-left:none;padding-left:14px;font-weight:700;color:var(--accent);font-size:25px}
+.rail tr:first-child td.res{border-bottom:none}
+.rail .bk{display:inline-block;min-width:104px;border-bottom:3px dashed var(--accent);height:27px;vertical-align:-4px}
+.rail .gv{background:var(--def-bg)}
+.railnote{text-align:center;font-size:18px;color:var(--muted);margin-top:2px}
+.fig{display:block;margin:6px auto;flex-shrink:0}
+/* ── 錨點回收頁 ───────────────────────────────────────── */
+.slide.hookback{border-top-color:var(--teal)}
+.slide.hookback h2{color:#0e6655;border-bottom-color:var(--teal)}
+.recall{background:#f4f6f7;border-left:5px solid #95a5a6;border-radius:8px;padding:7px 18px;
+        font-size:20px;line-height:1.34;color:#5d6d6e;margin:0 0 10px}
+.recall b{color:#34495e}
+.ansbox{background:#e8f8f5;border-left:6px solid var(--teal);border-radius:9px;padding:10px 20px;margin:0 0 10px}
+.ansbox h3{font-size:20px;color:#0e6655;margin:0 0 5px}
+.ansbox ul{margin:0 0 0 20px;font-size:19.5px;line-height:1.4}
+.ansbox li{margin:5px 0}
+.lens{background:var(--key-bg);border-left:6px solid #d4a70a;border-radius:9px;padding:10px 20px;
+      font-size:20px;line-height:1.38;margin-bottom:9px}
+.lens .lt{display:block;font-size:16px;font-weight:700;color:#8a6d00;letter-spacing:1px;margin-bottom:2px}
+.nextup{background:#eaf2f8;border-left:5px solid var(--primary);border-radius:8px;padding:8px 18px;
+        font-size:18.5px;line-height:1.4;color:#34495e}
+.nextup .course{display:inline-block;background:#fff;border:1px solid #a2d5cd;color:#0e6655;
+                border-radius:11px;padding:0 8px;font-size:16px;margin-right:4px}
+
+/* ── 食品營養錨點頁 ───────────────────────────────────── */
+.slide.hook{border-top-color:var(--accent)}
+.slide.hook h2{color:#a05000;border-bottom-color:var(--accent)}
+.bigq{background:linear-gradient(100deg,#fff5ea,#fdf0e0);border-left:8px solid var(--accent);border-radius:10px;
+      padding:14px 22px;font-size:26px;line-height:1.4;color:#7a3d00;font-weight:700;margin:4px 0 12px}
+.bigq .qmark{font-size:30px;margin-right:6px}
+.hookcols{display:flex;gap:22px;align-items:stretch;margin-top:4px}
+.hookcols>div{flex:1;border-radius:9px;padding:11px 16px}
+.hk-now{background:#eaf2f8;border-left:5px solid var(--primary)}
+.hk-next{background:#e8f8f5;border-left:5px solid var(--teal)}
+.hookcols h3{font-size:20px;margin:0 0 6px}
+.hk-now h3{color:var(--primary)} .hk-next h3{color:#0e6655}
+.hookcols ul{font-size:19px;line-height:1.4;margin:0 0 0 20px}
+.hookcols li{margin:4px 0}
+.hookcols .course{display:inline-block;background:#fff;border:1px solid #a2d5cd;color:#0e6655;
+                  border-radius:11px;padding:0 8px;font-size:16px;margin-right:4px}
+.canyou{background:var(--key-bg);border-left:6px solid #d4a70a;border-radius:9px;padding:10px 18px;
+        font-size:20px;line-height:1.4;margin-top:12px}
+.canyou b{color:#8a6d00}
+.hookmap{font-size:19px;line-height:1.5}
+.hookmap td{text-align:left;padding:5px 10px}
+.hookmap td:first-child{text-align:center;font-weight:700;color:var(--accent);width:62px}
+@media print{
+  @page{size:1280px 720px;margin:0}
+  html,body{background:#fff}
+  #stage{position:static}
+  #deck{width:auto;height:auto;transform:none!important}
+  .slide{position:relative;display:flex!important;page-break-after:always;margin:0;inset:auto}
+  #bar{display:none}
+}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="stage"><div id="deck">
+
+<!-- 1 -->
+<section class="slide cover">
+  <h1>普通化學(一)</h1>
+  <div class="en-title">General Chemistry I</div>
+  <div class="rule"></div>
+  <div class="sub">第 14 週:氣體</div>
+  <div class="sub">氣體定律與動力分子理論</div>
+  <div class="en-title" style="margin-top:8px">Gases: Gas Laws &amp; Kinetic-Molecular Theory</div>
+  <div class="meta">對應教材:OpenStax Chemistry 2e — Chapter 9</div>
+</section>
+
+<!-- 2 -->
+<section class="slide">
+  <h2>本週學習目標 <span class="en">Learning Objectives</span></h2>
+  <ul>
+    <li>認識壓力的定義與常用單位(atm、mmHg/torr、Pa、bar)並能互相換算</li>
+    <li>掌握波以耳、查理、給呂薩克、亞佛加厥定律與組合氣體定律</li>
+    <li>熟練運用理想氣體方程式 PV = nRT 解決計量問題</li>
+    <li>能計算氣體密度、莫耳質量、分壓與莫耳分率</li>
+    <li>理解氣體動力分子理論 (kinetic-molecular theory) 與 Graham 定律</li>
+    <li>了解真實氣體偏離理想行為的條件與 van der Waals 修正</li>
+  </ul>
+  <div class="box key"><span class="tag">本週重點</span>PV = nRT 是本章核心;溫度務必使用絕對溫度 K,並注意 R 的單位選擇!</div>
+</section>
+
+<!-- 3 -->
+<section class="slide hook">
+  <h2>第 14 週·食品營養錨點：洋芋片包裝為什麼充氮氣，不是直接充空氣？ <span class="en">Anchor Question</span></h2>
+  <div class="bigq"><span class="qmark">?</span>打開洋芋片，裡面一大包氣。廠商不是為了膨脹——<b>而且那不是空氣</b>。為什麼要多花錢換氣體？</div>
+  <div class="hookcols">
+    <div class="hk-now"><h3>這一週要用到的化學</h3><ul><li>理想氣體定律 PV = nRT</li><li>分壓與莫耳分率</li><li>氣體的擴散與逸散</li><li>真實氣體的偏差</li></ul></div>
+    <div class="hk-next"><h3>之後在哪裡會再遇到</h3><ul><li><span class="course">食品加工</span>氣調包裝 MAP、充氮保鮮</li><li><span class="course">食品化學</span>氧化控制、貨架期</li><li><span class="course">食品分析</span>頂空氣體分析</li></ul></div>
+  </div>
+  <div class="canyou"><b>本週結束時，你應該能回答：</b>為什麼「把氧的分壓降下來」比「把總壓降下來」更重要？</div><div class="canyou" style="background:#f4f6f7;border-left-color:#95a5a6"><b>先猜猜看：</b>空氣裡氧氣約佔 21%。若總壓 1 atm，氧的分壓是多少？</div>
+</section>
+
+<!-- 4 -->
+<section class="slide divider">
+  <div class="secnum">PART 9.1</div>
+  <h1>氣體的性質與壓力</h1>
+  <div class="en-sub">Gas Properties and Pressure</div>
+  <div class="items">氣體的一般性質・壓力定義與單位・氣壓計與壓力計</div>
+</section>
+
+<!-- 5 -->
+<section class="slide">
+  <h2>氣體的一般性質 <span class="en">General Properties of Gases</span></h2>
+  <ul>
+    <li>沒有固定形狀與體積,<span class="hlb">完全充滿容器</span></li>
+    <li><span class="hl">高度可壓縮</span>:粒子間距遠大於粒子本身</li>
+    <li>密度遠小於液體與固體(約小 1000 倍,常用單位 g/L)</li>
+    <li>不同氣體可以<b>任意比例均勻混合</b>(如空氣)</li>
+    <li>會對容器壁施加<b>壓力 (pressure)</b>,源自分子不斷碰撞器壁</li>
+  </ul>
+  <div class="box key"><span class="tag">重點</span>描述一定量氣體的狀態,只需四個變數:<span class="hl">P、V、T、n</span> — 本章所有定律都在描述它們之間的關係。</div>
+</section>
+
+<!-- 6 -->
+<section class="slide">
+  <h2>壓力的定義 <span class="en">Definition of Pressure</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>壓力 (pressure)</b>:單位面積上所受的力。</div>
+  <div class="eq">P = F / A&nbsp;&nbsp;&nbsp;(SI 單位:Pa = N/m<sup>2</sup>)</div>
+  <ul>
+    <li>大氣壓力來自空氣柱的重量,海平面約 101,325 Pa</li>
+    <li>同樣的力,<b>接觸面積越小,壓力越大</b>(高跟鞋 vs 平底鞋)</li>
+    <li>氣體壓力的微觀來源:<span class="hlb">分子撞擊器壁</span>的平均效果</li>
+  </ul>
+</section>
+
+<!-- 7 -->
+<section class="slide">
+  <h2>壓力單位與換算 <span class="en">Units of Pressure</span></h2>
+  <table>
+    <tr><th>單位</th><th>符號</th><th>與 1 atm 的關係</th><th>備註</th></tr>
+    <tr><td>大氣壓</td><td>atm</td><td>1 atm(定義基準)</td><td>化學計算最常用</td></tr>
+    <tr><td>毫米汞柱</td><td>mmHg</td><td>1 atm = 760 mmHg</td><td>血壓、氣象常用</td></tr>
+    <tr><td>托</td><td>torr</td><td>1 atm = 760 torr</td><td>1 torr = 1 mmHg</td></tr>
+    <tr><td>帕斯卡</td><td>Pa</td><td>1 atm = 101,325 Pa</td><td>SI 單位;1 kPa = 1000 Pa</td></tr>
+    <tr><td>巴</td><td>bar</td><td>1 atm = 1.01325 bar</td><td>1 bar = 10<sup>5</sup> Pa</td></tr>
+  </table>
+  <div class="box key"><span class="tag">必背</span>1 atm = 760 mmHg = 760 torr = 101.325 kPa = 1.01325 bar</div>
+</section>
+
+<!-- 8 -->
+<section class="slide">
+  <h2>例題 1:壓力單位換算 <span class="en">Example 1</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>某日氣象報告指出大氣壓力為 745 mmHg。請換算為 (a) atm (b) kPa (c) bar。
+  <div class="sol"><b>解:</b>以換算因子法處理,745 mmHg 為 3 位有效數字。<br>
+  (a) 745 mmHg × (1 atm / 760 mmHg) = <span class="hl">0.980 atm</span><br>
+  (b) 745 mmHg × (101.325 kPa / 760 mmHg) = <span class="hl">99.3 kPa</span><br>
+  (c) 0.9803 atm × (1.01325 bar / 1 atm) = <span class="hl">0.993 bar</span><br>
+  檢查:745 &lt; 760,故結果應略小於 1 atm ✓</div></div>
+</section>
+
+<!-- 9 -->
+<section class="slide">
+  <h2>氣壓計 <span class="en">Barometer</span></h2>
+  <ul>
+    <li>托里切利 (Torricelli, 1643) 發明:將裝滿汞的玻璃管倒插入汞槽</li>
+    <li>大氣壓力支撐汞柱,海平面時汞柱高約 <span class="hl">760 mm</span></li>
+    <li>汞柱高度只與大氣壓力有關,<b>與管徑無關</b></li>
+  </ul>
+  <div class="eq">P<sub>atm</sub> = h(汞柱高度,mmHg)</div>
+  <div class="box key"><span class="tag">想一想</span>為何用汞而不用水?水的密度只有汞的 1/13.6,水柱氣壓計需高約 10.3 m 才能平衡 1 atm,太不實用。</div>
+</section>
+
+<!-- 10 -->
+<section class="slide">
+  <h2>壓力計 <span class="en">Manometer</span></h2>
+  <p>壓力計用來測量<b>容器內氣體</b>的壓力,常見為 U 形管開管式 (open-end manometer):</p>
+  <ul>
+    <li>氣體壓力 <b>大於</b> 大氣壓:開口端液面較高 → P<sub>gas</sub> = P<sub>atm</sub> + h</li>
+    <li>氣體壓力 <b>小於</b> 大氣壓:氣體端液面較高 → P<sub>gas</sub> = P<sub>atm</sub> − h</li>
+    <li>密閉式 (closed-end):P<sub>gas</sub> = h,直接讀出絕對壓力</li>
+  </ul>
+  <div class="box exbox"><span class="tag">練習</span>大氣壓 758 torr,開管壓力計中開口端汞面比氣體端高 25 torr,求氣體壓力。
+  <div class="sol"><b>解:</b>開口端較高 → 氣體壓力較大:P<sub>gas</sub> = 758 + 25 = <span class="hl">783 torr</span></div></div>
+</section>
+
+<!-- 11 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ①:氣體與壓力 <span class="en">Quick Check 1</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>1 atm 等於多少 mmHg?<br><span class="opt">A 100</span><span class="opt">B 273</span><span class="opt">C 760</span><span class="opt">D 1000</span></div>
+  <div class="q"><span class="qn">2</span>氣壓計中水銀柱高 760 mm。若改用水(密度約為水銀的 1/13.6),柱高會是?<br><span class="opt">A 約 56 mm</span><span class="opt">B 760 mm</span><span class="opt">C 約 10.3 m</span><span class="opt">D 無法測量</span></div>
+  <div class="q"><span class="qn">3</span>為什麼氣體<b>可以壓縮</b>,液體和固體幾乎不行?</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. C(760)</span> — 1 atm = 760 mmHg = 760 torr = 101325 Pa = 1.013 bar。<span class="myth">這幾個換算是本週所有計算的入場券。<b>算完務必檢查單位</b> —— PV = nRT 用 R = 0.0821 時,壓力必須是 atm、體積必須是 L。</span></div><div class="row"><span class="ans">2. C(約 10.3 m)</span> — 壓力 = ρgh。密度變成 1/13.6,高度就要變成 <b>13.6 倍</b>:0.76 × 13.6 ≈ 10.3 m。<span class="myth">選 A 的同學把關係搞成正比。這也解釋了<b>為什麼氣壓計用水銀不用水</b> —— 水柱要十公尺高,做不出來。</span></div><div class="row"><span class="ans">3. 因為氣體分子之間幾乎全是空隙</span> — 氣體分子間距約為分子直徑的 10 倍,<b>體積的絕大部分是空的</b>;液固態分子已經緊貼,沒有空間可壓。<span class="myth">這一點直接對應 KMT 第一假設(分子本身體積可忽略),也解釋了為什麼<b>高壓下真實氣體會偏離理想行為</b> —— 空隙被壓掉了,分子體積就不能再忽略。</span></div></div>
+</section>
+<!-- 12 -->
+<section class="slide divider">
+  <div class="secnum">PART 9.2</div>
+  <h1>氣體諸定律</h1>
+  <div class="en-sub">The Simple Gas Laws</div>
+  <div class="items">波以耳 P–V・查理 V–T・給呂薩克 P–T・亞佛加厥 V–n・組合氣體定律</div>
+</section>
+
+<!-- 13 -->
+<section class="slide">
+  <h2>波以耳定律 <span class="en">Boyle's Law (P–V)</span></h2>
+  <div class="box def"><span class="tag">定律</span>定溫、定量下,氣體體積與壓力<b>成反比</b>。</div>
+  <div class="eq">V ∝ 1/P&nbsp;&nbsp;⇒&nbsp;&nbsp;PV = 常數&nbsp;&nbsp;⇒&nbsp;&nbsp;<span class="hl">P<sub>1</sub>V<sub>1</sub> = P<sub>2</sub>V<sub>2</sub></span>&nbsp;&nbsp;(T、n 固定)</div>
+  <ul>
+    <li>P–V 圖為雙曲線;P 對 1/V 作圖為通過原點的直線</li>
+    <li>微觀解釋:體積減半 → 分子碰撞器壁頻率加倍 → 壓力加倍</li>
+    <li>生活實例:呼吸(橫膈膜下降,胸腔變大、壓力變小,空氣流入)</li>
+  </ul>
+</section>
+
+<!-- 14 -->
+<section class="slide">
+  <h2>例題 2:波以耳定律 <span class="en">Example 2</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>定溫下,5.00 L 的氣體樣品壓力為 760. torr。若將體積壓縮至 2.00 L,壓力變為多少 torr?多少 atm?
+  <div class="sol"><b>解:</b>T、n 固定,適用波以耳定律。<br>
+  P<sub>2</sub> = P<sub>1</sub>V<sub>1</sub> / V<sub>2</sub> = (760. torr × 5.00 L) / 2.00 L = <span class="hl">1.90 × 10<sup>3</sup> torr</span>(3 位有效數字)<br>
+  換算:1900 torr × (1 atm / 760 torr) = <span class="hl">2.50 atm</span><br>
+  檢查:體積縮小 → 壓力應變大 ✓(2.00 L 為 5.00 L 的 2/5,壓力為原來的 5/2 倍)</div></div>
+</section>
+
+<!-- 15 -->
+<section class="slide">
+  <h2>查理定律 <span class="en">Charles's Law (V–T)</span></h2>
+  <div class="box def"><span class="tag">定律</span>定壓、定量下,氣體體積與<b>絕對溫度</b>成正比。</div>
+  <div class="eq">V ∝ T&nbsp;&nbsp;⇒&nbsp;&nbsp;<span class="hl">V<sub>1</sub>/T<sub>1</sub> = V<sub>2</sub>/T<sub>2</sub></span>&nbsp;&nbsp;(P、n 固定,T 單位為 K)</div>
+  <ul>
+    <li>V–T(°C) 直線外插至 V = 0 時,交點為 <span class="hl">−273.15 °C = 0 K</span>(絕對零度)</li>
+    <li>生活實例:熱氣球升空、夏天輪胎與籃球較飽滿</li>
+  </ul>
+  <div class="box warn"><span class="tag">注意</span>所有氣體定律計算,<b>溫度一律用 K</b>!用 °C 代入是本章最常見的錯誤。T(K) = T(°C) + 273.15。</div>
+</section>
+
+<!-- 16 -->
+<section class="slide">
+  <h2>例題 3:查理定律 <span class="en">Example 3</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>一個氣球在 25 °C 時體積為 2.50 L。將它放入 100. °C 的烘箱中(壓力不變),體積變為多少?
+  <div class="sol"><b>解:</b>先把溫度換成 K:<br>
+  T<sub>1</sub> = 25 + 273 = 298 K;T<sub>2</sub> = 100. + 273 = 373 K<br>
+  V<sub>2</sub> = V<sub>1</sub> × (T<sub>2</sub>/T<sub>1</sub>) = 2.50 L × (373 K / 298 K) = <span class="hl">3.13 L</span><br>
+  檢查:溫度升高 → 體積應變大 ✓<br>
+  <span class="hlb">錯誤示範:</span>若誤用 °C:2.50 × (100/25) = 10 L,結果差了 3 倍以上!</div></div>
+</section>
+
+<!-- 17 -->
+<section class="slide">
+  <h2>給呂薩克定律 <span class="en">Gay-Lussac's Law (P–T)</span></h2>
+  <div class="box def"><span class="tag">定律</span>定容、定量下,氣體壓力與絕對溫度成正比。</div>
+  <div class="eq">P ∝ T&nbsp;&nbsp;⇒&nbsp;&nbsp;<span class="hl">P<sub>1</sub>/T<sub>1</sub> = P<sub>2</sub>/T<sub>2</sub></span>&nbsp;&nbsp;(V、n 固定)</div>
+  <ul>
+    <li>微觀解釋:溫度升高 → 分子平均速率變快 → 碰撞更頻繁且更猛烈 → 壓力上升</li>
+    <li>生活實例:噴霧罐標示「請勿加熱、勿置於高溫處」;壓力鍋</li>
+  </ul>
+  <div class="box exbox"><span class="tag">快速練習</span>輪胎在 20 °C 時胎壓 2.20 atm,行駛後升溫至 50 °C,胎壓?
+  <div class="sol"><b>解:</b>P<sub>2</sub> = 2.20 × (323 K / 293 K) = <span class="hl">2.43 atm</span></div></div>
+</section>
+
+<!-- 18 -->
+<section class="slide">
+  <h2>亞佛加厥定律 <span class="en">Avogadro's Law (V–n)</span></h2>
+  <div class="box def"><span class="tag">定律</span>定溫、定壓下,氣體體積與莫耳數成正比;<b>同溫同壓同體積的任何氣體含相同數目的分子</b>。</div>
+  <div class="eq">V ∝ n&nbsp;&nbsp;⇒&nbsp;&nbsp;V<sub>1</sub>/n<sub>1</sub> = V<sub>2</sub>/n<sub>2</sub>&nbsp;&nbsp;(T、P 固定)</div>
+  <ul>
+    <li>與氣體種類<b>無關</b>:1 mol He 與 1 mol CO<sub>2</sub> 在同溫壓下體積相同</li>
+    <li>解釋氣體反應體積比 = 係數比:2H<sub>2</sub>(g) + O<sub>2</sub>(g) → 2H<sub>2</sub>O(g) 體積比 2:1:2</li>
+    <li>吹氣球:吹入越多氣體分子(n↑),體積越大(V↑)</li>
+  </ul>
+</section>
+
+<!-- 19 -->
+<section class="slide">
+  <h2>組合氣體定律 <span class="en">Combined Gas Law</span></h2>
+  <p>將波以耳、查理、給呂薩克三定律合併(n 固定):</p>
+  <div class="eq"><span class="hl">P<sub>1</sub>V<sub>1</sub> / T<sub>1</sub> = P<sub>2</sub>V<sub>2</sub> / T<sub>2</sub></span></div>
+  <table>
+    <tr><th>固定變數</th><th>化簡結果</th><th>定律名稱</th></tr>
+    <tr><td>T</td><td>P<sub>1</sub>V<sub>1</sub> = P<sub>2</sub>V<sub>2</sub></td><td>波以耳 Boyle</td></tr>
+    <tr><td>P</td><td>V<sub>1</sub>/T<sub>1</sub> = V<sub>2</sub>/T<sub>2</sub></td><td>查理 Charles</td></tr>
+    <tr><td>V</td><td>P<sub>1</sub>/T<sub>1</sub> = P<sub>2</sub>/T<sub>2</sub></td><td>給呂薩克 Gay-Lussac</td></tr>
+  </table>
+  <div class="box key"><span class="tag">技巧</span>只要記住組合定律一條式子,把不變的量約掉即可,不必死背三條。</div>
+</section>
+
+<!-- 20 -->
+<section class="slide">
+  <h2>例題 4:組合氣體定律 <span class="en">Example 4</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>氣象氣球在地面(25 °C、1.00 atm)體積為 3.50 L。上升至高空處,壓力 0.750 atm、溫度 77 °C,氣球體積變為多少?
+  <div class="sol"><b>解:</b>n 固定,用組合氣體定律。溫度換 K:T<sub>1</sub> = 298 K,T<sub>2</sub> = 350. K<br>
+  V<sub>2</sub> = V<sub>1</sub> × (P<sub>1</sub>/P<sub>2</sub>) × (T<sub>2</sub>/T<sub>1</sub>)<br>
+  &nbsp;&nbsp;&nbsp;= 3.50 L × (1.00 / 0.750) × (350. / 298) = <span class="hl">5.48 L</span><br>
+  檢查:壓力下降使 V↑,溫度上升也使 V↑,結果應大於 3.50 L ✓</div></div>
+</section>
+
+<!-- 21 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ②:氣體諸定律 <span class="en">Quick Check 2</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>定溫下把氣體體積壓成一半,壓力會?<br><span class="opt">A 減半</span><span class="opt">B 不變</span><span class="opt">C 變兩倍</span><span class="opt">D 變四倍</span></div>
+  <div class="q"><span class="qn">2</span>用查理定律計算時,溫度<b>必須</b>用哪個單位?<br><span class="opt">A °C</span><span class="opt">B K</span><span class="opt">C °F</span><span class="opt">D 都可以</span></div>
+  <div class="q"><span class="qn">3</span>一罐噴霧罐標示「勿置於高溫處」。<b>用氣體定律解釋為什麼</b>。</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. C(變兩倍)</span> — 波以耳定律:PV = 定值,P 與 V 成<b>反比</b>。<span class="myth">檢查方式:<b>擠壓氣體會變難擠 → 壓力上升</b>。用生活直覺對一次,就不會把反比記成正比。</span></div><div class="row"><span class="ans">2. B(K)</span> — V ∝ T 只在<b>絕對溫度</b>下成立。<span class="myth">用 °C 會出現荒謬結果:0 °C 代入得到體積為零。<b>凡是牽涉 T 的氣體計算,第一個動作就是換成 K</b> —— 這是本週最常見的失分點。</span></div><div class="row"><span class="ans">3. 因為定容下溫度升高,壓力隨之升高</span> — 噴霧罐體積固定,由給呂薩克定律 <b>P ∝ T</b>(絕對溫度),受熱時內壓上升,可能超過罐體承受極限而爆裂。<span class="myth">延伸:這也是為什麼罐上同時警告「勿丟入火中」與「勿穿刺」—— <b>兩者都是讓內壓突然失控</b>。</span></div></div>
+</section>
+<!-- 22 -->
+<section class="slide divider">
+  <div class="secnum">PART 9.3</div>
+  <h1>理想氣體方程式</h1>
+  <div class="en-sub">The Ideal Gas Equation</div>
+  <div class="items">PV = nRT・STP 與莫耳體積・氣體密度與莫耳質量・氣體化學計量</div>
+</section>
+
+<!-- 23 -->
+<section class="slide">
+  <h2>理想氣體方程式 <span class="en">Ideal Gas Equation</span></h2>
+  <p>整合四個定律(V ∝ 1/P、V ∝ T、V ∝ n)得:</p>
+  <div class="eq big"><span class="hl">PV = nRT</span></div>
+  <table>
+    <tr><th>氣體常數 R</th><th>適用情況</th></tr>
+    <tr><td><b>0.08206 L·atm/(mol·K)</b></td><td>P 用 atm、V 用 L 的一般計算</td></tr>
+    <tr><td><b>8.314 J/(mol·K)</b></td><td>能量相關計算(如 u<sub>rms</sub>、熱力學)</td></tr>
+  </table>
+  <div class="box warn"><span class="tag">注意</span>使用前先檢查單位:P → atm、V → L、T → K、n → mol,與 R = 0.08206 L·atm/(mol·K) 搭配。單位不合就先換算!</div>
+</section>
+
+<!-- 24 -->
+<section class="slide">
+  <h2>例題 5:PV = nRT 求 n 與質量 <span class="en">Example 5</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>一鋼瓶容積 10.0 L,在 25 °C 時內裝 O<sub>2</sub> 的壓力為 1.20 atm。瓶內 O<sub>2</sub> 有多少 mol?質量多少克?(O<sub>2</sub> 莫耳質量 32.00 g/mol)
+  <div class="sol"><b>解:</b>T = 25 + 273.15 = 298 K<br>
+  n = PV / RT = (1.20 atm × 10.0 L) / (0.08206 L·atm/(mol·K) × 298 K)<br>
+  &nbsp;&nbsp;&nbsp;= 12.0 / 24.5 = <span class="hl">0.490 mol</span><br>
+  質量 m = n × M = 0.490 mol × 32.00 g/mol = <span class="hl">15.7 g</span><br>
+  (3 位有效數字;單位逐項相消檢查 ✓)</div></div>
+</section>
+
+<!-- 25 -->
+<section class="slide">
+  <h2>例題 6:PV = nRT 求 V <span class="en">Example 6</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>0.500 mol 的 CO<sub>2</sub> 在體溫 37 °C、壓力 0.980 atm 下,體積為多少 L?
+  <div class="sol"><b>解:</b>T = 37 + 273.15 = 310. K<br>
+  V = nRT / P = (0.500 mol × 0.08206 L·atm/(mol·K) × 310. K) / 0.980 atm<br>
+  &nbsp;&nbsp;&nbsp;= 12.7 / 0.980 = <span class="hl">13.0 L</span><br>
+  檢查數量級:1 mol 氣體在常溫常壓約 24–25 L,0.5 mol 約 12–13 L ✓</div></div>
+  <div class="box key"><span class="tag">技巧</span>記住「常溫常壓下 1 mol 氣體約 24.5 L」可快速檢查答案的合理性。</div>
+</section>
+
+<!-- 26 -->
+<section class="slide">
+  <h2>STP 與莫耳體積 <span class="en">STP and Molar Volume</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>標準溫壓 STP (standard temperature and pressure)</b>:0 °C (273.15 K)、1 atm。</div>
+  <div class="eq">STP 下,1 mol 理想氣體體積 = <span class="hl">22.4 L</span>(莫耳體積 molar volume)</div>
+  <ul>
+    <li>驗算:V = (1 mol)(0.08206)(273.15 K)/(1 atm) = 22.4 L</li>
+    <li>任何理想氣體皆同:22.4 L 的 He、N<sub>2</sub>、CO<sub>2</sub> 在 STP 下都是 1 mol</li>
+  </ul>
+  <div class="box warn"><span class="tag">注意</span>IUPAC 現行定義的 STP 為 0 °C、<b>1 bar</b>(莫耳體積 22.7 L)。本課程與 OpenStax 沿用 1 atm、22.4 L;解題時以題目指定為準。</div>
+</section>
+
+<!-- 27 -->
+<section class="slide">
+  <h2>氣體密度與莫耳質量 <span class="en">Density &amp; Molar Mass</span></h2>
+  <p>由 PV = nRT 與 n = m/M 推導:</p>
+  <div class="eq">PV = (m/M)RT&nbsp;&nbsp;⇒&nbsp;&nbsp;<span class="hl">d = m/V = PM/(RT)</span>&nbsp;&nbsp;⇒&nbsp;&nbsp;<span class="hl">M = dRT/P</span></div>
+  <ul>
+    <li>同溫同壓下,<b>莫耳質量越大的氣體密度越大</b>(CO<sub>2</sub> 沉在低處、He 氣球上升)</li>
+    <li>密度隨 T 上升而下降(熱空氣上升)、隨 P 上升而增加</li>
+    <li>應用:測定揮發性液體的莫耳質量(Dumas 法)</li>
+  </ul>
+</section>
+
+<!-- 28 -->
+<section class="slide">
+  <h2>例題 7:由密度求莫耳質量 <span class="en">Example 7</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>某氣體在 300. K、1.00 atm 下密度為 2.86 g/L。求其莫耳質量,並推測它可能是哪種常見氣體。
+  <div class="sol"><b>解:</b>M = dRT / P<br>
+  &nbsp;&nbsp;&nbsp;= (2.86 g/L × 0.08206 L·atm/(mol·K) × 300. K) / 1.00 atm<br>
+  &nbsp;&nbsp;&nbsp;= <span class="hl">70.4 g/mol</span>(3 位有效數字)<br>
+  與 Cl<sub>2</sub> 的莫耳質量 70.90 g/mol 最接近 → 此氣體可能是<span class="hl">氯氣 Cl<sub>2</sub></span>。<br>
+  單位檢查:(g/L)(L·atm/(mol·K))(K)/atm = g/mol ✓</div></div>
+</section>
+
+<!-- 29 -->
+<section class="slide">
+  <h2>氣體化學計量 <span class="en">Gas Stoichiometry</span></h2>
+  <div class="flow">
+    <div class="frow">
+      <div class="fbox">反應物質量 (g)</div>
+      <div class="fbox">氣體 P、V、T</div>
+    </div>
+    <div class="arrow">↓ ÷M&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓ n = PV/RT</div>
+    <div class="fbox"><b>mol ←(係數比)→ mol</b></div>
+    <div class="arrow">↓ ×M 或 V = nRT/P</div>
+    <div class="frow">
+      <div class="fbox">產物質量 (g)</div>
+      <div class="fbox">氣體體積 (L)</div>
+    </div>
+  </div>
+  <div class="box key" style="margin-top:16px"><span class="tag">重點</span>一切透過 <b>mol</b> 橋接:質量用莫耳質量換算,氣體用 PV = nRT 換算,再按平衡方程式係數比轉換。</div>
+</section>
+
+<!-- 30 -->
+<section class="slide">
+  <h2>例題 8:氣體化學計量 <span class="en">Example 8</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>汽車安全氣囊由疊氮化鈉分解充氣:2NaN<sub>3</sub>(s) → 2Na(s) + 3N<sub>2</sub>(g)。65.0 g NaN<sub>3</sub>(M = 65.01 g/mol)完全分解,在 25 °C、1.00 atm 下產生 N<sub>2</sub> 的體積?
+  <div class="sol"><b>解:</b><br>
+  ① n(NaN<sub>3</sub>) = 65.0 g ÷ 65.01 g/mol = 1.00 mol<br>
+  ② 係數比 2:3 → n(N<sub>2</sub>) = 1.00 × (3/2) = 1.50 mol<br>
+  ③ V = nRT/P = (1.50 × 0.08206 × 298 K) / 1.00 atm = <span class="hl">36.7 L</span><br>
+  這就是氣囊能在 0.03 秒內充飽的原因:少量固體產生大量氣體!</div></div>
+</section>
+
+<!-- 31 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ③:理想氣體方程式 <span class="en">Quick Check 3</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>在 STP 下,1 mol 任何理想氣體的體積是?<br><span class="opt">A 22.4 L</span><span class="opt">B 24.5 L</span><span class="opt">C 1 L</span><span class="opt">D 視氣體種類而定</span></div>
+  <div class="q"><span class="qn">2</span>同溫同壓下,1 L 的 H<sub>2</sub> 與 1 L 的 CO<sub>2</sub>:<br><span class="opt">A 質量相同</span><span class="opt">B 分子數相同</span><span class="opt">C 密度相同</span><span class="opt">D 三者皆同</span></div>
+  <div class="q"><span class="qn">3</span>氣體密度 d = PM/RT。<b>為什麼氣體的密度會隨溫度、壓力改變,固體液體卻幾乎不變?</b></div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. A(22.4 L)</span> — STP(0 °C、1 atm)下的莫耳體積。<span class="myth">注意<b>「STP」與「室溫」不同</b>:25 °C、1 atm 下是 24.5 L。題目說哪一個就用哪一個,不要混用。</span></div><div class="row"><span class="ans">2. B(分子數相同)</span> — <b>亞佛加厥定律</b>:同溫同壓同體積 → 分子數相同。<span class="myth">選 A/C 的同學把「體積相同」當成「質量相同」。分子數相同但<b>莫耳質量不同</b>(2 vs 44),所以質量與密度都差 22 倍。<b>[M03]</b></span></div><div class="row"><span class="ans">3. 因為氣體的體積由外在條件決定,不由分子本身決定</span> — 氣體分子間距遠大於分子大小,<b>壓力與溫度一改變,間距(體積)就跟著改</b>;固液態分子已緊貼,體積主要由分子本身決定。<span class="myth">所以講氣體密度<b>一定要註明溫度與壓力</b>,講固體密度通常不必。這個差別在後面算氣體莫耳質量時是關鍵。</span></div></div>
+</section>
+<!-- 32 -->
+<section class="slide divider">
+  <div class="secnum">PART 9.4</div>
+  <h1>混合氣體與分壓</h1>
+  <div class="en-sub">Gas Mixtures and Partial Pressures</div>
+  <div class="items">道耳頓分壓定律・莫耳分率・排水集氣法</div>
+</section>
+
+<!-- 33 -->
+<section class="slide">
+  <h2>道耳頓分壓定律 <span class="en">Dalton's Law of Partial Pressures</span></h2>
+  <div class="box def"><span class="tag">定律</span>混合氣體的總壓 = 各成分氣體<b>分壓 (partial pressure)</b> 之和。分壓是該氣體<b>單獨佔有整個容器</b>時所呈現的壓力。</div>
+  <div class="eq"><span class="hl">P<sub>total</sub> = P<sub>A</sub> + P<sub>B</sub> + P<sub>C</sub> + ⋯</span>&nbsp;&nbsp;;&nbsp;&nbsp;P<sub>A</sub> = n<sub>A</sub>RT/V</div>
+  <ul>
+    <li>理想氣體分子彼此不吸引、不排斥 → 各氣體「互不干擾」地貢獻壓力</li>
+    <li>例:空氣 1.00 atm ≈ P(N<sub>2</sub>) 0.78 + P(O<sub>2</sub>) 0.21 + P(Ar) 0.01 atm</li>
+  </ul>
+</section>
+
+<!-- 34 -->
+<section class="slide">
+  <h2>莫耳分率與分壓 <span class="en">Mole Fraction</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>莫耳分率 (mole fraction) X<sub>A</sub></b> = n<sub>A</sub> / n<sub>total</sub>(無單位,總和 = 1)。</div>
+  <div class="eq">P<sub>A</sub> = X<sub>A</sub> · P<sub>total</sub></div>
+  <ul>
+    <li>推導:P<sub>A</sub>/P<sub>total</sub> = (n<sub>A</sub>RT/V)/(n<sub>total</sub>RT/V) = n<sub>A</sub>/n<sub>total</sub> = X<sub>A</sub></li>
+    <li>分壓比 = 莫耳數比 = (同溫壓下)體積比</li>
+    <li>應用:潛水混合氣、醫療用氧、大氣化學</li>
+  </ul>
+</section>
+
+<!-- 35 -->
+<section class="slide">
+  <h2>例題 9:分壓與莫耳分率 <span class="en">Example 9</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>10.0 L 容器中裝入 0.200 mol He 與 0.300 mol O<sub>2</sub>,溫度 25 °C。求總壓與各氣體分壓。
+  <div class="sol"><b>解:</b><br>
+  ① n<sub>total</sub> = 0.200 + 0.300 = 0.500 mol<br>
+  ② P<sub>total</sub> = n<sub>total</sub>RT/V = (0.500 × 0.08206 × 298 K)/10.0 L = <span class="hl">1.22 atm</span><br>
+  ③ X<sub>He</sub> = 0.200/0.500 = 0.400;X<sub>O₂</sub> = 0.600<br>
+  ④ P<sub>He</sub> = 0.400 × 1.22 = <span class="hl">0.489 atm</span>;P<sub>O₂</sub> = 0.600 × 1.22 = <span class="hl">0.734 atm</span><br>
+  檢查:0.489 + 0.734 = 1.22 atm = P<sub>total</sub> ✓</div></div>
+</section>
+
+<!-- 36 -->
+<section class="slide">
+  <h2>排水集氣法 <span class="en">Collecting Gas over Water</span></h2>
+  <ul>
+    <li>難溶於水的氣體(H<sub>2</sub>、O<sub>2</sub>、N<sub>2</sub>)可用排水法收集</li>
+    <li>收集到的氣體<b>混有水蒸氣</b> → 瓶內為混合氣體</li>
+  </ul>
+  <div class="eq"><span class="hl">P<sub>gas</sub> = P<sub>total</sub> − P<sub>H₂O</sub></span>&nbsp;&nbsp;(P<sub>H₂O</sub> = 該溫度下水的蒸氣壓,查表)</div>
+  <table>
+    <tr><th>溫度 (°C)</th><td>20</td><td>25</td><td>30</td><td>40</td></tr>
+    <tr><th>水蒸氣壓 (torr)</th><td>17.5</td><td>23.8</td><td>31.8</td><td>55.3</td></tr>
+  </table>
+  <div class="box warn"><span class="tag">注意</span>水蒸氣壓只與<b>溫度</b>有關,與收集了多少氣體無關。忘記扣除水蒸氣壓是常見失分點!</div>
+</section>
+
+<!-- 37 -->
+<section class="slide">
+  <h2>例題 10:排水集氣 <span class="en">Example 10</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>25 °C 時以排水法收集 O<sub>2</sub>,收集瓶內總壓 755 torr、體積 0.250 L(25 °C 水蒸氣壓 = 23.8 torr)。求收集到 O<sub>2</sub> 的質量。
+  <div class="sol"><b>解:</b><br>
+  ① P(O<sub>2</sub>) = 755 − 23.8 = 731 torr → 731/760 = 0.962 atm<br>
+  ② n = PV/RT = (0.962 × 0.250)/(0.08206 × 298 K) = 0.2405/24.5 = 9.83 × 10<sup>−3</sup> mol<br>
+  ③ m = n × M = 9.83 × 10<sup>−3</sup> mol × 32.00 g/mol = <span class="hl">0.315 g</span></div></div>
+</section>
+
+<!-- 38 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ④:混合氣體與分壓 <span class="en">Quick Check 4</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>空氣中 O<sub>2</sub> 約佔 21%。總壓 1 atm 時,氧的<b>分壓</b>是?<br><span class="opt">A 1 atm</span><span class="opt">B 0.21 atm</span><span class="opt">C 0.79 atm</span><span class="opt">D 21 atm</span></div>
+  <div class="q"><span class="qn">2</span>排水集氣法收集到的氣體,計算時必須?<br><span class="opt">A 直接用總壓</span><span class="opt">B 扣掉該溫度下的<b>水蒸氣壓</b></span><span class="opt">C 加上水蒸氣壓</span><span class="opt">D 忽略溫度</span></div>
+  <div class="q"><span class="qn">3</span>洋芋片包裝充氮氣而不是抽真空。<b>為什麼「換氣體」比「抽掉氣」有效?</b></div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B(0.21 atm)</span> — 分壓 = 莫耳分率 × 總壓 = 0.21 × 1。<span class="myth">這個數字是本週錨點的起點。<b>分壓不是「總壓除以成分數」</b>,而是按莫耳分率分配。</span></div><div class="row"><span class="ans">2. B</span> — 收集到的是<b>混合氣體</b>,必須扣掉水蒸氣的貢獻才是目標氣體的分壓。<span class="myth">忘了扣就會高估氣體量。而且水蒸氣壓<b>隨溫度變化</b>,所以題目一定會給溫度 —— 看到「排水集氣」就要去查水蒸氣壓表。</span></div><div class="row"><span class="ans">3. 因為決定氧化速率的是<b>氧的分壓</b>,不是總壓</span> — 充氮氣後總壓仍是 1 atm(包裝不會塌、洋芋片不會被壓碎),但氧分壓降到接近 0。<span class="myth">抽真空雖然也能降低氧分壓,卻同時把總壓降掉 → 包裝塌陷。<b>道耳頓分壓定律的意義就在這裡:混合氣體中每種氣體各自作用</b>,所以可以只換掉不要的那一種。</span></div></div>
+</section>
+<!-- 39 -->
+<section class="slide divider">
+  <div class="secnum">PART 9.5</div>
+  <h1>氣體動力分子理論與真實氣體</h1>
+  <div class="en-sub">Kinetic-Molecular Theory &amp; Real Gases</div>
+  <div class="items">KMT 五假設・分子速率分布・Graham 定律・van der Waals 方程式</div>
+</section>
+
+<!-- 40 -->
+<section class="slide">
+  <h2>氣體動力分子理論五假設 <span class="en">Kinetic-Molecular Theory (KMT)</span></h2>
+  <ol>
+    <li>氣體由大量微小分子組成,分子本身體積相較於分子間距<b>可忽略</b></li>
+    <li>分子作<b>連續、快速、隨機</b>的直線運動,不斷互相碰撞並撞擊器壁</li>
+    <li>碰撞為<b>完全彈性碰撞</b> (elastic collision):總動能不損失</li>
+    <li>分子間<b>無吸引力也無排斥力</b></li>
+    <li>分子<b>平均動能與絕對溫度成正比</b>:KE<sub>avg</sub> = (3/2)RT(每 mol)</li>
+  </ol>
+  <div class="box key"><span class="tag">重點</span>KMT 是「理想氣體」的微觀模型:假設 1、4 在高壓低溫時失效 → 真實氣體偏差的根源。</div>
+</section>
+
+<!-- 41 -->
+<section class="slide">
+  <h2>分子速率分布 <span class="en">Maxwell-Boltzmann Distribution</span></h2>
+  <ul>
+    <li>同溫下,分子速率並非全部相同,呈 <b>Maxwell-Boltzmann 分布</b></li>
+    <li><b>溫度升高:</b>曲線峰值右移、變矮變寬 → 高速分子比例增加</li>
+    <li><b>莫耳質量越小:</b>同溫下平均速率越快(H<sub>2</sub> &gt; N<sub>2</sub> &gt; CO<sub>2</sub>)</li>
+    <li>三種特徵速率:最可能速率 u<sub>mp</sub> &lt; 平均速率 u<sub>avg</sub> &lt; 均方根速率 u<sub>rms</sub></li>
+  </ul>
+  <div class="box key"><span class="tag">重點</span>同溫下,任何氣體的<b>平均動能相同</b>;質量小的分子必須跑得快,才能有相同動能。</div>
+<svg class="fig" role="img" aria-labelledby="w14f1-t w14f1-d" width="940" height="180" viewBox="0 0 940 180" xmlns="http://www.w3.org/2000/svg">
+        <title id="w14f1-t">馬克士威−波茲曼分子速率分布</title>
+        <desc id="w14f1-d">縱軸為分子數比例、橫軸為分子速率。溫度越高，曲線峰值越低、越往右移且越寬，但三條曲線下的面積相同，代表分子總數不變。</desc>
+        <defs><marker id="w14f1-axh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5a6a6b"/></marker></defs>
+        <line x1="58" y1="146" x2="610" y2="146" stroke="#5a6a6b" stroke-width="2" marker-end="url(#w14f1-axh)"/>
+        <line x1="58" y1="146" x2="58" y2="24" stroke="#5a6a6b" stroke-width="2" marker-end="url(#w14f1-axh)"/>
+        <text x="610" y="170" font-size="17" fill="#5a6a6b" text-anchor="end">分子速率 u</text>
+        <text x="62" y="18" font-size="17" fill="#5a6a6b" text-anchor="start">分子數比例</text>
+        <path d="M58.0,146.0 L62.5,145.6 L67.0,144.3 L71.5,142.1 L75.9,139.2 L80.4,135.5 L84.9,131.1 L89.4,126.2 L93.9,120.7 L98.3,114.8 L102.8,108.6 L107.3,102.2 L111.8,95.6 L116.3,89.1 L120.8,82.8 L125.2,76.6 L129.7,70.7 L134.2,65.2 L138.7,60.2 L143.2,55.7 L147.7,51.8 L152.1,48.5 L156.6,45.9 L161.1,44.0 L165.6,42.7 L170.1,42.1 L174.6,42.1 L179.1,42.8 L183.5,44.0 L188.0,45.8 L192.5,48.1 L197.0,50.9 L201.5,54.1 L206.0,57.6 L210.4,61.4 L214.9,65.4 L219.4,69.6 L223.9,73.9 L228.4,78.3 L232.8,82.6 L237.3,87.0 L241.8,91.3 L246.3,95.5 L250.8,99.6 L255.3,103.5 L259.8,107.3 L264.2,110.9 L268.7,114.2 L273.2,117.4 L277.7,120.3 L282.2,123.1 L286.6,125.6 L291.1,127.9 L295.6,130.0 L300.1,131.9 L304.6,133.7 L309.1,135.2 L313.5,136.6 L318.0,137.9 L322.5,139.0 L327.0,140.0 L331.5,140.8 L336.0,141.6 L340.4,142.2 L344.9,142.8 L349.4,143.3 L353.9,143.7 L358.4,144.1 L362.9,144.4 L367.3,144.7 L371.8,144.9 L376.3,145.1 L380.8,145.2 L385.3,145.4 L389.8,145.5 L394.2,145.6 L398.7,145.7 L403.2,145.7 L407.7,145.8 L412.2,145.8 L416.7,145.9 L421.2,145.9 L425.6,145.9 L430.1,145.9 L434.6,145.9 L439.1,146.0 L443.6,146.0 L448.1,146.0 L452.5,146.0 L457.0,146.0 L461.5,146.0 L466.0,146.0 L470.5,146.0 L474.9,146.0 L479.4,146.0 L483.9,146.0 L488.4,146.0 L492.9,146.0 L497.4,146.0 L501.8,146.0 L506.3,146.0 L510.8,146.0 L515.3,146.0 L519.8,146.0 L524.3,146.0 L528.8,146.0 L533.2,146.0 L537.7,146.0 L542.2,146.0 L546.7,146.0 L551.2,146.0 L555.7,146.0 L560.1,146.0 L564.6,146.0 L569.1,146.0 L573.6,146.0 L578.1,146.0 L582.5,146.0 L587.0,146.0 L591.5,146.0 L596.0,146.0" fill="none" stroke="#117a65" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="172.056" y1="146" x2="172.056" y2="42.0" stroke="#117a65" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="5 4" opacity="0.7"/>
+        <text x="172.056" y="34.0" font-size="17" fill="#117a65" text-anchor="middle" font-weight="700">T₁ 低溫</text>
+        <path d="M58.0,146.0 L62.5,145.9 L67.0,145.4 L71.5,144.7 L75.9,143.7 L80.4,142.4 L84.9,140.8 L89.4,139.0 L93.9,137.0 L98.3,134.7 L102.8,132.2 L107.3,129.6 L111.8,126.8 L116.3,123.9 L120.8,120.9 L125.2,117.7 L129.7,114.6 L134.2,111.4 L138.7,108.1 L143.2,104.9 L147.7,101.8 L152.1,98.7 L156.6,95.6 L161.1,92.7 L165.6,89.9 L170.1,87.3 L174.6,84.8 L179.1,82.5 L183.5,80.4 L188.0,78.5 L192.5,76.8 L197.0,75.3 L201.5,74.0 L206.0,73.0 L210.4,72.2 L214.9,71.6 L219.4,71.3 L223.9,71.1 L228.4,71.2 L232.8,71.5 L237.3,72.0 L241.8,72.7 L246.3,73.6 L250.8,74.6 L255.3,75.9 L259.8,77.2 L264.2,78.7 L268.7,80.4 L273.2,82.1 L277.7,84.0 L282.2,85.9 L286.6,87.9 L291.1,89.9 L295.6,92.0 L300.1,94.2 L304.6,96.3 L309.1,98.5 L313.5,100.7 L318.0,102.8 L322.5,105.0 L327.0,107.1 L331.5,109.1 L336.0,111.2 L340.4,113.2 L344.9,115.1 L349.4,117.0 L353.9,118.8 L358.4,120.6 L362.9,122.2 L367.3,123.8 L371.8,125.4 L376.3,126.9 L380.8,128.3 L385.3,129.6 L389.8,130.8 L394.2,132.0 L398.7,133.1 L403.2,134.2 L407.7,135.2 L412.2,136.1 L416.7,136.9 L421.2,137.7 L425.6,138.5 L430.1,139.2 L434.6,139.8 L439.1,140.4 L443.6,140.9 L448.1,141.4 L452.5,141.9 L457.0,142.3 L461.5,142.7 L466.0,143.0 L470.5,143.3 L474.9,143.6 L479.4,143.9 L483.9,144.1 L488.4,144.3 L492.9,144.5 L497.4,144.7 L501.8,144.8 L506.3,145.0 L510.8,145.1 L515.3,145.2 L519.8,145.3 L524.3,145.4 L528.8,145.5 L533.2,145.5 L537.7,145.6 L542.2,145.6 L546.7,145.7 L551.2,145.7 L555.7,145.8 L560.1,145.8 L564.6,145.8 L569.1,145.8 L573.6,145.9 L578.1,145.9 L582.5,145.9 L587.0,145.9 L591.5,145.9 L596.0,145.9" fill="none" stroke="#1f5f8b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="224.33166666666668" y1="146" x2="224.33166666666668" y2="71.12" stroke="#1f5f8b" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="5 4" opacity="0.7"/>
+        <text x="224.33166666666668" y="63.120000000000005" font-size="17" fill="#1f5f8b" text-anchor="middle" font-weight="700">T₂</text>
+        <path d="M58.0,146.0 L62.5,145.9 L67.0,145.8 L71.5,145.5 L75.9,145.1 L80.4,144.7 L84.9,144.1 L89.4,143.4 L93.9,142.6 L98.3,141.7 L102.8,140.7 L107.3,139.7 L111.8,138.6 L116.3,137.4 L120.8,136.1 L125.2,134.7 L129.7,133.3 L134.2,131.9 L138.7,130.3 L143.2,128.8 L147.7,127.2 L152.1,125.6 L156.6,124.0 L161.1,122.3 L165.6,120.6 L170.1,119.0 L174.6,117.3 L179.1,115.7 L183.5,114.1 L188.0,112.4 L192.5,110.9 L197.0,109.3 L201.5,107.8 L206.0,106.4 L210.4,105.0 L214.9,103.6 L219.4,102.3 L223.9,101.1 L228.4,99.9 L232.8,98.8 L237.3,97.8 L241.8,96.9 L246.3,96.0 L250.8,95.2 L255.3,94.5 L259.8,93.9 L264.2,93.4 L268.7,92.9 L273.2,92.6 L277.7,92.3 L282.2,92.1 L286.6,92.0 L291.1,91.9 L295.6,92.0 L300.1,92.1 L304.6,92.3 L309.1,92.6 L313.5,92.9 L318.0,93.3 L322.5,93.8 L327.0,94.3 L331.5,95.0 L336.0,95.6 L340.4,96.3 L344.9,97.1 L349.4,97.9 L353.9,98.8 L358.4,99.7 L362.9,100.6 L367.3,101.6 L371.8,102.6 L376.3,103.6 L380.8,104.7 L385.3,105.7 L389.8,106.8 L394.2,107.9 L398.7,109.0 L403.2,110.1 L407.7,111.2 L412.2,112.4 L416.7,113.5 L421.2,114.6 L425.6,115.7 L430.1,116.8 L434.6,117.9 L439.1,119.0 L443.6,120.0 L448.1,121.1 L452.5,122.1 L457.0,123.1 L461.5,124.1 L466.0,125.0 L470.5,126.0 L474.9,126.9 L479.4,127.8 L483.9,128.7 L488.4,129.5 L492.9,130.3 L497.4,131.1 L501.8,131.9 L506.3,132.6 L510.8,133.3 L515.3,134.0 L519.8,134.7 L524.3,135.3 L528.8,135.9 L533.2,136.5 L537.7,137.0 L542.2,137.6 L546.7,138.1 L551.2,138.6 L555.7,139.0 L560.1,139.5 L564.6,139.9 L569.1,140.3 L573.6,140.6 L578.1,141.0 L582.5,141.3 L587.0,141.6 L591.5,141.9 L596.0,142.2" fill="none" stroke="#a04c08" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="290.8643333333333" y1="146" x2="290.8643333333333" y2="91.92" stroke="#a04c08" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="5 4" opacity="0.7"/>
+        <text x="290.8643333333333" y="83.92" font-size="17" fill="#a04c08" text-anchor="middle" font-weight="700">T₃ 高溫</text>
+        <rect x="646" y="30" width="284" height="116" fill="#e8f8f5" rx="8" stroke="#117a65" stroke-width="2.5"/>
+        <text x="788" y="56" font-size="19" fill="#2c3e50" text-anchor="middle" font-weight="700">T₁ < T₂ < T₃</text>
+        <text x="788" y="84" font-size="17" fill="#5a6a6b" text-anchor="middle">溫度升高：峰變矮、右移、變寬</text>
+        <text x="788" y="110" font-size="17" fill="#0e6655" text-anchor="middle" font-weight="700">三條曲線下的面積相同</text>
+        <text x="788" y="134" font-size="16" fill="#5a6a6b" text-anchor="middle">（分子總數不變）</text>
+      </svg>
+</section>
+
+<!-- 42 -->
+<section class="slide">
+  <h2>均方根速率 <span class="en">Root-Mean-Square Speed</span></h2>
+  <div class="eq big"><span class="hl">u<sub>rms</sub> = √(3RT / M)</span></div>
+  <ul>
+    <li>此處 <b>R = 8.314 J/(mol·K)</b>,<b>M 須用 kg/mol</b>,速率單位才會是 m/s</li>
+    <li>u<sub>rms</sub> ∝ √T:溫度變 4 倍,速率變 2 倍</li>
+    <li>u<sub>rms</sub> ∝ 1/√M:同溫下輕分子較快</li>
+  </ul>
+  <div class="box warn"><span class="tag">注意</span>本公式是單位錯誤重災區:M 若用 g/mol 代入,答案會差 √1000 ≈ 31.6 倍!J = kg·m²/s²,故 M 必須配 kg。</div>
+</section>
+
+<!-- 43 -->
+<section class="slide">
+  <h2>例題 11:u<sub>rms</sub> 計算 <span class="en">Example 11</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>求 25 °C 時 N<sub>2</sub> 分子的均方根速率。(N<sub>2</sub> 莫耳質量 28.02 g/mol)
+  <div class="sol"><b>解:</b><br>
+  ① 單位換算:M = 28.02 g/mol = 2.802 × 10<sup>−2</sup> kg/mol;T = 298 K<br>
+  ② u<sub>rms</sub> = √(3RT/M) = √[(3 × 8.314 J/(mol·K) × 298 K) / (2.802 × 10<sup>−2</sup> kg/mol)]<br>
+  ③ = √(7.43 × 10<sup>3</sup> / 2.802 × 10<sup>−2</sup>) = √(2.65 × 10<sup>5</sup> m²/s²) = <span class="hl">515 m/s</span><br>
+  約 1855 km/h — 比音速還快!但因分子不斷碰撞,實際擴散速度慢得多。</div></div>
+</section>
+
+<!-- 44 -->
+<section class="slide">
+  <h2>擴散、逸散與 Graham 定律 <span class="en">Diffusion, Effusion &amp; Graham's Law</span></h2>
+  <div class="two-col">
+    <div>
+      <h3>擴散 Diffusion</h3>
+      <p style="font-size:22px">氣體分子因隨機運動而<b>互相混合</b>(香水味擴散到整個房間)</p>
+    </div>
+    <div>
+      <h3>逸散 Effusion</h3>
+      <p style="font-size:22px">氣體經<b>小孔</b>逸入真空(氣球慢慢消氣)</p>
+    </div>
+  </div>
+  <div class="box def"><span class="tag">Graham 定律</span>同溫同壓下,逸散速率與莫耳質量平方根成反比:</div>
+  <div class="eq"><span class="hl">rate<sub>A</sub> / rate<sub>B</sub> = √(M<sub>B</sub> / M<sub>A</sub>)</span></div>
+  <p class="small">應用:鈾濃縮(<sup>235</sup>UF<sub>6</sub> 與 <sup>238</sup>UF<sub>6</sub> 逸散速率差異)、氦氣球比空氣球消氣快。</p>
+</section>
+
+<!-- 45 -->
+<section class="slide">
+  <h2>例題 12:Graham 定律 <span class="en">Example 12</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>同溫同壓下,某未知氣體的逸散速率是 He(4.003 g/mol)的 0.355 倍。求未知氣體的莫耳質量,並推測其身分。
+  <div class="sol"><b>解:</b><br>
+  ① rate<sub>X</sub>/rate<sub>He</sub> = √(M<sub>He</sub>/M<sub>X</sub>) = 0.355<br>
+  ② 兩邊平方:M<sub>He</sub>/M<sub>X</sub> = 0.355² = 0.126<br>
+  ③ M<sub>X</sub> = 4.003 / 0.126 = <span class="hl">31.8 g/mol</span><br>
+  ④ 與 O<sub>2</sub>(32.00 g/mol)最接近 → 未知氣體可能是<span class="hl">氧氣 O<sub>2</sub></span>。<br>
+  檢查:逸散較慢 → 分子較重 ✓</div></div>
+</section>
+
+<!-- 46 -->
+<section class="slide">
+  <h2>真實氣體:偏離理想行為 <span class="en">Real Gases</span></h2>
+  <ul>
+    <li>理想氣體假設:分子無體積、無分子間引力 — 真實氣體兩者皆有</li>
+    <li><span class="hl">高壓</span>:分子間距縮小,分子本身體積不可忽略 → V<sub>實際</sub> 偏大,PV/nRT &gt; 1</li>
+    <li><span class="hl">低溫</span>:分子動能小,分子間引力效果顯著 → 撞壁變弱,PV/nRT &lt; 1</li>
+    <li>越容易液化的氣體(如 CO<sub>2</sub>、NH<sub>3</sub>)偏差越大;He、H<sub>2</sub> 最接近理想</li>
+  </ul>
+  <div class="box key"><span class="tag">重點</span>理想行為的最佳條件:<span class="hl">低壓、高溫</span>(遠離液化條件)。</div>
+</section>
+
+<!-- 47 -->
+<section class="slide">
+  <h2>van der Waals 方程式 <span class="en">van der Waals Equation</span></h2>
+  <div class="eq">( P + a·n²/V² ) ( V − nb ) = nRT</div>
+  <table>
+    <tr><th>修正項</th><th>物理意義</th><th>常數意義</th></tr>
+    <tr><td>P + a·n²/V²</td><td>分子間引力使實測壓力偏低,補回</td><td><b>a</b>:分子間引力大小(極性大、易液化 → a 大)</td></tr>
+    <tr><td>V − nb</td><td>扣除分子本身佔據的體積</td><td><b>b</b>:每 mol 分子的排除體積(分子越大 → b 大)</td></tr>
+  </table>
+  <div class="box key"><span class="tag">重點</span>a、b 皆為實驗常數,隨氣體種類而異。當 P → 0(V 很大)時,修正項可忽略,回到 PV = nRT。</div>
+</section>
+
+<!-- 48 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ⑤:KMT 與真實氣體 <span class="en">Quick Check 5</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>同溫下,下列何者的<b>平均動能最大</b>?<br><span class="opt">A H<sub>2</sub></span><span class="opt">B O<sub>2</sub></span><span class="opt">C CO<sub>2</sub></span><span class="opt">D 三者相同</span></div>
+  <div class="q"><span class="qn">2</span>真實氣體在<b>何種條件</b>下最接近理想氣體?<br><span class="opt">A 高壓低溫</span><span class="opt">B 低壓高溫</span><span class="opt">C 高壓高溫</span><span class="opt">D 低壓低溫</span></div>
+  <div class="q"><span class="qn">3</span>溫度升高時,Maxwell–Boltzmann 分布曲線會變矮、右移、變寬,<b>但曲線下的面積不變</b>。這個「面積不變」代表什麼?</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. D(三者相同)</span> — <b>平均動能只由溫度決定</b>,與分子種類無關。<span class="myth">選 A 的同學把動能與<b>速率</b>混為一談。同溫下 H<sub>2</sub> 跑得最快(質量小),但動能 ½mv² 相同 —— <b>質量小的必須跑得快,才能有相同動能。</b></span></div><div class="row"><span class="ans">2. B(低壓高溫)</span> — 低壓 → 分子間距大,體積可忽略;高溫 → 動能大,分子間吸引力相對不重要。<span class="myth">理想氣體的兩個假設(分子無體積、無作用力)正是在這個條件下最接近成立。<b>反過來,高壓低溫時偏離最大</b> —— 那也是氣體會液化的條件。</span></div><div class="row"><span class="ans">3. 代表分子總數不變</span> — 曲線下的面積 = 全部分子的比例總和 = 1。<b>升溫改變的是速率的分布,不是分子的數量。</b><span class="myth">這也解釋了為什麼<b>高速分子的比例</b>會顯著增加:曲線右移變寬,尾端(高速區)的面積佔比變大 —— 這正是反應速率隨溫度急遽上升的原因,下學期會正式處理。</span></div></div>
+</section>
+<!-- 49 -->
+<section class="slide hookback">
+  <h2>回到本週的錨點 <span class="en">Anchor Answered</span></h2>
+  <div class="recall"><b>第 14 週開場問的是:</b>打開洋芋片,裡面一大包氣。廠商不是為了膨脹,而且那不是空氣。為什麼要多花錢換氣體?</div>
+  <div class="ansbox">
+    <h3>用這一週的化學回答</h3>
+    <ul>
+    <li>空氣中 O<sub>2</sub> 約佔 21%,總壓 1 atm 時<b>氧的分壓 = 0.21 atm</b>(這就是「先猜猜看」的答案)。</li>
+    <li>換充<b>氮氣</b>後,總壓仍是 1 atm,但<b>氧分壓降到接近 0</b> —— 氧化速率取決於氧分子的碰撞頻率,也就是<b>氧的分壓</b>,不是總壓。</li>
+    <li>道耳頓分壓定律的意思正是:混合氣體裡<b>每種氣體各自作用</b>,互不干擾。所以只要把氧「換掉」,不必把氣「抽掉」。</li>
+    <li>為什麼不抽真空:總壓一降,包裝塌陷、洋芋片被壓碎。充氮氣既維持總壓當緩衝,又把氧分壓壓到最低。</li>
+    </ul>
+  </div>
+  <div class="lens"><span class="lt">這個情境幫你理解的化學是</span>分壓不是把總壓拆開來的算術遊戲。<b>決定反應速率的是各自的分壓,不是總壓</b> —— 想通這一點,就知道為什麼「換氣體」比「抽真空」有效,這正是氣調包裝的全部道理。</div>
+  <div class="nextup"><b>接下來在哪裡會再用到:</b><span class="course">食品加工</span>氣調包裝 MAP 與保存期限　<span class="course">食品化學</span>氧化速率與包裝阻隔性</div>
+</section>
+<!-- 50 -->
+<section class="slide">
+  <h2>本週重點總結 <span class="en">Summary</span></h2>
+  <ul>
+    <li><b>壓力單位:</b>1 atm = 760 mmHg = 760 torr = 101.325 kPa = 1.01325 bar</li>
+    <li><b>氣體定律:</b>P<sub>1</sub>V<sub>1</sub>/T<sub>1</sub> = P<sub>2</sub>V<sub>2</sub>/T<sub>2</sub>(T 必用 K);核心方程式 <span class="hlb">PV = nRT</span></li>
+    <li><b>衍生公式:</b>d = PM/RT、M = dRT/P;STP 下莫耳體積 22.4 L</li>
+    <li><b>分壓:</b>P<sub>total</sub> = ΣP<sub>i</sub>,P<sub>A</sub> = X<sub>A</sub>P<sub>total</sub>;排水集氣要扣水蒸氣壓</li>
+    <li><b>KMT:</b>KE<sub>avg</sub> ∝ T;u<sub>rms</sub> = √(3RT/M);Graham:rate ∝ 1/√M</li>
+    <li><b>真實氣體:</b>高壓低溫偏離理想;van der Waals 用 a(引力)、b(體積)修正</li>
+  </ul>
+</section>
+
+<!-- 51 -->
+<section class="slide">
+  <h2>重要名詞中英對照 <span class="en">Key Terms</span></h2>
+  <table>
+    <tr><th>中文</th><th>English</th><th>中文</th><th>English</th></tr>
+    <tr><td>壓力</td><td>pressure</td><td>分壓</td><td>partial pressure</td></tr>
+    <tr><td>氣壓計</td><td>barometer</td><td>莫耳分率</td><td>mole fraction</td></tr>
+    <tr><td>壓力計</td><td>manometer</td><td>動力分子理論</td><td>kinetic-molecular theory</td></tr>
+    <tr><td>理想氣體</td><td>ideal gas</td><td>均方根速率</td><td>root-mean-square speed</td></tr>
+    <tr><td>標準溫壓</td><td>STP</td><td>擴散/逸散</td><td>diffusion / effusion</td></tr>
+    <tr><td>莫耳體積</td><td>molar volume</td><td>真實氣體</td><td>real gas</td></tr>
+  </table>
+</section>
+
+<!-- 52 -->
+<section class="slide">
+  <h2>課後練習與下週預告 <span class="en">Homework &amp; Preview</span></h2>
+  <h3>課後練習(OpenStax Chemistry 2e, Ch.9)</h3>
+  <ul>
+    <li>氣體定律與 PV = nRT:9.2–9.3 節章末習題(必做)</li>
+    <li>分壓與排水集氣:9.3 節相關題(必做)</li>
+    <li>u<sub>rms</sub>、Graham 定律與真實氣體:9.4–9.6 節相關題</li>
+  </ul>
+  <h3>下週預告:液體與固體(Ch.10)</h3>
+  <ul>
+    <li>分子間作用力(分散力、偶極-偶極力、氫鍵)</li>
+    <li>相變化與加熱曲線、蒸氣壓、相圖、固體的分類與晶體結構</li>
+  </ul>
+  <p class="small center" style="margin-top:20px">操作提示:← → 或空白鍵翻頁|Home/End 跳至首末頁|Ctrl+P 可列印成講義</p>
+</section>
+
+</div></div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const DECK_INFO='普通化學(一)|第 14 週:氣體';
+let cur=0;
+slides.forEach((s,i)=>{
+  const f=document.createElement('div');f.className='foot';
+  f.innerHTML='<span>'+DECK_INFO+'</span><span>'+(i+1)+' / '+slides.length+'</span>';
+  s.appendChild(f);
+});
+slides.forEach(s=>{
+  const sol=s.querySelector('.sol');
+  if(!sol)return;
+  const hint=document.createElement('div');hint.className='sol-hint';
+  hint.innerHTML='<span class="kbd">空白鍵</span><span>先自己想／算，準備好再顯示解答</span>';
+  sol.insertAdjacentElement('beforebegin',hint);
+});
+function show(n){
+  cur=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,i)=>{s.classList.toggle('active',i===cur);s.classList.remove('reveal');});
+  document.getElementById('bar').style.width=((cur+1)/slides.length*100)+'%';
+  location.hash=cur+1;
+}
+function next(){
+  const s=slides[cur];
+  if(s.querySelector('.sol')&&!s.classList.contains('reveal')){s.classList.add('reveal');return;}
+  show(cur+1);
+}
+function prev(){
+  const s=slides[cur];
+  if(s.classList.contains('reveal')){s.classList.remove('reveal');return;}
+  show(cur-1);
+}
+function fit(){
+  const s=Math.min(innerWidth/1280,innerHeight/720);
+  document.getElementById('deck').style.transform='scale('+s+')';
+}
+addEventListener('resize',fit);
+addEventListener('keydown',e=>{
+  if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();next();}
+  else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev();}
+  else if(e.key==='Home')show(0);
+  else if(e.key==='End')show(slides.length-1);
+});
+addEventListener('click',e=>{
+  if(e.target.closest('a'))return;
+  (e.clientX>innerWidth/3)?next():prev();
+});
+let tx=null;
+addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+addEventListener('touchend',e=>{
+  if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;
+  if(dx<-40)next();else if(dx>40)prev();tx=null;
+});
+fit();
+show(parseInt(location.hash.slice(1))-1||0);
+</script>
+</body>
+</html>

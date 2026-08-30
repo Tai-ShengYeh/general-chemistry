@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>因次分析練習｜普通化學(一)</title>
+<style>
+:root{--primary:#1f5f8b;--primary-dark:#17455f;--accent:#a04c08;--teal:#117a65;
+      --ink:#2c3e50;--muted:#5a6a6b;--bg:#f4f6f7;--def:#eaf2f8;--ex:#e8f8f5;--warn:#fdedec;--key:#fdf6e3}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+     font-family:"Noto Sans TC","Microsoft JhengHei","PingFang TC",sans-serif;line-height:1.6}
+header{background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:#fff;padding:22px 28px}
+header h1{margin:0;font-size:25px;letter-spacing:1px}
+header .sub{opacity:.9;font-size:15px;margin-top:4px}
+main{max-width:940px;margin:0 auto;padding:20px 18px 60px}
+.card{background:#fff;border-radius:12px;box-shadow:0 1px 5px rgba(0,0,0,.09);padding:20px 24px;margin-bottom:16px}
+.cat{display:inline-block;background:var(--primary);color:#fff;border-radius:5px;padding:2px 11px;font-size:14px;font-weight:700}
+.qtext{font-size:20px;margin:12px 0 4px;line-height:1.55}
+.ends{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 6px;font-size:17px}
+.end{border-radius:8px;padding:6px 14px}
+.end.g{background:var(--def);border-left:5px solid var(--primary)}
+.end.t{background:var(--ex);border-left:5px solid var(--teal)}
+h3.step{font-size:17px;color:var(--primary);margin:18px 0 8px;border-left:5px solid var(--accent);padding-left:9px}
+.opt{display:block;width:100%;text-align:left;background:#fff;border:2px solid #cfd8dc;border-radius:9px;
+     padding:11px 16px;margin:7px 0;font-size:18px;font-family:inherit;color:inherit;cursor:pointer;transition:.12s}
+.opt:hover:not(:disabled){border-color:var(--primary);background:var(--def)}
+.opt:disabled{cursor:default;opacity:.95}
+.opt.ok{border-color:var(--teal);background:var(--ex)}
+.opt.no{border-color:#c0392b;background:var(--warn)}
+.ansrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:6px}
+input[type=text]{font-size:21px;padding:9px 13px;border:2px solid #cfd8dc;border-radius:9px;width:190px;font-family:inherit}
+input[type=text]:focus{outline:none;border-color:var(--primary)}
+.unit{font-size:19px;color:var(--muted);font-weight:700}
+button.go{background:var(--primary);color:#fff;border:none;border-radius:9px;padding:11px 22px;
+          font-size:17px;font-weight:700;cursor:pointer;font-family:inherit}
+button.go:hover{background:var(--primary-dark)}
+button.ghost{background:#fff;color:var(--primary);border:2px solid var(--primary)}
+button.ghost:hover{background:var(--def);color:var(--primary-dark)}
+.fb{border-radius:9px;padding:13px 18px;margin-top:12px;font-size:17px;line-height:1.55}
+.fb.ok{background:var(--ex);border-left:6px solid var(--teal)}
+.fb.no{background:var(--warn);border-left:6px solid #c0392b}
+.fb.hint{background:var(--key);border-left:6px solid #8a6d00}
+.fb b{color:var(--accent)}
+.rail{border-collapse:collapse;margin:10px 0;font-size:19px}
+.rail td{padding:5px 16px;text-align:center;border:none}
+.rail td+td{border-left:2px solid var(--muted)}
+.rail tr:first-child td{border-bottom:3px solid var(--ink)}
+.rail tr:first-child td.res{border-bottom:none}
+.rail td.res{border-left:none;color:var(--accent);font-weight:700}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:6px}
+.stat{background:var(--def);border-radius:9px;padding:11px 14px;text-align:center}
+.stat .n{font-size:26px;font-weight:700;color:var(--primary)}
+.stat .l{font-size:14px;color:var(--muted)}
+table.err{width:100%;border-collapse:collapse;font-size:16px;margin-top:10px}
+table.err th{background:var(--primary);color:#fff;padding:7px 11px;text-align:left}
+table.err td{border:1px solid #d5dbdb;padding:7px 11px}
+table.err td:last-child{text-align:center;font-weight:700;color:#c0392b;width:70px}
+.small{font-size:14px;color:var(--muted)}
+footer{text-align:center;color:var(--muted);font-size:14px;padding:16px}
+@media print{header,button,footer{display:none}.card{box-shadow:none;border:1px solid #ccc}}
+</style>
+</head>
+<body>
+<header>
+  <h1>因次分析練習</h1>
+  <div class="sub">普通化學(一)・先選路線，再算數字 —— 順序不要顛倒</div>
+</header>
+<main>
+  <div class="card" id="qcard"></div>
+  <div class="card">
+    <h3 class="step" style="margin-top:0">練習紀錄</h3>
+    <div class="stats">
+      <div class="stat"><div class="n" id="s-total">0</div><div class="l">已做題數</div></div>
+      <div class="stat"><div class="n" id="s-first">0</div><div class="l">一次答對</div></div>
+      <div class="stat"><div class="n" id="s-route">0</div><div class="l">路線選錯</div></div>
+      <div class="stat"><div class="n" id="s-num">0</div><div class="l">數字算錯</div></div>
+    </div>
+    <div id="errbox"></div>
+
+    <h3 class="step">交給老師</h3>
+    <div class="ansrow">
+      <label for="code" style="font-size:16px">我的代碼</label>
+      <input type="text" id="code" placeholder="例：0312陳" style="width:150px"
+             oninput="saveCode()" autocomplete="off">
+      <button class="go" onclick="doExport()">匯出我的練習摘要</button>
+    </div>
+    <p class="small" style="margin:6px 0 0">代碼請自訂並<b>每次都用同一個</b>（例如生日四碼＋姓氏），這樣老師才能把你前後的練習配對起來。
+    <b>不要填學號或全名。</b></p>
+    <div id="expbox"></div>
+
+    <div style="margin-top:16px"><button class="go ghost" onclick="resetAll()">清除紀錄</button></div>
+    <p class="small" style="margin-bottom:0">紀錄只存在這台電腦的瀏覽器裡，不會自動上傳；換裝置或清除瀏覽資料就會消失。
+    要交給老師時，用上面的按鈕匯出後自行貼到老師指定的表單。</p>
+  </div>
+</main>
+<footer>普通化學(一)｜<a href="index.html">← 回課程首頁</a></footer>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   題目產生器
+   每題回傳：
+     cat    類別
+     q      題幹
+     given  已知（左端）   target 目標（右端）
+     routes 路線選項字串陣列   rc 正確索引
+     ans    正確數值        unit 答案單位
+     rail   [[分子,分母],…] 供揭曉時顯示
+     traps  [{v:誤答值, why:診斷}]   ← 診斷才是這個練習的重點
+     tag    錯誤型態標籤（供統計）
+══════════════════════════════════════════════════════════════ */
+const R=(a,b,d)=>{const v=a+Math.random()*(b-a);return d?+v.toFixed(d):Math.round(v);};
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const sig=(x,n=3)=>{if(x===0)return 0;const m=Math.pow(10,n-1-Math.floor(Math.log10(Math.abs(x))));return Math.round(x*m)/m;};
+
+const IMP=[{u:"lb",to:"kg",f:0.45359,ctx:"某篇美國研究記錄受試者體重"},
+           {u:"oz",to:"g",f:28.35,ctx:"一客牛排標示"},
+           {u:"fl oz",to:"mL",f:29.57,ctx:"美式食譜要牛奶"},
+           {u:"cup",to:"mL",f:236.6,ctx:"美式食譜要鮮奶油"},
+           {u:"qt",to:"mL",f:946.4,ctx:"美式瓶裝汽水"}];
+const OIL=[{n:"沙拉油",d:0.92},{n:"蜂蜜",d:1.42},{n:"全脂牛奶",d:1.03},{n:"橄欖油",d:0.91},{n:"糖漿",d:1.33}];
+
+const GEN=[
+// ① 英制 → 公制（一段）
+()=>{const o=pick(IMP),v=R(2,20,1),ans=v*o.f;
+ return{cat:"英制→公制",q:`${o.ctx} <b>${v} ${o.u}</b>。換算成 ${o.to} 是多少？`,
+  given:`${v} ${o.u}`,target:o.to,
+  routes:[`${o.u} → ${o.to}（乘 ${o.f}）`,`${o.u} → ${o.to}（除以 ${o.f}）`],rc:0,
+  ans:ans,unit:o.to,rail:[[`${v} ${o.u}`,""],[`${o.f} ${o.to}`,`1 ${o.u}`]],
+  traps:[{v:v/o.f,why:`你把換算因子上下顛倒了。要消掉 <b>${o.u}</b>，${o.u} 就必須在<b>分母</b>。`}],
+  tag:"換算因子方向"};},
+
+// ② 密度：體積 → 質量
+()=>{const o=pick(OIL),v=R(120,600),ans=v*o.d;
+ return{cat:"密度（順向）",q:`${o.n}密度 <b>${o.d} g/mL</b>。取 <b>${v} mL</b>，質量是多少 g？`,
+  given:`${v} mL`,target:"g",
+  routes:["mL → g（乘密度）","mL → g（除以密度）"],rc:0,
+  ans:ans,unit:"g",rail:[[`${v} mL`,""],[`${o.d} g`,"1 mL"]],
+  traps:[{v:v/o.d,why:"方向反了。要消掉 mL，密度的 mL 必須在分母、g 在分子。"}],
+  tag:"密度方向"};},
+
+// ③ 密度：質量 → 體積（學生最常錯）
+()=>{const o=pick(OIL),m=R(150,800),ans=m/o.d;
+ return{cat:"密度（反向）",q:`${o.n}密度 <b>${o.d} g/mL</b>。今天要秤 <b>${m} g</b>，需要量幾 mL？`,
+  given:`${m} g`,target:"mL",
+  routes:["g → mL（把密度上下顛倒，g 放分母）","g → mL（直接乘密度）"],rc:0,
+  ans:ans,unit:"mL",rail:[[`${m} g`,""],["1 mL",`${o.d} g`]],
+  traps:[{v:m*o.d,why:"你乘了密度。這次要消掉的是 <b>g</b>，所以密度要<b>上下顛倒</b>寫成 (1 mL / "+o.d+" g)。"}],
+  tag:"密度方向",
+  hint:o.d<1?`合理性檢查：${o.n}比水輕，同樣質量會佔<b>比較大</b>的體積，答案應該大於 ${m}。`
+             :`合理性檢查：${o.n}比水重，同樣質量佔<b>比較小</b>的體積，答案應該小於 ${m}。`};},
+
+// ④ 兩段：體積 → 質量 → 成分
+()=>{const o=pick([{n:"全脂牛奶",d:1.03,c:113,cn:"鈣"},{n:"優格",d:1.04,c:120,cn:"鈣"},
+                   {n:"果汁",d:1.05,c:40,cn:"維生素 C"}]),v=R(180,400),ans=v*o.d*o.c/100;
+ return{cat:"兩段串接",q:`${o.n}密度 <b>${o.d} g/mL</b>，每 <b>100 g 含${o.cn} ${o.c} mg</b>。一杯 <b>${v} mL</b> 含${o.cn}幾 mg？`,
+  given:`${v} mL`,target:`mg ${o.cn}`,
+  routes:[`mL → g ${o.n} → mg ${o.cn}`,`mL → mg ${o.cn}（一步到位）`,`mL → L → mg ${o.cn}`],rc:0,
+  ans:ans,unit:"mg",rail:[[`${v} mL`,`${o.d} g`,`${o.c} mg`],["",`1 mL`,`100 g`]],
+  traps:[{v:v*o.c/100,why:"你跳過了密度。<b>mL 不能直接接到「每 100 g」</b>——中間必須先用密度換成 g。"},
+         {v:v*o.d*o.c,why:"忘了除以 100。成分標示是「每 <b>100 g</b>」，因子要寫成 ("+o.c+" mg / 100 g)。"}],
+  tag:"漏掉一段"};},
+
+// ⑤ 三段串接
+()=>{const p=R(8,20),g=R(30,60),na=R(300,600),ans=p*g*na/100/1000;
+ return{cat:"三段串接",q:`一盒餅乾有 <b>${p} 包</b>，每包 <b>${g} g</b>，每 <b>100 g 含鈉 ${na} mg</b>。整盒的鈉是幾 <b>g</b>？`,
+  given:`${p} 包`,target:"g 鈉",
+  routes:["包 → g 餅乾 → mg 鈉 → g 鈉","包 → mg 鈉 → g 鈉","包 → g 餅乾 → g 鈉"],rc:0,
+  ans:ans,unit:"g",rail:[[`${p} 包`,`${g} g`,`${na} mg`,"1 g"],["","1 包","100 g","1000 mg"]],
+  traps:[{v:p*g*na/100,why:"單位停在 <b>mg</b> 沒換成 g。最後一格要乘 (1 g / 1000 mg)。"},
+         {v:p*g*na/1000,why:"漏掉「每 100 g」的除以 100。"}],
+  tag:"漏掉一段"};},
+
+// ⑥ ADI 順算
+()=>{const c=pick([200,300,450,600]),f=R(80,220),bw=pick([25,45,55,60,70]),adi=pick([0.5,2,5]),
+       mg=f*c/1000,ans=mg/bw/adi*100;
+ return{cat:"ADI 評估",q:`某食品含添加物 <b>${c} mg/kg</b>，ADI = <b>${adi} mg/kg 體重/天</b>。一位 <b>${bw} kg</b> 的人每天吃 <b>${f} g</b>，佔 ADI 幾 %？`,
+  given:`${f} g 食品`,target:"% ADI",
+  routes:["g 食品 → mg 添加物 → mg/kg 體重 → %ADI","g 食品 → mg 添加物 → %ADI（直接比）","g 食品 → kg 食品 → %ADI"],rc:0,
+  ans:ans,unit:"%",rail:[[`${f} g`,`${c} mg`,"1",`1`],["","1000 g",`${bw} kg`,`${adi}`]],
+  traps:[{v:mg/adi*100,why:"<b>漏掉除以體重</b>。ADI 的單位是 mg/<b>kg 體重</b>/天，你算出的 mg/天還不能直接跟它比。"},
+         {v:mg*bw/adi*100,why:"體重應該<b>除</b>不是乘。要得到「每公斤體重」，就要除以體重。"}],
+  tag:"漏掉除以體重"};},
+
+// ⑦ ADI 反算
+()=>{const adi=pick([2,5,10,40]),bw=pick([25,50,60,70]),per=pick([90,120,180,300]),ans=adi*bw/per;
+ return{cat:"ADI 反算",q:`某添加物 ADI = <b>${adi} mg/kg 體重/天</b>。一份食品含 <b>${per} mg</b>。<b>${bw} kg</b> 的人一天最多可吃幾份？`,
+  given:`${bw} kg 體重`,target:"份",
+  routes:["ADI × 體重 = 每日總量 → ÷ 每份含量","ADI ÷ 體重 → ÷ 每份含量"],rc:0,
+  ans:ans,unit:"份",rail:[[`${adi} mg`,`${bw} kg`,"1 份"],["1 kg 體重","",`${per} mg`]],
+  traps:[{v:adi/bw/per,why:"體重要<b>乘</b>不是除。ADI（mg/kg）× 體重（kg）才會得到這個人一天的總量（mg）。"},
+         {v:adi*bw,why:"這是每日 <b>mg</b> 總量，還沒除以每份含量。"}],
+  tag:"體重乘除方向"};},
+
+// ⑧ DRI 百分比
+()=>{const n=pick([{n:"鈣",std:1000,u:"AI"},{n:"鐵",std:15,u:"RDA"},{n:"維生素 C",std:100,u:"RDA"}]),
+       take=sig(n.std*R(15,90)/100,3),ans=take/n.std*100;
+ return{cat:"DRI 判讀",q:`成人${n.n} ${n.u} = <b>${n.std} mg/天</b>。某餐提供 <b>${take} mg</b>，佔每日需要的幾 %？`,
+  given:`${take} mg`,target:`% ${n.u}`,
+  routes:["攝入量 ÷ 標準值 × 100%","標準值 ÷ 攝入量 × 100%"],rc:0,
+  ans:ans,unit:"%",rail:[[`${take} mg`,"100%"],["",`${n.std} mg`]],
+  traps:[{v:n.std/take*100,why:"分子分母顛倒了。要問「佔標準的幾成」，就是<b>攝入 ÷ 標準</b>。"}],
+  tag:"比值顛倒"};},
+
+// ⑨ 濃試劑 %w/w + 比重 → M（W3）
+()=>{const a=pick([{n:"濃硫酸 H₂SO₄",p:98,d:1.84,m:98.08},{n:"濃鹽酸 HCl",p:37,d:1.19,m:36.46},
+                   {n:"濃硝酸 HNO₃",p:70,d:1.42,m:63.01},{n:"濃氨水 NH₃",p:28,d:0.90,m:17.03}]),
+       ans=10*a.p*a.d/a.m;
+ return{cat:"濃試劑 → M",q:`${a.n} 瓶身標示 <b>${a.p}%</b>、比重 <b>${a.d}</b>，莫耳質量 <b>${a.m}</b>。體積莫耳濃度是多少 M？`,
+  given:`${a.p}% w/w, d=${a.d}`,target:"M",
+  routes:["取 1 L → 質量 → 溶質質量 → 莫耳數","取 1 L → 直接乘百分比"],rc:0,
+  ans:ans,unit:"M",rail:[["1000 mL",`${a.d} g`,`${a.p}`,"1 mol"],["",`1 mL`,`100`,`${a.m} g`]],
+  traps:[{v:a.p*a.d/a.m,why:"少乘了 <b>1000 mL/L</b>。公式裡的 10 = 1000 ÷ 100，忘了就回去取 1 L 重推一次。"},
+         {v:10*a.p*a.d/a.m/1000,why:"多除了 1000。取 1 L 時質量是 1000×d 公克，不是 d 公克。"}],
+  tag:"漏掉一段",
+  hint:"合理性檢查：常用濃酸大多落在 <b>12–18 M</b>。算出 1.8 或 120 就是錯了。"};},
+
+// ⑩ 稀釋
+()=>{const M1=pick([12.1,15.8,18.4]),M2=pick([0.5,1,2]),V2=pick([100,250,500,1000]),ans=M2*V2/M1;
+ return{cat:"稀釋",q:`手邊濃酸為 <b>${M1} M</b>。要配 <b>${V2} mL</b> 的 <b>${M2} M</b> 溶液，需量取濃酸幾 mL？`,
+  given:`${M1} M 濃酸`,target:"mL",
+  routes:["M₁V₁ = M₂V₂ → V₁ = M₂V₂ / M₁","M₁V₁ = M₂V₂ → V₁ = M₁V₂ / M₂"],rc:0,
+  ans:ans,unit:"mL",rail:[[`${M2} M × ${V2} mL`,""],[`${M1} M`,""]],
+  traps:[{v:M1*V2/M2,why:"分子分母顛倒。稀釋是<b>把濃的變稀</b>，取用的體積一定<b>小於</b>要配的體積。"}],
+  tag:"比值顛倒",
+  hint:`合理性檢查：稀釋 ${sig(M1/M2,3)} 倍，所以取用量約為 ${V2} ÷ ${sig(M1/M2,3)}。`};}
+];
+
+/* ══════════════ 狀態與統計 ══════════════ */
+const KEY="dimprac-v1";
+let ST=load(),Q=null,stage=0,triedRoute=false,triedNum=false;
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||fresh();}catch(e){return fresh();}}
+function fresh(){return{total:0,first:0,route:0,num:0,tags:{},code:""};}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(ST));}catch(e){}}
+function resetAll(){if(confirm("確定清除練習紀錄？")){ST=fresh();save();draw();next();}}
+
+/* ── 匯出摘要：一行純文字，學生自行貼到老師的表單 ──
+   格式固定，教師專用.html 的彙整工具靠它解析；改格式要兩邊一起改。 */
+function saveCode(){ST.code=document.getElementById("code").value.trim().slice(0,12);save();}
+function summaryLine(){
+  const tags=Object.entries(ST.tags).sort((a,b)=>b[1]-a[1])
+              .map(([k,v])=>`${k}×${v}`).join(";")||"無";
+  const pct=ST.total?Math.round(ST.first/ST.total*100):0;
+  return `#因次分析 代碼:${ST.code||"未填"} 題數:${ST.total} 一次對:${ST.first}(${pct}%) `
+       + `路線錯:${ST.route} 數字錯:${ST.num} 錯誤:${tags}`;
+}
+function doExport(){
+  saveCode();
+  if(!ST.total){document.getElementById("expbox").innerHTML=
+    `<div class="fb no" style="margin-top:10px">還沒有練習紀錄，先做幾題再匯出。</div>`;return;}
+  const line=summaryLine();
+  document.getElementById("expbox").innerHTML=`
+    <textarea id="exp" readonly rows="3"
+      style="width:100%;margin-top:10px;font-size:15px;padding:10px 12px;border:2px solid #cfd8dc;
+             border-radius:9px;font-family:inherit;line-height:1.5;resize:vertical">${line}</textarea>
+    <div class="ansrow" style="margin-top:8px">
+      <button class="go" onclick="copyExp()">複製</button>
+      <span id="copymsg" class="small"></span>
+    </div>`;
+  document.getElementById("exp").select();
+}
+function copyExp(){
+  const ta=document.getElementById("exp"); ta.select(); ta.setSelectionRange(0,99999);
+  const done=m=>{document.getElementById("copymsg").innerHTML=m;};
+  if(navigator.clipboard&&window.isSecureContext){
+    navigator.clipboard.writeText(ta.value)
+      .then(()=>done("已複製 ✔ 貼到老師指定的表單即可"))
+      .catch(()=>done("複製失敗，請直接按 Ctrl+C（文字已選取）"));
+  }else{
+    /* file:// 開啟時 clipboard API 不可用，文字已選取，請學生自行 Ctrl+C */
+    done("文字已選取，請按 <b>Ctrl+C</b> 複製");
+  }
+}
+
+function draw(){
+  document.getElementById("s-total").textContent=ST.total;
+  document.getElementById("s-first").textContent=ST.first;
+  document.getElementById("s-route").textContent=ST.route;
+  document.getElementById("s-num").textContent=ST.num;
+  const es=Object.entries(ST.tags).sort((a,b)=>b[1]-a[1]);
+  document.getElementById("errbox").innerHTML = es.length
+    ? `<h3 class="step">你最常犯的錯誤型態</h3><table class="err"><tr><th>錯誤型態</th><th>次數</th></tr>`
+      + es.map(([k,v])=>`<tr><td>${k}</td><td>${v}</td></tr>`).join("") + `</table>`
+      + `<p class="small">把次數最多的那一列拿去對照投影片，比多做十題有用。</p>`
+    : `<p class="small" style="margin:10px 0 0">還沒有錯誤紀錄。答錯時這裡會統計是哪一類問題。</p>`;
+}
+
+/* ══════════════ 出題與作答 ══════════════ */
+function next(){
+  Q=pick(GEN)(); stage=0; triedRoute=false; triedNum=false;
+  document.getElementById("qcard").innerHTML=`
+    <span class="cat">${Q.cat}</span>
+    <div class="qtext">${Q.q}</div>
+    <div class="ends"><div class="end g"><b>已知</b>　${Q.given}</div>
+                      <div class="end t"><b>目標</b>　${Q.target}</div></div>
+    <h3 class="step">第一步：選出正確的單位路線</h3>
+    <div id="routes">${Q.routes.map((r,i)=>`<button class="opt" onclick="pickRoute(${i})">${r}</button>`).join("")}</div>
+    <div id="numbox"></div><div id="fb"></div>`;
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function pickRoute(i){
+  const bs=[...document.querySelectorAll("#routes .opt")];
+  if(i===Q.rc){
+    bs.forEach((b,k)=>{b.disabled=true;if(k===Q.rc)b.classList.add("ok");});
+    document.getElementById("fb").innerHTML=`<div class="fb ok">路線正確。<b>接下來只要沿著路線把因子掛上去</b>，每一段都只是一步換算。</div>`;
+    showNum();
+  }else{
+    bs[i].classList.add("no"); bs[i].disabled=true;
+    if(!triedRoute){triedRoute=true;ST.route++;bump("路線選錯（不確定該經過哪些單位）");save();draw();}
+    document.getElementById("fb").innerHTML=`<div class="fb no">這條路線走不通。<b>回到兩端想</b>：從「${Q.given}」的單位出發，要抵達「${Q.target}」，中間必須經過什麼？</div>`;
+  }
+}
+
+function showNum(){
+  stage=1;
+  document.getElementById("numbox").innerHTML=`
+    <h3 class="step">第二步：算出數字（一次乘到底，中途不要算出中間值）</h3>
+    <div class="ansrow">
+      <input type="text" id="ans" placeholder="輸入答案" autocomplete="off"
+             onkeydown="if(event.key==='Enter')checkNum()">
+      <span class="unit">${Q.unit}</span>
+      <button class="go" onclick="checkNum()">送出</button>
+      <button class="go ghost" onclick="giveHint()">看提示</button>
+    </div>`;
+  document.getElementById("ans").focus();
+}
+
+function bump(tag){ST.tags[tag]=(ST.tags[tag]||0)+1;}
+
+function giveHint(){
+  const h=Q.hint||"回到兩端：先確認目標單位，再讓每一段的單位上下相消。";
+  document.getElementById("fb").innerHTML=`<div class="fb hint">${h}</div>`;
+}
+
+function checkNum(){
+  const raw=document.getElementById("ans").value.trim().replace(/,/g,"");
+  const v=parseFloat(raw);
+  if(isNaN(v)){document.getElementById("fb").innerHTML=`<div class="fb no">請輸入數字。</div>`;return;}
+  const close=(a,b)=>Math.abs(a-b)/Math.abs(b)<0.015;
+  if(close(v,Q.ans)){finish(true);return;}
+  const t=Q.traps.find(t=>close(v,t.v));
+  if(!triedNum){triedNum=true;ST.num++;bump(t?Q.tag:"數值或有效數字");save();draw();}
+  document.getElementById("fb").innerHTML= t
+    ? `<div class="fb no"><b>差一步。</b>${t.why}</div>`
+    : `<div class="fb no">還不對。<b>先檢查單位有沒有相消到 ${Q.unit}</b>，再看數量級合不合理。可以按「看提示」。</div>`;
+}
+
+function finish(ok){
+  ST.total++; if(ok&&!triedRoute&&!triedNum)ST.first++; save(); draw();
+  const railHTML=`<table class="rail"><tr>${Q.rail.map(c=>`<td>${c[0]||"&nbsp;"}</td>`).join("")}<td class="res">= ${sig(Q.ans,3)} ${Q.unit}</td></tr>`
+                 +`<tr>${Q.rail.map(c=>`<td>${c[1]||"&nbsp;"}</td>`).join("")}<td class="res">&nbsp;</td></tr></table>`;
+  document.getElementById("numbox").innerHTML="";
+  document.getElementById("fb").innerHTML=
+    `<div class="fb ok"><b>答對了：${sig(Q.ans,3)} ${Q.unit}</b><br>完整的一條式子：${railHTML}
+     <span class="small">注意單位是怎麼一路相消到 ${Q.unit} 的——那就是你的檢查。</span></div>
+     <div style="margin-top:14px"><button class="go" onclick="next()">下一題 →</button></div>`;
+}
+
+document.getElementById("code").value=ST.code||"";
+draw(); next();
+</script>
+</body>
+</html>

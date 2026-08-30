@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新課綱 第 11 週:分子間作用力與相變</title>
+<style>
+:root{
+  --primary:#1a5276; --primary-dark:#12395a; --accent:#a04c08; --teal:#117a65;
+  --ink:#2c3e50; --muted:#5a6a6b; --bg:#eceff3; --card:#ffffff;
+  --def-bg:#eaf2f8; --key-bg:#fef9e7; --ex-bg:#e8f8f5; --warn-bg:#fdedec;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC","Heiti TC",sans-serif;color:var(--ink)}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#deck{position:relative;width:1280px;height:720px;transform-origin:center center}
+.slide{position:absolute;inset:0;width:1280px;height:720px;background:var(--card);padding:56px 72px 70px;display:none;flex-direction:column;border-top:10px solid var(--primary);overflow:hidden}
+.slide.active{display:flex}
+.slide h2{font-size:36px;color:var(--primary);border-bottom:3px solid var(--accent);padding-bottom:10px;margin-bottom:26px;font-weight:700}
+.slide h2 .en{display:block;font-size:19px;color:var(--muted);font-weight:400;margin-top:4px}
+.slide h3{font-size:26px;color:var(--primary);margin:12px 0 8px}
+.slide p{font-size:24px;line-height:1.55;margin:8px 0}
+.slide ul,.slide ol{font-size:24px;line-height:1.6;margin:8px 0 8px 34px}
+.slide li{margin:7px 0}
+.slide li li{font-size:22px;margin:4px 0}
+.en{color:var(--muted);font-size:.82em}
+.small{font-size:19px;color:var(--muted)}
+.big{font-size:30px}
+.center{text-align:center}
+.hl{color:var(--accent);font-weight:700}
+.hlb{color:var(--primary);font-weight:700}
+.two-col{display:flex;gap:32px;align-items:flex-start}
+.two-col>div{flex:1}
+.box{border-radius:10px;padding:16px 22px;margin:14px 0;font-size:23px;line-height:1.55}
+.def{background:var(--def-bg);border-left:6px solid var(--primary)}
+.key{background:var(--key-bg);border-left:6px solid #f1c40f}
+.warn{background:var(--warn-bg);border-left:6px solid #e74c3c}
+.exbox{background:var(--ex-bg);border-left:6px solid var(--teal)}
+.box .tag{display:inline-block;font-size:17px;font-weight:700;color:#fff;border-radius:5px;padding:2px 10px;margin-bottom:6px}
+.def .tag{background:var(--primary)} .key .tag{background:#8a6d00} .warn .tag{background:#c0392b} .exbox .tag{background:var(--teal)}
+.sol{border-top:2px dashed var(--teal);margin-top:12px;padding-top:10px}
+/* ── 形成性評量：解答兩段式揭露 ───────────────────────── */
+.slide.active .sol{display:none}
+.slide.active.reveal .sol{display:block}
+.sol-hint{margin-top:12px;padding-top:10px;border-top:2px dashed #b9c6c6;font-size:19px;color:#5d6d6e;display:flex;align-items:center;gap:10px}
+.slide.active.reveal .sol-hint{display:none}
+.sol-hint .kbd{display:inline-block;border:1px solid #aab7b8;border-bottom-width:2px;border-radius:5px;padding:1px 9px;font-size:17px;background:#fff;color:#34495e}
+/* ── 隨堂快問 ─────────────────────────────────────────── */
+.slide.quiz{border-top-color:var(--teal)}
+.slide.quiz h2{margin-bottom:14px}
+.slide.quiz h2{color:#0e6655;border-bottom-color:var(--teal)}
+.qbar{background:#e8f8f5;border-left:6px solid var(--teal);border-radius:8px;padding:5px 16px;font-size:18px;color:#0e6655;margin-bottom:4px}
+.q{margin:4px 0;font-size:21px;line-height:1.28}
+.q .qn{display:inline-block;min-width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;background:var(--teal);color:#fff;font-size:16px;font-weight:700;margin-right:7px}
+.opt{display:inline-block;border:1.5px solid #a2d5cd;background:#f2fbf9;color:#0e6655;border-radius:14px;padding:0 11px;margin:1px 4px 1px 0;font-size:19px}
+.quiz .sol{margin-top:5px;padding-top:5px;font-size:18px;line-height:1.26}
+.quiz .sol .ans{color:#c0392b;font-weight:700}
+.quiz .sol .row{margin:3px 0}
+.quiz .sol .row+.row{border-top:1px solid #e5eceb;padding-top:3px}
+.quiz .sol .myth{display:block;font-size:16px;color:#5d6d6e;margin:1px 0 0 0;line-height:1.24}
+@media print{
+  .sol{display:block!important}
+  .sol-hint{display:none!important}
+}
+.eq{text-align:center;font-size:28px;margin:14px 0;font-family:Cambria,"Times New Roman",serif}
+table{border-collapse:collapse;margin:12px auto;font-size:21px;width:100%}
+th{background:var(--primary);color:#fff;padding:8px 12px;font-weight:600}
+td{border:1px solid #d5dbdb;padding:7px 12px;text-align:center}
+tr:nth-child(even) td{background:#f4f6f7}
+.cover{background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 55%,var(--teal) 100%);border-top:none;color:#fff;justify-content:center;align-items:center;text-align:center}
+.cover h1{font-size:58px;letter-spacing:4px;margin-bottom:10px}
+.cover .sub{font-size:30px;opacity:.92;margin:6px 0}
+.cover .en-title{font-size:24px;opacity:.75;margin-bottom:34px}
+.cover .meta{font-size:20px;opacity:.7;margin-top:40px}
+.cover .rule{width:220px;height:4px;background:#f7b955;margin:26px auto}
+.divider{background:linear-gradient(120deg,var(--primary-dark),var(--primary));border-top:none;color:#fff;justify-content:center}
+.divider .secnum{font-size:26px;color:#f7b955;font-weight:700;letter-spacing:2px;margin-bottom:14px}
+.divider h1{font-size:52px;margin-bottom:12px}
+.divider .en-sub{font-size:26px;opacity:.75}
+.divider .items{margin-top:36px;font-size:23px;opacity:.9;line-height:2}
+.foot{position:absolute;left:0;right:0;bottom:0;height:32px;display:flex;justify-content:space-between;align-items:center;padding:0 28px;font-size:14px;color:#5d6d6e;background:#fafbfc;border-top:1px solid #e5e8e8}
+.cover .foot,.divider .foot{background:rgba(0,0,0,.15);color:rgba(255,255,255,.65);border-top:none}
+#bar{position:fixed;top:0;left:0;height:5px;background:var(--accent);width:0;z-index:10;transition:width .2s}
+.flow{display:flex;flex-direction:column;align-items:center;gap:6px}
+.fbox{border:2px solid var(--primary);border-radius:8px;padding:8px 20px;font-size:21px;background:var(--def-bg);text-align:center}
+.frow{display:flex;gap:60px;justify-content:center}
+.arrow{font-size:22px;color:var(--accent)}
+.chip{display:inline-block;background:var(--def-bg);border:1px solid var(--primary);color:var(--primary);border-radius:16px;padding:2px 14px;margin:3px;font-size:20px}
+/* ── 因次分析鐵軌格 ───────────────────────────────────── */
+.rail{border-collapse:collapse;margin:10px auto 6px;font-size:23px}
+.rail td{border:none;padding:5px 20px;text-align:center;background:none;vertical-align:middle}
+.rail td+td{border-left:2px solid var(--muted)}
+.rail tr:first-child td{border-bottom:3px solid var(--ink)}
+.rail td.res{border-left:none;padding-left:14px;font-weight:700;color:var(--accent);font-size:25px}
+.rail tr:first-child td.res{border-bottom:none}
+.rail .bk{display:inline-block;min-width:104px;border-bottom:3px dashed var(--accent);height:27px;vertical-align:-4px}
+.rail .gv{background:var(--def-bg)}
+.railnote{text-align:center;font-size:18px;color:var(--muted);margin-top:2px}
+.fig{display:block;margin:6px auto;flex-shrink:0}
+/* ── 錨點回收頁 ───────────────────────────────────────── */
+.slide.hookback{border-top-color:var(--teal)}
+.slide.hookback h2{color:#0e6655;border-bottom-color:var(--teal)}
+.recall{background:#f4f6f7;border-left:5px solid #95a5a6;border-radius:8px;padding:7px 18px;
+        font-size:20px;line-height:1.34;color:#5d6d6e;margin:0 0 10px}
+.recall b{color:#34495e}
+.ansbox{background:#e8f8f5;border-left:6px solid var(--teal);border-radius:9px;padding:10px 20px;margin:0 0 10px}
+.ansbox h3{font-size:20px;color:#0e6655;margin:0 0 5px}
+.ansbox ul{margin:0 0 0 20px;font-size:19.5px;line-height:1.4}
+.ansbox li{margin:5px 0}
+.lens{background:var(--key-bg);border-left:6px solid #d4a70a;border-radius:9px;padding:10px 20px;
+      font-size:20px;line-height:1.38;margin-bottom:9px}
+.lens .lt{display:block;font-size:16px;font-weight:700;color:#8a6d00;letter-spacing:1px;margin-bottom:2px}
+.nextup{background:#eaf2f8;border-left:5px solid var(--primary);border-radius:8px;padding:8px 18px;
+        font-size:18.5px;line-height:1.4;color:#34495e}
+.nextup .course{display:inline-block;background:#fff;border:1px solid #a2d5cd;color:#0e6655;
+                border-radius:11px;padding:0 8px;font-size:16px;margin-right:4px}
+
+/* ── 食品營養錨點頁 ───────────────────────────────────── */
+.slide.hook{border-top-color:var(--accent)}
+.slide.hook h2{color:#a05000;border-bottom-color:var(--accent)}
+.bigq{background:linear-gradient(100deg,#fff5ea,#fdf0e0);border-left:8px solid var(--accent);border-radius:10px;
+      padding:14px 22px;font-size:26px;line-height:1.4;color:#7a3d00;font-weight:700;margin:4px 0 12px}
+.bigq .qmark{font-size:30px;margin-right:6px}
+.hookcols{display:flex;gap:22px;align-items:stretch;margin-top:4px}
+.hookcols>div{flex:1;border-radius:9px;padding:11px 16px}
+.hk-now{background:#eaf2f8;border-left:5px solid var(--primary)}
+.hk-next{background:#e8f8f5;border-left:5px solid var(--teal)}
+.hookcols h3{font-size:20px;margin:0 0 6px}
+.hk-now h3{color:var(--primary)} .hk-next h3{color:#0e6655}
+.hookcols ul{font-size:19px;line-height:1.4;margin:0 0 0 20px}
+.hookcols li{margin:4px 0}
+.hookcols .course{display:inline-block;background:#fff;border:1px solid #a2d5cd;color:#0e6655;
+                  border-radius:11px;padding:0 8px;font-size:16px;margin-right:4px}
+.canyou{background:var(--key-bg);border-left:6px solid #d4a70a;border-radius:9px;padding:10px 18px;
+        font-size:20px;line-height:1.4;margin-top:12px}
+.canyou b{color:#8a6d00}
+.hookmap{font-size:19px;line-height:1.5}
+.hookmap td{text-align:left;padding:5px 10px}
+.hookmap td:first-child{text-align:center;font-weight:700;color:var(--accent);width:62px}
+@media print{
+  @page{size:1280px 720px;margin:0}
+  html,body{background:#fff}
+  #stage{position:static}
+  #deck{width:auto;height:auto;transform:none!important}
+  .slide{position:relative;display:flex!important;page-break-after:always;margin:0;inset:auto}
+  #bar{display:none}
+}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="stage"><div id="deck">
+
+<!-- 1 -->
+<section class="slide cover">
+  <h1>普通化學(一)</h1>
+  <div class="en-title">General Chemistry I</div>
+  <div class="rule"></div>
+  <div class="sub">第 11 週:液體與固體</div>
+  <div class="sub">分子間作用力、相變化與晶體結構</div>
+  <div class="en-title" style="margin-top:8px">Liquids and Solids: Intermolecular Forces, Phase Changes &amp; Crystals</div>
+  <div class="meta">對應教材:OpenStax Chemistry 2e — Chapter 10</div>
+</section>
+
+<!-- 2 -->
+<section class="slide">
+  <h2>本週學習目標 <span class="en">Learning Objectives</span></h2>
+  <ul>
+    <li>辨識三種主要分子間作用力:分散力、偶極-偶極力、氫鍵,並比較強弱</li>
+    <li>能由分子結構預測主要 IMF,並比較沸點高低</li>
+    <li>了解黏度、表面張力、毛細作用等液體性質與 IMF 的關係</li>
+    <li>掌握六種相變化與加熱曲線 (heating curve) 的分段熱量計算</li>
+    <li>理解蒸氣壓、沸點與 Clausius-Clapeyron 方程式;會判讀相圖</li>
+    <li>區分四大類晶體;能計算單位晶胞 (unit cell) 中的原子數</li>
+  </ul>
+  <div class="box key"><span class="tag">本週重點</span>「分子間作用力」是貫穿本章的主軸:IMF 越強 → 沸點、黏度、表面張力越高,蒸氣壓越低。</div>
+</section>
+
+<!-- 3 -->
+<section class="slide hook">
+  <h2>第 11 週·食品營養錨點：蛋白為什麼一加熱就凝固，而且冷掉回不去？ <span class="en">Anchor Question</span></h2>
+  <div class="bigq"><span class="qmark">?</span>再想一個：巧克力放久了表面為什麼會出現白霜？<b>兩件事都沒有發生化學反應</b>，卻都回不去了。</div>
+  <div class="hookcols">
+    <div class="hk-now"><h3>這一週要用到的化學</h3><ul><li>分子間作用力（分散力、偶極、氫鍵）</li><li>相變與相圖</li><li>蒸氣壓與沸點</li><li>固體的類型與結晶</li></ul></div>
+    <div class="hk-next"><h3>之後在哪裡會再遇到</h3><ul><li><span class="course">食品化學</span>蛋白質變性、油脂結晶與多晶型</li><li><span class="course">食品加工</span>冷凍乾燥、熱處理、回火</li><li><span class="course">生物化學</span>蛋白質的二/三級結構</li></ul></div>
+  </div>
+  <div class="canyou"><b>本週結束時，你應該能回答：</b>加熱破壞的是哪些作用力？為什麼共價鍵大多沒斷，結構卻回不來？</div><div class="canyou" style="background:#f4f6f7;border-left-color:#95a5a6"><b>先猜猜看：</b>蛋白質變性時，哪一種鍵最不容易被熱破壞？</div>
+</section>
+
+<!-- 4 -->
+<section class="slide divider">
+  <div class="secnum">PART 11.1</div>
+  <h1>分子間作用力</h1>
+  <div class="en-sub">Intermolecular Forces (IMF)</div>
+  <div class="items">分散力・偶極-偶極力・氫鍵・離子-偶極力・沸點比較</div>
+</section>
+
+<!-- 5 -->
+<section class="slide">
+  <h2>三態與分子間作用力總覽 <span class="en">States of Matter &amp; IMF</span></h2>
+  <ul>
+    <li>物質的狀態由兩股力量的競爭決定:</li>
+  </ul>
+  <div class="flow">
+    <div class="frow">
+      <div class="fbox"><b>分子動能</b><br><span class="small">使分子分散(∝ 溫度)</span></div>
+      <div class="fbox"><b>分子間吸引力 IMF</b><br><span class="small">使分子聚集</span></div>
+    </div>
+    <div class="arrow">↓ 競爭結果</div>
+    <div class="fbox">動能 ≫ IMF:<b>氣體</b>|動能 ≈ IMF:<b>液體</b>|動能 ≪ IMF:<b>固體</b></div>
+  </div>
+  <div class="box key" style="margin-top:16px"><span class="tag">重點</span>降溫或加壓 → IMF 佔上風 → 凝結、凝固;升溫 → 動能佔上風 → 熔化、汽化。</div>
+</section>
+
+<!-- 6 -->
+<section class="slide">
+  <h2>分子間力 vs 分子內鍵結 <span class="en">Intermolecular vs. Intramolecular</span></h2>
+  <table>
+    <tr><th></th><th>分子內 intramolecular</th><th>分子間 intermolecular</th></tr>
+    <tr><td>本質</td><td>化學鍵(共價、離子、金屬鍵)</td><td>分子與分子之間的吸引力</td></tr>
+    <tr><td>典型強度</td><td>約 150–1000 kJ/mol</td><td>約 0.1–40 kJ/mol(弱 10–100 倍)</td></tr>
+    <tr><td>決定的性質</td><td>化學性質(反應性)</td><td>物理性質(沸點、熔點、溶解度)</td></tr>
+  </table>
+  <div class="box warn"><span class="tag">常見誤區</span>水沸騰時斷裂的是<b>分子間的氫鍵</b>,不是 O–H 共價鍵!沸騰後仍是 H<sub>2</sub>O 分子,並沒有分解成 H<sub>2</sub> 和 O<sub>2</sub>。</div>
+</section>
+
+<!-- 7 -->
+<section class="slide">
+  <h2>倫敦分散力 <span class="en">London Dispersion Forces</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>分散力 (dispersion force)</b>:電子瞬間分布不均產生<b>瞬時偶極 (instantaneous dipole)</b>,誘導鄰近分子產生偶極而互相吸引。</div>
+  <ul>
+    <li><span class="hlb">所有原子與分子都有分散力</span>(包括非極性分子與鈍氣)</li>
+    <li>強度取決於<b>極化率 (polarizability)</b>:電子雲越大、越鬆散,越易變形</li>
+    <li>莫耳質量越大 → 電子越多 → 分散力越強:F<sub>2</sub> &lt; Cl<sub>2</sub> &lt; Br<sub>2</sub> &lt; I<sub>2</sub>(常溫下依序為氣、氣、液、固)</li>
+  </ul>
+</section>
+
+<!-- 8 -->
+<section class="slide">
+  <h2>分散力與分子形狀 <span class="en">Shape Effect on Dispersion</span></h2>
+  <ul>
+    <li>同分子式(同莫耳質量)時,<b>形狀</b>決定分散力大小</li>
+    <li><b>直鏈分子</b>:接觸面積大 → 分散力強 → 沸點高</li>
+    <li><b>球狀(多分支)分子</b>:接觸面積小 → 分散力弱 → 沸點低</li>
+  </ul>
+  <table>
+    <tr><th>C<sub>5</sub>H<sub>12</sub> 異構物</th><th>形狀</th><th>沸點</th></tr>
+    <tr><td>正戊烷 n-pentane</td><td>直鏈</td><td>36 °C</td></tr>
+    <tr><td>新戊烷 neopentane</td><td>近似球狀</td><td>9.5 °C</td></tr>
+  </table>
+  <div class="box key"><span class="tag">重點</span>比較分散力:先比莫耳質量(電子數),再比接觸面積(形狀)。</div>
+</section>
+
+<!-- 9 -->
+<section class="slide">
+  <h2>偶極-偶極力 <span class="en">Dipole-Dipole Forces</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>偶極-偶極力</b>:極性分子的永久偶極之間,正端與負端互相吸引的力。只存在於<b>極性分子</b>之間。</div>
+  <ul>
+    <li>判斷前提:先用 VSEPR 判斷分子是否有淨偶極矩(極性)</li>
+    <li>例:HCl、SO<sub>2</sub>、CH<sub>3</sub>Cl、丙酮 (CH<sub>3</sub>)<sub>2</sub>CO</li>
+    <li>比較:CO(28 g/mol,極性,b.p. −192 °C)vs N<sub>2</sub>(28 g/mol,非極性,b.p. −196 °C)— 分子量相近時,<span class="hl">極性分子沸點較高</span></li>
+  </ul>
+</section>
+
+<!-- 10 -->
+<section class="slide">
+  <h2>氫鍵 <span class="en">Hydrogen Bonding</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>氫鍵 (hydrogen bond)</b>:H 直接鍵結在 <span class="hl">N、O、F</span> 上時,此 H 與另一分子上 N、O、F 的孤對電子之間特別強的吸引力(偶極-偶極力的極端型)。</div>
+  <ul>
+    <li>成立條件:分子中要有 <b>N–H、O–H 或 F–H 鍵</b></li>
+    <li>強度約 15–40 kJ/mol:遠強於一般偶極-偶極力,但仍遠弱於共價鍵</li>
+    <li>有氫鍵:H<sub>2</sub>O、NH<sub>3</sub>、HF、CH<sub>3</sub>OH、CH<sub>3</sub>COOH、DNA 鹼基對</li>
+    <li>沒有氫鍵:CH<sub>4</sub>、H<sub>2</sub>S、HCl、CH<sub>3</sub>OCH<sub>3</sub>(H 不在 O 上)</li>
+  </ul>
+</section>
+
+<!-- 11 -->
+<section class="slide">
+  <h2>水的特殊性質 <span class="en">Unusual Properties of Water</span></h2>
+  <ul>
+    <li><b>沸點異常高</b>:同族氫化物中,H<sub>2</sub>O (100 °C) ≫ H<sub>2</sub>S (−60 °C) — 若無氫鍵,外推沸點約 −80 °C</li>
+    <li><b>冰的密度小於水</b>:氫鍵使冰形成空隙大的六方晶格 → 冰浮於水面,湖泊由上而下結冰,水中生物得以過冬</li>
+    <li><b>比熱與汽化熱特別大</b>:調節氣候、人體排汗散熱</li>
+    <li><b>表面張力大</b>:水黽可在水面行走</li>
+  </ul>
+  <div class="box key"><span class="tag">重點</span>這些異常全部源自<span class="hl">每個 H<sub>2</sub>O 分子最多可形成 4 個氫鍵</span>(2 個 O–H 供體 + 2 對孤對電子受體)。</div>
+</section>
+
+<!-- 12 -->
+<section class="slide">
+  <h2>離子-偶極力 <span class="en">Ion-Dipole Forces</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>離子-偶極力 (ion-dipole force)</b>:離子與極性分子之間的吸引力。發生於<b>離子化合物溶於極性溶劑</b>時。</div>
+  <ul>
+    <li>NaCl 溶於水:Na<sup>+</sup> 被水分子的 O(δ−)端包圍;Cl<sup>−</sup> 被 H(δ+)端包圍</li>
+    <li>此即<b>水合 (hydration)</b> 的作用力來源</li>
+    <li>強度通常大於氫鍵(離子電荷完整,偶極只有部分電荷)</li>
+  </ul>
+  <p class="small">下週「溶液」章節將以離子-偶極力解釋溶解過程,先在此打好基礎。</p>
+</section>
+
+<!-- 13 -->
+<section class="slide">
+  <h2>IMF 判斷流程與強度順序 <span class="en">Identifying IMF</span></h2>
+  <div class="flow">
+    <div class="fbox">分子中有 N–H / O–H / F–H?</div>
+    <div class="arrow">是 → <b>氫鍵</b>(+分散力)|否 ↓</div>
+    <div class="fbox">分子是極性分子?(VSEPR 判斷)</div>
+    <div class="arrow">是 → <b>偶極-偶極力</b>(+分散力)|否 ↓</div>
+    <div class="fbox"><b>只有分散力</b></div>
+  </div>
+  <div class="box key" style="margin-top:14px"><span class="tag">強度通則</span>離子-偶極 &gt; 氫鍵 &gt; 偶極-偶極 &gt; 分散力(分子大小相近時;<b>大分子的分散力可勝過小分子的氫鍵</b>,如 I<sub>2</sub> 為固體)。</div>
+</section>
+
+<!-- 14 -->
+<section class="slide">
+  <h2>例題 1:判斷主要 IMF <span class="en">Example 1</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>指出下列各物質分子間存在哪些作用力,並標出最主要者:<br>
+  (a) CO<sub>2</sub>&nbsp;&nbsp;(b) CH<sub>3</sub>OH&nbsp;&nbsp;(c) HCl&nbsp;&nbsp;(d) CH<sub>3</sub>OCH<sub>3</sub>(二甲醚)
+  <div class="sol"><b>解:</b><br>
+  (a) CO<sub>2</sub> 直線形、對稱,鍵偶極相消 → 非極性 → 只有<span class="hl">分散力</span><br>
+  (b) CH<sub>3</sub>OH 有 O–H 鍵 → <span class="hl">氫鍵</span>(主)+偶極-偶極+分散力<br>
+  (c) HCl 極性分子但 H 接在 Cl 上(非 N、O、F)→ <span class="hl">偶極-偶極力</span>(主)+分散力<br>
+  (d) 二甲醚有 O 但無 O–H(兩個 H 都接在 C 上)→ 極性分子 → <span class="hl">偶極-偶極力</span>(主)+分散力,<b>不能形成氫鍵</b>(分子間)</div></div>
+</section>
+
+<!-- 15 -->
+<section class="slide">
+  <h2>例題 2:比較沸點 <span class="en">Example 2</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>將下列各組物質依沸點由低到高排列並說明理由:<br>
+  (a) CH<sub>4</sub>、C<sub>3</sub>H<sub>8</sub>、C<sub>8</sub>H<sub>18</sub>&nbsp;&nbsp;&nbsp;(b) CH<sub>3</sub>CH<sub>2</sub>OH(乙醇)、CH<sub>3</sub>OCH<sub>3</sub>(二甲醚)、C<sub>2</sub>H<sub>6</sub>
+  <div class="sol"><b>解:</b><br>
+  (a) 皆為非極性烷類,只比分散力(隨莫耳質量增大):<br>
+  &nbsp;&nbsp;&nbsp;<span class="hl">CH<sub>4</sub> &lt; C<sub>3</sub>H<sub>8</sub> &lt; C<sub>8</sub>H<sub>18</sub></span>(−162 °C、−42 °C、126 °C)<br>
+  (b) 三者莫耳質量相近(30、46、46 g/mol),比 IMF 種類:<br>
+  &nbsp;&nbsp;&nbsp;C<sub>2</sub>H<sub>6</sub> 僅分散力 &lt; 二甲醚偶極-偶極 &lt; 乙醇有氫鍵<br>
+  &nbsp;&nbsp;&nbsp;<span class="hl">C<sub>2</sub>H<sub>6</sub>(−89 °C)&lt; CH<sub>3</sub>OCH<sub>3</sub>(−25 °C)&lt; CH<sub>3</sub>CH<sub>2</sub>OH(78 °C)</span></div></div>
+</section>
+
+<!-- 16 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ①:分子間作用力 <span class="en">Quick Check 1</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>水加熱到沸騰時,<b>被破壞的是</b>?<br><span class="opt">A O–H 共價鍵</span><span class="opt">B 分子間的氫鍵</span><span class="opt">C 氧原子的核</span><span class="opt">D 兩者都斷</span></div>
+  <div class="q"><span class="qn">2</span>下列何者<b>不能</b>形成氫鍵?<br><span class="opt">A H<sub>2</sub>O</span><span class="opt">B NH<sub>3</sub></span><span class="opt">C HF</span><span class="opt">D CH<sub>4</sub></span></div>
+  <div class="q"><span class="qn">3</span>HF 的分子量比 HCl 小,<b>沸點卻高得多</b>。為什麼?</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B(分子間的氫鍵)</span> — 沸騰是<b>物理變化</b>,分子本身完好,只是分子彼此分開。<span class="myth">選 A/D 就是把物理變化當成化學變化 —— 與 W1 的「沸騰泡泡是氫和氧」是同一個迷思。<b>共價鍵約 460 kJ/mol,氫鍵只有約 20</b>,差一個數量級。<b>[M01][M05]</b></span></div><div class="row"><span class="ans">2. D(CH<sub>4</sub>)</span> — 氫鍵需要 H 直接接在 <b>N、O、F</b> 上。C–H 不符合。<span class="myth">判準是<b>兩個條件同時成立</b>:有 H 接在 N/O/F 上(給體),且有 N/O/F 的孤對(受體)。少看一個就會誤判。</span></div><div class="row"><span class="ans">3. 因為 HF 有氫鍵,HCl 只有偶極–偶極力</span> — 一般而言分子量越大分散力越強、沸點越高,但<b>氫鍵的強度足以逆轉這個趨勢</b>。<span class="myth">這是 IMF 這一節最有力的證據:<b>當某一種作用力特別強時,它會壓過分子量的影響</b>。同樣的邏輯讓 H<sub>2</sub>O 的沸點遠高於 H<sub>2</sub>S。</span></div></div>
+</section>
+
+<!-- 17 -->
+<section class="slide divider">
+  <div class="secnum">PART 11.2</div>
+  <h1>液體的性質</h1>
+  <div class="en-sub">Properties of Liquids</div>
+  <div class="items">黏度・表面張力・毛細作用</div>
+</section>
+
+<!-- 18 -->
+<section class="slide">
+  <h2>黏度 <span class="en">Viscosity</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>黏度 (viscosity)</b>:液體對流動的阻力。</div>
+  <ul>
+    <li><b>IMF 越強 → 黏度越大</b>:甘油(3 個 O–H,氫鍵多)≫ 水 ≫ 己烷</li>
+    <li><b>分子越長、越易糾纏 → 黏度越大</b>:機油、蜂蜜</li>
+    <li><b>溫度升高 → 黏度下降</b>:動能增加,較易掙脫 IMF(熱蜂蜜較易倒)</li>
+  </ul>
+  <div class="box key"><span class="tag">生活連結</span>機油標號(如 10W-40)描述不同溫度下的黏度等級;引擎需要黏度隨溫度變化小的機油。</div>
+</section>
+
+<!-- 19 -->
+<section class="slide">
+  <h2>表面張力 <span class="en">Surface Tension</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>表面張力 (surface tension)</b>:使液體表面積縮至最小所需能量的度量;源自表面分子受到的<b>向內淨吸引力</b>。</div>
+  <ul>
+    <li>內部分子:四面八方都被吸引,受力平衡;表面分子:只被側面與下方吸引 → 淨力向內</li>
+    <li>液滴呈<b>球形</b>:同體積下球形表面積最小</li>
+    <li>IMF 越強 → 表面張力越大:水(氫鍵)&gt; 乙醇 &gt; 己烷</li>
+    <li>實例:水黽行走、迴紋針浮在水面、荷葉上的水珠</li>
+  </ul>
+</section>
+
+<!-- 20 -->
+<section class="slide">
+  <h2>毛細作用 <span class="en">Capillary Action</span></h2>
+  <div class="two-col">
+    <div>
+      <h3>內聚力 Cohesive forces</h3>
+      <p style="font-size:22px"><b>同種</b>分子間的吸引力(水-水)</p>
+    </div>
+    <div>
+      <h3>附著力 Adhesive forces</h3>
+      <p style="font-size:22px">液體與<b>器壁</b>間的吸引力(水-玻璃)</p>
+    </div>
+  </div>
+  <ul>
+    <li><b>附著 &gt; 內聚</b>:水在玻璃管中<span class="hl">上升</span>,凹面月形 (concave meniscus)</li>
+    <li><b>內聚 &gt; 附著</b>:汞在玻璃管中<span class="hl">下降</span>,凸面月形 (convex meniscus)</li>
+    <li>管徑越細,上升越高;實例:植物導管輸水、紙巾吸水、酒淚</li>
+  </ul>
+</section>
+
+<!-- 21 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ②:液體的性質 <span class="en">Quick Check 2</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>水在細玻璃管中會<b>上升</b>,水銀卻<b>下降</b>。差別在於?<br><span class="opt">A 密度不同</span><span class="opt">B 附著力與內聚力的相對大小不同</span><span class="opt">C 溫度不同</span><span class="opt">D 管子材質不同</span></div>
+  <div class="q"><span class="qn">2</span>下列何者會使液體的<b>黏度下降</b>?<br><span class="opt">A 降低溫度</span><span class="opt">B 升高溫度</span><span class="opt">C 增加分子量</span><span class="opt">D 增強氫鍵</span></div>
+  <div class="q"><span class="qn">3</span>為什麼水滴會呈<b>球形</b>?</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B</span> — 水對玻璃的<b>附著力 &gt; 內聚力</b> → 上升且凹面;水銀相反 → 下降且凸面。<span class="myth">選 A 的同學只想到重量。<b>毛細現象是兩種力的競爭</b>,不是單一性質決定的 —— 同一根管子,不同液體行為相反,就是最好的證據。</span></div><div class="row"><span class="ans">2. B(升高溫度)</span> — 溫度升高 → 分子動能增加 → 較容易掙脫彼此的吸引 → 流動性變好。<span class="myth">生活對照:<b>冷的蜂蜜倒不出來,加熱後就流得順</b>。C、D 都會使黏度上升。</span></div><div class="row"><span class="ans">3. 因為表面張力使表面積最小化</span> — 表面分子受到的吸引力不平衡(只有內側有鄰居),系統傾向<b>減少表面分子數</b>;相同體積下球形的表面積最小。<span class="myth">延伸:這也是<b>乳化劑</b>能作用的原因 —— 它降低界面張力,讓油滴不必縮成球、可以穩定分散。這條線直接接到 W16 的美乃滋。</span></div></div>
+</section>
+
+<!-- 22 -->
+<section class="slide divider">
+  <div class="secnum">PART 11.3</div>
+  <h1>相變化與能量</h1>
+  <div class="en-sub">Phase Transitions and Energy</div>
+  <div class="items">六種相變・ΔH<sub>fus</sub> 與 ΔH<sub>vap</sub>・加熱曲線・蒸氣壓・Clausius-Clapeyron</div>
+</section>
+
+<!-- 23 -->
+<section class="slide">
+  <h2>六種相變化 <span class="en">Six Phase Transitions</span></h2>
+  <table>
+    <tr><th>相變</th><th>英文</th><th>方向</th><th>能量</th></tr>
+    <tr><td>熔化</td><td>melting / fusion</td><td>固 → 液</td><td>吸熱</td></tr>
+    <tr><td>凝固</td><td>freezing</td><td>液 → 固</td><td>放熱</td></tr>
+    <tr><td>汽化</td><td>vaporization</td><td>液 → 氣</td><td>吸熱</td></tr>
+    <tr><td>凝結</td><td>condensation</td><td>氣 → 液</td><td>放熱</td></tr>
+    <tr><td>昇華</td><td>sublimation</td><td>固 → 氣</td><td>吸熱</td></tr>
+    <tr><td>凝華</td><td>deposition</td><td>氣 → 固</td><td>放熱</td></tr>
+  </table>
+  <div class="box key"><span class="tag">重點</span>吸熱方向 = 克服 IMF、粒子更自由;互逆過程的 ΔH 大小相等、符號相反。</div>
+</section>
+
+<!-- 24 -->
+<section class="slide">
+  <h2>熔化熱與汽化熱 <span class="en">ΔH<sub>fus</sub> &amp; ΔH<sub>vap</sub></span></h2>
+  <div class="box def"><span class="tag">定義</span><b>莫耳熔化熱 ΔH<sub>fus</sub></b>:1 mol 固體熔化所需的熱;<b>莫耳汽化熱 ΔH<sub>vap</sub></b>:1 mol 液體汽化所需的熱。</div>
+  <ul>
+    <li>水:ΔH<sub>fus</sub> = 6.01 kJ/mol;ΔH<sub>vap</sub> = 40.7 kJ/mol(100 °C)</li>
+    <li><span class="hlb">ΔH<sub>vap</sub> ≫ ΔH<sub>fus</sub></span>:汽化需完全掙脫 IMF,熔化只需鬆動排列</li>
+    <li>IMF 越強 → 兩者越大;汗水蒸發帶走大量熱 → 有效散熱</li>
+  </ul>
+  <div class="box warn"><span class="tag">注意</span>相變期間<b>溫度不變</b>:吸收的熱全部用於克服 IMF(位能),不增加動能。</div>
+</section>
+
+<!-- 25 -->
+<section class="slide">
+  <h2>加熱曲線 <span class="en">Heating Curve</span></h2>
+  <div class="flow">
+    <div class="frow">
+      <div class="fbox">① 固體升溫<br><span class="small">q = m·c<sub>s</sub>·ΔT(斜線)</span></div>
+      <div class="fbox">② 熔化<br><span class="small">q = n·ΔH<sub>fus</sub>(平台)</span></div>
+      <div class="fbox">③ 液體升溫<br><span class="small">q = m·c<sub>l</sub>·ΔT(斜線)</span></div>
+    </div>
+    <div class="frow">
+      <div class="fbox">④ 沸騰<br><span class="small">q = n·ΔH<sub>vap</sub>(平台,較長)</span></div>
+      <div class="fbox">⑤ 氣體升溫<br><span class="small">q = m·c<sub>g</sub>·ΔT(斜線)</span></div>
+    </div>
+  </div>
+  <ul style="margin-top:14px">
+    <li>斜線段用<b>比熱</b>(單位 J/g·°C);平台段用<b>相變熱</b>(單位 kJ/mol)</li>
+    <li>總熱量 = 各段熱量<b>相加</b>;水的比熱:冰 2.09、水 4.18、水蒸氣 1.84 J/(g·°C)</li>
+  </ul>
+</section>
+
+<!-- 26 -->
+<section class="slide">
+  <h2>例題 3:加熱曲線計算 <span class="en">Example 3</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>將 18.0 g 冰(−10.0 °C)加熱成 100.0 °C 的水蒸氣,共需多少熱量?(c<sub>冰</sub> = 2.09 J/g·°C、c<sub>水</sub> = 4.18 J/g·°C;ΔH<sub>fus</sub> = 6.01、ΔH<sub>vap</sub> = 40.7 kJ/mol;n = 18.0/18.02 = 1.00 mol)
+  <div class="sol"><b>解:</b>分四段計算:<br>
+  ① 冰 −10.0 → 0.0 °C:q<sub>1</sub> = 18.0 × 2.09 × 10.0 = 376 J = 0.376 kJ<br>
+  ② 熔化:q<sub>2</sub> = 1.00 mol × 6.01 kJ/mol = 6.01 kJ<br>
+  ③ 水 0.0 → 100.0 °C:q<sub>3</sub> = 18.0 × 4.18 × 100.0 = 7524 J = 7.52 kJ<br>
+  ④ 汽化:q<sub>4</sub> = 1.00 mol × 40.7 kJ/mol = 40.7 kJ<br>
+  總計 q = 0.376 + 6.01 + 7.52 + 40.7 = <span class="hl">54.6 kJ</span>(汽化佔約 75%!)</div></div>
+</section>
+
+<!-- 27 -->
+<section class="slide">
+  <h2>蒸氣壓:動態平衡 <span class="en">Vapor Pressure &amp; Dynamic Equilibrium</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>蒸氣壓 (vapor pressure)</b>:密閉容器中,液體與其蒸氣達<b>動態平衡</b>(蒸發速率 = 凝結速率)時,蒸氣的分壓。</div>
+  <ul>
+    <li>「動態」:巨觀上壓力不變,微觀上蒸發與凝結仍持續進行</li>
+    <li>蒸氣壓是液體的<b>強度性質</b>:與液體量、容器體積無關</li>
+    <li>蒸氣壓高的液體「揮發性 (volatile)」高:乙醚 &gt; 乙醇 &gt; 水 &gt; 甘油</li>
+  </ul>
+</section>
+
+<!-- 28 -->
+<section class="slide">
+  <h2>蒸氣壓的影響因素 <span class="en">Factors Affecting Vapor Pressure</span></h2>
+  <table>
+    <tr><th>因素</th><th>影響</th><th>原因</th></tr>
+    <tr><td><b>溫度 ↑</b></td><td>蒸氣壓 ↑(非線性,加速上升)</td><td>高動能分子比例增加(Boltzmann 分布)</td></tr>
+    <tr><td><b>IMF ↑</b></td><td>蒸氣壓 ↓</td><td>分子較難掙脫液面</td></tr>
+  </table>
+  <ul>
+    <li>25 °C 蒸氣壓:乙醚 (537 torr) &gt; 乙醇 (59 torr) &gt; 水 (23.8 torr)</li>
+    <li>蒸氣壓<b>不受</b>液體量與表面積影響(平衡性質)</li>
+  </ul>
+  <div class="box key"><span class="tag">重點</span>IMF 與蒸氣壓成<b>反比</b>關係:氫鍵強的水,蒸氣壓遠低於只有弱 IMF 的乙醚。</div>
+</section>
+
+<!-- 29 -->
+<section class="slide">
+  <h2>沸點 <span class="en">Boiling Point</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>沸點 (boiling point)</b>:液體<b>蒸氣壓 = 外界壓力</b>時的溫度;<b>正常沸點 (normal boiling point)</b>:外壓為 1 atm 時的沸點。</div>
+  <ul>
+    <li>沸騰時,液體內部也能形成氣泡(蒸氣壓足以撐開外壓)</li>
+    <li><b>外壓下降 → 沸點下降</b>:高山上水約 90 °C 就沸騰,煮飯不易熟</li>
+    <li><b>外壓上升 → 沸點上升</b>:壓力鍋內約 2 atm,水約 120 °C 沸騰</li>
+    <li>IMF 越強 → 蒸氣壓越低 → 沸點越高(呼應 Part 10.1)</li>
+  </ul>
+</section>
+
+<!-- 30 -->
+<section class="slide">
+  <h2>Clausius-Clapeyron 方程式 <span class="en">Clausius-Clapeyron Equation</span></h2>
+  <p>定量描述蒸氣壓與溫度的關係:</p>
+  <div class="eq">ln(P<sub>2</sub>/P<sub>1</sub>) = −(ΔH<sub>vap</sub>/R) × (1/T<sub>2</sub> − 1/T<sub>1</sub>)&nbsp;&nbsp;(R = 8.314 J/(mol·K))</div>
+  <ul>
+    <li>已知兩組 (P, T) → 可求 ΔH<sub>vap</sub>;已知 ΔH<sub>vap</sub> 與一組 (P, T) → 可求任意溫度的蒸氣壓</li>
+    <li>ln P 對 1/T 作圖為直線,斜率 = −ΔH<sub>vap</sub>/R</li>
+  </ul>
+  <div class="box warn"><span class="tag">注意</span>T 用 K;ΔH<sub>vap</sub> 用 J/mol(配合 R = 8.314);P<sub>1</sub>、P<sub>2</sub> 單位相同即可(比值無單位)。</div>
+</section>
+
+<!-- 31 -->
+<section class="slide">
+  <h2>例題 4:Clausius-Clapeyron <span class="en">Example 4</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>某液體在 60.0 °C 的蒸氣壓為 462 mmHg,ΔH<sub>vap</sub> = 32.0 kJ/mol。求其正常沸點。
+  <div class="sol"><b>解:</b>正常沸點時 P<sub>2</sub> = 760 mmHg。T<sub>1</sub> = 333 K。<br>
+  ① ln(760/462) = ln(1.645) = 0.498<br>
+  ② 0.498 = −(32000/8.314) × (1/T<sub>2</sub> − 1/333) = −3849 × (1/T<sub>2</sub> − 3.00×10<sup>−3</sup>)<br>
+  ③ 1/T<sub>2</sub> − 3.00×10<sup>−3</sup> = −1.29×10<sup>−4</sup> → 1/T<sub>2</sub> = 2.87×10<sup>−3</sup> K<sup>−1</sup><br>
+  ④ T<sub>2</sub> = 348 K = <span class="hl">75 °C</span><br>
+  檢查:760 &gt; 462,沸點應高於 60 °C ✓</div></div>
+</section>
+
+<!-- 32 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ③:相變化與蒸氣壓 <span class="en">Quick Check 3</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>加熱曲線上的<b>水平段</b>代表?<br><span class="opt">A 溫度計壞了</span><span class="opt">B 正在相變化,吸收的熱用於破壞作用力</span><span class="opt">C 沒有吸熱</span><span class="opt">D 比熱變成零</span></div>
+  <div class="q"><span class="qn">2</span>高山上水的沸點較低,原因是?<br><span class="opt">A 空氣稀薄使水變質</span><span class="opt">B 外界大氣壓較低,較低溫度即可讓蒸氣壓等於外壓</span><span class="opt">C 溫度計失準</span><span class="opt">D 水的種類不同</span></div>
+  <div class="q"><span class="qn">3</span>「蒸氣壓」是動態平衡的結果。<b>什麼叫動態平衡?</b>密閉容器中的水面看起來沒變化,分子真的都不動了嗎?</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B</span> — 相變化期間<b>溫度不變但持續吸熱</b>,能量全部用於克服分子間作用力。<span class="myth">所以水平段的長度 ∝ 該相變的潛熱。<b>ΔH<sub>vap</sub> 遠大於 ΔH<sub>fus</sub></b>(水:40.7 vs 6.0 kJ/mol),因為汽化要完全拆散分子。</span></div><div class="row"><span class="ans">2. B</span> — 沸騰的定義是<b>蒸氣壓 = 外界壓力</b>。外壓低,較低溫就達成。<span class="myth">所以高山煮飯不易熟(溫度不夠),壓力鍋則相反(提高外壓 → 沸點升高 → 煮得快)。<b>沸點不是物質固有常數,它依賴外壓。</b></span></div><div class="row"><span class="ans">3. 蒸發與凝結<b>速率相等</b>,不是停止</span> — 液面下仍不斷有分子蒸發,氣相中也不斷有分子凝結,<b>兩個方向同時進行且速率相同</b>,所以巨觀看起來沒變。<span class="myth">「看起來沒變 = 什麼都沒發生」是很常見的誤解。<b>動態平衡是這門課後面所有平衡概念的原型</b> —— 化學平衡、溶解平衡都是同一個structure。</span></div></div>
+</section>
+
+<!-- 33 -->
+<section class="slide divider">
+  <div class="secnum">PART 11.4</div>
+  <h1>相圖</h1>
+  <div class="en-sub">Phase Diagrams</div>
+  <div class="items">三相點・臨界點・水與 CO<sub>2</sub> 的相圖・超臨界流體</div>
+</section>
+
+<!-- 34 -->
+<section class="slide">
+  <h2>相圖的構成 <span class="en">Anatomy of a Phase Diagram</span></h2>
+  <p>相圖以 <b>P(縱軸)– T(橫軸)</b>表示物質在各條件下最穩定的相:</p>
+  <ul>
+    <li><b>三個區域</b>:固相(左)、液相(中上)、氣相(右下)</li>
+    <li><b>曲線</b> = 兩相平衡:固液線(熔化曲線)、液氣線(蒸氣壓曲線)、固氣線(昇華曲線)</li>
+    <li><b>三相點 (triple point)</b>:三相共存的唯一 (P, T) 點</li>
+    <li><b>臨界點 (critical point)</b>:液氣線的終點 (T<sub>c</sub>, P<sub>c</sub>);超過後液氣不分</li>
+  </ul>
+  <div class="box key"><span class="tag">判讀要領</span>定壓橫走 = 加熱過程;定溫縱走 = 加壓過程;跨越曲線就發生相變。</div>
+</section>
+
+<!-- 35 -->
+<section class="slide">
+  <h2>水與 CO<sub>2</sub> 的相圖比較 <span class="en">H<sub>2</sub>O vs. CO<sub>2</sub></span></h2>
+  <table>
+    <tr><th></th><th>H<sub>2</sub>O</th><th>CO<sub>2</sub></th></tr>
+    <tr><td>三相點</td><td>0.01 °C、0.006 atm</td><td>−56.7 °C、5.1 atm</td></tr>
+    <tr><td>固液線斜率</td><td><span class="hl">負</span>(特殊!)</td><td>正(一般情況)</td></tr>
+    <tr><td>1 atm 下行為</td><td>熔化 (0 °C)、沸騰 (100 °C)</td><td>直接<b>昇華</b>(−78.5 °C)</td></tr>
+    <tr><td>臨界點</td><td>374 °C、218 atm</td><td>31.1 °C、73 atm</td></tr>
+  </table>
+  <div class="box warn"><span class="tag">水的特殊性</span>固液線負斜率:<b>加壓可使冰熔化</b>(冰密度 &lt; 水,加壓有利於體積較小的液相)。CO<sub>2</sub> 三相點在 5.1 atm,故常壓下液態 CO<sub>2</sub> 不存在 → 乾冰只昇華不熔化。</div>
+</section>
+
+<!-- 36 -->
+<section class="slide">
+  <h2>相圖判讀:H<sub>2</sub>O vs CO<sub>2</sub> <span class="en">Reading Phase Diagrams</span></h2>
+<svg class="fig" role="img" aria-labelledby="w15f1-t w15f1-d" width="1020" height="420" viewBox="0 0 1020 420" xmlns="http://www.w3.org/2000/svg">
+        <title id="w15f1-t">水與二氧化碳的相圖比較</title>
+        <desc id="w15f1-d">兩張壓力對溫度的相圖。水的固−液界線向左傾斜、斜率為負，所以加壓可使冰融化；二氧化碳的固−液界線向右傾斜、斜率為正，且三相點壓力為 5.1 大氣壓、高於一大氣壓，所以常壓下固態二氧化碳直接昇華而不熔化。</desc>
+        <defs><marker id="w15f1-axh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5a6a6b"/></marker><marker id="w15f1-axh2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5a6a6b"/></marker></defs>
+        <line x1="66" y1="300" x2="426" y2="300" stroke="#5a6a6b" stroke-width="2" marker-end="url(#w15f1-axh)"/>
+        <line x1="66" y1="300" x2="66" y2="50" stroke="#5a6a6b" stroke-width="2" marker-end="url(#w15f1-axh)"/>
+        <text x="426" y="324" font-size="17" fill="#5a6a6b" text-anchor="end">溫度 T</text>
+        <text x="70" y="44" font-size="17" fill="#5a6a6b" text-anchor="start">壓力 P</text>
+        <line x1="188.4" y1="225.0" x2="148.8" y2="57.5" stroke="#1f5f8b" stroke-width="3.4" stroke-linecap="round"/>
+        <path d="M188.4,225.0 Q 271.2,155.0 354.0,115.0" fill="none" stroke="#1f5f8b" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M188.4,225.0 Q 123.6,277.5 84.0,297" fill="none" stroke="#1f5f8b" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="188.4" cy="225.0" r="6" fill="#a04c08"/>
+        <circle cx="354.0" cy="115.0" r="6" fill="#c0392b"/>
+        <text x="174.4" y="229.0" font-size="17" fill="#a04c08" text-anchor="end" font-weight="700">三相點</text>
+        <text x="174.4" y="251.0" font-size="16" fill="#a04c08" text-anchor="end">0.01 °C, 0.006 atm</text>
+        <text x="364.0" y="109.0" font-size="17" fill="#c0392b" text-anchor="start" font-weight="700">臨界點</text>
+        <text x="364.0" y="131.0" font-size="16" fill="#c0392b" text-anchor="start">374 °C, 218 atm</text>
+        <text x="109.19999999999999" y="105.0" font-size="22" fill="#2c3e50" text-anchor="middle" font-weight="700">固</text>
+        <text x="274.79999999999995" y="140.0" font-size="22" fill="#2c3e50" text-anchor="middle" font-weight="700">液</text>
+        <text x="289.2" y="267.5" font-size="22" fill="#2c3e50" text-anchor="middle" font-weight="700">氣</text>
+        <line x1="66" y1="168" x2="426" y2="168" stroke="#5a6a6b" stroke-width="2" stroke-linecap="round" stroke-dasharray="7 5"/>
+        <text x="430" y="173" font-size="16" fill="#5a6a6b" text-anchor="start">1 atm</text>
+        <text x="246.0" y="352" font-size="21" fill="#1f5f8b" text-anchor="middle" font-weight="700">H₂O（水）</text>
+        <text x="246.0" y="378" font-size="17" fill="#a04c08" text-anchor="middle" font-weight="700">固−液線左傾（斜率為負）→ 加壓使冰融化</text>
+        <line x1="578" y1="300" x2="938" y2="300" stroke="#5a6a6b" stroke-width="2" marker-end="url(#w15f1-axh2)"/>
+        <line x1="578" y1="300" x2="578" y2="50" stroke="#5a6a6b" stroke-width="2" marker-end="url(#w15f1-axh2)"/>
+        <text x="938" y="324" font-size="17" fill="#5a6a6b" text-anchor="end">溫度 T</text>
+        <text x="582" y="44" font-size="17" fill="#5a6a6b" text-anchor="start">壓力 P</text>
+        <line x1="700.4" y1="225.0" x2="750.8" y2="57.5" stroke="#1f5f8b" stroke-width="3.4" stroke-linecap="round"/>
+        <path d="M700.4,225.0 Q 783.2,155.0 866.0,115.0" fill="none" stroke="#1f5f8b" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M700.4,225.0 Q 635.6,277.5 596.0,297" fill="none" stroke="#1f5f8b" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="700.4" cy="225.0" r="6" fill="#a04c08"/>
+        <circle cx="866.0" cy="115.0" r="6" fill="#c0392b"/>
+        <text x="686.4" y="229.0" font-size="17" fill="#a04c08" text-anchor="end" font-weight="700">三相點</text>
+        <text x="686.4" y="251.0" font-size="16" fill="#a04c08" text-anchor="end">−56.7 °C, 5.1 atm</text>
+        <text x="876.0" y="109.0" font-size="17" fill="#c0392b" text-anchor="start" font-weight="700">臨界點</text>
+        <text x="876.0" y="131.0" font-size="16" fill="#c0392b" text-anchor="start">31 °C, 73 atm</text>
+        <text x="621.2" y="105.0" font-size="22" fill="#2c3e50" text-anchor="middle" font-weight="700">固</text>
+        <text x="786.8" y="140.0" font-size="22" fill="#2c3e50" text-anchor="middle" font-weight="700">液</text>
+        <text x="801.2" y="267.5" font-size="22" fill="#2c3e50" text-anchor="middle" font-weight="700">氣</text>
+        <line x1="578" y1="268" x2="938" y2="268" stroke="#5a6a6b" stroke-width="2" stroke-linecap="round" stroke-dasharray="7 5"/>
+        <text x="942" y="273" font-size="16" fill="#5a6a6b" text-anchor="start">1 atm</text>
+        <text x="758.0" y="352" font-size="21" fill="#1f5f8b" text-anchor="middle" font-weight="700">CO₂</text>
+        <text x="758.0" y="378" font-size="17" fill="#117a65" text-anchor="middle" font-weight="700">固−液線右傾（斜率為正）→ 常壓下直接昇華</text>
+        <line x1="510" y1="40" x2="510" y2="330" stroke="#d5dbdb" stroke-width="2" stroke-linecap="round" stroke-dasharray="8 6"/>
+        <rect x="120" y="384" width="780" height="0" fill="#fff" rx="0"/>
+        <text x="510" y="404" font-size="18" fill="#2c3e50" text-anchor="middle" font-weight="700">水是少數固相密度小於液相的物質 —— 這也是冰浮在水上、以及乾冰只昇華不熔化的原因</text>
+      </svg>
+</section>
+
+<!-- 37 -->
+<section class="slide">
+  <h2>超臨界流體 <span class="en">Supercritical Fluid</span></h2>
+  <div class="box def"><span class="tag">定義</span>溫度、壓力同時超過臨界點 (T<sub>c</sub>, P<sub>c</sub>) 時,液、氣界面消失,形成<b>超臨界流體 (supercritical fluid, SCF)</b>。</div>
+  <ul>
+    <li>性質介於液氣之間:<b>密度似液體</b>(溶解力佳)、<b>黏度低似氣體</b>(滲透性佳)</li>
+    <li>超臨界 CO<sub>2</sub>(T<sub>c</sub> = 31.1 °C,條件溫和):咖啡因萃取(去咖啡因咖啡)、乾洗、萃取天然物</li>
+    <li>優點:無毒、不殘留(洩壓後 CO<sub>2</sub> 直接變氣體逸出)、可回收</li>
+  </ul>
+</section>
+
+<!-- 38 -->
+<section class="slide">
+  <h2>例題 5:相圖判讀 <span class="en">Example 5</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>根據 CO<sub>2</sub> 相圖(三相點 −56.7 °C、5.1 atm;臨界點 31.1 °C、73 atm)回答:<br>
+  (a) 1 atm、−78.5 °C 的乾冰放在室溫桌上,會發生什麼相變?<br>
+  (b) 要在室溫附近得到「液態 CO<sub>2</sub>」,壓力需要什麼條件?<br>
+  (c) 40 °C、80 atm 下的 CO<sub>2</sub> 是什麼狀態?
+  <div class="sol"><b>解:</b><br>
+  (a) 1 atm <b>低於三相點壓力 5.1 atm</b> → 定壓升溫只會跨越固氣線 → <span class="hl">直接昇華</span>,不經液態<br>
+  (b) 壓力必須<b>高於 5.1 atm</b>(實務上滅火器內約 60 atm,室溫下即為液態 CO<sub>2</sub>)<br>
+  (c) T &gt; T<sub>c</sub> 且 P &gt; P<sub>c</sub> → <span class="hl">超臨界流體</span></div></div>
+</section>
+
+<!-- 39 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ④:相圖 <span class="en">Quick Check 4</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>水的相圖中,固–液界線的斜率是<b>負</b>的。這代表?<br><span class="opt">A 加壓會使冰融化</span><span class="opt">B 加壓會使水結冰</span><span class="opt">C 水不會結冰</span><span class="opt">D 相圖畫錯了</span></div>
+  <div class="q"><span class="qn">2</span>乾冰(固態 CO<sub>2</sub>)在常壓下<b>直接昇華</b>,原因是?<br><span class="opt">A CO<sub>2</sub> 沒有液態</span><span class="opt">B CO<sub>2</sub> 的三相點壓力(5.1 atm)高於 1 atm</span><span class="opt">C 溫度太低</span><span class="opt">D CO<sub>2</sub> 是非極性分子</span></div>
+  <div class="q"><span class="qn">3</span>超臨界 CO<sub>2</sub> 被用來萃取咖啡因(低咖啡因咖啡)。<b>為什麼用它而不用有機溶劑?</b></div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. A(加壓會使冰融化)</span> — 負斜率表示加壓有利於<b>密度較大</b>的相 —— 對水而言那是<b>液態</b>。<span class="myth">水是少數<b>固相密度小於液相</b>的物質,這也是冰浮在水上的原因。溜冰、冰川流動都與這條負斜率有關。</span></div><div class="row"><span class="ans">2. B</span> — 1 atm 這條水平線<b>落在三相點之下</b>,所以升溫時直接由固相跨進氣相。<span class="myth">對照水:水的三相點只有 0.006 atm,1 atm 遠在其上,所以會先融化再沸騰。<b>是「1 atm 落在三相點上方或下方」決定了行為</b>,不是物質本身「有沒有液態」。</span></div><div class="row"><span class="ans">3. 因為它無毒、易移除、且性質可調</span> — 超臨界流體同時具有<b>氣體的擴散性與液體的溶解力</b>;CO<sub>2</sub> 的臨界點溫和(31 °C、73 atm),減壓後直接氣化離開,<b>不留溶劑殘留</b>。<span class="myth">對照:有機溶劑萃取後必須處理殘留問題(呼應 W1b 的清潔劑殘留)。<b>相圖不只是圖,它決定了一個製程可不可行。</b></span></div></div>
+</section>
+
+<!-- 40 -->
+<section class="slide divider">
+  <div class="secnum">PART 11.5</div>
+  <h1>脂肪的結晶與巧克力起霜</h1>
+  <div class="en-sub">Fat Crystals and Chocolate Bloom</div>
+  <div class="items">多晶型・回火・為什麼巧克力會發白</div>
+</section>
+
+<!-- 41 -->
+<section class="slide">
+  <h2>脂肪有很多種結晶方式 <span class="en">Polymorphism</span></h2>
+  <ul>
+    <li>同一種脂肪可以排成<b>好幾種不同的晶體結構</b>,稱為<b>多晶型</b>(polymorphism)</li>
+    <li>不同晶型的<b>熔點、硬度、光澤、口感</b>都不一樣</li>
+    <li>可可脂有六種晶型(I–VI),只有 <b>V 型</b>是我們要的:熔點 33–34 °C、有光澤、脆度好、入口即化</li>
+    <li>VI 型更穩定但熔點較高、表面粗糙——放久了 V 會慢慢轉成 VI</li>
+  </ul>
+<div class="box key"><span class="tag">為什麼熔點 33–34 °C 這麼關鍵</span><b>低於體溫、高於室溫。</b>所以巧克力在手上不化(勉強)、在嘴裡立刻化開。這個口感完全來自「挑對晶型」,不是配方多甜。</div>
+</section>
+
+<!-- 42 -->
+<section class="slide">
+  <h2>回火與起霜 <span class="en">Tempering and Bloom</span></h2>
+  <div class="two-col">
+    <div><b>回火 tempering</b>  <ul>
+    <li>升溫全熔 → 降溫使多種晶核形成</li>
+    <li>再<b>略升溫</b>把低熔點晶型熔掉</li>
+    <li>只留下 V 型晶核 → 全部照它長</li>
+    <li>結果:有光澤、會「啪」一聲斷開</li>
+  </ul></div>
+    <div><b>起霜 bloom</b>  <ul>
+    <li><b>脂霜</b>:溫度波動使脂肪熔化再結晶,在表面形成粗大的 VI 型晶體 → 發白</li>
+    <li><b>糖霜</b>:受潮使糖溶解後再析出</li>
+    <li>兩者都<b>不是發霉</b>,可以吃,只是口感變差</li>
+  </ul></div>
+  </div>
+<div class="box warn"><span class="tag">這一段與晶體結構的關係</span>本課程不做單位晶胞與晶格常數的計算(那對食品營養用不到),但<b>「同一種物質可以有不同的排列方式,而排列方式決定性質」</b>這個概念必須留下——它同時解釋了巧克力、奶油的質地與冰淇淋的冰晶。</div>
+</section>
+
+<!-- 43 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ⑤:脂肪結晶 <span class="en">Quick Check 5</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>巧克力表面發白,最可能是?<br><span class="opt">A 發霉了,不能吃</span><span class="opt">B 脂肪或糖再結晶造成的起霜,可以吃但口感變差</span><span class="opt">C 蛋白質變性</span><span class="opt">D 氧化酸敗</span></div>
+  <div class="q"><span class="qn">2</span>可可脂的 V 型晶體熔點約 33–34 °C。這個溫度為什麼「剛剛好」?<br><span class="opt">A 剛好等於室溫</span><span class="opt">B 低於體溫但高於一般室溫,所以放著不化、入口即化</span><span class="opt">C 剛好等於冰箱溫度</span><span class="opt">D 高於體溫所以不會化</span></div>
+  <div class="q"><span class="qn">3</span>把巧克力放進冰箱再拿出來,常常會失去光澤。用本週的分子間作用力與相變說明為什麼。</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B</span> — 起霜是物理性的再結晶,不是微生物生長。<span class="myth">選 A 是最常見的誤判,也造成大量食物浪費。判斷方式:霉會有絨毛與異味,起霜是均勻的白霧且無味。</span></div><div class="row"><span class="ans">2. B</span> — 33–34 °C 落在室溫(約 25 °C)與體溫(37 °C)之間。<span class="myth">選 A/C/D 都沒有掌握「兩個溫度之間」這個關鍵。<b>食品的口感常常來自把熔點設計在兩個特定溫度之間</b>——這是一個典型的「用相變設計產品」的例子。</span></div><div class="row"><span class="ans">3. 溫差造成表面凝結水與脂肪再結晶</span> — ① 冰箱取出時表面<b>低於露點</b>,空氣中的水蒸氣凝結成水膜 → 溶解表面的糖 → 水分蒸發後糖再析出 = <b>糖霜</b>;<br>② 溫度波動使部分脂肪熔化,再結晶時形成粗大的晶體 = <b>脂霜</b>。<br>兩者都讓表面變得粗糙,光線被<b>散射</b>而不是反射 → 失去光澤。<span class="myth">這一題把<b>蒸氣壓與凝結</b>(本週前半)、<b>相變與再結晶</b>(本段)與<b>光的散射</b>(第 10 週)三件事接在一起。巧克力的光澤是一個表面平整度的問題,而平整度是結晶的問題。</span></div></div>
+</section>
+
+<!-- 44 -->
+<section class="slide hookback">
+  <h2>回到本週的錨點 <span class="en">Anchor Answered</span></h2>
+  <div class="recall"><b>第 11 週開場問的是:</b>蛋白為什麼一加熱就凝固,而且冷掉回不去?巧克力放久了表面為什麼出現白霜?</div>
+  <div class="ansbox">
+    <h3>用這一週的化學回答</h3>
+    <ul>
+    <li>加熱破壞的是<b>分子間作用力</b>:氫鍵、疏水作用、離子鍵、凡得瓦力。<b>共價鍵(包括胜肽鍵)大多沒有斷</b>。</li>
+    <li>所以胺基酸序列(一級結構)完好,散掉的是<b>摺疊</b>:疏水基被翻到外面,蛋白質分子彼此纏結聚集 → 從透明溶液變成不透明固體。</li>
+    <li>回不去的原因:聚集後的網路<b>本身也是一個穩定的低能量狀態</b>,冷卻不會自動走回原本那個特定摺疊。最耐熱的是共價的<b>雙硫鍵 −S−S−</b>(先猜猜看的答案)。</li>
+    <li>巧克力白霜同理:可可脂<b>多晶型轉變</b>與脂肪遷移到表面再結晶 —— 也沒有化學反應,只是<b>物理結構</b>換了,而且回不去。</li>
+    </ul>
+  </div>
+  <div class="lens"><span class="lt">這個情境幫你理解的化學是</span>分子間作用力比共價鍵弱一到兩個數量級,卻決定了食物<b>所有</b>的質地與口感。「沒有發生化學反應」絕不等於「沒有改變」—— 這是食品科學最常被誤解的一句話。</div>
+  <div class="nextup"><b>接下來在哪裡會再用到:</b><span class="course">食品化學</span>蛋白質變性、油脂結晶與調溫　<span class="course">食品加工</span>質地與口感控制</div>
+</section>
+
+<!-- 45 -->
+<section class="slide">
+  <h2>本週重點總結 <span class="en">Summary</span></h2>
+  <ul>
+    <li><b>IMF 三兄弟:</b>分散力(人人都有)→ 偶極-偶極(極性分子)→ 氫鍵(N/O/F 上的 H);離子-偶極力用於溶解</li>
+    <li><b>IMF 越強:</b>沸點、熔點、黏度、表面張力、ΔH<sub>vap</sub> ↑;蒸氣壓 ↓</li>
+    <li><b>加熱曲線:</b>斜線 q = mcΔT,平台 q = nΔH;相變時溫度不變</li>
+    <li><b>蒸氣壓與沸點:</b>沸點 = 蒸氣壓等於外壓之溫度;Clausius-Clapeyron 定量計算</li>
+    <li><b>相圖:</b>三相點、臨界點;水固液線負斜率;CO<sub>2</sub> 常壓下昇華</li>
+    <li><b>晶體:</b>離子/分子/共價網狀/金屬;sc、bcc、fcc 每晶胞含 1、2、4 個原子</li>
+  </ul>
+</section>
+
+<!-- 46 -->
+<section class="slide">
+  <h2>重要名詞中英對照 <span class="en">Key Terms</span></h2>
+  <table>
+    <tr><th>中文</th><th>English</th><th>中文</th><th>English</th></tr>
+    <tr><td>分子間作用力</td><td>intermolecular force</td><td>蒸氣壓</td><td>vapor pressure</td></tr>
+    <tr><td>分散力</td><td>dispersion force</td><td>正常沸點</td><td>normal boiling point</td></tr>
+    <tr><td>氫鍵</td><td>hydrogen bond</td><td>三相點</td><td>triple point</td></tr>
+    <tr><td>表面張力</td><td>surface tension</td><td>臨界點</td><td>critical point</td></tr>
+    <tr><td>黏度</td><td>viscosity</td><td>超臨界流體</td><td>supercritical fluid</td></tr>
+    <tr><td>加熱曲線</td><td>heating curve</td><td>單位晶胞</td><td>unit cell</td></tr>
+  </table>
+</section>
+
+<!-- 47 -->
+<section class="slide">
+  <h2>課後練習與下週預告 <span class="en">Homework &amp; Preview</span></h2>
+  <h3>課後練習(OpenStax Chemistry 2e, Ch.10)</h3>
+  <ul>
+    <li>IMF 判斷與沸點比較:10.1 節章末習題(必做)</li>
+    <li>加熱曲線與 Clausius-Clapeyron:10.3 節相關題(必做)</li>
+    <li>相圖判讀與晶體結構計算:10.4、10.6 節相關題</li>
+  </ul>
+  <h3>下週預告:溶液與膠體(Ch.11)</h3>
+  <ul>
+    <li>溶解過程與「相似者相溶」、濃度單位總整理(M、m、X、質量%)</li>
+    <li>依數性質:蒸氣壓下降、沸點上升、凝固點下降、滲透壓</li>
+  </ul>
+  <p class="small center" style="margin-top:20px">操作提示:← → 或空白鍵翻頁|Home/End 跳至首末頁|Ctrl+P 可列印成講義</p>
+</section>
+</div></div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const DECK_INFO='普通化學(一)|新課綱 第 11 週:分子間作用力與相變';
+let cur=0;
+slides.forEach((s,i)=>{
+  const f=document.createElement('div');f.className='foot';
+  f.innerHTML='<span>'+DECK_INFO+'</span><span>'+(i+1)+' / '+slides.length+'</span>';
+  s.appendChild(f);
+});
+slides.forEach(s=>{
+  const sol=s.querySelector('.sol');
+  if(!sol)return;
+  const hint=document.createElement('div');hint.className='sol-hint';
+  hint.innerHTML='<span class="kbd">空白鍵</span><span>先自己想／算，準備好再顯示解答</span>';
+  sol.insertAdjacentElement('beforebegin',hint);
+});
+function show(n){
+  cur=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,i)=>{s.classList.toggle('active',i===cur);s.classList.remove('reveal');});
+  document.getElementById('bar').style.width=((cur+1)/slides.length*100)+'%';
+  location.hash=cur+1;
+}
+function next(){
+  const s=slides[cur];
+  if(s.querySelector('.sol')&&!s.classList.contains('reveal')){s.classList.add('reveal');return;}
+  show(cur+1);
+}
+function prev(){
+  const s=slides[cur];
+  if(s.classList.contains('reveal')){s.classList.remove('reveal');return;}
+  show(cur-1);
+}
+function fit(){
+  const s=Math.min(innerWidth/1280,innerHeight/720);
+  document.getElementById('deck').style.transform='scale('+s+')';
+}
+addEventListener('resize',fit);
+addEventListener('keydown',e=>{
+  if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();next();}
+  else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev();}
+  else if(e.key==='Home')show(0);
+  else if(e.key==='End')show(slides.length-1);
+});
+addEventListener('click',e=>{
+  if(e.target.closest('a'))return;
+  (e.clientX>innerWidth/3)?next():prev();
+});
+let tx=null;
+addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+addEventListener('touchend',e=>{
+  if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;
+  if(dx<-40)next();else if(dx>40)prev();tx=null;
+});
+fit();
+show(parseInt(location.hash.slice(1))-1||0);
+</script>
+</body>
+</html>

@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第2週:原子、分子與離子|普通化學(一)</title>
+<style>
+:root{
+  --primary:#1a5276; --primary-dark:#12395a; --accent:#a04c08; --teal:#117a65;
+  --ink:#2c3e50; --muted:#5a6a6b; --bg:#eceff3; --card:#ffffff;
+  --def-bg:#eaf2f8; --key-bg:#fef9e7; --ex-bg:#e8f8f5; --warn-bg:#fdedec;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC","Heiti TC",sans-serif;color:var(--ink)}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#deck{position:relative;width:1280px;height:720px;transform-origin:center center}
+.slide{position:absolute;inset:0;width:1280px;height:720px;background:var(--card);padding:56px 72px 70px;display:none;flex-direction:column;border-top:10px solid var(--primary);overflow:hidden}
+.slide.active{display:flex}
+.slide h2{font-size:36px;color:var(--primary);border-bottom:3px solid var(--accent);padding-bottom:10px;margin-bottom:26px;font-weight:700}
+.slide h2 .en{display:block;font-size:19px;color:var(--muted);font-weight:400;margin-top:4px}
+.slide h3{font-size:26px;color:var(--primary);margin:12px 0 8px}
+.slide p{font-size:24px;line-height:1.55;margin:8px 0}
+.slide ul,.slide ol{font-size:24px;line-height:1.6;margin:8px 0 8px 34px}
+.slide li{margin:7px 0}
+.slide li li{font-size:22px;margin:4px 0}
+.en{color:var(--muted);font-size:.82em}
+.small{font-size:19px;color:var(--muted)}
+.big{font-size:30px}
+.center{text-align:center}
+.hl{color:var(--accent);font-weight:700}
+.hlb{color:var(--primary);font-weight:700}
+.two-col{display:flex;gap:32px;align-items:flex-start}
+.two-col>div{flex:1}
+.box{border-radius:10px;padding:16px 22px;margin:14px 0;font-size:23px;line-height:1.55}
+.def{background:var(--def-bg);border-left:6px solid var(--primary)}
+.key{background:var(--key-bg);border-left:6px solid #f1c40f}
+.warn{background:var(--warn-bg);border-left:6px solid #e74c3c}
+.exbox{background:var(--ex-bg);border-left:6px solid var(--teal)}
+.box .tag{display:inline-block;font-size:17px;font-weight:700;color:#fff;border-radius:5px;padding:2px 10px;margin-bottom:6px}
+.def .tag{background:var(--primary)} .key .tag{background:#8a6d00} .warn .tag{background:#c0392b} .exbox .tag{background:var(--teal)}
+.sol{border-top:2px dashed var(--teal);margin-top:12px;padding-top:10px}
+/* ── 形成性評量：解答兩段式揭露 ───────────────────────── */
+.slide.active .sol{display:none}
+.slide.active.reveal .sol{display:block}
+.sol-hint{margin-top:12px;padding-top:10px;border-top:2px dashed #b9c6c6;font-size:19px;color:#5d6d6e;display:flex;align-items:center;gap:10px}
+.slide.active.reveal .sol-hint{display:none}
+.sol-hint .kbd{display:inline-block;border:1px solid #aab7b8;border-bottom-width:2px;border-radius:5px;padding:1px 9px;font-size:17px;background:#fff;color:#34495e}
+/* ── 隨堂快問 ─────────────────────────────────────────── */
+.slide.quiz{border-top-color:var(--teal)}
+.slide.quiz h2{margin-bottom:14px}
+.slide.quiz h2{color:#0e6655;border-bottom-color:var(--teal)}
+.qbar{background:#e8f8f5;border-left:6px solid var(--teal);border-radius:8px;padding:5px 16px;font-size:18px;color:#0e6655;margin-bottom:4px}
+.q{margin:4px 0;font-size:21px;line-height:1.28}
+.q .qn{display:inline-block;min-width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;background:var(--teal);color:#fff;font-size:16px;font-weight:700;margin-right:7px}
+.opt{display:inline-block;border:1.5px solid #a2d5cd;background:#f2fbf9;color:#0e6655;border-radius:14px;padding:0 11px;margin:1px 4px 1px 0;font-size:19px}
+.quiz .sol{margin-top:5px;padding-top:5px;font-size:18px;line-height:1.26}
+.quiz .sol .ans{color:#c0392b;font-weight:700}
+.quiz .sol .row{margin:3px 0}
+.quiz .sol .row+.row{border-top:1px solid #e5eceb;padding-top:3px}
+.quiz .sol .myth{display:block;font-size:16px;color:#5d6d6e;margin:1px 0 0 0;line-height:1.24}
+@media print{
+  .sol{display:block!important}
+  .sol-hint{display:none!important}
+}
+.eq{text-align:center;font-size:28px;margin:14px 0;font-family:Cambria,"Times New Roman",serif}
+table{border-collapse:collapse;margin:12px auto;font-size:21px;width:100%}
+th{background:var(--primary);color:#fff;padding:8px 12px;font-weight:600}
+td{border:1px solid #d5dbdb;padding:7px 12px;text-align:center}
+tr:nth-child(even) td{background:#f4f6f7}
+.cover{background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 55%,var(--teal) 100%);border-top:none;color:#fff;justify-content:center;align-items:center;text-align:center}
+.cover h1{font-size:58px;letter-spacing:4px;margin-bottom:10px}
+.cover .sub{font-size:30px;opacity:.92;margin:6px 0}
+.cover .en-title{font-size:24px;opacity:.75;margin-bottom:34px}
+.cover .meta{font-size:20px;opacity:.7;margin-top:40px}
+.cover .rule{width:220px;height:4px;background:#f7b955;margin:26px auto}
+.divider{background:linear-gradient(120deg,var(--primary-dark),var(--primary));border-top:none;color:#fff;justify-content:center}
+.divider .secnum{font-size:26px;color:#f7b955;font-weight:700;letter-spacing:2px;margin-bottom:14px}
+.divider h1{font-size:52px;margin-bottom:12px}
+.divider .en-sub{font-size:26px;opacity:.75}
+.divider .items{margin-top:36px;font-size:23px;opacity:.9;line-height:2}
+.foot{position:absolute;left:0;right:0;bottom:0;height:32px;display:flex;justify-content:space-between;align-items:center;padding:0 28px;font-size:14px;color:#5d6d6e;background:#fafbfc;border-top:1px solid #e5e8e8}
+.cover .foot,.divider .foot{background:rgba(0,0,0,.15);color:rgba(255,255,255,.65);border-top:none}
+#bar{position:fixed;top:0;left:0;height:5px;background:var(--accent);width:0;z-index:10;transition:width .2s}
+.flow{display:flex;flex-direction:column;align-items:center;gap:6px}
+.fbox{border:2px solid var(--primary);border-radius:8px;padding:8px 20px;font-size:21px;background:var(--def-bg);text-align:center}
+.frow{display:flex;gap:60px;justify-content:center}
+.arrow{font-size:22px;color:var(--accent)}
+.chip{display:inline-block;background:var(--def-bg);border:1px solid var(--primary);color:var(--primary);border-radius:16px;padding:2px 14px;margin:3px;font-size:20px}
+/* ── 因次分析鐵軌格 ───────────────────────────────────── */
+.rail{border-collapse:collapse;margin:10px auto 6px;font-size:23px}
+.rail td{border:none;padding:5px 20px;text-align:center;background:none;vertical-align:middle}
+.rail td+td{border-left:2px solid var(--muted)}
+.rail tr:first-child td{border-bottom:3px solid var(--ink)}
+.rail td.res{border-left:none;padding-left:14px;font-weight:700;color:var(--accent);font-size:25px}
+.rail tr:first-child td.res{border-bottom:none}
+.rail .bk{display:inline-block;min-width:104px;border-bottom:3px dashed var(--accent);height:27px;vertical-align:-4px}
+.rail .gv{background:var(--def-bg)}
+.railnote{text-align:center;font-size:18px;color:var(--muted);margin-top:2px}
+.fig{display:block;margin:6px auto;flex-shrink:0}
+/* ── 錨點回收頁 ───────────────────────────────────────── */
+.slide.hookback{border-top-color:var(--teal)}
+.slide.hookback h2{color:#0e6655;border-bottom-color:var(--teal)}
+.recall{background:#f4f6f7;border-left:5px solid #95a5a6;border-radius:8px;padding:7px 18px;
+        font-size:20px;line-height:1.34;color:#5d6d6e;margin:0 0 10px}
+.recall b{color:#34495e}
+.ansbox{background:#e8f8f5;border-left:6px solid var(--teal);border-radius:9px;padding:10px 20px;margin:0 0 10px}
+.ansbox h3{font-size:20px;color:#0e6655;margin:0 0 5px}
+.ansbox ul{margin:0 0 0 20px;font-size:19.5px;line-height:1.4}
+.ansbox li{margin:5px 0}
+.lens{background:var(--key-bg);border-left:6px solid #d4a70a;border-radius:9px;padding:10px 20px;
+      font-size:20px;line-height:1.38;margin-bottom:9px}
+.lens .lt{display:block;font-size:16px;font-weight:700;color:#8a6d00;letter-spacing:1px;margin-bottom:2px}
+.nextup{background:#eaf2f8;border-left:5px solid var(--primary);border-radius:8px;padding:8px 18px;
+        font-size:18.5px;line-height:1.4;color:#34495e}
+.nextup .course{display:inline-block;background:#fff;border:1px solid #a2d5cd;color:#0e6655;
+                border-radius:11px;padding:0 8px;font-size:16px;margin-right:4px}
+
+/* ── 食品營養錨點頁 ───────────────────────────────────── */
+.slide.hook{border-top-color:var(--accent)}
+.slide.hook h2{color:#a05000;border-bottom-color:var(--accent)}
+.bigq{background:linear-gradient(100deg,#fff5ea,#fdf0e0);border-left:8px solid var(--accent);border-radius:10px;
+      padding:14px 22px;font-size:26px;line-height:1.4;color:#7a3d00;font-weight:700;margin:4px 0 12px}
+.bigq .qmark{font-size:30px;margin-right:6px}
+.hookcols{display:flex;gap:22px;align-items:stretch;margin-top:4px}
+.hookcols>div{flex:1;border-radius:9px;padding:11px 16px}
+.hk-now{background:#eaf2f8;border-left:5px solid var(--primary)}
+.hk-next{background:#e8f8f5;border-left:5px solid var(--teal)}
+.hookcols h3{font-size:20px;margin:0 0 6px}
+.hk-now h3{color:var(--primary)} .hk-next h3{color:#0e6655}
+.hookcols ul{font-size:19px;line-height:1.4;margin:0 0 0 20px}
+.hookcols li{margin:4px 0}
+.hookcols .course{display:inline-block;background:#fff;border:1px solid #a2d5cd;color:#0e6655;
+                  border-radius:11px;padding:0 8px;font-size:16px;margin-right:4px}
+.canyou{background:var(--key-bg);border-left:6px solid #d4a70a;border-radius:9px;padding:10px 18px;
+        font-size:20px;line-height:1.4;margin-top:12px}
+.canyou b{color:#8a6d00}
+.hookmap{font-size:19px;line-height:1.5}
+.hookmap td{text-align:left;padding:5px 10px}
+.hookmap td:first-child{text-align:center;font-weight:700;color:var(--accent);width:62px}
+@media print{
+  @page{size:1280px 720px;margin:0}
+  html,body{background:#fff}
+  #stage{position:static}
+  #deck{width:auto;height:auto;transform:none!important}
+  .slide{position:relative;display:flex!important;page-break-after:always;margin:0;inset:auto}
+  #bar{display:none}
+}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="stage"><div id="deck">
+
+<!-- 1 -->
+<section class="slide cover">
+  <h1>普通化學(一)</h1>
+  <div class="en-title">General Chemistry I</div>
+  <div class="rule"></div>
+  <div class="sub">第 2 週:原子、分子與離子</div>
+  <div class="sub">原子理論的建立與化學命名</div>
+  <div class="en-title" style="margin-top:8px">Atoms, Molecules, and Ions</div>
+  <div class="meta">對應教材:OpenStax Chemistry 2e — Chapter 2</div>
+</section>
+
+<!-- 2 -->
+<section class="slide">
+  <h2>本週學習目標 <span class="en">Learning Objectives</span></h2>
+  <ul>
+    <li>敘述質量守恆、定比、倍比三大基本定律與道耳頓原子說</li>
+    <li>了解電子、原子核的發現實驗(Thomson、Millikan、Rutherford)</li>
+    <li>能由核種符號求質子、中子、電子數;理解同位素與平均原子量</li>
+    <li>認識週期表的架構:族、週期、金屬/非金屬/類金屬與主族名稱</li>
+    <li>熟記常見多原子離子,能區分離子化合物與分子化合物</li>
+    <li>掌握離子化合物、二元分子化合物、酸與水合物的命名規則</li>
+  </ul>
+  <div class="box key"><span class="tag">本週重點</span>多原子離子與命名規則是之後寫化學反應式的基礎,務必背熟!</div>
+</section>
+
+<!-- 3 -->
+<section class="slide hook">
+  <h2>第 2 週·食品營養錨點：兩瓶鈣片都寫 1000 mg，補到的鈣一樣多嗎？ <span class="en">Anchor Question</span></h2>
+  <div class="bigq"><span class="qmark">?</span>架上兩瓶鈣片都標「每錠 <b>1000 mg</b>」，一瓶是<b>碳酸鈣</b>、一瓶是<b>檸檬酸鈣</b>。吃下去補到的鈣一樣多嗎？</div>
+  <div class="hookcols">
+    <div class="hk-now"><h3>這一週要用到的化學</h3><ul><li>原子與離子、化學式</li><li>原子量與化學式量</li><li>離子化合物的命名</li><li>週期表與主族離子電荷</li></ul></div>
+    <div class="hk-next"><h3>之後在哪裡會再遇到</h3><ul><li><span class="course">營養學</span>礦物質的生體可用率、補充劑判讀</li><li><span class="course">食品化學</span>營養強化劑的選用</li><li><span class="course">分析化學</span>以化學式推算元素含量</li></ul></div>
+  </div>
+  <div class="canyou"><b>本週結束時，你應該能回答：</b>看到一張補充劑標示，你能自己算出真正補到多少元素礦物質。</div><div class="canyou" style="background:#f4f6f7;border-left-color:#95a5a6"><b>先猜猜看：</b>差多少？(a) 一樣 (b) 差 1.7 倍 (c) 差 4 倍 —— 而葡萄糖酸鈣又是多少？</div>
+</section>
+
+<!-- 4 -->
+<section class="slide divider">
+  <div class="secnum">PART 2.1</div>
+  <h1>化學基本定律與道耳頓原子說</h1>
+  <div class="en-sub">Fundamental Laws and Dalton's Atomic Theory</div>
+  <div class="items">質量守恆定律・定比定律・倍比定律・道耳頓原子說</div>
+</section>
+
+<!-- 5 -->
+<section class="slide">
+  <h2>質量守恆定律 <span class="en">Law of Conservation of Mass</span></h2>
+  <div class="box def"><span class="tag">定義</span>化學反應中,<b>反應物的總質量 = 生成物的總質量</b>;物質不會無中生有,也不會憑空消失。(Lavoisier,1789)</div>
+  <ul>
+    <li>拉瓦節 (Lavoisier) 以密閉容器精確稱量,推翻「燃素說」</li>
+    <li>微觀解釋:反應只是<span class="hl">原子的重新排列</span>,原子種類與數目不變</li>
+    <li>應用:平衡化學反應式(第 4 週)的理論根據</li>
+  </ul>
+  <div class="box exbox"><span class="tag">情境</span>10.0 g 汞加熱與 0.8 g 氧完全化合,生成氧化汞的質量必為 10.8 g。</div>
+</section>
+
+<!-- 6 -->
+<section class="slide">
+  <h2>定比定律 <span class="en">Law of Definite Proportions</span></h2>
+  <div class="box def"><span class="tag">定義</span>同一化合物不論來源或製備方法為何,其<b>組成元素的質量比恆為定值</b>。(Proust,1799)</div>
+  <ul>
+    <li>例:水 (H<sub>2</sub>O) 不論取自雨水、海水蒸餾或氫氣燃燒,氫:氧質量比恆為 1 : 8</li>
+    <li>又稱「定組成定律 (law of constant composition)」</li>
+    <li>意義:化合物有<span class="hlb">固定的化學式</span>,與混合物不同</li>
+  </ul>
+</section>
+
+<!-- 7 -->
+<section class="slide">
+  <h2>倍比定律 <span class="en">Law of Multiple Proportions</span></h2>
+  <div class="box def"><span class="tag">定義</span>當兩元素可形成多種化合物時,<b>固定其中一元素的質量</b>,另一元素在各化合物中的質量比為<b>簡單整數比</b>。(Dalton,1803)</div>
+  <ul>
+    <li>例:碳與氧可形成 CO 與 CO<sub>2</sub>,同量碳所結合的氧質量比為 1 : 2</li>
+    <li>倍比定律是道耳頓提出原子說的重要證據之一</li>
+  </ul>
+  <div class="box key"><span class="tag">重點</span>定比定律談「同一化合物」;倍比定律談「兩種以上化合物」— 別混淆!</div>
+</section>
+
+<!-- 8 -->
+<section class="slide">
+  <h2>例題 1:倍比定律 <span class="en">Example 1</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>碳的兩種氧化物中,化合物 A 每 1.000 g 碳結合 1.333 g 氧;化合物 B 每 1.000 g 碳結合 2.667 g 氧。驗證倍比定律,並推測兩化合物為何。
+  <div class="sol"><b>解:</b><br>
+  固定碳質量為 1.000 g,比較兩化合物中氧的質量:<br>
+  氧質量比 = 2.667 g ÷ 1.333 g = <span class="hl">2.001 ≈ 2 : 1</span>(簡單整數比)✓ 符合倍比定律<br>
+  同量碳結合的氧為 1 : 2 → A 為 <span class="hl">CO</span>(一氧化碳)、B 為 <span class="hl">CO<sub>2</sub></span>(二氧化碳)。</div></div>
+</section>
+
+<!-- 9 -->
+<section class="slide">
+  <h2>道耳頓原子說 <span class="en">Dalton's Atomic Theory (1803)</span></h2>
+  <ol>
+    <li>物質由不可分割的微小粒子<b>原子 (atom)</b> 組成</li>
+    <li>同一元素的原子性質與質量<b>完全相同</b>;不同元素的原子則不同</li>
+    <li>化合物是不同元素的原子以<b>簡單整數比</b>結合而成</li>
+    <li>化學反應只是原子的<b>重新排列</b>,原子不會產生、消滅或變成別種原子</li>
+  </ol>
+  <div class="box key"><span class="tag">重點</span>此學說能同時解釋質量守恆(第 4 點)、定比與倍比定律(第 3 點)。</div>
+</section>
+
+<!-- 10 -->
+<section class="slide">
+  <h2>道耳頓原子說的現代修正 <span class="en">Modern Revisions</span></h2>
+  <table>
+    <tr><th>道耳頓原說</th><th>現代修正</th></tr>
+    <tr><td>原子不可再分割</td><td>原子由質子、中子、電子組成;核反應可再分</td></tr>
+    <tr><td>同元素原子質量皆相同</td><td>存在<b>同位素 (isotopes)</b>,質量不同</td></tr>
+    <tr><td>原子不會變成別種原子</td><td>核反應(放射性衰變)中原子可轉變</td></tr>
+    <tr><td>化合物為簡單整數比</td><td>大致正確;巨型分子比例可極複雜</td></tr>
+  </table>
+  <p class="small">科學理論隨新證據修正,但道耳頓原子說仍是化學計量的基石。</p>
+</section>
+
+<!-- 11 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ①:基本定律與原子說 <span class="en">Quick Check 1</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>水電解得到氫與氧,總質量比電解前<b>少了</b> 0.01 g。最可能的原因是?<br><span class="opt">A 質量守恆不適用於電解</span><span class="opt">B 有氣體逸散未收集到</span><span class="opt">C 電子有質量,被消耗掉了</span><span class="opt">D 水變成能量了</span></div>
+  <div class="q"><span class="qn">2</span>CO 與 CO<sub>2</sub> 中,固定 1 g 碳所結合的氧質量比為 1 : 2。這說明哪一個定律?<br><span class="opt">A 質量守恆定律</span><span class="opt">B 定比定律</span><span class="opt">C 倍比定律</span><span class="opt">D 亞佛加厥定律</span></div>
+  <div class="q"><span class="qn">3</span>道耳頓說「原子不可再分割」。<b>這句話現在還對嗎?</b>請說明哪一部分被修正了、哪一部分仍然成立。</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B</span> — 氣體逸散是最常見的實驗損失。<span class="myth">選 A 的同學把「實驗量不到」當成「定律不成立」。質量守恆是封閉系統的敘述 —— <b>沒有密閉,就不算檢驗過它</b>。選 C 的量級也不對:電子質量只有質子的 1/1836。</span></div><div class="row"><span class="ans">2. C</span> — 倍比定律講的是<b>兩種化合物之間</b>的小整數比。<span class="myth">選 B 是最常見的混淆:<b>定比</b>講「同一化合物組成永遠固定」,<b>倍比</b>講「同兩元素形成的不同化合物之間成小整數比」。看到「兩個化合物比較」就是倍比。</span></div><div class="row"><span class="ans">3. 部分被修正</span> — <b>被修正的:</b>原子可再分割(質子、中子、電子);同一元素的原子質量<b>不一定相同</b>(同位素);核反應中元素可以轉變。<br><b>仍成立的:</b>化合物由固定比例的原子組成、化學反應只是原子的重新排列。<span class="myth">重點不是背哪幾條被推翻,而是理解:<b>一個模型被修正,不代表它當初沒有價值</b> —— 道耳頓的核心(原子重排)至今仍是所有化學計量的基礎。</span></div></div>
+</section>
+<!-- 12 -->
+<section class="slide divider">
+  <div class="secnum">PART 2.2</div>
+  <h1>原子結構的發現</h1>
+  <div class="en-sub">Discovery of Atomic Structure</div>
+  <div class="items">陰極射線與電子・油滴實驗・金箔實驗與核原子模型</div>
+</section>
+
+<!-- 13 -->
+<section class="slide">
+  <h2>電子的發現:陰極射線 <span class="en">Thomson &amp; Cathode Rays (1897)</span></h2>
+  <ul>
+    <li>湯姆森 (J. J. Thomson) 研究<b>陰極射線管 (cathode ray tube)</b>:低壓氣體放電時,由陰極射出的射線</li>
+    <li>射線在<span class="hlb">電場與磁場中偏折</span>,偏向正極 → 帶<b>負電</b>的粒子流</li>
+    <li>不論電極材料或管內氣體為何,粒子性質都相同 → 電子是<span class="hl">所有原子共有的組成粒子</span></li>
+    <li>測得電荷/質量比:e/m = −1.759 × 10<sup>8</sup> C/g</li>
+    <li>Thomson 據此提出<b>葡萄乾布丁模型 (plum pudding model)</b>:電子散布在一團均勻正電荷中,整體電中性</li>
+  </ul>
+  <div class="box def"><span class="tag">定義</span><b>電子 (electron)</b>:帶一單位負電荷、質量極小的次原子粒子,為所有原子共有。</div>
+</section>
+
+<!-- 14 -->
+<section class="slide">
+  <h2>密立坎油滴實驗 <span class="en">Millikan's Oil Drop Experiment (1909)</span></h2>
+  <ul>
+    <li>讓帶電油滴懸浮於電場中,由<b>電力與重力平衡</b>求出油滴所帶電荷</li>
+    <li>發現所有油滴電荷皆為某一最小值的<b>整數倍</b> → 該值即單一電子的電荷</li>
+    <li>電子電荷 e = <span class="hl">−1.602 × 10<sup>−19</sup> C</span>(基本電荷)</li>
+  </ul>
+  <div class="box exbox"><span class="tag">例題</span>由 Millikan 的 e 與 Thomson 的 e/m = −1.759 × 10<sup>8</sup> C/g,求電子質量。
+  <div class="sol"><b>解:</b>m = e ÷ (e/m) = (−1.602 × 10<sup>−19</sup> C) ÷ (−1.759 × 10<sup>8</sup> C/g)<br>
+  = <span class="hl">9.107 × 10<sup>−28</sup> g</span> — 約為<b>質子</b>質量的 1/1836(氫原子則為 1/1837),電子確實極輕!</div></div>
+</section>
+
+<!-- 15 -->
+<section class="slide">
+  <h2>拉塞福金箔實驗 <span class="en">Rutherford's Gold Foil Experiment (1911)</span></h2>
+  <ul>
+    <li>以帶正電的 <b>α 粒子 (alpha particles)</b> 撞擊極薄金箔,觀察散射情形</li>
+    <li>結果一:<span class="hlb">絕大多數 α 粒子直接穿過</span> → 原子內部大多是空的</li>
+    <li>結果二:<span class="hlb">極少數大角度偏折甚至反彈</span>(約兩萬分之一)→ 正電荷與質量集中在極小區域</li>
+  </ul>
+  <div class="box key"><span class="tag">重點</span>Rutherford:「這就像用 15 吋砲彈打一張衛生紙,砲彈卻被彈回來!」— 葡萄乾布丁模型無法解釋此結果。</div>
+<svg class="fig" role="img" aria-labelledby="w02f1-t w02f1-d" width="1000" height="200" viewBox="0 0 1000 200" xmlns="http://www.w3.org/2000/svg">
+        <title id="w02f1-t">拉塞福金箔實驗</title>
+        <desc id="w02f1-d">α 粒子束射向金箔。絕大多數直線穿透，少數發生小角度偏折，極少數被原子核彈回近 180 度，顯示原子質量集中於極小的帶正電核心。</desc>
+        <defs><marker id="w02f1-a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#117a65"/></marker><marker id="w02f1-a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a04c08"/></marker><marker id="w02f1-a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c0392b"/></marker></defs>
+        <rect x="276" y="26" width="12" height="140" fill="#f5b041" rx="3" stroke="#b9770e" stroke-width="2"/>
+        <text x="282" y="186" font-size="17" fill="#5a6a6b" text-anchor="middle">金箔</text>
+        <rect x="34" y="84" width="78" height="34" fill="#eaf2f8" rx="6" stroke="#1f5f8b" stroke-width="2"/>
+        <text x="73" y="106" font-size="18" fill="#1f5f8b" text-anchor="middle" font-weight="700">α 源</text>
+        <line x1="116" y1="92" x2="272" y2="92" stroke="#117a65" stroke-width="2.2" marker-end="url(#w02f1-a1)" stroke-linecap="round"/>
+        <line x1="292" y1="92" x2="430" y2="92" stroke="#117a65" stroke-width="2.2" marker-end="url(#w02f1-a1)" stroke-linecap="round"/>
+        <line x1="116" y1="104" x2="272" y2="104" stroke="#117a65" stroke-width="2.2" marker-end="url(#w02f1-a1)" stroke-linecap="round"/>
+        <line x1="292" y1="104" x2="430" y2="104" stroke="#117a65" stroke-width="2.2" marker-end="url(#w02f1-a1)" stroke-linecap="round"/>
+        <line x1="116" y1="116" x2="272" y2="116" stroke="#117a65" stroke-width="2.2" marker-end="url(#w02f1-a1)" stroke-linecap="round"/>
+        <line x1="292" y1="116" x2="430" y2="116" stroke="#117a65" stroke-width="2.2" marker-end="url(#w02f1-a1)" stroke-linecap="round"/>
+        <text x="442" y="100" font-size="18" fill="#117a65" text-anchor="start" font-weight="700">絕大多數直線穿透 → 原子內部大部分是空的</text>
+        <line x1="116" y1="66" x2="272" y2="66" stroke="#a04c08" stroke-width="2.2" marker-end="url(#w02f1-a2)" stroke-linecap="round"/>
+        <line x1="292" y1="64" x2="424" y2="34" stroke="#a04c08" stroke-width="2.2" marker-end="url(#w02f1-a2)" stroke-linecap="round"/>
+        <text x="438" y="36" font-size="17" fill="#a04c08" text-anchor="start" font-weight="700">少數小角度偏折</text>
+        <line x1="116" y1="142" x2="270" y2="142" stroke="#c0392b" stroke-width="2.4" marker-end="url(#w02f1-a3)" stroke-linecap="round"/>
+        <path d="M270,142 C238,158 186,162 148,158" fill="none" stroke="#c0392b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="154" y1="158" x2="142" y2="157" stroke="#c0392b" stroke-width="2.4" marker-end="url(#w02f1-a3)"/>
+        <circle cx="282" cy="142" r="5.5" fill="#c0392b"/>
+        <text x="442" y="150" font-size="18" fill="#c0392b" text-anchor="start" font-weight="700">極少數幾乎原路彈回 → 質量與正電荷集中在極小的核</text>
+      </svg>
+</section>
+
+<!-- 16 -->
+<section class="slide">
+  <h2>核原子模型 <span class="en">Nuclear Model of the Atom</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>原子核 (nucleus)</b>:位於原子中心、帶正電且集中原子絕大部分質量的極小核心;電子分布於核外的廣大空間。</div>
+  <ul>
+    <li>原子直徑約 10<sup>−10</sup> m;原子核直徑約 10<sup>−15</sup> m(小十萬倍)</li>
+    <li>比喻:原子如巨蛋球場,原子核只是場中央的一顆彈珠</li>
+    <li>後續發現:質子 (proton, 1919)、中子 (neutron, Chadwick, 1932)</li>
+  </ul>
+</section>
+
+<!-- 17 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ②:原子結構的發現 <span class="en">Quick Check 2</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>拉塞福金箔實驗中,<b>極少數</b> α 粒子被大角度彈回。這個結果直接推翻了哪一個模型?<br><span class="opt">A 道耳頓實心球模型</span><span class="opt">B 湯木生葡萄乾布丁模型</span><span class="opt">C 波耳軌道模型</span><span class="opt">D 量子力學模型</span></div>
+  <div class="q"><span class="qn">2</span>下列哪一項<b>不是</b>湯木生陰極射線實驗得到的結論?<br><span class="opt">A 陰極射線帶負電</span><span class="opt">B 陰極射線的粒子存在於所有物質中</span><span class="opt">C 測得電子的電荷質量比 e/m</span><span class="opt">D 測得電子的電荷量</span></div>
+  <div class="q"><span class="qn">3</span>如果原子核只佔原子體積的極小部分,<b>為什麼固體摸起來是實心的?</b></div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B</span> — 布丁模型認為正電荷<b>均勻分散</b>,不可能產生大角度偏折。<span class="myth">選 A 的同學忽略了時序:道耳頓模型早已被電子的發現修正。選 C/D 是<b>後來</b>才提出的,不可能被更早的實驗推翻 —— <b>看到「推翻」就要先問時間順序</b>。</span></div><div class="row"><span class="ans">2. D</span> — 電荷量是<b>密立坎</b>油滴實驗測的;湯木生只測到 e/m。<span class="myth">這兩個實驗常被記混。口訣:<b>湯木生測比值、密立坎測電荷</b>,兩者相除才得到電子質量。少了任何一個都算不出來。</span></div><div class="row"><span class="ans">3. 因為電子雲之間的排斥</span> — 接觸的不是原子核,是<b>電子雲</b>。兩個原子靠近時,外層電子的靜電排斥(以及包立不相容)使它們無法互相穿過。<span class="myth">「原子內部大部分是空的」與「固體是實心的」不矛盾 —— <b>空的是質量分布,不是作用力分布</b>。這個區分在後面談分子間作用力時還會用到。</span></div></div>
+</section>
+<!-- 18 -->
+<section class="slide divider">
+  <div class="secnum">PART 2.3</div>
+  <h1>原子的組成與同位素</h1>
+  <div class="en-sub">Atomic Structure and Isotopes</div>
+  <div class="items">次原子粒子・原子序與質量數・同位素・平均原子量</div>
+</section>
+
+<!-- 19 -->
+<section class="slide">
+  <h2>次原子粒子的性質 <span class="en">Subatomic Particles</span></h2>
+  <table>
+    <tr><th>粒子</th><th>符號</th><th>位置</th><th>電荷</th><th>質量 (amu)</th></tr>
+    <tr><td>質子 proton</td><td>p<sup>+</sup></td><td>原子核內</td><td>+1</td><td>1.0073 ≈ 1</td></tr>
+    <tr><td>中子 neutron</td><td>n<sup>0</sup></td><td>原子核內</td><td>0</td><td>1.0087 ≈ 1</td></tr>
+    <tr><td>電子 electron</td><td>e<sup>−</sup></td><td>核外</td><td>−1</td><td>0.00055 ≈ 0</td></tr>
+  </table>
+  <div class="box key"><span class="tag">重點</span>質量集中在原子核(質子+中子);化學性質則由<span class="hl">核外電子</span>決定。中性原子:電子數 = 質子數。</div>
+</section>
+
+<!-- 20 -->
+<section class="slide">
+  <h2>原子序、質量數與核種符號 <span class="en">Atomic Number &amp; Mass Number</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>原子序 (atomic number) Z</b> = 質子數,決定元素種類。<br><b>質量數 (mass number) A</b> = 質子數 + 中子數。</div>
+  <div class="eq"><sup>A</sup><sub>Z</sub>X&nbsp;&nbsp;例:<sup>12</sup><sub>6</sub>C、<sup>35</sup><sub>17</sub>Cl、<sup>238</sup><sub>92</sub>U</div>
+  <ul>
+    <li>中子數 = A − Z</li>
+    <li>Z 與元素符號 X 重複,常省略:寫成 <sup>12</sup>C 或「碳-12」</li>
+    <li>離子:右上角標示電荷,如 <sup>24</sup>Mg<sup>2+</sup></li>
+  </ul>
+</section>
+
+<!-- 21 -->
+<section class="slide">
+  <h2>例題 2:核種符號 <span class="en">Example 2</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>寫出下列各粒子的質子數、中子數與電子數:<br>
+  (a) <sup>56</sup><sub>26</sub>Fe&nbsp;&nbsp;(b) <sup>56</sup>Fe<sup>3+</sup>&nbsp;&nbsp;(c) <sup>32</sup>S<sup>2−</sup>(S 的原子序為 16)
+  <div class="sol"><b>解:</b><br>
+  (a) 質子 = Z = <span class="hl">26</span>;中子 = A − Z = 56 − 26 = <span class="hl">30</span>;中性原子 → 電子 = <span class="hl">26</span><br>
+  (b) 質子 26、中子 30 不變;失去 3 個電子 → 電子 = 26 − 3 = <span class="hl">23</span><br>
+  (c) 質子 16;中子 = 32 − 16 = <span class="hl">16</span>;得到 2 個電子 → 電子 = 16 + 2 = <span class="hl">18</span></div></div>
+  <div class="box warn"><span class="tag">注意</span>形成離子時只有<b>電子數</b>改變,質子與中子數不變!</div>
+</section>
+
+<!-- 22 -->
+<section class="slide">
+  <h2>同位素 <span class="en">Isotopes</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>同位素 (isotopes)</b>:質子數相同(同一元素)、但<b>中子數不同</b>的原子,故質量數不同。</div>
+  <table>
+    <tr><th>氫的同位素</th><th>符號</th><th>質子</th><th>中子</th><th>天然豐度</th></tr>
+    <tr><td>氕(氫)protium</td><td><sup>1</sup>H</td><td>1</td><td>0</td><td>99.99%</td></tr>
+    <tr><td>氘 deuterium</td><td><sup>2</sup>H (D)</td><td>1</td><td>1</td><td>0.01%</td></tr>
+    <tr><td>氚 tritium</td><td><sup>3</sup>H (T)</td><td>1</td><td>2</td><td>微量(放射性)</td></tr>
+  </table>
+  <p>同位素的<span class="hlb">化學性質幾乎相同</span>(電子數相同),但質量與核性質不同。應用:碳-14 定年、醫學造影。</p>
+</section>
+
+<!-- 23 -->
+<section class="slide">
+  <h2>原子質量單位 <span class="en">Atomic Mass Unit (amu)</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>1 amu</b>(又寫作 u 或 Da)= 一個 <sup>12</sup>C 原子質量的 1/12。<br>1 amu = 1.6605 × 10<sup>−24</sup> g</div>
+  <ul>
+    <li>以 <sup>12</sup>C = 12 amu(精確值)為基準的<b>相對質量標度</b></li>
+    <li>質子、中子質量各約 1 amu,故原子質量 ≈ 質量數 A</li>
+    <li>例:<sup>1</sup>H = 1.0078 amu、<sup>16</sup>O = 15.9949 amu(接近但不等於整數)</li>
+  </ul>
+</section>
+
+<!-- 24 -->
+<section class="slide">
+  <h2>平均原子量 <span class="en">Average Atomic Mass</span></h2>
+  <div class="box def"><span class="tag">定義</span>週期表上的原子量是各同位素質量依<b>天然豐度 (natural abundance)</b> 加權的平均值。</div>
+  <div class="eq">平均原子量 = Σ(同位素質量 × 豐度分率)</div>
+  <ul>
+    <li>豐度以小數表示:75.77% → 0.7577</li>
+    <li>平均值必介於最輕與最重同位素質量之間,且<span class="hlb">靠近豐度最高者</span></li>
+    <li>因此週期表的原子量幾乎都不是整數</li>
+  </ul>
+</section>
+
+<!-- 25 -->
+<section class="slide">
+  <h2>例題 3:平均原子量計算 <span class="en">Example 3</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>氯有兩種穩定同位素:<sup>35</sup>Cl(34.969 amu,豐度 75.77%)與 <sup>37</sup>Cl(36.966 amu,豐度 24.23%)。求氯的平均原子量。
+  <div class="sol"><b>解:</b><br>
+  平均原子量 = (34.969 amu)(0.7577) + (36.966 amu)(0.2423)<br>
+  = 26.496 amu + 8.957 amu<br>
+  = <span class="hl">35.45 amu</span>(4 位有效數字)<br>
+  檢查:35.45 介於 34.97 與 36.97 之間,且較靠近豐度高的 <sup>35</sup>Cl ✓</div></div>
+</section>
+
+<!-- 26 -->
+<section class="slide">
+  <h2>例題 4:由平均原子量反推豐度 <span class="en">Example 4</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>銅的平均原子量為 63.55 amu,由 <sup>63</sup>Cu(62.930 amu)與 <sup>65</sup>Cu(64.928 amu)組成。求兩同位素的豐度。
+  <div class="sol"><b>解:</b>設 <sup>63</sup>Cu 豐度分率為 x,則 <sup>65</sup>Cu 為 (1 − x):<br>
+  62.930x + 64.928(1 − x) = 63.55<br>
+  64.928 − 1.998x = 63.55&nbsp;&nbsp;→&nbsp;&nbsp;1.998x = 1.378&nbsp;&nbsp;→&nbsp;&nbsp;x = 0.6897<br>
+  <sup>63</sup>Cu ≈ <span class="hl">69.0%</span>,<sup>65</sup>Cu ≈ <span class="hl">31.0%</span><br>
+  檢查:平均值靠近 <sup>63</sup>Cu → <sup>63</sup>Cu 豐度應較高 ✓</div></div>
+  <div class="box key"><span class="tag">技巧</span>兩種同位素時設 x 與 (1−x),一元一次方程式即可解。</div>
+</section>
+
+<!-- 27 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ③:同位素與平均原子量 <span class="en">Quick Check 3</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>下列何者互為<b>同位素</b>?<br><span class="opt">A <sup>12</sup>C 與 <sup>14</sup>N</span><span class="opt">B <sup>35</sup>Cl 與 <sup>37</sup>Cl</span><span class="opt">C O<sub>2</sub> 與 O<sub>3</sub></span><span class="opt">D Na 與 Na<sup>+</sup></span></div>
+  <div class="q"><span class="qn">2</span>銅有 <sup>63</sup>Cu(69.2%)與 <sup>65</sup>Cu(30.8%)。平均原子量最接近?<br><span class="opt">A 63.0</span><span class="opt">B 63.6</span><span class="opt">C 64.0</span><span class="opt">D 65.0</span></div>
+  <div class="q"><span class="qn">3</span>氯的平均原子量是 35.45。<b>有沒有任何一個氯原子的質量是 35.45 amu?</b>為什麼?</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B</span> — 同位素 = 質子數相同、<b>中子數不同</b>。<span class="myth">選 C 是同素異形體(同元素不同分子形式);選 D 是離子(電子數不同);選 A 連元素都不同。<b>固定動作:先看質子數是否相同。</b></span></div><div class="row"><span class="ans">2. B(63.6)</span> — 63×0.692 + 65×0.308 = 63.6。<span class="myth">選 C(64.0)的同學取了<b>算術平均</b>,忽略豐度加權。加權平均一定<b>偏向豐度大的那一邊</b> —— 63 的比例較高,所以答案必須小於 64。這個判斷不必計算就能排除 C、D。</span></div><div class="row"><span class="ans">3. 沒有</span> — 任何一個氯原子不是 <sup>35</sup>Cl(約 35 amu)就是 <sup>37</sup>Cl(約 37 amu),<b>沒有 35.45 的個體</b>。<span class="myth">35.45 是<b>整群原子</b>的加權平均,是統計量不是個體屬性。<b>把平均值誤當成個體性質</b>是很常見的推理錯誤 —— 就像「平均每戶 2.3 人」不代表有 0.3 個人。</span></div></div>
+</section>
+<!-- 28 -->
+<section class="slide divider">
+  <div class="secnum">PART 2.4</div>
+  <h1>週期表導覽</h1>
+  <div class="en-sub">Introduction to the Periodic Table</div>
+  <div class="items">族與週期・金屬/非金屬/類金屬・主族名稱</div>
+</section>
+
+<!-- 29 -->
+<section class="slide">
+  <h2>週期表的架構 <span class="en">Structure of the Periodic Table</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>族 (group)</b>:週期表的「直行」,共 18 族;同族元素化學性質相似。<br><b>週期 (period)</b>:週期表的「橫列」,共 7 週期。</div>
+  <ul>
+    <li>元素依<span class="hlb">原子序遞增</span>排列(Mendeleev 原以原子量排列,Moseley 修正)</li>
+    <li>1、2 族與 13–18 族:<b>主族元素 (main-group / representative elements)</b></li>
+    <li>3–12 族:<b>過渡金屬 (transition metals)</b>;下方兩列為鑭系、錒系</li>
+  </ul>
+</section>
+
+<!-- 30 -->
+<section class="slide">
+  <h2>金屬、非金屬與類金屬 <span class="en">Metals, Nonmetals, Metalloids</span></h2>
+  <table>
+    <tr><th></th><th>金屬 metal</th><th>非金屬 nonmetal</th><th>類金屬 metalloid</th></tr>
+    <tr><td>位置</td><td>週期表左方與中間</td><td>右上方</td><td>兩者交界階梯線上</td></tr>
+    <tr><td>性質</td><td>有光澤、導電導熱、可延展</td><td>多為氣體或脆性固體、絕緣</td><td>性質介於中間、半導體</td></tr>
+    <tr><td>成離子傾向</td><td>失電子成陽離子</td><td>得電子成陰離子</td><td>—</td></tr>
+    <tr><td>例子</td><td>Na、Fe、Cu、Au</td><td>O、N、Cl、S</td><td>B、Si、Ge、As、Sb、Te</td></tr>
+  </table>
+  <p class="small">氫 (H) 位於第 1 族,但屬非金屬,是特例。</p>
+</section>
+
+<!-- 31 -->
+<section class="slide">
+  <h2>重要主族的名稱 <span class="en">Names of Main Groups</span></h2>
+  <table>
+    <tr><th>族</th><th>名稱</th><th>英文</th><th>成員例</th><th>特性</th></tr>
+    <tr><td>1</td><td>鹼金屬</td><td>alkali metals</td><td>Li, Na, K</td><td>活性大,+1 離子</td></tr>
+    <tr><td>2</td><td>鹼土金屬</td><td>alkaline earth metals</td><td>Mg, Ca, Ba</td><td>+2 離子</td></tr>
+    <tr><td>16</td><td>硫族</td><td>chalcogens</td><td>O, S, Se</td><td>常 −2 離子</td></tr>
+    <tr><td>17</td><td>鹵素</td><td>halogens</td><td>F, Cl, Br, I</td><td>活性大,−1 離子</td></tr>
+    <tr><td>18</td><td>鈍氣(惰性氣體)</td><td>noble gases</td><td>He, Ne, Ar</td><td>極安定,不易反應</td></tr>
+  </table>
+  <div class="box key"><span class="tag">必背</span>族名與其常見離子電荷 — 是預測化學式的捷徑。</div>
+</section>
+
+<!-- 32 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ④:週期表的讀法 <span class="en">Quick Check 4</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>下列何者是<b>類金屬 (metalloid)</b>?<br><span class="opt">A Al</span><span class="opt">B Si</span><span class="opt">C S</span><span class="opt">D Ca</span></div>
+  <div class="q"><span class="qn">2</span>同一<b>族</b>(直行)的元素,下列何者最相似?<br><span class="opt">A 原子質量</span><span class="opt">B 原子半徑</span><span class="opt">C 價電子數與化學性質</span><span class="opt">D 中子數</span></div>
+  <div class="q"><span class="qn">3</span>鈉(第 1 族)與鎂(第 2 族)都是活潑金屬。<b>為什麼鈉更容易失去電子?</b>用價電子的角度說明。</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B(Si)</span> — 類金屬沿週期表的<b>階梯線</b>分布:B、Si、Ge、As、Sb、Te。<span class="myth">選 A 的同學把鋁當類金屬 —— 鋁是<b>金屬</b>,雖然位置靠近階梯線。這條線是「分界」不是「歸屬」,線的<b>左下是金屬、右上是非金屬</b>,只有壓在線上的那幾個才是類金屬。</span></div><div class="row"><span class="ans">2. C</span> — 同族 = 價電子數相同 → 化學性質相似,這正是週期表按族排列的理由。<span class="myth">選 A/B/D 都是<b>沿族遞變</b>而非相同的量。記住:<b>族看性質,週期看趨勢。</b></span></div><div class="row"><span class="ans">3. 因為鈉只需失去 1 個電子就達到八隅體</span> — Na 的價電子組態是 3s<sup>1</sup>,失去 1 個電子即成為 [Ne];Mg 是 3s<sup>2</sup>,要失去 2 個。<b>失去第二個電子需要更多能量</b>(逐級游離能遞增)。<span class="myth">此題預告第 8 週的<b>游離能</b>。若學生答「因為鈉比較活潑」,那是把現象當成解釋 —— 要問的是<b>為什麼</b>活潑。</span></div></div>
+</section>
+<!-- 33 -->
+<section class="slide divider">
+  <div class="secnum">PART 2.5</div>
+  <h1>分子、離子與化學式</h1>
+  <div class="en-sub">Molecules, Ions, and Chemical Formulas</div>
+  <div class="items">陽離子與陰離子・多原子離子・分子式/實驗式/結構式</div>
+</section>
+
+<!-- 34 -->
+<section class="slide">
+  <h2>離子的形成 <span class="en">Formation of Ions</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>陽離子 (cation)</b>:原子<b>失去</b>電子後帶正電,如 Na → Na<sup>+</sup> + e<sup>−</sup>。<br><b>陰離子 (anion)</b>:原子<b>獲得</b>電子後帶負電,如 Cl + e<sup>−</sup> → Cl<sup>−</sup>。</div>
+  <ul>
+    <li>金屬傾向失電子 → 陽離子;非金屬傾向得電子 → 陰離子</li>
+    <li>驅動力:達到與最近鈍氣相同的<span class="hlb">安定電子組態</span></li>
+    <li>單原子陰離子命名:字尾改 -ide(chloride、oxide、nitride)</li>
+  </ul>
+</section>
+
+<!-- 35 -->
+<section class="slide">
+  <h2>單原子離子電荷與族的關係 <span class="en">Charges and Groups</span></h2>
+  <table>
+    <tr><th>族</th><th>1</th><th>2</th><th>13</th><th>15</th><th>16</th><th>17</th></tr>
+    <tr><td>常見離子電荷</td><td>+1</td><td>+2</td><td>+3</td><td>−3</td><td>−2</td><td>−1</td></tr>
+    <tr><td>例子</td><td>Na<sup>+</sup>, K<sup>+</sup></td><td>Mg<sup>2+</sup>, Ca<sup>2+</sup></td><td>Al<sup>3+</sup></td><td>N<sup>3−</sup>, P<sup>3−</sup></td><td>O<sup>2−</sup>, S<sup>2−</sup></td><td>F<sup>−</sup>, Cl<sup>−</sup></td></tr>
+  </table>
+  <div class="box key"><span class="tag">重點</span>主族離子電荷可由族數直接預測;<b>過渡金屬</b>(如 Fe<sup>2+</sup>/Fe<sup>3+</sup>、Cu<sup>+</sup>/Cu<sup>2+</sup>)常有多種電荷,無法由族數判斷。</div>
+</section>
+
+<!-- 36 -->
+<section class="slide">
+  <h2>常見多原子離子(必背) <span class="en">Common Polyatomic Ions</span></h2>
+  <table style="font-size:17px;line-height:1.15">
+    <tr><th>離子</th><th>名稱</th><th>離子</th><th>名稱</th></tr>
+    <tr><td>NH<sub>4</sub><sup>+</sup></td><td>銨 ammonium</td><td>OH<sup>−</sup></td><td>氫氧 hydroxide</td></tr>
+    <tr><td>NO<sub>3</sub><sup>−</sup></td><td>硝酸根 nitrate</td><td>NO<sub>2</sub><sup>−</sup></td><td>亞硝酸根 nitrite</td></tr>
+    <tr><td>SO<sub>4</sub><sup>2−</sup></td><td>硫酸根 sulfate</td><td>SO<sub>3</sub><sup>2−</sup></td><td>亞硫酸根 sulfite</td></tr>
+    <tr><td>CO<sub>3</sub><sup>2−</sup></td><td>碳酸根 carbonate</td><td>HCO<sub>3</sub><sup>−</sup></td><td>碳酸氫根 bicarbonate</td></tr>
+    <tr><td>PO<sub>4</sub><sup>3−</sup></td><td>磷酸根 phosphate</td><td>C<sub>2</sub>H<sub>3</sub>O<sub>2</sub><sup>−</sup></td><td>醋酸根 acetate</td></tr>
+    <tr><td>MnO<sub>4</sub><sup>−</sup></td><td>過錳酸根 permanganate</td><td>CN<sup>−</sup></td><td>氰根 cyanide</td></tr>
+    <tr><td>CrO<sub>4</sub><sup>2−</sup></td><td>鉻酸根 chromate</td><td>Cr<sub>2</sub>O<sub>7</sub><sup>2−</sup></td><td>重鉻酸根 dichromate</td></tr>
+  </table>
+  <div class="box warn" style="font-size:20px;margin:10px 0"><span class="tag">必背</span>-ate(某酸根)氧較多;-ite(亞某酸根)氧較少。這張表請務必熟記!</div>
+</section>
+
+<!-- 37 -->
+<section class="slide">
+  <h2>化學式的種類 <span class="en">Types of Chemical Formulas</span></h2>
+  <table>
+    <tr><th>種類</th><th>英文</th><th>意義</th><th>以過氧化氫為例</th></tr>
+    <tr><td>分子式</td><td>molecular formula</td><td>分子中各原子的<b>實際數目</b></td><td>H<sub>2</sub>O<sub>2</sub></td></tr>
+    <tr><td>實驗式</td><td>empirical formula</td><td>原子數的<b>最簡整數比</b></td><td>HO</td></tr>
+    <tr><td>結構式</td><td>structural formula</td><td>原子的<b>連接方式</b></td><td>H–O–O–H</td></tr>
+  </table>
+  <ul>
+    <li>離子化合物(如 NaCl)只寫實驗式 — 晶體中無獨立分子</li>
+    <li>分子式 = 實驗式 × n(n 為正整數)</li>
+  </ul>
+</section>
+
+<!-- 38 -->
+<section class="slide">
+  <h2>例題 5:分子式與實驗式 <span class="en">Example 5</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>寫出下列分子的實驗式:<br>
+  (a) 葡萄糖 C<sub>6</sub>H<sub>12</sub>O<sub>6</sub>&nbsp;&nbsp;(b) 苯 C<sub>6</sub>H<sub>6</sub>&nbsp;&nbsp;(c) 乙炔 C<sub>2</sub>H<sub>2</sub>&nbsp;&nbsp;(d) 水 H<sub>2</sub>O
+  <div class="sol"><b>解:</b>將各原子數除以最大公因數,化為最簡整數比:<br>
+  (a) 6:12:6 ÷ 6 → <span class="hl">CH<sub>2</sub>O</span><br>
+  (b) 6:6 ÷ 6 → <span class="hl">CH</span><br>
+  (c) 2:2 ÷ 2 → <span class="hl">CH</span>(與苯相同 — 實驗式相同不代表是同一物質!)<br>
+  (d) 2:1 已是最簡 → <span class="hl">H<sub>2</sub>O</span>(分子式 = 實驗式)</div></div>
+</section>
+
+<!-- 39 -->
+<section class="slide">
+  <h2>離子化合物 vs 分子化合物 <span class="en">Ionic vs. Molecular Compounds</span></h2>
+  <table>
+    <tr><th></th><th>離子化合物 ionic</th><th>分子化合物 molecular (covalent)</th></tr>
+    <tr><td>組成</td><td>金屬 + 非金屬(或含多原子離子)</td><td>非金屬 + 非金屬</td></tr>
+    <tr><td>結合方式</td><td>陰陽離子靜電吸引</td><td>共用電子(共價鍵)</td></tr>
+    <tr><td>例子</td><td>NaCl、CaCO<sub>3</sub>、NH<sub>4</sub>NO<sub>3</sub></td><td>H<sub>2</sub>O、CO<sub>2</sub>、CH<sub>4</sub></td></tr>
+    <tr><td>性質</td><td>高熔點固體、熔融或水溶可導電</td><td>熔沸點多較低</td></tr>
+  </table>
+  <div class="box key"><span class="tag">判斷訣竅</span>先看有無金屬或 NH<sub>4</sub><sup>+</sup>:有 → 多為離子化合物;全為非金屬 → 分子化合物。</div>
+</section>
+
+<!-- 40 -->
+<section class="slide">
+  <h2>離子化合物化學式的寫法 <span class="en">Writing Ionic Formulas</span></h2>
+  <ol>
+    <li>寫出陽離子與陰離子(含電荷)</li>
+    <li>取最小整數比使<span class="hlb">總電荷為零</span>(交叉法)</li>
+    <li>多原子離子需要下標時,加括號:Ca(NO<sub>3</sub>)<sub>2</sub></li>
+  </ol>
+  <div class="box exbox"><span class="tag">示範</span>Al<sup>3+</sup> 與 O<sup>2−</sup>:交叉電荷 → Al<sub>2</sub>O<sub>3</sub>(+6 − 6 = 0 ✓)<br>
+  NH<sub>4</sub><sup>+</sup> 與 SO<sub>4</sub><sup>2−</sup> → (NH<sub>4</sub>)<sub>2</sub>SO<sub>4</sub></div>
+  <div class="box warn"><span class="tag">注意</span>化學式中不寫出電荷;下標務必化為最簡比(離子化合物),如 Mg<sup>2+</sup> + O<sup>2−</sup> → MgO 而非 Mg<sub>2</sub>O<sub>2</sub>。</div>
+</section>
+
+<!-- 41 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ⑤:離子與化學式 <span class="en">Quick Check 5</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>鈣離子與磷酸根形成的化合物,化學式為?<br><span class="opt">A CaPO<sub>4</sub></span><span class="opt">B Ca<sub>2</sub>PO<sub>4</sub></span><span class="opt">C Ca<sub>3</sub>(PO<sub>4</sub>)<sub>2</sub></span><span class="opt">D Ca(PO<sub>4</sub>)<sub>2</sub></span></div>
+  <div class="q"><span class="qn">2</span>下列何者的<b>實驗式與分子式相同</b>?<br><span class="opt">A 苯 C<sub>6</sub>H<sub>6</sub></span><span class="opt">B 過氧化氫 H<sub>2</sub>O<sub>2</sub></span><span class="opt">C 葡萄糖 C<sub>6</sub>H<sub>12</sub>O<sub>6</sub></span><span class="opt">D 氨 NH<sub>3</sub></span></div>
+  <div class="q"><span class="qn">3</span>為什麼<b>離子化合物沒有「分子式」,只有「實驗式」</b>?請說明 NaCl 這個寫法代表什麼。</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. C</span> — Ca<sup>2+</sup> 與 PO<sub>4</sub><sup>3−</sup> 需 3 : 2 才電中性。<span class="myth">選 A 的同學沒做電荷平衡。<b>固定動作:先把兩個離子的電荷寫出來,再交叉。</b>這個離子對正是骨骼與牛奶的主成分。</span></div><div class="row"><span class="ans">2. D(NH<sub>3</sub>)</span> — 苯的實驗式是 CH、過氧化氫是 HO、葡萄糖是 CH<sub>2</sub>O。<span class="myth">判準:<b>各下標的最大公因數為 1</b>。NH<sub>3</sub> 的 1 和 3 互質,所以兩者相同。</span></div><div class="row"><span class="ans">3. 因為離子化合物是連續的晶格,沒有獨立的「分子」</span> — NaCl 晶體中每個 Na<sup>+</sup> 被 6 個 Cl<sup>−</sup> 包圍,找不到「一個 NaCl 分子」。<b>NaCl 表示的是 1 : 1 的離子比例</b>,不是一個粒子。<span class="myth">所以離子化合物的「式量」要叫 <b>formula mass</b> 而不是 molecular mass。這個區分在第 3 週算莫耳質量時會直接用到。</span></div></div>
+</section>
+<!-- 42 -->
+<section class="slide divider">
+  <div class="secnum">PART 2.6</div>
+  <h1>化合物的命名</h1>
+  <div class="en-sub">Chemical Nomenclature</div>
+  <div class="items">離子化合物・二元分子化合物・酸・水合物</div>
+</section>
+
+<!-- 43 -->
+<section class="slide">
+  <h2>離子化合物命名 <span class="en">Naming Ionic Compounds</span></h2>
+  <ul>
+    <li>英文:陽離子在前、陰離子在後 → sodium chloride (NaCl)</li>
+    <li>中文:陰離子在前、陽離子在後 → <b>氯化鈉</b>;含酸根則稱「某酸某」→ 硫酸鈉 Na<sub>2</sub>SO<sub>4</sub></li>
+    <li>單原子陰離子英文字尾 -ide;多原子離子用其固定名稱</li>
+    <li>命名中<span class="hlb">不需寫出個數字首</span>(電荷已決定比例):CaCl<sub>2</sub> 是 calcium chloride,不是 calcium dichloride</li>
+  </ul>
+  <div class="box exbox"><span class="tag">練習</span>K<sub>2</sub>CO<sub>3</sub> → 碳酸鉀 potassium carbonate;Mg(OH)<sub>2</sub> → 氫氧化鎂 magnesium hydroxide</div>
+</section>
+
+<!-- 44 -->
+<section class="slide">
+  <h2>過渡金屬:羅馬數字標電荷 <span class="en">Stock System</span></h2>
+  <div class="box def"><span class="tag">規則</span>可有多種電荷的金屬(多為過渡金屬),命名時以<b>羅馬數字</b>標明其電荷:iron(II)、iron(III)。</div>
+  <table>
+    <tr><th>化學式</th><th>金屬電荷</th><th>英文名</th><th>中文名</th></tr>
+    <tr><td>FeCl<sub>2</sub></td><td>Fe<sup>2+</sup></td><td>iron(II) chloride</td><td>氯化鐵(II)/氯化亞鐵</td></tr>
+    <tr><td>FeCl<sub>3</sub></td><td>Fe<sup>3+</sup></td><td>iron(III) chloride</td><td>氯化鐵(III)/氯化鐵</td></tr>
+    <tr><td>Cu<sub>2</sub>O</td><td>Cu<sup>+</sup></td><td>copper(I) oxide</td><td>氧化銅(I)/氧化亞銅</td></tr>
+    <tr><td>CuO</td><td>Cu<sup>2+</sup></td><td>copper(II) oxide</td><td>氧化銅(II)/氧化銅</td></tr>
+  </table>
+  <p class="small">金屬電荷由陰離子反推:FeCl<sub>3</sub> 中 3 個 Cl<sup>−</sup> 共 −3 → Fe 為 +3。Zn<sup>2+</sup>、Ag<sup>+</sup>、Al<sup>3+</sup> 電荷固定,不需羅馬數字。</p>
+</section>
+
+<!-- 45 -->
+<section class="slide">
+  <h2>例題 6:離子化合物命名 <span class="en">Example 6</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>命名下列化合物(中英文):<br>
+  (a) Na<sub>3</sub>PO<sub>4</sub>&nbsp;&nbsp;(b) Cr<sub>2</sub>(SO<sub>4</sub>)<sub>3</sub>&nbsp;&nbsp;(c) NH<sub>4</sub>NO<sub>3</sub>
+  <div class="sol"><b>解:</b><br>
+  (a) Na<sup>+</sup> + PO<sub>4</sub><sup>3−</sup> → <span class="hl">磷酸鈉 sodium phosphate</span><br>
+  (b) 3 個 SO<sub>4</sub><sup>2−</sup> 共 −6,2 個 Cr 共 +6 → Cr<sup>3+</sup> → <span class="hl">硫酸鉻(III) chromium(III) sulfate</span><br>
+  (c) NH<sub>4</sub><sup>+</sup> + NO<sub>3</sub><sup>−</sup> → <span class="hl">硝酸銨 ammonium nitrate</span></div></div>
+  <div class="box key"><span class="tag">技巧</span>先拆出陰、陽離子與其電荷,再套命名規則;過渡金屬電荷由「總電荷為零」反推。</div>
+</section>
+
+<!-- 46 -->
+<section class="slide">
+  <h2>二元分子化合物命名 <span class="en">Naming Binary Molecular Compounds</span></h2>
+  <div class="two-col">
+    <div>
+      <ul>
+        <li>兩種非金屬組成,以<b>希臘字首</b>標示原子數</li>
+        <li>第一個元素字首 mono- 省略</li>
+        <li>字尾:第二元素改 -ide</li>
+      </ul>
+      <p><span class="chip">1 mono</span><span class="chip">2 di</span><span class="chip">3 tri</span><span class="chip">4 tetra</span><span class="chip">5 penta</span><span class="chip">6 hexa</span></p>
+    </div>
+    <div>
+      <table>
+        <tr><th>化學式</th><th>英文名</th><th>中文名</th></tr>
+        <tr><td>CO</td><td>carbon monoxide</td><td>一氧化碳</td></tr>
+        <tr><td>CO<sub>2</sub></td><td>carbon dioxide</td><td>二氧化碳</td></tr>
+        <tr><td>N<sub>2</sub>O<sub>4</sub></td><td>dinitrogen tetroxide</td><td>四氧化二氮</td></tr>
+        <tr><td>PCl<sub>5</sub></td><td>phosphorus pentachloride</td><td>五氯化磷</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 47 -->
+<section class="slide">
+  <h2>例題 7:分子化合物命名 <span class="en">Example 7</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>(a) 命名 SF<sub>6</sub> 與 N<sub>2</sub>O<sub>5</sub>;(b) 寫出 dichlorine heptoxide 與「三氧化二砷」的化學式。
+  <div class="sol"><b>解:</b><br>
+  (a) SF<sub>6</sub>:1 個 S、6 個 F → <span class="hl">sulfur hexafluoride 六氟化硫</span><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;N<sub>2</sub>O<sub>5</sub>:2 個 N、5 個 O → <span class="hl">dinitrogen pentoxide 五氧化二氮</span><br>
+  (b) di-chlorine = 2 個 Cl,hept-oxide = 7 個 O → <span class="hl">Cl<sub>2</sub>O<sub>7</sub></span><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;三氧化「二砷」= 2 個 As、3 個 O → <span class="hl">As<sub>2</sub>O<sub>3</sub></span></div></div>
+  <div class="box warn"><span class="tag">注意</span>字首命名只用於<b>分子化合物</b>;離子化合物不用字首(CaCl<sub>2</sub> ≠ calcium dichloride)。</div>
+</section>
+
+<!-- 48 -->
+<section class="slide">
+  <h2>酸的命名 <span class="en">Naming Acids</span></h2>
+  <table>
+    <tr><th>類型</th><th>規則</th><th>例子</th></tr>
+    <tr><td>無氧酸<br>(H + 非金屬)</td><td>hydro-______-ic acid<br>中文:氫某酸</td><td>HCl(aq) 氫氯酸(鹽酸)<br>H<sub>2</sub>S(aq) 氫硫酸</td></tr>
+    <tr><td>含氧酸<br>(-ate 酸根)</td><td>______-ic acid<br>中文:某酸</td><td>HNO<sub>3</sub> 硝酸 nitric acid<br>H<sub>2</sub>SO<sub>4</sub> 硫酸 sulfuric acid</td></tr>
+    <tr><td>含氧酸<br>(-ite 酸根)</td><td>______-ous acid<br>中文:亞某酸</td><td>HNO<sub>2</sub> 亞硝酸 nitrous acid<br>H<sub>2</sub>SO<sub>3</sub> 亞硫酸 sulfurous acid</td></tr>
+  </table>
+  <div class="box key"><span class="tag">口訣</span>-ate → -ic;-ite → -ous;「I <b>ate</b> an <b>ic</b>y treat.」</div>
+</section>
+
+<!-- 49 -->
+<section class="slide">
+  <h2>水合物的命名 <span class="en">Naming Hydrates</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>水合物 (hydrate)</b>:晶體中含有固定比例結晶水的離子化合物,以「·nH<sub>2</sub>O」表示。</div>
+  <ul>
+    <li>命名:鹽名 + 字首標水數 + hydrate;中文:「n 水合某鹽」</li>
+    <li>CuSO<sub>4</sub>·5H<sub>2</sub>O:copper(II) sulfate pentahydrate,五水合硫酸銅(II)— 藍色晶體</li>
+    <li>MgSO<sub>4</sub>·7H<sub>2</sub>O:magnesium sulfate heptahydrate,七水合硫酸鎂(瀉鹽)</li>
+    <li>加熱失去結晶水 → <b>無水 (anhydrous)</b> 鹽:CuSO<sub>4</sub>(白色)</li>
+  </ul>
+</section>
+
+<!-- 50 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ⑥:命名規則 <span class="en">Quick Check 6</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>FeCl<sub>2</sub> 的正確名稱是?<br><span class="opt">A 氯化鐵</span><span class="opt">B 氯化鐵(II)</span><span class="opt">C 二氯化鐵</span><span class="opt">D 氯化亞鐵(III)</span></div>
+  <div class="q"><span class="qn">2</span>下列何者的命名需要用<b>希臘數字字首</b>(mono-、di-、tri-…)?<br><span class="opt">A NaCl</span><span class="opt">B CaCl<sub>2</sub></span><span class="opt">C N<sub>2</sub>O<sub>4</sub></span><span class="opt">D K<sub>2</sub>SO<sub>4</sub></span></div>
+  <div class="q"><span class="qn">3</span>CuSO<sub>4</sub>·5H<sub>2</sub>O 要怎麼命名?那個「·5H<sub>2</sub>O」代表什麼?</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B</span> — 鐵是過渡金屬,有多種氧化態,<b>必須用羅馬數字標明電荷</b>。Cl 帶 −1 共 2 個 → Fe 為 +2。<span class="myth">選 A 沒標電荷,無法區分 FeCl<sub>2</sub> 與 FeCl<sub>3</sub>;選 C 用了分子化合物才用的字首 —— <b>離子化合物不用 di-</b>,因為比例已由電荷決定,不需另外標。</span></div><div class="row"><span class="ans">2. C</span> — 只有<b>二元分子化合物</b>(兩個非金屬)才用字首:N<sub>2</sub>O<sub>4</sub> = 四氧化二氮。<span class="myth">A、B、D 都是離子化合物 —— 它們的比例是電荷平衡的必然結果,標了字首反而多餘。<b>先判斷金屬/非金屬,再決定用哪一套命名。</b></span></div><div class="row"><span class="ans">3. 五水合硫酸銅(II)</span> — 「·5H<sub>2</sub>O」表示晶體中每一個 CuSO<sub>4</sub> 帶著 <b>5 個水分子</b>(結晶水),它們是晶格的一部分。<span class="myth">結晶水會計入<b>莫耳質量</b>(249.7 而非 159.6)。配溶液時若用五水合鹽卻按無水鹽算,濃度就會偏低約 36% —— 這是分析化學實驗最常見的失誤之一。</span></div></div>
+</section>
+<!-- 51 -->
+<section class="slide hookback">
+  <h2>回到本週的錨點 <span class="en">Anchor Answered</span></h2>
+  <div class="recall"><b>第 2 週開場問的是:</b>架上兩瓶鈣片都標「每錠 1000 mg」,一瓶碳酸鈣、一瓶檸檬酸鈣。吃下去補到的鈣一樣多嗎?</div>
+  <div class="ansbox">
+    <h3>用這一週的化學回答</h3>
+    <ul>
+    <li><b>不一樣。</b>標示上的 1000 mg 是<b>鹽的重量</b>,不是元素鈣的重量 —— 兩者差在化學式裡鈣以外的那些原子。</li>
+    <li>CaCO<sub>3</sub> 式量 100.09,Ca 佔 <b>40.0%</b> → 1000 mg 補到 <b>400 mg</b> 鈣。</li>
+    <li>Ca<sub>3</sub>(C<sub>6</sub>H<sub>5</sub>O<sub>7</sub>)<sub>2</sub> 式量 498.43,Ca 佔 <b>24.1%</b> → 只有 <b>241 mg</b>;葡萄糖酸鈣更低,<b>9.3%</b> → <b>93 mg</b>。</li>
+    <li>架上那<b>兩瓶</b>的答案是 <b>(b) 差 1.7 倍</b>(400 ÷ 241 = 1.66);但把<b>葡萄糖酸鈣</b>也算進來,最大差距就拉到 <b>4.3 倍</b>(400 ÷ 93)。</li>
+    </ul>
+  </div>
+  <div class="lens"><span class="lt">這個情境幫你理解的化學是</span>百分組成不是課本習題,它是<b>化學式 → 實際攝取量</b>的唯一橋樑。看得懂化學式,才看得懂標示;看不懂,就只能相信包裝上最大的那個數字。</div>
+  <div class="nextup"><b>接下來在哪裡會再用到:</b><span class="course">營養學</span>礦物質 DRIs 與補充劑判讀　<span class="course">食品化學</span>強化劑的添加量換算</div>
+</section>
+<!-- 52 -->
+<section class="slide">
+  <h2>本週重點總結 <span class="en">Summary</span></h2>
+  <ul>
+    <li><b>三大定律 + 道耳頓原子說:</b>反應 = 原子重新排列;倍比定律為原子說證據</li>
+    <li><b>原子結構史:</b>Thomson 電子 → Millikan 電荷 → Rutherford 原子核</li>
+    <li><b>核種符號:</b><sup>A</sup><sub>Z</sub>X;中子 = A − Z;同位素 Z 同 A 異;原子量 = 豐度加權平均</li>
+    <li><b>週期表:</b>直行為族、橫列為週期;主族離子電荷可由族數預測</li>
+    <li><b>命名:</b>離子化合物(過渡金屬加羅馬數字)、分子化合物(字首)、酸(-ate→-ic、-ite→-ous)、水合物</li>
+  </ul>
+</section>
+
+<!-- 53 -->
+<section class="slide">
+  <h2>重要名詞中英對照 <span class="en">Key Terms</span></h2>
+  <table>
+    <tr><th>中文</th><th>English</th><th>中文</th><th>English</th></tr>
+    <tr><td>質量守恆定律</td><td>law of conservation of mass</td><td>同位素</td><td>isotope</td></tr>
+    <tr><td>倍比定律</td><td>law of multiple proportions</td><td>平均原子量</td><td>average atomic mass</td></tr>
+    <tr><td>原子序</td><td>atomic number</td><td>陽離子/陰離子</td><td>cation / anion</td></tr>
+    <tr><td>質量數</td><td>mass number</td><td>多原子離子</td><td>polyatomic ion</td></tr>
+    <tr><td>鹼金屬/鹵素</td><td>alkali metals / halogens</td><td>實驗式</td><td>empirical formula</td></tr>
+    <tr><td>類金屬</td><td>metalloid</td><td>水合物</td><td>hydrate</td></tr>
+  </table>
+</section>
+
+<!-- 54 -->
+<section class="slide">
+  <h2>課後練習與下週預告 <span class="en">Homework &amp; Preview</span></h2>
+  <h3>課後練習(OpenStax Chemistry 2e, Ch.2)</h3>
+  <ul>
+    <li>原子結構與同位素:2.2–2.3 節相關題(平均原子量必做)</li>
+    <li>化學式與離子:2.4–2.6 節相關題;背熟多原子離子表</li>
+    <li>命名:2.7 節相關題(必做,雙向練習:式→名、名→式)</li>
+  </ul>
+  <h3>下週預告:物質組成 — 莫耳與溶液濃度(Ch.3)</h3>
+  <ul>
+    <li>莫耳與亞佛加厥數、化學式計算(實驗式/分子式)</li>
+    <li>體積莫耳濃度與稀釋計算</li>
+  </ul>
+  <p class="small center" style="margin-top:20px">操作提示:← → 或空白鍵翻頁|Home/End 跳至首末頁|Ctrl+P 可列印成講義</p>
+</section>
+
+</div></div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const DECK_INFO='普通化學(一)|第 2 週:原子、分子與離子';
+let cur=0;
+slides.forEach((s,i)=>{
+  const f=document.createElement('div');f.className='foot';
+  f.innerHTML='<span>'+DECK_INFO+'</span><span>'+(i+1)+' / '+slides.length+'</span>';
+  s.appendChild(f);
+});
+slides.forEach(s=>{
+  const sol=s.querySelector('.sol');
+  if(!sol)return;
+  const hint=document.createElement('div');hint.className='sol-hint';
+  hint.innerHTML='<span class="kbd">空白鍵</span><span>先自己想／算，準備好再顯示解答</span>';
+  sol.insertAdjacentElement('beforebegin',hint);
+});
+function show(n){
+  cur=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,i)=>{s.classList.toggle('active',i===cur);s.classList.remove('reveal');});
+  document.getElementById('bar').style.width=((cur+1)/slides.length*100)+'%';
+  location.hash=cur+1;
+}
+function next(){
+  const s=slides[cur];
+  if(s.querySelector('.sol')&&!s.classList.contains('reveal')){s.classList.add('reveal');return;}
+  show(cur+1);
+}
+function prev(){
+  const s=slides[cur];
+  if(s.classList.contains('reveal')){s.classList.remove('reveal');return;}
+  show(cur-1);
+}
+function fit(){
+  const s=Math.min(innerWidth/1280,innerHeight/720);
+  document.getElementById('deck').style.transform='scale('+s+')';
+}
+addEventListener('resize',fit);
+addEventListener('keydown',e=>{
+  if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();next();}
+  else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev();}
+  else if(e.key==='Home')show(0);
+  else if(e.key==='End')show(slides.length-1);
+});
+addEventListener('click',e=>{
+  if(e.target.closest('a'))return;
+  (e.clientX>innerWidth/3)?next():prev();
+});
+let tx=null;
+addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+addEventListener('touchend',e=>{
+  if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;
+  if(dx<-40)next();else if(dx>40)prev();tx=null;
+});
+fit();
+show(parseInt(location.hash.slice(1))-1||0);
+</script>
+</body>
+</html>

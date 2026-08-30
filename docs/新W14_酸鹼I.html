@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第 14 週:化學平衡與酸鹼 I</title>
+<style>
+:root{
+  --primary:#1a5276; --primary-dark:#12395a; --accent:#a04c08; --teal:#117a65;
+  --ink:#2c3e50; --muted:#5a6a6b; --bg:#eceff3; --card:#ffffff;
+  --def-bg:#eaf2f8; --key-bg:#fef9e7; --ex-bg:#e8f8f5; --warn-bg:#fdedec;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC","Heiti TC",sans-serif;color:var(--ink)}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#deck{position:relative;width:1280px;height:720px;transform-origin:center center}
+.slide{position:absolute;inset:0;width:1280px;height:720px;background:var(--card);padding:56px 72px 70px;display:none;flex-direction:column;border-top:10px solid var(--primary);overflow:hidden}
+.slide.active{display:flex}
+.slide h2{font-size:36px;color:var(--primary);border-bottom:3px solid var(--accent);padding-bottom:10px;margin-bottom:26px;font-weight:700}
+.slide h2 .en{display:block;font-size:19px;color:var(--muted);font-weight:400;margin-top:4px}
+.slide h3{font-size:26px;color:var(--primary);margin:12px 0 8px}
+.slide p{font-size:24px;line-height:1.55;margin:8px 0}
+.slide ul,.slide ol{font-size:24px;line-height:1.6;margin:8px 0 8px 34px}
+.slide li{margin:7px 0}
+.slide li li{font-size:22px;margin:4px 0}
+.en{color:var(--muted);font-size:.82em}
+.small{font-size:19px;color:var(--muted)}
+.big{font-size:30px}
+.center{text-align:center}
+.hl{color:var(--accent);font-weight:700}
+.hlb{color:var(--primary);font-weight:700}
+.two-col{display:flex;gap:32px;align-items:flex-start}
+.two-col>div{flex:1}
+.box{border-radius:10px;padding:16px 22px;margin:14px 0;font-size:23px;line-height:1.55}
+.def{background:var(--def-bg);border-left:6px solid var(--primary)}
+.key{background:var(--key-bg);border-left:6px solid #f1c40f}
+.warn{background:var(--warn-bg);border-left:6px solid #e74c3c}
+.exbox{background:var(--ex-bg);border-left:6px solid var(--teal)}
+.box .tag{display:inline-block;font-size:17px;font-weight:700;color:#fff;border-radius:5px;padding:2px 10px;margin-bottom:6px}
+.def .tag{background:var(--primary)} .key .tag{background:#8a6d00} .warn .tag{background:#c0392b} .exbox .tag{background:var(--teal)}
+.sol{border-top:2px dashed var(--teal);margin-top:12px;padding-top:10px}
+/* ── 形成性評量：解答兩段式揭露 ───────────────────────── */
+.slide.active .sol{display:none}
+.slide.active.reveal .sol{display:block}
+.sol-hint{margin-top:12px;padding-top:10px;border-top:2px dashed #b9c6c6;font-size:19px;color:#5d6d6e;display:flex;align-items:center;gap:10px}
+.slide.active.reveal .sol-hint{display:none}
+.sol-hint .kbd{display:inline-block;border:1px solid #aab7b8;border-bottom-width:2px;border-radius:5px;padding:1px 9px;font-size:17px;background:#fff;color:#34495e}
+/* ── 隨堂快問 ─────────────────────────────────────────── */
+.slide.quiz{border-top-color:var(--teal)}
+.slide.quiz h2{margin-bottom:14px}
+.slide.quiz h2{color:#0e6655;border-bottom-color:var(--teal)}
+.qbar{background:#e8f8f5;border-left:6px solid var(--teal);border-radius:8px;padding:5px 16px;font-size:18px;color:#0e6655;margin-bottom:4px}
+.q{margin:4px 0;font-size:21px;line-height:1.28}
+.q .qn{display:inline-block;min-width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;background:var(--teal);color:#fff;font-size:16px;font-weight:700;margin-right:7px}
+.opt{display:inline-block;border:1.5px solid #a2d5cd;background:#f2fbf9;color:#0e6655;border-radius:14px;padding:0 11px;margin:1px 4px 1px 0;font-size:19px}
+.quiz .sol{margin-top:5px;padding-top:5px;font-size:18px;line-height:1.26}
+.quiz .sol .ans{color:#c0392b;font-weight:700}
+.quiz .sol .row{margin:3px 0}
+.quiz .sol .row+.row{border-top:1px solid #e5eceb;padding-top:3px}
+.quiz .sol .myth{display:block;font-size:16px;color:#5d6d6e;margin:1px 0 0 0;line-height:1.24}
+@media print{
+  .sol{display:block!important}
+  .sol-hint{display:none!important}
+}
+.eq{text-align:center;font-size:28px;margin:14px 0;font-family:Cambria,"Times New Roman",serif}
+table{border-collapse:collapse;margin:12px auto;font-size:21px;width:100%}
+th{background:var(--primary);color:#fff;padding:8px 12px;font-weight:600}
+td{border:1px solid #d5dbdb;padding:7px 12px;text-align:center}
+tr:nth-child(even) td{background:#f4f6f7}
+.cover{background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 55%,var(--teal) 100%);border-top:none;color:#fff;justify-content:center;align-items:center;text-align:center}
+.cover h1{font-size:58px;letter-spacing:4px;margin-bottom:10px}
+.cover .sub{font-size:30px;opacity:.92;margin:6px 0}
+.cover .en-title{font-size:24px;opacity:.75;margin-bottom:34px}
+.cover .meta{font-size:20px;opacity:.7;margin-top:40px}
+.cover .rule{width:220px;height:4px;background:#f7b955;margin:26px auto}
+.divider{background:linear-gradient(120deg,var(--primary-dark),var(--primary));border-top:none;color:#fff;justify-content:center}
+.divider .secnum{font-size:26px;color:#f7b955;font-weight:700;letter-spacing:2px;margin-bottom:14px}
+.divider h1{font-size:52px;margin-bottom:12px}
+.divider .en-sub{font-size:26px;opacity:.75}
+.divider .items{margin-top:36px;font-size:23px;opacity:.9;line-height:2}
+.foot{position:absolute;left:0;right:0;bottom:0;height:32px;display:flex;justify-content:space-between;align-items:center;padding:0 28px;font-size:14px;color:#5d6d6e;background:#fafbfc;border-top:1px solid #e5e8e8}
+.cover .foot,.divider .foot{background:rgba(0,0,0,.15);color:rgba(255,255,255,.65);border-top:none}
+#bar{position:fixed;top:0;left:0;height:5px;background:var(--accent);width:0;z-index:10;transition:width .2s}
+.flow{display:flex;flex-direction:column;align-items:center;gap:6px}
+.fbox{border:2px solid var(--primary);border-radius:8px;padding:8px 20px;font-size:21px;background:var(--def-bg);text-align:center}
+.frow{display:flex;gap:60px;justify-content:center}
+.arrow{font-size:22px;color:var(--accent)}
+.chip{display:inline-block;background:var(--def-bg);border:1px solid var(--primary);color:var(--primary);border-radius:16px;padding:2px 14px;margin:3px;font-size:20px}
+/* ── 因次分析鐵軌格 ───────────────────────────────────── */
+.rail{border-collapse:collapse;margin:10px auto 6px;font-size:23px}
+.rail td{border:none;padding:5px 20px;text-align:center;background:none;vertical-align:middle}
+.rail td+td{border-left:2px solid var(--muted)}
+.rail tr:first-child td{border-bottom:3px solid var(--ink)}
+.rail td.res{border-left:none;padding-left:14px;font-weight:700;color:var(--accent);font-size:25px}
+.rail tr:first-child td.res{border-bottom:none}
+.rail .bk{display:inline-block;min-width:104px;border-bottom:3px dashed var(--accent);height:27px;vertical-align:-4px}
+.rail .gv{background:var(--def-bg)}
+.railnote{text-align:center;font-size:18px;color:var(--muted);margin-top:2px}
+.fig{display:block;margin:6px auto;flex-shrink:0}
+/* ── 錨點回收頁 ───────────────────────────────────────── */
+.slide.hookback{border-top-color:var(--teal)}
+.slide.hookback h2{color:#0e6655;border-bottom-color:var(--teal)}
+.recall{background:#f4f6f7;border-left:5px solid #95a5a6;border-radius:8px;padding:7px 18px;
+        font-size:20px;line-height:1.34;color:#5d6d6e;margin:0 0 10px}
+.recall b{color:#34495e}
+.ansbox{background:#e8f8f5;border-left:6px solid var(--teal);border-radius:9px;padding:10px 20px;margin:0 0 10px}
+.ansbox h3{font-size:20px;color:#0e6655;margin:0 0 5px}
+.ansbox ul{margin:0 0 0 20px;font-size:19.5px;line-height:1.4}
+.ansbox li{margin:5px 0}
+.lens{background:var(--key-bg);border-left:6px solid #d4a70a;border-radius:9px;padding:10px 20px;
+      font-size:20px;line-height:1.38;margin-bottom:9px}
+.lens .lt{display:block;font-size:16px;font-weight:700;color:#8a6d00;letter-spacing:1px;margin-bottom:2px}
+.nextup{background:#eaf2f8;border-left:5px solid var(--primary);border-radius:8px;padding:8px 18px;
+        font-size:18.5px;line-height:1.4;color:#34495e}
+.nextup .course{display:inline-block;background:#fff;border:1px solid #a2d5cd;color:#0e6655;
+                border-radius:11px;padding:0 8px;font-size:16px;margin-right:4px}
+
+/* ── 食品營養錨點頁 ───────────────────────────────────── */
+.slide.hook{border-top-color:var(--accent)}
+.slide.hook h2{color:#a05000;border-bottom-color:var(--accent)}
+.bigq{background:linear-gradient(100deg,#fff5ea,#fdf0e0);border-left:8px solid var(--accent);border-radius:10px;
+      padding:14px 22px;font-size:26px;line-height:1.4;color:#7a3d00;font-weight:700;margin:4px 0 12px}
+.bigq .qmark{font-size:30px;margin-right:6px}
+.hookcols{display:flex;gap:22px;align-items:stretch;margin-top:4px}
+.hookcols>div{flex:1;border-radius:9px;padding:11px 16px}
+.hk-now{background:#eaf2f8;border-left:5px solid var(--primary)}
+.hk-next{background:#e8f8f5;border-left:5px solid var(--teal)}
+.hookcols h3{font-size:20px;margin:0 0 6px}
+.hk-now h3{color:var(--primary)} .hk-next h3{color:#0e6655}
+.hookcols ul{font-size:19px;line-height:1.4;margin:0 0 0 20px}
+.hookcols li{margin:4px 0}
+.hookcols .course{display:inline-block;background:#fff;border:1px solid #a2d5cd;color:#0e6655;
+                  border-radius:11px;padding:0 8px;font-size:16px;margin-right:4px}
+.canyou{background:var(--key-bg);border-left:6px solid #d4a70a;border-radius:9px;padding:10px 18px;
+        font-size:20px;line-height:1.4;margin-top:12px}
+.canyou b{color:#8a6d00}
+.hookmap{font-size:19px;line-height:1.5}
+.hookmap td{text-align:left;padding:5px 10px}
+.hookmap td:first-child{text-align:center;font-weight:700;color:var(--accent);width:62px}
+@media print{
+  @page{size:1280px 720px;margin:0}
+  html,body{background:#fff}
+  #stage{position:static}
+  #deck{width:auto;height:auto;transform:none!important}
+  .slide{position:relative;display:flex!important;page-break-after:always;margin:0;inset:auto}
+  #bar{display:none}
+}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="stage"><div id="deck">
+
+<!-- 1 -->
+<section class="slide cover">
+  <h1>普通化學(一)</h1>
+  <div class="en-title">General Chemistry I</div>
+  <div class="rule"></div>
+  <div class="sub">第 14 週:化學平衡與酸鹼 I</div>
+  <div class="sub">pH、pOH 與強弱酸鹼</div>
+  <div class="en-title" style="margin-top:8px">Chemical Equilibrium and Acids &amp; Bases I</div>
+</section>
+
+<!-- 2 -->
+<section class="slide">
+  <h2>本週學習目標 <span class="en">Learning Objectives</span></h2>
+  <ul>
+    <li>理解<b>可逆反應</b>與<b>動態平衡</b>:平衡不是反應停止,而是正逆速率相等</li>
+    <li>會寫平衡常數 K 的表示式,並由 K 的大小判斷平衡偏向哪一邊</li>
+    <li>能用 <b>Le Châtelier 原理</b>預測濃度、溫度、壓力改變後平衡移動的方向</li>
+    <li>掌握水的自解離與 K<sub>w</sub>,能由 [H<sub>3</sub>O<sup>+</sup>] 算 pH、由 pOH 換算 pH</li>
+    <li>能區分<b>強酸/弱酸</b>與<b>濃/稀</b>——這是兩個完全不同的概念</li>
+    <li>理解 K<sub>a</sub> 與 pK<sub>a</sub> 的<b>意義</b>(本週不做弱酸平衡的計算)</li>
+    <li>能說明食品法規為何以 <b>pH 4.6</b> 劃分低酸性食品與酸性食品</li>
+  </ul>
+<div class="box key"><span class="tag">本週重點</span>「強」講的是<b>解離程度</b>,「濃」講的是<b>每公升幾莫耳</b>。把這兩個字分開,本週有一半的迷思就不會發生。</div>
+</section>
+
+<!-- 3 -->
+<section class="slide">
+  <h2>第 14 週·食品營養錨點:食品法規為什麼以 pH 4.6 分界? <span class="en">This Week's Anchor</span></h2>
+<div class="box def"><span class="tag">大哉問</span>翻開《罐頭食品良好衛生規範》或美國 FDA 的 21 CFR,你會一直看到同一個數字:<b>pH 4.6</b>。pH 在 4.6 以下的食品,滾水殺菌就可以;pH 高於 4.6 的,必須送進 121 °C 的高壓滅菌釜。<br>為什麼是 4.6?為什麼不是 4.5 或 5.0?差 0.1 個 pH 有什麼了不起?</div>
+  <p class="small">而且——番茄的 pH 大約 4.3,只差 0.3 就跨過去了。這也是為什麼番茄罐頭可以用沸水處理,而同樣是蔬菜的四季豆罐頭不行。</p>
+<div class="box exbox"><span class="tag">先猜猜看</span>一罐自製蒜頭橄欖油,常溫放在櫃子上。你覺得它比較接近「酸性食品」還是「低酸性食品」?哪一種比較危險?(答案在本週最後一張)</div>
+</section>
+
+<!-- 4 -->
+<section class="slide">
+  <h2>本週知識地圖 <span class="en">Roadmap</span></h2>
+  <table><tr><th>段落</th><th>在問什麼</th><th>關鍵詞</th></tr><tr><td>PART 1</td><td>反應為什麼會「停在半路」?</td><td>可逆反應・動態平衡・K</td></tr><tr><td>PART 2</td><td>條件改變時平衡往哪邊跑?</td><td>Le Châtelier・汽水的氣</td></tr><tr><td>PART 3</td><td>pH 這個數字到底在量什麼?</td><td>K<sub>w</sub>・pH・pOH</td></tr><tr><td>PART 4</td><td>「強酸」跟「濃酸」差在哪?</td><td>解離程度・K<sub>a</sub>・pK<sub>a</sub></td></tr><tr><td>PART 5</td><td>為什麼是 4.6?</td><td>肉毒桿菌・殺菌條件・指示劑</td></tr></table>
+<div class="box def"><span class="tag">為什麼這一週重要</span>酸鹼是<b>分析化學、生物化學、食品化學、營養學</b>四門課共同的地基:酵素的最適 pH、胺基酸的解離、滴定曲線與指示劑選擇、食品的質地與保存,全部從這裡開始。</div>
+</section>
+
+<!-- 5 -->
+<section class="slide divider">
+  <div class="secnum">PART 14.1</div>
+  <h1>可逆反應與化學平衡</h1>
+  <div class="en-sub">Reversible Reactions and Equilibrium</div>
+  <div class="items">可逆反應・動態平衡・平衡常數 K・反應商 Q</div>
+</section>
+
+<!-- 6 -->
+<section class="slide">
+  <h2>可逆反應 <span class="en">Reversible Reactions</span></h2>
+  <ul>
+    <li>到目前為止我們寫的反應式都用「→」,好像反應會一路走到底、把反應物用完</li>
+    <li>但很多反應<b>兩個方向都會發生</b>,寫成雙箭頭 <span class="hl">⇌</span></li>
+    <li>結果是反應「停在半路」:反應物與產物<b>同時存在</b>,濃度不再改變</li>
+  </ul>
+  <div class="eq">CO<sub>2</sub>(g) + H<sub>2</sub>O(l) ⇌ H<sub>2</sub>CO<sub>3</sub>(aq)</div>
+<div class="box key"><span class="tag">食品裡的例子</span>汽水裡的碳酸就是這個平衡。瓶子沒開時,溶解的 CO<sub>2</sub> 與碳酸維持平衡;一開瓶,平衡就被打破——這正是 PART 2 要處理的事。</div>
+</section>
+
+<!-- 7 -->
+<section class="slide">
+  <h2>動態平衡 <span class="en">Dynamic Equilibrium</span></h2>
+  <ul>
+    <li>一開始只有反應物 → 正反應快、逆反應為零</li>
+    <li>產物累積使逆反應變快、反應物減少使正反應變慢,兩者終將相等</li>
+  </ul>
+<svg class="fig" role="img" aria-labelledby="w14f1-t w14f1-d" width="1020" height="250" viewBox="0 0 1020 250" xmlns="http://www.w3.org/2000/svg">
+        <title id="w14f1-t">動態平衡的速率變化</title>
+        <desc id="w14f1-d">橫軸為時間、縱軸為反應速率。正反應速率由高處下降、逆反應速率由零上升,兩條曲線在某時刻相交後同時維持水平且相等,該時刻之後系統達到平衡,但兩個方向的反應都仍在進行。</desc>
+        <defs><marker id="w14f1-axh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5a6a6b"/></marker></defs>
+        <line x1="90" y1="200" x2="900" y2="200" stroke="#5a6a6b" stroke-width="2" marker-end="url(#w14f1-axh)"/>
+        <line x1="90" y1="200" x2="90" y2="40" stroke="#5a6a6b" stroke-width="2" marker-end="url(#w14f1-axh)"/>
+        <text x="900" y="224" font-size="17" fill="#5a6a6b" text-anchor="end">時間 t</text>
+        <text x="94" y="34" font-size="17" fill="#5a6a6b" text-anchor="start">反應速率</text>
+        <line x1="560" y1="200" x2="560" y2="48" stroke="#d5dbdb" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 5"/>
+        <line x1="90" y1="128" x2="900" y2="128" stroke="#d5dbdb" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 5"/>
+        <path d="M 130 62 C 300 62 440 110 560 128 L 900 128" fill="none" stroke="#a04c08" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M 130 196 C 300 200 440 150 560 128 L 900 128" fill="none" stroke="#117a65" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="136" y="48" font-size="17" fill="#a04c08" text-anchor="start" font-weight="700">正反應速率</text>
+        <text x="136" y="186" font-size="17" fill="#117a65" text-anchor="start" font-weight="700">逆反應速率</text>
+        <text x="560" y="34" font-size="18" fill="#1f5f8b" text-anchor="middle" font-weight="700">達平衡</text>
+        <rect x="600" y="150" width="300" height="62" fill="#eaf2f8" rx="6" stroke="#1f5f8b" stroke-width="2"/>
+        <text x="618" y="174" font-size="17" fill="#1f5f8b" text-anchor="start" font-weight="700">兩速率相等 → 濃度不再改變</text>
+        <text x="618" y="197" font-size="17" fill="#c0392b" text-anchor="start" font-weight="700">但正逆反應都沒有停止</text>
+      </svg>
+<div class="box warn"><span class="tag">最常見的誤解</span>平衡<b>不是</b>反應停了,也<b>不是</b>兩邊一樣多。</div>
+</section>
+
+<!-- 8 -->
+<section class="slide">
+  <h2>平衡常數 K <span class="en">The Equilibrium Constant</span></h2>
+  <p>對於 <span class="hl">aA + bB ⇌ cC + dD</span>,平衡時各物種濃度滿足:</p>
+  <div class="eq">K = <span style="display:inline-block;text-align:center">[C]<sup>c</sup>[D]<sup>d</sup><hr style="margin:2px 0;border:none;border-top:2px solid #1f5f8b">[A]<sup>a</sup>[B]<sup>b</sup></span></div>
+  <ul>
+    <li><b>產物在上、反應物在下</b>;係數變成<b>次方</b>(不是乘法)</li>
+    <li>純固體與純液體(含溶劑水)<b>不寫進去</b>——它們的「濃度」是定值</li>
+    <li>K 只隨<b>溫度</b>改變;加料、稀釋、加催化劑都不會改變 K</li>
+  </ul>
+<div class="box warn"><span class="tag">易錯</span>係數在化學計量裡是「乘」的(莫耳比),在 K 裡是「次方」。同一個數字,兩種用法。</div>
+</section>
+
+<!-- 9 -->
+<section class="slide">
+  <h2>K 的大小告訴你什麼 <span class="en">What K Tells You</span></h2>
+  <table><tr><th>K 的大小</th><th>平衡時的樣子</th><th>食品裡的意思</th></tr><tr><td>K ≫ 1(如 10<sup>5</sup>)</td><td>幾乎完全變成產物</td><td>反應「做得很徹底」,例如強酸的解離</td></tr><tr><td>K ≈ 1</td><td>反應物與產物都不少</td><td>兩邊拉鋸,條件一動就會移動</td></tr><tr><td>K ≪ 1(如 10<sup>−5</sup>)</td><td>幾乎還是反應物</td><td>只有少量解離,例如醋酸——這正是 K<sub>a</sub></td></tr></table>
+<div class="box def"><span class="tag">接起來了</span>PART 4 要講的 <b>K<sub>a</sub></b> 不是新東西,它就是「弱酸解離反應」的平衡常數。醋酸的 K<sub>a</sub> = 1.8 × 10<sup>−5</sup> ≪ 1,所以醋酸<b>大部分沒有解離</b>。</div>
+</section>
+
+<!-- 10 -->
+<section class="slide">
+  <h2>例題 1:寫出平衡常數表示式 <span class="en">Example 1</span></h2>
+  <p>寫出下列反應的 K 表示式:</p>
+  <ul>
+    <li>(a) N<sub>2</sub>(g) + 3H<sub>2</sub>(g) ⇌ 2NH<sub>3</sub>(g)</li>
+    <li>(b) CaCO<sub>3</sub>(s) ⇌ CaO(s) + CO<sub>2</sub>(g)</li>
+    <li>(c) CH<sub>3</sub>COOH(aq) + H<sub>2</sub>O(l) ⇌ CH<sub>3</sub>COO<sup>−</sup>(aq) + H<sub>3</sub>O<sup>+</sup>(aq)</li>
+  </ul>
+  <div class="sol"><b>解答:</b><br>(a) K = [NH<sub>3</sub>]<sup>2</sup> / ([N<sub>2</sub>][H<sub>2</sub>]<sup>3</sup>) —— 係數 3 變成三次方。<br>(b) K = [CO<sub>2</sub>] —— 兩個<b>純固體都不寫</b>,所以只剩一項。<br>(c) K<sub>a</sub> = [CH<sub>3</sub>COO<sup>−</sup>][H<sub>3</sub>O<sup>+</sup>] / [CH<sub>3</sub>COOH] —— 水是<b>溶劑</b>,不寫進去。這個 K 有專屬名字:<b>酸解離常數 K<sub>a</sub></b>。</div>
+</section>
+
+<!-- 11 -->
+<section class="slide">
+  <h2>反應商 Q:還沒到平衡時怎麼判斷 <span class="en">Reaction Quotient</span></h2>
+  <ul>
+    <li>Q 的算式與 K <b>一模一樣</b>,差別只在:Q 用的是<b>當下</b>的濃度,K 用的是<b>平衡時</b>的濃度</li>
+    <li>把 Q 與 K 比一比,就知道反應接下來往哪邊走</li>
+  </ul>
+  <table><tr><th>比較</th><th>意思</th><th>反應方向</th></tr><tr><td>Q &lt; K</td><td>產物還不夠多</td><td>往<b>右</b>(生成產物)</td></tr><tr><td>Q = K</td><td>已經在平衡</td><td>不移動</td></tr><tr><td>Q &gt; K</td><td>產物太多了</td><td>往<b>左</b>(回頭生成反應物)</td></tr></table>
+<div class="box key"><span class="tag">記法</span><b>Q 追著 K 跑。</b>Q 太小就往右補產物,Q 太大就往左退回去——目標永遠是讓 Q 等於 K。</div>
+</section>
+
+<!-- 12 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ①:平衡的意義 <span class="en">Quick Check 1</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>一個反應達到平衡時,下列敘述何者<b>正確</b>?<br><span class="opt">A 正逆反應都停止了</span><span class="opt">B 反應物與產物的濃度相等</span><span class="opt">C 正逆反應速率相等,濃度不再改變</span><span class="opt">D 反應物已完全耗盡</span></div>
+  <div class="q"><span class="qn">2</span>反應 2SO<sub>2</sub>(g) + O<sub>2</sub>(g) ⇌ 2SO<sub>3</sub>(g) 的 K 表示式為?<br><span class="opt">A [SO<sub>3</sub>]<sup>2</sup>/([SO<sub>2</sub>]<sup>2</sup>[O<sub>2</sub>])</span><span class="opt">B 2[SO<sub>3</sub>]/(2[SO<sub>2</sub>][O<sub>2</sub>])</span><span class="opt">C [SO<sub>2</sub>]<sup>2</sup>[O<sub>2</sub>]/[SO<sub>3</sub>]<sup>2</sup></span><span class="opt">D [SO<sub>3</sub>]/([SO<sub>2</sub>][O<sub>2</sub>])</span></div>
+  <div class="q"><span class="qn">3</span>某反應的 K = 3 × 10<sup>−8</sup>。不必計算,你能立刻說出平衡時「主要是什麼」嗎?為什麼?</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. C</span> — 平衡是<b>動態</b>的:兩個方向持續進行,只是速率相同,所以巨觀上看不出變化。<span class="myth">選 A 是最頑固的迷思——把「濃度不變」當成「反應停止」。選 B 混淆了「速率相等」與「濃度相等」:平衡時兩者的濃度通常差很多,差多少由 K 決定。選 D 描述的是<b>不可逆</b>反應。</span></div><div class="row"><span class="ans">2. A</span> — 產物在上、反應物在下;係數 2 變成<b>二次方</b>。<span class="myth">選 B 把係數當成乘數——這是化學計量的用法,不是平衡常數的用法。選 C 上下顛倒。選 D 漏掉了次方。固定動作:<b>先寫產物在分子,再把每個係數搬上去當次方。</b></span></div><div class="row"><span class="ans">3. 主要還是反應物</span> — K ≪ 1 代表分子(產物)遠小於分母(反應物),所以平衡時幾乎沒有產物生成。<span class="myth">這一題的價值在於:<b>K 是一個可以「用看的」的數字</b>。看到 10<sup>−8</sup> 就該知道「這個反應幾乎不走」,不必算任何東西——弱酸的 K<sub>a</sub> 也是這樣讀的。</span></div></div>
+</section>
+
+<!-- 13 -->
+<section class="slide divider">
+  <div class="secnum">PART 14.2</div>
+  <h1>Le Châtelier 原理</h1>
+  <div class="en-sub">Le Châtelier's Principle</div>
+  <div class="items">濃度・溫度・壓力・汽水為什麼會沒氣</div>
+</section>
+
+<!-- 14 -->
+<section class="slide">
+  <h2>Le Châtelier 原理 <span class="en">Le Châtelier's Principle</span></h2>
+<div class="box def"><span class="tag">原理</span>對一個處於平衡的系統施加改變,平衡會往<b>抵消這個改變</b>的方向移動。</div>
+  <ul>
+    <li>把它想成系統在「抗議」:你加什麼,它就想消耗什麼;你拿走什麼,它就想補回來</li>
+    <li>注意:平衡<b>移動</b>不代表 K 改變。<b>只有溫度會改變 K</b></li>
+    <li>三種常見的擾動:改變濃度、改變溫度、改變壓力(限氣體)</li>
+  </ul>
+<div class="box warn"><span class="tag">最容易搞混的一句</span>加催化劑會讓系統<b>更快</b>到達平衡,但不會改變平衡的位置,也不會改變 K——它對正逆反應加速的倍率相同。</div>
+</section>
+
+<!-- 15 -->
+<section class="slide">
+  <h2>改變濃度 <span class="en">Changing Concentration</span></h2>
+  <p>以 CO<sub>2</sub>(aq) + H<sub>2</sub>O ⇌ H<sub>2</sub>CO<sub>3</sub> ⇌ H<sup>+</sup> + HCO<sub>3</sub><sup>−</sup> 為例:</p>
+  <table><tr><th>你做的事</th><th>系統的反應</th><th>結果</th></tr><tr><td>加入更多 CO<sub>2</sub></td><td>想把多的消耗掉 → 往<b>右</b></td><td>酸度上升(汽水偏酸)</td></tr><tr><td>移除 CO<sub>2</sub>(開瓶跑掉)</td><td>想補回來 → 往<b>左</b></td><td>碳酸分解,氣泡冒出</td></tr><tr><td>加鹼中和掉 H<sup>+</sup></td><td>想補 H<sup>+</sup> → 往<b>右</b></td><td>更多碳酸解離</td></tr></table>
+<div class="box key"><span class="tag">共同的邏輯</span><b>加什麼就往消耗它的方向跑,拿走什麼就往補充它的方向跑。</b>這一條在 W15 講緩衝溶液時會直接再用一次。</div>
+</section>
+
+<!-- 16 -->
+<section class="slide">
+  <h2>改變溫度 <span class="en">Changing Temperature</span></h2>
+  <ul>
+    <li>把<b>熱</b>當成反應式裡的一項,再套 Le Châtelier 就好</li>
+    <li>放熱反應:A + B ⇌ C + <b>熱</b>　→ 升溫等於「加熱這一項」→ 往<b>左</b></li>
+    <li>吸熱反應:A + <b>熱</b> ⇌ B　→ 升溫 → 往<b>右</b></li>
+    <li><b>只有溫度會改變 K 的數值</b>,其他擾動只移動平衡位置</li>
+  </ul>
+<div class="box key"><span class="tag">食品裡的例子</span>CO<sub>2</sub> 溶於水是<b>放熱</b>的,所以升溫會讓平衡往「氣體」那邊跑——這就是為什麼<b>溫的汽水比冰的更容易噴</b>,也是為什麼汽水要冰著喝。</div>
+</section>
+
+<!-- 17 -->
+<section class="slide">
+  <h2>改變壓力(只對氣體有效) <span class="en">Changing Pressure</span></h2>
+  <ul>
+    <li>加壓 → 系統想「少佔一點體積」→ 往<b>氣體莫耳數較少</b>的一邊移動</li>
+    <li>減壓 → 往氣體莫耳數<b>較多</b>的一邊移動</li>
+    <li>兩邊氣體莫耳數相同時,壓力<b>沒有影響</b></li>
+    <li>加入不反應的惰性氣體(總壓上升但各分壓不變)也<b>沒有影響</b></li>
+  </ul>
+  <div class="eq">CO<sub>2</sub>(g) ⇌ CO<sub>2</sub>(aq)　　1 mol 氣體 ⇌ 0 mol 氣體</div>
+<div class="box def"><span class="tag">所以</span>汽水在裝瓶時<b>加壓</b>灌 CO<sub>2</sub>,平衡被推向「溶解」那一邊。一開瓶,壓力瞬間掉回 1 atm,平衡立刻往「氣體」跑 → 嘶的一聲。</div>
+</section>
+
+<!-- 18 -->
+<section class="slide">
+  <h2>綜合應用:一瓶汽水的一生 <span class="en">Case Study: A Bottle of Soda</span></h2>
+  <table><tr><th>階段</th><th>發生什麼</th><th>哪一個因素</th></tr><tr><td>裝瓶</td><td>加壓灌入 CO<sub>2</sub>,平衡推向溶解</td><td>壓力</td></tr><tr><td>冷藏</td><td>低溫使溶解度上升,氣保持得住</td><td>溫度</td></tr><tr><td>開瓶</td><td>壓力驟降 → 平衡往氣體移動 → 冒泡</td><td>壓力</td></tr><tr><td>放著不管</td><td>CO<sub>2</sub> 持續逸散,平衡一直往左</td><td>濃度(移除產物)</td></tr><tr><td>放到常溫</td><td>溶解度下降,跑得更快</td><td>溫度</td></tr></table>
+<div class="box key"><span class="tag">一句話</span>「汽水沒氣了」不是一個生活瑣事,它是 Le Châtelier 原理的<b>四個因素同時作用</b>的結果。</div>
+</section>
+
+<!-- 19 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ②:Le Châtelier <span class="en">Quick Check 2</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>對一個已達平衡的系統加入<b>催化劑</b>,下列何者正確?<br><span class="opt">A 平衡往產物方向移動</span><span class="opt">B K 變大</span><span class="opt">C 更快到達平衡,但平衡位置與 K 都不變</span><span class="opt">D 反應會變成不可逆</span></div>
+  <div class="q"><span class="qn">2</span>N<sub>2</sub>(g) + 3H<sub>2</sub>(g) ⇌ 2NH<sub>3</sub>(g)。<b>加壓</b>後平衡往哪邊移動?<br><span class="opt">A 往左,因為左邊分子較大</span><span class="opt">B 往右,因為右邊氣體莫耳數較少(4 → 2)</span><span class="opt">C 不移動,因為兩邊都是氣體</span><span class="opt">D 往左,因為右邊莫耳數較少</span></div>
+  <div class="q"><span class="qn">3</span>為什麼<b>溫的</b>汽水一開就容易噴,冰的比較不會?請用平衡的語言說明。</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. C</span> — 催化劑對正逆反應加速的倍率相同,兩個方向一起變快,平衡位置不動。<span class="myth">選 A/B 把「反應變快」與「產物變多」混為一談——這是動力學與熱力學的混淆,與 W06「ΔH 是負的所以反應很快」是同一個錯誤。<b>催化劑改變的是到達平衡要多久,不是到達哪裡。</b></span></div><div class="row"><span class="ans">2. B</span> — 左邊 1 + 3 = 4 mol 氣體、右邊 2 mol;加壓時系統往佔體積較小的一邊移動。<span class="myth">選 A 用「分子大小」判斷——平衡看的是<b>氣體的莫耳數</b>,不是分子有多大。選 C 忽略了兩邊莫耳數不同。選 D 方向記反了。固定動作:<b>先數兩邊的氣體莫耳數。</b></span></div><div class="row"><span class="ans">3. 溫度上升使 CO₂ 的溶解度下降</span> — CO<sub>2</sub> 溶解是放熱的,升溫相當於「加熱」這一項,平衡往氣體那一邊移動;溶在液體裡的 CO<sub>2</sub> 變少、頂空壓力變大,一開瓶就衝出來。<span class="myth">這一題示範了「<b>兩個因素疊在一起</b>」:溫度改變了平衡位置,開瓶又改變了壓力。真實情境很少只有一個變因——這正是 Le Châtelier 好用的地方,它可以一項一項拆開來看。</span></div></div>
+</section>
+
+<!-- 20 -->
+<section class="slide divider">
+  <div class="secnum">PART 14.3</div>
+  <h1>水的自解離與 pH</h1>
+  <div class="en-sub">Water Autoionization and pH</div>
+  <div class="items">K<sub>w</sub>・pH 與 pOH・食品的 pH 分布</div>
+</section>
+
+<!-- 21 -->
+<section class="slide">
+  <h2>酸鹼的定義:快速回顧 <span class="en">Acid–Base Definitions</span></h2>
+  <table><tr><th>定義</th><th>酸是</th><th>鹼是</th><th>好用在哪</th></tr><tr><td>Arrhenius</td><td>在水中放出 H<sup>+</sup></td><td>在水中放出 OH<sup>−</sup></td><td>最直觀,但只限水溶液</td></tr><tr><td>Brønsted–Lowry</td><td><b>質子給予者</b></td><td><b>質子接受者</b></td><td>本課程主用;可解釋水的兩性</td></tr><tr><td>Lewis</td><td>電子對接受者</td><td>電子對給予者</td><td>之後在配位化學/有機才需要</td></tr></table>
+<div class="box def"><span class="tag">共軛酸鹼對</span>酸給出一個 H<sup>+</sup> 之後剩下的就是它的<b>共軛鹼</b>:CH<sub>3</sub>COOH / CH<sub>3</sub>COO<sup>−</sup>、H<sub>2</sub>CO<sub>3</sub> / HCO<sub>3</sub><sup>−</sup>。<b>這一對是下週緩衝溶液的主角</b>,請先記住這個配對關係。</div>
+</section>
+
+<!-- 22 -->
+<section class="slide">
+  <h2>水的自解離與 K<sub>w</sub> <span class="en">Autoionization of Water</span></h2>
+  <p>純水也會極微量地自己解離:</p>
+  <div class="eq">2H<sub>2</sub>O(l) ⇌ H<sub>3</sub>O<sup>+</sup>(aq) + OH<sup>−</sup>(aq)</div>
+  <div class="eq">K<sub>w</sub> = [H<sub>3</sub>O<sup>+</sup>][OH<sup>−</sup>] = <span class="hl">1.0 × 10<sup>−14</sup></span>　(25 °C)</div>
+  <ul>
+    <li>純水中 [H<sub>3</sub>O<sup>+</sup>] = [OH<sup>−</sup>] = 1.0 × 10<sup>−7</sup> M → 中性</li>
+    <li>加酸使 [H<sub>3</sub>O<sup>+</sup>] 上升,[OH<sup>−</sup>] 就<b>必須</b>下降——兩者的乘積是定值</li>
+    <li>K<sub>w</sub> 是平衡常數,<b>只隨溫度改變</b>:體溫 37 °C 時 K<sub>w</sub> 較大,中性點約 pH 6.8</li>
+  </ul>
+<div class="box warn"><span class="tag">常見誤解</span>「中性 = pH 7」只在 <b>25 °C</b> 成立。中性真正的定義是[H<sub>3</sub>O<sup>+</sup>] = [OH<sup>−</sup>],不是那個數字 7。</div>
+</section>
+
+<!-- 23 -->
+<section class="slide">
+  <h2>pH 與 pOH <span class="en">pH and pOH</span></h2>
+  <div class="eq">pH = −log[H<sub>3</sub>O<sup>+</sup>]　　pOH = −log[OH<sup>−</sup>]　　<span class="hl">pH + pOH = 14.00</span>　(25 °C)</div>
+  <ul>
+    <li>pH 是<b>指數的相反數</b>:[H<sub>3</sub>O<sup>+</sup>] = 10<sup>−3</sup> M → pH = 3</li>
+    <li>pH 每差 <b>1</b>,[H<sub>3</sub>O<sup>+</sup>] 差 <b>10 倍</b>;差 3 就是 1000 倍</li>
+    <li>pH &lt; 7 酸性、= 7 中性、&gt; 7 鹼性(25 °C)</li>
+  </ul>
+<div class="box key"><span class="tag">有效數字的規矩(接 W01)</span>pH 的<b>小數位數</b>才是有效數字,整數部分只記錄數量級。[H<sup>+</sup>] = 2.5 × 10<sup>−3</sup> M(2 位)→ pH = <b>2.60</b>(小數 2 位),不是 2.6021。</div>
+</section>
+
+<!-- 24 -->
+<section class="slide">
+  <h2>pH 尺度與食品 <span class="en">The pH Scale in Foods</span></h2>
+<svg class="fig" role="img" aria-labelledby="w14f2-t w14f2-d" width="1020" height="268" viewBox="0 0 1020 268" xmlns="http://www.w3.org/2000/svg">
+        <title id="w14f2-t">pH 尺度與食品法規的 4.6 分界</title>
+        <desc id="w14f2-d">0 到 14 的 pH 尺度橫條,標出常見食品的 pH 位置。pH 4.6 處有一條醒目的分界線:左側為酸性食品,肉毒桿菌不產毒,可用沸水殺菌;右側為低酸性食品,必須高溫高壓滅菌。</desc>
+        <rect x="70" y="150" width="289.1428571428571" height="34" fill="#f7d9c4" rx="0" stroke="#a04c08" stroke-width="2"/>
+        <rect x="359.1428571428571" y="150" width="590.8571428571429" height="34" fill="#cfe0ec" rx="0" stroke="#1f5f8b" stroke-width="2"/>
+        <line x1="70.0" y1="184" x2="70.0" y2="192" stroke="#5a6a6b" stroke-width="2" stroke-linecap="round"/>
+        <text x="70.0" y="212" font-size="16" fill="#5a6a6b" text-anchor="middle">0</text>
+        <line x1="195.71428571428572" y1="184" x2="195.71428571428572" y2="192" stroke="#5a6a6b" stroke-width="2" stroke-linecap="round"/>
+        <text x="195.71428571428572" y="212" font-size="16" fill="#5a6a6b" text-anchor="middle">2</text>
+        <line x1="321.42857142857144" y1="184" x2="321.42857142857144" y2="192" stroke="#5a6a6b" stroke-width="2" stroke-linecap="round"/>
+        <text x="321.42857142857144" y="212" font-size="16" fill="#5a6a6b" text-anchor="middle">4</text>
+        <line x1="447.14285714285717" y1="184" x2="447.14285714285717" y2="192" stroke="#5a6a6b" stroke-width="2" stroke-linecap="round"/>
+        <text x="447.14285714285717" y="212" font-size="16" fill="#5a6a6b" text-anchor="middle">6</text>
+        <line x1="572.8571428571429" y1="184" x2="572.8571428571429" y2="192" stroke="#5a6a6b" stroke-width="2" stroke-linecap="round"/>
+        <text x="572.8571428571429" y="212" font-size="16" fill="#5a6a6b" text-anchor="middle">8</text>
+        <line x1="698.5714285714286" y1="184" x2="698.5714285714286" y2="192" stroke="#5a6a6b" stroke-width="2" stroke-linecap="round"/>
+        <text x="698.5714285714286" y="212" font-size="16" fill="#5a6a6b" text-anchor="middle">10</text>
+        <line x1="824.2857142857143" y1="184" x2="824.2857142857143" y2="192" stroke="#5a6a6b" stroke-width="2" stroke-linecap="round"/>
+        <text x="824.2857142857143" y="212" font-size="16" fill="#5a6a6b" text-anchor="middle">12</text>
+        <line x1="950.0" y1="184" x2="950.0" y2="192" stroke="#5a6a6b" stroke-width="2" stroke-linecap="round"/>
+        <text x="950.0" y="212" font-size="16" fill="#5a6a6b" text-anchor="middle">14</text>
+        <text x="70" y="88" font-size="18" fill="#a04c08" text-anchor="start" font-weight="700">酸性</text>
+        <text x="950" y="88" font-size="18" fill="#1f5f8b" text-anchor="end" font-weight="700">鹼性</text>
+        <line x1="214.57142857142856" y1="150" x2="214.57142857142856" y2="144" stroke="#5a6a6b" stroke-width="1.8" stroke-linecap="round"/>
+        <text x="214.57142857142856" y="134" font-size="16" fill="#2c3e50" text-anchor="middle">檸檬汁</text>
+        <line x1="252.28571428571428" y1="184" x2="252.28571428571428" y2="222" stroke="#5a6a6b" stroke-width="1.8" stroke-linecap="round"/>
+        <text x="252.28571428571428" y="242" font-size="16" fill="#2c3e50" text-anchor="middle">醋</text>
+        <line x1="302.57142857142856" y1="150" x2="302.57142857142856" y2="144" stroke="#5a6a6b" stroke-width="1.8" stroke-linecap="round"/>
+        <text x="302.57142857142856" y="134" font-size="16" fill="#2c3e50" text-anchor="middle">柳橙汁</text>
+        <line x1="340.2857142857143" y1="184" x2="340.2857142857143" y2="222" stroke="#5a6a6b" stroke-width="1.8" stroke-linecap="round"/>
+        <text x="340.2857142857143" y="242" font-size="16" fill="#2c3e50" text-anchor="middle">番茄</text>
+        <line x1="440.85714285714283" y1="150" x2="440.85714285714283" y2="144" stroke="#5a6a6b" stroke-width="1.8" stroke-linecap="round"/>
+        <text x="440.85714285714283" y="134" font-size="16" fill="#2c3e50" text-anchor="middle">紅蘿蔔</text>
+        <line x1="484.85714285714283" y1="184" x2="484.85714285714283" y2="222" stroke="#5a6a6b" stroke-width="1.8" stroke-linecap="round"/>
+        <text x="484.85714285714283" y="242" font-size="16" fill="#2c3e50" text-anchor="middle">牛奶</text>
+        <line x1="510.0" y1="150" x2="510.0" y2="144" stroke="#5a6a6b" stroke-width="1.8" stroke-linecap="round"/>
+        <text x="510.0" y="134" font-size="16" fill="#2c3e50" text-anchor="middle">純水</text>
+        <line x1="572.8571428571429" y1="184" x2="572.8571428571429" y2="222" stroke="#5a6a6b" stroke-width="1.8" stroke-linecap="round"/>
+        <text x="572.8571428571429" y="242" font-size="16" fill="#2c3e50" text-anchor="middle">蛋白</text>
+        <line x1="359.1428571428571" y1="106" x2="359.1428571428571" y2="196" stroke="#c0392b" stroke-width="4" stroke-linecap="round"/>
+        <rect x="251.1428571428571" y="66" width="216" height="40" fill="#fdecea" rx="6" stroke="#c0392b" stroke-width="2.5"/>
+        <text x="359.1428571428571" y="92" font-size="17" fill="#c0392b" text-anchor="middle" font-weight="700">pH 4.6　食品法規分界</text>
+        <text x="214.57142857142856" y="174" font-size="17" fill="#7a3a06" text-anchor="middle" font-weight="700">酸性食品:沸水殺菌即可</text>
+        <text x="654.5714285714286" y="174" font-size="17" fill="#1f5f8b" text-anchor="middle" font-weight="700">低酸性食品:須 121 °C 高壓滅菌</text>
+      </svg>
+<div class="box def"><span class="tag">看圖說話</span>大部分<b>水果與發酵品</b>落在酸性側,大部分<b>蔬菜、肉、奶</b>落在 4.6 以上。番茄 4.3 只差 0.3 就跨線——它是少數「天然就在安全側」的蔬果,所以番茄罐頭可以沸水處理,四季豆罐頭不行。</div>
+</section>
+
+<!-- 25 -->
+<section class="slide">
+  <h2>例題 2:強酸溶液的 pH <span class="en">Example 2</span></h2>
+  <p>0.010 M 的 HCl 水溶液,pH 是多少?</p>
+  <div class="sol"><b>解答:</b><br>HCl 是強酸,<b>完全解離</b> → [H<sub>3</sub>O<sup>+</sup>] = 0.010 M = 1.0 × 10<sup>−2</sup> M<br>pH = −log(1.0 × 10<sup>−2</sup>) = <span class="hl">2.00</span><br><b>有效數字:</b>0.010 有 2 位 → pH 寫到<b>小數 2 位</b>。<br><b>合理性檢查:</b>10<sup>−2</sup> 對應 pH = 2,指數是幾 pH 就是幾——強酸的 pH 幾乎是用看的。</div>
+</section>
+
+<!-- 26 -->
+<section class="slide">
+  <h2>例題 3:由 pOH 求 pH <span class="en">Example 3</span></h2>
+  <p>0.0025 M 的 NaOH 水溶液,pH 是多少?</p>
+  <div class="sol"><b>解答:</b><br>NaOH 是強鹼,完全解離 → [OH<sup>−</sup>] = 0.0025 M = 2.5 × 10<sup>−3</sup> M<br>pOH = −log(2.5 × 10<sup>−3</sup>) = 2.60<br>pH = 14.00 − 2.60 = <span class="hl">11.40</span><br><b>易錯:</b>拿 [OH<sup>−</sup>] 直接取 −log 就當成 pH,會得到 2.60——一個<b>鹼</b>溶液算出強酸的 pH,這時就該警覺。<b>算完先問:這個數字合不合理?</b></div>
+</section>
+
+<!-- 27 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ③:pH 與 pOH <span class="en">Quick Check 3</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>某果汁的 pH 由 4.0 降到 2.0,其 [H<sub>3</sub>O<sup>+</sup>] 變成原來的幾倍?<br><span class="opt">A 2 倍</span><span class="opt">B 20 倍</span><span class="opt">C 100 倍</span><span class="opt">D 一半</span></div>
+  <div class="q"><span class="qn">2</span>在 25 °C 的某溶液中 [OH<sup>−</sup>] = 1.0 × 10<sup>−4</sup> M,其 pH 為?<br><span class="opt">A 4.00</span><span class="opt">B 10.00</span><span class="opt">C 7.00</span><span class="opt">D 14.00</span></div>
+  <div class="q"><span class="qn">3</span>人體血液的 pH 約 7.4,但體溫 37 °C 的中性點約在 pH 6.8。那麼血液到底是<b>中性</b>還是<b>鹼性</b>?請說明你的判準。</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. C</span> — pH 每降 1,[H<sub>3</sub>O<sup>+</sup>] 就變成 10 倍;降 2 就是 10<sup>2</sup> = 100 倍。<span class="myth">選 A 把 pH 當成線性刻度——這是 pH 最普遍的迷思。pH 是<b>對數</b>尺度,「差一點點」在濃度上可能差很多,這也是為什麼法規上 4.6 與 4.7 是兩件事。</span></div><div class="row"><span class="ans">2. B</span> — pOH = 4.00 → pH = 14.00 − 4.00 = 10.00。<span class="myth">選 A 是直接把 [OH<sup>−</sup>] 的 −log 當成 pH,把鹼算成了酸。固定動作:<b>看到 OH<sup>−</sup> 就先算 pOH,最後再用 14 減。</b></span></div><div class="row"><span class="ans">3. 相對於 37 °C 的中性點,血液是偏鹼的</span> — 判準不是「大於 7」,而是<b>[H<sub>3</sub>O<sup>+</sup>] 與 [OH<sup>−</sup>] 誰多</b>。37 °C 的中性點約 6.8,血液 7.4 高於它,所以確實偏鹼(約 4 倍)。<span class="myth">這一題要打掉的是「7 是一個神聖數字」的印象。<b>7 只是 25 °C 這個特定條件下的結果。</b>生理化學談酸鹼平衡時用的是 7.35–7.45 這個區間,而不是與 7 比較。</span></div></div>
+</section>
+
+<!-- 28 -->
+<section class="slide divider">
+  <div class="secnum">PART 14.4</div>
+  <h1>強弱酸鹼與 K<sub>a</sub></h1>
+  <div class="en-sub">Strong vs Weak Acids</div>
+  <div class="items">解離程度・六大強酸・K<sub>a</sub> 與 pK<sub>a</sub>・濃度不等於強度</div>
+</section>
+
+<!-- 29 -->
+<section class="slide">
+  <h2>強酸與弱酸:差在解離程度 <span class="en">Strong vs Weak</span></h2>
+  <div class="two-col">
+    <div>  <ul>
+    <li><b>強酸</b>:在水中<b>幾乎完全</b>解離,溶液裡幾乎找不到完整的酸分子</li>
+    <li><b>弱酸</b>:只有<b>一小部分</b>解離,大多數仍是分子</li>
+    <li>0.1 M 醋酸只有約 <b>1.3%</b> 解離 → [H<sup>+</sup>] ≈ 0.0013 M</li>
+    <li>兩杯<b>濃度相同</b>的酸,強酸的 [H<sup>+</sup>] 高得多,pH 低得多</li>
+  </ul></div>
+    <div><svg class="fig" role="img" aria-labelledby="w14f3-t w14f3-d" width="520" height="300" viewBox="0 0 520 300" xmlns="http://www.w3.org/2000/svg">
+        <title id="w14f3-t">強酸與弱酸的解離程度</title>
+        <desc id="w14f3-d">兩個燒杯的粒子示意圖。左杯的鹽酸幾乎全部解離成氫離子與氯離子,看不到完整的分子;右杯的醋酸大多數仍以分子形式存在,只有少數解離成離子。兩杯的酸濃度相同。</desc>
+        <path d="M 40 78 L 40 250 Q 40 268 58 268 L 206 268 Q 224 268 224 250 L 224 78" fill="#f4f8fa" stroke="#5a6a6b" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="132" y="46" font-size="19" fill="#a04c08" text-anchor="middle" font-weight="700">強酸　HCl</text>
+        <text x="132" y="68" font-size="16" fill="#5a6a6b" text-anchor="middle">幾乎完全解離</text>
+        <path d="M 296 78 L 296 250 Q 296 268 314 268 L 462 268 Q 480 268 480 250 L 480 78" fill="#f4f8fa" stroke="#5a6a6b" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="388" y="46" font-size="19" fill="#117a65" text-anchor="middle" font-weight="700">弱酸　CH₃COOH</text>
+        <text x="388" y="68" font-size="16" fill="#5a6a6b" text-anchor="middle">大多維持分子</text>
+        <circle cx="78" cy="112" r="13" fill="#fbe3d0" stroke="#a04c08" stroke-width="2"/>
+        <text x="78" y="118" font-size="16" fill="#7a3a06" text-anchor="middle">H⁺</text>
+        <circle cx="150" cy="106" r="13" fill="#fbe3d0" stroke="#a04c08" stroke-width="2"/>
+        <text x="150" y="112" font-size="16" fill="#7a3a06" text-anchor="middle">Cl⁻</text>
+        <circle cx="108" cy="152" r="13" fill="#fbe3d0" stroke="#a04c08" stroke-width="2"/>
+        <text x="108" y="158" font-size="16" fill="#7a3a06" text-anchor="middle">H⁺</text>
+        <circle cx="176" cy="158" r="13" fill="#fbe3d0" stroke="#a04c08" stroke-width="2"/>
+        <text x="176" y="164" font-size="16" fill="#7a3a06" text-anchor="middle">Cl⁻</text>
+        <circle cx="72" cy="196" r="13" fill="#fbe3d0" stroke="#a04c08" stroke-width="2"/>
+        <text x="72" y="202" font-size="16" fill="#7a3a06" text-anchor="middle">H⁺</text>
+        <circle cx="146" cy="202" r="13" fill="#fbe3d0" stroke="#a04c08" stroke-width="2"/>
+        <text x="146" y="208" font-size="16" fill="#7a3a06" text-anchor="middle">Cl⁻</text>
+        <circle cx="186" cy="116" r="13" fill="#fbe3d0" stroke="#a04c08" stroke-width="2"/>
+        <text x="186" y="122" font-size="16" fill="#7a3a06" text-anchor="middle">H⁺</text>
+        <circle cx="110" cy="234" r="13" fill="#fbe3d0" stroke="#a04c08" stroke-width="2"/>
+        <text x="110" y="240" font-size="16" fill="#7a3a06" text-anchor="middle">Cl⁻</text>
+        <rect x="308" y="96" width="52" height="28" fill="#e8f8f5" rx="6" stroke="#117a65" stroke-width="2"/>
+        <text x="334" y="116" font-size="16" fill="#0d5c4c" text-anchor="middle">HA</text>
+        <rect x="374" y="90" width="52" height="28" fill="#e8f8f5" rx="6" stroke="#117a65" stroke-width="2"/>
+        <text x="400" y="110" font-size="16" fill="#0d5c4c" text-anchor="middle">HA</text>
+        <rect x="336" y="138" width="52" height="28" fill="#e8f8f5" rx="6" stroke="#117a65" stroke-width="2"/>
+        <text x="362" y="158" font-size="16" fill="#0d5c4c" text-anchor="middle">HA</text>
+        <rect x="406" y="142" width="52" height="28" fill="#e8f8f5" rx="6" stroke="#117a65" stroke-width="2"/>
+        <text x="432" y="162" font-size="16" fill="#0d5c4c" text-anchor="middle">HA</text>
+        <rect x="304" y="184" width="52" height="28" fill="#e8f8f5" rx="6" stroke="#117a65" stroke-width="2"/>
+        <text x="330" y="204" font-size="16" fill="#0d5c4c" text-anchor="middle">HA</text>
+        <rect x="378" y="188" width="52" height="28" fill="#e8f8f5" rx="6" stroke="#117a65" stroke-width="2"/>
+        <text x="404" y="208" font-size="16" fill="#0d5c4c" text-anchor="middle">HA</text>
+        <circle cx="452" cy="214" r="13" fill="#fbe3d0" stroke="#a04c08" stroke-width="2"/>
+        <text x="452" y="220" font-size="16" fill="#7a3a06" text-anchor="middle">H⁺</text>
+        <circle cx="330" cy="244" r="13" fill="#fbe3d0" stroke="#a04c08" stroke-width="2"/>
+        <text x="330" y="250" font-size="16" fill="#7a3a06" text-anchor="middle">A⁻</text>
+      </svg></div>
+  </div>
+<div class="box key"><span class="tag">關鍵</span>「強弱」是<b>解離程度</b>,「濃稀」是<b>每公升幾莫耳</b>。可以有很稀的強酸,也可以有很濃的弱酸——食用醋就是後者。</div>
+</section>
+
+<!-- 30 -->
+<section class="slide">
+  <h2>必須記住的強酸與強鹼 <span class="en">The Short List</span></h2>
+  <div class="two-col">
+    <div><b>六大強酸</b>  <ul>
+    <li>HCl 鹽酸</li>
+    <li>HBr 氫溴酸</li>
+    <li>HI 氫碘酸</li>
+    <li>HNO<sub>3</sub> 硝酸</li>
+    <li>H<sub>2</sub>SO<sub>4</sub> 硫酸(第一個質子)</li>
+    <li>HClO<sub>4</sub> 過氯酸</li>
+  </ul></div>
+    <div><b>常見強鹼</b>  <ul>
+    <li>LiOH、NaOH、KOH</li>
+    <li>Ca(OH)<sub>2</sub>、Sr(OH)<sub>2</sub>、Ba(OH)<sub>2</sub></li>
+    <li><span class="small">(第一族全部;第二族較重的三個)</span></li>
+  </ul></div>
+  </div>
+<div class="box def"><span class="tag">為什麼要背這一份清單</span><b>清單以外的酸,實務上都當弱酸處理。</b>食品裡遇到的幾乎全是弱酸——醋酸、檸檬酸、乳酸、蘋果酸、抗壞血酸、苯甲酸、山梨酸,一個強酸都沒有。背這六個,是為了能快速判斷「剩下的那些」該怎麼想。</div>
+</section>
+
+<!-- 31 -->
+<section class="slide">
+  <h2>K<sub>a</sub> 的意義 <span class="en">The Meaning of K<sub>a</sub></span></h2>
+  <div class="eq">HA + H<sub>2</sub>O ⇌ A<sup>−</sup> + H<sub>3</sub>O<sup>+</sup>　　K<sub>a</sub> = [A<sup>−</sup>][H<sub>3</sub>O<sup>+</sup>] / [HA]</div>
+  <ul>
+    <li>K<sub>a</sub> 就是<b>弱酸解離這個反應的平衡常數</b>——PART 1 的 K,換了個名字</li>
+    <li>K<sub>a</sub> <b>大</b> → 解離得多 → 酸性<b>較強</b></li>
+    <li>K<sub>a</sub> <b>小</b> → 大多沒解離 → 酸性<b>較弱</b></li>
+    <li>醋酸 K<sub>a</sub> = 1.8 × 10<sup>−5</sup>;比它小的更弱,比它大的更強</li>
+  </ul>
+<div class="box warn"><span class="tag">本週的範圍</span>本週只要求你<b>讀懂並比較</b> K<sub>a</sub>,不做「由 K<sub>a</sub> 算弱酸 pH」的計算。那部分與 Henderson–Hasselbalch 一起放在下週。</div>
+</section>
+
+<!-- 32 -->
+<section class="slide">
+  <h2>pK<sub>a</sub>:把指數變成好用的數字 <span class="en">pK<sub>a</sub></span></h2>
+  <div class="eq">pK<sub>a</sub> = −log K<sub>a</sub></div>
+  <ul>
+    <li>與 pH 同樣是取負對數,所以 <b>pK<sub>a</sub> 越小 → 酸性越強</b>(方向與 K<sub>a</sub> 相反)</li>
+    <li>醋酸 K<sub>a</sub> = 1.8 × 10<sup>−5</sup> → pK<sub>a</sub> = 4.76</li>
+    <li>兩個酸的 pK<sub>a</sub> 差 1,強度差 <b>10 倍</b></li>
+  </ul>
+<div class="box key"><span class="tag">下週的伏筆</span>當 pH = pK<sub>a</sub> 時,溶液中<b>酸與其共軛鹼各占一半</b>。這是緩衝溶液效果最好的點,也是 Henderson–Hasselbalch 方程式的核心。</div>
+</section>
+
+<!-- 33 -->
+<section class="slide">
+  <h2>食品中常見有機酸的 pK<sub>a</sub> <span class="en">Organic Acids in Foods</span></h2>
+  <table><tr><th>酸</th><th>主要來源</th><th>pK<sub>a</sub>(第一個質子)</th></tr><tr><td>酒石酸 tartaric</td><td>葡萄、酒石</td><td>2.98</td></tr><tr><td>檸檬酸 citric</td><td>柑橘、汽水酸味劑</td><td>3.13</td></tr><tr><td>蘋果酸 malic</td><td>蘋果、未熟果實</td><td>3.40</td></tr><tr><td>乳酸 lactic</td><td>優格、泡菜、肌肉</td><td>3.86</td></tr><tr><td>抗壞血酸 ascorbic(維生素 C)</td><td>蔬果、抗氧化劑</td><td>4.17</td></tr><tr><td>苯甲酸 benzoic</td><td>防腐劑</td><td>4.20</td></tr><tr><td>醋酸 acetic</td><td>食用醋</td><td>4.76</td></tr><tr><td>山梨酸 sorbic</td><td>防腐劑</td><td>4.76</td></tr></table>
+  <p class="small">這張表下週還會用到——防腐劑要有效,取決於未解離的分子比例,而那由 pH 與 pK<sub>a</sub> 的關係決定。</p>
+</section>
+
+<!-- 34 -->
+<section class="slide">
+  <h2>濃度 ≠ 強度 <span class="en">Concentration Is Not Strength</span></h2>
+  <table><tr><th>溶液</th><th>強/弱</th><th>濃/稀</th><th>約略 pH</th></tr><tr><td>0.10 M HCl</td><td>強酸</td><td></td><td>1.0</td></tr><tr><td>0.10 M 醋酸</td><td>弱酸</td><td>同樣濃度</td><td>2.9</td></tr><tr><td>0.00010 M HCl</td><td>強酸</td><td>很稀</td><td>4.0</td></tr><tr><td>5 M 醋酸(食用醋約 0.8 M)</td><td>弱酸</td><td>很濃</td><td>約 1.9</td></tr></table>
+<div class="box warn"><span class="tag">看出來了嗎</span><b>0.00010 M 的強酸(pH 4.0)比 0.10 M 的弱酸(pH 2.9)還不酸。</b>所以「這是強酸,所以很危險」是錯的推論——危險程度要看濃度;而「醋很酸所以是強酸」也是錯的——酸不酸看 pH,強不強看解離程度。</div>
+</section>
+
+<!-- 35 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ④:強弱與濃稀 <span class="en">Quick Check 4</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>下列四種溶液,何者的 pH <b>最低</b>?<br><span class="opt">A 0.10 M 醋酸(弱酸)</span><span class="opt">B 0.10 M 鹽酸(強酸)</span><span class="opt">C 1.0 M 醋酸</span><span class="opt">D 0.0010 M 鹽酸</span></div>
+  <div class="q"><span class="qn">2</span>酸 X 的 pK<sub>a</sub> = 3.1,酸 Y 的 pK<sub>a</sub> = 4.8。下列敘述何者<b>正確</b>?<br><span class="opt">A Y 較強,因為 pK<sub>a</sub> 較大</span><span class="opt">B X 較強,約為 Y 的 50 倍</span><span class="opt">C 兩者一樣強,因為都是弱酸</span><span class="opt">D 無法比較,因為濃度未知</span></div>
+  <div class="q"><span class="qn">3</span>食用醋(醋酸約 0.8 M)可以喝,實驗室的 0.8 M 鹽酸不能喝。但如果把鹽酸稀釋到 pH 與醋一樣,它就可以喝了嗎?說明你的理由。</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B</span> — 同樣 0.10 M 時,強酸完全解離,[H<sup>+</sup>] 遠高於只解離約 1% 的醋酸。<span class="myth">選 C 是最值得討論的誘答:1.0 M 醋酸雖然濃 10 倍,但解離度低,pH 約 2.4,仍高於 0.10 M 鹽酸的 1.0。選 D 雖是強酸但太稀,pH 約 3.0。<b>比 pH 要同時看「強弱」與「濃稀」,只看一個一定會錯。</b></span></div><div class="row"><span class="ans">2. B</span> — pK<sub>a</sub> 越<b>小</b>酸性越強;差 1.7 個單位 → 10<sup>1.7</sup> ≈ 50 倍。<span class="myth">選 A 把方向記反了——pK<sub>a</sub> 取的是<b>負</b>對數,與 pH 同理。選 D 混淆了「酸的強度」(物質的固有性質,與濃度無關)與「溶液的酸度」(看 pH,與濃度有關)。</span></div><div class="row"><span class="ans">3. pH 相同不代表安全性相同</span> — 稀鹽酸與醋在同一個 pH 下,起始的 [H<sup>+</sup>] 確實一樣;但醋酸是弱酸,溶液裡有大量<b>未解離的分子當作儲備</b>,被中和後還會繼續解離;而且食品安全還牽涉陰離子本身(氯離子 vs 醋酸根)與食品規格,不是只看 pH。<span class="myth">這題要建立的是<b>「一個數字不足以下結論」</b>的習慣:pH 只告訴你當下的 [H<sup>+</sup>],不告訴你總酸量(這要靠滴定,即 W7 的可滴定酸度),也不告訴你這個物質能不能吃。<b>問「這個數字量的是什麼」,永遠比記住數字重要。</b></span></div></div>
+</section>
+
+<!-- 36 -->
+<section class="slide divider">
+  <div class="secnum">PART 14.5</div>
+  <h1>食品法規的 pH 4.6 分界</h1>
+  <div class="en-sub">Why pH 4.6?</div>
+  <div class="items">肉毒桿菌・殺菌條件・酸化食品・指示劑</div>
+</section>
+
+<!-- 37 -->
+<section class="slide">
+  <h2>肉毒桿菌與 pH 4.6 <span class="en">Clostridium botulinum</span></h2>
+  <ul>
+    <li><b>肉毒桿菌</b>(<i>Clostridium botulinum</i>)是<b>厭氧</b>細菌,密封罐頭正是它喜歡的環境</li>
+    <li>它的孢子<b>非常耐熱</b>,沸水(100 °C)煮不死</li>
+    <li>它產生的肉毒毒素是已知毒性最強的天然毒素之一</li>
+    <li>關鍵事實:<b>pH 低於 4.6 時,它不會生長、也不會產毒</b></li>
+  </ul>
+<div class="box warn"><span class="tag">所以 4.6 這個數字</span>不是化學上的什麼特別點,而是<b>微生物學的界線</b>——它標出「肉毒桿菌能不能活」。法規把安全裕度加進去後,以 4.6 作為分界。</div>
+</section>
+
+<!-- 38 -->
+<section class="slide">
+  <h2>兩類食品,兩種殺菌條件 <span class="en">Two Classes, Two Processes</span></h2>
+  <table><tr><th></th><th>酸性食品</th><th>低酸性食品</th></tr><tr><td>pH</td><td>≤ 4.6</td><td>&gt; 4.6</td></tr><tr><td>肉毒桿菌</td><td>不生長、不產毒</td><td><b>可能生長並產毒</b></td></tr><tr><td>殺菌條件</td><td>沸水(約 100 °C)即可</td><td><b>121 °C 高壓滅菌</b></td></tr><tr><td>例子</td><td>果醬、泡菜、番茄製品、醃漬品</td><td>蔬菜、肉、魚、奶類罐頭</td></tr><tr><td>靠什麼保護</td><td>酸度</td><td>熱</td></tr></table>
+<div class="box def"><span class="tag">為什麼是 121 °C</span>因為要殺的是<b>孢子</b>,不是細菌本身。孢子在 100 °C 存活,需要加壓才能把水的沸點提高到 121 °C——這一步的原理,正是 W12 的<b>沸點上升</b>與蒸氣壓。</div>
+</section>
+
+<!-- 39 -->
+<section class="slide">
+  <h2>酸化食品:把 pH 降下來 <span class="en">Acidified Foods</span></h2>
+  <ul>
+    <li><b>酸化食品</b>:本身是低酸性,但<b>加酸</b>把最終平衡 pH 降到 4.6 以下</li>
+    <li>例:醃黃瓜、醋漬蔬菜、加了檸檬酸的番茄製品</li>
+    <li>一旦成功酸化,就可以用沸水處理,不必高壓滅菌</li>
+    <li>法規關心的是「<b>最終平衡 pH</b>」——加酸後要讓整批料都達到,不是表面沾一下</li>
+  </ul>
+<div class="box warn"><span class="tag">回到開場的蒜頭橄欖油</span>蒜頭是低酸性(pH 約 5.3–6.3),泡在油裡形成<b>無氧</b>環境,而且常溫存放——這正好是肉毒桿菌的理想條件。<b>自製蒜頭油必須冷藏且短期食用,或先酸化處理。</b>這是真實發生過食品中毒的案例類型。</div>
+</section>
+
+<!-- 40 -->
+<section class="slide">
+  <h2>pH 怎麼量:pH 計與指示劑 <span class="en">Measuring pH</span></h2>
+  <div class="two-col">
+    <div><b>pH 計</b>  <ul>
+    <li>玻璃電極量電位差,換算成 pH</li>
+    <li>可讀到 ±0.01,法規判定用它</li>
+    <li><b>使用前必須用標準緩衝液校正</b>(下週會講為什麼是緩衝液)</li>
+  </ul></div>
+    <div><b>指示劑</b>  <ul>
+    <li>本身是<b>弱酸</b>,酸型與鹼型的顏色不同</li>
+    <li>在 pK<sub>a</sub> ± 1 的範圍內變色</li>
+    <li>快、便宜,但只給範圍不給數值</li>
+  </ul></div>
+  </div>
+<div class="box def"><span class="tag">接回 W7</span>滴定用指示劑選擇的原則就是這一條:<b>要讓指示劑的變色範圍落在當量點附近</b>,終點才會貼近當量點。</div>
+</section>
+
+<!-- 41 -->
+<section class="slide">
+  <h2>紫甘藍:廚房裡的指示劑 <span class="en">Red Cabbage Indicator</span></h2>
+  <table><tr><th>pH 範圍</th><th>顏色</th><th>常見對應</th></tr><tr><td>≤ 2</td><td>紅</td><td>檸檬汁、強酸</td></tr><tr><td>4</td><td>紫紅</td><td>醋</td></tr><tr><td>6–7</td><td>紫</td><td>純水</td></tr><tr><td>8</td><td>藍</td><td>小蘇打水</td></tr><tr><td>≥ 10</td><td>綠 → 黃</td><td>強鹼</td></tr></table>
+  <p>變色的分子是<b>花青素</b>(anthocyanin):pH 改變它的結構 → <b>共軛系統的長度</b>改變 → 吸收的光波長改變 → 顏色改變。</p>
+<div class="box key"><span class="tag">串起來了</span>這與第 10 週「胡蘿蔔為什麼是橙色」是同一套原理:<b>顏色來自共軛系統</b>。</div>
+</section>
+
+<!-- 42 -->
+<section class="slide">
+  <h2>例題 4:判斷該用哪一種殺菌 <span class="en">Example 4</span></h2>
+  <p>下列自製罐頭,哪些可以用沸水處理,哪些必須高壓滅菌?</p>
+  <ul>
+    <li>(a) 草莓果醬(pH 3.4)　(b) 玉米粒(pH 6.3)</li>
+    <li>(c) 醋漬小黃瓜,最終平衡 pH 3.8　(d) 南瓜濃湯(pH 5.1)</li>
+  </ul>
+  <div class="sol"><b>解答:</b><br><b>沸水即可:</b>(a) 3.4 ≤ 4.6、(c) 3.8 ≤ 4.6(屬<b>酸化食品</b>)。<br><b>必須 121 °C 高壓滅菌:</b>(b) 6.3 &gt; 4.6、(d) 5.1 &gt; 4.6。<br><b>注意 (d):</b>5.1 看起來「也蠻酸的」,但只要<b>高於 4.6 就屬低酸性</b>,沒有中間地帶。南瓜、玉米這類「不覺得鹼」的蔬菜,正是最容易被低估的一類。<br><b>注意 (c):</b>關鍵是「<b>最終平衡</b> pH」——泡的時間要夠久,讓酸滲進小黃瓜內部,不是把表面弄酸就算數。</div>
+</section>
+
+<!-- 43 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ⑤:pH 4.6 與食品安全 <span class="en">Quick Check 5</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>某蔬菜濃湯量得 pH = 5.0。依食品法規,它屬於?<br><span class="opt">A 酸性食品,沸水殺菌即可</span><span class="opt">B 低酸性食品,必須高壓滅菌</span><span class="opt">C 中性食品,不需殺菌</span><span class="opt">D 要看含水量才能決定</span></div>
+  <div class="q"><span class="qn">2</span>為什麼低酸性罐頭要 121 °C,而不是把水煮久一點就好?<br><span class="opt">A 121 °C 比較省時間</span><span class="opt">B 要殺的是<b>耐熱孢子</b>,100 °C 再久也殺不死</span><span class="opt">C 為了讓食物更好吃</span><span class="opt">D 因為 121 °C 可以蒸發多餘水分</span></div>
+  <div class="q"><span class="qn">3</span>自製蒜頭橄欖油放常溫為什麼危險?請指出<b>三個</b>同時成立的條件。</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B</span> — 判準只有一條:pH &gt; 4.6 就是低酸性食品。<span class="myth">選 A 是最危險的誤判——5.0「感覺不高」,但法規<b>沒有模糊地帶</b>。選 D 把 pH 與水活性 a<sub>w</sub> 兩條獨立的界線混在一起:它們是<b>兩個</b>都要看的條件,不是互相替代(a<sub>w</sub> 的部分在第 13 週)。</span></div><div class="row"><span class="ans">2. B</span> — 肉毒桿菌的<b>孢子</b>耐熱,必須加壓把沸點提高到 121 °C 才能有效殺滅。<span class="myth">選 A 把因果講反了——加壓的目的是提高溫度,省時間只是結果。這裡用到的是 W12 的蒸氣壓與沸點:<b>加壓 → 沸點上升</b>,不是「壓力本身殺菌」。</span></div><div class="row"><span class="ans">3. 無氧、低酸、常溫</span> — ① 油把蒜頭與空氣隔開 → <b>厭氧</b>環境,正是肉毒桿菌需要的;② 蒜頭 pH 約 5.3–6.3,屬<b>低酸性</b>,不會抑制它;③ <b>常溫</b>存放讓它有時間生長產毒。三個條件缺一,風險就大幅下降。<span class="myth">這題示範的是<b>風險是條件的組合,不是單一因素</b>。對策也就對應三個條件:冷藏(去掉③)、酸化到 pH ≤ 4.6(去掉②)、或改成現做現用(不給時間)。<b>能拆出條件,就能設計對策</b>——這是食品安全的基本思路。</span></div></div>
+</section>
+
+<!-- 44 -->
+<section class="slide hookback">
+  <h2>回到本週的錨點 <span class="en">Anchor Answered</span></h2>
+  <div class="recall"><b>第 14 週開場問的是:</b>食品法規為什麼以 pH 4.6 分界?</div>
+  <div class="ansbox">
+    <h3>用這一週的化學回答</h3>
+    <ul>
+    <li>4.6 不是化學上的特殊點,而是<b>微生物學的界線</b>:肉毒桿菌在 pH &lt; 4.6 不生長、不產毒。</li>
+    <li>pH 是 [H<sub>3</sub>O<sup>+</sup>] 的<b>對數</b>尺度,所以 4.6 與 5.0 不是「差一點」,而是氫離子濃度差了 2.5 倍——法規需要一條可量測、可稽核的線。</li>
+    <li>跨過這條線,保護食品的機制就<b>換人</b>:4.6 以下靠<b>酸度</b>(沸水即可),以上靠<b>熱</b>(121 °C 高壓滅菌)。</li>
+    <li>所以「先猜猜看」的蒜頭橄欖油屬於<b>低酸性</b>,而且無氧、常溫——三個危險條件同時成立,必須冷藏或酸化。</li>
+    </ul>
+  </div>
+  <div class="lens"><span class="lt">這個情境幫你理解的化學是</span>酸鹼平衡是一把<b>可以量化的尺</b>:把「這東西酸不酸」變成一個能寫進法規、能用電極稽核、能跨批次比較的數字。食品安全之所以能被管理,靠的正是把微生物學的條件翻譯成化學的量測。</div>
+  <div class="nextup"><b>接下來在哪裡會再用到:</b><span class="course">食品微生物學</span>肉毒桿菌與罐頭殺菌 F₀ 值　<span class="course">食品化學</span>pH 對質地、色澤與保存的影響　<span class="course">分析化學</span>滴定曲線與指示劑選擇　<span class="course">生物化學</span>酵素的最適 pH</div>
+</section>
+
+<!-- 45 -->
+<section class="slide">
+  <h2>本週重點總結 <span class="en">Summary</span></h2>
+  <ul>
+    <li>平衡是<b>動態</b>的:正逆速率相等,濃度不變,但反應沒有停</li>
+    <li>K 只隨<b>溫度</b>改變;K ≫ 1 偏產物、K ≪ 1 偏反應物;Q 追著 K 跑</li>
+    <li>Le Châtelier:加什麼就往消耗它的方向跑。催化劑只改變<b>多快</b>,不改變<b>到哪裡</b></li>
+    <li>K<sub>w</sub> = [H<sub>3</sub>O<sup>+</sup>][OH<sup>−</sup>] = 1.0 × 10<sup>−14</sup>(25 °C);pH + pOH = 14.00</li>
+    <li>pH 是<b>對數</b>尺度:差 1 就是 10 倍</li>
+    <li><b>強弱看解離程度,濃稀看莫耳濃度</b>——很稀的強酸可以比很濃的弱酸還不酸</li>
+    <li>K<sub>a</sub> 大 → 酸性強;pK<sub>a</sub> 小 → 酸性強(方向相反)</li>
+    <li>pH 4.6 是肉毒桿菌的界線:以下靠酸度、以上靠熱</li>
+  </ul>
+<div class="box key"><span class="tag">帶走一句話</span>本週把「酸」從一個形容詞變成一個<b>可量測、可比較、可寫進法規</b>的數字。</div>
+</section>
+
+<!-- 46 -->
+<section class="slide">
+  <h2>重要名詞中英對照 <span class="en">Key Terms</span></h2>
+  <div class="two-col">
+    <div>  <table><tr><th>中文</th><th>English</th></tr><tr><td>可逆反應</td><td>reversible reaction</td></tr><tr><td>動態平衡</td><td>dynamic equilibrium</td></tr><tr><td>平衡常數</td><td>equilibrium constant</td></tr><tr><td>反應商</td><td>reaction quotient</td></tr><tr><td>勒沙特列原理</td><td>Le Châtelier's principle</td></tr><tr><td>自解離</td><td>autoionization</td></tr><tr><td>共軛酸鹼對</td><td>conjugate acid–base pair</td></tr></table></div>
+    <div>  <table><tr><th>中文</th><th>English</th></tr><tr><td>酸解離常數</td><td>acid dissociation constant</td></tr><tr><td>強酸／弱酸</td><td>strong / weak acid</td></tr><tr><td>解離度</td><td>degree of dissociation</td></tr><tr><td>指示劑</td><td>indicator</td></tr><tr><td>低酸性食品</td><td>low-acid food</td></tr><tr><td>酸化食品</td><td>acidified food</td></tr><tr><td>肉毒桿菌</td><td><i>Clostridium botulinum</i></td></tr></table></div>
+  </div>
+</section>
+
+<!-- 47 -->
+<section class="slide">
+  <h2>課後練習與下週預告 <span class="en">Homework &amp; Next Week</span></h2>
+<div class="box exbox"><span class="tag">課後練習</span>① 完成本週的<b>課後精熟測驗</b>(線上表單,可重考到通過)。<br>② 查出三種你常吃的食品的 pH,判斷各屬酸性或低酸性食品。<br>③ 用紫甘藍汁自製指示劑,測家裡五種液體並排出 pH 順序。</div>
+<div class="box def"><span class="tag">下週:酸鹼 II —— 緩衝與等電點</span>牛奶加酸為什麼會凝固?優格是怎麼形成的?<br>下週處理兩件事:<b>緩衝溶液</b>(為什麼血液的 pH 那麼穩定、為什麼校正 pH 計要用緩衝液),以及<b>等電點</b>(蛋白質在什麼條件下會沉澱)。本週的共軛酸鹼對與 pK<sub>a</sub> 就是下週的工具。</div>
+<div class="box warn"><span class="tag">法規數值請以公告為準</span>pH 4.6、121 °C 等數值依主管機關與版本可能不同,教學前請對照<b>衛福部食藥署</b>現行公告與《罐頭食品良好衛生規範》。本週的化學不因數值微調而改變,但判定要以法規為準。</div>
+</section>
+</div></div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const DECK_INFO='普通化學(一)|新課綱 第 14 週:化學平衡與酸鹼 I';
+let cur=0;
+slides.forEach((s,i)=>{
+  const f=document.createElement('div');f.className='foot';
+  f.innerHTML='<span>'+DECK_INFO+'</span><span>'+(i+1)+' / '+slides.length+'</span>';
+  s.appendChild(f);
+});
+slides.forEach(s=>{
+  const sol=s.querySelector('.sol');
+  if(!sol)return;
+  const hint=document.createElement('div');hint.className='sol-hint';
+  hint.innerHTML='<span class="kbd">空白鍵</span><span>先自己想／算，準備好再顯示解答</span>';
+  sol.insertAdjacentElement('beforebegin',hint);
+});
+function show(n){
+  cur=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,i)=>{s.classList.toggle('active',i===cur);s.classList.remove('reveal');});
+  document.getElementById('bar').style.width=((cur+1)/slides.length*100)+'%';
+  location.hash=cur+1;
+}
+function next(){
+  const s=slides[cur];
+  if(s.querySelector('.sol')&&!s.classList.contains('reveal')){s.classList.add('reveal');return;}
+  show(cur+1);
+}
+function prev(){
+  const s=slides[cur];
+  if(s.classList.contains('reveal')){s.classList.remove('reveal');return;}
+  show(cur-1);
+}
+function fit(){
+  const s=Math.min(innerWidth/1280,innerHeight/720);
+  document.getElementById('deck').style.transform='scale('+s+')';
+}
+addEventListener('resize',fit);
+addEventListener('keydown',e=>{
+  if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();next();}
+  else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev();}
+  else if(e.key==='Home')show(0);
+  else if(e.key==='End')show(slides.length-1);
+});
+addEventListener('click',e=>{
+  if(e.target.closest('a'))return;
+  (e.clientX>innerWidth/3)?next():prev();
+});
+let tx=null;
+addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+addEventListener('touchend',e=>{
+  if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;
+  if(dx<-40)next();else if(dx>40)prev();tx=null;
+});
+fit();
+show(parseInt(location.hash.slice(1))-1||0);
+</script>
+</body>
+</html>

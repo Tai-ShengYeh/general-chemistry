@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新課綱 第 12 週:溶液與依數性質</title>
+<style>
+:root{
+  --primary:#1a5276; --primary-dark:#12395a; --accent:#a04c08; --teal:#117a65;
+  --ink:#2c3e50; --muted:#5a6a6b; --bg:#eceff3; --card:#ffffff;
+  --def-bg:#eaf2f8; --key-bg:#fef9e7; --ex-bg:#e8f8f5; --warn-bg:#fdedec;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC","Heiti TC",sans-serif;color:var(--ink)}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#deck{position:relative;width:1280px;height:720px;transform-origin:center center}
+.slide{position:absolute;inset:0;width:1280px;height:720px;background:var(--card);padding:56px 72px 70px;display:none;flex-direction:column;border-top:10px solid var(--primary);overflow:hidden}
+.slide.active{display:flex}
+.slide h2{font-size:36px;color:var(--primary);border-bottom:3px solid var(--accent);padding-bottom:10px;margin-bottom:26px;font-weight:700}
+.slide h2 .en{display:block;font-size:19px;color:var(--muted);font-weight:400;margin-top:4px}
+.slide h3{font-size:26px;color:var(--primary);margin:12px 0 8px}
+.slide p{font-size:24px;line-height:1.55;margin:8px 0}
+.slide ul,.slide ol{font-size:24px;line-height:1.6;margin:8px 0 8px 34px}
+.slide li{margin:7px 0}
+.slide li li{font-size:22px;margin:4px 0}
+.en{color:var(--muted);font-size:.82em}
+.small{font-size:19px;color:var(--muted)}
+.big{font-size:30px}
+.center{text-align:center}
+.hl{color:var(--accent);font-weight:700}
+.hlb{color:var(--primary);font-weight:700}
+.two-col{display:flex;gap:32px;align-items:flex-start}
+.two-col>div{flex:1}
+.box{border-radius:10px;padding:16px 22px;margin:14px 0;font-size:23px;line-height:1.55}
+.def{background:var(--def-bg);border-left:6px solid var(--primary)}
+.key{background:var(--key-bg);border-left:6px solid #f1c40f}
+.warn{background:var(--warn-bg);border-left:6px solid #e74c3c}
+.exbox{background:var(--ex-bg);border-left:6px solid var(--teal)}
+.box .tag{display:inline-block;font-size:17px;font-weight:700;color:#fff;border-radius:5px;padding:2px 10px;margin-bottom:6px}
+.def .tag{background:var(--primary)} .key .tag{background:#8a6d00} .warn .tag{background:#c0392b} .exbox .tag{background:var(--teal)}
+.sol{border-top:2px dashed var(--teal);margin-top:12px;padding-top:10px}
+/* ── 形成性評量：解答兩段式揭露 ───────────────────────── */
+.slide.active .sol{display:none}
+.slide.active.reveal .sol{display:block}
+.sol-hint{margin-top:12px;padding-top:10px;border-top:2px dashed #b9c6c6;font-size:19px;color:#5d6d6e;display:flex;align-items:center;gap:10px}
+.slide.active.reveal .sol-hint{display:none}
+.sol-hint .kbd{display:inline-block;border:1px solid #aab7b8;border-bottom-width:2px;border-radius:5px;padding:1px 9px;font-size:17px;background:#fff;color:#34495e}
+/* ── 隨堂快問 ─────────────────────────────────────────── */
+.slide.quiz{border-top-color:var(--teal)}
+.slide.quiz h2{margin-bottom:14px}
+.slide.quiz h2{color:#0e6655;border-bottom-color:var(--teal)}
+.qbar{background:#e8f8f5;border-left:6px solid var(--teal);border-radius:8px;padding:5px 16px;font-size:18px;color:#0e6655;margin-bottom:4px}
+.q{margin:4px 0;font-size:21px;line-height:1.28}
+.q .qn{display:inline-block;min-width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;background:var(--teal);color:#fff;font-size:16px;font-weight:700;margin-right:7px}
+.opt{display:inline-block;border:1.5px solid #a2d5cd;background:#f2fbf9;color:#0e6655;border-radius:14px;padding:0 11px;margin:1px 4px 1px 0;font-size:19px}
+.quiz .sol{margin-top:5px;padding-top:5px;font-size:18px;line-height:1.26}
+.quiz .sol .ans{color:#c0392b;font-weight:700}
+.quiz .sol .row{margin:3px 0}
+.quiz .sol .row+.row{border-top:1px solid #e5eceb;padding-top:3px}
+.quiz .sol .myth{display:block;font-size:16px;color:#5d6d6e;margin:1px 0 0 0;line-height:1.24}
+@media print{
+  .sol{display:block!important}
+  .sol-hint{display:none!important}
+}
+.eq{text-align:center;font-size:28px;margin:14px 0;font-family:Cambria,"Times New Roman",serif}
+table{border-collapse:collapse;margin:12px auto;font-size:21px;width:100%}
+th{background:var(--primary);color:#fff;padding:8px 12px;font-weight:600}
+td{border:1px solid #d5dbdb;padding:7px 12px;text-align:center}
+tr:nth-child(even) td{background:#f4f6f7}
+.cover{background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 55%,var(--teal) 100%);border-top:none;color:#fff;justify-content:center;align-items:center;text-align:center}
+.cover h1{font-size:58px;letter-spacing:4px;margin-bottom:10px}
+.cover .sub{font-size:30px;opacity:.92;margin:6px 0}
+.cover .en-title{font-size:24px;opacity:.75;margin-bottom:34px}
+.cover .meta{font-size:20px;opacity:.7;margin-top:40px}
+.cover .rule{width:220px;height:4px;background:#f7b955;margin:26px auto}
+.divider{background:linear-gradient(120deg,var(--primary-dark),var(--primary));border-top:none;color:#fff;justify-content:center}
+.divider .secnum{font-size:26px;color:#f7b955;font-weight:700;letter-spacing:2px;margin-bottom:14px}
+.divider h1{font-size:52px;margin-bottom:12px}
+.divider .en-sub{font-size:26px;opacity:.75}
+.divider .items{margin-top:36px;font-size:23px;opacity:.9;line-height:2}
+.foot{position:absolute;left:0;right:0;bottom:0;height:32px;display:flex;justify-content:space-between;align-items:center;padding:0 28px;font-size:14px;color:#5d6d6e;background:#fafbfc;border-top:1px solid #e5e8e8}
+.cover .foot,.divider .foot{background:rgba(0,0,0,.15);color:rgba(255,255,255,.65);border-top:none}
+#bar{position:fixed;top:0;left:0;height:5px;background:var(--accent);width:0;z-index:10;transition:width .2s}
+.flow{display:flex;flex-direction:column;align-items:center;gap:6px}
+.fbox{border:2px solid var(--primary);border-radius:8px;padding:8px 20px;font-size:21px;background:var(--def-bg);text-align:center}
+.frow{display:flex;gap:60px;justify-content:center}
+.arrow{font-size:22px;color:var(--accent)}
+.chip{display:inline-block;background:var(--def-bg);border:1px solid var(--primary);color:var(--primary);border-radius:16px;padding:2px 14px;margin:3px;font-size:20px}
+/* ── 因次分析鐵軌格 ───────────────────────────────────── */
+.rail{border-collapse:collapse;margin:10px auto 6px;font-size:23px}
+.rail td{border:none;padding:5px 20px;text-align:center;background:none;vertical-align:middle}
+.rail td+td{border-left:2px solid var(--muted)}
+.rail tr:first-child td{border-bottom:3px solid var(--ink)}
+.rail td.res{border-left:none;padding-left:14px;font-weight:700;color:var(--accent);font-size:25px}
+.rail tr:first-child td.res{border-bottom:none}
+.rail .bk{display:inline-block;min-width:104px;border-bottom:3px dashed var(--accent);height:27px;vertical-align:-4px}
+.rail .gv{background:var(--def-bg)}
+.railnote{text-align:center;font-size:18px;color:var(--muted);margin-top:2px}
+.fig{display:block;margin:6px auto;flex-shrink:0}
+/* ── 錨點回收頁 ───────────────────────────────────────── */
+.slide.hookback{border-top-color:var(--teal)}
+.slide.hookback h2{color:#0e6655;border-bottom-color:var(--teal)}
+.recall{background:#f4f6f7;border-left:5px solid #95a5a6;border-radius:8px;padding:7px 18px;
+        font-size:20px;line-height:1.34;color:#5d6d6e;margin:0 0 10px}
+.recall b{color:#34495e}
+.ansbox{background:#e8f8f5;border-left:6px solid var(--teal);border-radius:9px;padding:10px 20px;margin:0 0 10px}
+.ansbox h3{font-size:20px;color:#0e6655;margin:0 0 5px}
+.ansbox ul{margin:0 0 0 20px;font-size:19.5px;line-height:1.4}
+.ansbox li{margin:5px 0}
+.lens{background:var(--key-bg);border-left:6px solid #d4a70a;border-radius:9px;padding:10px 20px;
+      font-size:20px;line-height:1.38;margin-bottom:9px}
+.lens .lt{display:block;font-size:16px;font-weight:700;color:#8a6d00;letter-spacing:1px;margin-bottom:2px}
+.nextup{background:#eaf2f8;border-left:5px solid var(--primary);border-radius:8px;padding:8px 18px;
+        font-size:18.5px;line-height:1.4;color:#34495e}
+.nextup .course{display:inline-block;background:#fff;border:1px solid #a2d5cd;color:#0e6655;
+                border-radius:11px;padding:0 8px;font-size:16px;margin-right:4px}
+
+/* ── 食品營養錨點頁 ───────────────────────────────────── */
+.slide.hook{border-top-color:var(--accent)}
+.slide.hook h2{color:#a05000;border-bottom-color:var(--accent)}
+.bigq{background:linear-gradient(100deg,#fff5ea,#fdf0e0);border-left:8px solid var(--accent);border-radius:10px;
+      padding:14px 22px;font-size:26px;line-height:1.4;color:#7a3d00;font-weight:700;margin:4px 0 12px}
+.bigq .qmark{font-size:30px;margin-right:6px}
+.hookcols{display:flex;gap:22px;align-items:stretch;margin-top:4px}
+.hookcols>div{flex:1;border-radius:9px;padding:11px 16px}
+.hk-now{background:#eaf2f8;border-left:5px solid var(--primary)}
+.hk-next{background:#e8f8f5;border-left:5px solid var(--teal)}
+.hookcols h3{font-size:20px;margin:0 0 6px}
+.hk-now h3{color:var(--primary)} .hk-next h3{color:#0e6655}
+.hookcols ul{font-size:19px;line-height:1.4;margin:0 0 0 20px}
+.hookcols li{margin:4px 0}
+.hookcols .course{display:inline-block;background:#fff;border:1px solid #a2d5cd;color:#0e6655;
+                  border-radius:11px;padding:0 8px;font-size:16px;margin-right:4px}
+.canyou{background:var(--key-bg);border-left:6px solid #d4a70a;border-radius:9px;padding:10px 18px;
+        font-size:20px;line-height:1.4;margin-top:12px}
+.canyou b{color:#8a6d00}
+.hookmap{font-size:19px;line-height:1.5}
+.hookmap td{text-align:left;padding:5px 10px}
+.hookmap td:first-child{text-align:center;font-weight:700;color:var(--accent);width:62px}
+@media print{
+  @page{size:1280px 720px;margin:0}
+  html,body{background:#fff}
+  #stage{position:static}
+  #deck{width:auto;height:auto;transform:none!important}
+  .slide{position:relative;display:flex!important;page-break-after:always;margin:0;inset:auto}
+  #bar{display:none}
+}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="stage"><div id="deck">
+
+<!-- 1 -->
+<section class="slide cover">
+  <h1>普通化學(一)</h1>
+  <div class="en-title">General Chemistry I</div>
+  <div class="rule"></div>
+  <div class="sub">第 12 週:溶液與依數性質</div>
+  <div class="sub">溶解過程・溶解度・蒸氣壓下降・凝固點下降・滲透壓</div>
+  <div class="en-title" style="margin-top:8px">Solutions and Colligative Properties</div>
+</section>
+
+<!-- 2 -->
+<section class="slide">
+  <h2>本週學習目標 <span class="en">Learning Objectives</span></h2>
+  <ul>
+    <li>以分子觀點說明溶解過程,並運用<b>相似者相溶</b>判斷互溶性</li>
+    <li>理解飽和與溶解度,以及<b>溫度與壓力</b>對溶解度的影響(亨利定律)</li>
+    <li>掌握四大依數性質:<b>蒸氣壓下降、沸點上升、凝固點下降、滲透壓</b></li>
+    <li>會用 <b>van’t Hoff 因子 i</b> 處理電解質溶液</li>
+    <li>能用依數性質解釋冰淇淋、糖漬、鹽漬與冷凍食品的質地</li>
+  </ul>
+<div class="box key"><span class="tag">本週重點</span>依數性質只看<b>溶質粒子的數目</b>,不看它是什麼。這一句話就是整週的中心。</div>
+</section>
+
+<!-- 3 -->
+<section class="slide">
+  <h2>第 12 週·食品營養錨點:冰淇淋為什麼不會結成冰塊? <span class="en">This Week Anchor</span></h2>
+<div class="box def"><span class="tag">大哉問</span>冰淇淋放在 −18 °C 的冷凍庫裡,水明明早就該全部結冰了,為什麼挖得動、還吃得出綿密的口感?<br>而同樣放在冷凍庫的一杯水,就是硬邦邦的一塊冰。<br>差別在哪裡?</div>
+<div class="box exbox"><span class="tag">先猜猜看</span>如果把冰淇淋配方裡的<b>糖減半</b>,成品會變得更硬還是更軟?為什麼?(答案在本週最後一張)</div>
+</section>
+
+<!-- 4 -->
+<section class="slide">
+  <h2>本週知識地圖 <span class="en">Roadmap</span></h2>
+  <table><tr><th>段落</th><th>在問什麼</th><th>關鍵詞</th></tr><tr><td>PART 1</td><td>為什麼有些東西溶得進去?</td><td>相似者相溶・溶解的能量</td></tr><tr><td>PART 2</td><td>能溶多少?什麼會影響?</td><td>飽和・溫度・亨利定律</td></tr><tr><td>PART 3</td><td>溶了東西之後有什麼改變?</td><td>四大依數性質・i 因子</td></tr></table>
+<div class="box def"><span class="tag">濃度單位在第 4 週已經學過</span>本週直接使用 M、m、X。提醒:<b>依數性質的公式一律用重量莫耳濃度 m</b>,因為它不隨溫度改變。</div>
+</section>
+
+<!-- 5 -->
+<section class="slide divider">
+  <div class="secnum">PART 12.1</div>
+  <h1>溶解過程</h1>
+  <div class="en-sub">The Dissolution Process</div>
+  <div class="items">溶液的定義與類型・相似者相溶・溶解的能量變化・電解質</div>
+</section>
+
+<!-- 6 -->
+<section class="slide">
+  <h2>溶液的定義與類型 <span class="en">Solutions</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>溶液 (solution)</b>:兩種以上物質形成的<b>均勻混合物</b>;量多者為<b>溶劑 (solvent)</b>,量少者為<b>溶質 (solute)</b>。</div>
+  <table>
+    <tr><th>溶液狀態</th><th>例子</th><th>溶質/溶劑</th></tr>
+    <tr><td>氣態溶液</td><td>空氣</td><td>O<sub>2</sub> 等溶於 N<sub>2</sub></td></tr>
+    <tr><td>液態溶液</td><td>汽水、糖水、醋</td><td>氣/固/液 溶於液</td></tr>
+    <tr><td>固態溶液</td><td>黃銅(合金)</td><td>Zn 溶於 Cu</td></tr>
+  </table>
+  <p class="small">溶液是分子/離子尺度的混合(粒子 &lt; 1 nm),透明、不散射光、不會沉降。</p>
+</section>
+
+<!-- 7 -->
+<section class="slide">
+  <h2>溶解的分子觀點 <span class="en">Molecular View of Dissolution</span></h2>
+  <p>溶解與否取決於<b>三種作用力</b>的競爭:</p>
+  <ul>
+    <li>溶質-溶質(需拆開)、溶劑-溶劑(需拆開)、<span class="hl">溶質-溶劑</span>(新形成)</li>
+    <li>當「溶質-溶劑」引力 ≳「被拆開的兩者」→ 溶解有利</li>
+    <li>NaCl 溶於水:<b>離子-偶極力</b>拉出離子並形成水合層 (hydration shell)</li>
+    <li>糖溶於水:糖的多個 O–H 與水形成<b>氫鍵</b></li>
+  </ul>
+  <div class="box key"><span class="tag">重點</span>溶解還有<b>亂度(熵)增加</b>的驅動力 — 即使能量略吸熱,混合帶來的分散趨勢也可能讓溶解自發進行。</div>
+</section>
+
+<!-- 8 -->
+<section class="slide">
+  <h2>相似者相溶 <span class="en">"Like Dissolves Like"</span></h2>
+  <div class="box def"><span class="tag">原則</span>IMF 性質相似的物質才能互溶:<b>極性溶劑溶極性/離子性溶質;非極性溶劑溶非極性溶質</b>。</div>
+  <table>
+    <tr><th>溶質</th><th>水(極性)</th><th>己烷(非極性)</th></tr>
+    <tr><td>NaCl(離子)</td><td>可溶</td><td>不溶</td></tr>
+    <tr><td>乙醇(極性、O–H)</td><td>互溶</td><td>可溶(乙基端)</td></tr>
+    <tr><td>油脂、I<sub>2</sub>(非極性)</td><td>不溶</td><td>可溶</td></tr>
+  </table>
+  <p class="small">互溶 (miscible):兩液體以任意比例混合,如乙醇與水;不互溶 (immiscible):如油與水。</p>
+</section>
+
+<!-- 9 -->
+<section class="slide">
+  <h2>例題 1:判斷互溶性 <span class="en">Example 1</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>預測下列溶質較易溶於水還是四氯化碳 CCl<sub>4</sub>(非極性):<br>
+  (a) KNO<sub>3</sub>&nbsp;&nbsp;(b) 苯 C<sub>6</sub>H<sub>6</sub>&nbsp;&nbsp;(c) 甘油 C<sub>3</sub>H<sub>5</sub>(OH)<sub>3</sub>&nbsp;&nbsp;(d) 碘 I<sub>2</sub>
+  <div class="sol"><b>解:</b>依「相似者相溶」判斷:<br>
+  (a) KNO<sub>3</sub> 是離子化合物 → 需要離子-偶極力 → <span class="hl">溶於水</span><br>
+  (b) 苯為非極性(對稱環狀)→ 只有分散力 → <span class="hl">溶於 CCl<sub>4</sub></span><br>
+  (c) 甘油有 3 個 O–H,可與水形成大量氫鍵 → <span class="hl">溶於水</span>(與水互溶)<br>
+  (d) I<sub>2</sub> 非極性 → <span class="hl">溶於 CCl<sub>4</sub></span>(呈紫色溶液;在水中溶解度極小)</div></div>
+</section>
+
+<!-- 10 -->
+<section class="slide">
+  <h2>溶解的能量變化 <span class="en">Energetics of Dissolution</span></h2>
+  <p>把溶解過程拆成三步(Hess 定律的想法):</p>
+  <ul>
+    <li>① 拆開溶質粒子:ΔH<sub>1</sub> &gt; 0(吸熱,克服溶質內引力)</li>
+    <li>② 撐開溶劑分子:ΔH<sub>2</sub> &gt; 0(吸熱,騰出空間)</li>
+    <li>③ 溶質-溶劑結合(溶劑化 solvation):ΔH<sub>3</sub> &lt; 0(放熱)</li>
+  </ul>
+  <div class="eq">ΔH<sub>soln</sub> = ΔH<sub>1</sub> + ΔH<sub>2</sub> + ΔH<sub>3</sub>(可正可負)</div>
+  <div class="box key"><span class="tag">實例</span>NaOH 溶於水放熱(ΔH<sub>soln</sub> &lt; 0);NH<sub>4</sub>NO<sub>3</sub> 溶於水吸熱(ΔH<sub>soln</sub> &gt; 0,即溶式冷敷袋原理)。吸熱仍可溶 → 靠亂度驅動。</div>
+</section>
+
+<!-- 11 -->
+<section class="slide">
+  <h2>電解質溶液複習 <span class="en">Electrolytes</span></h2>
+  <table>
+    <tr><th>類型</th><th>解離程度</th><th>導電性</th><th>例子</th></tr>
+    <tr><td>強電解質 strong electrolyte</td><td>~100% 解離</td><td>強</td><td>NaCl、HCl、NaOH、KNO<sub>3</sub></td></tr>
+    <tr><td>弱電解質 weak electrolyte</td><td>部分解離</td><td>弱</td><td>CH<sub>3</sub>COOH、NH<sub>3</sub>、HF</td></tr>
+    <tr><td>非電解質 nonelectrolyte</td><td>不解離(以分子溶解)</td><td>無</td><td>蔗糖、乙醇、尿素</td></tr>
+  </table>
+  <div class="box key"><span class="tag">為何現在複習?</span>解離會使<b>溶質粒子數目倍增</b>(NaCl → 2 個粒子),直接影響本章後段的依數性質(van't Hoff 因子 i)。</div>
+</section>
+
+<!-- 12 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ①:溶解過程 <span class="en">Quick Check 1</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>「相似者相溶」中的「相似」,指的是?<br><span class="opt">A 分子量相似</span><span class="opt">B 分子間作用力的類型相似</span><span class="opt">C 顏色相似</span><span class="opt">D 密度相似</span></div>
+  <div class="q"><span class="qn">2</span>油不溶於水,主要原因是?<br><span class="opt">A 油比水輕</span><span class="opt">B 油分子無法與水形成氫鍵,拆散水的氫鍵網路不划算</span><span class="opt">C 油分子太大</span><span class="opt">D 油有毒性</span></div>
+  <div class="q"><span class="qn">3</span>溶解有時放熱、有時吸熱。<b>硝酸銨溶於水會變冷,為什麼還是會自發溶解?</b></div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B</span> — 判準是<b>作用力類型</b>:極性溶極性、非極性溶非極性。<span class="myth">選 A 是常見誤解 —— 乙醇(46)與水(18)分子量差很多卻完全互溶,因為兩者都能形成氫鍵。<b>看官能基,不看分子量。</b></span></div><div class="row"><span class="ans">2. B</span> — 要讓油溶入,必須先<b>拆開水分子之間的氫鍵網路</b>,而油無法提供等值的補償。<span class="myth">常見錯誤說法是「油和水互相排斥」—— 其實油與水之間有微弱吸引,問題在於<b>那不足以補償被破壞的水–水氫鍵</b>。這個「能量收支」的觀點比「互斥」精確得多。</span></div><div class="row"><span class="ans">3. 因為熵增抵過了吸熱</span> — 溶解使離子分散、亂度大幅增加。<b>即使焓變為正(吸熱),熵的貢獻仍可讓整體自發</b>。<span class="myth">這正是冰敷袋的原理。也預告了下學期的自由能 ΔG = ΔH − TΔS —— <b>「會不會發生」不能只看放不放熱。</b></span></div></div>
+</section>
+
+<!-- 13 -->
+<section class="slide divider">
+  <div class="secnum">PART 12.2</div>
+  <h1>溶解度</h1>
+  <div class="en-sub">Solubility</div>
+  <div class="items">飽和與過飽和・溫度的影響・壓力與亨利定律</div>
+</section>
+
+<!-- 14 -->
+<section class="slide">
+  <h2>飽和、未飽和與過飽和 <span class="en">Saturation</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>溶解度 (solubility)</b>:定溫下,溶質在定量溶劑中可溶解的最大量(此時溶解 ⇌ 結晶達動態平衡)。</div>
+  <ul>
+    <li><b>未飽和 (unsaturated)</b>:溶質量 &lt; 溶解度,還能再溶</li>
+    <li><b>飽和 (saturated)</b>:溶質量 = 溶解度,與未溶固體平衡共存</li>
+    <li><b>過飽和 (supersaturated)</b>:溶質量 &gt; 溶解度 — 亞穩態!加入晶種或搖動即大量析出</li>
+  </ul>
+  <p class="small">實例:暖暖包(醋酸鈉過飽和液,按壓金屬片誘發結晶放熱)、蜂蜜久置析出糖晶。</p>
+</section>
+
+<!-- 15 -->
+<section class="slide">
+  <h2>溫度對溶解度的影響 <span class="en">Temperature Effect</span></h2>
+  <div class="two-col">
+    <div>
+      <h3>固體溶質</h3>
+      <ul>
+        <li><b>大多數</b>隨溫度升高溶解度<b>增大</b>(KNO<sub>3</sub> 極明顯)</li>
+        <li>少數例外幾乎不變(NaCl)或下降(Ce<sub>2</sub>(SO<sub>4</sub>)<sub>3</sub>)</li>
+        <li>應用:<b>再結晶</b>純化 — 熱溶冷析</li>
+      </ul>
+    </div>
+    <div>
+      <h3>氣體溶質</h3>
+      <ul>
+        <li>溶解度<b>一律隨溫度升高而下降</b></li>
+        <li>汽水加熱氣泡狂冒;溫水先出現氣泡</li>
+        <li>熱污染:水溫升高 → 溶氧下降 → 魚類缺氧</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 16 -->
+<section class="slide">
+  <h2>壓力與亨利定律 <span class="en">Pressure &amp; Henry's Law</span></h2>
+  <div class="box def"><span class="tag">定律</span><b>亨利定律 (Henry's law)</b>:定溫下,氣體在液體中的溶解度與其在液面上的<b>分壓成正比</b>。</div>
+  <div class="eq"><span class="hl">C<sub>g</sub> = k·P<sub>g</sub></span>&nbsp;&nbsp;(k:亨利常數,隨氣體、溶劑、溫度而異)</div>
+  <ul>
+    <li>壓力<b>只影響氣體</b>溶質的溶解度;對固、液溶質幾乎無影響</li>
+    <li>汽水:高壓 CO<sub>2</sub> 裝瓶 → 開瓶洩壓 → 溶解度驟降 → 冒泡</li>
+    <li>潛水夫病 (the bends):深水高壓使 N<sub>2</sub> 大量溶入血液,上浮太快時 N<sub>2</sub> 析出成氣泡阻塞血管 → 需緩慢上升或用 He-O<sub>2</sub> 混合氣</li>
+  </ul>
+</section>
+
+<!-- 17 -->
+<section class="slide">
+  <h2>例題 2:亨利定律 <span class="en">Example 2</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>25 °C 時 CO<sub>2</sub> 的亨利常數 k = 3.4 × 10<sup>−2</sup> mol/(L·atm)。<br>
+  (a) 汽水以 P(CO<sub>2</sub>) = 4.0 atm 裝瓶,溶解的 CO<sub>2</sub> 濃度?<br>
+  (b) 開瓶後暴露於空氣(P(CO<sub>2</sub>) = 3.9 × 10<sup>−4</sup> atm),平衡濃度變為多少?
+  <div class="sol"><b>解:</b><br>
+  (a) C = kP = 3.4 × 10<sup>−2</sup> × 4.0 = <span class="hl">0.14 M</span><br>
+  (b) C = 3.4 × 10<sup>−2</sup> × 3.9 × 10<sup>−4</sup> = <span class="hl">1.3 × 10<sup>−5</sup> M</span><br>
+  濃度相差約一萬倍 → 開瓶後 CO<sub>2</sub> 持續逸出,汽水終將「走氣」。</div></div>
+</section>
+
+<!-- 18 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ②:溶解度 <span class="en">Quick Check 2</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>打開汽水瓶會冒泡,這是哪一個定律的直接展現?<br><span class="opt">A 波以耳定律</span><span class="opt">B 亨利定律</span><span class="opt">C 拉午耳定律</span><span class="opt">D 道耳頓定律</span></div>
+  <div class="q"><span class="qn">2</span>大多數<b>固體</b>的溶解度隨溫度升高而增加;<b>氣體</b>呢?<br><span class="opt">A 也增加</span><span class="opt">B 減少</span><span class="opt">C 不變</span><span class="opt">D 視氣體而定</span></div>
+  <div class="q"><span class="qn">3</span>什麼是<b>過飽和</b>溶液?為什麼它一經擾動就會析出結晶?</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B(亨利定律)</span> — 氣體溶解度 ∝ 其分壓。開瓶後 CO<sub>2</sub> 分壓驟降 → 溶解度下降 → 冒泡。<span class="myth">同一定律解釋了潛水夫病:高壓下溶入血液的氮氣,上升時分壓降低而形成氣泡。<b>一個定律、兩個看似無關的現象。</b></span></div><div class="row"><span class="ans">2. B(減少)</span> — 氣體溶解通常放熱,升溫不利於溶解。<span class="myth">所以<b>熱水裝不住汽水的氣</b>,也所以水溫上升會使河川溶氧下降 —— 熱污染影響水生生物的機制就是這個。</span></div><div class="row"><span class="ans">3. 溶解量超過該溫度的飽和量、卻暫時沒有析出</span> — 它處於<b>介穩狀態</b>:缺少結晶所需的晶核。一旦加入晶種或震動提供成核點,多餘的溶質就會迅速析出。<span class="myth">應用:蜂蜜結晶、暖暖包(醋酸鈉過飽和液,按下金屬片提供成核點即放熱結晶)。<b>「沒有析出」不代表「還沒飽和」。</b></span></div></div>
+</section>
+
+<!-- 19 -->
+<section class="slide divider">
+  <div class="secnum">PART 12.3</div>
+  <h1>依數性質</h1>
+  <div class="en-sub">Colligative Properties</div>
+  <div class="items">蒸氣壓下降・沸點上升・凝固點下降・滲透壓・van't Hoff 因子</div>
+</section>
+
+<!-- 20 -->
+<section class="slide">
+  <h2>依數性質總論 <span class="en">What Are Colligative Properties?</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>依數性質 (colligative properties)</b>:只與溶質<b>粒子數目(濃度)</b>有關、與溶質<b>種類無關</b>的溶液性質。</div>
+  <ul>
+    <li>四大依數性質:<span class="hlb">蒸氣壓下降、沸點上升、凝固點下降、滲透壓</span></li>
+    <li>0.1 m 蔗糖與 0.1 m 尿素:效果相同(粒子數同)</li>
+    <li>0.1 m NaCl:效果約<b>兩倍</b>(解離成 2 個粒子)→ van't Hoff 因子</li>
+  </ul>
+  <div class="box key"><span class="tag">直觀理解</span>溶質粒子「稀釋」了溶劑,妨礙溶劑蒸發與結晶 → 蒸氣壓降、沸點升、凝固點降。</div>
+</section>
+
+<!-- 21 -->
+<section class="slide">
+  <h2>蒸氣壓下降:Raoult 定律 <span class="en">Vapor Pressure Lowering</span></h2>
+  <div class="box def"><span class="tag">定律</span><b>Raoult 定律</b>:溶液中溶劑的蒸氣壓 = 溶劑莫耳分率 × 純溶劑蒸氣壓。</div>
+  <div class="eq"><span class="hl">P<sub>solvent</sub> = X<sub>solvent</sub> · P°<sub>solvent</sub></span>&nbsp;&nbsp;;&nbsp;&nbsp;ΔP = X<sub>solute</sub> · P°<sub>solvent</sub></div>
+  <ul>
+    <li>加入不揮發溶質 → 液面部分被溶質佔據 → 溶劑蒸發變慢 → 蒸氣壓下降</li>
+    <li>下降量只與溶質<b>粒子的莫耳分率</b>成正比(依數性質!)</li>
+    <li>理想溶液 (ideal solution):完全遵守 Raoult 定律的溶液</li>
+  </ul>
+</section>
+
+<!-- 22 -->
+<section class="slide">
+  <h2>例題 5:Raoult 定律 <span class="en">Example 5</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>25 °C 時純水蒸氣壓 P° = 23.8 torr。將 0.500 mol 葡萄糖(不揮發、非電解質)溶入 10.0 mol 水中,求溶液的蒸氣壓與蒸氣壓下降量。
+  <div class="sol"><b>解:</b><br>
+  ① X<sub>water</sub> = 10.0 / (10.0 + 0.500) = 0.952<br>
+  ② P = X<sub>water</sub> × P° = 0.952 × 23.8 = <span class="hl">22.7 torr</span><br>
+  ③ ΔP = 23.8 − 22.7 = <span class="hl">1.1 torr</span>(或 ΔP = X<sub>solute</sub>P° = 0.0476 × 23.8 = 1.13 torr)<br>
+  檢查:溶液蒸氣壓必低於純溶劑 ✓</div></div>
+</section>
+
+<!-- 23 -->
+<section class="slide">
+  <h2>沸點上升 <span class="en">Boiling Point Elevation</span></h2>
+  <div class="eq"><span class="hl">ΔT<sub>b</sub> = K<sub>b</sub> · m</span>&nbsp;&nbsp;(非電解質;電解質再乘 i)</div>
+  <ul>
+    <li>原理:蒸氣壓下降 → 需更高溫度才能使蒸氣壓達到外壓 → 沸點升高</li>
+    <li>K<sub>b</sub>:溶劑的<b>沸點上升常數</b>,水 K<sub>b</sub> = 0.512 °C/m</li>
+    <li>新沸點 = 純溶劑沸點 + ΔT<sub>b</sub></li>
+  </ul>
+  <div class="box exbox"><span class="tag">例題 6</span>1.50 m 葡萄糖水溶液在 1 atm 下的沸點?
+  <div class="sol"><b>解:</b>ΔT<sub>b</sub> = 0.512 × 1.50 = 0.768 °C → 沸點 = 100.000 + 0.768 = <span class="hl">100.77 °C</span><br>(效果不大 — 湯裡加鹽讓水「更快滾」其實是迷思等級的微小差異)</div></div>
+</section>
+
+<!-- 24 -->
+<section class="slide">
+  <h2>凝固點下降 <span class="en">Freezing Point Depression</span></h2>
+  <div class="eq"><span class="hl">ΔT<sub>f</sub> = K<sub>f</sub> · m</span>&nbsp;&nbsp;(新凝固點 = 純溶劑凝固點 − ΔT<sub>f</sub>)</div>
+  <ul>
+    <li>原理:溶質粒子干擾溶劑結晶 → 需更低溫度才能凝固</li>
+    <li>K<sub>f</sub>:凝固點下降常數,水 K<sub>f</sub> = 1.86 °C/m;苯 K<sub>f</sub> = 5.12 °C/m</li>
+    <li><b>灑鹽融雪</b>:NaCl 或 CaCl<sub>2</sub> 使冰的凝固點降至 0 °C 以下</li>
+    <li><b>防凍劑 (antifreeze)</b>:乙二醇 HOCH<sub>2</sub>CH<sub>2</sub>OH 加入水箱,冬防結冰、夏防沸騰(同時降凝固點、升沸點)</li>
+  </ul>
+</section>
+
+<!-- 25 -->
+<section class="slide">
+  <h2>例題 7:凝固點下降 <span class="en">Example 7</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>汽車水箱含 4.00 kg 水,欲使凝固點降至 −10.0 °C,需加入多少克乙二醇 C<sub>2</sub>H<sub>6</sub>O<sub>2</sub>(M = 62.07 g/mol,非電解質)?(K<sub>f</sub> = 1.86 °C/m)
+  <div class="sol"><b>解:</b><br>
+  ① 所需 ΔT<sub>f</sub> = 10.0 °C → m = ΔT<sub>f</sub> / K<sub>f</sub> = 10.0 / 1.86 = 5.38 m<br>
+  ② n = m × kg溶劑 = 5.38 mol/kg × 4.00 kg = 21.5 mol<br>
+  ③ 質量 = 21.5 mol × 62.07 g/mol = <span class="hl">1.33 × 10<sup>3</sup> g ≈ 1.33 kg</span><br>
+  可見防凍劑用量相當大 — 市售水箱精常以約 1:1 體積比與水混合。</div></div>
+</section>
+
+<!-- 26 -->
+<section class="slide">
+  <h2>利用依數性質測分子量 <span class="en">Molar Mass Determination</span></h2>
+  <p>倒過來用:由測得的 ΔT<sub>f</sub>(或 ΔT<sub>b</sub>、Π)反推溶質莫耳質量:</p>
+  <div class="flow">
+    <div class="fbox">測 ΔT<sub>f</sub> → m = ΔT<sub>f</sub>/K<sub>f</sub> → n = m × kg溶劑 → <b>M = 質量/n</b></div>
+  </div>
+  <div class="box exbox" style="margin-top:14px"><span class="tag">例題 8</span>將 1.20 g 未知非電解質溶於 50.0 g 苯(K<sub>f</sub> = 5.12 °C/m,凝固點 5.50 °C),溶液凝固點 4.92 °C。求溶質莫耳質量。
+  <div class="sol"><b>解:</b><br>
+  ① ΔT<sub>f</sub> = 5.50 − 4.92 = 0.58 °C → m = 0.58/5.12 = 0.113 m<br>
+  ② n = 0.113 mol/kg × 0.0500 kg = 5.67 × 10<sup>−3</sup> mol<br>
+  ③ M = 1.20 g / 5.67 × 10<sup>−3</sup> mol = <span class="hl">2.1 × 10<sup>2</sup> g/mol</span>(2 位有效數字)</div></div>
+</section>
+
+<!-- 27 -->
+<section class="slide">
+  <h2>滲透壓 <span class="en">Osmotic Pressure</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>滲透 (osmosis)</b>:溶劑穿過半透膜,由稀往濃移動;<b>滲透壓 Π (osmotic pressure)</b>:恰能阻止滲透所需外加的壓力。</div>
+  <div class="eq"><span class="hl">Π = MRT</span>&nbsp;&nbsp;(M:體積莫耳濃度;R = 0.08206 L·atm/(mol·K);T 用 K)</div>
+  <ul>
+    <li>形式與 PV = nRT 相同(n/V = M)</li>
+    <li>對稀溶液極靈敏 → 適合測<b>高分子量</b>物質(蛋白質)</li>
+    <li>紅血球:置於高張 (hypertonic) 溶液皺縮、低張 (hypotonic) 溶液脹破 → 點滴須用等張 (isotonic) 的 0.9% 生理食鹽水</li>
+  </ul>
+</section>
+
+<!-- 28 -->
+<section class="slide">
+  <h2>例題 9:滲透壓測蛋白質分子量 <span class="en">Example 9</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>將 1.00 g 某蛋白質溶於水配成 100. mL 溶液,25 °C 時測得滲透壓 5.9 torr。求蛋白質的莫耳質量。
+  <div class="sol"><b>解:</b><br>
+  ① Π = 5.9 torr × (1 atm/760 torr) = 7.8 × 10<sup>−3</sup> atm<br>
+  ② M = Π/RT = 7.8 × 10<sup>−3</sup> / (0.08206 × 298) = 3.2 × 10<sup>−4</sup> mol/L<br>
+  ③ n = 3.2 × 10<sup>−4</sup> mol/L × 0.100 L = 3.2 × 10<sup>−5</sup> mol<br>
+  ④ M = 1.00 g / 3.2 × 10<sup>−5</sup> mol = <span class="hl">3.2 × 10<sup>4</sup> g/mol</span><br>
+  若改用凝固點下降:ΔT<sub>f</sub> 僅約 0.0006 °C,根本測不到 → 滲透壓的靈敏度優勢!</div></div>
+</section>
+
+<!-- 29 -->
+<section class="slide">
+  <h2>逆滲透 <span class="en">Reverse Osmosis</span></h2>
+  <ul>
+    <li>對濃溶液側施加<b>大於滲透壓</b>的外壓 → 溶劑反向流動(由濃往稀)</li>
+    <li>水分子通過半透膜,鹽類、雜質被擋下 → 得到純水</li>
+    <li>應用:<b>海水淡化</b>(海水滲透壓約 30 atm,操作壓力需 50–80 atm)、家用 RO 淨水器、洗腎透析原理相關</li>
+  </ul>
+  <div class="box key"><span class="tag">重點</span>滲透方向記法:溶劑永遠「往濃的那邊跑」想稀釋它;逆滲透則是用壓力硬把這個趨勢反轉。</div>
+</section>
+
+<!-- 30 -->
+<section class="slide">
+  <h2>電解質的依數性質:van't Hoff 因子 <span class="en">van't Hoff Factor i</span></h2>
+  <div class="box def"><span class="tag">定義</span><b>van't Hoff 因子 i</b> = 溶液中實際粒子 mol 數 ÷ 溶解的溶質式量 mol 數。</div>
+  <div class="eq">ΔT<sub>f</sub> = i·K<sub>f</sub>·m&nbsp;&nbsp;;&nbsp;&nbsp;ΔT<sub>b</sub> = i·K<sub>b</sub>·m&nbsp;&nbsp;;&nbsp;&nbsp;Π = i·MRT</div>
+  <table>
+    <tr><th>溶質</th><th>理想 i</th><th>實測 i(0.05 m)</th></tr>
+    <tr><td>葡萄糖(非電解質)</td><td>1</td><td>1.0</td></tr>
+    <tr><td>NaCl</td><td>2</td><td>1.9</td></tr>
+    <tr><td>MgCl<sub>2</sub></td><td>3</td><td>2.7</td></tr>
+  </table>
+  <p class="small">實測 i 略小於理想值:溶液中陰陽離子部分成對(離子對 ion pairing);濃度越高偏差越大。</p>
+</section>
+
+<!-- 31 -->
+<section class="slide">
+  <h2>例題 10:含 i 的依數性質 <span class="en">Example 10</span></h2>
+  <div class="box exbox"><span class="tag">例題</span>將 5.85 g NaCl(M = 58.44 g/mol)溶於 200.0 g 水。取實測 i = 1.9,求溶液的凝固點。(K<sub>f</sub> = 1.86 °C/m)
+  <div class="sol"><b>解:</b><br>
+  ① n = 5.85 / 58.44 = 0.100 mol → m = 0.100 / 0.2000 = 0.500 m<br>
+  ② ΔT<sub>f</sub> = i·K<sub>f</sub>·m = 1.9 × 1.86 × 0.500 = 1.77 °C<br>
+  ③ 凝固點 = 0.00 − 1.77 = <span class="hl">−1.8 °C</span>(2 位有效數字)<br>
+  若忽略解離(誤用 i = 1)只得 −0.93 °C — 電解質題<b>務必乘 i</b>!</div></div>
+</section>
+
+<!-- 32 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ③:依數性質 <span class="en">Quick Check 3</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>依數性質取決於?<br><span class="opt">A 溶質的種類</span><span class="opt">B 溶質<b>粒子的數目</b></span><span class="opt">C 溶質的分子量</span><span class="opt">D 溶質的顏色</span></div>
+  <div class="q"><span class="qn">2</span>同重量莫耳濃度(0.1 m)的下列水溶液,<b>凝固點最低</b>的是?<br><span class="opt">A 葡萄糖</span><span class="opt">B NaCl</span><span class="opt">C CaCl<sub>2</sub></span><span class="opt">D 三者相同</span></div>
+  <div class="q"><span class="qn">3</span>下雪時道路撒鹽可以除冰。<b>用依數性質解釋</b>,並說明為什麼撒 CaCl<sub>2</sub> 比撒糖有效得多。</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B(粒子數目)</span> — 這正是「依數 colligative」的意思 —— 只數粒子,不問身分。<span class="myth">這是本節唯一的核心觀念。理解它,四個公式都不必分開記 —— <b>它們算的都是同一件事:溶質粒子稀釋了溶劑。</b></span></div><div class="row"><span class="ans">2. C(CaCl<sub>2</sub>)</span> — van't Hoff 因子 i:葡萄糖 1、NaCl 2、CaCl<sub>2</sub> <b>3</b>。粒子越多,凝固點下降越多。<span class="myth">選 D 的同學漏了解離。<b>看到電解質就要先問「解離成幾個粒子」</b>,這一步不做,答案一定錯。</span></div><div class="row"><span class="ans">3. 因為溶質粒子使凝固點下降</span> — 鹽溶入冰面薄水層 → 該溶液的凝固點低於 0 °C → 冰在原本會結凍的溫度下維持液態。<br>CaCl<sub>2</sub> 解離出 <b>3</b> 個粒子(糖只有 1),同樣莫耳數下效果約 3 倍。<span class="myth">順帶回答本週錨點的另一半:<b>糖之所以能防腐,靠的也是同一件事</b> —— 大量糖分子把水「綁住」,降低水活性,微生物就用不到水。<b>依數性質與水活性是同一個機制的兩個名字。</b></span></div></div>
+</section>
+
+<!-- 33 -->
+<section class="slide divider">
+  <div class="secnum">PART 12.4</div>
+  <h1>冷凍食品的依數性質</h1>
+  <div class="en-sub">Colligative Properties in Frozen Foods</div>
+  <div class="items">冰淇淋為什麼挖得動・凍結濃縮・冰晶大小</div>
+</section>
+
+<!-- 34 -->
+<section class="slide">
+  <h2>冰淇淋:一個沒有完全凍結的系統 <span class="en">Ice Cream Never Fully Freezes</span></h2>
+  <ul>
+    <li>冰淇淋不是「凍住的奶」,而是<b>冰晶 + 濃糖漿 + 脂肪球 + 空氣</b>的複合體</li>
+    <li>糖與鹽類使<b>凝固點下降</b>,所以 −18 °C 時仍有一部分水是液態</li>
+    <li>水一結冰,剩下的糖漿就更濃 → 凝固點又更低 → <b>凍結濃縮</b></li>
+    <li>結果是溫度越低凍結的比例越高,但<b>永遠有一部分不會結冰</b></li>
+  </ul>
+<div class="box key"><span class="tag">所以糖有三個角色</span>① 甜味　② <b>降低凝固點</b>(決定軟硬)　③ 提高黏度(抑制冰晶長大)。<b>減糖不只是變不甜,質地會直接變硬。</b></div>
+</section>
+
+<!-- 35 -->
+<section class="slide">
+  <h2>冰晶大小決定口感 <span class="en">Why Ice Crystal Size Matters</span></h2>
+  <table><tr><th>做法</th><th>對冰晶的影響</th><th>口感</th></tr><tr><td><b>快速</b>冷凍 + 持續攪打</td><td>大量<b>小</b>冰晶</td><td>綿密</td></tr><tr><td>緩慢冷凍、不攪拌</td><td>少量<b>大</b>冰晶</td><td>粗糙、沙沙的</td></tr><tr><td>反覆解凍再結凍</td><td>小冰晶合併成<b>大</b>冰晶</td><td>明顯冰渣</td></tr><tr><td>加入安定劑(膠體)</td><td>提高黏度,限制水分子移動</td><td>維持綿密</td></tr></table>
+<div class="box warn"><span class="tag">為什麼冰淇淋不能反覆解凍</span>每一次回溫都讓小冰晶部分融化,再結凍時水會往<b>大</b>冰晶上長(小的表面能高、先融)。這是不可逆的——<b>「重新冰硬」不會讓口感回來。</b></div>
+</section>
+
+<!-- 36 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ④:冷凍食品的依數性質 <span class="en">Quick Check 4</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>冰淇淋在 −18 °C 仍挖得動,主要原因是?<br><span class="opt">A 冷凍庫溫度不夠低</span><span class="opt">B 溶質使凝固點下降,仍有一部分水未結冰</span><span class="opt">C 脂肪不會結冰</span><span class="opt">D 冰淇淋裡沒有水</span></div>
+  <div class="q"><span class="qn">2</span>把冰淇淋配方的糖減半,成品會?<br><span class="opt">A 更軟,因為熱量變低</span><span class="opt">B 更硬,因為凝固點下降的幅度變小</span><span class="opt">C 沒有差別</span><span class="opt">D 更軟,因為糖會讓東西變硬</span></div>
+  <div class="q"><span class="qn">3</span>同樣是 1.0 m 的水溶液,蔗糖與 NaCl 哪一個讓凝固點下降較多?如果換成 CaCl<sub>2</sub> 呢?</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B</span> — 糖與鹽類降低凝固點,−18 °C 時仍有液態的濃糖漿存在。<span class="myth">選 C 雖然脂肪確實不會結冰,但它不是主因——<b>脫脂的冰沙同樣挖得動</b>。選 A 誤以為只要夠冷就會全部凍住,但凍結濃縮會讓剩下的糖漿凝固點一路往下,永遠有一部分不結冰。</span></div><div class="row"><span class="ans">2. B</span> — 溶質粒子變少 → 凝固點下降的幅度變小 → 在同樣溫度下結冰的比例更高。<span class="myth">選 A/D 把「甜度」與「質地」混為一談。<b>減糖產品必須用其他方式補回凝固點下降</b>(例如改用多元醇或增加固形物),否則會硬得挖不動——這是減糖配方最實際的技術難題。</span></div><div class="row"><span class="ans">3. NaCl 約 2 倍、CaCl₂ 約 3 倍</span> — 依數性質看<b>粒子數</b>:蔗糖 i ≈ 1、NaCl → Na<sup>+</sup> + Cl<sup>−</sup>,i ≈ 2、CaCl<sub>2</sub> → Ca<sup>2+</sup> + 2Cl<sup>−</sup>,i ≈ 3。所以 ΔT<sub>f</sub> 的比例大約是 1 : 2 : 3。<span class="myth">這一題把 <b>i 因子</b>從一個公式裡的符號變成一個可以預測的排序。順帶一提,這就是為什麼<b>路面融雪劑常用 CaCl<sub>2</sub> 而不是 NaCl</b>——同樣的莫耳數,它多給一個粒子。</span></div></div>
+</section>
+
+<!-- 37 -->
+<section class="slide hookback">
+  <h2>回到本週的錨點 <span class="en">Anchor Answered</span></h2>
+  <div class="recall"><b>第 12 週開場問的是:</b>冰淇淋為什麼不會結成冰塊?</div>
+  <div class="ansbox">
+    <h3>用這一週的化學回答</h3>
+    <ul>
+    <li>因為冰淇淋不是純水。糖、乳糖與鹽類讓<b>凝固點下降</b>,在 −18 °C 時仍有一部分水以濃糖漿的形式存在。</li>
+    <li>而且水一結冰,剩下的糖漿就更濃、凝固點又更低——這叫<b>凍結濃縮</b>,所以<b>永遠有一部分不會結冰</b>。</li>
+    <li>依數性質只看<b>粒子的數目</b>:同樣 1.0 m,NaCl 的效果約是蔗糖的 2 倍、CaCl<sub>2</sub> 約 3 倍(van’t Hoff 因子 i)。</li>
+    <li>所以「先猜猜看」的答案是<b>更硬</b>:糖減半 → 粒子變少 → 凝固點下降幅度變小 → 同樣溫度下結冰的比例更高。</li>
+    </ul>
+  </div>
+  <div class="lens"><span class="lt">這個情境幫你理解的化學是</span>依數性質是一把只認<b>數量</b>不認<b>身分</b>的尺。理解這一句,凝固點下降、沸點上升、滲透壓與下週的水活性就不是四件事,而是同一件事的四種問法——它們共同決定了食品能放多久、口感如何。</div>
+  <div class="nextup"><b>接下來在哪裡會再用到:</b><span class="course">食品加工</span>冷凍食品、冰淇淋配方與凍結曲線　<span class="course">食品化學</span>糖與鹽對質地與保存的影響　<span class="course">營養學</span>滲透壓與體液平衡　<span class="course">分析化學</span>依數性質測分子量</div>
+</section>
+
+<!-- 38 -->
+<section class="slide">
+  <h2>本週重點總結(一)<span class="en">Summary 1</span></h2>
+  <ul>
+    <li><b>溶解:</b>相似者相溶;離子靠離子-偶極力水合;ΔH<sub>soln</sub> 三步驟拆解;亂度也是驅動力</li>
+    <li><b>溶解度:</b>固體多隨 T↑ 而增;氣體隨 T↑ 而<b>減</b>、隨 P↑ 而增(Henry:C = kP)</li>
+    <li><b>濃度:</b>M(mol/L 溶液)、m(mol/kg <b>溶劑</b>)、X、質量%、ppm;M↔m 換算需密度</li>
+  </ul>
+  <div class="box key"><span class="tag">口訣</span>「濃度五兄弟,分母各不同」— 解題第一步永遠是確認題目用哪一種濃度。</div>
+</section>
+
+<!-- 39 -->
+<section class="slide">
+  <h2>本週重點總結(二)<span class="en">Summary 2</span></h2>
+  <table>
+    <tr><th>依數性質</th><th>公式</th><th>所用濃度</th></tr>
+    <tr><td>蒸氣壓下降</td><td>P = X<sub>solvent</sub>P°</td><td>莫耳分率 X</td></tr>
+    <tr><td>沸點上升</td><td>ΔT<sub>b</sub> = i·K<sub>b</sub>·m</td><td>重量莫耳濃度 m</td></tr>
+    <tr><td>凝固點下降</td><td>ΔT<sub>f</sub> = i·K<sub>f</sub>·m</td><td>重量莫耳濃度 m</td></tr>
+    <tr><td>滲透壓</td><td>Π = i·MRT</td><td>體積莫耳濃度 M</td></tr>
+  </table>
+  <ul>
+    <li>只看<b>粒子數</b>:電解質記得乘 van't Hoff 因子 i(實測略小於理想值)</li>
+    <li>膠體:1–1000 nm、Tyndall 效應;界面活性劑形成微胞去油污</li>
+  </ul>
+</section>
+
+<!-- 40 -->
+<section class="slide">
+  <h2>重要名詞中英對照 <span class="en">Key Terms</span></h2>
+  <table>
+    <tr><th>中文</th><th>English</th><th>中文</th><th>English</th></tr>
+    <tr><td>溶質/溶劑</td><td>solute / solvent</td><td>依數性質</td><td>colligative property</td></tr>
+    <tr><td>飽和溶液</td><td>saturated solution</td><td>凝固點下降</td><td>freezing point depression</td></tr>
+    <tr><td>過飽和溶液</td><td>supersaturated solution</td><td>滲透壓</td><td>osmotic pressure</td></tr>
+    <tr><td>亨利定律</td><td>Henry's law</td><td>凡特何夫因子</td><td>van't Hoff factor</td></tr>
+    <tr><td>重量莫耳濃度</td><td>molality</td><td>膠體</td><td>colloid</td></tr>
+    <tr><td>莫耳分率</td><td>mole fraction</td><td>界面活性劑</td><td>surfactant</td></tr>
+  </table>
+</section>
+
+<!-- 41 -->
+<section class="slide">
+  <h2>課後練習與下週預告 <span class="en">Homework and Next Week</span></h2>
+<div class="box exbox"><span class="tag">課後練習</span>① 凝固點下降與滲透壓計算習題各三題(含電解質的 i 因子)。<br>② 比較兩款冰淇淋的成分表,依糖與固形物含量預測哪一款比較硬,再實際放在同一個冷凍庫裡驗證。<br>③ 查亨利定律,解釋為什麼汽水要冰著、開瓶後為什麼會沒氣。</div>
+<div class="box def"><span class="tag">下週:膠體、乳化與水活性</span>美乃滋為什麼不分層?蜜餞為什麼不會壞?<br>本週的溶液是<b>分子級</b>的均勻分散,下週要看<b>更大的粒子</b>——膠體與乳化;並且把蒸氣壓下降換一個名字:<b>水活性 a<sub>w</sub></b>。</div>
+</section>
+</div></div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const DECK_INFO='普通化學(一)|新課綱 第 12 週:溶液與依數性質';
+let cur=0;
+slides.forEach((s,i)=>{
+  const f=document.createElement('div');f.className='foot';
+  f.innerHTML='<span>'+DECK_INFO+'</span><span>'+(i+1)+' / '+slides.length+'</span>';
+  s.appendChild(f);
+});
+slides.forEach(s=>{
+  const sol=s.querySelector('.sol');
+  if(!sol)return;
+  const hint=document.createElement('div');hint.className='sol-hint';
+  hint.innerHTML='<span class="kbd">空白鍵</span><span>先自己想／算，準備好再顯示解答</span>';
+  sol.insertAdjacentElement('beforebegin',hint);
+});
+function show(n){
+  cur=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,i)=>{s.classList.toggle('active',i===cur);s.classList.remove('reveal');});
+  document.getElementById('bar').style.width=((cur+1)/slides.length*100)+'%';
+  location.hash=cur+1;
+}
+function next(){
+  const s=slides[cur];
+  if(s.querySelector('.sol')&&!s.classList.contains('reveal')){s.classList.add('reveal');return;}
+  show(cur+1);
+}
+function prev(){
+  const s=slides[cur];
+  if(s.classList.contains('reveal')){s.classList.remove('reveal');return;}
+  show(cur-1);
+}
+function fit(){
+  const s=Math.min(innerWidth/1280,innerHeight/720);
+  document.getElementById('deck').style.transform='scale('+s+')';
+}
+addEventListener('resize',fit);
+addEventListener('keydown',e=>{
+  if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();next();}
+  else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev();}
+  else if(e.key==='Home')show(0);
+  else if(e.key==='End')show(slides.length-1);
+});
+addEventListener('click',e=>{
+  if(e.target.closest('a'))return;
+  (e.clientX>innerWidth/3)?next():prev();
+});
+let tx=null;
+addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+addEventListener('touchend',e=>{
+  if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;
+  if(dx<-40)next();else if(dx>40)prev();tx=null;
+});
+fit();
+show(parseInt(location.hash.slice(1))-1||0);
+</script>
+</body>
+</html>

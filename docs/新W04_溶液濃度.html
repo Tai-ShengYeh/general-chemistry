@@ -171,6 +171,7 @@ tr:nth-child(even) td{background:#f4f6f7}
     <li>理解<b>當量</b>與當量濃度 N,並知道它為什麼在電解質與酸鹼上好用</li>
     <li>能在 <b>M ↔ m</b> 之間雙向換算(需要密度)</li>
     <li>能說明生理食鹽水 0.9% 與點滴 5% 葡萄糖這兩個數字的由來</li>
+    <li>配標準液時能正確處理<b>結晶水</b>,並說明算錯如何讓整條檢量線偏掉</li>
   </ul>
 <div class="box key"><span class="tag">本週重點</span>濃度單位沒有「最好」的一種,只有<b>「這個情境該用哪一種」</b>。選對單位,計算就少一半。</div>
 </section>
@@ -185,7 +186,7 @@ tr:nth-child(even) td{background:#f4f6f7}
 <!-- 4 -->
 <section class="slide">
   <h2>本週知識地圖 <span class="en">Roadmap</span></h2>
-  <table><tr><th>段落</th><th>在問什麼</th><th>關鍵詞</th></tr><tr><td>PART 1</td><td>化學實驗最常用的濃度是什麼?</td><td>M・配製・稀釋</td></tr><tr><td>PART 2</td><td>標示與法規用的又是什麼?</td><td>%w/w・ppm・ppb</td></tr><tr><td>PART 3</td><td>醫療與食品為什麼常用 %w/v?</td><td>%w/v・當量・m ↔ M</td></tr></table>
+  <table><tr><th>段落</th><th>在問什麼</th><th>關鍵詞</th></tr><tr><td>PART 1</td><td>化學實驗最常用的濃度是什麼?</td><td>M・配製・稀釋</td></tr><tr><td>PART 2</td><td>標示與法規用的又是什麼?</td><td>%w/w・ppm・ppb</td></tr><tr><td>PART 3</td><td>醫療與食品為什麼常用 %w/v?</td><td>%w/v・當量・m ↔ M</td></tr><tr><td>PART 4</td><td>試劑裡的結晶水算不算?</td><td>·nH₂O・檢量線・吸濕</td></tr></table>
 <div class="box warn"><span class="tag">本週最常見的錯誤</span><b>把不同的「%」混用。</b>%w/w、%w/v、%v/v 的分母完全不同,換算時一定要先問「這個百分比的分母是什麼」。</div>
 </section>
 
@@ -509,6 +510,64 @@ tr:nth-child(even) td{background:#f4f6f7}
 </section>
 
 <!-- 35 -->
+<section class="slide divider">
+  <div class="secnum">PART 4.4</div>
+  <h1>標準品與結晶水</h1>
+  <div class="en-sub">Hydrated Standards</div>
+  <div class="items">·nH₂O 算不算・配檢量線時秤多少・吸濕與風化</div>
+</section>
+
+<!-- 36 -->
+<section class="slide">
+  <h2>結晶水不是雜質 <span class="en">Water of Crystallisation</span></h2>
+  <ul>
+    <li>化學式裡的 <b>·nH<sub>2</sub>O</b> 代表水分子被<b>固定在晶格裡</b>,有明確的化學計量,不是沾附的水氣</li>
+    <li>典型例子:CuSO<sub>4</sub>·5H<sub>2</sub>O 是藍色,失水後的 CuSO<sub>4</sub> 是白色</li>
+    <li>命名規則在第 2 週學過;<b>本週要處理的是它對「秤多少」的影響</b></li>
+  </ul>
+<div class="box warn"><span class="tag">式量一定要把水算進去</span>你秤的是<b>整顆晶體</b>,水就在裡面。Na<sub>4</sub>Fe(CN)<sub>6</sub> 無水式量 303.91,十水合是 <b>484.06</b> —— <b>結晶水占了 37.2% 的質量</b>。</div>
+</section>
+
+<!-- 37 -->
+<section class="slide">
+  <h2>配標準液:兩個問題要分開問 <span class="en">Two Separate Questions</span></h2>
+  <table><tr><th>問題</th><th>要用哪一個式量</th><th>為什麼</th></tr><tr><td><b>要秤幾公克?</b></td><td><b>含水的</b>式量(整顆晶體)</td><td>天平秤到的是整顆晶體,水也有重量</td></tr><tr><td><b>濃度怎麼標示?</b></td><td><b>目標物種</b>的量</td><td>檢量線量的是目標離子/成分,水不是分析物</td></tr></table>
+<div class="box warn"><span class="tag">最常見的錯誤</span>用<b>無水</b>式量算出「要秤多少」,然後去秤<b>水合鹽</b>。秤到的晶體裡有 37% 是水 → 標準液只有目標濃度的 <b>62.8%</b> → <b>整條檢量線系統性偏掉</b>,所有樣品一起錯,而且方向一致。</div>
+<div class="box key"><span class="tag">一句話</span><b>秤的時候算水,報濃度的時候不算水。</b></div>
+</section>
+
+<!-- 38 -->
+<section class="slide">
+  <h2>例題 5:亞鐵氰化鈉的檢量線 <span class="en">Example 5: A Ferrocyanide Standard</span></h2>
+  <p>亞鐵氰化鈉是食鹽的<b>抗結塊劑</b>,檢驗時要先配標準液做檢量線。要配 <b>100.0 mL</b>、含 Fe(CN)<sub>6</sub><sup>4−</sup> <b>1000 mg/L</b> 的儲備液,試藥是 <b>Na<sub>4</sub>Fe(CN)<sub>6</sub>·10H<sub>2</sub>O</b>。應秤多少?<br><span class="small">(Fe(CN)<sub>6</sub><sup>4−</sup> = 211.95、無水鹽 = 303.91、十水合 = 484.06)</span></p>
+  <div class="sol"><b>解答:</b><br>① 需要的目標離子:1000 mg/L × 0.1000 L = <b>100.0 mg</b><br>② 換成莫耳:100.0 ÷ 211.95 = <b>0.4718 mmol</b><br>③ 這些離子來自同莫耳數的鹽 → 秤<b>十水合鹽</b>:0.4718 × 484.06 = <span class="hl">228.4 mg</span><br><b>若誤用無水式量:</b>0.4718 × 303.91 = 143.4 mg,少秤 85.0 mg,配出來只有 <b>628 mg/L</b>。<br><b>後果比算錯一題嚴重:</b>檢量線的斜率偏了,之後每個樣品的測值都<b>偏高約 59%</b>。<b>而且數據看起來完全正常</b> —— 線性很好、R² 很漂亮,只是整條線站錯位置。<br><b>實際檢驗請以主管機關公告的方法為準。</b></div>
+</section>
+
+<!-- 39 -->
+<section class="slide">
+  <h2>食品分析常遇到的含結晶水試劑 <span class="en">Hydrated Reagents You Will Meet</span></h2>
+  <table><tr><th>試劑</th><th>用在哪</th><th>水占比</th><th>要多秤</th></tr><tr><td>Na<sub>4</sub>Fe(CN)<sub>6</sub>·10H<sub>2</sub>O</td><td>抗結塊劑檢驗</td><td>37.2%</td><td>+59.3%</td></tr><tr><td>K<sub>4</sub>Fe(CN)<sub>6</sub>·3H<sub>2</sub>O</td><td>Carrez 澄清劑</td><td>12.8%</td><td>+14.7%</td></tr><tr><td>Na<sub>2</sub>S<sub>2</sub>O<sub>3</sub>·5H<sub>2</sub>O</td><td><b>測過氧化價</b>(第 7 週)</td><td>36.3%</td><td>+57.0%</td></tr><tr><td>CuSO<sub>4</sub>·5H<sub>2</sub>O</td><td>費林試液 B</td><td>36.1%</td><td>+56.4%</td></tr><tr><td>H<sub>2</sub>C<sub>2</sub>O<sub>4</sub>·2H<sub>2</sub>O</td><td>標定 KMnO<sub>4</sub></td><td>28.6%</td><td>+40.0%</td></tr><tr><td>EDTA·2Na·2H<sub>2</sub>O</td><td>測鈣、硬度</td><td>9.7%</td><td>+10.7%</td></tr><tr><td>葡萄糖 C<sub>6</sub>H<sub>12</sub>O<sub>6</sub>·H<sub>2</sub>O</td><td><b>還原糖檢量線</b></td><td>9.1%</td><td>+10.0%</td></tr></table>
+<div class="box def"><span class="tag">最容易中招的兩個</span><b>葡萄糖</b>一水合與無水都買得到,包裝只差幾個字;<b>硫代硫酸鈉</b>差 57%。</div>
+</section>
+
+<!-- 40 -->
+<section class="slide">
+  <h2>反過來的坑:吸濕與風化 <span class="en">The Opposite Trap</span></h2>
+  <table><tr><th>狀況</th><th>發生什麼</th><th>結果</th><th>對策</th></tr><tr><td><b>吸濕</b>(潮解)</td><td>無水鹽從空氣吸水<br>(CaCl<sub>2</sub>、NaOH)</td><td>秤到的含水<br>→ 濃度<b>偏低</b></td><td>乾燥器保存;<br>用前乾燥至恆重</td></tr><tr><td><b>風化</b></td><td>水合鹽在乾燥空氣中<br>失去部分結晶水</td><td>比標示更「濃」<br>→ 濃度<b>偏高</b></td><td>密封保存;<br>開封後盡快用完</td></tr></table>
+<div class="box warn"><span class="tag">水合鹽不能用烘乾解決</span>無水鹽吸濕了可以烘乾;但<b>水合鹽一烘就失去結晶水</b>,式量整個改變,反而製造出一個成分不明的東西。這正是第 7 週<b>一級標準品</b>要求「穩定、不吸濕、組成明確」的原因——<b>會變的東西不能當基準。</b></div>
+</section>
+
+<!-- 41 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ④:結晶水與標準品 <span class="en">Quick Check 4</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>要配 CuSO<sub>4</sub> 標準液,手邊只有 CuSO<sub>4</sub>·5H<sub>2</sub>O。計算要秤多少時應用哪一個式量?<br><span class="opt">A 無水的 159.60</span><span class="opt">B 五水合的 249.68</span><span class="opt">C 只算水的 90.08</span><span class="opt">D 兩者的平均</span></div>
+  <div class="q"><span class="qn">2</span>某人用無水式量算出要秤 1.00 g,實際秤的卻是十水合鹽(結晶水占 37%)。配出來的濃度會?<br><span class="opt">A 偏高約 37%</span><span class="opt">B 偏低,只有目標值的約 63%</span><span class="opt">C 剛好正確</span><span class="opt">D 偏低,只有目標值的 37%</span></div>
+  <div class="q"><span class="qn">3</span>用這條偏低的檢量線去測樣品,樣品測值會偏高還是偏低?而且——<b>你有辦法從數據本身看出這個錯嗎?</b></div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B</span> — 天平秤到的是整顆晶體,水也有重量,所以要用<b>含水</b>的式量。<span class="myth">選 A 正是本節要防的錯:用無水式量算,秤到的鹽裡有 36% 是水,標準液會偏稀。固定動作:<b>看到 ·nH<sub>2</sub>O 就先問「我要秤的是哪一個」。</b></span></div><div class="row"><span class="ans">2. B</span> — 秤到的 1.00 g 裡有 37% 是水,目標物質只有 63%。<span class="myth">選 D 把「水占 37%」誤讀成「只剩 37%」——<b>剩下的是 100% − 37% = 63%</b>。選 A 方向反了:多秤了水,目標成分反而變少,濃度只會偏低。</span></div><div class="row"><span class="ans">3. 樣品偏高;而且從數據本身看不出來</span> — 標準液的<b>真實</b>濃度只有標示的 63%,但在檢量線上被當成 100% → 斜率被低估 → 樣品測值<b>偏高</b>(約 1 ÷ 0.628 = 1.59 倍)。<br><b>看不出來的原因:</b>所有標準點都由同一瓶儲備液稀釋而來,所以線性依然很好、R² 依然漂亮 —— <b>整條線只是平行地站錯位置</b>。<span class="myth">這一題要建立本課程最重要的一個警覺:<b>R² 很高只代表「這幾個點很成一直線」,不代表「這條線是對的」。</b> 能抓到這種錯的只有三件事:<b>用獨立來源的標準品交叉驗證</b>、<b>做加標回收</b>、以及<b>把秤量的式量重算一次</b>。第三件最便宜,也最常被跳過。</span></div></div>
+</section>
+
+<!-- 42 -->
 <section class="slide hookback">
   <h2>回到本週的錨點 <span class="en">Anchor Answered</span></h2>
   <div class="recall"><b>第 4 週開場問的是:</b>生理食鹽水為什麼是 0.9%?點滴為什麼是 5% 葡萄糖?</div>
@@ -525,7 +584,7 @@ tr:nth-child(even) td{background:#f4f6f7}
   <div class="nextup"><b>接下來在哪裡會再用到:</b><span class="course">分析化學</span>標準溶液的配製與標定　<span class="course">營養學</span>點滴、電解質與 mEq/L 判讀　<span class="course">食品化學</span>添加物濃度與 ppm 限量　<span class="course">生物化學</span>緩衝液配製</div>
 </section>
 
-<!-- 36 -->
+<!-- 43 -->
 <section class="slide">
   <h2>本週重點總結 <span class="en">Summary</span></h2>
   <ul>
@@ -536,20 +595,21 @@ tr:nth-child(even) td{background:#f4f6f7}
     <li>N = M × n;臨床用 mEq/L 是為了直接比較<b>電荷</b></li>
     <li>M ↔ m <b>一定需要密度</b>;M 隨溫度變、m 不變</li>
     <li><b>等張看粒子數,不看質量</b>——0.9% 與 5% 因此可以並列</li>
+    <li>含結晶水的試劑:<b>秤的時候算水,報濃度的時候不算水</b></li>
   </ul>
 <div class="box key"><span class="tag">帶走一句話</span>看到一個濃度,先問<b>「分母是什麼」</b>——這一個問題可以擋掉本週九成的錯誤。</div>
 </section>
 
-<!-- 37 -->
+<!-- 44 -->
 <section class="slide">
   <h2>重要名詞中英對照 <span class="en">Key Terms</span></h2>
   <div class="two-col">
     <div>  <table><tr><th>中文</th><th>English</th></tr><tr><td>體積莫耳濃度</td><td>molarity (M)</td></tr><tr><td>重量莫耳濃度</td><td>molality (m)</td></tr><tr><td>莫耳分率</td><td>mole fraction</td></tr><tr><td>質量百分率</td><td>mass percent (%w/w)</td></tr><tr><td>質量體積百分率</td><td>percent weight/volume (%w/v)</td></tr><tr><td>稀釋</td><td>dilution</td></tr></table></div>
-    <div>  <table><tr><th>中文</th><th>English</th></tr><tr><td>當量</td><td>equivalent</td></tr><tr><td>當量濃度</td><td>normality (N)</td></tr><tr><td>毫當量</td><td>milliequivalent (mEq)</td></tr><tr><td>滲透濃度</td><td>osmolarity</td></tr><tr><td>等張</td><td>isotonic</td></tr><tr><td>百萬分之一</td><td>parts per million (ppm)</td></tr></table></div>
+    <div>  <table><tr><th>中文</th><th>English</th></tr><tr><td>當量</td><td>equivalent</td></tr><tr><td>當量濃度</td><td>normality (N)</td></tr><tr><td>毫當量</td><td>milliequivalent (mEq)</td></tr><tr><td>滲透濃度</td><td>osmolarity</td></tr><tr><td>等張</td><td>isotonic</td></tr><tr><td>結晶水</td><td>water of crystallisation</td></tr><tr><td>水合物／無水物</td><td>hydrate / anhydrous</td></tr><tr><td>檢量線</td><td>calibration curve</td></tr></table></div>
   </div>
 </section>
 
-<!-- 38 -->
+<!-- 45 -->
 <section class="slide">
   <h2>課後練習與下週預告 <span class="en">Homework and Next Week</span></h2>
 <div class="box exbox"><span class="tag">課後練習</span>① 由 %w/v 換算成 M、由 M 換算成 m 的習題各三題(給定密度)。<br>② 查一瓶運動飲料的鈉含量,換算成 %w/v 與 mEq/L,與生理食鹽水比較。<br>③ 由市售濃鹽酸的瓶身標示(%w/w 與比重)推出它的 M。</div>

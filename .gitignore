@@ -64,3 +64,6 @@ desktop.ini
 .DS_Store
 __pycache__/
 *.pyc
+
+# 期中考(含答案與迷思診斷,本機)
+_期中考/

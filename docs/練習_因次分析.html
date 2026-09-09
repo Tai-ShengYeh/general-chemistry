@@ -59,6 +59,13 @@ table.err td:last-child{text-align:center;font-weight:700;color:#c0392b;width:70
 .small{font-size:14px;color:var(--muted)}
 footer{text-align:center;color:var(--muted);font-size:14px;padding:16px}
 @media print{header,button,footer{display:none}.card{box-shadow:none;border:1px solid #ccc}}
+@media (max-width:600px){
+  header{padding:16px 16px}header h1{font-size:21px}
+  main{padding:12px 10px 40px}.card{padding:14px 14px}
+  .qtext{font-size:18px}.opt{font-size:16px;padding:10px 12px}
+  .rail{display:block;width:max-content;max-width:100%;overflow-x:auto;font-size:17px}.rail td{padding:4px 10px}
+  input[type=text]{flex:1;min-width:120px;width:auto}
+}
 </style>
 </head>
 <body>

@@ -146,6 +146,47 @@ tr:nth-child(even) td{background:#f4f6f7}
   #bar{display:none}
 }
 </style>
+<style id="mobile-css">
+/* ── 行動裝置閱讀模式（body.scroll）與工具列 ─────────────── */
+#mtb{position:fixed;top:8px;right:8px;z-index:20;display:flex;gap:6px;align-items:center}
+#mtb a,#mtb button{font-family:inherit;font-size:13px;line-height:1;padding:7px 11px;border-radius:16px;border:1px solid rgba(0,0,0,.18);
+  background:rgba(255,255,255,.9);color:#34495e;text-decoration:none;cursor:pointer;opacity:.3;transition:opacity .15s;white-space:nowrap}
+#mtb:hover a,#mtb:hover button{opacity:1}
+#mtb .ttl{display:none}
+body.scroll{height:auto;min-height:100%;padding-top:48px}
+body.scroll #mtb{top:0;right:0;left:0;height:44px;padding:0 10px;background:var(--primary-dark);box-shadow:0 1px 4px rgba(0,0,0,.25)}
+body.scroll #mtb .ttl{display:block;flex:1;color:#fff;font-size:14px;opacity:.85;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+body.scroll #mtb a,body.scroll #mtb button{opacity:1;background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.35)}
+body.scroll #bar{display:none}
+body.scroll #stage{position:static;display:block;overflow:visible;height:auto}
+body.scroll #deck{width:auto;max-width:1280px;height:auto;transform:none!important;margin:0 auto;padding:10px}
+body.scroll .slide{position:relative;inset:auto;width:auto;height:auto;display:flex;overflow:visible;padding:26px 26px 48px;
+  margin:0 0 14px;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,.08);scroll-margin-top:52px}
+body.scroll .slide.cover{min-height:380px}
+body.scroll .slide.divider{min-height:300px}
+body.scroll .slide h2{font-size:30px;margin-bottom:18px}
+body.scroll .cover h1{font-size:44px}
+body.scroll .divider h1{font-size:40px}
+body.scroll .two-col,body.scroll .hookcols{flex-direction:column;align-items:stretch;gap:14px}
+body.scroll .two-col>div{min-width:0}
+body.scroll .frow{flex-wrap:wrap;gap:16px 40px}
+.figwrap{flex-shrink:0;margin:6px 0}
+.figwrap>svg.fig{margin:0 auto}
+body.scroll .figwrap,body.scroll .tblwrap{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+body.scroll svg.fig{max-width:100%;height:auto}
+body.scroll .tblwrap>table{width:max-content;min-width:100%;max-width:max(100%,900px)}
+body.scroll .foot{border-radius:0 0 10px 10px}
+/* 解答揭露：閱讀模式改為點擊提示列 */
+body.scroll .slide .sol{display:none}
+body.scroll .slide.reveal .sol{display:block}
+body.scroll .slide .sol-hint,body.scroll .slide.reveal .sol-hint{display:flex;cursor:pointer;user-select:none;color:#0e6655;font-weight:700}
+body.scroll .sol-hint span{display:none}
+body.scroll .sol-hint::before{content:"▶ 點一下顯示解答"}
+body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
+@media (max-width:900px){body.scroll #deck{zoom:.9}}
+@media (max-width:600px){body.scroll #deck{zoom:.8;padding:6px}body.scroll .slide{padding:18px 16px 44px}}
+@media print{#mtb{display:none!important}body{padding-top:0!important}}
+</style>
 </head>
 <body>
 <div id="bar"></div>
@@ -456,6 +497,7 @@ function show(n){
   slides.forEach((s,i)=>{s.classList.toggle('active',i===cur);s.classList.remove('reveal');});
   document.getElementById('bar').style.width=((cur+1)/slides.length*100)+'%';
   location.hash=cur+1;
+  if(document.body.classList.contains('scroll'))slides[cur].scrollIntoView({block:'start'});
 }
 function next(){
   const s=slides[cur];
@@ -468,28 +510,82 @@ function prev(){
   show(cur-1);
 }
 function fit(){
+  if(document.body.classList.contains('scroll'))return;
   const s=Math.min(innerWidth/1280,innerHeight/720);
   document.getElementById('deck').style.transform='scale('+s+')';
 }
 addEventListener('resize',fit);
 addEventListener('keydown',e=>{
+  if(document.body.classList.contains('scroll'))return;
   if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();next();}
   else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev();}
   else if(e.key==='Home')show(0);
   else if(e.key==='End')show(slides.length-1);
 });
 addEventListener('click',e=>{
-  if(e.target.closest('a'))return;
+  if(document.body.classList.contains('scroll')||e.target.closest('a,#mtb'))return;
   (e.clientX>innerWidth/3)?next():prev();
 });
 let tx=null;
 addEventListener('touchstart',e=>tx=e.touches[0].clientX);
 addEventListener('touchend',e=>{
+  if(document.body.classList.contains('scroll')){tx=null;return;}
   if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;
   if(dx<-40)next();else if(dx>40)prev();tx=null;
 });
 fit();
 show(parseInt(location.hash.slice(1))-1||0);
+</script>
+<script id="mobile-js">
+(function(){
+  const B=document.body,KEY='deckmode';
+  // 表格外包一層可水平捲動的容器（<table> 本身設 overflow 在 Chrome 不會裁切）
+  document.querySelectorAll('#deck table').forEach(t=>{
+    if(t.parentElement.classList.contains('tblwrap'))return;
+    const w=document.createElement('div');w.className='tblwrap';t.replaceWith(w);w.appendChild(t);
+  });
+  // 圖也外包一層；寬圖在手機上不縮到看不見字，保留 80% 寬度改為水平捲動
+  document.querySelectorAll('#deck svg.fig').forEach(f=>{
+    if(f.parentElement.classList.contains('figwrap'))return;
+    const vb=(f.getAttribute('viewBox')||'').split(/[\s,]+/);
+    if(vb.length===4)f.style.minWidth=Math.round(+vb[2]*0.8)+'px';
+    const w=document.createElement('div');w.className='figwrap';f.replaceWith(w);w.appendChild(f);
+  });
+  const tb=document.createElement('div');tb.id='mtb';
+  tb.innerHTML='<span class="ttl"></span><a href="index.html" title="回課程總覽">⌂ 總覽</a><button type="button" id="mtb-mode"></button>';
+  B.appendChild(tb);
+  tb.querySelector('.ttl').textContent=DECK_INFO.replace('|',' ｜ ');
+  const btn=tb.querySelector('#mtb-mode');
+  const isScroll=()=>B.classList.contains('scroll');
+  function label(){btn.textContent=isScroll()?'⇆ 投影模式':'☰ 閱讀模式';}
+  function setMode(m,save){
+    B.classList.toggle('scroll',m==='scroll');
+    if(save){try{localStorage.setItem(KEY,m)}catch(e){}}
+    label();
+    if(isScroll())slides[cur].scrollIntoView({block:'start'});
+    else{fit();show(cur);}
+  }
+  btn.addEventListener('click',e=>{e.stopPropagation();setMode(isScroll()?'slide':'scroll',true);});
+  B.addEventListener('click',e=>{
+    if(!isScroll())return;
+    const h=e.target.closest('.sol-hint');if(!h)return;
+    h.closest('.slide').classList.toggle('reveal');
+  });
+  let tick=false;
+  addEventListener('scroll',()=>{
+    if(!isScroll()||tick)return;tick=true;
+    requestAnimationFrame(()=>{tick=false;
+      let best=0,bd=1e9;
+      slides.forEach((s,i)=>{const d=Math.abs(s.getBoundingClientRect().top-60);if(d<bd){bd=d;best=i;}});
+      cur=best;history.replaceState(null,'','#'+(cur+1));
+    });
+  },{passive:true});
+  addEventListener('beforeprint',()=>{B.dataset.wasScroll=isScroll()?'1':'';B.classList.remove('scroll');});
+  addEventListener('afterprint',()=>{if(B.dataset.wasScroll)B.classList.add('scroll');});
+  let pref=null;try{pref=localStorage.getItem(KEY)}catch(e){}
+  const auto=Math.min(innerWidth/1280,innerHeight/720)<0.6||(matchMedia('(pointer:coarse)').matches&&innerWidth<1000);
+  setMode(pref||(auto?'scroll':'slide'),false);
+})();
 </script>
 </body>
 </html>

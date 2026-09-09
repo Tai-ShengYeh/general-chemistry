@@ -41,6 +41,27 @@ a.rs:hover{transform:translateY(-3px);box-shadow:0 6px 14px rgba(0,0,0,.14)}
 .rs .ch{font-size:14px;color:var(--muted)}
 .note ul{margin-left:22px}
 footer{text-align:center;color:var(--muted);font-size:14px;padding:24px}
+/* ── 手機版 ─────────────────────────────────────────── */
+@media (max-width:640px){
+  header{padding:34px 16px 28px}
+  header h1{font-size:32px;letter-spacing:2px}
+  header .en,header .sub{font-size:16px}
+  main{padding:22px 12px 40px}
+  h2{font-size:22px;margin:28px 0 12px}
+  .note{padding:16px 16px 16px 12px;font-size:15px}
+  .note ul{margin-left:18px}
+  table.sched,table.sched tbody{display:block;width:100%}
+  table.sched tr{display:block;background:#fff;border-radius:10px;padding:10px 14px;margin:0 0 10px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+  table.sched tr:first-child{display:none}
+  table.sched td{display:block;border:0!important;padding:0!important;text-align:left!important}
+  table.sched td:first-child{display:inline-block;font-size:13px!important;letter-spacing:1px}
+  table.sched td:first-child::before{content:"第 "} table.sched td:first-child::after{content:" 週"}
+  table.sched td:first-child[style*="a04c08"]::before{content:"第 "} table.sched td:first-child[style*="a04c08"]::after{content:""}
+  table.sched td:last-child{display:inline-block;float:right;font-size:13px!important}
+  table.sched td:nth-child(2){clear:both;padding-top:3px!important;font-size:16px}
+  table.sched td:nth-child(3){font-size:12px!important;color:var(--muted);margin-top:4px}
+  table.sched td:nth-child(3)::before{content:"來源："}
+}
 </style>
 </head>
 <body>
@@ -61,7 +82,7 @@ footer{text-align:center;color:var(--muted);font-size:14px;padding:24px}
 </div>
 
 <h2>課程進度（16 教學週 + 2 考試週）</h2>
-<table style="width:100%;border-collapse:collapse;font-size:14px;margin-bottom:26px">
+<table class="sched" style="width:100%;border-collapse:collapse;font-size:14px;margin-bottom:26px">
   <tr style="background:#eef3f7">
     <th style="border:1px solid #cfd8dc;padding:7px 8px;width:52px">週</th>
     <th style="border:1px solid #cfd8dc;padding:7px 8px;text-align:left">主題與錨點問題</th>
@@ -103,6 +124,7 @@ footer{text-align:center;color:var(--muted);font-size:14px;padding:24px}
     <li>教師專用資源（AI 驗算單解答卷、題庫主檔）<b>不隨網站發佈</b>,請在本機開啟 <code>教師專用.html</code>。</li>
     <li><b>計算專題</b>是第 1 週的延伸:因次分析、密度雙向換算、多段串接、ADI 與 DRIs 計算。第 1 週若 3 小時排不下,可拆成兩次上課;<b>它不佔用 18 週的編號</b>。</li>
     <li>每週投影片 40 張上下,含學習目標、分節講解、例題詳解、重點總結、中英名詞對照與課後練習,適合 3 小時課程。</li>
+    <li><b>手機、平板也能看</b>:投影片在窄螢幕會自動切成<b>閱讀模式</b>(整份直式捲動,例題解答點一下才顯示);右上角可隨時切回投影模式,或按「總覽」回到本頁。</li>
     <li>投影片內建列印模式:開啟後按 Ctrl+P,選擇「橫向」即可輸出為講義 PDF 發給學生。</li>
     <li>標有 <b>＋食品錨點 pilot 版</b> 的週次另有擴充版本(加入食品情境例題、學習成果對照與四級評量規準),可擇一使用。</li>
     <li><b>例題解答預設隱藏</b>:停在例題頁時先按一次空白鍵(或點畫面右側)才顯示解答,再按一次才翻頁;列印時解答全部印出。目的是讓學生先自己試算。</li>

@@ -1,4 +1,4 @@
-# 普通化學（一）　General Chemistry I
+# 普通化學　General Chemistry 
 
 食品營養系大一・一學期・全套離線 HTML 投影片
 

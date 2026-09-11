@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>新課綱 第 8 週:熱化學</title>
+<title>第 8 週:熱化學</title>
 <style>
 :root{
   --primary:#1a5276; --primary-dark:#12395a; --accent:#a04c08; --teal:#117a65;
@@ -13,7 +13,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;background:var(--bg);font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC","Heiti TC",sans-serif;color:var(--ink)}
 #stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
-#deck{position:relative;width:1280px;height:720px;transform-origin:center center}
+#deck{position:relative;flex-shrink:0;width:1280px;height:720px;transform-origin:center center}
 .slide{position:absolute;inset:0;width:1280px;height:720px;background:var(--card);padding:56px 72px 70px;display:none;flex-direction:column;border-top:10px solid var(--primary);overflow:hidden}
 .slide.active{display:flex}
 .slide h2{font-size:36px;color:var(--primary);border-bottom:3px solid var(--accent);padding-bottom:10px;margin-bottom:26px;font-weight:700}
@@ -194,8 +194,8 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 
 <!-- 1 -->
 <section class="slide cover">
-  <h1>普通化學(一)</h1>
-  <div class="en-title">General Chemistry I</div>
+  <h1>普通化學</h1>
+  <div class="en-title">General Chemistry</div>
   <div class="rule"></div>
   <div class="sub">第 8 週:熱化學</div>
   <div class="sub">能量、焓與 Hess 定律</div>
@@ -843,7 +843,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 </div></div>
 <script>
 const slides=[...document.querySelectorAll('.slide')];
-const DECK_INFO='普通化學(一)|新課綱 第 8 週:熱化學';
+const DECK_INFO='普通化學|第 8 週:熱化學';
 let cur=0;
 slides.forEach((s,i)=>{
   const f=document.createElement('div');f.className='foot';

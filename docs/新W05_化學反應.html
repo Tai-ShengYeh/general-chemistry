@@ -752,7 +752,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
     <tr><td><b>還原糖</b><br><span class="small" style="font-size:17px">費林/本氏試液</span></td>
         <td style="text-align:left">Cu<sup>2+</sup>(藍) + 還原糖 →(鹼性,Δ) <b>Cu<sub>2</sub>O(s)</b> + 糖酸<br><span class="small" style="font-size:17px">糖被氧化、銅被還原</span></td>
         <td><span class="hl">磚紅色沉澱</span></td></tr>
-    <tr><td><b>油脂酸敗</b><br><span class="small" style="font-size:17px">過氧化價 PV</span></td>
+    <tr><td><b>油脂酸敗</b><br><span class="small" style="font-size:17px">過氧化價 PV(peroxide value)</span></td>
         <td style="text-align:left">過氧化物 + 2I<sup>−</sup> → I<sub>2</sub>,再以 Na<sub>2</sub>S<sub>2</sub>O<sub>3</sub> 滴定<br><span class="small" style="font-size:17px">氧化程度越高 → 放出的 I<sub>2</sub> 越多</span></td>
         <td>藍色<span class="hl">褪去</span></td></tr>
   </table>
@@ -782,6 +782,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <h2>為什麼食品分析這麼依賴氧化還原 <span class="en">Why Redox Dominates Food Assays</span></h2>
   <p>很多食品成分本身就是<b>還原劑</b>或<b>氧化劑</b>(維生素 C、還原糖、亞硫酸鹽、多酚、過氧化物),而且氧化還原反應<b>快、完全、計量明確</b>,只要能顯色或褪色就能做成滴定或比色。</p>
   <table><tr><th>要測什麼</th><th>它扮演什麼角色</th><th>常用方法</th></tr><tr><td>維生素 C</td><td><b>還原劑</b></td><td>碘滴定、DCPIP 滴定</td></tr><tr><td>還原糖</td><td><b>還原劑</b></td><td>費林/本氏、DNS 比色</td></tr><tr><td>過氧化物(油脂劣變)</td><td><b>氧化劑</b></td><td>間接碘量法</td></tr><tr><td>亞硫酸鹽(SO<sub>2</sub>)</td><td><b>還原劑</b></td><td>碘滴定、Monier-Williams</td></tr><tr><td>水質有機物(COD)</td><td><b>還原劑</b></td><td>KMnO<sub>4</sub> 或 K<sub>2</sub>Cr<sub>2</sub>O<sub>7</sub></td></tr></table>
+  <p class="small" style="font-size:16px;margin:2px 0 0">縮寫:DCPIP = 2,6-二氯酚靛酚(2,6-dichlorophenolindophenol);DNS = 3,5-二硝基水楊酸(3,5-dinitrosalicylic acid);COD = 化學需氧量(chemical oxygen demand)</p>
 <div class="box key"><span class="tag">一句話</span><b>「會不會給電子」本身就是一種可以量的性質。</b></div>
 </section>
 
@@ -831,7 +832,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="q"><span class="qn">1</span>測油脂的過氧化價時,油裡的過氧化物扮演什麼角色?<br><span class="opt">A 還原劑,被 I<sup>−</sup> 還原</span><span class="opt">B 氧化劑,把 I<sup>−</sup> 氧化成 I<sub>2</sub></span><span class="opt">C 指示劑</span><span class="opt">D 催化劑</span></div>
   <div class="q"><span class="qn">2</span>用碘滴定測果汁的維生素 C,若果汁裡另含亞硫酸鹽,結果會?<br><span class="opt">A 偏低</span><span class="opt">B 偏高,因為亞硫酸鹽也會消耗 I<sub>2</sub></span><span class="opt">C 不受影響</span><span class="opt">D 無法滴定</span></div>
   <div class="q"><span class="qn">3</span>滴定時澱粉指示劑要<b>接近終點才加</b>。如果一開始就加,結果會偏高還是偏低?為什麼?</div>
-  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B</span> — 過氧化物把碘離子氧化成碘,自己被還原 —— 所以它是<b>氧化劑</b>。<span class="myth">選 A 把角色弄反了。固定動作:<b>先問誰的氧化數上升</b>。I<sup>−</sup>(−1)→ I<sub>2</sub>(0)是上升 → I<sup>−</sup> 被氧化 → 過氧化物是氧化劑。</span></div><div class="row"><span class="ans">2. B</span> — 碘滴定量的是<b>總還原力</b>,任何還原劑都會被算進去。<span class="myth">這一題與凱氏定氮測到「粗蛋白」是同一個結構:<b>方法有它量得到與量不到的範圍</b>。要專一測抗壞血酸,要改用 DCPIP 或 HPLC。</span></div><div class="row"><span class="ans">3. 偏高</span> — 澱粉太早加時,大量 I<sub>2</sub> 會被<b>包進澱粉的螺旋結構裡</b>,不容易釋放出來與滴定劑反應 → <b>終點被拖延</b> → 多滴了滴定劑 → 算出的結果偏高。<span class="myth">這一題的重點是:<b>指示劑不是旁觀者。</b>它也參與體系,加的時機、用量都會影響結果——這與第 7 週「滴定管有氣泡」一樣,是<b>操作細節造成的系統誤差</b>,每一次都往同一個方向偏,做再多平行樣也不會消失。</span></div></div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B</span> — 過氧化物把碘離子氧化成碘,自己被還原 —— 所以它是<b>氧化劑</b>。<span class="myth">選 A 把角色弄反了。固定動作:<b>先問誰的氧化數上升</b>。I<sup>−</sup>(−1)→ I<sub>2</sub>(0)是上升 → I<sup>−</sup> 被氧化 → 過氧化物是氧化劑。</span></div><div class="row"><span class="ans">2. B</span> — 碘滴定量的是<b>總還原力</b>,任何還原劑都會被算進去。<span class="myth">這一題與凱氏定氮測到「粗蛋白」是同一個結構:<b>方法有它量得到與量不到的範圍</b>。要專一測抗壞血酸,要改用 DCPIP 或高效液相層析 HPLC(high-performance liquid chromatography)。</span></div><div class="row"><span class="ans">3. 偏高</span> — 澱粉太早加時,大量 I<sub>2</sub> 會被<b>包進澱粉的螺旋結構裡</b>,不容易釋放出來與滴定劑反應 → <b>終點被拖延</b> → 多滴了滴定劑 → 算出的結果偏高。<span class="myth">這一題的重點是:<b>指示劑不是旁觀者。</b>它也參與體系,加的時機、用量都會影響結果——這與第 7 週「滴定管有氣泡」一樣,是<b>操作細節造成的系統誤差</b>,每一次都往同一個方向偏,做再多平行樣也不會消失。</span></div></div>
 </section>
 
 <!-- 56 -->

@@ -355,7 +355,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <p>鐵劑也是一樣的問題。成人女性鐵的建議攝取量約 15 mg/日。</p>
   <table><tr><th>鐵鹽</th><th>莫耳質量</th><th>元素鐵 %</th><th>補 15 mg 需要</th></tr><tr><td>反丁烯二酸亞鐵 FeC<sub>4</sub>H<sub>2</sub>O<sub>4</sub></td><td>169.90</td><td><b>32.87%</b></td><td>46 mg</td></tr><tr><td>硫酸亞鐵 FeSO<sub>4</sub>·7H<sub>2</sub>O</td><td>278.01</td><td>20.09%</td><td>75 mg</td></tr><tr><td>葡萄糖酸亞鐵 Fe(C<sub>6</sub>H<sub>11</sub>O<sub>7</sub>)<sub>2</sub></td><td>446.14</td><td><b>12.52%</b></td><td>120 mg</td></tr></table>
 <div class="box def"><span class="tag">注意硫酸亞鐵的結晶水</span>七水合硫酸亞鐵有 <b>7 個結晶水</b>,占了莫耳質量的 45%。忘了算進去會把含鐵率算成 36.8%,<b>高估將近一倍</b>。</div>
-  <p class="small">建議攝取量依年齡、性別與生理狀況不同,請以<b>國人膳食營養素參考攝取量(DRIs)</b>現行版本為準。</p>
+  <p class="small">建議攝取量依年齡、性別與生理狀況不同,請以<b>國人膳食營養素參考攝取量 DRIs</b>(Dietary Reference Intakes)現行版本為準。</p>
 </section>
 
 <!-- 21 -->
@@ -369,7 +369,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <!-- 22 -->
 <section class="slide">
   <h2>δ 的定義與兩個方向 <span class="en">The Delta Notation, Both Ways</span></h2>
-  <div class="eq">δ<sup>13</sup>C (‰) = [ (R<sub>樣品</sub> / R<sub>標準</sub>) − 1 ] × 1000　　R = <sup>13</sup>C/<sup>12</sup>C,R<sub>VPDB</sub> = 0.0111802</div>
+  <div class="eq">δ<sup>13</sup>C (‰) = [ (R<sub>樣品</sub> / R<sub>標準</sub>) − 1 ] × 1000　　R = <sup>13</sup>C/<sup>12</sup>C,R<sub>VPDB</sub> = 0.0111802(VPDB = Vienna Pee Dee Belemnite,國際碳同位素標準)</div>
   <table><tr><th>方向</th><th>怎麼做</th></tr><tr><td><b>正推</b>(有 R 求 δ)</td><td>相除 → 減 1 → 乘 1000</td></tr><tr><td><b>反推</b>(有 δ 求 R)</td><td>R = R<sub>標準</sub> × (1 + δ/1000)</td></tr></table>
 <div class="box warn"><span class="tag">兩個最常漏的步驟</span>① <b>忘了減 1</b> → 會得到 1000 左右的數字(比值本身接近 1)。<br>② <b>忘了乘 1000</b> → 會得到 −0.025 而不是 −25‰。<br><b>合理性檢查:有機物的 δ<sup>13</sup>C 幾乎都落在 −5 到 −35‰ 之間。</b>算出正值或上百,一定是漏了一步。</div>
 </section>
@@ -392,7 +392,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <section class="slide">
   <h2>例題 14:混合之後會變成多少 <span class="en">Example 14 — Mass Balance</span></h2>
   <p>把 <b>13.1%</b> 的甘蔗糖(−9.7‰)摻進 δ<sup>13</sup>C = −25.0‰ 的真蜜。混合後的 δ 是多少?</p>
-  <div class="sol"><b>解答(碳的質量平衡):</b><br>δ<sub>混</sub> = 0.131 × (−9.7) + 0.869 × (−25.0) = −1.27 + (−21.73) = <span class="hl">−23.0‰</span><br><br><b>現在把它反過來解 —— 這就是判定式的來源:</b><br>設摻入的 C4 糖比例為 x,真蜜原本的值用<b>蛋白質</b>的 δ 代表:<br>　δ<sub>蜂蜜</sub> = x·δ<sub>C4</sub> + (1 − x)·δ<sub>蛋白</sub><br>　δ<sub>蜂蜜</sub> − δ<sub>蛋白</sub> = x(δ<sub>C4</sub> − δ<sub>蛋白</sub>)<br>　<span class="hl">x = (δ<sub>蛋白</sub> − δ<sub>蜂蜜</sub>) ÷ (δ<sub>蛋白</sub> − (−9.7))</span><br><b>這正是 AOAC 998.12 的公式。</b>它不是一條要背的式子,<b>它是一行質量平衡解出來的</b>——忘了就重推一次。</div>
+  <div class="sol"><b>解答(碳的質量平衡):</b><br>δ<sub>混</sub> = 0.131 × (−9.7) + 0.869 × (−25.0) = −1.27 + (−21.73) = <span class="hl">−23.0‰</span><br><br><b>現在把它反過來解 —— 這就是判定式的來源:</b><br>設摻入的 C4 糖比例為 x,真蜜原本的值用<b>蛋白質</b>的 δ 代表:<br>　δ<sub>蜂蜜</sub> = x·δ<sub>C4</sub> + (1 − x)·δ<sub>蛋白</sub><br>　δ<sub>蜂蜜</sub> − δ<sub>蛋白</sub> = x(δ<sub>C4</sub> − δ<sub>蛋白</sub>)<br>　<span class="hl">x = (δ<sub>蛋白</sub> − δ<sub>蜂蜜</sub>) ÷ (δ<sub>蛋白</sub> − (−9.7))</span><br><b>這正是 AOAC(國際公定分析化學家協會,Association of Official Analytical Chemists)官方方法 998.12 的公式。</b>它不是一條要背的式子,<b>它是一行質量平衡解出來的</b>——忘了就重推一次。</div>
 </section>
 
 <!-- 26 -->

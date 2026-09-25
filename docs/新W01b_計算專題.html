@@ -208,7 +208,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
     <li>能把密度當成<b>雙向</b>換算因子使用(體積→質量、質量→體積)</li>
     <li>能把三段以上的換算<b>串成一條式子</b>,中途不算出數字</li>
     <li>能完成一次<b>ADI 風險評估</b>:由食品濃度算到佔 ADI 的百分比</li>
-    <li>能用 <b>DRI</b> 判斷一份食物提供了多少比例的營養需求,並區分 RDA 與 UL</li>
+    <li>能用 <b>DRI</b> 判斷一份食物提供了多少比例的營養需求,並區分建議攝取量 RDA 與上限攝取量 UL</li>
     <li>能處理 <b>ppb / μg</b> 等級的殘留計算,並把「佔 ADI 幾 %」<b>反算成可理解的份量</b></li>
   </ul>
   <div class="box key"><span class="tag">為什麼另開一節</span>這些計算單看每一步都不難,<b>錯誤幾乎都發生在「串接」與「單位不一致」</b>。本節不教新化學,只練一件事:把長鏈拆開、一段一段接。</div>
@@ -234,7 +234,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <section class="slide">
   <h2>為什麼食營科系還要學英制? <span class="en">Why Imperial Still Matters</span></h2>
   <ul>
-    <li><b>國外文獻與資料庫</b>:USDA 營養資料庫、多數英文期刊以 oz、lb、fl oz 呈現份量</li>
+    <li><b>國外文獻與資料庫</b>:美國農業部 USDA(U.S. Department of Agriculture)營養資料庫、多數英文期刊以 oz、lb、fl oz 呈現份量</li>
     <li><b>進口食品標示</b>與國外食譜:cup、tbsp、fl oz</li>
     <li><b>臨床與體位資料</b>:國外研究常以 lb 記錄體重,而 ADI、藥物劑量都要 kg</li>
     <li><b>餐飲現場</b>:牛排以 <b>oz</b> 計(8 oz ≈ 227 g、10 oz ≈ 284 g、12 oz ≈ 340 g),殘留評估卻要 kg</li>
@@ -352,7 +352,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <h2>ADI:每日可接受攝取量 <span class="en">Acceptable Daily Intake</span></h2>
   <div class="box def"><span class="tag">定義</span><b>ADI</b> = 人終生每日攝取,仍不致產生可察覺健康風險的量。單位是 <span class="hl">mg / kg 體重 / 天</span>。</div>
   <ul>
-    <li>怎麼訂出來的:動物試驗找出<b>無可見不良作用劑量 (NOAEL)</b>,再<b>除以安全係數</b>(通常 100:種間差 10 × 個體差 10)</li>
+    <li>怎麼訂出來的:動物試驗找出<b>無可見不良作用劑量 NOAEL</b>(no-observed-adverse-effect level),再<b>除以安全係數</b>(通常 100:種間差 10 × 個體差 10)</li>
     <li>所以 ADI 已內含約 100 倍安全邊際 —— 偶爾超過一點<b>不等於</b>中毒</li>
     <li>它是<b>長期平均</b>的概念,不是單次上限</li>
   </ul>
@@ -447,20 +447,20 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <!-- 21 -->
 <section class="slide">
   <h2>例題 10:清潔劑殘留 — 四級銨 <span class="en">Example 10 — Sanitizer Residue</span></h2>
-  <div class="box exbox" style="margin:6px 0;padding:9px 22px"><span class="tag">例題</span><b>四級銨 (QAC)</b> 是裝瓶線的殺菌消毒劑,<b>不是添加物</b> —— 沖洗不完全才會殘留。以苯扎氯銨為例:ADI = <b>0.1 mg/kg 體重/天</b>、殘留限量 <b>0.1 mg/kg</b>。同一瓶 <b>500 mL</b> 汽水(密度 1.04),60 kg 成人佔 ADI 幾 %?
+  <div class="box exbox" style="margin:6px 0;padding:9px 22px"><span class="tag">例題</span><b>四級銨化合物 QAC</b>(quaternary ammonium compound)是裝瓶線的殺菌消毒劑,<b>不是添加物</b> —— 沖洗不完全才會殘留。以苯扎氯銨為例:ADI = <b>0.1 mg/kg 體重/天</b>、殘留限量 <b>0.1 mg/kg</b>。同一瓶 <b>500 mL</b> 汽水(密度 1.04),60 kg 成人佔 ADI 幾 %?
   <div class="sol">500 mL × 1.04 = 520 g = 0.520 kg × (0.1 mg/kg) = <b>0.052 mg</b> → ÷ 60 kg = <span class="hl">0.87% ADI</span>;要達 ADI 需 <b>115 瓶</b>。</div></div>
   <table style="margin:4px auto;font-size:19px">
     <tr><th>同一瓶 500 mL 汽水</th><th>限量</th><th>一瓶含量</th><th>60 kg 成人</th><th>達 ADI 需</th></tr>
     <tr><td>苯甲酸(<b>刻意添加</b>的防腐劑)</td><td>600 mg/kg</td><td>300 mg</td><td>100% ADI</td><td>1 瓶</td></tr>
     <tr><td>四級銨(<b>非刻意</b>的清潔劑殘留)</td><td>0.1 mg/kg</td><td>0.052 mg</td><td>0.87% ADI</td><td><span class="hl">115 瓶</span></td></tr>
   </table>
-  <div class="box warn" style="margin:6px 0;padding:9px 22px"><span class="tag">別誤讀</span>限量差 <b>6000 倍,不代表四級銨比較毒</b>。添加物的限量是「有防腐效果、且吃下去仍在 ADI 內」的<b>使用</b>上限;清潔劑殘留沒有存在理由,限量訂在<b>技術可達到的最低值</b>。<span class="small">（以 EFSA/EU 為例,我國依現行公告。）</span></div>
+  <div class="box warn" style="margin:6px 0;padding:9px 22px"><span class="tag">別誤讀</span>限量差 <b>6000 倍,不代表四級銨比較毒</b>。添加物的限量是「有防腐效果、且吃下去仍在 ADI 內」的<b>使用</b>上限;清潔劑殘留沒有存在理由,限量訂在<b>技術可達到的最低值</b>。<span class="small">（以歐盟食品安全局 EFSA(European Food Safety Authority)與歐盟 EU 為例,我國依現行公告。）</span></div>
 </section>
 <!-- 22 -->
 <section class="slide">
   <h2>例題 11:瘦肉精殘留的風險評估 <span class="en">Example 11 — Ractopamine Residue</span></h2>
-  <div class="box def" style="margin:6px 0;padding:9px 22px"><span class="tag">先看單位</span><b>ppb</b>(十億分之一)= <b>μg/kg</b>。所以「殘留 10 ppb」就是「每 <b>公斤</b>肉含 10 <b>微克</b>」。<br>注意 <b>ADI 的單位是 μg</b>,不是 mg —— 差三個數量級,這是本題最常出錯的地方。</div>
-  <div class="box exbox" style="margin:6px 0;padding:11px 22px"><span class="tag">例題</span>牛肌肉的萊克多巴胺殘留標準為 <b>10 ppb</b>,JECFA 的 ADI = <b>1 μg/kg 體重/天</b>。一位 <b>60 kg</b> 成人吃一客 <b>10 oz</b> 牛排(假設殘留剛好在標準上限),佔 ADI 幾 %?
+  <div class="box def" style="margin:6px 0;padding:9px 22px"><span class="tag">先看單位</span><b>ppb</b>(parts per billion,十億分之一)= <b>μg/kg</b>。所以「殘留 10 ppb」就是「每 <b>公斤</b>肉含 10 <b>微克</b>」。<br>注意 <b>ADI 的單位是 μg</b>,不是 mg —— 差三個數量級,這是本題最常出錯的地方。</div>
+  <div class="box exbox" style="margin:6px 0;padding:10px 22px;font-size:21.5px"><span class="tag">例題</span>牛肌肉的萊克多巴胺殘留標準為 <b>10 ppb</b>;JECFA(Joint FAO/WHO Expert Committee on Food Additives)訂的 ADI = <b>1 μg/kg 體重/天</b>。<b>60 kg</b> 成人吃一客 <b>10 oz</b> 牛排(殘留剛好在上限),佔 ADI 幾 %?
   <div class="railnote" style="margin:4px 0 2px"><b>路線:</b>　oz → g 牛肉 → kg 牛肉 → μg 殘留 → μg/kg 體重 → %ADI</div>
   <div class="sol"><b>解:</b>10 oz × (28.35 g/1 oz) = 283.5 g = 0.2835 kg<br>
   0.2835 kg × (10 μg/1 kg) = <b>2.84 μg</b>　→　2.84 ÷ 60 kg = 0.047 μg/kg/天 → <span class="hl">4.7% ADI</span><br>
@@ -488,11 +488,11 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <section class="slide">
   <h2>DRIs 的四個名詞 <span class="en">EAR, RDA, AI, UL</span></h2>
   <table>
-    <tr><th>縮寫</th><th>中文</th><th>意義</th></tr>
-    <tr><td><b>EAR</b></td><td>估計平均需要量</td><td>能滿足<b>50%</b> 該族群的量 —— 用於評估<b>群體</b></td></tr>
-    <tr><td><b>RDA</b></td><td>建議攝取量</td><td>能滿足 <b>97–98%</b> 的量 = EAR + 2 SD —— 用於<b>個人</b>目標</td></tr>
-    <tr><td><b>AI</b></td><td>足夠攝取量</td><td>資料不足以定 RDA 時採用的替代值(如鈣)</td></tr>
-    <tr><td><b>UL</b></td><td>上限攝取量</td><td>長期攝取<b>不致危害</b>的最高量 —— 不是建議量</td></tr>
+    <tr><th>縮寫</th><th>英文全名</th><th>中文</th><th>意義</th></tr>
+    <tr><td><b>EAR</b></td><td class="small">Estimated Average Requirement</td><td>估計平均需要量</td><td>能滿足<b>50%</b> 該族群的量 —— 用於評估<b>群體</b></td></tr>
+    <tr><td><b>RDA</b></td><td class="small">Recommended Dietary Allowance</td><td>建議攝取量</td><td>能滿足 <b>97–98%</b> 的量 = EAR + 2 個標準差 SD —— 用於<b>個人</b>目標</td></tr>
+    <tr><td><b>AI</b></td><td class="small">Adequate Intake</td><td>足夠攝取量</td><td>資料不足以定 RDA 時採用的替代值(如鈣)</td></tr>
+    <tr><td><b>UL</b></td><td class="small">Tolerable Upper Intake Level</td><td>上限攝取量</td><td>長期攝取<b>不致危害</b>的最高量 —— 不是建議量</td></tr>
   </table>
   <div class="box warn"><span class="tag">最常見的誤解</span>RDA 是<b>目標</b>、UL 是<b>天花板</b>,兩者之間是安全區。「吃越多越好」在營養素上幾乎都不成立 —— 尤其脂溶性維生素與礦物質。</div>
 </section>
@@ -571,7 +571,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <table>
     <tr><th>中文</th><th>英文</th><th>中文</th><th>英文</th></tr>
     <tr><td>換算因子</td><td>conversion factor</td><td>每日可接受攝取量</td><td>ADI</td></tr>
-    <tr><td>因次分析</td><td>dimensional analysis</td><td>無可見不良作用劑量</td><td>NOAEL</td></tr>
+    <tr><td>因次分析</td><td>dimensional analysis</td><td>無可見不良作用劑量</td><td>no-observed-adverse-effect level (NOAEL)</td></tr>
     <tr><td>密度</td><td>density</td><td>安全係數</td><td>safety factor</td></tr>
     <tr><td>液量盎司</td><td>fluid ounce (fl oz)</td><td>膳食營養素參考攝取量</td><td>DRIs</td></tr>
     <tr><td>常衡盎司</td><td>ounce (oz)</td><td>建議攝取量</td><td>RDA</td></tr>

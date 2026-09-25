@@ -532,16 +532,65 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 
 <!-- 27 -->
 <section class="slide">
-  <h2 style="margin-bottom:12px">密度的應用:量出看不見的體脂肪 <span class="en">Hydrostatic Weighing</span></h2>
-  <div class="box def" style="margin:7px 0;padding:11px 22px"><span class="tag">原理</span>排水法放大到全身:脂肪約 <b>0.90</b>、瘦體約 <b>1.10 g/cm³</b> → <b>密度越低,體脂率越高</b>。Siri 公式:<b>%BF = 495/d − 450</b></div>
-  <div class="box exbox" style="margin:7px 0;padding:11px 22px"><span class="tag">試算</span>空氣中體重 70.0 kg,吐氣後完全沉入水中淨重 3.4 kg(水密度 1.00 kg/L)。求體密度與體脂率。
-  <div class="sol"><b>解:</b>浮力 = 排開的水重 → V = (70.0 − 3.4) ÷ 1.00 = 66.6 L<br>
-  d = 70.0 ÷ 66.6 = <span class="hl">1.05 g/cm³</span>(介於 0.90–1.10,合理 ✔)　→　%BF = 495/1.051 − 450 ≈ <span class="hl">21%</span><br><span class="small" style="font-size:16px">公式端點檢查:d=0.90(純脂肪)→100%、d=1.10(純瘦體)→0% — 兩端都對 ✔</span></div></div>
-  <div class="box warn" style="margin:7px 0;padding:11px 22px"><span class="tag">注意</span>495/d ≈ 470,<b>減 450 後只剩兩位數</b> — 密度差 0.01,體脂率差約 4%:「相減放大誤差」的真實案例,故需精密量測並扣除肺部殘氣。</div>
-  <p style="font-size:16px;color:#5d6d6e;line-height:1.32;margin:3px 0 0">現代方法仍以密度邏輯為效標 — <b>DXA</b> 雙能量 X 光吸收儀(骨礦/瘦體/脂肪對兩種能量 X 光的吸收不同 → 分區定量)、<b>BIA</b> 生物電阻抗分析(電流走含水的瘦體、脂肪幾乎不導電 → 由阻抗估瘦體重;家用體脂計即此原理)。<br>文獻:Siri, W. E. (1961). In Brožek &amp; Henschel (Eds.), <i>Techniques for Measuring Body Composition</i>, 223–244. NAS–NRC.</p>
+  <h2 style="margin-bottom:10px">密度的應用:量出看不見的體脂肪 <span class="en">Body Density and Body Fat</span></h2>
+  <div class="box key" style="margin:4px 0;padding:9px 20px;font-size:21px;line-height:1.45"><span class="tag">問題</span>體脂肪藏在身體裡,看不到、也切不出來。為什麼只要量出「<b>整個人的密度</b>」,就能推算脂肪佔體重的幾 %?</div>
+  <div class="box def" style="margin:6px 0;padding:9px 20px;font-size:20px;line-height:1.4"><span class="tag">想法</span>把身體看成<b>兩種材料的混合物</b>,而這兩種材料的密度差很多:
+    <table style="font-size:18.5px;margin:6px 0 0">
+      <tr><th style="padding:5px 10px">成分</th><th style="padding:5px 10px">指的是什麼</th><th style="padding:5px 10px">密度</th><th style="padding:5px 10px">丟進水裡</th></tr>
+      <tr><td style="padding:5px 10px"><b>體脂肪</b> <span class="small" style="font-size:15px">body fat</span></td><td style="padding:5px 10px">皮下與內臟的脂肪</td><td style="padding:5px 10px">約 <b>0.90</b> g/cm³</td><td style="padding:5px 10px">比水輕 → 浮(油浮在水上)</td></tr>
+      <tr><td style="padding:5px 10px"><b>瘦體組織</b> <span class="small" style="font-size:15px">lean body mass</span></td><td style="padding:5px 10px">身體<b>扣掉脂肪後剩下的全部</b>:肌肉、骨骼、內臟、水分</td><td style="padding:5px 10px">約 <b>1.10</b> g/cm³</td><td style="padding:5px 10px">比水重 → 沉</td></tr>
+    </table>
+  </div>
+<svg class="fig" role="img" aria-labelledby="w01f4-t w01f4-d" width="1000" height="132" viewBox="0 0 1000 132" xmlns="http://www.w3.org/2000/svg">
+        <title id="w01f4-t">體密度數線:從純脂肪到純瘦體組織</title>
+        <desc id="w01f4-d">一條從左到右的密度數線,左端 0.90 g/cm³ 是純脂肪、體脂率 100%;右端 1.10 g/cm³ 是純瘦體組織、體脂率 0%;中間 1.00 標示水。整個人的平均密度落在這條線上的位置,就對應到體脂率:越靠左脂肪越多,越靠右肌肉骨骼越多。線上另標出一個例子:量到 1.05 g/cm³ 的人,體脂率約 21%。</desc>
+        <defs>
+          <linearGradient id="w01f4-g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f1c40f"/><stop offset="1" stop-color="#1a5276"/></linearGradient>
+          <marker id="w01f4-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5a6a6b"/></marker>
+        </defs>
+        <text x="90" y="24" font-size="19" fill="#8a6d00" text-anchor="start" font-weight="700">純脂肪 = 體脂率 100%</text>
+        <text x="910" y="24" font-size="19" fill="#1a5276" text-anchor="end" font-weight="700">純瘦體組織 = 體脂率 0%</text>
+        <line x1="470" y1="44" x2="340" y2="44" stroke="#5a6a6b" stroke-width="2" marker-end="url(#w01f4-a)" stroke-linecap="round"/>
+        <text x="500" y="49" font-size="16" fill="#5a6a6b" text-anchor="middle">整個人的平均密度</text>
+        <line x1="530" y1="44" x2="660" y2="44" stroke="#5a6a6b" stroke-width="2" marker-end="url(#w01f4-a)" stroke-linecap="round"/>
+        <text x="300" y="49" font-size="16" fill="#8a6d00" text-anchor="end">脂肪越多,越靠這邊</text>
+        <text x="700" y="49" font-size="16" fill="#1a5276" text-anchor="start">肌肉、骨骼越多,越靠這邊</text>
+        <rect x="90" y="58" width="820" height="14" rx="7" fill="url(#w01f4-g)"/>
+        <line x1="500" y1="52" x2="500" y2="84" stroke="#117a65" stroke-width="2" stroke-dasharray="4 3"/>
+        <line x1="90" y1="72" x2="90" y2="82" stroke="#2c3e50" stroke-width="2"/>
+        <line x1="910" y1="72" x2="910" y2="82" stroke="#2c3e50" stroke-width="2"/>
+        <text x="90" y="100" font-size="17" fill="#2c3e50" text-anchor="start" font-weight="700">0.90 g/cm³</text>
+        <text x="500" y="100" font-size="17" fill="#117a65" text-anchor="middle" font-weight="700">1.00 = 水</text>
+        <text x="910" y="100" font-size="17" fill="#2c3e50" text-anchor="end" font-weight="700">1.10 g/cm³</text>
+        <path d="M705,74 L697,86 L713,86 z" fill="#a04c08"/>
+        <text x="705" y="124" font-size="17" fill="#a04c08" text-anchor="middle" font-weight="700">例:某人量到 1.05 g/cm³ → 體脂率約 21%(下一頁試算)</text>
+      </svg>
+  <div class="box exbox" style="margin:6px 0 0;padding:9px 20px;font-size:20px;line-height:1.4"><span class="tag">Siri 公式</span>體脂率 <b>%BF</b>(percent <b>b</b>ody <b>f</b>at,脂肪佔體重的百分比)= <b>495 / d − 450</b>,d 以 g/cm³ 代入。<br><span class="small" style="font-size:17px">它做的事只是把「密度在這條數線上的位置」換成百分比。檢查兩端:d = 0.90 → 495/0.90 − 450 = 100% ✔;d = 1.10 → 495/1.10 − 450 = 0% ✔。</span></div>
 </section>
 
 <!-- 28 -->
+<section class="slide">
+  <h2 style="margin-bottom:10px">怎麼量「整個人的密度」?水中秤重 <span class="en">Hydrostatic (Underwater) Weighing</span></h2>
+  <div class="frow" style="gap:10px;align-items:stretch;margin:4px 0 6px">
+    <div class="fbox" style="flex:1;font-size:18px;padding:7px 10px"><b>① 秤體重</b><br><span class="small" style="font-size:15.5px">在空氣中,得到質量 m</span></div>
+    <div class="arrow" style="align-self:center">→</div>
+    <div class="fbox" style="flex:1;font-size:18px;padding:7px 10px"><b>② 整個人沉到水裡,再秤一次</b><br><span class="small" style="font-size:15.5px">吐光肺裡的空氣;水中體重變很輕</span></div>
+    <div class="arrow" style="align-self:center">→</div>
+    <div class="fbox" style="flex:1;font-size:18px;padding:7px 10px"><b>③ 少掉的重量 = 排開的水重</b><br><span class="small" style="font-size:15.5px">水 1.00 kg/L → 直接換成體積 V</span></div>
+    <div class="arrow" style="align-self:center">→</div>
+    <div class="fbox" style="flex:1;font-size:18px;padding:7px 10px"><b>④ d = m / V</b><br><span class="small" style="font-size:15.5px">代入 Siri 公式 → 體脂率</span></div>
+  </div>
+  <div class="box key" style="margin:4px 0;padding:7px 20px;font-size:18.5px;line-height:1.4"><span class="tag">這就是排水法</span>和例題 2 同一個道理,只是人太大、看不準水位升了多少,改成<b>在水中秤重</b>:少掉的重量 = 排開的水重(阿基米德原理)。</div>
+  <div class="box exbox" style="margin:4px 0;padding:9px 20px;font-size:20px;line-height:1.45"><span class="tag">試算</span>某人在空氣中體重 70.0 kg,吐氣後完全沉入水中,秤得 3.4 kg。求體密度與體脂率。
+  <div class="sol" style="margin-top:8px;padding-top:6px"><b>解:</b><br>
+  ③ 少掉的重量 70.0 − 3.4 = 66.6 kg,就是排開的水重 → 水 1.00 kg/L → 體積 V = <span class="hl">66.6 L</span><br>
+  ④ d = m / V = 70.0 kg ÷ 66.6 L = 1.05 kg/L = <span class="hl">1.05 g/cm³</span>(落在 0.90–1.10 之間,合理 ✔)<br>
+  &nbsp;&nbsp;&nbsp;%BF = 495 / 1.051 − 450 = 471 − 450 ≈ <span class="hl">21%</span>(脂肪約佔體重的五分之一)</div></div>
+  <div class="box warn" style="margin:4px 0;padding:7px 20px;font-size:18.5px;line-height:1.4"><span class="tag">注意</span>495/d ≈ 471,<b>減掉 450 後只剩兩位數</b>:密度差 0.01,體脂率就差約 4% — 「相近的數相減會放大誤差」的真實案例,所以密度要量得很準、肺中殘氣也要扣除。</div>
+  <p style="font-size:15.5px;color:#5d6d6e;line-height:1.32;margin:4px 0 0">現代方法仍以密度為效標 — <b>DXA</b>(dual-energy X-ray absorptiometry,雙能量 X 光吸收儀):骨、瘦體組織、脂肪吸收 X 光的程度不同,可分別定量;<b>BIA</b>(bioelectrical impedance analysis,生物電阻抗分析):電流走含水的瘦體組織、脂肪幾乎不導電,家用體脂計即此原理。文獻:Siri, W. E. (1961). In Brožek &amp; Henschel (Eds.), <i>Techniques for Measuring Body Composition</i>, 223–244. NAS–NRC.</p>
+</section>
+
+<!-- 29 -->
 <section class="slide">
   <h2>溫度尺度 <span class="en">Temperature Scales</span></h2>
   <table>
@@ -554,7 +603,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="box warn"><span class="tag">注意</span>0 K(絕對零度)是理論最低溫度;K 沒有負值,且不加「°」符號。氣體定律計算<b>必須用 K</b>!</div>
 </section>
 
-<!-- 29 -->
+<!-- 30 -->
 <section class="slide">
   <h2>例題 3:溫度換算 <span class="en">Example 3</span></h2>
   <div class="box exbox"><span class="tag">例題</span>(a) 人體正常體溫 37.0 °C 等於幾 K?幾 °F?<br>(b) 液態氮沸點 77 K 等於幾 °C?
@@ -564,7 +613,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   (b) T(°C) = 77 − 273.15 = <span class="hl">−196 °C</span></div></div>
 </section>
 
-<!-- 30 -->
+<!-- 31 -->
 <section class="slide quiz">
   <h2>隨堂快問 ②:單位、密度與溫度 <span class="en">Quick Check 2</span></h2>
   <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
@@ -574,7 +623,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. D</span> — g/cm<sup>2</sup> 是「每單位<b>面積</b>的質量」,因次就不對。<span class="myth">這就是因次分析最實用的地方:單位不對,不必算就知道錯了。</span></div><div class="row"><span class="ans">2. ③④</span> — 密度與熔點是<b>強度性質</b>,不隨量改變,所以可以用來鑑定物質;質量與體積是外延性質。<span class="myth">常見錯誤:以為「切一半密度也變一半」。兩個外延性質相除,得到的是強度性質。</span></div><div class="row"><span class="ans">3. −40 °F</span> — T(°F) = (9/5)(−40) + 32 = −72 + 32 = −40。<span class="myth">攝氏與華氏<b>唯一相等</b>的一點。記住它,以後就能拿來檢查公式有沒有背反(若算出 −40 °C = 40 °F 就是公式記錯了)。</span></div></div>
 </section>
 
-<!-- 31 -->
+<!-- 32 -->
 <section class="slide divider">
   <div class="secnum">PART 1.3</div>
   <h1>測量的不確定度</h1>
@@ -582,7 +631,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="items">準確度與精密度・有效數字・運算規則</div>
 </section>
 
-<!-- 32 -->
+<!-- 33 -->
 <section class="slide">
   <h2>精確數與測量數 <span class="en">Exact vs. Measured Numbers</span></h2>
   <div class="two-col">
@@ -606,7 +655,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="box key"><span class="tag">重點</span>量筒刻度到 1 mL → 讀數記到 0.1 mL,如 25.6 mL,其中「6」為估計位。</div>
 </section>
 
-<!-- 33 -->
+<!-- 34 -->
 <section class="slide">
   <h2>準確度與精密度 <span class="en">Accuracy vs. Precision</span></h2>
   <table>
@@ -659,7 +708,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
       </svg>
 </section>
 
-<!-- 34 -->
+<!-- 35 -->
 <section class="slide">
   <h2>有效數字的判斷規則 <span class="en">Significant Figures Rules</span></h2>
   <ol>
@@ -672,7 +721,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="box key"><span class="tag">建議</span>報告數據時使用<b>科學記號 (scientific notation)</b> 可避免有效數字的模糊。</div>
 </section>
 
-<!-- 35 -->
+<!-- 36 -->
 <section class="slide">
   <h2>例題 4:判斷有效數字位數 <span class="en">Example 4</span></h2>
   <div class="box exbox"><span class="tag">例題</span>指出下列各測量值的有效數字位數:<br>
@@ -685,7 +734,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   (e) <span class="hl">精確數</span>,有效位數無限多</div></div>
 </section>
 
-<!-- 36 -->
+<!-- 37 -->
 <section class="slide">
   <h2>運算規則(一):乘法與除法 <span class="en">Multiplication &amp; Division</span></h2>
   <div class="box def"><span class="tag">規則</span>結果的有效數字位數 = 各測量值中<b>有效位數最少</b>者。</div>
@@ -696,7 +745,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   </ul>
 </section>
 
-<!-- 37 -->
+<!-- 38 -->
 <section class="slide">
   <h2>運算規則(二):加法與減法 <span class="en">Addition &amp; Subtraction</span></h2>
   <div class="box def"><span class="tag">規則</span>結果的小數位數 = 各測量值中<b>小數位數最少</b>者。</div>
@@ -704,7 +753,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="box warn"><span class="tag">注意</span>乘除看「有效位數」;加減看「小數位數」— 兩規則不同,最容易混淆!多步計算時,中間過程多留 1 位,最後再捨入。</div>
 </section>
 
-<!-- 38 -->
+<!-- 39 -->
 <section class="slide">
   <h2>捨入規則 <span class="en">Rounding</span></h2>
   <ul>
@@ -715,7 +764,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="box key"><span class="tag">重點</span>「五成雙」規則可避免長期統計偏差;一般課堂計算採單純四捨五入亦可,依授課教師規定。</div>
 </section>
 
-<!-- 39 -->
+<!-- 40 -->
 <section class="slide">
   <h2>例題 5:綜合計算 <span class="en">Example 5</span></h2>
   <div class="box exbox"><span class="tag">例題</span>以正確有效數字表示下列計算結果:<br>
@@ -728,7 +777,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   (c) 168.2 ÷ 0.250 = 672.8 → 有效位最少 3 位 → <span class="hl">673</span></div></div>
 </section>
 
-<!-- 40 -->
+<!-- 41 -->
 <section class="slide quiz">
   <h2>隨堂快問 ③:有效數字與誤差 <span class="en">Quick Check 3</span></h2>
   <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
@@ -738,7 +787,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B(3 位)</span> — 4、2、0。開頭的 0 只是定位;結尾的 0 在小數點後 → 有效。</div><div class="row"><span class="ans">2. C(精密但不準確)</span> — 三次很接近(精密),但都偏低約 0.30 g(不準確) → 典型的<b>系統誤差</b>,例如天平沒歸零。<span class="myth">改善方法也不同:精密度靠多次測量取平均,準確度只能靠校正儀器。多測一百次也救不了沒歸零的天平。</span></div><div class="row"><span class="ans">3. 0.26 — 只剩 2 位有效數字!</span><span class="myth">減法看<b>小數位</b>:兩者都是 2 位小數 → 結果 2 位小數。但 4 位有效數字相減之後,有效數字只剩 2 位 — 這叫「有效數字的災難性損失」,是滴定、重量分析誤差的主要來源。下週算莫耳質量差值時會再遇到。</span></div></div>
 </section>
 
-<!-- 41 -->
+<!-- 42 -->
 <section class="slide divider">
   <div class="secnum">PART 1.4</div>
   <h1>單位換算與因次分析</h1>
@@ -746,7 +795,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="items">換算因子・單位換算步驟・綜合應用</div>
 </section>
 
-<!-- 42 -->
+<!-- 43 -->
 <section class="slide">
   <h2>因次分析法 <span class="en">Dimensional Analysis (Factor-Label Method)</span></h2>
   <div class="box def"><span class="tag">定義</span><b>換算因子 (conversion factor)</b>:由等式關係寫成的分數,其值等於 1。<br>例:1 in = 2.54 cm → 可寫成 (2.54 cm / 1 in) 或 (1 in / 2.54 cm)。</div>
@@ -757,7 +806,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   </ul>
 </section>
 
-<!-- 43 -->
+<!-- 44 -->
 <section class="slide">
   <h2>單位換算步驟 <span class="en">Conversion Steps</span></h2>
   <ol>
@@ -770,7 +819,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="box exbox"><span class="tag">示範</span>身高 70.0 in 換算為公分:<br>70.0 in × (2.54 cm / 1 in) = <span class="hl">178 cm</span>(2.54 為定義值,不限位數)</div>
 </section>
 
-<!-- 44 -->
+<!-- 45 -->
 <section class="slide">
   <h2>先寫兩端,再填中間 <span class="en">Start From Both Ends</span></h2>
 <svg class="fig" role="img" aria-labelledby="w01f2-t w01f2-d" width="1000" height="336" viewBox="0 0 1000 336" xmlns="http://www.w3.org/2000/svg">
@@ -811,7 +860,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
       </svg>
 </section>
 
-<!-- 45 -->
+<!-- 46 -->
 <section class="slide">
   <h2>多步串接:先畫單位路線 <span class="en">Map the Unit Path First</span></h2>
   <div class="box def" style="margin:8px 0;padding:10px 22px"><span class="tag">時機</span>兩端寫好了,但<b>一個因子接不過去</b> —— 這時不要急著想因子,先問:從左端的單位走到右端,要<b>經過哪些單位</b>?</div>
@@ -854,7 +903,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
       </svg>
 </section>
 
-<!-- 46 -->
+<!-- 47 -->
 <section class="slide">
   <h2>例題 6:多步換算 <span class="en">Example 6</span></h2>
   <div class="box exbox"><span class="tag">例題</span>時速 90.0 km/h 等於多少 m/s?
@@ -864,7 +913,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="box key"><span class="tag">技巧</span>複合單位(如 km/h、g/cm³)換算時,分子、分母分別處理即可。</div>
 </section>
 
-<!-- 47 -->
+<!-- 48 -->
 <section class="slide">
   <h2>例題 7:密度與換算綜合 <span class="en">Example 7</span></h2>
   <div class="box exbox"><span class="tag">例題</span>汽油密度約 0.74 g/mL。加滿 45 L 的油箱,汽油質量是多少 kg?
@@ -873,7 +922,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   密度在此作為「質量↔體積」的換算因子使用 — 這是密度最重要的計算用途。</div></div>
 </section>
 
-<!-- 48 -->
+<!-- 49 -->
 <section class="slide">
   <h2>例題 8:換算練習(淡出 ①) <span class="en">Faded Example 1</span></h2>
   <div class="box exbox" style="margin:10px 0"><span class="tag">題目</span>一瓶運動飲料 <b>600 mL</b>,標示每 <b>100 mL 含鈉 45 mg</b>。整瓶含鈉多少 mg?
@@ -886,7 +935,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <span class="small">佔每日鈉上限 2400 mg 的 11%。注意 mL 上下相消,只剩 mg —— 單位對了,路徑就對了。</span></div></div>
 </section>
 
-<!-- 49 -->
+<!-- 50 -->
 <section class="slide">
   <h2>例題 9:換算練習(淡出 ②) <span class="en">Faded Example 2</span></h2>
   <div class="box exbox" style="margin:10px 0"><span class="tag">題目</span>某餅乾每 <b>100 g 含糖 22 g</b>,一包淨重 <b>45 g</b>。這包的糖相當於幾顆方糖(每顆 <b>5 g</b>)?
@@ -899,7 +948,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <span class="small">倒推法:要得到「顆」→ 最後一格分子必須是顆、分母是 g 糖 → 所以前一格必須先把「g 餅乾」換成「g 糖」。</span></div></div>
 </section>
 
-<!-- 50 -->
+<!-- 51 -->
 <section class="slide">
   <h2>例題 10:換算練習(淡出 ③ — 全空) <span class="en">Faded Example 3</span></h2>
   <div class="box exbox" style="margin:10px 0"><span class="tag">題目</span>全脂牛奶密度 <b>1.03 g/mL</b>,脂肪佔 <b>3.5%</b>(每 100 g 牛奶含 3.5 g 脂肪)。一杯 <b>240 mL</b> 牛奶含脂肪幾 g?
@@ -912,7 +961,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <span class="small">密度在這裡的角色就是「mL → g」的換算因子。若第一步不知道要用密度,問自己:已知是 mL、目標是 g,誰能把這兩個單位接起來?</span></div></div>
 </section>
 
-<!-- 51 -->
+<!-- 52 -->
 <section class="slide">
   <h2>例題 11:三段串接(淡出 ④) <span class="en">Faded Example 4 — Chained Conversions</span></h2>
   <div class="box exbox" style="margin:10px 0"><span class="tag">題目</span>一盒餅乾有 <b>12 包</b>,每包 <b>45 g</b>,每 <b>100 g 餅乾含鈉 480 mg</b>。整盒的鈉是幾 <b>g</b>?
@@ -925,7 +974,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <span class="small">= 2592 mg,<b>一盒就是每日鈉上限 2400 mg 的 108%</b>。注意:四段一次乘到底,中途不要算出 540 或 2592 再重新開始。</span></div></div>
 </section>
 
-<!-- 52 -->
+<!-- 53 -->
 <section class="slide quiz">
   <h2>隨堂快問 ④:因次分析與合理性檢查 <span class="en">Quick Check 4</span></h2>
   <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
@@ -935,7 +984,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. C(1000)</span> — g→kg 要 ÷1000,cm<sup>3</sup>→m<sup>3</sup> 要 ×10<sup>6</sup>,淨效果 ×1000。<span class="myth">最常見的錯:只換了分子(答 0.001)或只換了分母。複合單位一定要分子、分母各換一次。</span></div><div class="row"><span class="ans">2. 300 km × (1 L / 15 km) = 20 L</span> — 要消去 km,就把 km 放<b>分母</b>。<span class="myth">若寫成 300 × 15 = 4500,單位會變成 km<sup>2</sup>/L — 單位對了,路徑通常就對了。</span></div><div class="row"><span class="ans">3. 數量級不合理</span> — 2.5 kg/mL = 2500 g/cm<sup>3</sup>,是金(19.3)的 130 倍,常溫下不存在這種固體。<span class="myth">養成習慣:算完一定回頭問「數量級合理嗎?」本週例題 6、7 都示範過這一步。</span></div></div>
 </section>
 
-<!-- 53 -->
+<!-- 54 -->
 <section class="slide hookback">
   <h2>回到本週的錨點 <span class="en">Anchor Answered</span></h2>
   <div class="recall"><b>第 1 週開場問的是:</b>一包餅乾標示「每份含糖 5.2 g」。這個 5.2 是怎麼量出來的？為什麼不寫 5.234 g？</div>
@@ -952,7 +1001,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="nextup"><b>接下來在哪裡會再用到:</b><span class="course">分析化學</span>不確定度、方法偵測極限　<span class="course">食品分析</span>標示合規性判定　<span class="course">食品衛生安全</span>風險評估的因次換算</div>
 </section>
 
-<!-- 54 -->
+<!-- 55 -->
 <section class="slide">
   <h2>本週重點總結 <span class="en">Summary</span></h2>
   <ul>
@@ -964,7 +1013,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   </ul>
 </section>
 
-<!-- 55 -->
+<!-- 56 -->
 <section class="slide">
   <h2>重要名詞中英對照 <span class="en">Key Terms</span></h2>
   <table>
@@ -978,7 +1027,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   </table>
 </section>
 
-<!-- 56 -->
+<!-- 57 -->
 <section class="slide">
   <h2>課後練習與下週預告 <span class="en">Homework &amp; Preview</span></h2>
   <h3>課後練習(OpenStax Chemistry 2e, Ch.1)</h3>

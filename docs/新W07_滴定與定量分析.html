@@ -411,7 +411,8 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <section class="slide">
   <h2>酸價 AV <span class="en">Acid Value</span></h2>
 <div class="box def"><span class="tag">定義</span>中和 <b>1 g 油脂</b>中的游離脂肪酸所需 <b>KOH 的 mg 數</b>。</div>
-  <div class="eq">AV = (V<sub>KOH</sub> × M<sub>KOH</sub> × 56.11) ÷ 油重(g)　　<span class="small">(56.11 = KOH 的莫耳質量)</span></div>
+  <div class="eq">AV = V<sub>KOH</sub>(mL) × M<sub>KOH</sub>(mol/L) × 56.11 ÷ 油重(g)</div>
+  <p class="small" style="margin:0 0 6px;text-align:center">V 一律用 <b>mL</b>:mL × mol/L = mmol,再 × 56.11 mg/mmol(KOH 的莫耳質量)就直接是 mg,不必再換單位。</p>
   <ul>
     <li>游離脂肪酸來自油脂的<b>水解</b>(高溫、水分、脂解酶)</li>
     <li>AV 上升代表油被<b>水解</b>了,不是被氧化了</li>
@@ -436,7 +437,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <section class="slide">
   <h2>例題 5:算酸價 <span class="en">Example 5: Acid Value</span></h2>
   <p>取沙拉油 5.00 g,以 0.0500 M KOH 滴定至終點用去 2.10 mL。酸價為何?</p>
-  <div class="sol"><b>解答:</b><br>KOH 莫耳數 = 0.0500 × 0.00210 L = 1.05 × 10<sup>−4</sup> mol<br>質量 = 1.05 × 10<sup>−4</sup> × 56.11 g/mol = 5.89 × 10<sup>−3</sup> g = <b>5.89 mg</b><br>AV = 5.89 mg ÷ 5.00 g = <span class="hl">1.18 mg KOH/g</span><br><b>三個常見錯誤:</b>① 停在 5.89 mg(忘了除以油重);② 用公克不用毫克(差 1000 倍);③ 2.10 mL 寫成 0.0210 L(小數點錯一位)。<br><b>合理性檢查:</b>新鮮食用油的 AV 通常小於 1;超過就要注意。<b>法規限值請以現行公告為準。</b></div>
+  <div class="sol" style="font-size:20px;line-height:1.5"><b>解答(照公式的單位走):</b><br>① KOH 的毫莫耳數 = 2.10 mL × 0.0500 mol/L = <b>0.105 mmol</b><br>② 換成毫克:0.105 mmol × 56.11 mg/mmol = <b>5.89 mg</b><br>③ AV = 5.89 mg ÷ 5.00 g = <span class="hl">1.18 mg KOH/g</span><br><b>三個常見錯誤:</b>① 停在 5.89 mg(忘了除以油重);② 把 V 換成 L 再算,得到 5.89 × 10<sup>−3</sup> g 卻忘了換回 mg(差 1000 倍);③ mL 與 L 換算時小數點錯一位。<br><b>合理性檢查:</b>新鮮食用油的 AV 通常小於 1;超過就要注意。<b>法規限值請以現行公告為準。</b></div>
 </section>
 
 <!-- 23 -->

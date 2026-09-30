@@ -556,14 +556,15 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 
 <!-- 30 -->
 <section class="slide">
-  <h2>Clausius-Clapeyron 方程式 <span class="en">Clausius-Clapeyron Equation</span></h2>
-  <p>定量描述蒸氣壓與溫度的關係:</p>
-  <div class="eq">ln(P<sub>2</sub>/P<sub>1</sub>) = −(ΔH<sub>vap</sub>/R) × (1/T<sub>2</sub> − 1/T<sub>1</sub>)&nbsp;&nbsp;(R = 8.314 J/(mol·K))</div>
-  <ul>
-    <li>已知兩組 (P, T) → 可求 ΔH<sub>vap</sub>;已知 ΔH<sub>vap</sub> 與一組 (P, T) → 可求任意溫度的蒸氣壓</li>
-    <li>ln P 對 1/T 作圖為直線,斜率 = −ΔH<sub>vap</sub>/R</li>
+  <h2 style="margin-bottom:10px">Clausius-Clapeyron 方程式 <span class="en">Clausius-Clapeyron Equation</span></h2>
+  <div class="box key" style="margin:5px 0;padding:8px 20px;font-size:20px;line-height:1.42"><span class="tag">問題</span>上一頁說蒸氣壓隨溫度「加速上升」。如果只知道水在 100 °C 的蒸氣壓是 1 atm,能不能算出 80 °C 時是多少?可以——這條式子就是把那條曲線寫成算得出來的形式。</div>
+  <div class="eq" style="margin:8px 0">ln(P<sub>2</sub>/P<sub>1</sub>) = −(ΔH<sub>vap</sub>/R) × (1/T<sub>2</sub> − 1/T<sub>1</sub>)&nbsp;&nbsp;(R = 8.314 J/(mol·K))</div>
+  <div class="box def" style="margin:5px 0;padding:8px 20px;font-size:19.5px;line-height:1.42"><span class="tag">怎麼讀這條式子</span>左邊是「兩個溫度下蒸氣壓的比值」(取 ln 只是把「幾倍」變成加減,方便算);右邊只有一個和物質有關的常數:<b>汽化熱 ΔH<sub>vap</sub></b>。分子間作用力越強、越難蒸發的液體,ΔH<sub>vap</sub> 越大,<b>蒸氣壓對溫度就越敏感</b>。所以這條式子做的只有一件事:<b>用汽化熱,把某個溫度的蒸氣壓換算到另一個溫度</b>。</div>
+  <ul style="font-size:20px;line-height:1.45;margin:4px 0 4px 30px">
+    <li>已知兩組 (P, T) → 可反推 ΔH<sub>vap</sub>;已知 ΔH<sub>vap</sub> 與一組 (P, T) → 可算任意溫度的蒸氣壓</li>
+    <li><span class="small">進階:把 ln P 對 1/T 作圖會是直線,斜率 = −ΔH<sub>vap</sub>/R——實驗室就是這樣量汽化熱的</span></li>
   </ul>
-  <div class="box warn"><span class="tag">注意</span>T 用 K;ΔH<sub>vap</sub> 用 J/mol(配合 R = 8.314);P<sub>1</sub>、P<sub>2</sub> 單位相同即可(比值無單位)。</div>
+  <div class="box warn" style="margin:5px 0;padding:8px 20px;font-size:19px;line-height:1.4"><span class="tag">注意</span>T 用 K;ΔH<sub>vap</sub> 用 J/mol(配合 R = 8.314);P<sub>1</sub>、P<sub>2</sub> 單位相同即可(比值無單位)。</div>
 </section>
 
 <!-- 31 -->

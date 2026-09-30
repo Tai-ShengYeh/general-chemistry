@@ -473,15 +473,27 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 
 <!-- 27 -->
 <section class="slide">
-  <h2>為什麼是 0.9% <span class="en">Why 0.9%</span></h2>
-  <ul>
-    <li>0.9% (w/v) NaCl = 9 g/L → 9 ÷ 58.44 = <b>0.154 M</b></li>
-    <li>NaCl 解離,<b>van’t Hoff 因子 i ≈ 1.85</b>(不是剛好 2,離子間仍有交互作用)</li>
-    <li>滲透濃度 = 0.154 × 1.85 × 1000 ≈ <span class="hl">285 mOsm/L</span></li>
-    <li>人體血漿約 <b>285–295 mOsm/kg</b> → 落在區間內 → <b>等張(isotonic)</b></li>
-    <li>紅血球放進去<b>既不脹破也不皺縮</b></li>
-  </ul>
-<div class="box def"><span class="tag">5% 葡萄糖為什麼也可以</span>葡萄糖 M = 180.2,5% (w/v) = 50 g/L → 0.278 M;葡萄糖<b>不解離</b>(i = 1)→ 約 <b>277 mOsm/L</b>,同樣落在血漿區間。<br><b>注意單位:</b>臨床用的是 <b>mOsm/kg(滲透莫耳濃度)</b>,不是 mol/L——它數的是<b>粒子</b>,不是分子。<b>這正是第 12 週依數性質的核心。</b></div>
+  <h2 style="margin-bottom:10px">為什麼是 0.9% <span class="en">Why 0.9%</span></h2>
+  <div class="box key" style="margin:5px 0;padding:8px 20px;font-size:20px;line-height:1.42"><span class="tag">問題</span>點滴和生理食鹽水都是 0.9% 的 NaCl。這個數字從哪裡來?為什麼不是 0.5% 或 2%?</div>
+  <div class="box def" style="margin:5px 0;padding:8px 20px;font-size:19.5px;line-height:1.42"><span class="tag">想法</span>紅血球的細胞膜只讓水通過。<b>膜外的溶質粒子比膜內多,水就往外跑,紅血球皺縮;比膜內少,水往裡灌,紅血球脹破。</b>所以點滴必須「和血液裡的粒子一樣多」——關鍵是<b>數粒子</b>,不是數分子、也不是比公克數。</div>
+  <div class="two-col" style="gap:22px;margin:2px 0">
+    <div>
+      <h3 style="font-size:20px;margin:2px 0 2px">① 0.9% NaCl 有多少粒子?</h3>
+      <ul style="font-size:18.5px;line-height:1.4;margin:0 0 0 22px">
+        <li>0.9% (w/v) = 9 g/L → 9 ÷ 58.44 = <b>0.154 mol/L</b></li>
+        <li>NaCl 在水裡拆成 Na⁺ 和 Cl⁻,一個「分子」變成<b>接近 2 個粒子</b>(實測約 1.85 個,因為離子偶爾會靠在一起;這個倍數以後叫 van’t Hoff 因子 i)</li>
+        <li>粒子濃度 ≈ 0.154 × 1.85 ≈ <span class="hl">285 mmol/L</span></li>
+      </ul>
+    </div>
+    <div>
+      <h3 style="font-size:20px;margin:2px 0 2px">② 血液裡有多少粒子?</h3>
+      <ul style="font-size:18.5px;line-height:1.4;margin:0 0 0 22px">
+        <li>人體血漿的粒子濃度約 <b>285–295 mmol/L</b>(臨床寫成 mOsm/kg,唸「毫滲透莫耳」,意思就是「每公斤水裡有幾毫莫耳粒子」)</li>
+        <li>0.9% NaCl 剛好落在這個區間 → 稱為<b>等張 (isotonic)</b>:紅血球放進去既不脹也不縮 ✔</li>
+      </ul>
+    </div>
+  </div>
+  <div class="box exbox" style="margin:5px 0;padding:8px 20px;font-size:19px;line-height:1.4"><span class="tag">5% 葡萄糖為什麼也可以</span>葡萄糖 M = 180.2,5% (w/v) = 50 g/L → 0.278 mol/L;葡萄糖<b>不會拆開</b>(i = 1),粒子濃度就是 278 mmol/L,同樣落在血漿區間。<b>兩種點滴的百分濃度差 5 倍,粒子數卻一樣多——這就是「數粒子」的意思</b>;第 12 週的依數性質會把這個想法講完整。</div>
 </section>
 
 <!-- 28 -->
@@ -493,10 +505,19 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 
 <!-- 29 -->
 <section class="slide">
-  <h2>當量與當量濃度 <span class="en">Equivalents and Normality</span></h2>
-  <p><b>當量</b>看的是「有效作用的單位數」而不是分子數:酸鹼算 <b>1 mol H<sup>+</sup></b>、電解質算 <b>1 mol 電荷</b>。<span class="hl">N = M × n</span>(n = 每莫耳提供的當量數)。</p>
-  <table><tr><th>物質</th><th>n</th><th>0.1 M 相當於</th></tr><tr><td>HCl</td><td>1</td><td>0.1 N</td></tr><tr><td>H<sub>2</sub>SO<sub>4</sub></td><td>2</td><td>0.2 N</td></tr><tr><td>Ca<sup>2+</sup></td><td>2</td><td>0.2 N</td></tr><tr><td>Na<sup>+</sup></td><td>1</td><td>0.1 N</td></tr></table>
-<div class="box key"><span class="tag">為什麼臨床用 mEq/L</span>生理上重要的是<b>電荷平衡</b>——用當量表示,不同價數的離子才能直接相加比較。</div>
+  <h2 style="margin-bottom:10px">當量與當量濃度 <span class="en">Equivalents and Normality</span></h2>
+  <div class="box key" style="margin:5px 0;padding:8px 20px;font-size:20px;line-height:1.42"><span class="tag">問題</span>血液檢驗報告寫「鈉 140 mEq/L、鈣 4.5 mEq/L」。為什麼不像營養標示一樣直接寫 mg 或 mmol?</div>
+  <div class="box def" style="margin:5px 0;padding:8px 20px;font-size:19.5px;line-height:1.42"><span class="tag">想法</span>身體在意的常常不是「有幾顆離子」,而是「<b>帶了多少電荷</b>」(酸鹼反應則是「能給出幾個 H⁺」)。1 mol Ca²⁺ 帶 2 mol 正電荷,1 mol Na⁺ 只帶 1 mol——要比電荷,Ca²⁺ 一顆得算兩份。<br><b>當量 (equivalent, Eq)</b>就是「照份數算」的計數單位:<b>能提供 1 mol 電荷(或 1 mol H⁺)的量,叫 1 當量</b>;mEq = 毫當量 = 千分之一當量。</div>
+  <div class="two-col" style="gap:24px;align-items:center;margin:2px 0">
+    <div style="flex:1.15">
+      <table style="font-size:18.5px;margin:2px 0"><tr><th>物質</th><th>1 mol 提供幾份</th><th>0.1 M 相當於</th></tr><tr><td>HCl</td><td>1 個 H⁺ → n = 1</td><td>0.1 N</td></tr><tr><td>H<sub>2</sub>SO<sub>4</sub></td><td>2 個 H⁺ → n = 2</td><td>0.2 N</td></tr><tr><td>Ca<sup>2+</sup></td><td>2 個電荷 → n = 2</td><td>0.2 N</td></tr><tr><td>Na<sup>+</sup></td><td>1 個電荷 → n = 1</td><td>0.1 N</td></tr></table>
+    </div>
+    <div>
+      <div class="eq" style="font-size:26px;margin:4px 0">N = M × n</div>
+      <p style="font-size:18px;line-height:1.4;margin:0"><b>當量濃度 N</b>(normality)= 每公升有幾當量;n 就是表格中間那一欄。<br>反過來也行:鈣 4.5 mEq/L ÷ 2 = 2.25 mmol/L。</p>
+    </div>
+  </div>
+  <div class="box exbox" style="margin:5px 0;padding:8px 20px;font-size:19px;line-height:1.4"><span class="tag">為什麼臨床偏愛 mEq/L</span>體液裡正電荷總量必須等於負電荷總量。用 mEq 表示,Na⁺、K⁺、Ca²⁺、Mg²⁺ 這些價數不同的離子才能<b>直接相加</b>,一眼看出電荷有沒有平衡。</div>
 </section>
 
 <!-- 30 -->

@@ -466,10 +466,36 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 
 <!-- 26 -->
 <section class="slide">
-  <h2>吸濕等溫線 <span class="en">The Moisture Sorption Isotherm</span></h2>
-  <p>把<b>含水量</b>對 a<sub>w</sub> 作圖得到 S 形曲線,分三段:<b>&lt; 0.2</b> 單分子層水(強力吸附、幾乎不參與反應)、<b>0.2–0.6</b> 多分子層水、<b>&gt; 0.6</b> 自由水(反應與微生物都活躍)。</p>
-  <table><tr><th>劣變途徑</th><th>最快的 a<sub>w</sub> 區間</th></tr><tr><td><b>脂質氧化</b></td><td>兩端都快:&lt; 0.2 與 &gt; 0.8</td></tr><tr><td><b>梅納褐變</b></td><td><b>0.6–0.7</b></td></tr><tr><td>酵素反應</td><td>&gt; 0.3,隨 a<sub>w</sub> 上升而加快</td></tr><tr><td>微生物生長</td><td>&gt; 0.6(依菌種)</td></tr></table>
-<div class="box def"><span class="tag">最穩定的區間在 0.2–0.3</span><b>低於 0.2 時脂質氧化反而加快</b>——單分子層水本來能隔絕氧、鈍化金屬催化劑。<b>「越乾越好」是錯的。</b></div>
+  <h2 style="margin-bottom:8px">吸濕等溫線 <span class="en">The Moisture Sorption Isotherm</span></h2>
+  <p style="font-size:20px;line-height:1.4;margin:2px 0 4px">把食品的<b>含水量</b>對 a<sub>w</sub> 作圖,得到一條 <b>S 形曲線</b>。同樣是水,落在三段裡的「身分」不同:</p>
+  <div class="two-col" style="gap:16px;align-items:flex-start;margin:0">
+    <div style="flex:1.3;min-width:0">
+<svg class="fig" role="img" aria-labelledby="w13f1-t w13f1-d" width="620" height="300" viewBox="0 0 620 300" xmlns="http://www.w3.org/2000/svg">
+        <title id="w13f1-t">吸濕等溫線示意圖</title>
+        <desc id="w13f1-d">橫軸是水活性 a_w,從 0 到 1;縱軸是含水量。曲線呈 S 形:a_w 很低時含水量隨 a_w 快速上升,中段平緩,接近 1 時又陡升。背景分成三段:a_w 小於 0.2 為單分子層水,0.2 到 0.6 為多分子層水,大於 0.6 為自由水。0.2 到 0.3 標示為最穩定的區間。</desc>
+        <rect x="64.0" y="30" width="106.4" height="216" fill="#eaf2f8"/><rect x="170.4" y="30" width="212.8" height="216" fill="#fef9e7"/><rect x="383.2" y="30" width="212.8" height="216" fill="#fdedec"/>
+        <rect x="170.4" y="30" width="53.2" height="216" fill="#117a65" opacity="0.13"/>
+        <line x1="64" y1="246" x2="604" y2="246" stroke="#2c3e50" stroke-width="2"/>
+        <line x1="64" y1="246" x2="64" y2="22" stroke="#2c3e50" stroke-width="2"/>
+        <path d="M64.0,246.0 L69.3,238.3 L74.6,231.1 L80.0,224.5 L85.3,218.4 L90.6,212.7 L95.9,207.5 L101.2,202.6 L106.6,198.1 L111.9,193.9 L117.2,190.0 L122.5,186.3 L127.8,183.0 L133.2,179.8 L138.5,176.9 L143.8,174.1 L149.1,171.6 L154.4,169.2 L159.8,167.0 L165.1,164.9 L170.4,162.9 L175.7,161.1 L181.0,159.3 L186.4,157.7 L191.7,156.1 L197.0,154.7 L202.3,153.3 L207.6,152.0 L213.0,150.8 L218.3,149.6 L223.6,148.5 L228.9,147.4 L234.2,146.4 L239.6,145.4 L244.9,144.4 L250.2,143.5 L255.5,142.6 L260.8,141.8 L266.2,141.0 L271.5,140.2 L276.8,139.4 L282.1,138.6 L287.4,137.9 L292.8,137.2 L298.1,136.4 L303.4,135.7 L308.7,135.0 L314.0,134.4 L319.4,133.7 L324.7,133.0 L330.0,132.3 L335.3,131.6 L340.6,131.0 L346.0,130.3 L351.3,129.6 L356.6,128.9 L361.9,128.2 L367.2,127.5 L372.6,126.7 L377.9,126.0 L383.2,125.2 L388.5,124.4 L393.8,123.6 L399.2,122.8 L404.5,121.9 L409.8,121.0 L415.1,120.0 L420.4,119.1 L425.8,118.1 L431.1,117.0 L436.4,115.9 L441.7,114.7 L447.0,113.5 L452.4,112.2 L457.7,110.9 L463.0,109.4 L468.3,107.9 L473.6,106.4 L479.0,104.7 L484.3,102.9 L489.6,101.1 L494.9,99.1 L500.2,97.0 L505.6,94.8 L510.9,92.5 L516.2,90.0 L521.5,87.4 L526.8,84.7 L532.2,81.7 L537.5,78.6 L542.8,75.4 L548.1,71.9 L553.4,68.2 L558.8,64.3 L564.1,60.2 L569.4,55.9 L574.7,51.3 L580.0,46.4 L585.4,41.2 L590.7,35.8 L596.0,30.0" fill="none" stroke="#1a5276" stroke-width="3.5" stroke-linecap="round"/>
+        <line x1="64.0" y1="246" x2="64.0" y2="252" stroke="#2c3e50" stroke-width="2"/><text x="64.0" y="270" font-size="15" fill="#2c3e50" text-anchor="middle">0.0</text><line x1="170.4" y1="246" x2="170.4" y2="252" stroke="#2c3e50" stroke-width="2"/><text x="170.4" y="270" font-size="15" fill="#2c3e50" text-anchor="middle">0.2</text><line x1="276.8" y1="246" x2="276.8" y2="252" stroke="#2c3e50" stroke-width="2"/><text x="276.8" y="270" font-size="15" fill="#2c3e50" text-anchor="middle">0.4</text><line x1="383.2" y1="246" x2="383.2" y2="252" stroke="#2c3e50" stroke-width="2"/><text x="383.2" y="270" font-size="15" fill="#2c3e50" text-anchor="middle">0.6</text><line x1="489.6" y1="246" x2="489.6" y2="252" stroke="#2c3e50" stroke-width="2"/><text x="489.6" y="270" font-size="15" fill="#2c3e50" text-anchor="middle">0.8</text><line x1="596.0" y1="246" x2="596.0" y2="252" stroke="#2c3e50" stroke-width="2"/><text x="596.0" y="270" font-size="15" fill="#2c3e50" text-anchor="middle">1.0</text>
+        <text x="330" y="292" font-size="16" fill="#2c3e50" text-anchor="middle" font-weight="700">水活性 a<tspan baseline-shift="sub" font-size="12">w</tspan></text>
+        <text x="20" y="138" font-size="16" fill="#2c3e50" text-anchor="middle" font-weight="700" transform="rotate(-90 20 138)">含水量(g 水 / 100 g 乾物)</text>
+        <text x="117" y="52" font-size="15" fill="#1a5276" text-anchor="middle" font-weight="700">單分子層水</text>
+        <text x="117" y="70" font-size="12.5" fill="#5a6a6b" text-anchor="middle">被抓得很緊</text>
+        <text x="117" y="85" font-size="12.5" fill="#5a6a6b" text-anchor="middle">幾乎不參與反應</text>
+        <text x="287" y="52" font-size="15" fill="#8a6d00" text-anchor="middle" font-weight="700">多分子層水</text>
+        <text x="287" y="70" font-size="12.5" fill="#5a6a6b" text-anchor="middle">一層一層疊上去</text>
+        <text x="490" y="52" font-size="15" fill="#c0392b" text-anchor="middle" font-weight="700">自由水</text>
+        <text x="490" y="70" font-size="12.5" fill="#5a6a6b" text-anchor="middle">反應與微生物都活躍</text>
+        <text x="197" y="232" font-size="12.5" fill="#117a65" text-anchor="middle" font-weight="700">最穩定 0.2–0.3</text>
+      </svg>
+    </div>
+    <div style="flex:1;min-width:0">
+      <table style="font-size:18px;margin:0"><tr><th style="padding:6px 8px">劣變途徑</th><th style="padding:6px 8px">最快的 a<sub>w</sub> 區間</th></tr><tr><td style="padding:6px 8px"><b>脂質氧化</b></td><td style="padding:6px 8px">兩端都快:&lt; 0.2 與 &gt; 0.8</td></tr><tr><td style="padding:6px 8px"><b>梅納褐變</b><br><span class="small" style="font-size:14px">(加熱產生的褐變,第 16 週)</span></td><td style="padding:6px 8px"><b>0.6–0.7</b></td></tr><tr><td style="padding:6px 8px">酵素反應</td><td style="padding:6px 8px">&gt; 0.3,隨 a<sub>w</sub> 上升而加快</td></tr><tr><td style="padding:6px 8px">微生物生長</td><td style="padding:6px 8px">&gt; 0.6(依菌種)</td></tr></table>
+    </div>
+  </div>
+<div class="box def" style="margin:6px 0 0;padding:8px 20px;font-size:19px;line-height:1.4"><span class="tag">最穩定的區間在 0.2–0.3</span><b>低於 0.2 時脂質氧化反而加快</b>——單分子層水本來能隔絕氧、把金屬催化劑包住讓它不起作用。<b>「越乾越好」是錯的。</b></div>
 </section>
 
 <!-- 27 -->

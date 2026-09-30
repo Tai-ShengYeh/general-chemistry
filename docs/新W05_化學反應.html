@@ -191,7 +191,6 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <body>
 <div id="bar"></div>
 <div id="stage"><div id="deck">
-
 <!-- 1 -->
 <section class="slide cover">
   <h1>普通化學</h1>
@@ -478,15 +477,15 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 
 <!-- 25 -->
 <section class="slide">
-  <h2>沉澱反應在食品分析:測食鹽含量 <span class="en">Mohr Titration</span></h2>
-  <div class="box def" style="margin:10px 0;padding:12px 22px"><span class="tag">問題</span>泡麵標示「鈉 1800 mg」—— 廠商是怎麼<b>測</b>出來的?答案就是你剛學的沉澱反應。</div>
-  <table style="margin:8px auto">
-    <tr><th style="width:120px">步驟</th><th>反應</th><th>看到什麼</th></tr>
-    <tr><td><b>滴定</b></td><td style="text-align:left">Ag<sup>+</sup> + Cl<sup>−</sup> → <b>AgCl(s)</b></td><td>白色沉澱不斷生成</td></tr>
-    <tr><td><b>終點</b></td><td style="text-align:left">2Ag<sup>+</sup> + CrO<sub>4</sub><sup>2−</sup> → <b>Ag<sub>2</sub>CrO<sub>4</sub>(s)</b></td><td><span class="hl">磚紅色</span>出現且不褪</td></tr>
+  <h2 style="margin-bottom:10px">沉澱反應在食品分析:測食鹽含量 <span class="en">Mohr Titration</span></h2>
+  <div class="box key" style="margin:5px 0;padding:8px 20px;font-size:20px;line-height:1.42"><span class="tag">問題</span>泡麵標示「鈉 1800 mg」——廠商是怎麼<b>測</b>出來的?答案就是你剛學的沉澱反應:把看不見的 Cl<sup>−</sup> 全部變成看得見的固體。</div>
+  <div class="box def" style="margin:5px 0;padding:8px 20px;font-size:19.5px;line-height:1.42"><span class="tag">做法(這叫「滴定」)</span>把已知濃度的 Ag<sup>+</sup> 溶液<b>一滴一滴</b>加進食品的萃取液,Ag<sup>+</sup> 遇到 Cl<sup>−</sup> 就生成白色 AgCl 沉澱。<b>記下 Cl<sup>−</sup> 剛好被抓完時用了幾 mL</b>,就知道原本有多少 Cl<sup>−</sup>。(滴定的操作與計算是第 7 週的主題,這裡先看原理。)</div>
+  <table style="font-size:19px;margin:6px auto">
+    <tr><th style="width:120px">階段</th><th>反應</th><th>看到什麼</th></tr>
+    <tr><td><b>滴定中</b></td><td style="text-align:left">Ag<sup>+</sup> + Cl<sup>−</sup> → <b>AgCl(s)</b></td><td>白色沉澱不斷生成</td></tr>
+    <tr><td><b>終點</b></td><td style="text-align:left">2Ag<sup>+</sup> + CrO<sub>4</sub><sup>2−</sup> → <b>Ag<sub>2</sub>CrO<sub>4</sub>(s)</b></td><td><span class="hl">磚紅色</span>出現且不褪 → 停</td></tr>
   </table>
-  <div class="box key" style="margin:8px 0;padding:11px 22px"><span class="tag">為什麼行得通</span>AgCl 的溶解度(1.3×10<sup>−5</sup> M)比 Ag<sub>2</sub>CrO<sub>4</sub>(6.5×10<sup>−5</sup> M)<b>小約 5 倍</b> → Cl<sup>−</sup> 一定<b>先被沉澱乾淨</b>,多滴的那一滴 Ag<sup>+</sup> 才輪得到鉻酸根。指示劑本身就是一個沉澱反應。</div>
-  <div class="box exbox" style="margin:8px 0;padding:11px 22px"><span class="tag">接回第 3 週</span>滴定算出 n(Cl<sup>−</sup>) → n(NaCl) → 乘 39.3% 得<b>鈉的 mg 數</b>,就是營養標示上那個數字。<span class="small" style="font-size:17px">(條件:pH 6.5–10。太酸鉻酸根會轉成重鉻酸根,太鹼則 Ag<sup>+</sup> 生成 Ag<sub>2</sub>O 沉澱。)</span></div>
+  <div class="box exbox" style="margin:5px 0;padding:8px 20px;font-size:19px;line-height:1.4"><span class="tag">為什麼加了鉻酸根就知道何時該停</span>AgCl 比 Ag<sub>2</sub>CrO<sub>4</sub> <b>更難溶</b>,所以只要溶液裡還有 Cl<sup>−</sup>,加進去的 Ag<sup>+</sup> 一定先跟 Cl<sup>−</sup> 沉澱;等 Cl<sup>−</sup> 用完,下一滴 Ag<sup>+</sup> 才會跟鉻酸根形成磚紅色。<b>指示劑本身就是一個沉澱反應。</b><br>接回第 3 週:用掉多少 Ag<sup>+</sup> → 就有多少 Cl<sup>−</sup> → 多少 NaCl → 鈉佔 NaCl 質量的 39.3% → 營養標示上那個「鈉 mg」。</div>
 </section>
 
 <!-- 26 -->
@@ -581,16 +580,16 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 
 <!-- 33 -->
 <section class="slide">
-  <h2>酸鹼反應在食品分析:測蛋白質 <span class="en">Kjeldahl Method</span></h2>
-  <div class="box def" style="margin:10px 0;padding:12px 22px"><span class="tag">問題</span>營養標示的「蛋白質 8.0 g」怎麼來的?<b>沒有人去秤蛋白質</b> —— 是量氮,再乘一個係數。</div>
-  <table style="margin:8px auto">
-    <tr><th style="width:96px">步驟</th><th>做什麼</th><th>反應</th></tr>
-    <tr><td><b>① 消化</b></td><td style="text-align:left">濃 H<sub>2</sub>SO<sub>4</sub> + 觸媒,加熱</td><td>有機氮 → NH<sub>4</sub><sup>+</sup></td></tr>
-    <tr><td><b>② 蒸餾</b></td><td style="text-align:left">加過量強鹼</td><td>NH<sub>4</sub><sup>+</sup> + OH<sup>−</sup> → <b>NH<sub>3</sub>↑</b> + H<sub>2</sub>O</td></tr>
-    <tr><td><b>③ 滴定</b></td><td style="text-align:left">用標準酸吸收並滴定</td><td><span class="hl">酸鹼中和</span> → 回推 n(N)</td></tr>
+  <h2 style="margin-bottom:10px">酸鹼反應在食品分析:測蛋白質 <span class="en">Kjeldahl Method</span></h2>
+  <div class="box key" style="margin:5px 0;padding:8px 20px;font-size:20px;line-height:1.42"><span class="tag">問題</span>營養標示的「蛋白質 8.0 g」怎麼來的?<b>沒有人去秤蛋白質</b>——是量氮,再乘一個係數。而「量氮」的最後一步,就是你剛學的酸鹼中和。</div>
+  <table style="font-size:19px;margin:6px auto">
+    <tr><th style="width:100px">步驟</th><th>做什麼</th><th>化學上發生什麼</th></tr>
+    <tr><td><b>① 消化</b></td><td style="text-align:left">把食品泡在濃硫酸裡加熱煮爛(加一點催化劑加快)</td><td style="text-align:left">蛋白質裡的氮全部變成銨離子 NH<sub>4</sub><sup>+</sup></td></tr>
+    <tr><td><b>② 蒸餾</b></td><td style="text-align:left">加過量的強鹼,再加熱</td><td style="text-align:left">NH<sub>4</sub><sup>+</sup> + OH<sup>−</sup> → <b>NH<sub>3</sub>↑</b> + H<sub>2</sub>O:氮以氨氣的形式被趕出來</td></tr>
+    <tr><td><b>③ 滴定</b></td><td style="text-align:left">氨氣用已知量的酸接住,再算酸被用掉多少</td><td style="text-align:left"><span class="hl">氨是鹼,酸把它中和</span>:用掉多少酸 = 有多少 NH<sub>3</sub> = 有多少氮</td></tr>
   </table>
-  <div class="eq" style="font-size:24px;margin:8px 0">粗蛋白 % = 氮 % × <b>6.25</b>　<span style="font-size:19px;color:#5a6a6b">(蛋白質平均含氮 16%,100/16 = 6.25;乳品用 6.38、小麥 5.70)</span></div>
-  <div class="box warn" style="margin:8px 0;padding:11px 22px"><span class="tag">方法的漏洞</span>它量的是<b>總氮</b>,不是蛋白質 —— 所以叫「<b>粗</b>蛋白」。三聚氰胺 C<sub>3</sub>H<sub>6</sub>N<sub>6</sub> 含氮高達 <span class="hl">66.6%</span>(蛋白質只有 16%),摻進去會讓數字暴增。2008 年毒奶粉事件鑽的正是這個化學漏洞。<b>方法決定了你量到什麼。</b></div>
+  <div class="eq" style="font-size:23px;margin:6px 0">粗蛋白 % = 氮 % × <b>6.25</b>　<span style="font-size:18px;color:#5a6a6b">(蛋白質平均含氮 16%,100/16 = 6.25;乳品用 6.38、小麥 5.70)</span></div>
+  <div class="box warn" style="margin:5px 0;padding:8px 20px;font-size:19px;line-height:1.4"><span class="tag">方法的漏洞</span>它量的是<b>總氮</b>,不是蛋白質——所以叫「<b>粗</b>蛋白」。三聚氰胺 C<sub>3</sub>H<sub>6</sub>N<sub>6</sub> 含氮高達 <span class="hl">66.6%</span>(蛋白質只有 16%),摻進去會讓數字暴增。2008 年毒奶粉事件鑽的正是這個化學漏洞。<b>方法決定了你量到什麼。</b></div>
 </section>
 
 <!-- 34 -->
@@ -743,20 +742,17 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 
 <!-- 46 -->
 <section class="slide">
-  <h2>氧化還原在食品分析:三個常見檢驗 <span class="en">Redox Titrations in Food</span></h2>
-  <table style="margin:10px auto">
-    <tr><th style="width:150px">測什麼</th><th>反應</th><th>終點</th></tr>
-    <tr><td><b>維生素 C</b><br><span class="small" style="font-size:17px">果汁、鮮食</span></td>
-        <td style="text-align:left">抗壞血酸 + I<sub>2</sub> → 脫氫抗壞血酸 + 2I<sup>−</sup> + 2H<sup>+</sup><br><span class="small" style="font-size:17px">莫耳比 <b>1 : 1</b>;維生素 C 是還原劑</span></td>
-        <td>澱粉指示劑<br>轉<span class="hl">藍</span></td></tr>
-    <tr><td><b>還原糖</b><br><span class="small" style="font-size:17px">費林/本氏試液</span></td>
-        <td style="text-align:left">Cu<sup>2+</sup>(藍) + 還原糖 →(鹼性,Δ) <b>Cu<sub>2</sub>O(s)</b> + 糖酸<br><span class="small" style="font-size:17px">糖被氧化、銅被還原</span></td>
-        <td><span class="hl">磚紅色沉澱</span></td></tr>
-    <tr><td><b>油脂酸敗</b><br><span class="small" style="font-size:17px">過氧化價 PV(peroxide value)</span></td>
-        <td style="text-align:left">過氧化物 + 2I<sup>−</sup> → I<sub>2</sub>,再以 Na<sub>2</sub>S<sub>2</sub>O<sub>3</sub> 滴定<br><span class="small" style="font-size:17px">氧化程度越高 → 放出的 I<sub>2</sub> 越多</span></td>
-        <td>藍色<span class="hl">褪去</span></td></tr>
+  <h2 style="margin-bottom:10px">氧化還原在食品分析:為什麼這麼好用 <span class="en">Why Redox Dominates Food Assays</span></h2>
+  <div class="box key" style="margin:5px 0;padding:8px 20px;font-size:20px;line-height:1.42"><span class="tag">想法</span>很多食品成分<b>本身就是還原劑或氧化劑</b>——維生素 C、還原糖、亞硫酸鹽是還原劑,油脂氧化後的過氧化物是氧化劑。只要找一個<b>會變色</b>的氧化還原反應和它配對,「它有多少」就能變成「滴了幾 mL」或「顏色多深」。</div>
+  <table style="font-size:19px;margin:6px auto">
+    <tr><th>要測什麼</th><th>它的角色</th><th>拿什麼和它反應</th><th>看到什麼</th></tr>
+    <tr><td><b>維生素 C</b>(果汁)</td><td>還原劑</td><td>碘 I<sub>2</sub>(把它氧化)</td><td>I<sub>2</sub> 一多出來,澱粉指示劑就轉<span class="hl">藍</span></td></tr>
+    <tr><td><b>還原糖</b></td><td>還原劑</td><td>費林試液的 Cu<sup>2+</sup>(藍)</td><td>Cu<sup>2+</sup> 被還原成 Cu<sub>2</sub>O <span class="hl">磚紅色沉澱</span></td></tr>
+    <tr><td><b>油脂過氧化物</b>(油壞了沒)</td><td>氧化劑</td><td>碘離子 I<sup>−</sup>(被它氧化成 I<sub>2</sub>)</td><td>放出的 I<sub>2</sub> 越多,油氧化得越嚴重</td></tr>
+    <tr><td><b>亞硫酸鹽</b>(漂白、防腐)</td><td>還原劑</td><td>碘 I<sub>2</sub></td><td>同維生素 C</td></tr>
   </table>
-  <div class="box key" style="margin:8px 0;padding:11px 22px"><span class="tag">注意這一列</span>還原糖那一項<b>同時是氧化還原反應與沉澱反應</b> —— 反應分類是<b>看問題的角度</b>,不是互斥的抽屜。同一個反應可以既轉移電子、又生成難溶固體。</div>
+  <div class="box def" style="margin:5px 0;padding:8px 20px;font-size:19.5px;line-height:1.42"><span class="tag">注意還原糖那一列</span>Cu<sup>2+</sup> 被還原(氧化還原),生成的 Cu<sub>2</sub>O 又是難溶固體(沉澱)——<b>反應分類是看問題的角度,不是互斥的抽屜</b>,同一個反應可以同時屬於兩類。</div>
+  <div class="box exbox" style="margin:5px 0;padding:8px 20px;font-size:19px;line-height:1.4"><span class="tag">接下來</span>「滴了幾 mL」怎麼換算成「維生素 C 幾 mg」、油的過氧化價怎麼算——第 7 週學會滴定之後一起做。</div>
 </section>
 
 <!-- 47 -->
@@ -770,72 +766,6 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 </section>
 
 <!-- 48 -->
-<section class="slide divider">
-  <div class="secnum">PART 5.6</div>
-  <h1>氧化還原在食品分析</h1>
-  <div class="en-sub">Redox in Food Analysis</div>
-  <div class="items">碘量法・維生素 C・過氧化價・還原糖</div>
-</section>
-
-<!-- 49 -->
-<section class="slide">
-  <h2>為什麼食品分析這麼依賴氧化還原 <span class="en">Why Redox Dominates Food Assays</span></h2>
-  <p>很多食品成分本身就是<b>還原劑</b>或<b>氧化劑</b>(維生素 C、還原糖、亞硫酸鹽、多酚、過氧化物),而且氧化還原反應<b>快、完全、計量明確</b>,只要能顯色或褪色就能做成滴定或比色。</p>
-  <table><tr><th>要測什麼</th><th>它扮演什麼角色</th><th>常用方法</th></tr><tr><td>維生素 C</td><td><b>還原劑</b></td><td>碘滴定、DCPIP 滴定</td></tr><tr><td>還原糖</td><td><b>還原劑</b></td><td>費林/本氏、DNS 比色</td></tr><tr><td>過氧化物(油脂劣變)</td><td><b>氧化劑</b></td><td>間接碘量法</td></tr><tr><td>亞硫酸鹽(SO<sub>2</sub>)</td><td><b>還原劑</b></td><td>碘滴定、Monier-Williams</td></tr><tr><td>水質有機物(COD)</td><td><b>還原劑</b></td><td>KMnO<sub>4</sub> 或 K<sub>2</sub>Cr<sub>2</sub>O<sub>7</sub></td></tr></table>
-  <p class="small" style="font-size:16px;margin:2px 0 0">縮寫:DCPIP = 2,6-二氯酚靛酚(2,6-dichlorophenolindophenol);DNS = 3,5-二硝基水楊酸(3,5-dinitrosalicylic acid);COD = 化學需氧量(chemical oxygen demand)</p>
-<div class="box key"><span class="tag">一句話</span><b>「會不會給電子」本身就是一種可以量的性質。</b></div>
-</section>
-
-<!-- 50 -->
-<section class="slide">
-  <h2>碘量法:一個反應,三種用法 <span class="en">Iodometry: Three Modes</span></h2>
-  <table><tr><th>用法</th><th>怎麼做</th><th>測的是</th><th>例子</th></tr><tr><td><b>直接碘滴定</b><br>(iodimetry)</td><td>用 I<sub>2</sub> 標準液<b>滴</b>樣品</td><td>樣品是<b>還原劑</b></td><td>維生素 C、SO<sub>2</sub></td></tr><tr><td><b>間接碘量法</b><br>(iodometry)</td><td>樣品先把 I<sup>−</sup> 氧化成 I<sub>2</sub>,再用硫代硫酸鈉滴 I<sub>2</sub></td><td>樣品是<b>氧化劑</b></td><td><b>過氧化價</b>、餘氯</td></tr><tr><td><b>迴滴</b></td><td>加過量 I<sub>2</sub>,再滴回未反應的部分</td><td>反應慢或終點不清時</td><td>某些還原糖法</td></tr></table>
-  <div class="eq">澱粉指示劑:有 I<sub>2</sub> 時<b>藍</b>,I<sub>2</sub> 被用完就<b>褪色</b></div>
-<div class="box warn"><span class="tag">澱粉要<b>接近終點</b>才加</span>太早加,澱粉會把大量 I<sub>2</sub> 包住不放,終點拖延、結果偏高。<b>指示劑加的時機也是方法的一部分。</b></div>
-</section>
-
-<!-- 51 -->
-<section class="slide">
-  <h2>例題 12:果汁的維生素 C(直接碘滴定) <span class="en">Example 12</span></h2>
-  <div class="eq">C<sub>6</sub>H<sub>8</sub>O<sub>6</sub> + I<sub>2</sub> → C<sub>6</sub>H<sub>6</sub>O<sub>6</sub> + 2I<sup>−</sup> + 2H<sup>+</sup>　<span class="small">(莫耳比 1 : 1)</span></div>
-  <p>取果汁 <b>25.00 mL</b>,以 <b>0.0100 M I<sub>2</sub></b> 滴定至澱粉轉藍,用去 <b>7.10 mL</b>。維生素 C 含量為多少 mg/100 mL?(抗壞血酸 176.12)</p>
-  <div class="sol"><b>解答:</b><br>① n(I<sub>2</sub>) = 0.0100 M × 0.00710 L = 7.10 × 10<sup>−5</sup> mol<br>② 1 : 1 → n(抗壞血酸) = 7.10 × 10<sup>−5</sup> mol<br>③ 質量 = 7.10 × 10<sup>−5</sup> × 176.12 = 0.01250 g = <b>12.50 mg</b><br>④ 換算成每 100 mL:12.50 ÷ 25.00 × 100 = <span class="hl">50.0 mg/100 mL</span><br><b>合理性檢查:</b>新鮮柳橙汁約 40–60 mg/100 mL,落在範圍內。<br><b>易錯:</b>停在第 ③ 步就交卷——題目問的是<b>每 100 mL</b>,不是這 25 mL 裡有多少。<b>看清楚分母。</b></div>
-</section>
-
-<!-- 52 -->
-<section class="slide">
-  <h2>例題 13:油的過氧化價(間接碘量法) <span class="en">Example 13</span></h2>
-  <div class="eq">ROOH + 2I<sup>−</sup> + 2H<sup>+</sup> → ROH + I<sub>2</sub> + H<sub>2</sub>O　→　I<sub>2</sub> + 2S<sub>2</sub>O<sub>3</sub><sup>2−</sup> → 2I<sup>−</sup> + S<sub>4</sub>O<sub>6</sub><sup>2−</sup></div>
-  <p>油 <b>5.00 g</b>,加 KI 後以 <b>0.0100 M</b> 硫代硫酸鈉滴定,用去 <b>1.50 mL</b>,空白 <b>0.05 mL</b>。過氧化價為何?</p>
-  <div class="sol"><b>解答:</b><br>PV (meq O<sub>2</sub>/kg) = (V<sub>樣</sub> − V<sub>空白</sub>) × M × 1000 ÷ 油重(g)<br>= (1.50 − 0.05) × 0.0100 × 1000 ÷ 5.00 = <span class="hl">2.90 meq O<sub>2</sub>/kg</span><br><b>判讀:</b>新鮮食用油通常 &lt; 10 meq/kg → 這批是新鮮的。<br><b>為什麼要扣空白:</b>試劑與空氣本身就會產生一點 I<sub>2</sub>。不扣的話結果<b>系統性偏高</b>——而且做再多平行樣也不會消失(第 7 週)。<br><b>反算練習:</b>要達到 PV = 10,需用去 10 × 5.00 ÷ 10 + 0.05 = <b>5.05 mL</b>。<b>把門檻翻譯成「滴定管上的刻度」,做實驗時心裡才有底。</b></div>
-</section>
-
-<!-- 53 -->
-<section class="slide">
-  <h2>還原糖:三種做法,三種答案 <span class="en">Reducing Sugars: Three Approaches</span></h2>
-  <table><tr><th>方法</th><th>化學</th><th>得到什麼</th><th>限制</th></tr><tr><td><b>費林 / 本氏</b></td><td>Cu<sup>2+</sup>(藍) → Cu<sub>2</sub>O(磚紅沉澱)</td><td>定性或半定量</td><td>終點靠目視,沉澱會遮色</td></tr><tr><td><b>Lane-Eynon 滴定</b></td><td>同上,但用標準糖液反滴</td><td><b>定量</b></td><td>操作繁瑣、需沸騰</td></tr><tr><td><b>DNS 比色</b></td><td>3,5-二硝基水楊酸被還原 → 紅棕色</td><td><b>定量</b>,540 nm 比色</td><td>不同糖的呈色力不同</td></tr></table>
-<div class="box def"><span class="tag">注意它同時是兩類反應</span>費林反應裡銅由 +2 被<b>還原</b>成 +1(糖被氧化)→ 氧化還原;生成的 Cu<sub>2</sub>O 是難溶固體 → 沉澱。<b>反應分類是看問題的角度,不是互斥的抽屜。</b></div>
-<div class="box key"><span class="tag">接第 10 週</span>DNS 法量的是<b>吸光度</b>,要靠檢量線換算成濃度——那就是 Beer–Lambert 定律 A = εbc。</div>
-</section>
-
-<!-- 54 -->
-<section class="slide">
-  <h2>同一個成分,不同方法量到不同東西 <span class="en">The Method Defines the Answer</span></h2>
-  <table><tr><th>測維生素 C 的兩種方法</th><th>原理</th><th>會不會被干擾</th></tr><tr><td><b>碘滴定</b></td><td>I<sub>2</sub> 氧化抗壞血酸</td><td><b>會</b>——SO<sub>2</sub>、多酚等其他還原劑也會消耗 I<sub>2</sub> → 結果<b>偏高</b></td></tr><tr><td><b>DCPIP 滴定</b></td><td>抗壞血酸把藍色的 DCPIP 還原成無色</td><td>較<b>專一</b>,但深色樣品的終點難判</td></tr></table>
-<div class="box warn"><span class="tag">這是本課程反覆出現的同一句話</span><b>方法決定了你量到什麼。</b>碘滴定量的是「總還原力」,DCPIP 量的比較接近「抗壞血酸」。兩個都對,但回答的是<b>不同的問題</b>——報告數字時要一起寫出用的是哪一個方法。</div>
-</section>
-
-<!-- 55 -->
-<section class="slide quiz">
-  <h2>隨堂快問 ⑥:氧化還原在食品分析 <span class="en">Quick Check 6</span></h2>
-  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
-  <div class="q"><span class="qn">1</span>測油脂的過氧化價時,油裡的過氧化物扮演什麼角色?<br><span class="opt">A 還原劑,被 I<sup>−</sup> 還原</span><span class="opt">B 氧化劑,把 I<sup>−</sup> 氧化成 I<sub>2</sub></span><span class="opt">C 指示劑</span><span class="opt">D 催化劑</span></div>
-  <div class="q"><span class="qn">2</span>用碘滴定測果汁的維生素 C,若果汁裡另含亞硫酸鹽,結果會?<br><span class="opt">A 偏低</span><span class="opt">B 偏高,因為亞硫酸鹽也會消耗 I<sub>2</sub></span><span class="opt">C 不受影響</span><span class="opt">D 無法滴定</span></div>
-  <div class="q"><span class="qn">3</span>滴定時澱粉指示劑要<b>接近終點才加</b>。如果一開始就加,結果會偏高還是偏低?為什麼?</div>
-  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B</span> — 過氧化物把碘離子氧化成碘,自己被還原 —— 所以它是<b>氧化劑</b>。<span class="myth">選 A 把角色弄反了。固定動作:<b>先問誰的氧化數上升</b>。I<sup>−</sup>(−1)→ I<sub>2</sub>(0)是上升 → I<sup>−</sup> 被氧化 → 過氧化物是氧化劑。</span></div><div class="row"><span class="ans">2. B</span> — 碘滴定量的是<b>總還原力</b>,任何還原劑都會被算進去。<span class="myth">這一題與凱氏定氮測到「粗蛋白」是同一個結構:<b>方法有它量得到與量不到的範圍</b>。要專一測抗壞血酸,要改用 DCPIP 或高效液相層析 HPLC(high-performance liquid chromatography)。</span></div><div class="row"><span class="ans">3. 偏高</span> — 澱粉太早加時,大量 I<sub>2</sub> 會被<b>包進澱粉的螺旋結構裡</b>,不容易釋放出來與滴定劑反應 → <b>終點被拖延</b> → 多滴了滴定劑 → 算出的結果偏高。<span class="myth">這一題的重點是:<b>指示劑不是旁觀者。</b>它也參與體系,加的時機、用量都會影響結果——這與第 7 週「滴定管有氣泡」一樣,是<b>操作細節造成的系統誤差</b>,每一次都往同一個方向偏,做再多平行樣也不會消失。</span></div></div>
-</section>
-
-<!-- 56 -->
 <section class="slide hookback">
   <h2>回到本週的錨點 <span class="en">Anchor Answered</span></h2>
   <div class="recall"><b>第 5 週開場問的是:</b>食譜有時要加小蘇打,有時要泡打粉,有時還要另外加檸檬汁或優格。為什麼?</div>
@@ -852,7 +782,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="nextup"><b>接下來在哪裡會再用到:</b><span class="course">食品分析</span>莫爾法、凱氏定氮法、碘量法　<span class="course">食品加工</span>膨脹劑與雙效泡打粉　<span class="course">食品化學</span>pH 對色素與梅納反應的影響</div>
 </section>
 
-<!-- 57 -->
+<!-- 49 -->
 <section class="slide">
   <h2>本週重點總結 <span class="en">Summary</span></h2>
   <ul>
@@ -864,7 +794,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   </ul>
 </section>
 
-<!-- 58 -->
+<!-- 50 -->
 <section class="slide">
   <h2>重要名詞中英對照 <span class="en">Key Terms</span></h2>
   <table>
@@ -878,7 +808,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   </table>
 </section>
 
-<!-- 59 -->
+<!-- 51 -->
 <section class="slide">
   <h2>課後練習與下週預告 <span class="en">Homework &amp; Preview</span></h2>
   <h3>課後練習(OpenStax Chemistry 2e, Ch.4.1–4.3)</h3>
@@ -890,7 +820,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <h3>下週預告:化學計量 — 限量試劑與產率(Ch.4.4–4.5)</h3>
   <ul>
     <li>mass–mass 計算、限量試劑、百分產率</li>
-    <li>酸鹼滴定與重量分析</li>
+    <li>第 7 週再接:滴定的操作與計算,以及本週三種食品分析的完整算法</li>
   </ul>
   <p class="small center" style="margin-top:20px">操作提示:← → 或空白鍵翻頁|Home/End 跳至首末頁|Ctrl+P 可列印成講義</p>
 </section>

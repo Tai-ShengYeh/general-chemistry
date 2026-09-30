@@ -191,7 +191,6 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <body>
 <div id="bar"></div>
 <div id="stage"><div id="deck">
-
 <!-- 1 -->
 <section class="slide cover">
   <h1>普通化學</h1>
@@ -210,6 +209,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
     <li>區分<b>當量點</b>與<b>終點</b>,說明指示劑選擇的原則</li>
     <li>理解<b>一級標準品</b>與標定,並解釋標準液濃度為何是 0.1020 M 這種數字</li>
     <li>會計算<b>酸價 AV</b> 與<b>過氧化價 PV</b>,並說明它們各自量的是什麼</li>
+    <li>看懂<b>碘量法</b>的三種用法,能算果汁的維生素 C 與油的過氧化價</li>
     <li>了解<b>重量分析</b>的原理與它對「秤到的固體必須純」的依賴</li>
     <li>能判斷一個定量結果<b>可不可信</b>,而不只是算出數字</li>
   </ul>
@@ -230,7 +230,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <!-- 4 -->
 <section class="slide">
   <h2>本週知識地圖 <span class="en">Roadmap</span></h2>
-  <table><tr><th>段落</th><th>在問什麼</th><th>關鍵詞</th></tr><tr><td>PART 1</td><td>溶液裡怎麼做化學計量?</td><td>M × V = mol・滴定</td></tr><tr><td>PART 2</td><td>為什麼標準液是 0.1020 M?</td><td>一級標準品・標定</td></tr><tr><td>PART 3</td><td>油壞了怎麼量?</td><td>酸價 AV・過氧化價 PV</td></tr><tr><td>PART 4</td><td>不能滴定的怎麼辦?</td><td>重量分析</td></tr></table>
+  <table><tr><th>段落</th><th>在問什麼</th><th>關鍵詞</th></tr><tr><td>PART 1</td><td>溶液裡怎麼做化學計量?</td><td>M × V = mol・滴定</td></tr><tr><td>PART 2</td><td>為什麼標準液是 0.1020 M?</td><td>一級標準品・標定</td></tr><tr><td>PART 3</td><td>油壞了怎麼量?</td><td>酸價 AV・過氧化價 PV・碘量法</td></tr><tr><td>PART 4</td><td>第 5 週的食品檢驗怎麼算?</td><td>維生素 C・還原糖・方法決定答案</td></tr><tr><td>PART 5</td><td>不能滴定的怎麼辦?</td><td>重量分析</td></tr></table>
 <div class="box def"><span class="tag">這一週是分析化學的預告</span>食品品質檢驗幾乎都建立在滴定與重量分析上。本週學到的每一個步驟,下學期的分析化學實驗會實際做一次。</div>
 </section>
 
@@ -263,7 +263,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 
 <!-- 7 -->
 <section class="slide">
-  <h2>例題 7:溶液化學計量 <span class="en">Example 7</span></h2>
+  <h2>例題 1:溶液化學計量 <span class="en">Example 1</span></h2>
   <div class="box exbox"><span class="tag">例題</span>取 50.0 mL 的 0.100 M AgNO<sub>3</sub> 溶液,加入過量 NaCl 溶液使 Ag<sup>+</sup> 完全沉澱:Ag<sup>+</sup> + Cl<sup>−</sup> → AgCl(s)。可得 AgCl 沉澱多少克?(AgCl 143.32 g/mol)
   <div class="sol"><b>解:</b><br>
   ① n<sub>Ag<sup>+</sup></sub> = M × V = 0.100 mol/L × 0.0500 L = 5.00 × 10<sup>−3</sup> mol<br>
@@ -313,7 +313,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 
 <!-- 11 -->
 <section class="slide">
-  <h2>例題 8:滴定計算(一) <span class="en">Example 8</span></h2>
+  <h2>例題 2:滴定計算(一) <span class="en">Example 2</span></h2>
   <div class="box exbox"><span class="tag">例題</span>取 25.00 mL 未知濃度 HCl,以 0.1020 M NaOH 滴定,達終點共用去 32.56 mL。求 HCl 濃度。
   <div class="sol"><b>解:</b>反應:HCl + NaOH → NaCl + H<sub>2</sub>O(1:1)<br>
   ① n<sub>NaOH</sub> = 0.1020 mol/L × 0.03256 L = 3.321 × 10<sup>−3</sup> mol<br>
@@ -323,7 +323,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 
 <!-- 12 -->
 <section class="slide">
-  <h2>例題 9:滴定計算(二)雙質子酸 <span class="en">Example 9</span></h2>
+  <h2>例題 3:滴定計算(二)雙質子酸 <span class="en">Example 3</span></h2>
   <div class="box exbox"><span class="tag">例題</span>取 20.00 mL 未知濃度 H<sub>2</sub>SO<sub>4</sub>,以 0.1500 M NaOH 滴定,終點用去 28.44 mL。求 H<sub>2</sub>SO<sub>4</sub> 濃度。
   <div class="sol"><b>解:</b>反應:H<sub>2</sub>SO<sub>4</sub> + 2NaOH → Na<sub>2</sub>SO<sub>4</sub> + 2H<sub>2</sub>O(1:<b>2</b>)<br>
   ① n<sub>NaOH</sub> = 0.1500 × 0.02844 = 4.266 × 10<sup>−3</sup> mol<br>
@@ -384,7 +384,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 
 <!-- 17 -->
 <section class="slide">
-  <h2>例題 1:用 KHP 標定 NaOH <span class="en">Example 1: Standardizing NaOH</span></h2>
+  <h2>例題 4:用 KHP 標定 NaOH <span class="en">Example 4: Standardizing NaOH</span></h2>
   <p>秤取 KHP 0.5106 g(M = 204.22),溶於水後以待標定的 NaOH 滴定,終點用去 24.52 mL。NaOH 的真實濃度為何?(1 : 1 反應)</p>
   <div class="sol"><b>解答:</b><br>KHP 莫耳數 = 0.5106 ÷ 204.22 = 2.500 × 10<sup>−3</sup> mol<br>1 : 1 → NaOH 也是 2.500 × 10<sup>−3</sup> mol<br>M = 2.500 × 10<sup>−3</sup> ÷ 0.02452 L = <span class="hl">0.1020 M</span><br><b>有效數字:</b>四個輸入都是 4 位 → 答案寫 4 位。<br><b>這就是那個「不漂亮的數字」的來源。</b>之後用這瓶 NaOH 去測樣品時,就要用 0.1020 而不是 0.1000——差 2%,在食品檢驗上是會被抓到的。</div>
 </section>
@@ -427,26 +427,48 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="box def" style="margin:5px 0;padding:8px 20px;font-size:19.5px;line-height:1.42"><span class="tag">定義</span>油脂氧化的第一個產物是<b>氫過氧化物 ROOH</b>(R 代表脂肪酸的長碳鏈,–OOH 是多接上去的「氧–氧–氫」基團)。<b>過氧化價 PV = 每 1 kg 油脂裡有多少 ROOH</b>,單位 meq O<sub>2</sub>/kg(meq = 毫當量,是分析化學的習慣單位;1 meq 過氧化物 = 0.5 mmol)。</div>
   <ul style="font-size:20px;line-height:1.45;margin:4px 0 4px 30px">
     <li>ROOH 本身<b>無味</b>;真正的油耗味來自它後來裂解出的醛類——所以 PV 量的是「初級」階段,在聞到味道之前</li>
-    <li>怎麼量(兩步):① 油裡的 ROOH 把加進去的碘化鉀 KI 氧化成碘 I<sub>2</sub>;② 用硫代硫酸鈉滴定放出的 I<sub>2</sub> 有多少——I<sub>2</sub> 越多,ROOH 越多(這是氧化還原滴定,計算見第 5 週例題 13)</li>
+    <li>怎麼量(兩步):① 油裡的 ROOH 把加進去的碘化鉀 KI 氧化成碘 I<sub>2</sub>;② 用硫代硫酸鈉滴定放出的 I<sub>2</sub> 有多少——I<sub>2</sub> 越多,ROOH 越多(這是氧化還原滴定,計算見例題 6)</li>
   </ul>
   <div class="box warn" style="margin:5px 0;padding:8px 20px;font-size:19px;line-height:1.4"><span class="tag">PV 低不代表新鮮</span>ROOH 一邊生成一邊分解,氧化到後期 PV 反而<b>下降</b>。所以 <b>PV 低有兩種可能:還沒開始壞,或已經壞透了。</b>要判斷必須配合次級產物指標或感官評估。</div>
 </section>
 
 <!-- 22 -->
 <section class="slide">
-  <h2>例題 2:算酸價 <span class="en">Example 2: Acid Value</span></h2>
+  <h2>例題 5:算酸價 <span class="en">Example 5: Acid Value</span></h2>
   <p>取沙拉油 5.00 g,以 0.0500 M KOH 滴定至終點用去 2.10 mL。酸價為何?</p>
   <div class="sol"><b>解答:</b><br>KOH 莫耳數 = 0.0500 × 0.00210 L = 1.05 × 10<sup>−4</sup> mol<br>質量 = 1.05 × 10<sup>−4</sup> × 56.11 g/mol = 5.89 × 10<sup>−3</sup> g = <b>5.89 mg</b><br>AV = 5.89 mg ÷ 5.00 g = <span class="hl">1.18 mg KOH/g</span><br><b>三個常見錯誤:</b>① 停在 5.89 mg(忘了除以油重);② 用公克不用毫克(差 1000 倍);③ 2.10 mL 寫成 0.0210 L(小數點錯一位)。<br><b>合理性檢查:</b>新鮮食用油的 AV 通常小於 1;超過就要注意。<b>法規限值請以現行公告為準。</b></div>
 </section>
 
 <!-- 23 -->
 <section class="slide">
+  <h2 style="margin-bottom:10px">碘量法:一個反應,三種用法 <span class="en">Iodometry: Three Modes</span></h2>
+  <div class="box key" style="margin:5px 0;padding:8px 20px;font-size:20px;line-height:1.42"><span class="tag">把滴定劑換成碘</span>前半週用的是酸鹼滴定。第 5 週說過很多食品成分本身是還原劑或氧化劑——把滴定劑換成碘 I<sub>2</sub>,同一套「滴到終點、算莫耳」的步驟就能量它們。</div>
+  <table><tr><th>用法</th><th>怎麼做</th><th>測的是</th><th>例子</th></tr><tr><td><b>直接碘滴定</b><br>(iodimetry)</td><td>用 I<sub>2</sub> 標準液<b>滴</b>樣品</td><td>樣品是<b>還原劑</b></td><td>維生素 C、SO<sub>2</sub></td></tr><tr><td><b>間接碘量法</b><br>(iodometry)</td><td>樣品先把 I<sup>−</sup> 氧化成 I<sub>2</sub>,再用硫代硫酸鈉滴 I<sub>2</sub></td><td>樣品是<b>氧化劑</b></td><td><b>過氧化價</b>、餘氯</td></tr><tr><td><b>迴滴</b></td><td>加過量 I<sub>2</sub>,再滴回未反應的部分</td><td>反應慢或終點不清時</td><td>某些還原糖法</td></tr></table>
+  <div class="eq" style="margin:8px 0">澱粉指示劑:有 I<sub>2</sub> 時<b>藍</b>,I<sub>2</sub> 被用完就<b>褪色</b></div>
+<div class="box warn" style="margin:5px 0;padding:8px 20px;font-size:19px;line-height:1.4"><span class="tag">澱粉要<b>接近終點</b>才加</span>太早加,澱粉會把大量 I<sub>2</sub> 包住不放,終點拖延、結果偏高。<b>指示劑加的時機也是方法的一部分。</b></div>
+</section>
+
+<!-- 24 -->
+<section class="slide">
+  <h2 style="margin-bottom:10px">例題 6:油的過氧化價(間接碘量法) <span class="en">Example 6: Peroxide Value</span></h2>
+  <div class="eq" style="font-size:22px;margin:4px 0">① ROOH + 2I<sup>−</sup> + 2H<sup>+</sup> → ROH + I<sub>2</sub> + H<sub>2</sub>O　　② I<sub>2</sub> + 2S<sub>2</sub>O<sub>3</sub><sup>2−</sup> → 2I<sup>−</sup> + S<sub>4</sub>O<sub>6</sub><sup>2−</sup></div>
+  <p style="font-size:20px;margin:4px 0">油 <b>5.00 g</b>,加 KI 後以 <b>0.0100 M</b> 硫代硫酸鈉滴定,用去 <b>1.50 mL</b>;不放油、其他都一樣的<b>空白試驗</b>用去 <b>0.05 mL</b>。過氧化價為何?</p>
+  <div class="sol" style="font-size:19.5px;line-height:1.45"><b>解答(三步):</b><br>
+  ① 真正用在油上的硫代硫酸鈉:(1.50 − 0.05) mL × 0.0100 M = <b>0.0145 mmol</b><br>
+  ② 換成過氧化物:反應 ② 是 2 個 S<sub>2</sub>O<sub>3</sub><sup>2−</sup> 對 1 個 I<sub>2</sub>、反應 ① 是 1 個 ROOH 放出 1 個 I<sub>2</sub> → ROOH = 0.0145 ÷ 2 = 0.00725 mmol。過氧化價的習慣單位是<b>毫當量 meq</b>:1 個 ROOH 在反應 ① 拿走 2 個電子,算 2 meq → 0.00725 × 2 = <b>0.0145 meq</b>(剛好等於硫代硫酸鈉的 mmol 數,所以常見公式裡看不到 ×2 ÷2)<br>
+  ③ 換成每公斤油:0.0145 meq ÷ 5.00 g × 1000 g/kg = <span class="hl">2.90 meq O<sub>2</sub>/kg</span>　<span class="small">寫成一行就是:PV = (V<sub>樣</sub> − V<sub>空白</sub>) × M × 1000 ÷ 油重(g)</span><br>
+  <b>判讀:</b>新鮮食用油通常 &lt; 10 meq/kg → 這批是新鮮的。<b>為什麼要扣空白:</b>試劑與空氣本身就會產生一點 I<sub>2</sub>,不扣的話結果<b>系統性偏高</b>,做再多平行樣也不會消失(見本週最後「誤差來源」)。<br>
+  <b>反算練習:</b>要達到 PV = 10,需用去 10 × 5.00 ÷ (0.0100 × 1000) + 0.05 = <b>5.05 mL</b>——把門檻翻譯成「滴定管上的刻度」,做實驗時心裡才有底。</div>
+</section>
+
+<!-- 25 -->
+<section class="slide">
   <h2>AV 與 PV:兩條不同的劣變路徑 <span class="en">Two Different Pathways</span></h2>
   <table><tr><th></th><th>酸價 AV</th><th>過氧化價 PV</th></tr><tr><td>量什麼</td><td>游離脂肪酸</td><td>氫過氧化物 ROOH</td></tr><tr><td>對應的反應</td><td><b>水解</b>酸敗</td><td><b>氧化</b>酸敗</td></tr><tr><td>促成因素</td><td>水分、高溫、脂解酶</td><td>O<sub>2</sub>、光、金屬、不飽和度</td></tr><tr><td>有沒有味道</td><td>游離脂肪酸可能有味</td><td>ROOH 無味,裂解後才有</td></tr><tr><td>隨時間</td><td>單調上升</td><td><b>先升後降</b></td></tr></table>
 <div class="box key"><span class="tag">為什麼兩個都要測</span>它們量的是<b>兩條不同的劣變路徑</b>,不能互相取代。一瓶油可以 AV 很低但 PV 很高(密封但受光),也可以相反(油炸油含水)。<b>方法決定了你量到什麼</b>——這是本週最重要的一句話。</div>
 </section>
 
-<!-- 24 -->
+<!-- 26 -->
 <section class="slide quiz">
   <h2>隨堂快問 ③:酸價與過氧化價 <span class="en">Quick Check 3</span></h2>
   <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
@@ -456,15 +478,56 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B</span> — AV 量的是游離脂肪酸,它來自酯鍵的水解。<span class="myth">選 A/C 是把兩個指標搞混——那是 PV 量的東西。<b>先問「這個指標量的是哪一種產物」</b>,就不會弄反。</span></div><div class="row"><span class="ans">2. B</span> — ROOH 一邊生成一邊分解,後期 PV 會回落。<span class="myth">選 A/C 把單一指標當結論。這與 W1 的「精密度高不代表準確度高」是同一種思路:<b>一個數字只回答它自己那一個問題。</b></span></div><div class="row"><span class="ans">3. 前者受光受氧、後者含水受熱</span> — <b>AV 低 PV 高</b>:密封良好但<b>受光或受氧</b>,走的是氧化路徑(常見於透明瓶裝油)。<br><b>AV 高 PV 低</b>:接觸<b>水分與高溫</b>,走水解路徑(常見於反覆使用的油炸油),而且高溫下 ROOH 分解得快,PV 反而不高。<span class="myth">這一題要求你把兩個指標當成<b>兩個獨立的診斷維度</b>來讀。能從一組數字反推出「這瓶油經歷過什麼」,才是定量分析真正的用途——不是產生數字,是<b>解釋數字</b>。</span></div></div>
 </section>
 
-<!-- 25 -->
+<!-- 27 -->
 <section class="slide divider">
   <div class="secnum">PART 7.4</div>
+  <h1>氧化還原滴定在食品分析</h1>
+  <div class="en-sub">Redox Titrations in Food Analysis</div>
+  <div class="items">維生素 C・還原糖・同一個成分,不同方法量到不同東西</div>
+</section>
+
+<!-- 28 -->
+<section class="slide">
+  <h2>例題 7:果汁的維生素 C(直接碘滴定) <span class="en">Example 7</span></h2>
+  <div class="eq">C<sub>6</sub>H<sub>8</sub>O<sub>6</sub> + I<sub>2</sub> → C<sub>6</sub>H<sub>6</sub>O<sub>6</sub> + 2I<sup>−</sup> + 2H<sup>+</sup>　<span class="small">(莫耳比 1 : 1)</span></div>
+  <p>取果汁 <b>25.00 mL</b>,以 <b>0.0100 M I<sub>2</sub></b> 滴定至澱粉轉藍,用去 <b>7.10 mL</b>。維生素 C 含量為多少 mg/100 mL?(抗壞血酸 176.12)</p>
+  <div class="sol"><b>解答:</b><br>① n(I<sub>2</sub>) = 0.0100 M × 0.00710 L = 7.10 × 10<sup>−5</sup> mol<br>② 1 : 1 → n(抗壞血酸) = 7.10 × 10<sup>−5</sup> mol<br>③ 質量 = 7.10 × 10<sup>−5</sup> × 176.12 = 0.01250 g = <b>12.50 mg</b><br>④ 換算成每 100 mL:12.50 ÷ 25.00 × 100 = <span class="hl">50.0 mg/100 mL</span><br><b>合理性檢查:</b>新鮮柳橙汁約 40–60 mg/100 mL,落在範圍內。<br><b>易錯:</b>停在第 ③ 步就交卷——題目問的是<b>每 100 mL</b>,不是這 25 mL 裡有多少。<b>看清楚分母。</b></div>
+</section>
+
+<!-- 29 -->
+<section class="slide">
+  <h2>還原糖:三種做法,三種答案 <span class="en">Reducing Sugars: Three Approaches</span></h2>
+  <table><tr><th>方法</th><th>化學</th><th>得到什麼</th><th>限制</th></tr><tr><td><b>費林 / 本氏</b></td><td>Cu<sup>2+</sup>(藍) → Cu<sub>2</sub>O(磚紅沉澱)</td><td>定性或半定量</td><td>終點靠目視,沉澱會遮色</td></tr><tr><td><b>Lane-Eynon 滴定</b></td><td>同上,但用標準糖液反滴</td><td><b>定量</b></td><td>操作繁瑣、需沸騰</td></tr><tr><td><b>DNS 比色</b></td><td>3,5-二硝基水楊酸被還原 → 紅棕色</td><td><b>定量</b>,540 nm 比色</td><td>不同糖的呈色力不同</td></tr></table>
+<div class="box def"><span class="tag">注意它同時是兩類反應</span>費林反應裡銅由 +2 被<b>還原</b>成 +1(糖被氧化)→ 氧化還原;生成的 Cu<sub>2</sub>O 是難溶固體 → 沉澱。<b>反應分類是看問題的角度,不是互斥的抽屜。</b></div>
+<div class="box key"><span class="tag">接第 10 週</span>DNS 法量的是<b>吸光度</b>,要靠檢量線換算成濃度——那就是 Beer–Lambert 定律 A = εbc。</div>
+</section>
+
+<!-- 30 -->
+<section class="slide">
+  <h2>同一個成分,不同方法量到不同東西 <span class="en">The Method Defines the Answer</span></h2>
+  <table><tr><th>測維生素 C 的兩種方法</th><th>原理</th><th>會不會被干擾</th></tr><tr><td><b>碘滴定</b></td><td>I<sub>2</sub> 氧化抗壞血酸</td><td><b>會</b>——SO<sub>2</sub>、多酚等其他還原劑也會消耗 I<sub>2</sub> → 結果<b>偏高</b></td></tr><tr><td><b>DCPIP 滴定</b></td><td>抗壞血酸把藍色的 DCPIP 還原成無色</td><td>較<b>專一</b>,但深色樣品的終點難判</td></tr></table>
+<div class="box warn"><span class="tag">這是本課程反覆出現的同一句話</span><b>方法決定了你量到什麼。</b>碘滴定量的是「總還原力」,DCPIP 量的比較接近「抗壞血酸」。兩個都對,但回答的是<b>不同的問題</b>——報告數字時要一起寫出用的是哪一個方法。</div>
+</section>
+
+<!-- 31 -->
+<section class="slide quiz">
+  <h2>隨堂快問 ④:氧化還原滴定在食品分析 <span class="en">Quick Check 4</span></h2>
+  <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
+  <div class="q"><span class="qn">1</span>測油脂的過氧化價時,油裡的過氧化物扮演什麼角色?<br><span class="opt">A 還原劑,被 I<sup>−</sup> 還原</span><span class="opt">B 氧化劑,把 I<sup>−</sup> 氧化成 I<sub>2</sub></span><span class="opt">C 指示劑</span><span class="opt">D 催化劑</span></div>
+  <div class="q"><span class="qn">2</span>用碘滴定測果汁的維生素 C,若果汁裡另含亞硫酸鹽,結果會?<br><span class="opt">A 偏低</span><span class="opt">B 偏高,因為亞硫酸鹽也會消耗 I<sub>2</sub></span><span class="opt">C 不受影響</span><span class="opt">D 無法滴定</span></div>
+  <div class="q"><span class="qn">3</span>滴定時澱粉指示劑要<b>接近終點才加</b>。如果一開始就加,結果會偏高還是偏低?為什麼?</div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B</span> — 過氧化物把碘離子氧化成碘,自己被還原 —— 所以它是<b>氧化劑</b>。<span class="myth">選 A 把角色弄反了。固定動作:<b>先問誰的氧化數上升</b>。I<sup>−</sup>(−1)→ I<sub>2</sub>(0)是上升 → I<sup>−</sup> 被氧化 → 過氧化物是氧化劑。</span></div><div class="row"><span class="ans">2. B</span> — 碘滴定量的是<b>總還原力</b>,任何還原劑都會被算進去。<span class="myth">這一題與凱氏定氮測到「粗蛋白」是同一個結構:<b>方法有它量得到與量不到的範圍</b>。要專一測抗壞血酸,要改用 DCPIP 或高效液相層析 HPLC(high-performance liquid chromatography)。</span></div><div class="row"><span class="ans">3. 偏高</span> — 澱粉太早加時,大量 I<sub>2</sub> 會被<b>包進澱粉的螺旋結構裡</b>,不容易釋放出來與滴定劑反應 → <b>終點被拖延</b> → 多滴了滴定劑 → 算出的結果偏高。<span class="myth">這一題的重點是:<b>指示劑不是旁觀者。</b>它也參與體系,加的時機、用量都會影響結果——這與本週「滴定管有氣泡」一樣,是<b>操作細節造成的系統誤差</b>,每一次都往同一個方向偏,做再多平行樣也不會消失。</span></div></div>
+</section>
+
+<!-- 32 -->
+<section class="slide divider">
+  <div class="secnum">PART 7.5</div>
   <h1>重量分析與綜合應用</h1>
   <div class="en-sub">Gravimetric Analysis &amp; Integrated Problems</div>
   <div class="items">重量分析步驟・綜合例題・常見錯誤</div>
 </section>
 
-<!-- 26 -->
+<!-- 33 -->
 <section class="slide">
   <h2>重量分析法 <span class="en">Gravimetric Analysis</span></h2>
   <div class="box def"><span class="tag">定義</span><b>重量分析 (gravimetric analysis)</b>:使待測成分轉變為<b>可稱量的沉澱</b>,由沉澱質量反推樣品中該成分的含量。</div>
@@ -482,9 +545,9 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <p style="margin-top:10px">計算路徑:沉澱質量 → 沉澱 mol → 待測離子 mol → 待測成分質量 → 百分含量。</p>
 </section>
 
-<!-- 27 -->
+<!-- 34 -->
 <section class="slide">
-  <h2>例題 10:重量分析 <span class="en">Example 10</span></h2>
+  <h2>例題 8:重量分析 <span class="en">Example 8</span></h2>
   <div class="box exbox"><span class="tag">例題</span>0.4550 g 可溶性鹽樣品溶於水,加入過量 AgNO<sub>3</sub>,得乾燥 AgCl 沉澱 1.0026 g。求樣品中氯的質量百分率。(AgCl 143.32、Cl 35.45 g/mol)
   <div class="sol"><b>解:</b><br>
   ① n<sub>AgCl</sub> = 1.0026 ÷ 143.32 = 6.996 × 10<sup>−3</sup> mol<br>
@@ -493,16 +556,16 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   ④ %Cl = 0.2480 ÷ 0.4550 × 100% = <span class="hl">54.51%</span></div></div>
 </section>
 
-<!-- 28 -->
+<!-- 35 -->
 <section class="slide">
   <h2>定量分析的誤差來源 <span class="en">Where the Error Comes From</span></h2>
   <table><tr><th>類型</th><th>特徵</th><th>例子</th><th>能不能靠多做幾次消除</th></tr><tr><td><b>系統誤差</b></td><td>每次偏向<b>同一個方向</b></td><td>滴定管有氣泡、儀器沒歸零、指示劑選錯</td><td><b>不能</b></td></tr><tr><td><b>隨機誤差</b></td><td>正負皆有、平均後變小</td><td>讀數估讀、終點判斷的個人差異</td><td>可以</td></tr><tr><td><b>粗差</b></td><td>單次明顯離群</td><td>滴過頭、記錯數字、樣品灑出</td><td>不能,要找出原因後才可捨棄</td></tr></table>
 <div class="box warn"><span class="tag">最重要的一條</span><b>系統誤差做再多平行樣也不會消失。</b>看到三次結果都很接近但與真值差很多,不要再多做一次——要去找原因。(這就是 W1「精密度高但準確度低」在實驗桌上的樣子。)</div>
 </section>
 
-<!-- 29 -->
+<!-- 36 -->
 <section class="slide quiz">
-  <h2>隨堂快問 ④:重量分析與誤差 <span class="en">Quick Check 4</span></h2>
+  <h2>隨堂快問 ⑤:重量分析與誤差 <span class="en">Quick Check 5</span></h2>
   <div class="qbar"><b>個人作答 2 分鐘</b> → 與鄰座說明你的理由 → 全班表決 → 看解答</div>
   <div class="q"><span class="qn">1</span>重量分析測牛奶中的鈣,若沉澱<b>沒有洗滌乾淨</b>,殘留了雜質,結果會?<br><span class="opt">A 偏高</span><span class="opt">B 偏低</span><span class="opt">C 不受影響</span><span class="opt">D 隨機誤差,可抵銷</span></div>
   <div class="q"><span class="qn">2</span>重量分析的沉澱必須「乾燥至<b>恆重</b>」才秤,為什麼?<br><span class="opt">A 讓沉澱變得更純</span><span class="opt">B 確保秤到的是乾燥固體,而不是固體加上殘留的水</span><span class="opt">C 讓沉澱的顏色變深比較好判斷</span><span class="opt">D 加快過濾速度</span></div>
@@ -510,7 +573,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. A</span> — 重量分析的核心假設是「秤到的固體全部都是目標化合物」。<span class="myth">選 B 想的是「洗太多次會溶掉沉澱」——那是方向相反的另一個誤差,兩者都要控制。選 D 錯在這是<b>系統</b>誤差:每一批都往同一方向偏。</span></div><div class="row"><span class="ans">2. B</span> — 「恆重」= 反覆乾燥與秤重直到重量不再改變,代表水分已經趕乾淨。<span class="myth">選 A 混淆了<b>純度</b>與<b>乾燥</b>——洗滌處理純度,乾燥處理水分,是兩個不同的步驟。殘留的水會被算成沉澱的一部分,使結果<b>偏高</b>,與第一題的雜質殘留是<b>同一個結構的錯誤</b>:秤到了不屬於目標化合物的東西。</span></div><div class="row"><span class="ans">3. 偏高;系統誤差;不能</span> — 氣泡在滴定中被液體取代,記錄到的體積<b>比實際多</b> → 算出的濃度或酸價<b>偏高</b>。每一次都往同一方向偏 → <b>系統誤差</b> → 做再多平行樣也不會消失,只有排掉氣泡才能解決。<span class="myth">這一題把三件事接起來:<b>操作細節 → 誤差方向 → 誤差類型</b>。能推出方向,代表你真的知道那個體積數字進到算式的哪一格;<b>只會代公式的人推不出方向。</b></span></div></div>
 </section>
 
-<!-- 30 -->
+<!-- 37 -->
 <section class="slide hookback">
   <h2>回到本週的錨點 <span class="en">Anchor Answered</span></h2>
   <div class="recall"><b>第 7 週開場問的是:</b>一瓶開過三個月的油,「壞了」沒有?</div>
@@ -527,7 +590,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="nextup"><b>接下來在哪裡會再用到:</b><span class="course">分析化學</span>滴定、標定與定量方法的選擇　<span class="course">食品分析</span>油脂品質指標與法規判定　<span class="course">食品化學</span>脂質水解與氧化的機制　<span class="course">食品衛生安全</span>檢驗數據的判讀與風險溝通</div>
 </section>
 
-<!-- 31 -->
+<!-- 38 -->
 <section class="slide">
   <h2>本週重點總結 <span class="en">Summary</span></h2>
   <ul>
@@ -537,12 +600,13 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
     <li>一級標準品要純、穩定、<b>莫耳質量大</b>(相對誤差小)</li>
     <li><b>AV</b> 量游離脂肪酸(水解)、<b>PV</b> 量氫過氧化物(氧化)</li>
     <li><b>PV 先升後降</b>,低值有兩種可能;兩個指標不能互相取代</li>
+    <li><b>碘量法</b>:樣品是還原劑就直接用 I<sub>2</sub> 滴;是氧化劑就先讓它放出 I<sub>2</sub> 再滴(間接);澱粉接近終點才加</li>
     <li>重量分析的前提是「秤到的固體全部都是目標化合物」</li>
   </ul>
 <div class="box key"><span class="tag">帶走一句話</span><b>方法決定了你量到什麼。</b>拿到一個數字,先問它是用什麼方法得到的。</div>
 </section>
 
-<!-- 32 -->
+<!-- 39 -->
 <section class="slide">
   <h2>重要名詞中英對照 <span class="en">Key Terms</span></h2>
   <table>
@@ -553,13 +617,14 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
     <tr><td>理論產率</td><td>theoretical yield</td><td>指示劑</td><td>indicator</td></tr>
     <tr><td>實際產率</td><td>actual yield</td><td>滴定管</td><td>burette</td></tr>
     <tr><td>百分產率</td><td>percent yield</td><td>重量分析</td><td>gravimetric analysis</td></tr>
+    <tr><td>碘量法</td><td>iodometry</td><td>空白試驗</td><td>blank</td></tr>
   </table>
 </section>
 
-<!-- 33 -->
+<!-- 40 -->
 <section class="slide">
   <h2>課後練習與下週預告 <span class="en">Homework and Next Week</span></h2>
-<div class="box exbox"><span class="tag">課後練習</span>① 滴定計算習題三題(含雙質子酸)。<br>② 由 KHP 標定數據算 NaOH 濃度,並寫出正確的有效數字。<br>③ 查一項食用油的 AV 與 PV 法規限值,說明各自管的是哪一種劣變。</div>
+<div class="box exbox"><span class="tag">課後練習</span>① 滴定計算習題三題(含雙質子酸)。<br>② 由 KHP 標定數據算 NaOH 濃度,並寫出正確的有效數字。<br>③ 查一項食用油的 AV 與 PV 法規限值,說明各自管的是哪一種劣變。<br>④ 用例題 6 的方法,把你查到的 PV 限值反算成滴定管上的體積。</div>
 <div class="box def"><span class="tag">下週:熱化學</span>標示的大卡,是把食物燒掉量出來的嗎?<br>本週量的是「有多少物質」,下週要量<b>「有多少能量」</b>——而且你會發現,彈卡計量到的數字與標示上的並不一樣。</div>
 </section>
 </div></div>

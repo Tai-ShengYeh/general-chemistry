@@ -268,7 +268,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   (a) CO<sub>2</sub> 的 C&nbsp;&nbsp;(b) SO<sub>2</sub> 的 S&nbsp;&nbsp;(c) NH<sub>3</sub> 的 N&nbsp;&nbsp;(d) SF<sub>6</sub> 的 S
   <div class="sol"><b>解:</b>先畫 Lewis 結構再數:<br>
   (a) O=C=O:2 個雙鍵 → <span class="hl">2 群</span><br>
-  (b) SO<sub>2</sub>(O=S–O 共振,S 上 1 孤對):2 個鍵 + 1 孤對 → <span class="hl">3 群</span><br>
+  (b) SO<sub>2</sub>(S 接 2 個 O、加 1 對孤對;怎麼畫它的 Lewis 結構第 40 頁再講):2 個鍵 + 1 孤對 → <span class="hl">3 群</span><br>
   (c) NH<sub>3</sub>:3 個 N–H + 1 孤對 → <span class="hl">4 群</span><br>
   (d) SF<sub>6</sub>:6 個 S–F、無孤對 → <span class="hl">6 群</span></div></div>
 </section>
@@ -634,6 +634,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <!-- 27 -->
 <section class="slide">
   <h2>例題 2:SF<sub>4</sub> 的形狀 <span class="en">Example 2</span></h2>
+  <div class="box def" style="margin:5px 0;padding:8px 20px;font-size:19px;line-height:1.4"><span class="tag">先補一個名詞</span>第 3 週期以後的原子(S、Cl、Xe…)可以裝超過 8 個價電子,叫<b>擴充八隅體</b>,所以它們可以有 5、6 個電子群。</div>
   <div class="box exbox"><span class="tag">例題</span>預測 SF<sub>4</sub> 的電子群幾何與分子形狀。
   <div class="sol"><b>解:</b><br>
   ① Lewis:價電子 6 + 4(7) = 34;4 個 S–F 鍵 + 各 F 三對孤對,剩 1 對放 S 上(S 有 10e,擴充八隅體)<br>
@@ -651,7 +652,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <b>ClF<sub>3</sub></b>:價電子 7 + 21 = 28;3 鍵 + 中心 Cl 上 2 孤對 = 5 群 → 雙三角錐幾何,AX<sub>3</sub>E<sub>2</sub>;<br>
   2 孤對占赤道 → <span class="hl">T 形</span>(F–Cl–F 約 87.5°,略小於 90°)<br>
   <b>XeF<sub>2</sub></b>:價電子 8 + 14 = 22;2 鍵 + 中心 Xe 上 3 孤對 = 5 群 → AX<sub>2</sub>E<sub>3</sub>;<br>
-  3 孤對佔滿赤道 → 2 個 F 在軸向 → <span class="hl">直線形</span>(180°)</div></div>
+  孤對占互斥最少的位置(雙三角錐的赤道位夾角 120°,比軸向 90° 寬鬆),3 孤對佔滿赤道 → 2 個 F 在軸向 → <span class="hl">直線形</span>(180°)</div></div>
 </section>
 
 <!-- 29 -->
@@ -687,8 +688,9 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <h2>對稱抵消原則 <span class="en">Symmetry and Cancellation</span></h2>
   <ul>
     <li>相同的端原子<b>對稱</b>分布於中心原子周圍 → 鍵偶極向量和為 0 → 非極性</li>
-    <li>會完全抵消的形狀:<span class="hlb">直線 AX<sub>2</sub>、平面三角 AX<sub>3</sub>、四面體 AX<sub>4</sub>、雙三角錐 AX<sub>5</sub>、八面體 AX<sub>6</sub>、平面四方 AX<sub>4</sub>E<sub>2</sub>、直線 AX<sub>2</sub>E<sub>3</sub></span>(端原子皆相同時)</li>
-    <li>破壞對稱的兩種方式:① 中心原子有「不對稱」孤對&nbsp;&nbsp;② 端原子不全相同</li>
+    <li>會完全抵消的形狀(無孤對、端原子皆相同):<span class="hlb">直線 AX<sub>2</sub>、平面三角 AX<sub>3</sub>、四面體 AX<sub>4</sub>、雙三角錐 AX<sub>5</sub>、八面體 AX<sub>6</sub></span></li>
+    <li>有孤對時,除非孤對剛好兩兩對位(平面四方 AX<sub>4</sub>E<sub>2</sub>、直線 AX<sub>2</sub>E<sub>3</sub>),否則鍵偶極一定抵消不掉</li>
+    <li>破壞對稱的兩種方式:① 中心原子有孤對,而且孤對沒有另一個孤對在正對面&nbsp;&nbsp;② 端原子不全相同</li>
   </ul>
   <div class="box key"><span class="tag">口訣</span>「形狀對稱 + 端原子相同 → 非極性;其餘 → 極性」。</div>
 </section>
@@ -939,14 +941,16 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <!-- 51 -->
 <section class="slide">
   <h2>Beer–Lambert 定律 <span class="en">The Beer–Lambert Law</span></h2>
-  <div class="eq">A = ε b c　　(A = 吸光度、ε = 莫耳吸光係數、b = 光徑、c = 濃度)</div>
-  <ul>
-    <li>吸光度 <b>A 與濃度 c 成正比</b> → 可以用來<b>定量</b></li>
-    <li>做法:配一系列已知濃度 → 量 A → 畫<b>檢量線</b> → 由未知樣品的 A 反推 c</li>
-    <li>ε 是物質的特徵,與波長有關 → 所以要選在<b>吸收峰</b>的波長量</li>
-    <li>適用範圍有限:濃度太高時偏離直線(分子間開始互相影響)</li>
+  <div class="box key" style="margin:4px 0;padding:6px 18px;font-size:19px;line-height:1.35"><span class="tag">先問</span>顏色越深代表濃度越高——這句話能變成公式嗎?</div>
+  <div class="box def" style="margin:4px 0;padding:6px 18px;font-size:19px;line-height:1.35"><span class="tag">定義</span><b>吸光度 A</b>:光穿過樣品後少掉多少,取對數後的數字;A 越大,顏色越深。</div>
+  <div class="eq" style="margin:6px 0;font-size:24px">A = ε b c　　(A = 吸光度、ε = 莫耳吸光係數、b = 光徑、c = 濃度)</div>
+  <ul style="font-size:21px;line-height:1.45;margin:4px 0 4px 34px">
+    <li style="margin:3px 0">吸光度 <b>A 與濃度 c 成正比</b> → 可以用來<b>定量</b></li>
+    <li style="margin:3px 0">做法:配一系列已知濃度 → 量 A → 畫<b>檢量線</b>(用幾個已知濃度畫出的直線)→ 由未知樣品的 A 反推 c</li>
+    <li style="margin:3px 0">ε 是物質的特徵,與波長有關 → 所以要選在<b>吸收峰</b>的波長量</li>
+    <li style="margin:3px 0">適用範圍有限:濃度太高時偏離直線(分子間開始互相影響)</li>
   </ul>
-<div class="box def"><span class="tag">為什麼食品分析離不開它</span>總酚、花青素、鐵、磷、蛋白質(Bradford 法)、還原糖(DNS 法,3,5-二硝基水楊酸法)——這些例行檢驗幾乎全是比色法。<b>這條式子是分析化學實驗課的日常。</b></div>
+<div class="box def" style="margin:5px 0;padding:8px 20px;font-size:19px;line-height:1.4"><span class="tag">為什麼食品分析離不開它</span>總酚、蛋白質(Bradford 法)、還原糖(DNS 法)——這些例行檢驗都是比色法,用的都是這條式子。<b>這條式子是分析化學實驗課的日常。</b></div>
 </section>
 
 <!-- 52 -->

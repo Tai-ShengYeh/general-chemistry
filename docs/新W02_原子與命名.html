@@ -366,35 +366,37 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <!-- 17 -->
 <section class="slide">
   <h2>同位素比值怎麼表示:δ 記號 <span class="en">The Delta Notation</span></h2>
+  <div class="box key" style="margin:5px 0;padding:7px 20px;font-size:19px;line-height:1.4"><span class="tag">為什麼要有 δ</span>兩個樣品的 <sup>13</sup>C/<sup>12</sup>C 比值都在 0.011 附近、常常只差小數點後第四位,直接寫比值很難比。所以改成報「比國際標準品多或少了千分之幾」——這就是 δ 記號存在的理由。</div>
   <div class="eq">δ<sup>13</sup>C (‰) = [ (R<sub>樣品</sub> / R<sub>標準</sub>) − 1 ] × 1000　　R = <sup>13</sup>C / <sup>12</sup>C</div>
-  <ul>
+  <ul style="font-size:21px;line-height:1.45;margin:4px 0 4px 34px">
     <li>差異在<b>千分之幾</b>的等級,所以用<b>千分率 ‰</b>,而且一定要對照國際標準品</li>
     <li>δ 為<b>負</b> = 樣品比標準品<b>更缺乏</b>重同位素(有機物多半如此)</li>
     <li>常用的四組:<b>δ<sup>13</sup>C</b>(碳源)、<b>δ<sup>15</sup>N</b>(氮源)、<b>δ<sup>2</sup>H / δ<sup>18</sup>O</b>(水源)</li>
     <li>儀器:<b>同位素比值質譜儀(IRMS)</b>,量的不是「有多少」而是「比例是多少」</li>
   </ul>
-<div class="box warn"><span class="tag">注意這與「有沒有輻射」無關</span>這裡用的 <sup>13</sup>C、<sup>15</sup>N、<sup>2</sup>H 都是<b>穩定</b>同位素,不會衰變、沒有放射性。只有後面講到的 <sup>14</sup>C 是放射性的。</div>
+<div class="box warn" style="margin:5px 0;padding:8px 20px;font-size:20px;line-height:1.4"><span class="tag">注意這與「有沒有輻射」無關</span>這裡用的 <sup>13</sup>C、<sup>15</sup>N、<sup>2</sup>H 都是<b>穩定</b>同位素,不會衰變、沒有放射性。只有後面講到的 <sup>14</sup>C 是放射性的。</div>
 </section>
 
 <!-- 18 -->
 <section class="slide">
   <h2>應用一:蜂蜜是不是摻了糖漿 <span class="en">Is This Honey Adulterated?</span></h2>
   <div class="two-col">
-    <div>  <ul>
-    <li>植物固定 CO<sub>2</sub> 有兩條路徑,對 <sup>13</sup>C 的排斥程度不同</li>
+    <div>  <ul style="font-size:21px;line-height:1.45;margin:4px 0 4px 30px">
+    <li>植物把空氣中的 CO<sub>2</sub> 做成糖有兩套流程,生物學上叫 <b>C3</b> 與 <b>C4</b>(數字是流程中第一個產物的碳數,這裡不必深究)。兩套流程對較重的 <sup>13</sup>C 的「挑剔」程度不同,所以做出來的糖 δ<sup>13</sup>C 差很多</li>
     <li><b>C3</b>(多數蜜源植物、稻麥、大豆):δ<sup>13</sup>C <b>−22 ~ −30‰</b></li>
     <li><b>C4</b>(<b>甘蔗、玉米</b>):δ<sup>13</sup>C <b>−10 ~ −16‰</b></li>
     <li>摻入蔗糖漿或玉米糖漿 → 整體 δ<sup>13</sup>C <b>往上偏移</b></li>
   </ul></div>
     <div><div class="box def"><span class="tag">關鍵設計:自帶內部標準</span>直接看蜂蜜的 δ<sup>13</sup>C 不夠——不同蜜源本來就有差異。<br>做法是把蜂蜜裡的<b>蛋白質</b>分離出來一起測:<b>加進去的糖漿不含蛋白質</b>,所以蛋白質的 δ<sup>13</sup>C 代表<b>真蜜原本的值</b>。<br>兩者的差距,就是摻假的量。</div></div>
   </div>
-<div class="box key"><span class="tag">這是「內部標準」思維的漂亮示範</span>找一個<b>不會被造假動到</b>的成分當基準,拿它去比對可能被動過的部分。同一個思路在第 7 週的一級標準品、第 10 週的檢量線都會再出現。</div>
+<div class="box key" style="margin:6px 0;padding:8px 20px;font-size:20px;line-height:1.4"><span class="tag">這是「內部標準」思維的漂亮示範</span>找一個<b>不會被造假動到</b>的成分當基準,拿它去比對可能被動過的部分。同一個思路在第 7 週的一級標準品、第 10 週的檢量線都會再出現。</div>
 </section>
 
 <!-- 19 -->
 <section class="slide">
   <h2>例題:算出摻了多少 C4 糖 <span class="en">Example: How Much C4 Sugar?</span></h2>
-  <div class="eq">C4 糖 (%) = <span style="display:inline-block;text-align:center">δ<sup>13</sup>C<sub>蛋白</sub> − δ<sup>13</sup>C<sub>蜂蜜</sub><hr style="margin:2px 0;border:none;border-top:2px solid #1f5f8b">δ<sup>13</sup>C<sub>蛋白</sub> − (−9.7)</span> × 100　<span class="small">(−9.7‰ = 純 C4 糖)</span></div>
+  <div class="box key" style="margin:5px 0;padding:8px 20px;font-size:19px;line-height:1.4"><span class="tag">式子從哪來</span>摻假的蜂蜜是「真蜜 + C4 糖」的混合物,混合後的 δ 會落在兩者之間,落在哪裡取決於摻了多少——這條式子只是把「落在中間哪裡」換算成百分比(推導見計算專題)。</div>
+  <div class="eq">C4 糖 (%) = <span style="display:inline-block;text-align:center">δ<sup>13</sup>C<sub>蛋白</sub> − δ<sup>13</sup>C<sub>蜂蜜</sub><hr style="margin:2px 0;border:none;border-top:2px solid #1f5f8b">δ<sup>13</sup>C<sub>蛋白</sub> − (−9.7)</span> × 100　<span class="small">(−9.7‰ 是 AOAC 方法規定的純 C4 糖代表值)</span></div>
   <div class="sol"><b>某樣品:</b>蜂蜜 δ<sup>13</sup>C = −23.0‰、蛋白質 δ<sup>13</sup>C = −25.0‰<br>C4 糖 = (−25.0 − (−23.0)) ÷ (−25.0 − (−9.7)) × 100 = (−2.0) ÷ (−15.3) × 100 = <span class="hl">13.1%</span><br><b>依 AOAC(國際公定分析化學家協會,Association of Official Analytical Chemists)官方方法 998.12,C4 糖超過 7% 即判定摻假</b> → 這瓶不合格。<br><br><b>對照一瓶真蜜:</b>蜂蜜 −25.3‰、蛋白質 −25.0‰ → (−25.0 + 25.3) ÷ (−15.3) × 100 = <b>−2.0%</b>,約等於 0 → 合格。<br><b>注意負值不是「負的摻假」</b>,而是量測誤差落在 0 附近的正常結果。<br><b>判定標準與方法細節請以主管機關公告的檢驗方法為準。</b></div>
 </section>
 
@@ -488,7 +490,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="q"><span class="qn">1</span>下列何者是<b>類金屬 (metalloid)</b>?<br><span class="opt">A Al</span><span class="opt">B Si</span><span class="opt">C S</span><span class="opt">D Ca</span></div>
   <div class="q"><span class="qn">2</span>同一<b>族</b>(直行)的元素,下列何者最相似?<br><span class="opt">A 原子質量</span><span class="opt">B 原子半徑</span><span class="opt">C 價電子數與化學性質</span><span class="opt">D 中子數</span></div>
   <div class="q"><span class="qn">3</span>鈉(第 1 族)與鎂(第 2 族)都是活潑金屬。<b>為什麼鈉更容易失去電子?</b>用價電子的角度說明。</div>
-  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B(Si)</span> — 類金屬沿週期表的<b>階梯線</b>分布:B、Si、Ge、As、Sb、Te。<span class="myth">選 A 的同學把鋁當類金屬 —— 鋁是<b>金屬</b>,雖然位置靠近階梯線。這條線是「分界」不是「歸屬」,線的<b>左下是金屬、右上是非金屬</b>,只有壓在線上的那幾個才是類金屬。</span></div><div class="row"><span class="ans">2. C</span> — 同族 = 價電子數相同 → 化學性質相似,這正是週期表按族排列的理由。<span class="myth">選 A/B/D 都是<b>沿族遞變</b>而非相同的量。記住:<b>族看性質,週期看趨勢。</b></span></div><div class="row"><span class="ans">3. 因為鈉只需失去 1 個電子就達到八隅體</span> — Na 的價電子組態是 3s<sup>1</sup>,失去 1 個電子即成為 [Ne];Mg 是 3s<sup>2</sup>,要失去 2 個。<b>失去第二個電子需要更多能量</b>(逐級游離能遞增)。<span class="myth">此題預告第 2 週的<b>游離能</b>。若學生答「因為鈉比較活潑」,那是把現象當成解釋 —— 要問的是<b>為什麼</b>活潑。</span></div></div>
+  <div class="sol"><b>解答:</b><br><div class="row"><span class="ans">1. B(Si)</span> — 類金屬沿週期表的<b>階梯線</b>分布:B、Si、Ge、As、Sb、Te。<span class="myth">選 A 的同學把鋁當類金屬 —— 鋁是<b>金屬</b>,雖然位置靠近階梯線。這條線是「分界」不是「歸屬」,線的<b>左下是金屬、右上是非金屬</b>,只有壓在線上的那幾個才是類金屬。</span></div><div class="row"><span class="ans">2. C</span> — 同族 = 價電子數相同 → 化學性質相似,這正是週期表按族排列的理由。<span class="myth">選 A/B/D 都是<b>沿族遞變</b>而非相同的量。記住:<b>族看性質,週期看趨勢。</b></span></div><div class="row"><span class="ans">3. 因為鈉只需失去 1 個電子就達到八隅體</span> — Na 的價電子組態是 3s<sup>1</sup>,失去 1 個電子即成為 [Ne];Mg 是 3s<sup>2</sup>,要失去 2 個。<b>失去第二個電子需要更多能量</b>(逐級游離能遞增)。<span class="myth">此題預告本週稍後的<b>游離能</b>。若學生答「因為鈉比較活潑」,那是把現象當成解釋 —— 要問的是<b>為什麼</b>活潑。</span></div></div>
 </section>
 
 <!-- 28 -->
@@ -502,12 +504,13 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <!-- 29 -->
 <section class="slide">
   <h2>有效核電荷與遮蔽 <span class="en">Effective Nuclear Charge &amp; Shielding</span></h2>
-  <div class="box def"><span class="tag">定義</span><b>遮蔽 (shielding)</b>:內層電子部分抵消核電荷對外層電子的吸引。<br><b>有效核電荷 (Z<sub>eff</sub>)</b>:外層電子實際感受到的淨核電荷,Z<sub>eff</sub> ≈ Z − 遮蔽電子數。</div>
-  <ul>
-    <li>同週期左→右:質子增加、遮蔽幾乎不變 → <span class="hlb">Z<sub>eff</sub> 增大</span> → 抓得更緊</li>
+  <div class="box key" style="margin:6px 0;padding:8px 20px"><span class="tag">先想想</span>為什麼同一列越往右,原子反而越小?</div>
+  <div class="box def" style="margin:6px 0;padding:8px 20px;font-size:21px;line-height:1.45"><span class="tag">定義</span><b>遮蔽 (shielding)</b>:內層電子部分抵消核電荷對外層電子的吸引。<br><b>有效核電荷 (Z<sub>eff</sub>)</b>:外層電子實際感受到的淨核電荷,Z<sub>eff</sub> ≈ Z − 遮蔽電子數。<br>比喻:外層電子隔著內層電子「看」原子核,內層電子像擋在前面的人群,擋掉一部分吸引力——擋剩下的那部分就是有效核電荷 Z<sub>eff</sub>。</div>
+  <ul style="font-size:22px;line-height:1.45;margin:4px 0 4px 34px">
+    <li>同週期左→右:質子一顆一顆增加,但擋在前面的內層電子沒變,所以外層電子感受到的 <span class="hlb">Z<sub>eff</sub> 越來越大</span>,被抓得更緊、原子就更小</li>
     <li>同族上→下:殼層數增加 → 外層電子離核更遠、遮蔽更多</li>
   </ul>
-  <div class="box key"><span class="tag">重點</span>幾乎所有週期性趨勢都能用「Z<sub>eff</sub> + 殼層數」這兩個因素解釋。</div>
+  <div class="box key" style="margin:6px 0;padding:8px 20px"><span class="tag">重點</span>幾乎所有週期性趨勢都能用「Z<sub>eff</sub> + 殼層數」這兩個因素解釋。</div>
 </section>
 
 <!-- 30 -->
@@ -596,7 +599,8 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <!-- 33 -->
 <section class="slide">
   <h2>游離能的例外 <span class="en">Exceptions: Be/B and N/O</span></h2>
-  <table>
+  <div class="box key" style="margin:6px 0;padding:8px 20px;font-size:20px;line-height:1.45"><span class="tag">先用白話聽一次</span>Be 的外層電子填得剛剛好、很整齊,B 多出來的那一顆反而比較鬆、容易拔走;N 的三顆外層電子各占一格、很安定,O 多出來的第四顆得跟別人擠同一格、互相排斥,所以比較好拔。下面的 2s、2p 記號是這件事的正式寫法,學到電子組態時再回來看。</div>
+  <table style="margin:8px auto;font-size:20px">
     <tr><th>比較</th><th>趨勢預測</th><th>實際</th><th>原因</th></tr>
     <tr><td>Be vs B</td><td>B 較大</td><td><span class="hl">Be &gt; B</span></td><td>B 失去的是能量較高的 2p 電子(Be 為全滿 2s²)</td></tr>
     <tr><td>N vs O</td><td>O 較大</td><td><span class="hl">N &gt; O</span></td><td>O 的 2p⁴ 中有一對配對電子互斥;N 為半滿 2p³ 較穩定</td></tr>

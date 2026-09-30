@@ -251,10 +251,11 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <!-- 6 -->
 <section class="slide">
   <h2>化學的三種表徵層次 <span class="en">Three Domains of Chemistry</span></h2>
+  <p style="font-size:24px;margin:0 0 6px">同一杯水,化學家會用三種方式描述它:</p>
   <table>
     <tr><th>層次</th><th>英文</th><th>說明</th><th>以「水」為例</th></tr>
     <tr><td>巨觀</td><td>Macroscopic</td><td>肉眼可觀察的現象</td><td>無色液體、100 °C 沸騰</td></tr>
-    <tr><td>微觀</td><td>Microscopic</td><td>原子/分子尺度的行為</td><td>H<sub>2</sub>O 分子的運動與氫鍵</td></tr>
+    <tr><td>微觀</td><td>Microscopic</td><td>原子/分子尺度的行為</td><td>H<sub>2</sub>O 分子的運動與碰撞</td></tr>
     <tr><td>符號</td><td>Symbolic</td><td>化學式、方程式、圖形</td><td>H<sub>2</sub>O、2H<sub>2</sub>+O<sub>2</sub>→2H<sub>2</sub>O</td></tr>
   </table>
   <div class="box key"><span class="tag">重點</span>化學家的思考方式:觀察巨觀現象 → 以微觀模型解釋 → 用符號表達。</div>
@@ -525,7 +526,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="box exbox"><span class="tag">例題</span>一塊金屬質量 57.3 g,放入裝有 25.0 mL 水的量筒後,水位升至 32.3 mL。求此金屬的密度,並判斷它可能是哪種金屬(參考上頁表格)。
   <div class="sol"><b>解:</b><br>
   排水法求體積:V = 32.3 − 25.0 = 7.3 mL<br>
-  d = m / V = 57.3 g ÷ 7.3 mL = <span class="hl">7.8 g/mL</span>(2 位有效數字)<br>
+  d = m / V = 57.3 g ÷ 7.3 mL = <span class="hl">7.8 g/mL</span>(為什麼只寫到 7.8?因為 7.3 mL 只有兩位數字可信——這個規則下一節會講)<br>
   與鐵的密度 7.87 g/cm³ 接近 → 此金屬可能是<span class="hl">鐵</span>。</div></div>
   <div class="box key"><span class="tag">技巧</span>排水法 (water displacement) 適用於形狀不規則、不溶於水且密度大於水的固體。</div>
 </section>
@@ -658,14 +659,15 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <!-- 34 -->
 <section class="slide">
   <h2>準確度與精密度 <span class="en">Accuracy vs. Precision</span></h2>
-  <table>
+  <table style="margin:8px auto;font-size:20px">
     <tr><th></th><th>準確度 accuracy</th><th>精密度 precision</th></tr>
-    <tr><td>意義</td><td>測量值與<b>真值</b>的接近程度</td><td>多次測量值<b>彼此</b>的接近程度</td></tr>
-    <tr><td>對應誤差</td><td>系統誤差 systematic error</td><td>隨機誤差 random error</td></tr>
-    <tr><td>改善方法</td><td>校正儀器、修正方法</td><td>多次測量取平均</td></tr>
+    <tr><td style="padding:5px 12px">意義</td><td style="padding:5px 12px">測量值與<b>真值</b>的接近程度</td><td style="padding:5px 12px">多次測量值<b>彼此</b>的接近程度</td></tr>
+    <tr><td style="padding:5px 12px">對應誤差</td><td style="padding:5px 12px">系統誤差 systematic error</td><td style="padding:5px 12px">隨機誤差 random error</td></tr>
+    <tr><td style="padding:5px 12px">改善方法</td><td style="padding:5px 12px">校正儀器、修正方法</td><td style="padding:5px 12px">多次測量取平均</td></tr>
   </table>
-  <div class="box exbox"><span class="tag">情境</span>真值 2.70 g/cm³。甲測得 2.69、2.70、2.71(準確且精密);乙測得 2.51、2.52、2.50(精密但不準確 → 可能有系統誤差)。</div>
-<svg class="fig" role="img" aria-labelledby="w01f1-t w01f1-d" width="1000" height="160" viewBox="0 0 1000 160" xmlns="http://www.w3.org/2000/svg">
+  <div class="box key" style="margin:5px 0;padding:8px 20px;font-size:19px;line-height:1.4"><span class="tag">兩種誤差</span><b>系統誤差</b> = 每次都往<b>同一方向</b>偏(例如天平沒歸零),多量幾次也消不掉;<b>隨機誤差</b> = 忽大忽小、方向不定,多量幾次取平均就能壓低。</div>
+  <div class="box exbox" style="margin:5px 0;padding:8px 20px;font-size:19px;line-height:1.4"><span class="tag">情境</span>真值 2.70 g/cm³。甲測得 2.69、2.70、2.71(準確且精密);乙測得 2.51、2.52、2.50(精密但不準確 → 可能有系統誤差)。</div>
+<svg class="fig" role="img" aria-labelledby="w01f1-t w01f1-d" width="812" height="130" viewBox="0 0 1000 160" xmlns="http://www.w3.org/2000/svg">
         <title id="w01f1-t">準確度與精密度的四種組合</title>
         <desc id="w01f1-d">四個靶心圖。準確且精密：彈著點集中於靶心。精密但不準確：彈著點集中但偏離靶心。準確但不精密：彈著點分散但平均落在靶心。兩者皆非：彈著點既分散又偏離。</desc>
         <circle cx="126" cy="66" r="46" fill="#fdfefe" stroke="#d5dbdb" stroke-width="1.6"/>
@@ -739,6 +741,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <h2>運算規則(一):乘法與除法 <span class="en">Multiplication &amp; Division</span></h2>
   <div class="box def"><span class="tag">規則</span>結果的有效數字位數 = 各測量值中<b>有效位數最少</b>者。</div>
   <div class="eq">6.221 cm × 5.2 cm = 32.3492 → <span class="hl">32 cm<sup>2</sup></span>(取 2 位)</div>
+  <div class="box key"><span class="tag">為什麼</span>5.2 cm 的最後一位「2」本來就是估的,拿它乘出來的 32.3492,後面那幾位全是用估計值算出來的,當然不可信——所以只能保留到位數最少的那個。</div>
   <ul>
     <li>4 位 × 2 位 → 結果取 2 位</li>
     <li>精確數(如換算定義 1 m = 100 cm)不參與位數限制</li>
@@ -750,6 +753,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <h2>運算規則(二):加法與減法 <span class="en">Addition &amp; Subtraction</span></h2>
   <div class="box def"><span class="tag">規則</span>結果的小數位數 = 各測量值中<b>小數位數最少</b>者。</div>
   <div class="eq">20.42 + 1.322 + 83.1 = 104.842 → <span class="hl">104.8</span>(取 1 位小數)</div>
+  <div class="box key"><span class="tag">為什麼</span>20.42 + 83.1 時,83.1 的小數第二位根本沒量到,加起來的小數第二位就沒有意義——所以看小數位,不看位數。</div>
   <div class="box warn"><span class="tag">注意</span>乘除看「有效位數」;加減看「小數位數」— 兩規則不同,最容易混淆!多步計算時,中間過程多留 1 位,最後再捨入。</div>
 </section>
 
@@ -798,6 +802,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <!-- 43 -->
 <section class="slide">
   <h2>因次分析法 <span class="en">Dimensional Analysis (Factor-Label Method)</span></h2>
+  <div class="box key"><span class="tag">先想想</span>為什麼 70 in 乘上一個分數,數字變了、長度卻沒變?因為 2.54 cm 和 1 in 是<b>同一個長度</b>,2.54 cm / 1 in 這個分數其實就是 1;乘 1 不會改變量本身,只是換了單位的寫法。</div>
   <div class="box def"><span class="tag">定義</span><b>換算因子 (conversion factor)</b>:由等式關係寫成的分數,其值等於 1。<br>例:1 in = 2.54 cm → 可寫成 (2.54 cm / 1 in) 或 (1 in / 2.54 cm)。</div>
   <div class="eq">已知量 × 換算因子 = 目標量&nbsp;&nbsp;(單位如代數般相消)</div>
   <ul>

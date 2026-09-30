@@ -244,10 +244,11 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <!-- 6 -->
 <section class="slide">
   <h2>式量與分子量 <span class="en">Formula Mass &amp; Molecular Mass</span></h2>
+  <div class="box key"><span class="tag">為什麼要算式量</span>因為下一步要把它變成 g/mol(莫耳質量),才能在公克與莫耳之間換算。</div>
   <div class="box def"><span class="tag">定義</span><b>式量 (formula mass)</b>:化學式中所有原子的原子量總和(單位 amu)。<br>對分子化合物而言,式量即<b>分子量 (molecular mass)</b>。</div>
   <ul>
     <li>計算方法:各元素「原子量 × 原子個數」再加總</li>
-    <li>離子化合物無獨立分子,以實驗式計算式量:NaCl = 22.99 + 35.45 = 58.44 amu</li>
+    <li>離子化合物無獨立分子,以化學式(如 NaCl)計算式量:NaCl = 22.99 + 35.45 = 58.44 amu</li>
     <li>注意括號:Ca(NO<sub>3</sub>)<sub>2</sub> 含 1 Ca、2 N、6 O</li>
   </ul>
 </section>
@@ -324,7 +325,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
       <div class="arrow">⇄ ×/÷ N<sub>A</sub> (6.022×10<sup>23</sup>/mol)</div>
     </div>
   </div>
-  <div class="box key" style="margin-top:20px"><span class="tag">重點</span>莫耳數永遠是「中繼站」:<br>質量 → (÷ 莫耳質量) → mol → (× N<sub>A</sub>) → 粒子數;反向亦然。質量與粒子數之間<b>不能直接換算</b>。</div>
+  <div class="box key" style="margin-top:20px"><span class="tag">重點</span>莫耳數永遠是「中繼站」:<br>質量 → (÷ 莫耳質量) → mol → (× N<sub>A</sub>) → 粒子數;反向亦然。質量與粒子數之間<b>不能直接換算</b>。<br>怎麼記方向:從公克到莫耳是「除以莫耳質量」(公克數比莫耳數大);從莫耳到粒子數是「乘 N<sub>A</sub>」(粒子數一定比莫耳數大)——想想哪個數字比較大,就知道該乘還是除。</div>
 </section>
 
 <!-- 13 -->
@@ -394,16 +395,17 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <!-- 19 -->
 <section class="slide">
   <h2>由百分組成求實驗式 <span class="en">Determining Empirical Formulas</span></h2>
-  <div class="flow">
-    <div class="fbox"><b>① 假設 100 g 樣品</b><br><span class="small">百分率 → 克數</span></div>
-    <div class="arrow">↓ ÷ 各原子量</div>
-    <div class="fbox"><b>② 換算成莫耳數</b></div>
-    <div class="arrow">↓ 各除以最小莫耳數</div>
-    <div class="fbox"><b>③ 求最簡莫耳比</b></div>
+  <div class="box key" style="margin:0 0 8px;padding:8px 20px;font-size:19px;line-height:1.4"><span class="tag">問題</span>百分組成只告訴你「質量比例」,怎麼變成「原子個數比」?答案:先把百分數變成克數,再把克數變成莫耳數。</div>
+  <div class="flow" style="gap:3px">
+    <div class="fbox" style="padding:5px 20px"><b>① 假設 100 g 樣品</b><br><span class="small">百分率 → 克數:取 100 g,百分數就直接是克數</span></div>
+    <div class="arrow">↓ ÷ 各原子量(克數變成原子個數,以 mol 計)</div>
+    <div class="fbox" style="padding:5px 20px"><b>② 換算成莫耳數</b></div>
+    <div class="arrow">↓ 各除以最小莫耳數(看每種原子相對於最少的那種有幾個)</div>
+    <div class="fbox" style="padding:5px 20px"><b>③ 求最簡莫耳比</b></div>
     <div class="arrow">↓ 若非整數,同乘小整數</div>
-    <div class="fbox"><b>④ 寫出實驗式</b></div>
+    <div class="fbox" style="padding:5px 20px"><b>④ 寫出實驗式</b></div>
   </div>
-  <div class="box key" style="margin-top:14px"><span class="tag">口訣</span>「百分變克、克變莫耳、除最小、化整數」。</div>
+  <div class="box key" style="margin:8px 0 0;padding:8px 20px;font-size:19px;line-height:1.4"><span class="tag">口訣</span>「百分變克、克變莫耳、除最小、化整數」。</div>
 </section>
 
 <!-- 20 -->
@@ -486,7 +488,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
         <line x1="284" y1="48" x2="298" y2="48" stroke="#5a6a6b" stroke-width="2.5" marker-end="url(#w03f1-fl)" stroke-linecap="round"/>
         <line x1="644" y1="48" x2="658" y2="48" stroke="#5a6a6b" stroke-width="2.5" marker-end="url(#w03f1-fl)" stroke-linecap="round"/>
       </svg>
-  <div class="box key" style="margin-top:14px"><span class="tag">重點</span>n<sub>C</sub> = n<sub>CO<sub>2</sub></sub>;n<sub>H</sub> = 2 × n<sub>H<sub>2</sub>O</sub>;若含 O,其質量 = 樣品質量 − C 質量 − H 質量。</div>
+  <div class="box key" style="margin-top:10px;padding:8px 20px;font-size:19px;line-height:1.4"><span class="tag">重點</span>樣品裡的碳全部變成 CO<sub>2</sub>,所以數 CO<sub>2</sub> 有幾莫耳,就知道有幾莫耳 C;氫全部變成 H<sub>2</sub>O,一個水帶兩個 H,所以要乘 2。<br>n<sub>C</sub> = n<sub>CO<sub>2</sub></sub>;n<sub>H</sub> = 2 × n<sub>H<sub>2</sub>O</sub>;若含 O,其質量 = 樣品質量 − C 質量 − H 質量。<br>氧為什麼只能用扣的?因為助燃用的 O<sub>2</sub> 也會跑進產物,分不出哪些氧是樣品自己的。</div>
 </section>
 
 <!-- 26 -->

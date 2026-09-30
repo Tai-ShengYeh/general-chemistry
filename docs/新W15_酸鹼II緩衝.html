@@ -315,12 +315,12 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <h2>Henderson–Hasselbalch 方程式 <span class="en">The Equation</span></h2>
   <div class="eq">pH = pK<sub>a</sub> + log <span style="display:inline-block;text-align:center">[A<sup>−</sup>]<hr style="margin:2px 0;border:none;border-top:2px solid #1f5f8b">[HA]</span>　　(共軛鹼 ÷ 弱酸)</div>
   <ul>
-    <li>它就是 K<sub>a</sub> 的表示式兩邊取負對數整理出來的,<b>不是新的原理</b></li>
+    <li>它就是 K<sub>a</sub> 的表示式兩邊取負對數整理出來的,<b>不是新的原理</b>:<br><span style="font-size:19px">K<sub>a</sub> = [H<sup>+</sup>][A<sup>−</sup>]/[HA] → 兩邊取 −log:pK<sub>a</sub> = pH − log([A<sup>−</sup>]/[HA]) → 移項:pH = pK<sub>a</sub> + log([A<sup>−</sup>]/[HA])</span></li>
     <li>[A<sup>−</sup>] = [HA] 時 log 1 = 0 → <span class="hl">pH = pK<sub>a</sub></span></li>
     <li>共軛鹼較多 → pH &gt; pK<sub>a</sub>;弱酸較多 → pH &lt; pK<sub>a</sub></li>
     <li>比值只看<b>莫耳比</b>,同一杯溶液體積相同,所以可以直接用莫耳數代入</li>
   </ul>
-<div class="box warn"><span class="tag">最常見的代錯</span>分子是<b>共軛鹼</b>、分母是<b>酸</b>。寫反會讓答案對稱地錯到 pK<sub>a</sub> 的另一邊——所以算完一定要問:<b>哪一型比較多?pH 就該往那一邊偏。</b></div>
+<div class="box warn" style="margin:5px 0;padding:8px 20px;font-size:19px;line-height:1.4"><span class="tag">最常見的代錯</span>分子是<b>共軛鹼</b>、分母是<b>酸</b>。寫反會讓答案對稱地錯到 pK<sub>a</sub> 的另一邊——所以算完一定要問:<b>哪一型比較多?pH 就該往那一邊偏。</b></div>
 </section>
 
 <!-- 13 -->
@@ -401,8 +401,8 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <section class="slide">
   <h2>緩衝的有效範圍 <span class="en">Effective Range</span></h2>
   <p>實用範圍是 <span class="hl">pK<sub>a</sub> ± 1</span>(比值 1:10 到 10:1)。超出就有一型少到擋不住,所以<b>選緩衝系統 = 挑 pK<sub>a</sub> 最接近目標 pH 的弱酸</b>。</p>
-  <table><tr><th>緩衝系統</th><th>pK<sub>a</sub></th><th>有效範圍</th><th>用在哪</th></tr><tr><td>醋酸 / 醋酸鈉</td><td>4.76</td><td>3.8–5.8</td><td>食品酸度模擬、層析</td></tr><tr><td>檸檬酸(第二段)</td><td>4.76</td><td>3.8–5.8</td><td>飲料、果醬</td></tr><tr><td>H<sub>2</sub>PO<sub>4</sub><sup>−</sup> / HPO<sub>4</sub><sup>2−</sup></td><td>7.20</td><td>6.2–8.2</td><td><b>細胞內、生化實驗</b></td></tr><tr><td>H<sub>2</sub>CO<sub>3</sub> / HCO<sub>3</sub><sup>−</sup></td><td>6.35</td><td>——</td><td><b>血液</b>(見下一張)</td></tr></table>
-<div class="box warn"><span class="tag">挑錯的後果</span>想在 pH 7.4 工作卻用醋酸緩衝(pK<sub>a</sub> 4.76)等於沒有緩衝。</div>
+  <table><tr><th>緩衝系統</th><th>pK<sub>a</sub></th><th>有效範圍</th><th>用在哪</th></tr><tr><td>醋酸 / 醋酸鈉</td><td>4.76</td><td>3.8–5.8</td><td>食品酸度模擬、層析</td></tr><tr><td>檸檬酸(第二段;檸檬酸有三個 H<sup>+</sup> 可以解離,這是第二個的 pK<sub>a</sub>)</td><td>4.76</td><td>3.8–5.8</td><td>飲料、果醬</td></tr><tr><td>H<sub>2</sub>PO<sub>4</sub><sup>−</sup> / HPO<sub>4</sub><sup>2−</sup></td><td>7.20</td><td>6.2–8.2</td><td><b>細胞內、生化實驗</b></td></tr><tr><td>H<sub>2</sub>CO<sub>3</sub> / HCO<sub>3</sub><sup>−</sup></td><td>6.35</td><td>(另有調節機制,見後面)</td><td><b>血液</b>(見後面)</td></tr></table>
+<div class="box warn" style="margin:5px 0;padding:8px 20px;font-size:19px;line-height:1.4"><span class="tag">挑錯的後果</span>想在 pH 7.4 工作卻用醋酸緩衝(pK<sub>a</sub> 4.76)等於沒有緩衝。</div>
 </section>
 
 <!-- 20 -->
@@ -427,7 +427,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
     <li>④ 秤取兩種鹽(或用弱酸加鹼滴到目標 pH),定容</li>
     <li>⑤ <b>用 pH 計實測並微調</b>——計算值與實測值一定有差</li>
   </ul>
-<div class="box warn"><span class="tag">為什麼一定要實測</span>H–H 方程式用的是<b>濃度</b>,真實溶液作用的是<b>活性</b>;離子強度越高,兩者差越多。所以計算只給你起點,<b>最終以 pH 計為準</b>。這也是為什麼 pH 計本身必須先用標準緩衝液校正——標準是量出來的,不是算出來的。</div>
+<div class="box warn"><span class="tag">為什麼一定要實測</span>溶液裡離子一多,彼此會互相干擾,實際表現出來的濃度會比算出來的略小(化學上叫「活性」),所以算完一定要用 pH 計對一次、再微調。計算只給你起點,<b>最終以 pH 計為準</b>。這也是為什麼 pH 計本身必須先用標準緩衝液校正——標準是量出來的,不是算出來的。</div>
 </section>
 
 <!-- 22 -->
@@ -506,13 +506,13 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <!-- 27 -->
 <section class="slide">
   <h2>蛋白質的 pI <span class="en">Protein pI</span></h2>
-  <ul>
+  <ul style="font-size:21px;line-height:1.5;margin:6px 0 6px 34px">
     <li>蛋白質是很多胺基酸接起來的,pI 由<b>側鏈上所有可解離基團</b>共同決定</li>
-    <li>酸性胺基酸(天門冬胺酸、麩胺酸)多 → pI 低;鹼性胺基酸(離胺酸、精胺酸)多 → pI 高</li>
+    <li>酸性胺基酸(天門冬胺酸、麩胺酸)多 → pI 低;鹼性胺基酸(離胺酸、精胺酸)多 → pI 高。為什麼?酸性側鏈多 = 帶負電的位置多,要在更酸的環境才能把它們全部中和成零,所以 pI 偏低;鹼性側鏈反之。</li>
     <li>在 pI 時<b>溶解度最低</b>,離 pI 越遠溶解度越高</li>
   </ul>
-  <table><tr><th>蛋白質</th><th>來源</th><th>pI(約)</th></tr><tr><td>酪蛋白 casein</td><td>牛奶(約 80% 的乳蛋白)</td><td><b>4.6</b></td></tr><tr><td>大豆球蛋白 glycinin</td><td>大豆</td><td>4.6</td></tr><tr><td>肌球蛋白 myosin</td><td>肌肉</td><td>5.4</td></tr><tr><td>溶菌酶 lysozyme</td><td>蛋白</td><td>11.0</td></tr></table>
-<div class="box key"><span class="tag">差很多的那一個</span><b>pI 是分子自己的性質</b>,不同蛋白質可差 6 個 pH 單位以上。</div>
+  <table style="margin:6px auto"><tr><th>蛋白質</th><th>來源</th><th>pI(約)</th></tr><tr><td>酪蛋白 casein</td><td>牛奶(約 80% 的乳蛋白)</td><td><b>4.6</b></td></tr><tr><td>大豆球蛋白 glycinin</td><td>大豆</td><td>4.6</td></tr><tr><td>肌球蛋白 myosin</td><td>肌肉</td><td>5.4</td></tr><tr><td>溶菌酶 lysozyme</td><td>蛋白</td><td>11.0</td></tr></table>
+<div class="box key" style="margin:5px 0;padding:8px 20px;font-size:19px;line-height:1.4"><span class="tag">差很多的那一個</span><b>pI 是分子自己的性質</b>,不同蛋白質可差 6 個 pH 單位以上。</div>
 </section>
 
 <!-- 28 -->
@@ -556,6 +556,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <h2>牛奶裡的酪蛋白微胞 <span class="en">Casein Micelles</span></h2>
   <ul>
     <li>酪蛋白不是單一分子,而是聚成直徑約 <b>150–200 nm</b> 的<b>微胞</b>分散在水中</li>
+    <li><b>注意</b>:這裡的「微胞」只是借用名字,它是酪蛋白與磷酸鈣聚成的球,不是第 13 週界面活性劑聚成的微胞。</li>
     <li>微胞表面帶<b>負電</b>(pH 6.6 &gt; pI 4.6),彼此靜電排斥 → 穩定分散</li>
     <li>尺寸落在膠體範圍 → 會散射光 → <b>牛奶看起來是白的</b>(第 13 週的 Tyndall 效應)</li>
   </ul>

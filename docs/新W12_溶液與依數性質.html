@@ -256,11 +256,11 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <p>溶解與否取決於<b>三種作用力</b>的競爭:</p>
   <ul>
     <li>溶質-溶質(需拆開)、溶劑-溶劑(需拆開)、<span class="hl">溶質-溶劑</span>(新形成)</li>
-    <li>當「溶質-溶劑」引力 ≳「被拆開的兩者」→ 溶解有利</li>
-    <li>NaCl 溶於水:<b>離子-偶極力</b>拉出離子並形成水合層 (hydration shell)</li>
+    <li>拆開溶質、拆開溶劑都要花能量;溶質與溶劑重新結合會放出能量。放出的夠多,或差不太多,就溶得進去。</li>
+    <li>NaCl 溶於水:<b>離子-偶極力</b>拉出離子並形成水合層 (hydration shell)(水分子把每個離子包成一圈)</li>
     <li>糖溶於水:糖的多個 O–H 與水形成<b>氫鍵</b></li>
   </ul>
-  <div class="box key"><span class="tag">重點</span>溶解還有<b>亂度(熵)增加</b>的驅動力 — 即使能量略吸熱,混合帶來的分散趨勢也可能讓溶解自發進行。</div>
+  <div class="box key"><span class="tag">重點</span>溶解還有<b>亂度(熵)增加</b>的驅動力 — 即使能量略吸熱,混合帶來的分散趨勢也可能讓溶解自發進行。(熵是下學期的概念,這裡先知道「散開比聚在一起更容易發生」就好)</div>
 </section>
 
 <!-- 8 -->
@@ -351,14 +351,14 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
       <h3>固體溶質</h3>
       <ul>
         <li><b>大多數</b>隨溫度升高溶解度<b>增大</b>(KNO<sub>3</sub> 極明顯)</li>
-        <li>少數例外幾乎不變(NaCl)或下降(Ce<sub>2</sub>(SO<sub>4</sub>)<sub>3</sub>)</li>
+        <li>少數例外幾乎不變(NaCl)或下降(少數固體是例外,例如某些硫酸鹽,不必記)</li>
         <li>應用:<b>再結晶</b>純化 — 熱溶冷析</li>
       </ul>
     </div>
     <div>
       <h3>氣體溶質</h3>
       <ul>
-        <li>溶解度<b>一律隨溫度升高而下降</b></li>
+        <li>溶解度<b>一律隨溫度升高而下降</b>:氣體溶進水是放熱的,加熱等於把它趕出去</li>
         <li>汽水加熱氣泡狂冒;溫水先出現氣泡</li>
         <li>熱污染:水溫升高 → 溶氧下降 → 魚類缺氧</li>
       </ul>
@@ -423,10 +423,13 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <!-- 21 -->
 <section class="slide">
   <h2>蒸氣壓下降:Raoult 定律 <span class="en">Vapor Pressure Lowering</span></h2>
-  <div class="box def"><span class="tag">定律</span><b>Raoult 定律</b>:溶液中溶劑的蒸氣壓 = 溶劑莫耳分率 × 純溶劑蒸氣壓。</div>
-  <div class="eq"><span class="hl">P<sub>solvent</sub> = X<sub>solvent</sub> · P°<sub>solvent</sub></span>&nbsp;&nbsp;;&nbsp;&nbsp;ΔP = X<sub>solute</sub> · P°<sub>solvent</sub></div>
+  <div class="box key" style="margin:5px 0;padding:8px 20px;font-size:19px;line-height:1.4"><span class="tag">先想一下</span>為什麼糖水比純水更不容易蒸發?因為液面上有一部分位置被不會蒸發的糖分子占住,能跑出去的水分子變少了。</div>
+  <div class="box def" style="margin:5px 0;padding:8px 20px;font-size:19px;line-height:1.4"><span class="tag">定律</span><b>Raoult 定律</b>:溶液中溶劑的蒸氣壓 = 溶劑莫耳分率 × 純溶劑蒸氣壓。</div>
+  <div class="eq" style="margin:6px 0"><span class="hl">P<sub>solvent</sub> = X<sub>solvent</sub> · P°<sub>solvent</sub></span></div>
+  <p style="margin:4px 0;font-size:19px">因為 X<sub>溶劑</sub> + X<sub>溶質</sub> = 1,所以下降量 ΔP = P° − X<sub>溶劑</sub>·P° = X<sub>溶質</sub>·P°:</p>
+  <div class="eq" style="margin:6px 0">ΔP = X<sub>solute</sub> · P°<sub>solvent</sub></div>
   <ul>
-    <li>加入不揮發溶質 → 液面部分被溶質佔據 → 溶劑蒸發變慢 → 蒸氣壓下降</li>
+    <li>加入不揮發溶質(自己不會跑到氣相的溶質,例如糖、鹽)→ 液面部分被溶質佔據 → 溶劑蒸發變慢 → 蒸氣壓下降</li>
     <li>下降量只與溶質<b>粒子的莫耳分率</b>成正比(依數性質!)</li>
     <li>理想溶液 (ideal solution):完全遵守 Raoult 定律的溶液</li>
   </ul>
@@ -587,7 +590,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <section class="slide">
   <h2>冰晶大小決定口感 <span class="en">Why Ice Crystal Size Matters</span></h2>
   <table><tr><th>做法</th><th>對冰晶的影響</th><th>口感</th></tr><tr><td><b>快速</b>冷凍 + 持續攪打</td><td>大量<b>小</b>冰晶</td><td>綿密</td></tr><tr><td>緩慢冷凍、不攪拌</td><td>少量<b>大</b>冰晶</td><td>粗糙、沙沙的</td></tr><tr><td>反覆解凍再結凍</td><td>小冰晶合併成<b>大</b>冰晶</td><td>明顯冰渣</td></tr><tr><td>加入安定劑(膠體)</td><td>提高黏度,限制水分子移動</td><td>維持綿密</td></tr></table>
-<div class="box warn"><span class="tag">為什麼冰淇淋不能反覆解凍</span>每一次回溫都讓小冰晶部分融化,再結凍時水會往<b>大</b>冰晶上長(小的表面能高、先融)。這是不可逆的——<b>「重新冰硬」不會讓口感回來。</b></div>
+<div class="box warn"><span class="tag">為什麼冰淇淋不能反覆解凍</span>每一次回溫都讓小冰晶部分融化,再結凍時水會往<b>大</b>冰晶上長(小冰晶的表面比例大、最不穩定,回溫時最先融掉;再結凍時水就補到旁邊還在的大冰晶上,所以越來越粗)。這是不可逆的——<b>「重新冰硬」不會讓口感回來。</b></div>
 </section>
 
 <!-- 36 -->

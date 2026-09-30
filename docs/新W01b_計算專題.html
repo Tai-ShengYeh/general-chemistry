@@ -337,7 +337,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
     <tr><td class="gv">1 cup</td><td>236.6 mL</td><td>1.03 g</td><td>113 mg 鈣</td><td class="res">= 275 mg</td></tr>
     <tr><td class="gv">&nbsp;</td><td>1 cup</td><td>1 mL</td><td>100 g 牛奶</td><td class="res">&nbsp;</td></tr>
   </table>
-  <div class="sol"><b>解:</b>236.6 × 1.03 × 1.13 = <span class="hl">275 mg 鈣</span><br>
+  <div class="sol"><b>解:</b>236.6 × 1.03 × 113 ÷ 100 = <span class="hl">275 mg 鈣</span><br>
   <span class="small">一次乘到底,中途不要算出 236.6 或 243.7 再重新開始 —— 那會提早捨入,也會失去單位相消的檢查。<br>這杯牛奶約佔成人每日鈣建議量(1000 mg)的 <b>28%</b>。</span></div></div>
 </section>
 <!-- 14 -->
@@ -352,7 +352,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <h2>ADI:每日可接受攝取量 <span class="en">Acceptable Daily Intake</span></h2>
   <div class="box def"><span class="tag">定義</span><b>ADI</b> = 人終生每日攝取,仍不致產生可察覺健康風險的量。單位是 <span class="hl">mg / kg 體重 / 天</span>。</div>
   <ul>
-    <li>怎麼訂出來的:動物試驗找出<b>無可見不良作用劑量 NOAEL</b>(no-observed-adverse-effect level),再<b>除以安全係數</b>(通常 100:種間差 10 × 個體差 10)</li>
+    <li>怎麼訂出來的:動物試驗找出<b>無可見不良作用劑量 NOAEL</b>(no-observed-adverse-effect level),再<b>除以安全係數</b>(通常 100 倍:動物換成人算 10 倍,人與人之間體質差異再算 10 倍)</li>
     <li>所以 ADI 已內含約 100 倍安全邊際 —— 偶爾超過一點<b>不等於</b>中毒</li>
     <li>它是<b>長期平均</b>的概念,不是單次上限</li>
   </ul>
@@ -447,14 +447,17 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <!-- 21 -->
 <section class="slide">
   <h2>例題 10:清潔劑殘留 — 四級銨 <span class="en">Example 10 — Sanitizer Residue</span></h2>
-  <div class="box exbox" style="margin:6px 0;padding:9px 22px"><span class="tag">例題</span><b>四級銨化合物 QAC</b>(quaternary ammonium compound)是裝瓶線的殺菌消毒劑,<b>不是添加物</b> —— 沖洗不完全才會殘留。以苯扎氯銨為例:ADI = <b>0.1 mg/kg 體重/天</b>、殘留限量 <b>0.1 mg/kg</b>。同一瓶 <b>500 mL</b> 汽水(密度 1.04),60 kg 成人佔 ADI 幾 %?
-  <div class="sol">500 mL × 1.04 = 520 g = 0.520 kg × (0.1 mg/kg) = <b>0.052 mg</b> → ÷ 60 kg = <span class="hl">0.87% ADI</span>;要達 ADI 需 <b>115 瓶</b>。</div></div>
-  <table style="margin:4px auto;font-size:19px">
+  <div class="box exbox" style="margin:6px 0;padding:8px 22px;font-size:20px;line-height:1.45"><span class="tag">例題</span><b>四級銨化合物 QAC</b>(quaternary ammonium compound)是裝瓶線的殺菌消毒劑,<b>不是添加物</b> —— 沖洗不完全才會殘留。以苯扎氯銨為例:ADI = <b>0.1 mg/kg 體重/天</b>、殘留限量 <b>0.1 mg/kg</b>。同一瓶 <b>500 mL</b> 汽水(密度 1.04),60 kg 成人佔 ADI 幾 %?
+  <div class="sol" style="margin-top:5px;padding-top:5px;font-size:19px;line-height:1.3">① 汽水質量:500 mL × 1.04 g/mL = 520 g = 0.520 kg<br>
+  ② 殘留量:0.520 kg × 0.1 mg/kg = <b>0.052 mg</b><br>
+  ③ 每公斤體重:0.052 mg ÷ 60 kg = 0.00087 mg/kg/天<br>
+  ④ 佔 ADI:0.00087 ÷ 0.1 × 100% = <span class="hl">0.87% ADI</span>;要達 ADI 需 100 ÷ 0.87 ≈ <b>115 瓶</b>。</div></div>
+  <table style="margin:4px auto;font-size:18px">
     <tr><th>同一瓶 500 mL 汽水</th><th>限量</th><th>一瓶含量</th><th>60 kg 成人</th><th>達 ADI 需</th></tr>
     <tr><td>苯甲酸(<b>刻意添加</b>的防腐劑)</td><td>600 mg/kg</td><td>300 mg</td><td>100% ADI</td><td>1 瓶</td></tr>
     <tr><td>四級銨(<b>非刻意</b>的清潔劑殘留)</td><td>0.1 mg/kg</td><td>0.052 mg</td><td>0.87% ADI</td><td><span class="hl">115 瓶</span></td></tr>
   </table>
-  <div class="box warn" style="margin:6px 0;padding:9px 22px"><span class="tag">別誤讀</span>限量差 <b>6000 倍,不代表四級銨比較毒</b>。添加物的限量是「有防腐效果、且吃下去仍在 ADI 內」的<b>使用</b>上限;清潔劑殘留沒有存在理由,限量訂在<b>技術可達到的最低值</b>。<span class="small">（以歐盟食品安全局 EFSA(European Food Safety Authority)與歐盟 EU 為例,我國依現行公告。）</span></div>
+  <div class="box warn" style="margin:5px 0;padding:8px 22px;font-size:19px;line-height:1.4"><span class="tag">別誤讀</span>限量差 <b>6000 倍,不代表四級銨比較毒</b>。添加物的限量是「有防腐效果、且吃下去仍在 ADI 內」的<b>使用</b>上限;清潔劑殘留沒有存在理由,限量訂在<b>技術可達到的最低值</b>。<span class="small">（以歐盟食品安全局 EFSA(European Food Safety Authority)與歐盟 EU 為例,我國依現行公告。）</span></div>
 </section>
 <!-- 22 -->
 <section class="slide">
@@ -489,8 +492,8 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <h2>DRIs 的四個名詞 <span class="en">EAR, RDA, AI, UL</span></h2>
   <table>
     <tr><th>縮寫</th><th>英文全名</th><th>中文</th><th>意義</th></tr>
-    <tr><td><b>EAR</b></td><td class="small">Estimated Average Requirement</td><td style="white-space:nowrap">估計平均需要量</td><td>能滿足<b>50%</b> 該族群的量 —— 用於評估<b>群體</b></td></tr>
-    <tr><td><b>RDA</b></td><td class="small">Recommended Dietary Allowance</td><td style="white-space:nowrap">建議攝取量</td><td>能滿足 <b>97–98%</b> 的量 = EAR + 2 個標準差 SD —— 用於<b>個人</b>目標</td></tr>
+    <tr><td><b>EAR</b></td><td class="small">Estimated Average Requirement</td><td style="white-space:nowrap">估計平均需要量</td><td>能滿足<b>50%</b> 該族群的量 —— 用於評估<b>群體</b>(只夠一半的人,所以不能當個人目標)</td></tr>
+    <tr><td><b>RDA</b></td><td class="small">Recommended Dietary Allowance</td><td style="white-space:nowrap">建議攝取量</td><td>= 把 EAR 再往上加一段安全距離,加到能涵蓋 <b>97–98%</b> 的人 —— 用於<b>個人</b>目標</td></tr>
     <tr><td><b>AI</b></td><td class="small">Adequate Intake</td><td style="white-space:nowrap">足夠攝取量</td><td>資料不足以定 RDA 時採用的替代值(如鈣)</td></tr>
     <tr><td><b>UL</b></td><td class="small">Tolerable Upper Intake Level</td><td style="white-space:nowrap">上限攝取量</td><td>長期攝取<b>不致危害</b>的最高量 —— 不是建議量</td></tr>
   </table>

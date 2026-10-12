@@ -137,6 +137,11 @@ tr:nth-child(even) td{background:#f4f6f7}
 .hookmap{font-size:19px;line-height:1.5}
 .hookmap td{text-align:left;padding:5px 10px}
 .hookmap td:first-child{text-align:center;font-weight:700;color:var(--accent);width:62px}
+.animbox{display:grid;grid-template-columns:1.08fr .92fr;gap:22px;align-items:center;margin-top:2px}
+.animbox video{width:100%;border-radius:12px;border:2px solid #c8dce8;background:#eaf2f8;box-shadow:0 10px 26px rgba(26,82,118,.18)}
+.animnote{background:#eaf2f8;border-left:6px solid var(--primary);border-radius:10px;padding:14px 18px;font-size:21px;line-height:1.45}
+.animnote ul{font-size:20px;line-height:1.42;margin-left:22px}.animnote li{margin:5px 0}
+.animlinks{font-size:18px;margin-top:10px;color:var(--muted)}.animlinks a{color:var(--primary);font-weight:700;text-decoration:none}
 @media print{
   @page{size:1280px 720px;margin:0}
   html,body{background:#fff}
@@ -220,6 +225,29 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <h2>第 2 週·食品營養錨點:「檸檬酸鈣 1000 mg」補了多少鈣? <span class="en">This Week's Anchor</span></h2>
 <div class="box def"><span class="tag">大哉問</span>架上兩瓶鈣片,一瓶寫「碳酸鈣 1000 mg」,一瓶寫「檸檬酸鈣 1000 mg」,價格差兩倍。<br>它們補到的<b>鈣</b>一樣多嗎?<br>再看一眼:有些瓶子寫的是「元素鈣 250 mg」。這三個數字,哪一個才是你要的?</div>
 <div class="box exbox"><span class="tag">先猜猜看</span>碳酸鈣 CaCO<sub>3</sub> 與檸檬酸鈣 Ca<sub>3</sub>(C<sub>6</sub>H<sub>5</sub>O<sub>7</sub>)<sub>2</sub>,同樣 1000 mg,哪一個含鈣較多?差多少?(答案在本週最後一張)</div>
+</section>
+
+<section class="slide hook">
+  <h2>教學動畫：鈣片 1000 mg 補了多少元素鈣？ <span class="en">Short Explainer Video</span></h2>
+  <div class="animbox">
+    <div>
+      <video controls preload="metadata" poster="animations/w02_calcium/poster.jpg">
+        <source src="animations/w02_calcium/w02_calcium_animation.mp4" type="video/mp4">
+        <track kind="subtitles" srclang="zh-Hant" label="繁體中文" src="animations/w02_calcium/w02_calcium_animation.srt" default>
+        您的瀏覽器不支援影片播放。
+      </video>
+      <div class="animlinks">影片檔：<a href="animations/w02_calcium/w02_calcium_animation.mp4">下載 MP4</a>　字幕：<a href="animations/w02_calcium/w02_calcium_animation.srt">下載 SRT</a></div>
+    </div>
+    <div class="animnote">
+      <b>看影片時請抓住三個問題：</b>
+      <ul>
+        <li>瓶身 1000 mg 常指化合物質量，不是元素鈣質量。</li>
+        <li>要用化學式與莫耳質量算元素的質量分率。</li>
+        <li>同樣 1000 mg，碳酸鈣與檸檬酸鈣補到的鈣不同。</li>
+      </ul>
+      <div class="box key" style="font-size:20px;margin:10px 0 0"><span class="tag">先看情境，再看公式</span>請注意每一步的單位與分母；這會決定答案代表什麼。</div>
+    </div>
+  </div>
 </section>
 
 <!-- 4 -->

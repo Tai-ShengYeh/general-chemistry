@@ -137,6 +137,11 @@ tr:nth-child(even) td{background:#f4f6f7}
 .hookmap{font-size:19px;line-height:1.5}
 .hookmap td{text-align:left;padding:5px 10px}
 .hookmap td:first-child{text-align:center;font-weight:700;color:var(--accent);width:62px}
+.animbox{display:grid;grid-template-columns:1.08fr .92fr;gap:22px;align-items:center;margin-top:2px}
+.animbox video{width:100%;border-radius:12px;border:2px solid #c8dce8;background:#eaf2f8;box-shadow:0 10px 26px rgba(26,82,118,.18)}
+.animnote{background:#eaf2f8;border-left:6px solid var(--primary);border-radius:10px;padding:14px 18px;font-size:21px;line-height:1.45}
+.animnote ul{font-size:20px;line-height:1.42;margin-left:22px}.animnote li{margin:5px 0}
+.animlinks{font-size:18px;margin-top:10px;color:var(--muted)}.animlinks a{color:var(--primary);font-weight:700;text-decoration:none}
 @media print{
   @page{size:1280px 720px;margin:0}
   html,body{background:#fff}
@@ -222,6 +227,29 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <h2>第 4 週·食品營養錨點:生理食鹽水為什麼是 0.9%? <span class="en">This Week's Anchor</span></h2>
 <div class="box def"><span class="tag">大哉問</span>醫院的生理食鹽水永遠是 <b>0.9%</b>,點滴的葡萄糖永遠是 <b>5%</b>。這兩個數字看起來很隨意,卻幾十年沒有變過。<br>為什麼是 0.9 而不是 1.0?為什麼葡萄糖要 5% 而不是也用 0.9%?<br>而且——這裡的「%」到底是<b>哪一種</b>百分比?</div>
 <div class="box exbox"><span class="tag">先猜猜看</span>0.9% NaCl 與 5% 葡萄糖,兩者的<b>質量濃度</b>差了 5 倍以上,為什麼都能直接打進血管?(答案在本週最後一張)</div>
+</section>
+
+<section class="slide hook">
+  <h2>教學動畫：生理食鹽水為什麼是 0.9%？ <span class="en">Short Explainer Video</span></h2>
+  <div class="animbox">
+    <div>
+      <video controls preload="metadata" poster="animations/w04_saline/poster.jpg">
+        <source src="animations/w04_saline/w04_saline_animation.mp4" type="video/mp4">
+        <track kind="subtitles" srclang="zh-Hant" label="繁體中文" src="animations/w04_saline/w04_saline_animation.srt" default>
+        您的瀏覽器不支援影片播放。
+      </video>
+      <div class="animlinks">影片檔：<a href="animations/w04_saline/w04_saline_animation.mp4">下載 MP4</a>　字幕：<a href="animations/w04_saline/w04_saline_animation.srt">下載 SRT</a></div>
+    </div>
+    <div class="animnote">
+      <b>看影片時請抓住三個問題：</b>
+      <ul>
+        <li>0.9% NaCl 是 %w/v：每 100 mL 含 0.9 g。</li>
+        <li>%w/v、M、滲透濃度問的是不同分母。</li>
+        <li>等張看粒子數，不是只看溶質質量。</li>
+      </ul>
+      <div class="box key" style="font-size:20px;margin:10px 0 0"><span class="tag">先看情境，再看公式</span>請注意每一步的單位與分母；這會決定答案代表什麼。</div>
+    </div>
+  </div>
 </section>
 
 <!-- 4 -->

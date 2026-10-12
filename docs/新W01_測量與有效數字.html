@@ -137,6 +137,11 @@ tr:nth-child(even) td{background:#f4f6f7}
 .hookmap{font-size:19px;line-height:1.5}
 .hookmap td{text-align:left;padding:5px 10px}
 .hookmap td:first-child{text-align:center;font-weight:700;color:var(--accent);width:62px}
+.animbox{display:grid;grid-template-columns:1.08fr .92fr;gap:22px;align-items:center;margin-top:2px}
+.animbox video{width:100%;border-radius:12px;border:2px solid #c8dce8;background:#eaf2f8;box-shadow:0 10px 26px rgba(26,82,118,.18)}
+.animnote{background:#eaf2f8;border-left:6px solid var(--primary);border-radius:10px;padding:14px 18px;font-size:21px;line-height:1.45}
+.animnote ul{font-size:20px;line-height:1.42;margin-left:22px}.animnote li{margin:5px 0}
+.animlinks{font-size:18px;margin-top:10px;color:var(--muted)}.animlinks a{color:var(--primary);font-weight:700;text-decoration:none}
 @media print{
   @page{size:1280px 720px;margin:0}
   html,body{background:#fff}
@@ -226,6 +231,29 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
     <div class="hk-next"><h3>之後在哪裡會再遇到</h3><ul><li><span class="course">分析化學</span>有效數字、誤差來源、檢量線</li><li><span class="course">食品分析</span>實驗報告的數據呈現</li><li><span class="course">營養學</span>攝取量估算的不確定性</li><li><span class="course">食品衛生安全</span>風險評估的因次換算與劑量計算</li></ul></div>
   </div>
   <div class="canyou"><b>本週結束時，你應該能回答：</b>為什麼兩個很精確的數字相減之後，精確度反而變差？</div><div class="canyou" style="background:#f4f6f7;border-left-color:#95a5a6"><b>先猜猜看：</b>如果標示寫「5 g」和「5.0 g」，哪一個代表工廠量得比較仔細？</div>
+</section>
+
+<section class="slide hook">
+  <h2>教學動畫：5.2 g 為什麼不是 5.234 g？ <span class="en">Short Explainer Video</span></h2>
+  <div class="animbox">
+    <div>
+      <video controls preload="metadata" poster="animations/w01_sigfigs/poster.jpg">
+        <source src="animations/w01_sigfigs/w01_sigfigs_animation.mp4" type="video/mp4">
+        <track kind="subtitles" srclang="zh-Hant" label="繁體中文" src="animations/w01_sigfigs/w01_sigfigs_animation.srt" default>
+        您的瀏覽器不支援影片播放。
+      </video>
+      <div class="animlinks">影片檔：<a href="animations/w01_sigfigs/w01_sigfigs_animation.mp4">下載 MP4</a>　字幕：<a href="animations/w01_sigfigs/w01_sigfigs_animation.srt">下載 SRT</a></div>
+    </div>
+    <div class="animnote">
+      <b>看影片時請抓住三個問題：</b>
+      <ul>
+        <li>5 g 和 5.0 g 的有效數字不同。</li>
+        <li>標示位數是量測不確定度的誠實聲明。</li>
+        <li>加減看小數位數，差值可能只剩很少有效數字。</li>
+      </ul>
+      <div class="box key" style="font-size:20px;margin:10px 0 0"><span class="tag">先看情境，再看公式</span>請注意每一步的單位與分母；這會決定答案代表什麼。</div>
+    </div>
+  </div>
 </section>
 
 <!-- 4 -->

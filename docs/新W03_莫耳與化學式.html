@@ -137,6 +137,11 @@ tr:nth-child(even) td{background:#f4f6f7}
 .hookmap{font-size:19px;line-height:1.5}
 .hookmap td{text-align:left;padding:5px 10px}
 .hookmap td:first-child{text-align:center;font-weight:700;color:var(--accent);width:62px}
+.animbox{display:grid;grid-template-columns:1.08fr .92fr;gap:22px;align-items:center;margin-top:2px}
+.animbox video{width:100%;border-radius:12px;border:2px solid #c8dce8;background:#eaf2f8;box-shadow:0 10px 26px rgba(26,82,118,.18)}
+.animnote{background:#eaf2f8;border-left:6px solid var(--primary);border-radius:10px;padding:14px 18px;font-size:21px;line-height:1.45}
+.animnote ul{font-size:20px;line-height:1.42;margin-left:22px}.animnote li{margin:5px 0}
+.animlinks{font-size:18px;margin-top:10px;color:var(--muted)}.animlinks a{color:var(--primary);font-weight:700;text-decoration:none}
 @media print{
   @page{size:1280px 720px;margin:0}
   html,body{background:#fff}
@@ -227,6 +232,30 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 </section>
 
 <!-- 4 -->
+<section class="slide hook">
+  <h2>教學動畫：鈉 1800 mg 到底是多少鹽？ <span class="en">Short Explainer Video</span></h2>
+  <div class="animbox">
+    <div>
+      <video controls preload="metadata" poster="animations/w03_mole_salt/poster.jpg">
+        <source src="animations/w03_mole_salt/w03_mole_salt_animation.mp4" type="video/mp4">
+        <track kind="subtitles" srclang="zh-Hant" label="繁體中文" src="animations/w03_mole_salt/w03_mole_salt_animation.srt" default>
+        您的瀏覽器不支援影片播放。
+      </video>
+      <div class="animlinks">影片檔：<a href="animations/w03_mole_salt/w03_mole_salt_animation.mp4">下載 MP4</a>　字幕：<a href="animations/w03_mole_salt/w03_mole_salt_animation.srt">下載 SRT</a></div>
+    </div>
+    <div class="animnote">
+      <b>看影片時請抓住三個問題：</b>
+      <ul>
+        <li>營養標示寫的是<b>元素鈉 Na</b>，不是食鹽 NaCl。</li>
+        <li>從元素換到化合物，要用<b>莫耳質量比例</b>：58.44 ÷ 22.99 = 2.54。</li>
+        <li>1800 mg 鈉 × 2.54 ≈ <b>4.6 g 食鹽</b>，約是每日鈉上限的 <b>75%</b>。</li>
+      </ul>
+      <div class="box key" style="font-size:20px;margin:10px 0 0"><span class="tag">先不要背答案</span>請注意每一步的單位怎麼消掉；這就是後面所有化學計量的共同語言。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 -->
 <section class="slide">
   <h2>本週知識地圖 <span class="en">Roadmap</span></h2>
   <table><tr><th>段落</th><th>在問什麼</th><th>關鍵詞</th></tr><tr><td>PART 1</td><td>怎麼把「幾個分子」換成「幾公克」?</td><td>式量・莫耳・N<sub>A</sub></td></tr><tr><td>PART 2</td><td>怎麼由組成反推化學式?</td><td>百分組成・實驗式・燃燒分析</td></tr><tr><td>PART 3</td><td>標示上的元素與化合物怎麼互換?</td><td>質量分率・鈉↔鹽</td></tr></table>

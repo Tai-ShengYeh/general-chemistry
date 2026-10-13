@@ -69,6 +69,10 @@ desktop.ini
 __pycache__/
 *.pyc
 
+# Teaching animation intermediates (published MP4/subtitles/posters remain tracked)
+docs/animations/w*/narration.wav
+docs/animations/w*/.render-cache/
+
 # 期中考(含答案與迷思診斷,本機)
 _期中考/
 

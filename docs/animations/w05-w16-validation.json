@@ -1,0 +1,247 @@
+{
+  "verified_count": 12,
+  "caption_cues": 96,
+  "duration_seconds": 922.291713,
+  "videos": [
+    {
+      "week": "W05",
+      "page": "新W05_化學反應.html",
+      "mp4": "animations/w05_reactions/w05_reactions_animation.mp4",
+      "duration_seconds": 69.625,
+      "audio_seconds": 69.624989,
+      "video_seconds": 69.625,
+      "speech_seconds": 67.62335600907029,
+      "frames": 1671,
+      "size_bytes": 1206924,
+      "caption_cues": 8,
+      "relative_references_checked": [
+        "animations/w05_reactions/poster.jpg",
+        "animations/w05_reactions/w05_reactions_animation.mp4",
+        "animations/w05_reactions/w05_reactions_animation.vtt",
+        "animations/w05_reactions/w05_reactions_animation.mp4",
+        "animations/w05_reactions/w05_reactions_animation.srt"
+      ],
+      "full_decode_passed": true
+    },
+    {
+      "week": "W06",
+      "page": "新W06_化學計量.html",
+      "mp4": "animations/w06_stoich/w06_stoich_animation.mp4",
+      "duration_seconds": 75.916667,
+      "audio_seconds": 75.916644,
+      "video_seconds": 75.916667,
+      "speech_seconds": 73.91260770975057,
+      "frames": 1822,
+      "size_bytes": 1327530,
+      "caption_cues": 8,
+      "relative_references_checked": [
+        "animations/w06_stoich/poster.jpg",
+        "animations/w06_stoich/w06_stoich_animation.mp4",
+        "animations/w06_stoich/w06_stoich_animation.vtt",
+        "animations/w06_stoich/w06_stoich_animation.mp4",
+        "animations/w06_stoich/w06_stoich_animation.srt"
+      ],
+      "full_decode_passed": true
+    },
+    {
+      "week": "W07",
+      "page": "新W07_滴定與定量分析.html",
+      "mp4": "animations/w07_titration/w07_titration_animation.mp4",
+      "duration_seconds": 76.0,
+      "audio_seconds": 76.0,
+      "video_seconds": 76.0,
+      "speech_seconds": 73.97387755102041,
+      "frames": 1824,
+      "size_bytes": 1329049,
+      "caption_cues": 8,
+      "relative_references_checked": [
+        "animations/w07_titration/poster.jpg",
+        "animations/w07_titration/w07_titration_animation.mp4",
+        "animations/w07_titration/w07_titration_animation.vtt",
+        "animations/w07_titration/w07_titration_animation.mp4",
+        "animations/w07_titration/w07_titration_animation.srt"
+      ],
+      "full_decode_passed": true
+    },
+    {
+      "week": "W08",
+      "page": "新W08_熱化學.html",
+      "mp4": "animations/w08_thermochemistry/w08_thermochemistry_animation.mp4",
+      "duration_seconds": 70.0,
+      "audio_seconds": 70.0,
+      "video_seconds": 70.0,
+      "speech_seconds": 67.97337868480726,
+      "frames": 1680,
+      "size_bytes": 1181486,
+      "caption_cues": 8,
+      "relative_references_checked": [
+        "animations/w08_thermochemistry/poster.jpg",
+        "animations/w08_thermochemistry/w08_thermochemistry_animation.mp4",
+        "animations/w08_thermochemistry/w08_thermochemistry_animation.vtt",
+        "animations/w08_thermochemistry/w08_thermochemistry_animation.mp4",
+        "animations/w08_thermochemistry/w08_thermochemistry_animation.srt"
+      ],
+      "full_decode_passed": true
+    },
+    {
+      "week": "W09",
+      "page": "新W09_化學鍵與分子結構.html",
+      "mp4": "animations/w09_bonding/w09_bonding_animation.mp4",
+      "duration_seconds": 76.041678,
+      "audio_seconds": 76.041678,
+      "video_seconds": 76.041667,
+      "speech_seconds": 74.03786848072562,
+      "frames": 1825,
+      "size_bytes": 1359203,
+      "caption_cues": 8,
+      "relative_references_checked": [
+        "animations/w09_bonding/poster.jpg",
+        "animations/w09_bonding/w09_bonding_animation.mp4",
+        "animations/w09_bonding/w09_bonding_animation.vtt",
+        "animations/w09_bonding/w09_bonding_animation.mp4",
+        "animations/w09_bonding/w09_bonding_animation.srt"
+      ],
+      "full_decode_passed": true
+    },
+    {
+      "week": "W10",
+      "page": "新W10_分子極性與顏色.html",
+      "mp4": "animations/w10_polar_color/w10_polar_color_animation.mp4",
+      "duration_seconds": 73.791667,
+      "audio_seconds": 73.791655,
+      "video_seconds": 73.791667,
+      "speech_seconds": 71.76643990929705,
+      "frames": 1771,
+      "size_bytes": 1334911,
+      "caption_cues": 8,
+      "relative_references_checked": [
+        "animations/w10_polar_color/poster.jpg",
+        "animations/w10_polar_color/w10_polar_color_animation.mp4",
+        "animations/w10_polar_color/w10_polar_color_animation.vtt",
+        "animations/w10_polar_color/w10_polar_color_animation.mp4",
+        "animations/w10_polar_color/w10_polar_color_animation.srt"
+      ],
+      "full_decode_passed": true
+    },
+    {
+      "week": "W11",
+      "page": "新W11_分子間作用力與相變.html",
+      "mp4": "animations/w11_imf_phase/w11_imf_phase_animation.mp4",
+      "duration_seconds": 84.958333,
+      "audio_seconds": 84.958322,
+      "video_seconds": 84.958333,
+      "speech_seconds": 82.95024943310658,
+      "frames": 2039,
+      "size_bytes": 1531246,
+      "caption_cues": 8,
+      "relative_references_checked": [
+        "animations/w11_imf_phase/poster.jpg",
+        "animations/w11_imf_phase/w11_imf_phase_animation.mp4",
+        "animations/w11_imf_phase/w11_imf_phase_animation.vtt",
+        "animations/w11_imf_phase/w11_imf_phase_animation.mp4",
+        "animations/w11_imf_phase/w11_imf_phase_animation.srt"
+      ],
+      "full_decode_passed": true
+    },
+    {
+      "week": "W12",
+      "page": "新W12_溶液與依數性質.html",
+      "mp4": "animations/w12_colligative/w12_colligative_animation.mp4",
+      "duration_seconds": 78.041678,
+      "audio_seconds": 78.041678,
+      "video_seconds": 78.041667,
+      "speech_seconds": 76.03650793650795,
+      "frames": 1873,
+      "size_bytes": 1377067,
+      "caption_cues": 8,
+      "relative_references_checked": [
+        "animations/w12_colligative/poster.jpg",
+        "animations/w12_colligative/w12_colligative_animation.mp4",
+        "animations/w12_colligative/w12_colligative_animation.vtt",
+        "animations/w12_colligative/w12_colligative_animation.mp4",
+        "animations/w12_colligative/w12_colligative_animation.srt"
+      ],
+      "full_decode_passed": true
+    },
+    {
+      "week": "W13",
+      "page": "新W13_膠體乳化與水活性.html",
+      "mp4": "animations/w13_colloid_aw/w13_colloid_aw_animation.mp4",
+      "duration_seconds": 75.416667,
+      "audio_seconds": 75.416644,
+      "video_seconds": 75.416667,
+      "speech_seconds": 73.39097505668934,
+      "frames": 1810,
+      "size_bytes": 1400967,
+      "caption_cues": 8,
+      "relative_references_checked": [
+        "animations/w13_colloid_aw/poster.jpg",
+        "animations/w13_colloid_aw/w13_colloid_aw_animation.mp4",
+        "animations/w13_colloid_aw/w13_colloid_aw_animation.vtt",
+        "animations/w13_colloid_aw/w13_colloid_aw_animation.mp4",
+        "animations/w13_colloid_aw/w13_colloid_aw_animation.srt"
+      ],
+      "full_decode_passed": true
+    },
+    {
+      "week": "W14",
+      "page": "新W14_酸鹼I.html",
+      "mp4": "animations/w14_acid_base/w14_acid_base_animation.mp4",
+      "duration_seconds": 82.208345,
+      "audio_seconds": 82.208345,
+      "video_seconds": 82.208333,
+      "speech_seconds": 80.1756462585034,
+      "frames": 1973,
+      "size_bytes": 1398495,
+      "caption_cues": 8,
+      "relative_references_checked": [
+        "animations/w14_acid_base/poster.jpg",
+        "animations/w14_acid_base/w14_acid_base_animation.mp4",
+        "animations/w14_acid_base/w14_acid_base_animation.vtt",
+        "animations/w14_acid_base/w14_acid_base_animation.mp4",
+        "animations/w14_acid_base/w14_acid_base_animation.srt"
+      ],
+      "full_decode_passed": true
+    },
+    {
+      "week": "W15",
+      "page": "新W15_酸鹼II緩衝.html",
+      "mp4": "animations/w15_buffer_pi/w15_buffer_pi_animation.mp4",
+      "duration_seconds": 79.208345,
+      "audio_seconds": 79.208345,
+      "video_seconds": 79.208333,
+      "speech_seconds": 77.17709750566894,
+      "frames": 1901,
+      "size_bytes": 1387971,
+      "caption_cues": 8,
+      "relative_references_checked": [
+        "animations/w15_buffer_pi/poster.jpg",
+        "animations/w15_buffer_pi/w15_buffer_pi_animation.mp4",
+        "animations/w15_buffer_pi/w15_buffer_pi_animation.vtt",
+        "animations/w15_buffer_pi/w15_buffer_pi_animation.mp4",
+        "animations/w15_buffer_pi/w15_buffer_pi_animation.srt"
+      ],
+      "full_decode_passed": true
+    },
+    {
+      "week": "W16",
+      "page": "新W16_氧化還原.html",
+      "mp4": "animations/w16_redox/w16_redox_animation.mp4",
+      "duration_seconds": 81.083333,
+      "audio_seconds": 81.083311,
+      "video_seconds": 81.083333,
+      "speech_seconds": 79.06294784580498,
+      "frames": 1946,
+      "size_bytes": 1420217,
+      "caption_cues": 8,
+      "relative_references_checked": [
+        "animations/w16_redox/poster.jpg",
+        "animations/w16_redox/w16_redox_animation.mp4",
+        "animations/w16_redox/w16_redox_animation.vtt",
+        "animations/w16_redox/w16_redox_animation.mp4",
+        "animations/w16_redox/w16_redox_animation.srt"
+      ],
+      "full_decode_passed": true
+    }
+  ]
+}

@@ -145,6 +145,15 @@ tr:nth-child(even) td{background:#f4f6f7}
   .slide{position:relative;display:flex!important;page-break-after:always;margin:0;inset:auto}
   #bar{display:none}
 }
+
+/* Lesson-local teaching video; preserve existing deck/mobile styles. */
+.animation-layout{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:24px;align-items:start}
+.animation-layout video{display:block;width:100%;max-height:430px;border-radius:12px;background:#eef6fb}
+.animation-notes h3{font-size:24px}.animation-notes ul{font-size:21px;line-height:1.45;margin-left:25px}
+.animation-notes .small{font-size:18px}
+body.scroll .animation-layout{grid-template-columns:1fr}
+body.scroll .animation-layout video{max-height:none}
+@media(max-width:720px){.animation-layout{grid-template-columns:1fr}}
 </style>
 <style id="mobile-css">
 /* ── 行動裝置閱讀模式（body.scroll）與工具列 ─────────────── */
@@ -223,6 +232,22 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <div class="box def"><span class="tag">大哉問</span>翻開《罐頭食品良好衛生規範》或美國食品藥物管理局 FDA(Food and Drug Administration)的聯邦法規 21 CFR(Code of Federal Regulations, Title 21),你會一直看到同一個數字:<b>pH 4.6</b>。pH 在 4.6 以下的食品,滾水殺菌就可以;pH 高於 4.6 的,必須送進 121 °C 的高壓滅菌釜。<br>為什麼是 4.6?為什麼不是 4.5 或 5.0?差 0.1 個 pH 有什麼了不起?</div>
   <p class="small">而且——番茄的 pH 大約 4.3,只差 0.3 就跨過去了。這也是為什麼番茄罐頭可以用沸水處理,而同樣是蔬菜的四季豆罐頭不行。</p>
 <div class="box exbox"><span class="tag">先猜猜看</span>一罐自製蒜頭橄欖油,常溫放在櫃子上。你覺得它比較接近「酸性食品」還是「低酸性食品」?哪一種比較危險?(答案在本週最後一張)</div>
+</section>
+
+<!-- 錨點後的教學動畫；完整逐句旁白字幕 -->
+<section class="slide animation-slide">
+  <h2>錨點概念短片<span class="en">食品的 pH 界線，和強酸濃酸有什麼不同？</span></h2>
+  <div class="animation-layout">
+    <video controls preload="metadata" playsinline poster="animations/w14_acid_base/poster.jpg" aria-label="食品的 pH 界線，和強酸濃酸有什麼不同？">
+      <source src="animations/w14_acid_base/w14_acid_base_animation.mp4" type="video/mp4">
+      <track kind="subtitles" src="animations/w14_acid_base/w14_acid_base_animation.vtt" srclang="zh-Hant" label="繁體中文完整旁白">
+      您的瀏覽器無法播放此影片，請下載 MP4。
+    </video>
+    <div class="animation-notes"><h3>觀看時留意</h3><ul><li>區分解離與濃度</li><li>看氫離子活性</li><li>結合加工安全條件</li></ul>
+      <p class="small">概念短片搭配本週例題；畫面與字幕包含完整旁白。</p>
+      <p class="small"><a href="animations/w14_acid_base/w14_acid_base_animation.mp4" download>下載 MP4</a> · <a href="animations/w14_acid_base/w14_acid_base_animation.srt" download>下載 SRT 字幕</a></p>
+    </div>
+  </div>
 </section>
 
 <!-- 4 -->
@@ -808,7 +833,7 @@ slides.forEach(s=>{
 });
 function show(n){
   cur=Math.max(0,Math.min(slides.length-1,n));
-  slides.forEach((s,i)=>{s.classList.toggle('active',i===cur);s.classList.remove('reveal');});
+  slides.forEach((s,i)=>{if(i!==cur)s.querySelectorAll('video').forEach(v=>v.pause());s.classList.toggle('active',i===cur);s.classList.remove('reveal');});
   document.getElementById('bar').style.width=((cur+1)/slides.length*100)+'%';
   location.hash=cur+1;
   if(document.body.classList.contains('scroll'))slides[cur].scrollIntoView({block:'start'});
@@ -830,6 +855,7 @@ function fit(){
 }
 addEventListener('resize',fit);
 addEventListener('keydown',e=>{
+  if(e.target.closest('video,a,button,input,select,textarea'))return;
   if(document.body.classList.contains('scroll'))return;
   if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();next();}
   else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev();}
@@ -837,12 +863,13 @@ addEventListener('keydown',e=>{
   else if(e.key==='End')show(slides.length-1);
 });
 addEventListener('click',e=>{
-  if(document.body.classList.contains('scroll')||e.target.closest('a,#mtb'))return;
+  if(document.body.classList.contains('scroll')||e.target.closest('a,#mtb,video,button,input,select,textarea'))return;
   (e.clientX>innerWidth/3)?next():prev();
 });
 let tx=null;
-addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+addEventListener('touchstart',e=>{tx=e.target.closest('video,a,button,input,select,textarea')?null:e.touches[0].clientX;});
 addEventListener('touchend',e=>{
+  if(e.target.closest('video,a,button,input,select,textarea')){tx=null;return;}
   if(document.body.classList.contains('scroll')){tx=null;return;}
   if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;
   if(dx<-40)next();else if(dx>40)prev();tx=null;

@@ -1,0 +1,306 @@
+{
+  "verified_count": 12,
+  "browser": "Chromium 1208 / Playwright (headless)",
+  "lessons": [
+    {
+      "week": "W05",
+      "desktop": {
+        "cur": 3,
+        "duration": 69.625,
+        "cues": 8,
+        "mode": "hidden",
+        "videoWidth": 741.328125,
+        "videoHeight": 416.984375,
+        "scroll": false
+      },
+      "mobile": {
+        "scroll": true,
+        "columns": "443.516px",
+        "videoWidth": 354.8125,
+        "viewport": 390,
+        "existingDeckOverflow": false,
+        "animationOverflow": false
+      },
+      "playback": true,
+      "video_click_no_navigation": true,
+      "video_keyboard_no_navigation": true,
+      "hidden_video_paused": true,
+      "page_errors": []
+    },
+    {
+      "week": "W06",
+      "desktop": {
+        "cur": 3,
+        "duration": 75.916667,
+        "cues": 8,
+        "mode": "hidden",
+        "videoWidth": 741.328125,
+        "videoHeight": 416.984375,
+        "scroll": false
+      },
+      "mobile": {
+        "scroll": true,
+        "columns": "443.516px",
+        "videoWidth": 354.8125,
+        "viewport": 390,
+        "existingDeckOverflow": false,
+        "animationOverflow": false
+      },
+      "playback": true,
+      "video_click_no_navigation": true,
+      "video_keyboard_no_navigation": true,
+      "hidden_video_paused": true,
+      "page_errors": []
+    },
+    {
+      "week": "W07",
+      "desktop": {
+        "cur": 3,
+        "duration": 76,
+        "cues": 8,
+        "mode": "hidden",
+        "videoWidth": 741.328125,
+        "videoHeight": 416.984375,
+        "scroll": false
+      },
+      "mobile": {
+        "scroll": true,
+        "columns": "443.516px",
+        "videoWidth": 354.8125,
+        "viewport": 390,
+        "existingDeckOverflow": false,
+        "animationOverflow": false
+      },
+      "playback": true,
+      "video_click_no_navigation": true,
+      "video_keyboard_no_navigation": true,
+      "hidden_video_paused": true,
+      "page_errors": []
+    },
+    {
+      "week": "W08",
+      "desktop": {
+        "cur": 3,
+        "duration": 70,
+        "cues": 8,
+        "mode": "hidden",
+        "videoWidth": 741.328125,
+        "videoHeight": 416.984375,
+        "scroll": false
+      },
+      "mobile": {
+        "scroll": true,
+        "columns": "443.516px",
+        "videoWidth": 354.8125,
+        "viewport": 390,
+        "existingDeckOverflow": false,
+        "animationOverflow": false
+      },
+      "playback": true,
+      "video_click_no_navigation": true,
+      "video_keyboard_no_navigation": true,
+      "hidden_video_paused": true,
+      "page_errors": []
+    },
+    {
+      "week": "W09",
+      "desktop": {
+        "cur": 3,
+        "duration": 76.041678,
+        "cues": 8,
+        "mode": "hidden",
+        "videoWidth": 741.328125,
+        "videoHeight": 416.984375,
+        "scroll": false
+      },
+      "mobile": {
+        "scroll": true,
+        "columns": "443.516px",
+        "videoWidth": 354.8125,
+        "viewport": 390,
+        "existingDeckOverflow": false,
+        "animationOverflow": false
+      },
+      "playback": true,
+      "video_click_no_navigation": true,
+      "video_keyboard_no_navigation": true,
+      "hidden_video_paused": true,
+      "page_errors": []
+    },
+    {
+      "week": "W10",
+      "desktop": {
+        "cur": 3,
+        "duration": 73.791667,
+        "cues": 8,
+        "mode": "hidden",
+        "videoWidth": 741.328125,
+        "videoHeight": 416.984375,
+        "scroll": false
+      },
+      "mobile": {
+        "scroll": true,
+        "columns": "443.516px",
+        "videoWidth": 354.8125,
+        "viewport": 390,
+        "existingDeckOverflow": false,
+        "animationOverflow": false
+      },
+      "playback": true,
+      "video_click_no_navigation": true,
+      "video_keyboard_no_navigation": true,
+      "hidden_video_paused": true,
+      "page_errors": []
+    },
+    {
+      "week": "W11",
+      "desktop": {
+        "cur": 3,
+        "duration": 84.958333,
+        "cues": 8,
+        "mode": "hidden",
+        "videoWidth": 741.328125,
+        "videoHeight": 416.984375,
+        "scroll": false
+      },
+      "mobile": {
+        "scroll": true,
+        "columns": "443.516px",
+        "videoWidth": 354.8125,
+        "viewport": 390,
+        "existingDeckOverflow": false,
+        "animationOverflow": false
+      },
+      "playback": true,
+      "video_click_no_navigation": true,
+      "video_keyboard_no_navigation": true,
+      "hidden_video_paused": true,
+      "page_errors": []
+    },
+    {
+      "week": "W12",
+      "desktop": {
+        "cur": 3,
+        "duration": 78.041678,
+        "cues": 8,
+        "mode": "hidden",
+        "videoWidth": 741.328125,
+        "videoHeight": 416.984375,
+        "scroll": false
+      },
+      "mobile": {
+        "scroll": true,
+        "columns": "443.516px",
+        "videoWidth": 354.8125,
+        "viewport": 390,
+        "existingDeckOverflow": false,
+        "animationOverflow": false
+      },
+      "playback": true,
+      "video_click_no_navigation": true,
+      "video_keyboard_no_navigation": true,
+      "hidden_video_paused": true,
+      "page_errors": []
+    },
+    {
+      "week": "W13",
+      "desktop": {
+        "cur": 3,
+        "duration": 75.416667,
+        "cues": 8,
+        "mode": "hidden",
+        "videoWidth": 741.328125,
+        "videoHeight": 416.984375,
+        "scroll": false
+      },
+      "mobile": {
+        "scroll": true,
+        "columns": "443.516px",
+        "videoWidth": 354.8125,
+        "viewport": 390,
+        "existingDeckOverflow": true,
+        "animationOverflow": false
+      },
+      "playback": true,
+      "video_click_no_navigation": true,
+      "video_keyboard_no_navigation": true,
+      "hidden_video_paused": true,
+      "page_errors": []
+    },
+    {
+      "week": "W14",
+      "desktop": {
+        "cur": 3,
+        "duration": 82.208345,
+        "cues": 8,
+        "mode": "hidden",
+        "videoWidth": 741.328125,
+        "videoHeight": 416.984375,
+        "scroll": false
+      },
+      "mobile": {
+        "scroll": true,
+        "columns": "443.516px",
+        "videoWidth": 354.8125,
+        "viewport": 390,
+        "existingDeckOverflow": false,
+        "animationOverflow": false
+      },
+      "playback": true,
+      "video_click_no_navigation": true,
+      "video_keyboard_no_navigation": true,
+      "hidden_video_paused": true,
+      "page_errors": []
+    },
+    {
+      "week": "W15",
+      "desktop": {
+        "cur": 3,
+        "duration": 79.208345,
+        "cues": 8,
+        "mode": "hidden",
+        "videoWidth": 741.328125,
+        "videoHeight": 416.984375,
+        "scroll": false
+      },
+      "mobile": {
+        "scroll": true,
+        "columns": "443.516px",
+        "videoWidth": 354.8125,
+        "viewport": 390,
+        "existingDeckOverflow": false,
+        "animationOverflow": false
+      },
+      "playback": true,
+      "video_click_no_navigation": true,
+      "video_keyboard_no_navigation": true,
+      "hidden_video_paused": true,
+      "page_errors": []
+    },
+    {
+      "week": "W16",
+      "desktop": {
+        "cur": 3,
+        "duration": 81.083333,
+        "cues": 8,
+        "mode": "hidden",
+        "videoWidth": 741.328125,
+        "videoHeight": 416.984375,
+        "scroll": false
+      },
+      "mobile": {
+        "scroll": true,
+        "columns": "443.516px",
+        "videoWidth": 354.8125,
+        "viewport": 390,
+        "existingDeckOverflow": false,
+        "animationOverflow": false
+      },
+      "playback": true,
+      "video_click_no_navigation": true,
+      "video_keyboard_no_navigation": true,
+      "hidden_video_paused": true,
+      "page_errors": []
+    }
+  ]
+}

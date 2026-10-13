@@ -145,6 +145,15 @@ tr:nth-child(even) td{background:#f4f6f7}
   .slide{position:relative;display:flex!important;page-break-after:always;margin:0;inset:auto}
   #bar{display:none}
 }
+
+/* Lesson-local teaching video; preserve existing deck/mobile styles. */
+.animation-layout{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:24px;align-items:start}
+.animation-layout video{display:block;width:100%;max-height:430px;border-radius:12px;background:#eef6fb}
+.animation-notes h3{font-size:24px}.animation-notes ul{font-size:21px;line-height:1.45;margin-left:25px}
+.animation-notes .small{font-size:18px}
+body.scroll .animation-layout{grid-template-columns:1fr}
+body.scroll .animation-layout video{max-height:none}
+@media(max-width:720px){.animation-layout{grid-template-columns:1fr}}
 </style>
 <style id="mobile-css">
 /* ── 行動裝置閱讀模式（body.scroll）與工具列 ─────────────── */
@@ -226,6 +235,22 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
     <div class="hk-next"><h3>之後在哪裡會再遇到</h3><ul><li><span class="course">食品化學</span>膨脹劑、酸鹼與質地</li><li><span class="course">食品加工</span>配方設計</li><li><span class="course">分析化學</span>沉澱與重量分析</li></ul></div>
   </div>
   <div class="canyou"><b>本週結束時，你應該能回答：</b>為什麼只加小蘇打的蛋糕會有鹼味、還帶黃斑？</div><div class="canyou" style="background:#f4f6f7;border-left-color:#95a5a6"><b>先猜猜看：</b>小蘇打受熱分解，產生的氣體是什麼？</div>
+</section>
+
+<!-- 錨點後的教學動畫；完整逐句旁白字幕 -->
+<section class="slide animation-slide">
+  <h2>錨點概念短片<span class="en">小蘇打遇酸，為什麼能讓蛋糕膨？</span></h2>
+  <div class="animation-layout">
+    <video controls preload="metadata" playsinline poster="animations/w05_reactions/poster.jpg" aria-label="小蘇打遇酸，為什麼能讓蛋糕膨？">
+      <source src="animations/w05_reactions/w05_reactions_animation.mp4" type="video/mp4">
+      <track kind="subtitles" src="animations/w05_reactions/w05_reactions_animation.vtt" srclang="zh-Hant" label="繁體中文完整旁白">
+      您的瀏覽器無法播放此影片，請下載 MP4。
+    </video>
+    <div class="animation-notes"><h3>觀看時留意</h3><ul><li>酸與小蘇打反應</li><li>生成二氧化碳</li><li>氣泡撐起麵糊</li></ul>
+      <p class="small">概念短片搭配本週例題；畫面與字幕包含完整旁白。</p>
+      <p class="small"><a href="animations/w05_reactions/w05_reactions_animation.mp4" download>下載 MP4</a> · <a href="animations/w05_reactions/w05_reactions_animation.srt" download>下載 SRT 字幕</a></p>
+    </div>
+  </div>
 </section>
 
 <!-- 4 -->
@@ -843,7 +868,7 @@ slides.forEach(s=>{
 });
 function show(n){
   cur=Math.max(0,Math.min(slides.length-1,n));
-  slides.forEach((s,i)=>{s.classList.toggle('active',i===cur);s.classList.remove('reveal');});
+  slides.forEach((s,i)=>{if(i!==cur)s.querySelectorAll('video').forEach(v=>v.pause());s.classList.toggle('active',i===cur);s.classList.remove('reveal');});
   document.getElementById('bar').style.width=((cur+1)/slides.length*100)+'%';
   location.hash=cur+1;
   if(document.body.classList.contains('scroll'))slides[cur].scrollIntoView({block:'start'});
@@ -865,6 +890,7 @@ function fit(){
 }
 addEventListener('resize',fit);
 addEventListener('keydown',e=>{
+  if(e.target.closest('video,a,button,input,select,textarea'))return;
   if(document.body.classList.contains('scroll'))return;
   if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();next();}
   else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev();}
@@ -872,12 +898,13 @@ addEventListener('keydown',e=>{
   else if(e.key==='End')show(slides.length-1);
 });
 addEventListener('click',e=>{
-  if(document.body.classList.contains('scroll')||e.target.closest('a,#mtb'))return;
+  if(document.body.classList.contains('scroll')||e.target.closest('a,#mtb,video,button,input,select,textarea'))return;
   (e.clientX>innerWidth/3)?next():prev();
 });
 let tx=null;
-addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+addEventListener('touchstart',e=>{tx=e.target.closest('video,a,button,input,select,textarea')?null:e.touches[0].clientX;});
 addEventListener('touchend',e=>{
+  if(e.target.closest('video,a,button,input,select,textarea')){tx=null;return;}
   if(document.body.classList.contains('scroll')){tx=null;return;}
   if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;
   if(dx<-40)next();else if(dx>40)prev();tx=null;

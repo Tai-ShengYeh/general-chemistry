@@ -1,5 +1,11 @@
 # W05–W16 錨點概念短片
 
+> **語音更新（ElevenLabs）**：W01–W16 全部 16 支影片的中文旁白已由 Windows「Microsoft Hanhan Desktop」系統語音，
+> 換成 ElevenLabs 的台灣口音女聲 **Ling**（voice_id `Z8Aisvg1z70p27kGvkZZ`，模型 `eleven_v4`）。
+> 旁白文字不變；W05–W16 的圖卡與字幕時間依新語音的實際 WAV 長度重新對齊，`storyboard.json`、`.srt`、`.vtt` 一併更新。
+> W01、W02、W04 以整段旁白重新渲染；W03 沒有圖卡渲染器，改以 `w03_mole_salt/remix_narration.py`
+> 保留原畫面、只替換聲軌（九句依原錄音的起始秒數放置）。
+
 本批次補齊 12 個**教學週**。課程總覽採「16 教學週 + 2 考試週」；W09 是化學鍵教學週，不是期中考。總覽中獨立的期中考、期末考列沒有建立影片。W01–W04 的檔案不變。
 
 每週資料夾提供：
@@ -13,7 +19,17 @@
 
 ## 重新製作
 
-需要 Python + Pillow、ffmpeg / ffprobe，以及 WSL 可呼叫的 Windows PowerShell、`Microsoft Hanhan Desktop` 繁體中文語音。預設使用 Windows 微軟正黑體；可用 `CHEM_FONT`、`CHEM_BOLD` 指定其他含完整中文字形的字型。
+需要 Python + Pillow、ffmpeg / ffprobe。語音有兩種後端：
+
+- **ElevenLabs（目前發佈版本）**：設定環境變數 `ELEVENLABS_API_KEY`（或 `CHEM_TTS=elevenlabs`），
+  `render_teaching_animation.py` 會透過 `make_narration_elevenlabs.py` 逐句呼叫 ElevenLabs API，
+  輸出 44.1 kHz 單聲道 WAV 到 `.render-cache/`。聲音與模型可用 `CHEM_ELEVEN_VOICE`、`CHEM_ELEVEN_MODEL` 覆寫。
+  W01/W02/W04 整段旁白：`python make_narration_elevenlabs.py w01_sigfigs --whole`，再執行該週的 `render_animation.py`。
+  W03：`python w03_mole_salt/remix_narration.py --synthesize`。
+- **Windows Hanhan（舊版備援）**：未設定金鑰時，沿用 WSL 可呼叫的 Windows PowerShell 與 `Microsoft Hanhan Desktop` 語音（`make_narration.ps1`）。
+
+字型依序尋找 Windows 微軟正黑體、Noto Sans CJK、文泉驛正黑；可用 `CHEM_FONT`、`CHEM_BOLD` 指定其他含完整中文字形的字型。
+目前發佈的影片在 Linux 上以文泉驛正黑渲染。
 
 ```bash
 python docs/animations/w16_redox/render_animation.py
@@ -33,7 +49,7 @@ python docs/animations/validate_week_animations.py
 
 ## 範圍與限制
 
-這些是約一分鐘多的概念短片與流程圖逐步揭露，不是完整課程錄影或分子三維模擬；需搭配原有例題與講解。英文名詞採系統語音，發音可能較生硬。食品法規與製程數值須在教學前核對現行規定，影片明確不把 pH 4.6 當成單獨的安全保證。
+這些是約一分鐘多的概念短片與流程圖逐步揭露，不是完整課程錄影或分子三維模擬；需搭配原有例題與講解。英文名詞（如 Atwater、VSEPR、Beer Lambert）由 ElevenLabs 多語模型朗讀，較舊版系統語音自然。食品法規與製程數值須在教學前核對現行規定，影片明確不把 pH 4.6 當成單獨的安全保證。
 
 W13 原始課文在 390 px 閱讀模式即有全頁水平溢出（原始版本實測寬度 414 px）；本次影片本身無水平溢出，未改動該既有課文排版問題。
 

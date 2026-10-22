@@ -6,8 +6,10 @@ ROOT=Path(__file__).resolve().parent
 DATA=json.loads((ROOT/'storyboard.json').read_text(encoding='utf-8'))
 W,H,FPS=1280,720,24
 AUDIO=ROOT/'narration.wav'; OUT=ROOT/(DATA['slug']+'_animation.mp4')
-FONT='/mnt/c/Windows/Fonts/msjh.ttc'; BOLD='/mnt/c/Windows/Fonts/msjhbd.ttc'
-if not Path(FONT).exists(): FONT=BOLD='/mnt/c/Windows/Fonts/mingliu.ttc'
+import os
+FONT=os.environ.get('CHEM_FONT','/mnt/c/Windows/Fonts/msjh.ttc'); BOLD=os.environ.get('CHEM_BOLD','/mnt/c/Windows/Fonts/msjhbd.ttc')
+for _f in ['/mnt/c/Windows/Fonts/mingliu.ttc','/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc','/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc']:
+ if not Path(FONT).exists() and Path(_f).exists(): FONT=BOLD=_f
 def ft(n,b=False): return ImageFont.truetype(BOLD if b else FONT,n)
 F={'title':ft(48,1),'h1':ft(38,1),'body':ft(28),'small':ft(21),'num':ft(54,1),'formula':ft(34,1)}
 BG=(246,251,255); DARK=(26,44,64); BLUE=tuple(DATA['color']); RED=(213,79,93); TEAL=(33,166,153); ORANGE=(244,151,64); GRAY=(88,104,120); LIGHT=(221,238,250)
@@ -61,7 +63,7 @@ def srt():
  for n,(a,b) in enumerate(DATA['caps'],1): out += [str(n),f'{ts((n-1)*seg)} --> {ts(min(n*seg,TOTAL))}',a+'\n'+b,'']
  (ROOT/(DATA['slug']+'_animation.srt')).write_text('\n'.join(out),encoding='utf-8')
 def render():
- srt(); n=int(TOTAL*FPS); cmd=['ffmpeg','-y','-f','rawvideo','-vcodec','rawvideo','-pix_fmt','rgb24','-s',f'{W}x{H}','-r',str(FPS),'-i','-','-i',str(AUDIO),'-c:v','libx264','-preset','medium','-crf','24','-pix_fmt','yuv420p','-c:a','aac','-b:a','128k','-shortest',str(OUT)]
+ srt(); n=int(TOTAL*FPS); cmd=['ffmpeg','-y','-f','rawvideo','-vcodec','rawvideo','-pix_fmt','rgb24','-s',f'{W}x{H}','-r',str(FPS),'-i','-','-i',str(AUDIO),'-c:v','libx264','-preset','medium','-crf','24','-pix_fmt','yuv420p','-c:a','aac','-b:a','128k','-af','apad','-shortest',str(OUT)]
  p=subprocess.Popen(cmd,stdin=subprocess.PIPE); assert p.stdin
  for k in range(n): p.stdin.write(frame(k/FPS).tobytes())
  p.stdin.close(); rc=p.wait();

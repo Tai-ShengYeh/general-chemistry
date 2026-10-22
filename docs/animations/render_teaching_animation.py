@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
-"""Render sentence-aligned teaching clips (Pillow, ffmpeg, Windows Hanhan).
+"""Render sentence-aligned teaching clips (Pillow, ffmpeg, ElevenLabs or Windows Hanhan).
 
 Each lesson wrapper passes its folder. Speech is synthesized sentence-by-sentence
 so subtitles and visual changes follow measured WAV durations, not text estimates.
+Narration backend: ElevenLabs when ELEVENLABS_API_KEY is set (or CHEM_TTS=elevenlabs),
+otherwise the Windows Hanhan voice through make_narration.ps1. Existing WAVs in
+.render-cache/ are reused when speech-text.json matches the storyboard.
 Set CHEM_FONT/CHEM_BOLD to override the default Traditional Chinese fonts.
 """
 from pathlib import Path
@@ -10,8 +13,24 @@ import json, math, os, subprocess, sys, wave
 from PIL import Image, ImageDraw, ImageFont
 
 W, H, FPS = 1280, 720, 24
-FONT = os.environ.get('CHEM_FONT', '/mnt/c/Windows/Fonts/msjh.ttc')
-BOLD = os.environ.get('CHEM_BOLD', '/mnt/c/Windows/Fonts/msjhbd.ttc')
+FONT_CANDIDATES = ['/mnt/c/Windows/Fonts/msjh.ttc', '/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc',
+                   '/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc']
+BOLD_CANDIDATES = ['/mnt/c/Windows/Fonts/msjhbd.ttc', '/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc',
+                   '/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc']
+
+
+def pick_font(env, candidates):
+    chosen = os.environ.get(env)
+    if chosen:
+        return chosen
+    for path in candidates:
+        if os.path.exists(path):
+            return path
+    raise FileNotFoundError('No Traditional Chinese font found; set ' + env)
+
+
+FONT = pick_font('CHEM_FONT', FONT_CANDIDATES)
+BOLD = pick_font('CHEM_BOLD', BOLD_CANDIDATES)
 DARK = (26, 44, 64)
 
 
@@ -95,8 +114,14 @@ def render(root):
     manifest = cache/'speech-text.json'
     complete = all((cache/f'speech-{i:03}.wav').exists() for i in range(len(data['scenes'])))
     if not complete or not manifest.exists() or manifest.read_text(encoding='utf-8') != speech_text:
-        ps = run(['wslpath', '-w', str(root/'make_narration.ps1')]).stdout.strip()
-        run(['powershell.exe', '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', ps])
+        backend = os.environ.get('CHEM_TTS', 'elevenlabs' if os.environ.get('ELEVENLABS_API_KEY') else 'hanhan')
+        if backend == 'elevenlabs':
+            sys.path.insert(0, str(Path(__file__).resolve().parent))
+            from make_narration_elevenlabs import synthesize_scenes
+            synthesize_scenes([s['speech'] for s in data['scenes']], cache)
+        else:
+            ps = run(['wslpath', '-w', str(root/'make_narration.ps1')]).stdout.strip()
+            run(['powershell.exe', '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', ps])
         manifest.write_text(speech_text, encoding='utf-8')
     durations = []
     assert data['scenes'], 'Storyboard must contain at least one spoken scene'

@@ -2,7 +2,8 @@
 
 配合課程投影片 [新W03_莫耳與化學式](https://tai-shengyeh.github.io/general-chemistry/%E6%96%B0W03_%E8%8E%AB%E8%80%B3%E8%88%87%E5%8C%96%E5%AD%B8%E5%BC%8F.html#1)，
 用 [shanshiba-workflow-colab](https://github.com/mathruffian-dot/shanshiba-workflow-colab) 的饒舌對決範本（`pipeline/template_battle/`）製作的整場設定。
-這個資料夾是**成片的輸入**：`battle.json`（人物、兩首歌詞、DJ 口白、擂台與閃回場景、字卡、53 鏡鏡表）＋ `songtext/`（已產生、可直接貼 Suno 的歌詞與風格）。
+這個資料夾是**成片的輸入**：`battle.json`（人物、兩首歌詞、DJ 口白、擂台與閃回場景、字卡、51 鏡鏡表）＋ `songtext/`（已產生的 YuE2 與 Suno 歌詞、風格文字）。
+**生歌用 YuE2**（在 Colab 上跑，不需要 Suno 帳號）；`battle.json` 的段落與鏡頭時間已照 YuE2 調好，改用 Suno 也一樣能跑。
 真正的生歌、首幀、H3 影片要在你的 Colab（或本機顯卡）上跑，步驟見最下面。
 
 ## 對決設計
@@ -23,9 +24,9 @@
 | 學習目標 | 片中哪裡 |
 |:--|:--|
 | 莫耳＝數個數的單位、NA | A 12–13、B 18、B 23 殺句；字卡 `perrin`、`water` |
-| g ↔ mol ↔ 粒子數 三向換算 | **B 的唱段（第 8–11 句）整段就是三向換算**；字卡 `triway`、黑板插入鏡 F11 |
+| g ↔ mol ↔ 粒子數 三向換算 | **B 的唱段（第 8–11 句）整段就是三向換算**；字卡 `triway`、黑板插入鏡 F10 |
 | 由質量比反推化學式、實驗式 vs 分子式 | A 4–5、A 8；B 12–15；字卡 `ho`、`o7`、`empirical` |
-| 元素 vs 化合物：鈉 ↔ 鹽 | B 19「泡麵鈉 1800 mg × 2.54 ≈ 4.6 g 鹽」；字卡 `sodium`、廚房秤插入鏡 F14 |
+| 元素 vs 化合物：鈉 ↔ 鹽 | B 19「泡麵鈉 1800 mg × 2.54 ≈ 4.6 g 鹽」；字卡 `sodium`、廚房秤插入鏡 F13 |
 
 ## DJ 口白
 
@@ -77,8 +78,8 @@
 | 13 | Verse | 水是 H2O　翻開課本每一頁都印著我的公式 | 公式 |
 | 14 | Verse | 整數比我不否認　但比例不等於個數　這是常識 | 常識 |
 | 15 | Verse | 甲醛、醋酸、葡萄糖　最簡比都是 CH2O　你分得出幾種東西 | 東西 |
-| 16 | Verse | 放了 50 年沒人看？1860 卡爾斯魯厄全場幫我翻案 | 翻案 |
-| 17 | Verse | 名字長是因為要寫進每一題莫耳計算 | 計算 |
+| 16 | Pre-Chorus | 放了 50 年沒人看？1860 卡爾斯魯厄全場幫我翻案 | 翻案 |
+| 17 | Pre-Chorus | 名字長是因為要寫進每一題莫耳計算 | 計算 |
 | 18 | Final Build | 1 莫耳的水才 18 克　一大匙就裝得滿 | 得滿 |
 | 19 | Final Build | 泡麵鈉 1800 mg 乘上 2.54　4.6 克鹽有多鹹 | 多鹹 |
 | 20 | Final Build | 沒有莫耳　你的原子量只能掛在牆上好看 | 好看 |
@@ -131,24 +132,40 @@
    cp -r pipeline/template_battle pipeline/mole_battle
    cp <本 repo>/rap_battle/mole_battle/battle.json pipeline/mole_battle/
    ```
-2. **生歌（先決定有沒有 Suno）**
-   - 有 Suno（建議，rap 攻擊性與副歌最好）：`songtext/suno_A_lyrics.txt`＋`suno_A_style.txt` 貼到 Suno 網頁 Create → Custom（B 同理），每人各抽 2–4 版，挑好的存成 `pipeline/mole_battle/song/A.mp3`、`song/B.mp3`。
-   - 沒有 Suno：`python cloud/colab_h3.py film pipeline/mole_battle yue`（YuE2 每人 10 首，人聽 `out/yue/<A|B>/` 再定；YuE2 權重不可商用）。
-3. 開機與分段跑（每段都會把 `out/` 同步回本機，在本機看關卡）：
+2. 開機，在雲端用 YuE2 生歌：
    ```bash
    python cloud/colab_h3.py start
+   python cloud/colab_h3.py film pipeline/mole_battle yue
+   ```
+   每人抽 10 首（seed 1–10），只留 144 BPM 的，再依逐句聽寫排序，第一名自動當成 `song/A.mp3`、`song/B.mp3`。
+   **一定要自己聽 `out/yue/A/`、`out/yue/B/` 的候選**（排序在各自的 `pick.json`），挑的時候注意：
+   - 數字（6.02、2.54、1800、1811）有沒有唸清楚；
+   - 亞佛加厥的 4 句副歌（`[CHORUS]` 第一段）好不好聽；
+   - 兩人聲音是否一低一高、聽得出是兩個人。
+
+   想換成別首：把那首轉成 mp3 存成本機的 `pipeline/mole_battle/song/A.mp3`（或 `B.mp3`），下一次 `film` 會一起上傳。
+   如果某人 10 首都不是 144 BPM，程式會停下來，多抽 10 首再跑：
+   ```bash
+   python cloud/colab_h3.py film pipeline/mole_battle yue --env YUE_SEEDS=11,12,13,14,15,16,17,18,19,20
+   ```
+3. 接著分段跑（每段都會把 `out/` 同步回本機，在本機看關卡）：
+   ```bash
    python cloud/colab_h3.py film pipeline/mole_battle songs dj audio      # 聽 out/audio/mix.wav、看 out/song/songs_report.json
    python cloud/colab_h3.py film pipeline/mole_battle chars scenes frames # 看 out/chars/、out/first/_sheet.jpg
    python cloud/colab_h3.py film pipeline/mole_battle specs h3            # 看 out/review/clips_*.jpg
    python cloud/colab_h3.py film pipeline/mole_battle cut review srt      # 看完整成片 out/cut/莫耳之戰_v1_1920x1080.mp4
    python cloud/colab_h3.py stop                                          # 一定要關，閒置照扣單元
    ```
-   範本實測整場約 1.5–2 小時、15–18 個運算單元。
+   範本實測整場約 1.5–2 小時、15–18 個運算單元（其中 `yue` 兩人各 10 首約 9 分鐘）。
+
+   改用 Suno 的話：跳過 `yue`，把 `songtext/suno_*` 貼到 Suno 網頁 Create → Custom，挑好的歌存成 `song/A.mp3`、`song/B.mp3`。
 
 **要注意的地方**
 
-- 鏡頭時間（`at`）是照 Suno 的前奏長度（A、B 各 4 小節）寫的。如果改用 YuE2、前奏很短，`frames` 會列出順序反掉或太短的鏡——最可能是換場的 `F07`（戴維電解鈉閃回）與 `K03`：直接刪掉 `F07`，或把它的 `at` 往後移。
+- 鏡頭時間（`at`）都綁在歌詞句子、DJ 口白和收尾拍上，不綁前奏長度：YuE2 幾乎沒有前奏時，範本會自動把音樂往後推、讓 DJ 口白塞得下，換場也不會撞鏡。若 `frames` 仍列出順序反掉或太短的鏡，照提示改那幾鏡的 `at`。
+- YuE2 的段落照 14 版配方排好：每段 4 句，B 的第 16–17 句是 2 句的 `[PRE-CHORUS]`；B 最後殺招段 6 句會切成 4＋2 兩段 `[CHORUS]`。生出來的歌在第二段 `[CHORUS]` 前若有怪停頓，多抽幾首挑。
+- YuE2 不一定有刷碟聲，攻擊性也比 Suno 弱；字幕、韻腳特效和字卡會補上「講清楚」的部分。
 - 本機 Qwen 首幀畫不出側臉對峙：`V01`、`D01`、`D02`、`D03` 若要互瞪的構圖，把 `image_backend` 改 `"img25"`（要 OpenAI 金鑰），或拆成兩個單人鏡。
-- 黑板、秤、筆記本上的字（`F04` HO、`F11` g → mol → N、`F12` 三個化學式、`F14` 4.6 g）若首幀畫成亂碼，刪那張 png 重畫；仍不行就把 `frame` 裡的字拿掉，靠字卡交代。
-- 送 Suno 的讀音已處理：亞佛加厥數唱段寫成「亞佛加決數」、化學式拆成「H 二 O」「C H 二 O」、數字寫國字；字幕（`show`）用原字與阿拉伯數字。生完看 `songs_report.json` 的低分句，人工聽過再決定。
+- 黑板、秤、筆記本上的字（`F04` HO、`F10` g → mol → N、`F11` 三個化學式、`F13` 4.6 g）若首幀畫成亂碼，刪那張 png 重畫；仍不行就把 `frame` 裡的字拿掉，靠字卡交代。
+- 送去生歌的讀音已處理（YuE2、Suno 共用）：亞佛加厥數唱段寫成「亞佛加決數」、化學式拆成「H 二 O」「C H 二 O」、數字寫國字；字幕（`show`）用原字與阿拉伯數字。生完看 `songs_report.json` 的低分句，人工聽過再決定。
 - 授權：Qwen-Image 2.1、Breeze TTS 2、YuE2 權重不可商用；MiniMax H3 授權排除美、歐盟、英、南韓（Colab 機房常在美國，請自行評估）。課堂非營利使用請在影片標示 AI 生成。

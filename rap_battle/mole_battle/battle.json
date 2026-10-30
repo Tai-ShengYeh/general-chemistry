@@ -266,7 +266,12 @@
               "sing": "甲醛 醋酸 葡萄糖 最簡比 都是 C H 二 O 你 分得出 幾種 東西",
               "show": "甲醛、醋酸、葡萄糖　最簡比都是 CH2O　你分得出幾種東西",
               "rhyme": "東西"
-            },
+            }
+          ]
+        },
+        {
+          "sec": "Pre-Chorus: building up, drums start to double",
+          "lines": [
             {
               "sing": "放了 五十年 沒人看 一八六零 卡爾斯魯厄 全場 幫我 翻案",
               "show": "放了 50 年沒人看？1860 卡爾斯魯厄全場幫我翻案",
@@ -420,11 +425,6 @@
     "perrin": {
       "light": "warm lamp light in a Paris physics laboratory in 1909",
       "setting": "a physics laboratory in Paris in 1909",
-      "era": "period"
-    },
-    "davy": {
-      "light": "dark laboratory lit by a blinding white electric arc in 1807",
-      "setting": "the basement laboratory of the Royal Institution in London in 1807",
       "era": "period"
     },
     "gaylussac": {
@@ -873,7 +873,6 @@
     ]
   ],
   "flash_scenes": [
-    "davy",
     "karlsruhe"
   ],
   "locked": [
@@ -882,10 +881,10 @@
     "D01",
     "D02",
     "D03",
+    "F07",
     "F08",
-    "F09",
+    "F12",
     "F13",
-    "F14",
     "T02",
     "T03",
     "T04"
@@ -1283,59 +1282,29 @@
     {
       "id": "K02",
       "at": [
-        "mark",
-        "b_zero",
-        0.8
+        "dj",
+        "switch",
+        -0.3
       ],
-      "kind": "silent",
+      "kind": "sing",
       "scene": "arena",
       "subj": [
         "K"
       ],
       "dist": "CU",
-      "frame": "Close-up: Humphry Davy at his DJ turntables, headphones on, brass goggles on his forehead, one hand on the record, grinning with excitement, white-silver light.",
-      "action": "Starting from <Picture 1>, he scratches the record fast back and forth and bobs his head, mouth closed in a grin.",
+      "frame": "Close-up: Humphry Davy at his DJ turntables, headphones on, brass goggles on his forehead, one hand on the record, the other hand pointing toward the sodium-yellow right side of the stage, grinning at the camera, white-silver light.",
+      "action": "Starting from <Picture 1>, he shouts to the camera with a big grin, scratches the record once and keeps pointing toward the right side of the stage.",
       "gfx": [
         "dj_note"
-      ]
-    },
-    {
-      "id": "F07",
-      "at": [
-        "mark",
-        "b_zero",
-        2.6
       ],
-      "kind": "silent",
-      "scene": "davy",
-      "subj": [
-        "K"
-      ],
-      "dist": "MS",
-      "frame": "Flashback, London 1807: young Humphry Davy in shirtsleeves and brass goggles leans over a lab bench in a dark basement laboratory, touching two metal wires from a tall stack of copper-and-zinc battery plates into a small dish of white molten lump.",
-      "action": "Starting from <Picture 1>, a blinding white spark flashes, tiny bright silver beads burst into small yellow flames on the dish, and Davy jumps back with a delighted laugh."
-    },
-    {
-      "id": "K03",
-      "at": [
-        "dj",
-        "switch",
-        -0.3
-      ],
-      "kind": "silent",
-      "scene": "arena",
-      "subj": [
-        "K"
-      ],
-      "dist": "MCU",
-      "frame": "Humphry Davy behind his DJ booth points firmly toward the sodium-yellow right side of the stage with a big grin, headphones around his neck, mouth closed.",
-      "still": true
+      "voice": "dj"
     },
     {
       "id": "L10",
       "at": [
-        "B",
-        -2
+        "dj",
+        "switch",
+        2.0
       ],
       "kind": "silent",
       "scene": "arena",
@@ -1365,7 +1334,7 @@
       "seed_bump": 1000
     },
     {
-      "id": "F08",
+      "id": "F07",
       "at": [
         "B",
         1
@@ -1449,7 +1418,7 @@
       "calm": true
     },
     {
-      "id": "F09",
+      "id": "F08",
       "at": [
         "B",
         6
@@ -1465,7 +1434,7 @@
       ]
     },
     {
-      "id": "F10",
+      "id": "F09",
       "at": [
         "B",
         7
@@ -1497,7 +1466,7 @@
       "calm": true
     },
     {
-      "id": "F11",
+      "id": "F10",
       "at": [
         "B",
         9
@@ -1599,7 +1568,7 @@
       "calm": true
     },
     {
-      "id": "F12",
+      "id": "F11",
       "at": [
         "B",
         15
@@ -1617,7 +1586,7 @@
       ]
     },
     {
-      "id": "F13",
+      "id": "F12",
       "at": [
         "B",
         16
@@ -1668,7 +1637,7 @@
       "calm": true
     },
     {
-      "id": "F14",
+      "id": "F13",
       "at": [
         "B",
         19

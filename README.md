@@ -69,6 +69,11 @@
 [因次分析練習](https://tai-shengyeh.github.io/general-chemistry/%E7%B7%B4%E7%BF%92_%E5%9B%A0%E6%AC%A1%E5%88%86%E6%9E%90.html)
 ——10 種題型無限出題，先選換算路線再算數字，答錯會指出是哪一類錯誤。
 
+## 饒舌對決教學影片（製作中）
+
+[`rap_battle/mole_battle/`](rap_battle/mole_battle/)——第 3 週〈莫耳之戰〉：道耳頓（HO）vs 亞佛加厥（H2O），DJ 戴維。
+用 [shanshiba-workflow-colab](https://github.com/mathruffian-dot/shanshiba-workflow-colab) 的饒舌對決範本製作，資料夾內是整場設定（歌詞、口白、字卡、鏡表）與 Colab 製作步驟。
+
 ## 授權與來源
 
 教材內容改編自 **OpenStax《Chemistry 2e》**，

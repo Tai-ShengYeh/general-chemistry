@@ -1,0 +1,1808 @@
+{
+  "title": "莫耳之戰",
+  "repo_dir": "../..",
+  "image_backend": "qwen",
+  "seed0": 8700,
+  "rappers": {
+    "A": {
+      "name": "道耳頓",
+      "short": "道耳頓",
+      "team": "鈷藍方",
+      "tagline": "英國・原子論・原子量表",
+      "color": [
+        70,
+        140,
+        255
+      ],
+      "glow": [
+        165,
+        205,
+        255
+      ],
+      "look": "John Dalton at about fifty: a real plain, stern but kindly face, clean-shaven, a strong long nose and a broad chin, short thin GREY hair brushed forward over the forehead, no wig, no hat, a plain dark-brown collarless Quaker coat buttoned high, a plain white linen cravat",
+      "desc": "John Dalton, a stern fifty-year-old English Quaker schoolteacher-chemist, clean-shaven, with short thin grey hair brushed forward, a plain dark-brown Quaker coat and a plain white cravat",
+      "song": "song/A.mp3",
+      "bpm": 144,
+      "suno_title": "莫耳之戰_道耳頓",
+      "suno_style": "ONE CONTINUOUS RAP VERSE from start to finish: no chorus, no hook, no repeated lines, no instrumental break in the middle; EXACTLY 144 BPM (half-time 72 BPM feel); DARK INDUSTRIAL BOOM-BAP battle rap from a rainy 1800s Manchester: a 4-bar intro of rain on windows, a ticking pendulum clock and a lone dark CELLO with vinyl crackle, then hard-hitting boom-bap drums with heavy 808 bass, clanking metallic cotton-mill percussion, DJ SCRATCHING between lines, cello and low brass stabs; the LAST FOUR LINES build up, louder and angrier; after the last line the beat STOPS DEAD on one huge cello-and-brass hit + 808 on the downbeat (hard stop, no fade-out, no outro); ONE SOLO MALE RAPPER only: a DEEP, RASPY, GRAVELLY older baritone with a stern, stubborn, preachy, heavy flow, every word punched hard and clear, crystal-clear Mandarin rap with Taiwanese diction, every Chinese number rapped clearly and separately",
+      "suno_negative": "singing ballad, slow, sleepy, lo-fi, sad, mumble rap, autotune-heavy, female voice, children's voice, choir, rock, metal, edm drop, k-pop, muddy mix, second rapper, duet, featuring, choir vocals, melisma, vocal runs, Indian scale, Middle Eastern scale",
+      "vocal_gender": "m",
+      "yue_style": "Chinese, rap, hip hop, boom bap battle rap, DJ scratching, vinyl record scratches, turntablism, aggressive rap flow, staccato punchy delivery, male rapper, deep raspy shouting voice, hard-hitting drums, heavy 808 bass, dark cello sample, industrial metallic percussion, hype, intense, 144 BPM",
+      "lyrics": [
+        {
+          "sec": "Intro: rain on tall windows, a ticking pendulum clock and a lone dark cello with vinyl crackle, DJ scratches, 4 bars, no vocals",
+          "lines": []
+        },
+        {
+          "sec": "Verse",
+          "lines": [
+            {
+              "sing": "一八零八 我出 新書 原子 理論 我寫 第一部",
+              "show": "1808 我出新書　原子理論我寫第一部",
+              "rhyme": "一部"
+            },
+            {
+              "sing": "每種 元素 一種 原子 這是 化學的 基礎",
+              "show": "每種元素一種原子　這是化學的基礎",
+              "rhyme": "基礎"
+            },
+            {
+              "sing": "原子 不能切 不能毀 也不能 憑空 變出",
+              "show": "原子不能切、不能毀　也不能憑空變出",
+              "rhyme": "變出"
+            },
+            {
+              "sing": "律師 跨界 來亂 你先 回去 學好 算數",
+              "show": "律師跨界來亂　你先回去學好算數",
+              "rhyme": "算數"
+            },
+            {
+              "sing": "第一張 原子量表 我排 氫算一 其他 都跟它 比重量",
+              "show": "第一張原子量表我排　氫算 1　其他都跟它比重量",
+              "rhyme": "重量"
+            },
+            {
+              "sing": "一氧化碳 二氧化碳 氧就差 兩倍 整數比 是我的 主張",
+              "show": "一氧化碳、二氧化碳　氧就差 2 倍　整數比是我的主張",
+              "rhyme": "主張"
+            },
+            {
+              "sing": "五十七年 天天 記天氣 一筆一筆 數據 我最 穩當",
+              "show": "57 年天天記天氣　一筆一筆數據我最穩當",
+              "rhyme": "穩當"
+            },
+            {
+              "sing": "你的 假說 一張紙 沒做 實驗 只會 空想",
+              "show": "你的假說一張紙　沒做實驗只會空想",
+              "rhyme": "空想"
+            },
+            {
+              "sing": "水就是 一個氫 配 一個氧 最簡單的 比例 最可靠",
+              "show": "水就是一個氫配一個氧　最簡單的比例最可靠",
+              "rhyme": "可靠"
+            },
+            {
+              "sing": "你偏要 把氧 劈成 兩半 原子 能切 誰教 你 這套",
+              "show": "你偏要把氧劈成兩半　原子能切？誰教你這套",
+              "rhyme": "這套"
+            },
+            {
+              "sing": "法國人 的 體積 數據 我說 不準 你還 拿來 當寶",
+              "show": "法國人的體積數據我說不準　你還拿來當寶",
+              "rhyme": "當寶"
+            },
+            {
+              "sing": "伯爵 先生 名字 一長串 論文 放了 五十年 沒人 看到",
+              "show": "伯爵先生名字一長串　論文放了 50 年沒人看到",
+              "rhyme": "看到"
+            }
+          ]
+        },
+        {
+          "sec": "Final Build: drums double, rapper shouts harder and harder",
+          "lines": [
+            {
+              "sing": "那個 六點零二 乘 十的 二十三 不是你 量 也不是 你算",
+              "show": "那個 6.02 × 10²³　不是你量　也不是你算",
+              "rhyme": "你算"
+            },
+            {
+              "sing": "一九零九 法國人 量出來 你的名字 才 跟著 流傳",
+              "show": "1909 法國人量出來　你的名字才跟著流傳",
+              "rhyme": "流傳"
+            },
+            {
+              "sing": "原子 理論 是我 打的 地基 化學 大樓 我 一手 蓋完",
+              "show": "原子理論是我打的地基　化學大樓我一手蓋完",
+              "rhyme": "蓋完"
+            },
+            {
+              "sing": "你的 莫耳 只是 我 頂樓 的 違章 加蓋 一拆 就散",
+              "show": "你的莫耳只是我頂樓的違章加蓋　一拆就散",
+              "rhyme": "就散"
+            }
+          ]
+        },
+        {
+          "sec": "Hard stop: one huge cello-and-brass hit and 808 on the downbeat, then silence",
+          "lines": []
+        }
+      ],
+      "intro_card": [
+        [
+          "道耳頓",
+          120
+        ],
+        [
+          "英國 原子論 原子量表",
+          54
+        ],
+        [
+          "曼徹斯特的中學老師",
+          42
+        ]
+      ],
+      "person": "man",
+      "pronoun": "he"
+    },
+    "B": {
+      "name": "亞佛加厥",
+      "short": "亞佛加厥",
+      "team": "鈉黃方",
+      "tagline": "義大利・分子・亞佛加厥數",
+      "color": [
+        255,
+        204,
+        0
+      ],
+      "glow": [
+        255,
+        236,
+        140
+      ],
+      "look": "Amedeo Avogadro at about thirty-five: a real lean face with a long straight nose, deep-set dark eyes and a sly clever smile, thick dark-brown hair receding at the temples with curls over the ears, short dark sideburns, clean-shaven, no wig, a tall high-collared deep BURGUNDY-red coat, a tall white cravat wrapped high around the neck",
+      "desc": "Amedeo Avogadro, a lean, sly thirty-five-year-old Italian scholar with a long nose, thick dark-brown curly hair receding at the temples, a high-collared deep burgundy-red coat and a tall white cravat",
+      "song": "song/B.mp3",
+      "bpm": 144,
+      "suno_title": "莫耳之戰_亞佛加厥",
+      "suno_style": "ONE RAP SONG by ONE rapper: rap verse, then a short 4-line SUNG melodic hook, then back to rap; EXACTLY 144 BPM (half-time 72 BPM feel); ITALIAN BAROQUE TRAP battle rap: opens with a 4-bar DJ INTRO of turntable scratches and a record rewind, then a fast minor-key MANDOLIN and harpsichord riff with pizzicato strings; sliding 808 bass, rolling hi-hats, hard snares, DJ scratches between lines; the HOOK is a simple, catchy, bright MAJOR-key pop melody over piano and pop chords (mandolin drops out), sung cleanly, no runs; the LAST SIX LINES are a furious knockout climax: drums double, the rapper gets louder line by line and SHOUTS the final lines, the crowd roars 'OHHH', then the beat rides out 4 bars with scratches; ONE SOLO MALE only: a BRIGHT, SHARP, witty younger TENOR, fast precise savage flow, clear Mandarin with Taiwanese diction, every number clear",
+      "suno_negative": "singing ballad, slow, sleepy, lo-fi, sad, mumble rap, autotune-heavy, female voice, children's voice, choir, rock, metal, edm drop, k-pop, muddy mix, second rapper, duet, featuring, choir vocals, melisma, vocal runs, Indian scale, Middle Eastern scale",
+      "vocal_gender": "m",
+      "yue_style": "Chinese, rap, hip hop, trap battle rap, DJ scratching, vinyl record scratches, turntablism, aggressive rapid-fire rap flow, staccato punchy delivery, male rapper, bright sharp tenor voice, catchy sung pop hook, hard-hitting drums, sliding 808 bass, baroque mandolin and harpsichord sample, hype, intense, 144 BPM",
+      "lyrics": [
+        {
+          "sec": "Intro: DJ turntable scratches and record rewind, then a fast minor-key mandolin and harpsichord riff enters, 4 bars, no vocals",
+          "lines": []
+        },
+        {
+          "sec": "Verse",
+          "lines": [
+            {
+              "sing": "一八一一 我 只寫 一篇 就把 你 整本書 修補",
+              "show": "1811 我只寫一篇　就把你整本書修補",
+              "rhyme": "修補"
+            },
+            {
+              "sing": "同溫 同壓 同體積 氣體 分子 個數 都 相符",
+              "show": "同溫、同壓、同體積　氣體分子個數都相符",
+              "rhyme": "相符"
+            },
+            {
+              "sing": "律師 出身 我 只看 證據 你的 H O 證據 不足",
+              "show": "律師出身我只看證據　你的 HO 證據不足",
+              "rhyme": "不足"
+            },
+            {
+              "sing": "五十七年 天天 記雨 也 洗不掉 你的 糊塗",
+              "show": "57 年天天記雨　也洗不掉你的糊塗",
+              "rhyme": "糊塗"
+            },
+            {
+              "sing": "原子 不能切 我同意 但 氧氣 是 兩顆 手牽手",
+              "show": "原子不能切我同意　但氧氣是兩顆手牽手",
+              "rhyme": "牽手"
+            },
+            {
+              "sing": "我劈的 是 分子 不是 原子 你 分不清 還敢 開口",
+              "show": "我劈的是分子不是原子　你分不清還敢開口",
+              "rhyme": "開口"
+            },
+            {
+              "sing": "兩份氫 一份氧 變成 兩份 水蒸氣 你 算不通 就 溜走",
+              "show": "2 份氫、1 份氧　變成 2 份水蒸氣　你算不通就溜走",
+              "rhyme": "溜走"
+            },
+            {
+              "sing": "法國人 的 數據 你 不肯看 還說 我 空想 不動手",
+              "show": "法國人的數據你不肯看　還說我空想不動手",
+              "rhyme": "動手"
+            }
+          ]
+        },
+        {
+          "sec": "Melodic Hook: sung, simple bright major-key pop melody, piano and pop chords, mandolin drops out",
+          "lines": [
+            {
+              "sing": "公克 除以 莫耳質量 就 變成 莫耳",
+              "show": "公克 ÷ 莫耳質量　就變成莫耳",
+              "rhyme": ""
+            },
+            {
+              "sing": "莫耳 乘上 亞佛加決數 就 變成 個數",
+              "show": "莫耳 × 亞佛加厥數　就變成個數",
+              "rhyme": ""
+            },
+            {
+              "sing": "質量 和 個數 不能 直接 換",
+              "show": "質量和個數　不能直接換",
+              "rhyme": ""
+            },
+            {
+              "sing": "莫耳 永遠 是 中間 那一站",
+              "show": "莫耳永遠是中間那一站",
+              "rhyme": ""
+            }
+          ]
+        },
+        {
+          "sec": "Verse",
+          "lines": [
+            {
+              "sing": "你的 原子量表 氧 算七 錯了 一倍 還不止",
+              "show": "你的原子量表氧算 7　錯了一倍還不止",
+              "rhyme": "不止"
+            },
+            {
+              "sing": "水是 H 二 O 翻開 課本 每一頁 都 印著 我的 公式",
+              "show": "水是 H2O　翻開課本每一頁都印著我的公式",
+              "rhyme": "公式"
+            },
+            {
+              "sing": "整數比 我不否認 但 比例 不等於 個數 這是 常識",
+              "show": "整數比我不否認　但比例不等於個數　這是常識",
+              "rhyme": "常識"
+            },
+            {
+              "sing": "甲醛 醋酸 葡萄糖 最簡比 都是 C H 二 O 你 分得出 幾種 東西",
+              "show": "甲醛、醋酸、葡萄糖　最簡比都是 CH2O　你分得出幾種東西",
+              "rhyme": "東西"
+            },
+            {
+              "sing": "放了 五十年 沒人看 一八六零 卡爾斯魯厄 全場 幫我 翻案",
+              "show": "放了 50 年沒人看？1860 卡爾斯魯厄全場幫我翻案",
+              "rhyme": "翻案"
+            },
+            {
+              "sing": "名字 長 是因為 要寫進 每一題 莫耳 計算",
+              "show": "名字長是因為要寫進每一題莫耳計算",
+              "rhyme": "計算"
+            }
+          ]
+        },
+        {
+          "sec": "Final Build: drums double, rapper shouts harder and harder",
+          "lines": [
+            {
+              "sing": "一莫耳 的 水 才 十八克 一大匙 就 裝得滿",
+              "show": "1 莫耳的水才 18 克　一大匙就裝得滿",
+              "rhyme": "得滿"
+            },
+            {
+              "sing": "泡麵 鈉 一千八 毫克 乘上 二點五四 四點六克 鹽 有多鹹",
+              "show": "泡麵鈉 1800 mg 乘上 2.54　4.6 克鹽有多鹹",
+              "rhyme": "多鹹"
+            },
+            {
+              "sing": "沒有 莫耳 你的 原子量 只能 掛在 牆上 好看",
+              "show": "沒有莫耳　你的原子量只能掛在牆上好看",
+              "rhyme": "好看"
+            },
+            {
+              "sing": "你說 我 違建 整棟 化學 靠我 這根 大樑 才 不會斷",
+              "show": "你說我違建？整棟化學靠我這根大樑才不會斷",
+              "rhyme": "會斷"
+            },
+            {
+              "sing": "地基 你打 沒錯 可是 一樓 的 水 你就 寫錯 一半",
+              "show": "地基你打沒錯　可是一樓的水你就寫錯一半",
+              "rhyme": "一半"
+            },
+            {
+              "sing": "你連 兩顆氫 都 數錯 我 一口氣 數到 六點零二 乘 十的 二十三",
+              "show": "你連兩顆氫都數錯　我一口氣數到 6.02 × 10²³",
+              "rhyme": "二十三",
+              "rhyme_show": "10²³"
+            }
+          ]
+        },
+        {
+          "sec": "Crowd: OHHH",
+          "lines": []
+        },
+        {
+          "sec": "Outro: the beat rides out 4 bars with DJ scratches, no vocals",
+          "lines": []
+        }
+      ],
+      "intro_card": [
+        [
+          "亞佛加厥",
+          120
+        ],
+        [
+          "義大利 分子假說",
+          54
+        ],
+        [
+          "律師出身的物理學家",
+          42
+        ]
+      ],
+      "person": "man",
+      "pronoun": "he"
+    }
+  },
+  "dj": {
+    "name": "戴維",
+    "short": "DJ 戴維",
+    "color": [
+      226,
+      234,
+      245
+    ],
+    "glow": [
+      255,
+      255,
+      255
+    ],
+    "pronoun": "he",
+    "person": "man",
+    "look": "Humphry Davy at about thirty-four as a hip-hop battle DJ: a real handsome boyish face with bright hazel eyes and a confident grin, thick tousled reddish-brown curly hair, long side-whiskers, clean-shaven chin, round brass-rimmed laboratory goggles pushed up on his forehead, a bottle-green early-19th-century tailcoat with a high collar, a white cravat, and modern black over-ear DJ headphones around his neck",
+    "desc": "Humphry Davy, a boyish thirty-four-year-old English chemist with tousled reddish-brown curly hair and side-whiskers, brass lab goggles pushed up on his forehead, a bottle-green tailcoat, a white cravat and modern black DJ headphones",
+    "voice_design": "一位三十多歲的男性擔任嘻哈擂台主持人，聲音明亮渾厚、自信俐落，帶點幽默，熱情激昂，音量大，語速中等偏快，台灣口音。",
+    "voice_sample": "化學史大擂台！今晚只看證據！原子跟分子，到底誰說了算？準備好了嗎？",
+    "lines": {
+      "open": "化學史大擂台！莫耳之戰！英國的道耳頓，對上，義大利的亞佛加厥！水的化學式，到底誰寫對？開打！",
+      "switch": "被說是律師來亂？亞佛加厥，反擊的時間到了！上台！",
+      "verdict": "道耳頓給了原子量，亞佛加厥給了個數。兩個加起來，就是莫耳質量！",
+      "end": "誰贏了？下一場是誰？你決定！"
+    },
+    "end_beats": [
+      "誰贏了？",
+      "下一場是誰？",
+      "你決定！"
+    ],
+    "intro_card": [
+      [
+        "戴維",
+        120
+      ],
+      [
+        "電解出鈉的化學家",
+        54
+      ],
+      [
+        "擂台 DJ",
+        42
+      ]
+    ]
+  },
+  "arena": {
+    "master": "Horizontal 16:9 cinematic film still, photorealistic, a lavish big-budget rap-battle music video. An EMPTY night arena: a round raised stage in the centre with a plain glowing GOLD RING inlaid in its dark floor; the LEFT half of the background is an early-1800s ENGLISH Quaker schoolroom-laboratory in rainy Manchester - dark wooden benches, rain streaking down tall arched windows, a brass barometer and a brass rain gauge, shelves of glass bottles, a wooden rack of plain WOODEN BALLS of different sizes - lit in deep COBALT-BLUE light like light through cobalt glass; the RIGHT half is an ITALIAN BAROQUE university hall in Turin - warm stone arches and columns, rows of identical tall clear glass gas jars and round glass flasks on long tables, small burners with bright SODIUM-YELLOW flames - lit in vivid warm SODIUM-YELLOW light; at the back centre a raised DJ booth with two turntables between the two halves, behind it a tall stack of old copper-and-zinc battery plates with a crackling small white electric spark; haze, volumetric beams; rows of empty audience seats in the dark foreground. On the stage stand TWO modern polished chrome vintage stand microphones facing each other, one on the cobalt-blue left side and one on the sodium-yellow right side. No people. No signboards, no written letters or numbers anywhere, no flags, no banners, no coats of arms, no star or emblem on the floor, no watermark, no logo.",
+    "keep": "The place is exactly the night rap-battle arena of {ref}: round raised stage with a glowing gold ring on the floor, the LEFT half an early-1800s Manchester schoolroom-laboratory with rainy windows in deep COBALT-BLUE light, the RIGHT half an Italian baroque hall with glass gas jars and small flames in warm SODIUM-YELLOW light, haze.",
+    "light": "night arena, deep cobalt-blue light on the left side and warm sodium-yellow light on the right side, haze and beams",
+    "setting": "a night rap-battle arena: a rainy early-1800s Manchester schoolroom-laboratory in cobalt-blue light on the left, an Italian baroque hall with glass gas jars in sodium-yellow light on the right, a round stage with a glowing gold ring and a DJ booth",
+    "style": "a big-budget rap-battle music video between two historical chemists, photorealistic live action, cinematic anamorphic look, deep night darkness with saturated cobalt-blue light on the left and warm sodium-yellow light on the right, haze and light beams, high-energy performance",
+    "keep_h3": "The background stays exactly the arena of <Picture 1> for the whole shot: Manchester schoolroom-laboratory on the left, Italian baroque hall on the right; no modern city, no flags, no banners, no extra performers."
+  },
+  "places": {
+    "manchester": {
+      "light": "grey rainy window light in an early-1800s Manchester schoolroom",
+      "setting": "a Quaker schoolroom in Manchester around 1805",
+      "era": "period"
+    },
+    "notebook": {
+      "light": "a single candle at night in an early-1800s study",
+      "setting": "a candlelit study in Manchester around 1808",
+      "era": "period",
+      "text": true
+    },
+    "weather": {
+      "light": "grey drizzly morning light over Manchester rooftops around 1810",
+      "setting": "a rainy rooftop terrace in Manchester around 1810",
+      "era": "period"
+    },
+    "archive": {
+      "light": "dim dusty light from a high window in an old library",
+      "setting": "a dusty old university library in Turin around 1830",
+      "era": "period"
+    },
+    "perrin": {
+      "light": "warm lamp light in a Paris physics laboratory in 1909",
+      "setting": "a physics laboratory in Paris in 1909",
+      "era": "period"
+    },
+    "davy": {
+      "light": "dark laboratory lit by a blinding white electric arc in 1807",
+      "setting": "the basement laboratory of the Royal Institution in London in 1807",
+      "era": "period"
+    },
+    "gaylussac": {
+      "light": "clear daylight in a Paris chemistry laboratory around 1808",
+      "setting": "a chemistry laboratory in Paris around 1808",
+      "era": "period"
+    },
+    "karlsruhe": {
+      "light": "bright daylight through tall windows of a crowded 1860 assembly hall",
+      "setting": "a crowded assembly hall at the chemistry congress in Karlsruhe in 1860",
+      "era": "period"
+    },
+    "lab_modern": {
+      "light": "clean white light in a modern university chemistry lab",
+      "setting": "a modern Taiwanese university chemistry teaching lab",
+      "era": "modern"
+    },
+    "classroom": {
+      "light": "daylight in a modern Taiwanese university classroom",
+      "setting": "a modern Taiwanese university classroom",
+      "era": "modern",
+      "text": true
+    },
+    "kitchen": {
+      "light": "bright evening light in a small modern Taiwanese dorm kitchen",
+      "setting": "a small modern Taiwanese dorm kitchen",
+      "era": "modern",
+      "text": true
+    }
+  },
+  "style_modern": "a realistic present-day Taiwanese university insert shot, photorealistic live action, cinematic look, natural light, calm and believable",
+  "style_period": "a period-film flashback in 19th-century Europe, photorealistic live action, cinematic look, natural period light",
+  "film_look": "Cinematic film still from a big-budget rap-battle music video about the history of chemistry, photorealistic, anamorphic lens, shallow depth of field",
+  "no_text": "Apart from any blackboard, paper, notebook or screen text explicitly described above, no captions, no written letters, numbers or symbols anywhere (books, papers and labels show only blurred marks); no flags, no banners, no coats of arms, no watermark, no logo; the stage floor has only a plain gold ring, no star or emblem. Real human faces, natural skin, not airbrushed, not AI-looking. ",
+  "audience": "The audience are ordinary modern Taiwanese university students (young adults in hoodies, some in white lab coats), real faces. ",
+  "audience_desc": "the audience of modern Taiwanese university students, some in white lab coats",
+  "cards": {
+    "dj_note": {
+      "accent": "J",
+      "size": 44,
+      "lines": [
+        [
+          "DJ｜戴維 Humphry Davy",
+          "ink"
+        ],
+        [
+          "1807 用電解第一次分離出金屬鈉",
+          "J"
+        ],
+        [
+          "1810 確認氯是元素：食鹽 NaCl 的兩種元素都跟他有關",
+          "ink"
+        ]
+      ]
+    },
+    "atom": {
+      "accent": "A",
+      "size": 46,
+      "lines": [
+        [
+          "1808・道耳頓《化學哲學新體系》",
+          "ink"
+        ],
+        [
+          "物質由原子組成，同一元素的原子質量相同",
+          "A"
+        ],
+        [
+          "化學反應＝原子重新組合，不生也不滅",
+          "ink"
+        ]
+      ]
+    },
+    "lawyer": {
+      "accent": "B",
+      "size": 46,
+      "lines": [
+        [
+          "亞佛加厥原本學法律、當過律師",
+          "ink"
+        ],
+        [
+          "後來才轉做物理，在杜林大學任教",
+          "B"
+        ]
+      ]
+    },
+    "weights": {
+      "accent": "A",
+      "size": 46,
+      "lines": [
+        [
+          "道耳頓的原子量表（1805 發表）",
+          "ink"
+        ],
+        [
+          "以氫＝1 當基準，其他元素都跟氫比",
+          "A"
+        ]
+      ]
+    },
+    "multiple": {
+      "accent": "A",
+      "size": 46,
+      "lines": [
+        [
+          "倍比定律",
+          "ink"
+        ],
+        [
+          "CO 和 CO2：同量的碳，配到的氧質量比 1 : 2",
+          "A"
+        ]
+      ]
+    },
+    "weather": {
+      "accent": "A",
+      "size": 46,
+      "lines": [
+        [
+          "道耳頓記了 57 年天氣日誌",
+          "ink"
+        ],
+        [
+          "留下約 20 萬筆觀測紀錄",
+          "A"
+        ]
+      ]
+    },
+    "ho": {
+      "accent": "A",
+      "size": 44,
+      "lines": [
+        [
+          "道耳頓的「最簡單原則」",
+          "ink"
+        ],
+        [
+          "沒有證據時先假設 1 : 1 → 水寫成 HO",
+          "A"
+        ],
+        [
+          "所以氧的原子量算成 7（今天是 16.00）",
+          "ink"
+        ]
+      ]
+    },
+    "gaylussac": {
+      "accent": "J",
+      "size": 44,
+      "lines": [
+        [
+          "1808・給呂薩克：氣體化合體積定律",
+          "ink"
+        ],
+        [
+          "2 體積氫＋1 體積氧 → 2 體積水蒸氣",
+          "J"
+        ],
+        [
+          "道耳頓不相信這組數據",
+          "ink"
+        ]
+      ]
+    },
+    "ignored": {
+      "accent": "B",
+      "size": 46,
+      "lines": [
+        [
+          "1811・亞佛加厥假說",
+          "ink"
+        ],
+        [
+          "發表後長期被冷落，1860 年才被化學界普遍接受",
+          "B"
+        ]
+      ]
+    },
+    "perrin": {
+      "accent": "J",
+      "size": 44,
+      "lines": [
+        [
+          "亞佛加厥本人從沒算過 6.02 × 10²³",
+          "ink"
+        ],
+        [
+          "1909 法國佩蘭量出數值，提議以他命名",
+          "J"
+        ],
+        [
+          "今天定義 NA＝6.02214076 × 10²³ /mol",
+          "ink"
+        ]
+      ]
+    },
+    "molname": {
+      "accent": "J",
+      "size": 46,
+      "lines": [
+        [
+          "「莫耳」mol 這個字",
+          "ink"
+        ],
+        [
+          "1890 年代才由德國化學家奧士華開始使用",
+          "J"
+        ]
+      ]
+    },
+    "avolaw": {
+      "accent": "B",
+      "size": 46,
+      "lines": [
+        [
+          "亞佛加厥定律",
+          "ink"
+        ],
+        [
+          "同溫、同壓、同體積的氣體，分子個數相同",
+          "B"
+        ]
+      ]
+    },
+    "diatomic": {
+      "accent": "B",
+      "size": 46,
+      "lines": [
+        [
+          "氫氣是 H2、氧氣是 O2",
+          "ink"
+        ],
+        [
+          "一個分子由兩個原子組成；反應時拆開的是分子",
+          "B"
+        ]
+      ]
+    },
+    "volumes": {
+      "accent": "B",
+      "size": 46,
+      "lines": [
+        [
+          "2 H2 ＋ O2 → 2 H2O",
+          "ink"
+        ],
+        [
+          "2 體積＋1 體積 → 2 體積：用 HO 解釋不了",
+          "B"
+        ]
+      ]
+    },
+    "triway": {
+      "accent": "B",
+      "size": 44,
+      "lines": [
+        [
+          "三向換算",
+          "ink"
+        ],
+        [
+          "公克 ÷ 莫耳質量 → 莫耳 → × NA → 個數",
+          "B"
+        ],
+        [
+          "公克和個數不能直接換：先換成莫耳",
+          "ink"
+        ]
+      ]
+    },
+    "o7": {
+      "accent": "B",
+      "size": 44,
+      "lines": [
+        [
+          "水中 氫 : 氧 質量比約 1 : 8",
+          "ink"
+        ],
+        [
+          "當成 HO → 氧＝8（道耳頓當年量成 7）",
+          "A"
+        ],
+        [
+          "寫成 H2O → 氧＝16 ✓",
+          "B"
+        ]
+      ]
+    },
+    "empirical": {
+      "accent": "B",
+      "size": 44,
+      "lines": [
+        [
+          "實驗式＝最簡整數比；分子式＝真實個數",
+          "ink"
+        ],
+        [
+          "甲醛 CH2O・醋酸 C2H4O2・葡萄糖 C6H12O6",
+          "B"
+        ],
+        [
+          "實驗式都是 CH2O，要靠莫耳質量才分得出來",
+          "ink"
+        ]
+      ]
+    },
+    "karlsruhe": {
+      "accent": "B",
+      "size": 44,
+      "lines": [
+        [
+          "1860・卡爾斯魯厄國際化學會議",
+          "ink"
+        ],
+        [
+          "坎尼扎羅發小冊子，重新介紹亞佛加厥假說",
+          "B"
+        ],
+        [
+          "原子量從此統一（亞佛加厥已於 1856 年過世）",
+          "ink"
+        ]
+      ]
+    },
+    "water": {
+      "accent": "B",
+      "size": 46,
+      "lines": [
+        [
+          "1 mol 水＝6.02 × 10²³ 個分子",
+          "ink"
+        ],
+        [
+          "只有 18.02 g ≈ 18 mL，大約一大匙",
+          "B"
+        ]
+      ]
+    },
+    "sodium": {
+      "accent": "B",
+      "size": 44,
+      "lines": [
+        [
+          "泡麵標示：鈉 1800 mg",
+          "ink"
+        ],
+        [
+          "食鹽＝鈉 × 58.44 / 22.99＝鈉 × 2.54",
+          "B"
+        ],
+        [
+          "1800 mg × 2.54 ≈ 4.6 g 鹽（一日上限的 75%）",
+          "ink"
+        ]
+      ]
+    },
+    "verdict": {
+      "accent": "J",
+      "size": 44,
+      "lines": [
+        [
+          "今天的定論",
+          "ink"
+        ],
+        [
+          "道耳頓：原子量（一顆有多重）",
+          "A"
+        ],
+        [
+          "亞佛加厥：個數（一莫耳有幾顆）",
+          "B"
+        ],
+        [
+          "合起來＝莫耳質量 g/mol",
+          "J"
+        ]
+      ]
+    }
+  },
+  "vote": {
+    "A": "挺道耳頓打「原子」",
+    "B": "挺亞佛加厥打「莫耳」",
+    "sub": "下一場想看哪兩位化學家對決？也寫在留言！"
+  },
+  "show_replace": [
+    [
+      "一八零八",
+      "1808"
+    ],
+    [
+      "一八一一",
+      "1811"
+    ],
+    [
+      "一八六零",
+      "1860"
+    ],
+    [
+      "一九零九",
+      "1909"
+    ],
+    [
+      "五十七年",
+      "57 年"
+    ],
+    [
+      "五十年",
+      "50 年"
+    ],
+    [
+      "六點零二 乘 十的 二十三",
+      "6.02 × 10²³"
+    ],
+    [
+      "一千八 毫克",
+      "1800 mg"
+    ],
+    [
+      "二點五四",
+      "2.54"
+    ],
+    [
+      "四點六克",
+      "4.6 克"
+    ],
+    [
+      "十八克",
+      "18 克"
+    ],
+    [
+      "C H 二 O",
+      "CH2O"
+    ],
+    [
+      "H 二 O",
+      "H2O"
+    ],
+    [
+      "H O",
+      "HO"
+    ],
+    [
+      "亞佛加決",
+      "亞佛加厥"
+    ]
+  ],
+  "flash_scenes": [
+    "davy",
+    "karlsruhe"
+  ],
+  "locked": [
+    "V01",
+    "W01",
+    "D01",
+    "D02",
+    "D03",
+    "F08",
+    "F09",
+    "F13",
+    "F14",
+    "T02",
+    "T03",
+    "T04"
+  ],
+  "crowd_sfx": "sfx/歡呼",
+  "shots": [
+    {
+      "id": "W01",
+      "at": 0.0,
+      "kind": "silent",
+      "scene": "arena",
+      "subj": [
+        "T"
+      ],
+      "dist": "WIDE",
+      "frame": "Wide establishing shot from behind the audience: an epic night rap-battle arena - a round raised stage in the centre with a glowing gold ring on its floor, the LEFT half an early-1800s Manchester schoolroom-laboratory (rainy arched windows, a brass barometer, a rack of wooden balls) in deep COBALT-BLUE light, the RIGHT half an Italian baroque hall (stone arches, rows of glass gas jars, small flames) in warm SODIUM-YELLOW light, a DJ booth at the back centre; the student audience in the foreground stand up with hands raised.",
+      "action": "Starting from <Picture 1>, the students jump to their feet and cheer with both hands up, light beams sweep across the arena from cobalt blue to sodium yellow, and haze rolls over the stage.",
+      "gfx": [
+        "title"
+      ]
+    },
+    {
+      "id": "N00",
+      "at": [
+        "dj",
+        "open",
+        1.0
+      ],
+      "kind": "silent",
+      "scene": "arena",
+      "subj": [
+        "A"
+      ],
+      "dist": "MS",
+      "frame": "John Dalton stands at the chrome microphone on the cobalt-blue left side of the stage, not touching it yet, holding a plain wooden ball the size of an orange up in one hand and studying it, a stern proud stare toward the right, mouth closed.",
+      "action": "Starting from <Picture 1>, he turns the wooden ball slowly in his fingers, sets it down on a small stand beside the microphone and steps up to the microphone, mouth closed."
+    },
+    {
+      "id": "L00",
+      "at": [
+        "dj",
+        "open",
+        3.0
+      ],
+      "kind": "silent",
+      "scene": "arena",
+      "subj": [
+        "B"
+      ],
+      "dist": "MS",
+      "frame": "Amedeo Avogadro stands at the chrome microphone on the sodium-yellow right side of the stage, not touching it yet, holding a small round clear glass flask up to the yellow light, a sly grin toward the left, mouth closed.",
+      "action": "Starting from <Picture 1>, he swirls the empty glass flask once, peers through it toward his rival with one eye like a telescope, and sets it down with a grin, mouth closed."
+    },
+    {
+      "id": "K01",
+      "at": [
+        "dj",
+        "open",
+        5.0
+      ],
+      "kind": "sing",
+      "scene": "arena",
+      "subj": [
+        "K"
+      ],
+      "dist": "MCU",
+      "frame": "Humphry Davy stands behind his DJ booth at the back centre of the arena stage, black headphones around his neck, brass goggles pushed up on his forehead, one hand on a spinning vinyl record, the other hand raised to the crowd, grinning; cobalt-blue light on the left, sodium-yellow light on the right.",
+      "action": "Starting from <Picture 1>, he shouts to the crowd with a big confident grin, scratches the record back and forth on the beat, then throws his free arm up toward the crowd.",
+      "card": "K",
+      "voice": "dj"
+    },
+    {
+      "id": "V01",
+      "at": [
+        "A",
+        -2
+      ],
+      "kind": "silent",
+      "scene": "arena",
+      "subj": [
+        "A",
+        "B"
+      ],
+      "dist": "MS",
+      "frame": "Face-off on the round stage: John Dalton on the LEFT in cobalt-blue light and Amedeo Avogadro on the RIGHT in sodium-yellow light stand at their chrome microphones facing each other in profile across the glowing gold ring; Dalton glares sternly, Avogadro answers with a sly grin; both mouths closed.",
+      "still": true,
+      "gfx": [
+        "vs"
+      ]
+    },
+    {
+      "id": "N01",
+      "at": [
+        "A",
+        0
+      ],
+      "kind": "sing",
+      "scene": "arena",
+      "subj": [
+        "A"
+      ],
+      "dist": "MCU",
+      "frame": "John Dalton stands at the chrome microphone on the cobalt-blue left side of the stage, gripping the microphone stand with one hand, chin raised, a stern proud stare, about to rap.",
+      "action": "Starting from <Picture 1>, he raps hard, taps his chest twice with his free hand, then holds up one finger for 'first'.",
+      "card": "A"
+    },
+    {
+      "id": "F01",
+      "at": [
+        "A",
+        1
+      ],
+      "kind": "silent",
+      "scene": "manchester",
+      "subj": [
+        "A"
+      ],
+      "dist": "MS",
+      "frame": "Flashback, Manchester around 1805: John Dalton in his plain dark-brown Quaker coat stands at the front of a simple wooden schoolroom, holding up a wooden ball in each hand to show a few teenage boys at their desks, rain on the tall window behind him.",
+      "action": "Starting from <Picture 1>, he presses the two wooden balls together to show them joining, then holds them apart again; the boys lean forward to look.",
+      "gfx": [
+        "atom"
+      ]
+    },
+    {
+      "id": "N02",
+      "at": [
+        "A",
+        2
+      ],
+      "kind": "sing",
+      "scene": "arena",
+      "subj": [
+        "A"
+      ],
+      "dist": "CU",
+      "frame": "Close-up: John Dalton stands at the chrome microphone on the cobalt-blue left side of the stage, holding a plain wooden ball up beside his face between two fingers, a stern certain look, blue rim light.",
+      "action": "Starting from <Picture 1>, he raps, slowly shakes his head while holding the ball still, then closes his fist around it.",
+      "calm": true
+    },
+    {
+      "id": "R01",
+      "at": [
+        "A",
+        3
+      ],
+      "kind": "silent",
+      "scene": "arena",
+      "subj": [
+        "B"
+      ],
+      "dist": "MCU",
+      "frame": "Reaction shot: Amedeo Avogadro on the sodium-yellow right side of the stage leans on his chrome microphone stand with his arms crossed, listening with an amused, disdainful little smile, one eyebrow raised.",
+      "action": "Starting from <Picture 1>, he slowly shakes his head with an amused smile and raises his eyebrow even higher; his mouth stays closed in a smug, disdainful little smile the whole time; he never speaks.",
+      "gfx": [
+        "lawyer"
+      ]
+    },
+    {
+      "id": "F02",
+      "at": [
+        "A",
+        4
+      ],
+      "kind": "silent",
+      "scene": "notebook",
+      "subj": [
+        "A"
+      ],
+      "dist": "MCU",
+      "frame": "Flashback, night: John Dalton at a candlelit wooden desk writes in a large notebook with a quill, the open page filled with neat columns of small hand-drawn circle symbols, each circle with a dot, a line or a cross inside, numbers written beside them.",
+      "action": "Starting from <Picture 1>, he draws one more small circle with a dot in the middle, writes a number beside it and nods to himself.",
+      "gfx": [
+        "weights"
+      ]
+    },
+    {
+      "id": "N03",
+      "at": [
+        "A",
+        5
+      ],
+      "kind": "sing",
+      "scene": "arena",
+      "subj": [
+        "A"
+      ],
+      "dist": "MS",
+      "frame": "John Dalton stands at the chrome microphone on the cobalt-blue left side of the stage, one hand raised showing one finger, a strict teacher's face, blue light behind him.",
+      "action": "Starting from <Picture 1>, he raps, raises one finger, then two fingers, slowly and clearly, then taps the two fingers on his palm.",
+      "gfx": [
+        "multiple"
+      ],
+      "calm": true
+    },
+    {
+      "id": "F03",
+      "at": [
+        "A",
+        6
+      ],
+      "kind": "silent",
+      "scene": "weather",
+      "subj": [
+        "A"
+      ],
+      "dist": "MS",
+      "frame": "Flashback, Manchester around 1810: older John Dalton in a plain dark coat stands on a rainy rooftop terrace beside a brass rain gauge and a barometer on the wall, writing in a small notebook, drizzle falling.",
+      "action": "Starting from <Picture 1>, he peers at the rain gauge, writes a number in his notebook, and taps the barometer glass with one finger.",
+      "gfx": [
+        "weather"
+      ]
+    },
+    {
+      "id": "N04",
+      "at": [
+        "A",
+        7
+      ],
+      "kind": "sing",
+      "scene": "arena",
+      "subj": [
+        "A"
+      ],
+      "dist": "CU",
+      "frame": "Close-up: John Dalton stands at the chrome microphone on the cobalt-blue left side of the stage, holding up a single sheet of paper between two fingers with a scornful look, blue rim light.",
+      "action": "Starting from <Picture 1>, he raps, slowly crumples the paper in one hand, then drops it with contempt.",
+      "last_first": true,
+      "calm": true
+    },
+    {
+      "id": "F04",
+      "at": [
+        "A",
+        8
+      ],
+      "kind": "silent",
+      "scene": "notebook",
+      "subj": [
+        "A"
+      ],
+      "dist": "CU",
+      "frame": "Flashback, night, close on a candlelit notebook page: John Dalton's hand with a quill has just written the letters \"HO\" large and clearly next to two small hand-drawn circles side by side, one circle with a dot inside and one plain circle.",
+      "action": "Starting from <Picture 1>, the quill underlines \"HO\" twice firmly, and the camera pushes in slowly on the page.",
+      "gfx": [
+        "ho"
+      ]
+    },
+    {
+      "id": "N05",
+      "at": [
+        "A",
+        9
+      ],
+      "kind": "sing",
+      "scene": "arena",
+      "subj": [
+        "A"
+      ],
+      "dist": "MCU",
+      "frame": "John Dalton stands at the chrome microphone on the cobalt-blue left side of the stage, holding the flat edge of his hand up like a knife beside a wooden ball on the stand, a mocking frown, blue light.",
+      "action": "Starting from <Picture 1>, he raps, slowly lowers the edge of his hand toward the ball, stops just above it, and wags one finger 'no'.",
+      "calm": true
+    },
+    {
+      "id": "R02",
+      "at": [
+        "A",
+        10
+      ],
+      "kind": "silent",
+      "scene": "arena",
+      "subj": [
+        "B"
+      ],
+      "dist": "CU",
+      "frame": "Reaction close-up: Amedeo Avogadro in sodium-yellow light covers a silent laugh with one hand, eyes sparkling with mockery, mouth closed.",
+      "action": "Starting from <Picture 1>, his shoulders shake with a silent laugh, he lowers the hand and spreads it in a small 'whatever' shrug; his mouth stays closed in a smug, disdainful little smile the whole time; he never speaks.",
+      "gfx": [
+        "gaylussac"
+      ]
+    },
+    {
+      "id": "F05",
+      "at": [
+        "A",
+        11
+      ],
+      "kind": "silent",
+      "scene": "archive",
+      "subj": [],
+      "dist": "MS",
+      "frame": "Flashback: a forgotten old printed journal lies closed on a high shelf of a dim library in Turin, covered in thick grey dust and cobwebs, a beam of dusty light from a high window; no people.",
+      "action": "Starting from <Picture 1>, dust drifts slowly through the light beam, a spider crawls across the cobweb, and the camera pushes in slowly on the dusty journal.",
+      "gfx": [
+        "ignored"
+      ]
+    },
+    {
+      "id": "N06",
+      "at": [
+        "A",
+        12
+      ],
+      "kind": "sing",
+      "scene": "arena",
+      "subj": [
+        "A"
+      ],
+      "dist": "MCU",
+      "frame": "John Dalton stands at the chrome microphone on the cobalt-blue left side of the stage, pointing across the stage toward the right with a stern scolding finger, blue light flaring behind him.",
+      "action": "Starting from <Picture 1>, he raps harder, shakes the pointing finger slowly twice, then folds his arms.",
+      "calm": true
+    },
+    {
+      "id": "F06",
+      "at": [
+        "A",
+        13
+      ],
+      "kind": "silent",
+      "scene": "perrin",
+      "subj": [],
+      "dist": "MS",
+      "frame": "Flashback, Paris 1909: a French physicist with a short beard and round spectacles in a dark suit looks into a big brass microscope on a wooden lab bench, a lamp and glass slides beside it.",
+      "action": "Starting from <Picture 1>, he adjusts the microscope knob, lifts his head, and writes a long number in his notebook with a satisfied look.",
+      "gfx": [
+        "perrin"
+      ]
+    },
+    {
+      "id": "D01",
+      "at": [
+        "A",
+        14
+      ],
+      "kind": "sing",
+      "scene": "arena",
+      "subj": [
+        "A",
+        "B"
+      ],
+      "dist": "MCU",
+      "frame": "Waist-up side-on two-shot, the two men stand close, about one metre apart, both faces large and visible in profile: John Dalton on the LEFT leans toward his rival and holds one flat hand high like the top of a building; Amedeo Avogadro on the RIGHT faces him with arms crossed and a smug amused smile, mouth closed; cobalt-blue light left, sodium-yellow light right.",
+      "action": "Starting from <Picture 1>, Dalton raps at Avogadro and slowly raises his flat hand higher, floor by floor; Avogadro keeps his arms firmly crossed the whole time and only smirks, his hands never move.",
+      "seed_bump": 5000,
+      "calm": true,
+      "draft": false,
+      "cons": [
+        "Amedeo Avogadro on the right keeps his lips pressed together in a smug smile from the first to the last frame; he never opens his mouth.",
+        "Avogadro's arms stay crossed over his chest for the whole shot; his hands never move. Dalton's hands move slowly and stay sharp."
+      ]
+    },
+    {
+      "id": "N07",
+      "at": [
+        "A",
+        15
+      ],
+      "kind": "sing",
+      "scene": "arena",
+      "subj": [
+        "A"
+      ],
+      "dist": "CU",
+      "frame": "Close-up, darker: John Dalton at the microphone turns his head toward the right and looks down his nose with ice-cold eyes, blue light from below, holding the microphone out toward the right side of the frame.",
+      "action": "Starting from <Picture 1>, he raps slowly and coldly, holding the microphone still out toward the right side of the frame; his free hand stays low and still, and on the last word he slowly opens his fingers.",
+      "last_first": true,
+      "calm": true,
+      "seed_bump": 5000,
+      "draft": false,
+      "cons": [
+        "Slow, controlled movements only: both hands stay sharp and clearly shaped, no fast gestures, no motion blur."
+      ]
+    },
+    {
+      "id": "T02",
+      "at": [
+        "mark",
+        "a_stop",
+        0.3
+      ],
+      "kind": "silent",
+      "scene": "arena",
+      "subj": [
+        "T"
+      ],
+      "dist": "WIDE",
+      "frame": "Audience B-roll: modern Taiwanese university students in the arena, some in white lab coats, shout 'ohhh' in shock, hands on their heads, some pointing at the stage, cobalt-blue light washing over them.",
+      "action": "Starting from <Picture 1>, the students jump and shout with hands on their heads, pointing at the stage.",
+      "gfx": [
+        "molname"
+      ]
+    },
+    {
+      "id": "K02",
+      "at": [
+        "mark",
+        "b_zero",
+        0.8
+      ],
+      "kind": "silent",
+      "scene": "arena",
+      "subj": [
+        "K"
+      ],
+      "dist": "CU",
+      "frame": "Close-up: Humphry Davy at his DJ turntables, headphones on, brass goggles on his forehead, one hand on the record, grinning with excitement, white-silver light.",
+      "action": "Starting from <Picture 1>, he scratches the record fast back and forth and bobs his head, mouth closed in a grin.",
+      "gfx": [
+        "dj_note"
+      ]
+    },
+    {
+      "id": "F07",
+      "at": [
+        "mark",
+        "b_zero",
+        2.6
+      ],
+      "kind": "silent",
+      "scene": "davy",
+      "subj": [
+        "K"
+      ],
+      "dist": "MS",
+      "frame": "Flashback, London 1807: young Humphry Davy in shirtsleeves and brass goggles leans over a lab bench in a dark basement laboratory, touching two metal wires from a tall stack of copper-and-zinc battery plates into a small dish of white molten lump.",
+      "action": "Starting from <Picture 1>, a blinding white spark flashes, tiny bright silver beads burst into small yellow flames on the dish, and Davy jumps back with a delighted laugh."
+    },
+    {
+      "id": "K03",
+      "at": [
+        "dj",
+        "switch",
+        -0.3
+      ],
+      "kind": "silent",
+      "scene": "arena",
+      "subj": [
+        "K"
+      ],
+      "dist": "MCU",
+      "frame": "Humphry Davy behind his DJ booth points firmly toward the sodium-yellow right side of the stage with a big grin, headphones around his neck, mouth closed.",
+      "still": true
+    },
+    {
+      "id": "L10",
+      "at": [
+        "B",
+        -2
+      ],
+      "kind": "silent",
+      "scene": "arena",
+      "subj": [
+        "B"
+      ],
+      "dist": "MS",
+      "frame": "Amedeo Avogadro stands at the chrome microphone on the sodium-yellow right side of the stage, cracking his knuckles, a confident challenging grin toward the left, mouth closed.",
+      "action": "Starting from <Picture 1>, he rolls his shoulders, grips the microphone stand with one hand and lifts his chin toward his rival, mouth closed."
+    },
+    {
+      "id": "L01",
+      "at": [
+        "B",
+        0
+      ],
+      "kind": "sing",
+      "scene": "arena",
+      "subj": [
+        "B"
+      ],
+      "dist": "MCU",
+      "frame": "Amedeo Avogadro stands at the chrome microphone on the sodium-yellow right side of the stage, holding up one finger with a cocky grin, about to rap.",
+      "action": "Starting from <Picture 1>, he raps, holds up one finger for 'one paper', then points at his rival.",
+      "card": "B",
+      "last_first": true,
+      "seed_bump": 1000
+    },
+    {
+      "id": "F08",
+      "at": [
+        "B",
+        1
+      ],
+      "kind": "silent",
+      "scene": "lab_modern",
+      "subj": [],
+      "dist": "MS",
+      "frame": "Insert in a modern university chemistry lab: three identical clear party balloons of exactly the same size float side by side, tied to the same clamp stand on a white lab bench; nobody in the shot.",
+      "action": "Starting from <Picture 1>, the three identical balloons sway gently together in the air, and the camera pushes in slowly; they stay exactly the same size.",
+      "gfx": [
+        "avolaw"
+      ]
+    },
+    {
+      "id": "L02",
+      "at": [
+        "B",
+        2
+      ],
+      "kind": "sing",
+      "scene": "arena",
+      "subj": [
+        "B"
+      ],
+      "dist": "CU",
+      "frame": "Close-up: Amedeo Avogadro stands at the chrome microphone on the sodium-yellow right side of the stage, one hand raised palm-up like weighing evidence, a sharp lawyer's smirk, yellow rim light.",
+      "action": "Starting from <Picture 1>, he raps, slowly taps two fingers on his open palm like a judge's gavel, then shakes his head.",
+      "calm": true
+    },
+    {
+      "id": "R03",
+      "at": [
+        "B",
+        3
+      ],
+      "kind": "silent",
+      "scene": "arena",
+      "subj": [
+        "A"
+      ],
+      "dist": "CU",
+      "frame": "Reaction close-up: John Dalton in cobalt-blue light grits his teeth behind closed lips, jaw clenched, eyes burning, mouth closed.",
+      "action": "Starting from <Picture 1>, his jaw tightens and he slowly narrows his eyes at his rival; his mouth stays closed."
+    },
+    {
+      "id": "L03",
+      "at": [
+        "B",
+        4
+      ],
+      "kind": "sing",
+      "scene": "arena",
+      "subj": [
+        "B"
+      ],
+      "dist": "MCU",
+      "frame": "Amedeo Avogadro stands at the chrome microphone on the sodium-yellow right side of the stage, holding up both fists pressed together side by side in front of his chest, a sly grin, yellow light.",
+      "action": "Starting from <Picture 1>, he raps, keeps the two fists pressed together and slowly shows them to the crowd like a pair holding hands.",
+      "gfx": [
+        "diatomic"
+      ],
+      "calm": true
+    },
+    {
+      "id": "L04",
+      "at": [
+        "B",
+        5
+      ],
+      "kind": "sing",
+      "scene": "arena",
+      "subj": [
+        "B"
+      ],
+      "dist": "CU",
+      "frame": "Close-up: Amedeo Avogadro stands at the chrome microphone on the sodium-yellow right side of the stage, his two fists pressed together in front of his chin, a teasing look toward the left, yellow rim light.",
+      "action": "Starting from <Picture 1>, he raps, slowly pulls the two fists apart, then opens both hands as if to say 'see?'.",
+      "last_first": true,
+      "seed_bump": 1000,
+      "calm": true
+    },
+    {
+      "id": "F09",
+      "at": [
+        "B",
+        6
+      ],
+      "kind": "silent",
+      "scene": "lab_modern",
+      "subj": [],
+      "dist": "MS",
+      "frame": "Insert in a modern university chemistry lab: on a white lab bench, two identical large glass gas syringes filled with colourless gas stand on the left and one same-size glass gas syringe on the right, all three clamped side by side in a row; nobody in the shot.",
+      "action": "Starting from <Picture 1>, the camera slides slowly along the row of three glass gas syringes from left to right.",
+      "gfx": [
+        "volumes"
+      ]
+    },
+    {
+      "id": "F10",
+      "at": [
+        "B",
+        7
+      ],
+      "kind": "silent",
+      "scene": "gaylussac",
+      "subj": [],
+      "dist": "MS",
+      "frame": "Flashback, Paris around 1808: a French chemist in a dark coat and white cravat carefully reads the gas level in a tall graduated glass tube standing in a trough of water, other glass tubes and flasks on the bench.",
+      "action": "Starting from <Picture 1>, he lifts the tube a little, reads the level at eye height, and nods with a satisfied look."
+    },
+    {
+      "id": "L05",
+      "at": [
+        "B",
+        8
+      ],
+      "kind": "sing",
+      "scene": "arena",
+      "subj": [
+        "B"
+      ],
+      "dist": "MCU",
+      "frame": "Amedeo Avogadro stands at the chrome microphone on the sodium-yellow right side of the stage, singing with eyes half closed, one hand open at his chest, a warm smile, soft yellow light and floating haze.",
+      "action": "Starting from <Picture 1>, he sings smoothly, slowly lifts the open hand forward toward the crowd, and sways gently with the melody.",
+      "gfx": [
+        "triway"
+      ],
+      "calm": true
+    },
+    {
+      "id": "F11",
+      "at": [
+        "B",
+        9
+      ],
+      "kind": "silent",
+      "scene": "classroom",
+      "subj": [
+        "T"
+      ],
+      "dist": "MS",
+      "frame": "Insert in a modern Taiwanese university classroom: a teacher's hand writes on a green chalkboard, which clearly shows \"g → mol → N\" with \"÷ M\" under the first arrow and \"× NA\" under the second arrow in white chalk; students at desks copy it into their notebooks.",
+      "action": "Starting from <Picture 1>, the chalk finishes the second arrow, and the students copy it down quickly, one nodding."
+    },
+    {
+      "id": "L06",
+      "at": [
+        "B",
+        10
+      ],
+      "kind": "sing",
+      "scene": "arena",
+      "subj": [
+        "B"
+      ],
+      "dist": "MS",
+      "frame": "Amedeo Avogadro stands at the chrome microphone on the sodium-yellow right side of the stage, singing, both forearms crossed in front of him in a calm X shape, a friendly smile, yellow light.",
+      "action": "Starting from <Picture 1>, he sings smoothly, holds the X shape for a moment, then slowly opens his arms wide.",
+      "calm": true
+    },
+    {
+      "id": "T03",
+      "at": [
+        "B",
+        11
+      ],
+      "kind": "silent",
+      "scene": "arena",
+      "subj": [
+        "T"
+      ],
+      "dist": "WIDE",
+      "frame": "Audience B-roll: rows of modern Taiwanese university students in the arena sway together with their phone lights raised high, some in white lab coats, smiling and singing along, warm sodium-yellow light washing over them.",
+      "action": "Starting from <Picture 1>, the students sway slowly side to side with their phone lights in the air, smiling.",
+      "last_first": true,
+      "seed_bump": 1000
+    },
+    {
+      "id": "L07",
+      "at": [
+        "B",
+        12
+      ],
+      "kind": "sing",
+      "scene": "arena",
+      "subj": [
+        "B"
+      ],
+      "dist": "MCU",
+      "frame": "Amedeo Avogadro stands at the chrome microphone on the sodium-yellow right side of the stage, holding up seven fingers (one open hand and two fingers) with a mocking frown, yellow light.",
+      "action": "Starting from <Picture 1>, he raps, shows the seven fingers slowly, then shakes his head and gives a thumbs-down.",
+      "gfx": [
+        "o7"
+      ],
+      "calm": true
+    },
+    {
+      "id": "R04",
+      "at": [
+        "B",
+        13
+      ],
+      "kind": "silent",
+      "scene": "arena",
+      "subj": [
+        "A"
+      ],
+      "dist": "MCU",
+      "frame": "Reaction shot: John Dalton in cobalt-blue light keeps a stiff proud face, but the wooden ball in his hand trembles slightly, mouth closed.",
+      "action": "Starting from <Picture 1>, his proud face freezes, he grips the wooden ball tighter and glances away; his mouth stays closed.",
+      "last_first": true,
+      "seed_bump": 1000
+    },
+    {
+      "id": "L08",
+      "at": [
+        "B",
+        14
+      ],
+      "kind": "sing",
+      "scene": "arena",
+      "subj": [
+        "B"
+      ],
+      "dist": "CU",
+      "frame": "Close-up: Amedeo Avogadro stands at the chrome microphone on the sodium-yellow right side of the stage, tapping his temple with one finger, a mocking grin, yellow rim light.",
+      "action": "Starting from <Picture 1>, he raps, taps his temple twice slowly, then points across the stage.",
+      "last_first": true,
+      "seed_bump": 3000,
+      "calm": true
+    },
+    {
+      "id": "F12",
+      "at": [
+        "B",
+        15
+      ],
+      "kind": "silent",
+      "scene": "classroom",
+      "subj": [
+        "T"
+      ],
+      "dist": "MS",
+      "frame": "Insert in a modern Taiwanese university classroom: a green chalkboard clearly shows three chemical formulas written one above another in white chalk - \"CH2O\", \"C2H4O2\", \"C6H12O6\" - and a big chalk bracket joining all three; a student in the front row frowns at it.",
+      "action": "Starting from <Picture 1>, the student looks from one formula to the next and scratches her head; the camera pushes in slowly on the board.",
+      "gfx": [
+        "empirical"
+      ]
+    },
+    {
+      "id": "F13",
+      "at": [
+        "B",
+        16
+      ],
+      "kind": "silent",
+      "scene": "karlsruhe",
+      "subj": [],
+      "dist": "WIDE",
+      "frame": "Flashback, Karlsruhe 1860: a crowded assembly hall full of mid-19th-century chemists in dark frock coats and beards; at the front a young Italian chemist hands out small printed pamphlets to the eager crowd.",
+      "action": "Starting from <Picture 1>, the pamphlets pass quickly from hand to hand, the chemists open them, read and turn to each other nodding in surprise.",
+      "gfx": [
+        "karlsruhe"
+      ]
+    },
+    {
+      "id": "L09",
+      "at": [
+        "B",
+        17
+      ],
+      "kind": "sing",
+      "scene": "arena",
+      "subj": [
+        "B"
+      ],
+      "dist": "MCU",
+      "frame": "Amedeo Avogadro stands at the chrome microphone on the sodium-yellow right side of the stage, one hand raised high as if holding the top of a long unrolling scroll, a proud grin, yellow light.",
+      "action": "Starting from <Picture 1>, he raps, slowly draws his hand down from high to low as if unrolling a very long scroll, then bows slightly.",
+      "calm": true
+    },
+    {
+      "id": "L11",
+      "at": [
+        "B",
+        18
+      ],
+      "kind": "sing",
+      "scene": "arena",
+      "subj": [
+        "B"
+      ],
+      "dist": "MCU",
+      "frame": "Amedeo Avogadro stands at the chrome microphone on the sodium-yellow right side of the stage, holding up a shiny silver tablespoon in one hand, a confident grin, yellow light flaring behind him.",
+      "action": "Starting from <Picture 1>, he raps harder, holds the tablespoon out toward the camera, then taps it twice on his palm.",
+      "gfx": [
+        "water"
+      ],
+      "calm": true
+    },
+    {
+      "id": "F14",
+      "at": [
+        "B",
+        19
+      ],
+      "kind": "silent",
+      "scene": "kitchen",
+      "subj": [],
+      "dist": "CU",
+      "frame": "Insert in a small modern Taiwanese dorm kitchen: a cup of instant noodles stands next to a small digital kitchen scale; on the scale a little white heap of table salt, the scale display clearly reads \"4.6 g\"; nobody in the shot.",
+      "action": "Starting from <Picture 1>, a pinch of salt sprinkles onto the heap and the camera pushes in slowly on the scale display.",
+      "gfx": [
+        "sodium"
+      ]
+    },
+    {
+      "id": "L12",
+      "at": [
+        "B",
+        20
+      ],
+      "kind": "sing",
+      "scene": "arena",
+      "subj": [
+        "B"
+      ],
+      "dist": "MS",
+      "frame": "Amedeo Avogadro stands at the chrome microphone on the sodium-yellow right side of the stage, making a rectangle picture-frame shape with his thumbs and fingers in front of his face, a mocking smile, yellow light.",
+      "action": "Starting from <Picture 1>, he raps, slowly moves the finger frame to the side as if hanging a picture on a wall, then drops his hands with a shrug.",
+      "calm": true
+    },
+    {
+      "id": "D02",
+      "at": [
+        "B",
+        21
+      ],
+      "kind": "sing",
+      "scene": "arena",
+      "subj": [
+        "B",
+        "A"
+      ],
+      "dist": "MCU",
+      "frame": "Waist-up side-on two-shot, the two men stand close, about one metre apart, both faces large and visible in profile: Amedeo Avogadro on the RIGHT leans toward his rival and raises both hands overhead as if holding up a heavy roof beam; John Dalton on the LEFT faces him stiffly with arms crossed, mouth closed; cobalt-blue light left, sodium-yellow light right.",
+      "action": "Starting from <Picture 1>, Avogadro raps at Dalton and slowly pushes both raised hands higher as if lifting a heavy beam; Dalton keeps his arms crossed and lips pressed together.",
+      "calm": true,
+      "cons": [
+        "John Dalton on the left keeps his lips pressed together from the first to the last frame; he never opens his mouth."
+      ]
+    },
+    {
+      "id": "R05",
+      "at": [
+        "B",
+        22
+      ],
+      "kind": "silent",
+      "scene": "arena",
+      "subj": [
+        "A"
+      ],
+      "dist": "CU",
+      "frame": "Reaction close-up: John Dalton in cobalt-blue light stares down at the wooden ball in his open palm, a shocked doubtful face, mouth closed.",
+      "action": "Starting from <Picture 1>, he looks at the single wooden ball in his palm, slowly realises something, and closes his eyes in frustration; his mouth stays closed.",
+      "last_first": true
+    },
+    {
+      "id": "L13",
+      "at": [
+        "B",
+        23
+      ],
+      "kind": "sing",
+      "scene": "arena",
+      "subj": [
+        "B"
+      ],
+      "dist": "CU",
+      "frame": "Close-up from the chest up: Amedeo Avogadro stands at the chrome microphone on the sodium-yellow right side of the stage leaning toward the camera with fierce triumphant eyes, one hand raised ready to point, the cobalt-blue and sodium-yellow arena softly blurred behind him.",
+      "action": "Starting from <Picture 1>, he shouts the final line slowly, every word hit hard, and on the last word points straight at the camera.",
+      "last_first": true
+    },
+    {
+      "id": "T04",
+      "at": [
+        "mark",
+        "b_last",
+        0.3
+      ],
+      "kind": "silent",
+      "scene": "arena",
+      "subj": [
+        "T"
+      ],
+      "dist": "WIDE",
+      "frame": "Audience B-roll: the students in the arena explode with joy, jumping, screaming and throwing their chemistry notes into the air, confetti and sodium-yellow light raining over them.",
+      "action": "Starting from <Picture 1>, the students jump, scream and throw papers into the air, confetti falling."
+    },
+    {
+      "id": "D03",
+      "at": [
+        "dj",
+        "verdict",
+        -0.3
+      ],
+      "kind": "silent",
+      "scene": "arena",
+      "subj": [
+        "A",
+        "B"
+      ],
+      "dist": "MS",
+      "frame": "Two-shot on the stage: John Dalton on the LEFT and Amedeo Avogadro on the RIGHT stand side by side with arms crossed, both stubbornly looking away from each other, mouths closed; cobalt-blue light left, sodium-yellow light right.",
+      "action": "Starting from <Picture 1>, both men glance at each other at the same time, hold the look, and give each other one small reluctant nod; both mouths closed.",
+      "gfx": [
+        "verdict"
+      ]
+    },
+    {
+      "id": "K04",
+      "at": [
+        "dj",
+        "end",
+        -0.3
+      ],
+      "kind": "sing",
+      "scene": "arena",
+      "subj": [
+        "K"
+      ],
+      "dist": "MCU",
+      "frame": "Humphry Davy behind his DJ booth faces the camera with both hands open palms-up as if asking the audience a question, a big playful grin, brass goggles on his forehead, the cheering student crowd and the cobalt-blue and sodium-yellow sides behind him.",
+      "action": "Starting from <Picture 1>, he shouts the questions to the camera, points at the viewer with both hands on the last words, then spreads his arms wide with a laugh.",
+      "voice": "dj"
+    }
+  ]
+}

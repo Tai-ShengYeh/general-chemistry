@@ -85,13 +85,15 @@ def main():
             assert page.evaluate("document.body.classList.contains('scroll')")
             assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),u
             page.evaluate("document.getElementById('handwrite').scrollIntoView({block:'start'})")
-            page.locator('#handwrite a.handwrite-chapter').first.click();page.wait_for_function('lessonPlayer.ready')
+            page.locator('#handwrite a.handwrite-chapter').first.click()
+            page.wait_for_url('**/handwrite/'+selected[0]['id']+'/player.html')
+            page.wait_for_function('window.lessonPlayer?.ready')
             assert u in page.url
             page.set_viewport_size({'width':1440,'height':1000})
             report['units'].append(dict(unit=u,original_slides=unit['slides'],chapters=len(selected),projection=True,mobile=True,original_answers=True))
         for r in records:
             print('Checking player',r['id'],flush=True)
-            page.goto(base+f'handwrite/{r["id"]}/player.html');page.wait_for_function('lessonPlayer.ready')
+            page.goto(base+f'handwrite/{r["id"]}/player.html');page.wait_for_function('window.lessonPlayer?.ready')
             meta=page.evaluate('lessonPlayer.meta');frame=page.frame_locator('#frame')
             assert len(meta['scenes'])==r['scenes']
             if not args.preview:

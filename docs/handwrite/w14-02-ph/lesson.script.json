@@ -1,0 +1,449 @@
+{
+  "title": "pH計算與食品判讀",
+  "width": 1920,
+  "height": 1080,
+  "theme": "notebook",
+  "auto_center": false,
+  "subtitle_y": 920,
+  "subtitle_size": 46,
+  "jitter": 0.25,
+  "write_rate": 0.1,
+  "default_anim": "write",
+  "music": false,
+  "voice": {
+    "preset": "female",
+    "speed": 0.94
+  },
+  "pronounce": {
+    "pOH": "P O H",
+    "pH": "P H",
+    "pKa": "P K A",
+    "pI": "等電點",
+    "PPO": "多酚氧化酶",
+    "Henry": "亨利",
+    "Lewis": "路易斯",
+    "Hess": "赫斯",
+    "Beer": "比爾",
+    "ppm": "百萬分比",
+    "PV": "過氧化價",
+    "AV": "酸價",
+    "HLB": "H L B",
+    "B12": "B 十二"
+  },
+  "scenes": [
+    {
+      "narration": "pH嚴格定義使用氫離子活性。稀、近理想水溶液常用濃度近似。差一個pH單位，代表活性相差十倍；溫度與校正條件也要說明。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "pH是對數，不是線性刻度",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "pH＝−log a(H⁺)",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "稀溶液近似：−log[H₃O⁺]",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "差1 pH → 相差10倍",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "text": "độ pH · 酸鹼值",
+          "x": 180,
+          "y": 265,
+          "size": 34,
+          "at": 0.5,
+          "color": "blue",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "已知氫離子濃度，求pH。已知氫氧根濃度，先求pOH，再用水的離子積連接。二十五度的入門近似，pH加pOH等於十四；別把十四當成任何溫度都固定。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "酸與鹼，各走自己的那條路",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "text": "[H₃O⁺]",
+          "x": 195,
+          "y": 430,
+          "size": 64,
+          "at": 1,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b0"
+        },
+        {
+          "type": "box",
+          "of": "b0",
+          "color": "blue",
+          "at": 2
+        },
+        {
+          "type": "text",
+          "text": "取負對數得pH",
+          "x": 195,
+          "y": 620,
+          "size": 39,
+          "at": 2,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            520,
+            495
+          ],
+          "to": [
+            680,
+            495
+          ],
+          "at": 3,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "pH＋pOH",
+          "x": 740,
+          "y": 430,
+          "size": 64,
+          "at": 3,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b1"
+        },
+        {
+          "type": "box",
+          "of": "b1",
+          "color": "blue",
+          "at": 4
+        },
+        {
+          "type": "text",
+          "text": "25°C近似14.00",
+          "x": 740,
+          "y": 620,
+          "size": 39,
+          "at": 4,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            1065,
+            495
+          ],
+          "to": [
+            1225,
+            495
+          ],
+          "at": 5,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "[OH⁻]",
+          "x": 1285,
+          "y": 430,
+          "size": 64,
+          "at": 5,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b2"
+        },
+        {
+          "type": "box",
+          "of": "b2",
+          "color": "blue",
+          "at": 6
+        },
+        {
+          "type": "text",
+          "text": "取負對數得pOH",
+          "x": 1285,
+          "y": 620,
+          "size": 39,
+          "at": 6,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "題設二十五度、稀溶液近似，鹽酸完全電離，忽略水自解離的相對貢獻。零點零一零莫耳濃度的pH是多少？",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "0.010 M鹽酸的pH",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "[H₃O⁺]≈1.0×10⁻² M",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "pH＝−log(1.0×10⁻²)",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "十的負二次方取負對數，得到二。濃度有兩位有效數字，pH保留兩位小數，報二點零零。若酸極稀，水自解離不可忽略，就不能直接把酸濃度當氫離子濃度。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "答案：2.00",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "pH＝2.00",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "極稀溶液需納入水自解離",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "二十五度，零點零零二五莫耳濃度氫氧化鈉完全電離。先算負對數得pOH二點六零，再用十四減去它，pH是十一點四零。鹼液算出酸性數值，就要檢查你算的是哪一個。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "氫氧化鈉，先求pOH",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "pOH＝−log(0.0025)＝2.60",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "pH＝14.00−2.60＝11.40",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "食品課程常提到四點六這個界線。單靠量到低於四點六，能不能直接斷定任何自製食品都能常溫保存？請把化學量測與完整加工驗證分開。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "pH低於4.6，就保證能常溫保存嗎",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "平衡pH只是分類與控制條件之一",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "還要看aw、加工、包裝與驗證。",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "食品酸度分類要看適用法規與最終平衡pH。四點六不是所有危害消失的開關，也不能單靠它決定家庭加工程序。這裡練習量測與條件判讀，不提供罐藏加熱時程。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "界線有用途，也有適用範圍",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "確認最終平衡pH與量測條件",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "結合aw、加工與產品驗證",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "一個pH數字，不能包辦保存判定。",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "box",
+          "of": "step3",
+          "color": "blue",
+          "dur": 0.55
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    }
+  ]
+}

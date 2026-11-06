@@ -1,0 +1,298 @@
+{
+  "title": "水活性：不是含水量",
+  "objective": "能計算aw並區分含水量，避免以單一數值推定保存安全。",
+  "audience": "食品營養系普通化學初學者；短句中文，越南語關鍵詞輔助",
+  "aspect": "16:9",
+  "theme": "notebook",
+  "music": false,
+  "voice": {
+    "preset": "female",
+    "speed": 0.94
+  },
+  "sources": [
+    "https://tai-shengyeh.github.io/general-chemistry/%E6%96%B0W13_%E8%86%A0%E9%AB%94%E4%B9%B3%E5%8C%96%E8%88%87%E6%B0%B4%E6%B4%BB%E6%80%A7.html",
+    "對應投影片：[2, 28, 30, 33]；本課為重點重編，非逐張朗讀。",
+    "科學條件與外部來源見上層 teacher-notes.md。"
+  ],
+  "scenes": [
+    {
+      "title": "水活性，有可測量的定義",
+      "narration": "在同一溫度下，食品上方平衡水蒸氣壓，除以純水蒸氣壓，就是水活性。它反映水的熱力學狀態，不是直接量出一份叫自由水的比例。",
+      "steps": [
+        "aw＝p食品/p純水",
+        "兩者必須在同一溫度",
+        "含水量：水有多少；aw：水的狀態"
+      ],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        28,
+        30,
+        33
+      ],
+      "items": [
+        {
+          "type": "text",
+          "text": "hoạt độ nước · 水活性",
+          "x": 180,
+          "y": 265,
+          "size": 34,
+          "at": 0.5,
+          "color": "blue",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ]
+    },
+    {
+      "title": "先達平衡，再比較蒸氣壓",
+      "narration": "把樣品與氣相放到平衡，量測水的相對蒸氣壓。若平衡相對濕度用百分比表示，水活性等於它除以一百。組成與溫度不同，含水量和水活性的關係也不同。",
+      "steps": [],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        28,
+        30,
+        33
+      ],
+      "items": [
+        {
+          "type": "text",
+          "text": "食品",
+          "x": 195,
+          "y": 430,
+          "size": 64,
+          "at": 1,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b0"
+        },
+        {
+          "type": "box",
+          "of": "b0",
+          "color": "blue",
+          "at": 2
+        },
+        {
+          "type": "text",
+          "text": "組成與水交互作用",
+          "x": 195,
+          "y": 620,
+          "size": 39,
+          "at": 2,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            520,
+            495
+          ],
+          "to": [
+            680,
+            495
+          ],
+          "at": 3,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "平衡氣相",
+          "x": 740,
+          "y": 430,
+          "size": 64,
+          "at": 3,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b1"
+        },
+        {
+          "type": "box",
+          "of": "b1",
+          "color": "blue",
+          "at": 4
+        },
+        {
+          "type": "text",
+          "text": "固定溫度、達平衡",
+          "x": 740,
+          "y": 620,
+          "size": 39,
+          "at": 4,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            1065,
+            495
+          ],
+          "to": [
+            1225,
+            495
+          ],
+          "at": 5,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "水活性",
+          "x": 1285,
+          "y": 430,
+          "size": 64,
+          "at": 5,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b2"
+        },
+        {
+          "type": "box",
+          "of": "b2",
+          "color": "blue",
+          "at": 6
+        },
+        {
+          "type": "text",
+          "text": "aw＝平衡相對濕度/100",
+          "x": 1285,
+          "y": 620,
+          "size": 39,
+          "at": 6,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ]
+    },
+    {
+      "title": "14.3除23.8是多少",
+      "narration": "題設二十五度，食品平衡水蒸氣壓十四點三托，純水二十三點八托。水活性多少？算完後，這個值有沒有單位？",
+      "steps": [
+        "aw＝14.3 torr/23.8 torr"
+      ],
+      "stage": "practice",
+      "wait": 4,
+      "source_slides": [
+        2,
+        28,
+        30,
+        33
+      ],
+      "items": [],
+      "pause": true,
+      "answer": "約0.601，無單位。"
+    },
+    {
+      "title": "答案：0.601，沒有單位",
+      "narration": "十四點三除二十三點八，約零點六零一；兩個壓力單位相消。但這個數字本身不能直接宣告食品可以常溫放多久，還要看產品與製程資料。",
+      "steps": [
+        "aw≈0.601",
+        "壓力比值，所以無單位",
+        "單一aw不能直接給保存期限"
+      ],
+      "stage": "answer",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        28,
+        30,
+        33
+      ],
+      "items": []
+    },
+    {
+      "title": "同含水量，不保證同水活性",
+      "narration": "糖、鹽與食品基質會改變水的化學勢，但實際變化要靠測量或適用的吸濕等溫線。兩包餅乾含水量同為百分之五，不足以直接算出哪一包水活性多少。",
+      "steps": [
+        "同含水量 ≠ 必定同aw",
+        "不同組成，需要各自資料",
+        "加糖可能降aw，幅度需驗證"
+      ],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        28,
+        30,
+        33
+      ],
+      "items": []
+    },
+    {
+      "title": "aw低，能保證所有反應都慢嗎",
+      "narration": "降低水活性通常限制許多微生物生長，但能不能直接說所有食品反應都越慢、越乾就越穩定？請想想脂質氧化與吸濕。",
+      "steps": [
+        "微生物、氧化、褐變的反應曲線不同",
+        "包裝透濕後，aw也可能改變。"
+      ],
+      "stage": "practice",
+      "wait": 4,
+      "source_slides": [
+        2,
+        28,
+        30,
+        33
+      ],
+      "items": [],
+      "pause": true,
+      "answer": "不能；不同反應對aw的依賴不同。"
+    },
+    {
+      "title": "不同變化，有不同的水活性曲線",
+      "narration": "不同微生物耐受性、化學反應與食品結構，對水活性反應不同。很乾也不保證氧化最慢，更不等於污染物已消失。保存設計要把實測水活性、溫度、包裝與驗證一起看。",
+      "steps": [
+        "aw描述狀態，不是萬用安全證書",
+        "最佳穩定區間依產品而異",
+        {
+          "text": "含水量與水活性，都量才知道。",
+          "emphasis": "box"
+        }
+      ],
+      "stage": "answer",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        28,
+        30,
+        33
+      ],
+      "items": []
+    }
+  ],
+  "pronounce": {
+    "pOH": "P O H",
+    "pH": "P H",
+    "pKa": "P K A",
+    "pI": "等電點",
+    "PPO": "多酚氧化酶",
+    "Henry": "亨利",
+    "Lewis": "路易斯",
+    "Hess": "赫斯",
+    "Beer": "比爾",
+    "ppm": "百萬分比",
+    "PV": "過氧化價",
+    "AV": "酸價",
+    "HLB": "H L B",
+    "B12": "B 十二"
+  }
+}

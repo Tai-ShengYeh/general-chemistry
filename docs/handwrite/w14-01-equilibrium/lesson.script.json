@@ -1,0 +1,449 @@
+{
+  "title": "動態平衡、K與酸的強弱",
+  "width": 1920,
+  "height": 1080,
+  "theme": "notebook",
+  "auto_center": false,
+  "subtitle_y": 920,
+  "subtitle_size": 46,
+  "jitter": 0.25,
+  "write_rate": 0.1,
+  "default_anim": "write",
+  "music": false,
+  "voice": {
+    "preset": "female",
+    "speed": 0.94
+  },
+  "pronounce": {
+    "pOH": "P O H",
+    "pH": "P H",
+    "pKa": "P K A",
+    "pI": "等電點",
+    "PPO": "多酚氧化酶",
+    "Henry": "亨利",
+    "Lewis": "路易斯",
+    "Hess": "赫斯",
+    "Beer": "比爾",
+    "ppm": "百萬分比",
+    "PV": "過氧化價",
+    "AV": "酸價",
+    "HLB": "H L B",
+    "B12": "B 十二"
+  },
+  "scenes": [
+    {
+      "narration": "封閉且條件固定的反應系統，正逆反應可以同時持續。達平衡時兩者速率相等，所以巨觀組成不再改變。反應物與產物濃度不需要相等。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "平衡，不是停止反應",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "平衡：正速率＝逆速率",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "不是濃度相等，也不是反應停止",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "text": "cân bằng · 平衡",
+          "x": 180,
+          "y": 265,
+          "size": 34,
+          "at": 0.5,
+          "color": "blue",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "同一反應與溫度下，平衡常數是比較基準。反應商用當下組成計算，和K比較就能預測趨向。嚴格形式用活性，入門常在適用條件下以濃度近似。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "K看平衡，Q看當下",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "text": "Q < K",
+          "x": 195,
+          "y": 430,
+          "size": 64,
+          "at": 1,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b0"
+        },
+        {
+          "type": "box",
+          "of": "b0",
+          "color": "blue",
+          "at": 2
+        },
+        {
+          "type": "text",
+          "text": "趨向生成物",
+          "x": 195,
+          "y": 620,
+          "size": 39,
+          "at": 2,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            520,
+            495
+          ],
+          "to": [
+            680,
+            495
+          ],
+          "at": 3,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "Q = K",
+          "x": 740,
+          "y": 430,
+          "size": 64,
+          "at": 3,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b1"
+        },
+        {
+          "type": "box",
+          "of": "b1",
+          "color": "blue",
+          "at": 4
+        },
+        {
+          "type": "text",
+          "text": "已達平衡",
+          "x": 740,
+          "y": 620,
+          "size": 39,
+          "at": 4,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            1065,
+            495
+          ],
+          "to": [
+            1225,
+            495
+          ],
+          "at": 5,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "Q > K",
+          "x": 1285,
+          "y": 430,
+          "size": 64,
+          "at": 5,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b2"
+        },
+        {
+          "type": "box",
+          "of": "b2",
+          "color": "blue",
+          "at": 6
+        },
+        {
+          "type": "text",
+          "text": "趨向反應物",
+          "x": 1285,
+          "y": 620,
+          "size": 39,
+          "at": 6,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "在同一溫度下，加入催化劑讓反應更快到達平衡。平衡常數會因此變大嗎？請分開速度與平衡位置。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "加入催化劑，K會變嗎",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "催化劑降低反應能障",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "是否改變起終態自由能差？",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "催化劑加快正逆兩方向到平衡的過程，不改變指定溫度下的平衡常數。若系統原本已在平衡，不能只靠催化劑把平衡產率推高。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "答案：更快到達同一平衡",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "催化劑：改速度",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "同溫同反應：K不變",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "強酸在水中通常幾乎完全電離，弱酸則只有部分電離。濃稀是每體積含多少酸。弱酸可以很濃，強酸也可以很稀；比較pH還要把濃度和酸的平衡一起看。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "強弱與濃稀，是兩條軸",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "強弱：電離平衡程度",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "濃稀：分析濃度大小",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "Ka越大、pKa越小，酸通常越強",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "有人只知道甲是強酸，乙是弱酸，就斷定甲的pH一定較低。還缺什麼資料？不要把強酸兩字當成酸度數值。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "強酸一定比弱酸pH低嗎",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "甲乙的濃度？",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "溫度、介質與平衡條件？",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "至少要知道酸的濃度和適用條件，才能比較pH。強弱描述電離傾向，pH描述溶液氫離子活性。化學詞語要分清它指的是物質性質，還是這杯溶液的狀態。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "先補濃度，才能比較",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "酸強弱 ≠ 這杯溶液的pH",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "平衡位置 ≠ 到達平衡的速度",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "先說比較條件，再說大小。",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "box",
+          "of": "step3",
+          "color": "blue",
+          "dur": 0.55
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    }
+  ]
+}

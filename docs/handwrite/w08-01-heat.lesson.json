@@ -1,0 +1,243 @@
+{
+  "title": "熱量、系統與正負號",
+  "objective": "能使用q=mcΔT，並依系統邊界正確判斷熱量符號。",
+  "audience": "食品營養系普通化學初學者；短句中文，越南語關鍵詞輔助",
+  "aspect": "16:9",
+  "theme": "notebook",
+  "music": false,
+  "voice": {
+    "preset": "female",
+    "speed": 0.94
+  },
+  "sources": [
+    "https://tai-shengyeh.github.io/general-chemistry/%E6%96%B0W08_%E7%86%B1%E5%8C%96%E5%AD%B8.html",
+    "對應投影片：[2, 17, 19, 51]；本課為重點重編，非逐張朗讀。",
+    "科學條件與外部來源見上層 teacher-notes.md。"
+  ],
+  "scenes": [
+    {
+      "title": "正負號，站在系統這一邊",
+      "narration": "先選定系統，再判斷熱流方向。系統吸熱，熱量是正；系統放熱，熱量是負。熱是跨邊界傳遞的能量，不是物體裡存著一包叫熱的東西。",
+      "steps": [
+        "吸熱：q系統 > 0",
+        "放熱：q系統 < 0"
+      ],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        17,
+        19,
+        51
+      ],
+      "items": [
+        {
+          "type": "text",
+          "text": "nhiệt · 熱",
+          "x": 180,
+          "y": 265,
+          "size": 34,
+          "at": 0.5,
+          "color": "blue",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ]
+    },
+    {
+      "title": "放熱，是能量離開系統",
+      "narration": "把反應物當系統，熱從系統傳給外界，所以系統的熱量是負。外界吸到熱量，符號相反。討論溫升時，要先說量的是反應系統，還是吸熱的水。",
+      "steps": [],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        17,
+        19,
+        51
+      ],
+      "items": [
+        {
+          "type": "text",
+          "text": "反應系統",
+          "x": 720,
+          "y": 440,
+          "size": 80,
+          "at": 1,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "sys"
+        },
+        {
+          "type": "box",
+          "of": "sys",
+          "at": 2
+        },
+        {
+          "type": "text",
+          "text": "外界",
+          "x": 245,
+          "y": 440,
+          "size": 68,
+          "at": 1,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            670,
+            560
+          ],
+          "to": [
+            320,
+            560
+          ],
+          "at": 3,
+          "color": "red",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "放熱：系統 q < 0",
+          "x": 590,
+          "y": 690,
+          "size": 62,
+          "at": 4,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "text",
+          "text": "能量離開系統；不是消失。",
+          "x": 430,
+          "y": 790,
+          "size": 46,
+          "at": 6,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        }
+      ]
+    },
+    {
+      "title": "250.0 g水升溫75.0度",
+      "narration": "水從二十五點零升到一百點零度。質量兩百五十點零公克，比熱取四點一八四焦耳每公克每度。若只算液態升溫，需要多少熱？",
+      "steps": [
+        "ΔT＝100.0−25.0＝75.0 °C",
+        "q＝250.0×4.184×75.0 J"
+      ],
+      "stage": "practice",
+      "wait": 4,
+      "source_slides": [
+        2,
+        17,
+        19,
+        51
+      ],
+      "items": [],
+      "pause": true,
+      "answer": "7.85×10⁴ J，約78.5 kJ；正值。"
+    },
+    {
+      "title": "答案：吸收78.5 kJ",
+      "narration": "計算值七萬八千四百五十焦耳，依三位有效數字報七十八點五千焦耳。這只算水升到沸點前的顯熱；若要繼續汽化，還需要加入汽化熱。",
+      "steps": [
+        "q＝7.85×10⁴ J＝78.5 kJ",
+        "水吸熱，所以q > 0",
+        "汽化熱不包含在此計算"
+      ],
+      "stage": "answer",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        17,
+        19,
+        51
+      ],
+      "items": []
+    },
+    {
+      "title": "熱平衡，要顧到熱量計",
+      "narration": "理想簡化題把金屬放出的熱，視為水吸收的熱。實際量測還可能有容器吸熱與向外散熱。較完整的能量收支，要把每個重要部分列入。",
+      "steps": [
+        "簡化：q金屬＋q水＝0",
+        "實際：加上容器與散熱項",
+        "c＝q/(mΔT)"
+      ],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        17,
+        19,
+        51
+      ],
+      "items": []
+    },
+    {
+      "title": "水升溫，反應是吸熱嗎",
+      "narration": "反應在杯中進行，周圍水溫上升。若散熱與容器效應已處理，反應系統本身是吸熱還是放熱？不要把水的正號直接貼給反應。",
+      "steps": [
+        "q水 > 0",
+        "q反應＝−q水"
+      ],
+      "stage": "practice",
+      "wait": 4,
+      "source_slides": [
+        2,
+        17,
+        19,
+        51
+      ],
+      "items": [],
+      "pause": true,
+      "answer": "反應放熱，q反應<0。"
+    },
+    {
+      "title": "水吸熱，反應放熱",
+      "narration": "水得到熱量，反應系統失去相同熱量，所以反應是放熱。熱力學正負號取決於你選的系統，先把邊界畫出來，符號就有依據。",
+      "steps": [
+        "q水 > 0；q反應 < 0",
+        {
+          "text": "先選系統，再判斷正負。",
+          "emphasis": "box"
+        }
+      ],
+      "stage": "answer",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        17,
+        19,
+        51
+      ],
+      "items": []
+    }
+  ],
+  "pronounce": {
+    "pOH": "P O H",
+    "pH": "P H",
+    "pKa": "P K A",
+    "pI": "等電點",
+    "PPO": "多酚氧化酶",
+    "Henry": "亨利",
+    "Lewis": "路易斯",
+    "Hess": "赫斯",
+    "Beer": "比爾",
+    "ppm": "百萬分比",
+    "PV": "過氧化價",
+    "AV": "酸價",
+    "HLB": "H L B",
+    "B12": "B 十二"
+  }
+}

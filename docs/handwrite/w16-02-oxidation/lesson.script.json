@@ -1,0 +1,459 @@
+{
+  "title": "油脂鏈鎖氧化與褐變",
+  "width": 1920,
+  "height": 1080,
+  "theme": "notebook",
+  "auto_center": false,
+  "subtitle_y": 920,
+  "subtitle_size": 46,
+  "jitter": 0.25,
+  "write_rate": 0.1,
+  "default_anim": "write",
+  "music": false,
+  "voice": {
+    "preset": "female",
+    "speed": 0.94
+  },
+  "pronounce": {
+    "pOH": "P O H",
+    "pH": "P H",
+    "pKa": "P K A",
+    "pI": "等電點",
+    "PPO": "多酚氧化酶",
+    "Henry": "亨利",
+    "Lewis": "路易斯",
+    "Hess": "赫斯",
+    "Beer": "比爾",
+    "ppm": "百萬分比",
+    "PV": "過氧化價",
+    "AV": "酸價",
+    "HLB": "H L B",
+    "B12": "B 十二"
+  },
+  "scenes": [
+    {
+      "narration": "脂質自動氧化可用起始、傳遞與終止的鏈鎖模型理解。光、熱與微量金屬等條件會影響反應。脂質氧化不只一種途徑，這裡聚焦自由基鏈鎖。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "一個自由基，可能延續很多次反應",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "起始 → 傳遞 → 終止",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "ROO•＋RH → ROOH＋R•",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "新自由基可繼續傳遞",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "text": "chống oxi hóa · 抗氧化",
+          "x": 180,
+          "y": 265,
+          "size": 34,
+          "at": 0.5,
+          "color": "blue",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "避光可減少部分光起始，減氧限制氧參與，適當螯合能影響金屬催化；鏈鎖終止型抗氧化劑則捐出氫，讓自由基轉成較不易延續鏈鎖的型態。效果依配方而變。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "對策，要對到鏈鎖的位置",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "text": "起始",
+          "x": 195,
+          "y": 430,
+          "size": 64,
+          "at": 1,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b0"
+        },
+        {
+          "type": "box",
+          "of": "b0",
+          "color": "blue",
+          "at": 2
+        },
+        {
+          "type": "text",
+          "text": "產生自由基",
+          "x": 195,
+          "y": 620,
+          "size": 39,
+          "at": 2,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            520,
+            495
+          ],
+          "to": [
+            680,
+            495
+          ],
+          "at": 3,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "傳遞",
+          "x": 740,
+          "y": 430,
+          "size": 64,
+          "at": 3,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b1"
+        },
+        {
+          "type": "box",
+          "of": "b1",
+          "color": "blue",
+          "at": 4
+        },
+        {
+          "type": "text",
+          "text": "自由基延續鏈鎖",
+          "x": 740,
+          "y": 620,
+          "size": 39,
+          "at": 4,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            1065,
+            495
+          ],
+          "to": [
+            1225,
+            495
+          ],
+          "at": 5,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "終止",
+          "x": 1285,
+          "y": 430,
+          "size": 64,
+          "at": 5,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b2"
+        },
+        {
+          "type": "box",
+          "of": "b2",
+          "color": "blue",
+          "at": 6
+        },
+        {
+          "type": "text",
+          "text": "自由基被穩定移除",
+          "x": 1285,
+          "y": 620,
+          "size": 39,
+          "at": 6,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "同配方、同溫度下，透明包裝換成合適遮光包裝。這主要是在降低光起始，還是把所有既有油耗味分子還原回新鮮油？",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "換遮光瓶，主要改哪一環",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "減少光到達樣品",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "既有氧化產物仍可能存在。",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "遮光主要限制光參與的新反應，不能保證把已生成的醛、酮等裂解產物消除。抗氧化處理也是延緩工具，不能把已劣變的油當成恢復新鮮。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "答案：延緩新損傷，不是倒帶",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "遮光：減少部分光起始",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "不代表既有產物被移除",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "切開蘋果的酵素性褐變，與多酚、氧及酵素活性有關。梅納反應通常需要還原糖與可反應胺基，不需要酵素；焦糖化則是糖受熱的反應，不必有胺基。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "褐變，先分是否需要酵素",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "酵素褐變：多酚＋氧＋PPO",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "梅納：還原糖＋可反應胺基",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "焦糖化：糖受熱，不必有胺基",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "檸檬水可能降低pH，並帶入還原性成分。這些作用分別可以影響酵素活性與醌的累積。能不能把褐變變慢直接當成食物已消毒？",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "檸檬水為什麼可能減少蘋果褐變",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "顏色變化與微生物控制不同",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "濃度、接觸和產品條件都重要。",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "酸度與還原作用可能減緩某些褐變，但不能只看顏色判定衛生安全。不同抗氧化手段針對不同位置，效果還需實測。完成本課後，請用機制、條件與證據，解釋食品現象。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "把可見現象，連回正確機制",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "顏色好看 ≠ 安全已驗證",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "先找機制，再改變條件",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "用化學說明，也用證據核對。",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "box",
+          "of": "step3",
+          "color": "blue",
+          "dur": 0.55
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    }
+  ]
+}

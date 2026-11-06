@@ -1,0 +1,469 @@
+{
+  "title": "離子配對、命名與元素含量",
+  "width": 1920,
+  "height": 1080,
+  "theme": "notebook",
+  "auto_center": false,
+  "subtitle_y": 920,
+  "subtitle_size": 46,
+  "jitter": 0.25,
+  "write_rate": 0.1,
+  "default_anim": "write",
+  "music": false,
+  "voice": {
+    "preset": "female",
+    "speed": 0.94
+  },
+  "pronounce": {
+    "pOH": "P O H",
+    "pH": "P H",
+    "pKa": "P K A",
+    "pI": "等電點",
+    "PPO": "多酚氧化酶",
+    "Henry": "亨利",
+    "Lewis": "路易斯",
+    "Hess": "赫斯",
+    "Beer": "比爾",
+    "ppm": "百萬分比",
+    "PV": "過氧化價",
+    "AV": "酸價",
+    "HLB": "H L B",
+    "B12": "B 十二"
+  },
+  "scenes": [
+    {
+      "narration": "離子化合物的比例，要讓總電荷為零。下標表示組成比例，不是離子的電荷。若多原子離子要用兩個，就先加括號，再把下標寫在外面。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "化學式，先守住電中性",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "總正電＋總負電＝0",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "Ca²⁺＋2Cl⁻ → CaCl₂",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "Ca²⁺＋2NO₃⁻ → Ca(NO₃)₂",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "text": "ion · 離子",
+          "x": 180,
+          "y": 265,
+          "size": 34,
+          "at": 0.5,
+          "color": "blue",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "先辨認離子與電荷，再寫出化學式，才能計算元素比例。鐵的羅馬數字表示氧化態。氯化鐵三的化學式是三氯化鐵，不是把三寫在鐵的下標。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "名稱、化學式、含量要連起來",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "text": "離子電荷",
+          "x": 195,
+          "y": 430,
+          "size": 64,
+          "at": 1,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b0"
+        },
+        {
+          "type": "box",
+          "of": "b0",
+          "color": "blue",
+          "at": 2
+        },
+        {
+          "type": "text",
+          "text": "Fe³⁺、Cl⁻",
+          "x": 195,
+          "y": 620,
+          "size": 39,
+          "at": 2,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            520,
+            495
+          ],
+          "to": [
+            680,
+            495
+          ],
+          "at": 3,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "化學式",
+          "x": 740,
+          "y": 430,
+          "size": 64,
+          "at": 3,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b1"
+        },
+        {
+          "type": "box",
+          "of": "b1",
+          "color": "blue",
+          "at": 4
+        },
+        {
+          "type": "text",
+          "text": "FeCl₃",
+          "x": 740,
+          "y": 620,
+          "size": 39,
+          "at": 4,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            1065,
+            495
+          ],
+          "to": [
+            1225,
+            495
+          ],
+          "at": 5,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "元素含量",
+          "x": 1285,
+          "y": 430,
+          "size": 64,
+          "at": 5,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b2"
+        },
+        {
+          "type": "box",
+          "of": "b2",
+          "color": "blue",
+          "at": 6
+        },
+        {
+          "type": "text",
+          "text": "依原子個數與質量計算",
+          "x": 1285,
+          "y": 620,
+          "size": 39,
+          "at": 6,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "鎂離子帶正二，硝酸根帶負一。中性化合物需要幾個硝酸根？括號應該放在哪裡？",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "鎂與硝酸根，怎麼配",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "Mg²⁺＋NO₃⁻",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "MgNO₃？Mg(NO₃)₂？",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "一個鎂離子，配兩個硝酸根。總電荷正二加負二，等於零。括號外的二要乘到整個硝酸根，所以一個式量單位中有兩個氮與六個氧。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "答案：Mg(NO₃)₂",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "(+2)＋2(−1) = 0",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "Mg(NO₃)₂",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "Mg 1、N 2、O 6",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "碳酸鈣的莫耳質量約一百點零九公克每莫耳，其中鈣約四十點零八。鈣的質量分率約百分之四十。這裡算的是標示的化合物成分，不是在給補充劑用量建議。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "1000 mg 碳酸鈣，不等於1000 mg鈣",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "CaCO₃：約 100.09 g/mol",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "鈣分率＝40.08÷100.09 ≈ 0.400",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "1000 mg 化合物 → 約400 mg鈣",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "氯離子的電荷是負一。請分別判斷二氯化鐵與三氯化鐵中，鐵的氧化態。用羅馬數字把兩者區分。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "FeCl₂ 和 FeCl₃ 名稱相同嗎",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "FeCl₂：鐵為？",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "FeCl₃：鐵為？",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "二氯化鐵中的鐵是正二，三氯化鐵中是正三。命名分別為氯化鐵二與氯化鐵三。看到食品標示，也要確認標示的是元素量，還是化合物量。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "名稱要交代不同的鐵",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "FeCl₂：氯化鐵(II)",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "FeCl₃：氯化鐵(III)",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "元素量與化合物量，要分清楚。",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "box",
+          "of": "step3",
+          "color": "blue",
+          "dur": 0.55
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    }
+  ]
+}

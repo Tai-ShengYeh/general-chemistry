@@ -1,0 +1,340 @@
+{
+  "title": "加權平均與化學式計算",
+  "objective": "能反算同位素豐度與元素質量分率，正確處理結晶水。",
+  "audience": "食品營養系普通化學初學者；短句中文，越南語關鍵詞輔助",
+  "aspect": "16:9",
+  "theme": "notebook",
+  "music": false,
+  "voice": {
+    "preset": "female",
+    "speed": 0.94
+  },
+  "sources": [
+    "https://tai-shengyeh.github.io/general-chemistry/%E6%96%B0W02b_%E8%A8%88%E7%AE%97%E5%B0%88%E9%A1%8C.html",
+    "對應投影片：[5, 6, 7, 10, 11, 12, 15, 16, 17, 18]；本課為重點重編，非逐張朗讀。",
+    "科學條件與外部來源見上層 teacher-notes.md。"
+  ],
+  "scenes": [
+    {
+      "title": "先檢查模型，再代數字",
+      "narration": "計算題先把粒子的身分寫清楚。單原子磷三負離子，和磷酸根不同。磷酸根有四個氧，整體帶負三；不能把它當作單原子磷三負離子。",
+      "steps": [
+        "P³⁻ ≠ PO₄³⁻",
+        "單原子離子 ≠ 多原子離子"
+      ],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        5,
+        6,
+        7,
+        10,
+        11,
+        12,
+        15,
+        16,
+        17,
+        18
+      ],
+      "items": [
+        {
+          "type": "text",
+          "text": "trung bình có trọng số · 加權平均",
+          "x": 180,
+          "y": 265,
+          "size": 34,
+          "at": 0.5,
+          "color": "blue",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ]
+    },
+    {
+      "title": "反推豐度，用 x 和1減x",
+      "narration": "若假設只有兩種同位素，兩個豐度分率的和為一。設第一種為未知數，另一種就是一減未知數。這是加權平均反算，不是把兩個質量直接平均。",
+      "steps": [],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        5,
+        6,
+        7,
+        10,
+        11,
+        12,
+        15,
+        16,
+        17,
+        18
+      ],
+      "items": [
+        {
+          "type": "text",
+          "text": "同位素1",
+          "x": 195,
+          "y": 430,
+          "size": 64,
+          "at": 1,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b0"
+        },
+        {
+          "type": "box",
+          "of": "b0",
+          "color": "blue",
+          "at": 2
+        },
+        {
+          "type": "text",
+          "text": "質量 m₁；分率 x",
+          "x": 195,
+          "y": 620,
+          "size": 39,
+          "at": 2,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            520,
+            495
+          ],
+          "to": [
+            680,
+            495
+          ],
+          "at": 3,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "同位素2",
+          "x": 740,
+          "y": 430,
+          "size": 64,
+          "at": 3,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b1"
+        },
+        {
+          "type": "box",
+          "of": "b1",
+          "color": "blue",
+          "at": 4
+        },
+        {
+          "type": "text",
+          "text": "質量 m₂；分率1−x",
+          "x": 740,
+          "y": 620,
+          "size": 39,
+          "at": 4,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            1065,
+            495
+          ],
+          "to": [
+            1225,
+            495
+          ],
+          "at": 5,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "平均值",
+          "x": 1285,
+          "y": 430,
+          "size": 64,
+          "at": 5,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b2"
+        },
+        {
+          "type": "box",
+          "of": "b2",
+          "color": "blue",
+          "at": 6
+        },
+        {
+          "type": "text",
+          "text": "m₁x＋m₂(1−x)",
+          "x": 1285,
+          "y": 620,
+          "size": 39,
+          "at": 6,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ]
+    },
+    {
+      "title": "反推銅的豐度",
+      "narration": "給定兩個同位素質量六十二點九三零與六十四點九二八，平均六十三點五五。哪一種較多？請先估方向，再解方程。",
+      "steps": [
+        "62.930x＋64.928(1−x)",
+        "= 63.55"
+      ],
+      "stage": "practice",
+      "wait": 4,
+      "source_slides": [
+        5,
+        6,
+        7,
+        10,
+        11,
+        12,
+        15,
+        16,
+        17,
+        18
+      ],
+      "items": [],
+      "pause": true,
+      "answer": "x約0.690；較輕同位素約69.0%。"
+    },
+    {
+      "title": "平均值靠近誰，誰的權重較大",
+      "narration": "整理方程後，一點九九八乘未知數等於一點三七八。所以較輕同位素的豐度約百分之六十九。答案在零到一之間，也符合平均值較接近較輕同位素。",
+      "steps": [
+        "1.998x = 1.378",
+        "x ≈ 0.690",
+        "兩種豐度約 69.0%、31.0%"
+      ],
+      "stage": "answer",
+      "wait": 1.3,
+      "source_slides": [
+        5,
+        6,
+        7,
+        10,
+        11,
+        12,
+        15,
+        16,
+        17,
+        18
+      ],
+      "items": []
+    },
+    {
+      "title": "含結晶水，也要算進總質量",
+      "narration": "乳酸鈣五水合物包含五個結晶水。若秤取這個水合物，分母要包含水的質量。鈣的個數沒有增加，但整個化合物變重，所以鈣的質量分率較低。",
+      "steps": [
+        "Ca(C₃H₅O₃)₂·5H₂O",
+        "M ≈ 308.3 g/mol",
+        "鈣分率≈40.08÷308.3≈13.0%"
+      ],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        5,
+        6,
+        7,
+        10,
+        11,
+        12,
+        15,
+        16,
+        17,
+        18
+      ],
+      "items": []
+    },
+    {
+      "title": "要500 mg元素鈣，反推化合物量",
+      "narration": "這是一道數學反算題。若碳酸鈣中鈣的質量分率取零點四零零，要提供五百毫克元素鈣，需要多少碳酸鈣？",
+      "steps": [
+        "化合物量 × 0.400 = 500 mg",
+        "乘 0.400，還是除 0.400？"
+      ],
+      "stage": "practice",
+      "wait": 4,
+      "source_slides": [
+        5,
+        6,
+        7,
+        10,
+        11,
+        12,
+        15,
+        16,
+        17,
+        18
+      ],
+      "items": [],
+      "pause": true,
+      "answer": "1250 mg碳酸鈣；不是攝取建議。"
+    },
+    {
+      "title": "反算要除以分率",
+      "narration": "五百除零點四，得到一千兩百五十毫克碳酸鈣。代回檢查，一千兩百五十乘零點四，確實是五百毫克鈣。計算的是化合物當量，實際使用還要看標示與個別需求。",
+      "steps": [
+        "500÷0.400 = 1250 mg",
+        "1250×0.400 = 500 mg鈣",
+        {
+          "text": "反算後，代回去檢查。",
+          "emphasis": "box"
+        }
+      ],
+      "stage": "answer",
+      "wait": 1.3,
+      "source_slides": [
+        5,
+        6,
+        7,
+        10,
+        11,
+        12,
+        15,
+        16,
+        17,
+        18
+      ],
+      "items": []
+    }
+  ],
+  "pronounce": {
+    "pOH": "P O H",
+    "pH": "P H",
+    "pKa": "P K A",
+    "pI": "等電點",
+    "PPO": "多酚氧化酶",
+    "Henry": "亨利",
+    "Lewis": "路易斯",
+    "Hess": "赫斯",
+    "Beer": "比爾",
+    "ppm": "百萬分比",
+    "PV": "過氧化價",
+    "AV": "酸價",
+    "HLB": "H L B",
+    "B12": "B 十二"
+  }
+}

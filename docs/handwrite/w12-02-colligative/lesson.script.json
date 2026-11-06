@@ -1,0 +1,469 @@
+{
+  "title": "依數性質：先數粒子再計算",
+  "width": 1920,
+  "height": 1080,
+  "theme": "notebook",
+  "auto_center": false,
+  "subtitle_y": 920,
+  "subtitle_size": 46,
+  "jitter": 0.25,
+  "write_rate": 0.1,
+  "default_anim": "write",
+  "music": false,
+  "voice": {
+    "preset": "female",
+    "speed": 0.94
+  },
+  "pronounce": {
+    "pOH": "P O H",
+    "pH": "P H",
+    "pKa": "P K A",
+    "pI": "等電點",
+    "PPO": "多酚氧化酶",
+    "Henry": "亨利",
+    "Lewis": "路易斯",
+    "Hess": "赫斯",
+    "Beer": "比爾",
+    "ppm": "百萬分比",
+    "PV": "過氧化價",
+    "AV": "酸價",
+    "HLB": "H L B",
+    "B12": "B 十二"
+  },
+  "scenes": [
+    {
+      "narration": "在稀、近理想溶液模型中，依數性質主要取決於溶質粒子濃度。電解質可能解離成多個離子，所以要用范特荷夫因子修正。濃溶液不能保證沿用同一近似。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "粒子濃度，改變溶劑性質",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "ΔTf＝iKf m",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "m＝mol溶質/kg溶劑",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "i反映有效粒子數",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "text": "tính chất tập hợp · 依數性質",
+          "x": 180,
+          "y": 265,
+          "size": 34,
+          "at": 0.5,
+          "color": "blue",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "大寫莫耳濃度分母是公升溶液，小寫重量莫耳濃度分母是公斤溶劑。凝固點下降用小寫濃度；滲透壓近似式用大寫濃度，溫度必須用克耳文。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "M和m，只差一字母卻不同",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "text": "凝固點下降",
+          "x": 195,
+          "y": 430,
+          "size": 64,
+          "at": 1,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b0"
+        },
+        {
+          "type": "box",
+          "of": "b0",
+          "color": "blue",
+          "at": 2
+        },
+        {
+          "type": "text",
+          "text": "ΔTf＝iKf m",
+          "x": 195,
+          "y": 620,
+          "size": 39,
+          "at": 2,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            520,
+            495
+          ],
+          "to": [
+            680,
+            495
+          ],
+          "at": 3,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "滲透壓",
+          "x": 740,
+          "y": 430,
+          "size": 64,
+          "at": 3,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b1"
+        },
+        {
+          "type": "box",
+          "of": "b1",
+          "color": "blue",
+          "at": 4
+        },
+        {
+          "type": "text",
+          "text": "Π＝iMRT",
+          "x": 740,
+          "y": 620,
+          "size": 39,
+          "at": 4,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            1065,
+            495
+          ],
+          "to": [
+            1225,
+            495
+          ],
+          "at": 5,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "濃度分母",
+          "x": 1285,
+          "y": 430,
+          "size": 64,
+          "at": 5,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b2"
+        },
+        {
+          "type": "box",
+          "of": "b2",
+          "color": "blue",
+          "at": 6
+        },
+        {
+          "type": "text",
+          "text": "kg溶劑 與 L溶液不同",
+          "x": 1285,
+          "y": 620,
+          "size": 39,
+          "at": 6,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "水的凝固點下降常數取一點八六度公斤每莫耳。零點一零零重量莫耳濃度葡萄糖，近理想且不解離，凝固點下降多少？",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "0.100 m糖水降幾度",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "i＝1；m＝0.100 mol/kg",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "ΔTf＝1×1.86×0.100",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "一乘一點八六乘零點一，是零點一八六度。凝固點下降量是正值，新的凝固點則是零減下降量。不要把下降量的正號，直接當成新的凝固點。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "答案：下降0.186度",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "ΔTf＝0.186 °C",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "Tf≈0−0.186＝−0.186 °C",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "氯化鈉理想完全解離可給兩個離子，但實際離子交互作用會影響有效粒子數。本題若實測取一點九，就使用一點九，不擅自改成二。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "鹽類的i，不一定是理想整數",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "NaCl：理想i≈2",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "若題設i＝1.9，應使用1.9",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "0.500 m：ΔTf＝1.9×1.86×0.500",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step4",
+          "text": "≈1.77 °C（計算值）",
+          "x": 190,
+          "y": 699,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "在理想解離模型下，比較葡萄糖、氯化鈉與氯化鈣，溶劑與濃度相同。哪一種凝固點下降最大？請先算解離後的粒子比例。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "同樣0.100 m，誰降得更多",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "葡萄糖：1",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "NaCl：2；CaCl₂：3",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "理想氯化鈣分成一個鈣離子與兩個氯離子，所以同樣重量莫耳濃度下，預測下降最大。冰淇淋的糖讓凍結溫度降低，但質地也受脂肪、空氣、冰晶大小與製程影響。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "答案：理想模型下氯化鈣最多",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "理想i：CaCl₂ 3 > NaCl 2 > 糖1",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "真實i受濃度與交互作用影響",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "模型能解釋一部分，不包辦全部。",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "box",
+          "of": "step3",
+          "color": "blue",
+          "dur": 0.55
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    }
+  ]
+}

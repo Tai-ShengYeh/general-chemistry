@@ -1,0 +1,1019 @@
+{
+  "title": "密度：雙向換算與長鏈",
+  "width": 1920,
+  "height": 1080,
+  "theme": "notebook",
+  "auto_center": false,
+  "subtitle_y": 920,
+  "subtitle_size": 46,
+  "jitter": 0.25,
+  "write_rate": 0.1,
+  "default_anim": "write",
+  "music": false,
+  "voice": {
+    "preset": "female",
+    "speed": 0.95
+  },
+  "pronounce": {},
+  "scenes": [
+    {
+      "narration": "密度是質量除以體積。從體積找質量，乘密度。從質量找體積，把密度的分子分母顛倒。你不用硬背乘或除，只要看哪個單位要消掉。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "同一個密度，兩個方向",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "text": "體積 V",
+          "id": "v",
+          "x": 250,
+          "y": 410,
+          "size": 85,
+          "at": 1.1
+        },
+        {
+          "type": "text",
+          "text": "質量 m",
+          "id": "m",
+          "x": 1250,
+          "y": 410,
+          "size": 85,
+          "at": 1.1
+        },
+        {
+          "type": "arrow",
+          "from": [
+            650,
+            420
+          ],
+          "to": [
+            1190,
+            420
+          ],
+          "bend": -0.1,
+          "color": "blue",
+          "at": 2.7,
+          "dur": 1
+        },
+        {
+          "type": "text",
+          "text": "× 密度",
+          "x": 800,
+          "y": 325,
+          "size": 62,
+          "color": "blue",
+          "at": 3.0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            1200,
+            595
+          ],
+          "to": [
+            650,
+            595
+          ],
+          "bend": -0.1,
+          "color": "green",
+          "at": 5.5,
+          "dur": 1
+        },
+        {
+          "type": "text",
+          "text": "÷ 密度",
+          "x": 800,
+          "y": 620,
+          "size": 62,
+          "color": "green",
+          "at": 6.0
+        },
+        {
+          "type": "text",
+          "text": "ρ = m/V；看要消掉哪個單位。",
+          "x": 300,
+          "y": 790,
+          "size": 56,
+          "at": 7.8
+        }
+      ],
+      "hold": 1.4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "沙拉油密度每毫升零點九二公克。兩百五十毫升有多重？先判斷，應該乘密度，還是除以密度？",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "例 3：250 mL 沙拉油",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "密度：0.92 g/mL",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "250 mL → ? g",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "換算因子寫成每一毫升有零點九二公克，毫升便能相消。兩百五十乘零點九二，得到兩百三十公克。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "例 3：mL → g",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "note",
+          "text": "mL → g",
+          "x": 180,
+          "y": 285,
+          "size": 43,
+          "color": "blue",
+          "font": "hand",
+          "at": 0.7
+        },
+        {
+          "type": "text",
+          "id": "givenn",
+          "text": "250",
+          "x": 127.93599999999999,
+          "y": 467,
+          "size": 48,
+          "font": "hand",
+          "at": 1.5,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "given",
+          "text": "mL",
+          "x": 204.736,
+          "y": 467,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 1.75,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "text": "×",
+          "x": 355.5,
+          "y": 475,
+          "size": 48,
+          "font": "hand",
+          "at": 2.7
+        },
+        {
+          "type": "text",
+          "id": "n0n",
+          "text": "0.92",
+          "x": 503.328,
+          "y": 415,
+          "size": 48,
+          "font": "hand",
+          "at": 2.7,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "n0",
+          "text": "g",
+          "x": 589.632,
+          "y": 415,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 2.95,
+          "dur": 0.5
+        },
+        {
+          "type": "line",
+          "points": [
+            [
+              412.65,
+              490
+            ],
+            [
+              697.35,
+              490
+            ]
+          ],
+          "at": 3.2,
+          "dur": 0.4,
+          "stroke": 4
+        },
+        {
+          "type": "text",
+          "id": "d0n",
+          "text": "1",
+          "x": 514.5360000000001,
+          "y": 510,
+          "size": 48,
+          "font": "hand",
+          "at": 3.3000000000000003,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "d0",
+          "text": "mL",
+          "x": 548.1360000000001,
+          "y": 510,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 3.5500000000000003,
+          "dur": 0.5
+        },
+        {
+          "type": "strike",
+          "of": "given",
+          "color": "red",
+          "stroke": 4,
+          "at": 5.6,
+          "dur": 0.3
+        },
+        {
+          "type": "strike",
+          "of": "d0",
+          "color": "red",
+          "stroke": 4,
+          "at": 5.8,
+          "dur": 0.3
+        },
+        {
+          "type": "text",
+          "id": "result",
+          "text": "= 230 g",
+          "x": 190,
+          "y": 680,
+          "size": 67,
+          "font": "hand",
+          "at": 6.6,
+          "dur": 1.2
+        },
+        {
+          "type": "box",
+          "of": "result",
+          "color": "blue",
+          "at": 7.8999999999999995,
+          "dur": 0.6
+        },
+        {
+          "type": "note",
+          "text": "密度小於水：同體積的質量較小。",
+          "x": 190,
+          "y": 805,
+          "size": 39,
+          "font": "hand",
+          "at": 8.7,
+          "dur": 1.3
+        }
+      ],
+      "hold": 1.4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "同一種油，現在要五百公克，卻用量杯取用。應該量多少毫升？請把要消掉的公克放在換算因子的分母。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "例 4：反過來，500 g 呢？",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "密度：0.92 g/mL",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "500 g → ? mL",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "這次要消掉的是公克，所以分母放零點九二公克，分子放一毫升。結果計算值約五百四十三毫升。若按密度的兩位有效數字報告，約五點四乘十的二次方毫升。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "例 4：把密度倒過來",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "note",
+          "text": "g → mL",
+          "x": 180,
+          "y": 285,
+          "size": 43,
+          "color": "blue",
+          "font": "hand",
+          "at": 0.7
+        },
+        {
+          "type": "text",
+          "id": "givenn",
+          "text": "500",
+          "x": 143.07999999999998,
+          "y": 467,
+          "size": 48,
+          "font": "hand",
+          "at": 1.5,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "given",
+          "text": "g",
+          "x": 219.88,
+          "y": 467,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 1.75,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "text": "×",
+          "x": 355.5,
+          "y": 475,
+          "size": 48,
+          "font": "hand",
+          "at": 2.7
+        },
+        {
+          "type": "text",
+          "id": "n0n",
+          "text": "1",
+          "x": 514.5360000000001,
+          "y": 415,
+          "size": 48,
+          "font": "hand",
+          "at": 2.7,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "n0",
+          "text": "mL",
+          "x": 548.1360000000001,
+          "y": 415,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 2.95,
+          "dur": 0.5
+        },
+        {
+          "type": "line",
+          "points": [
+            [
+              412.65,
+              490
+            ],
+            [
+              697.35,
+              490
+            ]
+          ],
+          "at": 3.2,
+          "dur": 0.4,
+          "stroke": 4
+        },
+        {
+          "type": "text",
+          "id": "d0n",
+          "text": "0.92",
+          "x": 503.328,
+          "y": 510,
+          "size": 48,
+          "font": "hand",
+          "at": 3.3000000000000003,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "d0",
+          "text": "g",
+          "x": 589.632,
+          "y": 510,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 3.5500000000000003,
+          "dur": 0.5
+        },
+        {
+          "type": "strike",
+          "of": "given",
+          "color": "red",
+          "stroke": 4,
+          "at": 5.6,
+          "dur": 0.3
+        },
+        {
+          "type": "strike",
+          "of": "d0",
+          "color": "red",
+          "stroke": 4,
+          "at": 5.8,
+          "dur": 0.3
+        },
+        {
+          "type": "text",
+          "id": "result",
+          "text": "≈ 543 mL（計算值）",
+          "x": 190,
+          "y": 680,
+          "size": 67,
+          "font": "hand",
+          "at": 6.6,
+          "dur": 1.2
+        },
+        {
+          "type": "box",
+          "of": "result",
+          "color": "blue",
+          "at": 7.8999999999999995,
+          "dur": 0.6
+        },
+        {
+          "type": "note",
+          "text": "兩位有效數字：約 5.4×10² mL。",
+          "x": 190,
+          "y": 805,
+          "size": 39,
+          "font": "hand",
+          "at": 8.7,
+          "dur": 1.3
+        }
+      ],
+      "hold": 1.4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "一杯牛奶是兩百三十六點六毫升，密度一點零三公克每毫升，每一百公克有一百一十三毫克鈣。先把四個單位排成路線。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "例 5：一杯牛奶的鈣",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "1 cup 牛奶",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "ρ = 1.03 g/mL",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "113 mg 鈣 / 100 g 牛奶",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step4",
+          "text": "cup → mL → g → mg 鈣",
+          "x": 190,
+          "y": 699,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "先把杯換成毫升，再用密度換成公克，最後用每一百公克的含鈣量換成毫克鈣。紅線消掉杯、毫升與公克，留下鈣的毫克數。保留中間位數，最後約兩百七十五毫克。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "例 5：一條式子接到底",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "note",
+          "text": "cup → mL → g → mg 鈣",
+          "x": 180,
+          "y": 285,
+          "size": 43,
+          "color": "blue",
+          "font": "hand",
+          "at": 0.7
+        },
+        {
+          "type": "text",
+          "id": "givenn",
+          "text": "1",
+          "x": 146.728,
+          "y": 467,
+          "size": 48,
+          "font": "hand",
+          "at": 1.5,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "given",
+          "text": "cup",
+          "x": 180.328,
+          "y": 467,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 1.75,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "text": "×",
+          "x": 346.75,
+          "y": 475,
+          "size": 48,
+          "font": "hand",
+          "at": 2.7
+        },
+        {
+          "type": "text",
+          "id": "n0n",
+          "text": "236.6",
+          "x": 459.884,
+          "y": 415,
+          "size": 48,
+          "font": "hand",
+          "at": 2.7,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "n0",
+          "text": "mL",
+          "x": 567.788,
+          "y": 415,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 2.95,
+          "dur": 0.5
+        },
+        {
+          "type": "line",
+          "points": [
+            [
+              401.975,
+              490
+            ],
+            [
+              673.025,
+              490
+            ]
+          ],
+          "at": 3.2,
+          "dur": 0.4,
+          "stroke": 4
+        },
+        {
+          "type": "text",
+          "id": "d0n",
+          "text": "1",
+          "x": 494.228,
+          "y": 510,
+          "size": 48,
+          "font": "hand",
+          "at": 3.3000000000000003,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "d0",
+          "text": "cup",
+          "x": 527.828,
+          "y": 510,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 3.5500000000000003,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "text": "×",
+          "x": 694.25,
+          "y": 475,
+          "size": 48,
+          "font": "hand",
+          "at": 4.300000000000001
+        },
+        {
+          "type": "text",
+          "id": "n1n",
+          "text": "1.03",
+          "x": 833.328,
+          "y": 415,
+          "size": 48,
+          "font": "hand",
+          "at": 4.300000000000001,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "n1",
+          "text": "g",
+          "x": 919.632,
+          "y": 415,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 4.550000000000001,
+          "dur": 0.5
+        },
+        {
+          "type": "line",
+          "points": [
+            [
+              749.475,
+              490
+            ],
+            [
+              1020.525,
+              490
+            ]
+          ],
+          "at": 4.800000000000001,
+          "dur": 0.4,
+          "stroke": 4
+        },
+        {
+          "type": "text",
+          "id": "d1n",
+          "text": "1",
+          "x": 844.5360000000001,
+          "y": 510,
+          "size": 48,
+          "font": "hand",
+          "at": 4.9,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "d1",
+          "text": "mL",
+          "x": 878.1360000000001,
+          "y": 510,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 5.15,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "text": "×",
+          "x": 1041.75,
+          "y": 475,
+          "size": 48,
+          "font": "hand",
+          "at": 5.9
+        },
+        {
+          "type": "text",
+          "id": "n2n",
+          "text": "113",
+          "x": 1142.3319999999999,
+          "y": 415,
+          "size": 48,
+          "font": "hand",
+          "at": 5.9,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "n2",
+          "text": "mg 鈣",
+          "x": 1219.1319999999998,
+          "y": 415,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 6.15,
+          "dur": 0.5
+        },
+        {
+          "type": "line",
+          "points": [
+            [
+              1096.975,
+              490
+            ],
+            [
+              1368.025,
+              490
+            ]
+          ],
+          "at": 6.4,
+          "dur": 0.4,
+          "stroke": 4
+        },
+        {
+          "type": "text",
+          "id": "d2n",
+          "text": "100",
+          "x": 1185.58,
+          "y": 510,
+          "size": 48,
+          "font": "hand",
+          "at": 6.5,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "d2",
+          "text": "g",
+          "x": 1262.3799999999999,
+          "y": 510,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 6.75,
+          "dur": 0.5
+        },
+        {
+          "type": "strike",
+          "of": "given",
+          "color": "red",
+          "stroke": 4,
+          "at": 8.8,
+          "dur": 0.3
+        },
+        {
+          "type": "strike",
+          "of": "d0",
+          "color": "red",
+          "stroke": 4,
+          "at": 9.0,
+          "dur": 0.3
+        },
+        {
+          "type": "strike",
+          "of": "n0",
+          "color": "red",
+          "stroke": 4,
+          "at": 9.200000000000001,
+          "dur": 0.3
+        },
+        {
+          "type": "strike",
+          "of": "d1",
+          "color": "red",
+          "stroke": 4,
+          "at": 9.4,
+          "dur": 0.3
+        },
+        {
+          "type": "strike",
+          "of": "n1",
+          "color": "red",
+          "stroke": 4,
+          "at": 9.600000000000001,
+          "dur": 0.3
+        },
+        {
+          "type": "strike",
+          "of": "d2",
+          "color": "red",
+          "stroke": 4,
+          "at": 9.8,
+          "dur": 0.3
+        },
+        {
+          "type": "text",
+          "id": "result",
+          "text": "≈ 275 mg 鈣",
+          "x": 190,
+          "y": 680,
+          "size": 67,
+          "font": "hand",
+          "at": 10.6,
+          "dur": 1.2
+        },
+        {
+          "type": "box",
+          "of": "result",
+          "color": "blue",
+          "at": 11.9,
+          "dur": 0.6
+        },
+        {
+          "type": "note",
+          "text": "一次算到底，最後才四捨五入。",
+          "x": 190,
+          "y": 805,
+          "size": 39,
+          "font": "hand",
+          "at": 12.7,
+          "dur": 1.3
+        }
+      ],
+      "hold": 1.4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "油的密度仍是每毫升零點九二公克。四百六十公克需要多少毫升？試著先做合理性判斷，體積會比四百六十毫升大，還是小？",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "快問：460 g 油需要多少 mL？",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "460 g ÷ 0.92 g/mL",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "A：423　B：460　C：500 mL",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "公克除以公克每毫升，留下毫升。四百六十除以零點九二，得到五百。若你乘零點九二，單位也無法得到毫升。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "快問解答：500 mL",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "V = m ÷ ρ",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "460 ÷ 0.92 = 500 mL",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "先檢查單位，再檢查大小。",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "box",
+          "of": "step3",
+          "color": "blue",
+          "dur": 0.55
+        }
+      ],
+      "hold": 1.4,
+      "center": false,
+      "min_dur": 0
+    }
+  ]
+}

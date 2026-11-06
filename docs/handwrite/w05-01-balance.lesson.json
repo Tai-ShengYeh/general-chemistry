@@ -1,0 +1,298 @@
+{
+  "title": "反應式守恆與小蘇打產氣",
+  "objective": "能以原子和電荷守恆平衡反應式，解釋小蘇打遇酸產氣。",
+  "audience": "食品營養系普通化學初學者；短句中文，越南語關鍵詞輔助",
+  "aspect": "16:9",
+  "theme": "notebook",
+  "music": false,
+  "voice": {
+    "preset": "female",
+    "speed": 0.94
+  },
+  "sources": [
+    "https://tai-shengyeh.github.io/general-chemistry/%E6%96%B0W05_%E5%8C%96%E5%AD%B8%E5%8F%8D%E6%87%89.html",
+    "對應投影片：[2, 10, 11, 50]；本課為重點重編，非逐張朗讀。",
+    "科學條件與外部來源見上層 teacher-notes.md。"
+  ],
+  "scenes": [
+    {
+      "title": "化學反應，要守住原子",
+      "narration": "平衡反應式時，只能改前面的係數，不能改化學式下標。下標一改，物質就不同。左右每一種元素的原子數都要相等，離子式還要檢查總電荷。",
+      "steps": [
+        "改係數，不改下標",
+        "逐項檢查原子與總電荷"
+      ],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        10,
+        11,
+        50
+      ],
+      "items": [
+        {
+          "type": "text",
+          "text": "phản ứng · 反應",
+          "x": 180,
+          "y": 265,
+          "size": 34,
+          "at": 0.5,
+          "color": "blue",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ]
+    },
+    {
+      "title": "小蘇打遇酸，產生二氧化碳",
+      "narration": "在酸供應足夠的條件下，碳酸氫根接受氫離子，生成二氧化碳與水。烘焙中的氣體還要靠麵糊結構留住，才能形成膨鬆組織。產氣並不代表一定有理想成品。",
+      "steps": [],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        10,
+        11,
+        50
+      ],
+      "items": [
+        {
+          "type": "text",
+          "text": "HCO₃⁻＋H⁺",
+          "x": 195,
+          "y": 430,
+          "size": 64,
+          "at": 1,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b0"
+        },
+        {
+          "type": "box",
+          "of": "b0",
+          "color": "blue",
+          "at": 2
+        },
+        {
+          "type": "text",
+          "text": "酸鹼反應",
+          "x": 195,
+          "y": 620,
+          "size": 39,
+          "at": 2,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            520,
+            495
+          ],
+          "to": [
+            680,
+            495
+          ],
+          "at": 3,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "CO₂＋H₂O",
+          "x": 740,
+          "y": 430,
+          "size": 64,
+          "at": 3,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b1"
+        },
+        {
+          "type": "box",
+          "of": "b1",
+          "color": "blue",
+          "at": 4
+        },
+        {
+          "type": "text",
+          "text": "原子與電荷守恆",
+          "x": 740,
+          "y": 620,
+          "size": 39,
+          "at": 4,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            1065,
+            495
+          ],
+          "to": [
+            1225,
+            495
+          ],
+          "at": 5,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "烘焙結構",
+          "x": 1285,
+          "y": 430,
+          "size": 64,
+          "at": 5,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b2"
+        },
+        {
+          "type": "box",
+          "of": "b2",
+          "color": "blue",
+          "at": 6
+        },
+        {
+          "type": "text",
+          "text": "留住氣體才會膨起",
+          "x": 1285,
+          "y": 620,
+          "size": 39,
+          "at": 6,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ]
+    },
+    {
+      "title": "合成氨，要幾個氫分子",
+      "narration": "氮氣和氫氣生成氨。先在氨前面放二，接著要在氫氣前放多少？請數左右的氫原子。",
+      "steps": [
+        "N₂＋? H₂ → 2NH₃",
+        "右側有6個H原子。"
+      ],
+      "stage": "practice",
+      "wait": 4,
+      "source_slides": [
+        2,
+        10,
+        11,
+        50
+      ],
+      "items": [],
+      "pause": true,
+      "answer": "3。"
+    },
+    {
+      "title": "答案：1比3比2",
+      "narration": "一個氮分子和三個氫分子，對應兩個氨分子。左右各兩個氮原子與六個氫原子。這個比例也能讀成莫耳比，但不能讀成公克比。",
+      "steps": [
+        "N₂＋3H₂ → 2NH₃",
+        "N：2＝2；H：6＝6"
+      ],
+      "stage": "answer",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        10,
+        11,
+        50
+      ],
+      "items": []
+    },
+    {
+      "title": "燃燒平衡：碳、氫，最後氧",
+      "narration": "乙烷完全燃燒時，先配二氧化碳與水。若得到氧氣係數七除二，就把整式乘二化成整數。別只放大反應物的一邊。",
+      "steps": [
+        "C₂H₆＋(7/2)O₂",
+        "→ 2CO₂＋3H₂O",
+        "整式×2：",
+        "2C₂H₆＋7O₂ → 4CO₂＋6H₂O"
+      ],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        10,
+        11,
+        50
+      ],
+      "items": []
+    },
+    {
+      "title": "碳酸氫根產氣，電荷有守恆嗎",
+      "narration": "反應左邊是碳酸氫根負一，加氫離子正一；右邊是二氧化碳和水。請檢查總電荷與氧原子數。",
+      "steps": [
+        "HCO₃⁻＋H⁺ → CO₂＋H₂O",
+        "左邊總電荷？兩邊O數？"
+      ],
+      "stage": "practice",
+      "wait": 4,
+      "source_slides": [
+        2,
+        10,
+        11,
+        50
+      ],
+      "items": [],
+      "pause": true,
+      "answer": "總電荷兩側皆0；氧各3個。"
+    },
+    {
+      "title": "守恆，是最後的驗算",
+      "narration": "左邊總電荷零，右邊也零；氧原子各三個，氫各兩個，碳各一個。先讓式子平衡，再用係數算產量。酸不足時，小蘇打就可能剩下，不能假設全部轉成氣體。",
+      "steps": [
+        "電荷：−1＋1＝0",
+        "C：1；H：2；O：3",
+        {
+          "text": "先平衡，再計量。",
+          "emphasis": "box"
+        }
+      ],
+      "stage": "answer",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        10,
+        11,
+        50
+      ],
+      "items": []
+    }
+  ],
+  "pronounce": {
+    "pOH": "P O H",
+    "pH": "P H",
+    "pKa": "P K A",
+    "pI": "等電點",
+    "PPO": "多酚氧化酶",
+    "Henry": "亨利",
+    "Lewis": "路易斯",
+    "Hess": "赫斯",
+    "Beer": "比爾",
+    "ppm": "百萬分比",
+    "PV": "過氧化價",
+    "AV": "酸價",
+    "HLB": "H L B",
+    "B12": "B 十二"
+  }
+}

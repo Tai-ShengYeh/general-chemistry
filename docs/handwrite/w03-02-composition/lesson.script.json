@@ -1,0 +1,426 @@
+{
+  "title": "元素組成、實驗式與鈉鹽換算",
+  "width": 1920,
+  "height": 1080,
+  "theme": "notebook",
+  "auto_center": false,
+  "subtitle_y": 920,
+  "subtitle_size": 46,
+  "jitter": 0.25,
+  "write_rate": 0.1,
+  "default_anim": "write",
+  "music": false,
+  "voice": {
+    "preset": "female",
+    "speed": 0.94
+  },
+  "pronounce": {
+    "pOH": "P O H",
+    "pH": "P H",
+    "pKa": "P K A",
+    "pI": "等電點",
+    "PPO": "多酚氧化酶",
+    "Henry": "亨利",
+    "Lewis": "路易斯",
+    "Hess": "赫斯",
+    "Beer": "比爾",
+    "ppm": "百萬分比",
+    "PV": "過氧化價",
+    "AV": "酸價",
+    "HLB": "H L B",
+    "B12": "B 十二"
+  },
+  "scenes": [
+    {
+      "narration": "營養標示的鈉，不等於氯化鈉。若假設這些鈉全部來自氯化鈉，就能依莫耳質量比例換算氯化鈉當量。真實食品也可能有其他含鈉化合物。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "元素標示，要換成化合物",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "NaCl中：Na約22.99 g/mol",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "NaCl約58.44 g/mol",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "先說明：以氯化鈉當量換算",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "text": "thành phần · 組成",
+          "x": 180,
+          "y": 265,
+          "size": 34,
+          "at": 0.5,
+          "color": "blue",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "鈉的質量分率，是每莫耳氯化鈉中的鈉質量，除以氯化鈉莫耳質量。分子與分母同樣用公克每莫耳，因此分率沒有單位。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "質量分率，分母是整個化合物",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "text": "Na：22.99 g/mol",
+          "x": 230,
+          "y": 385,
+          "size": 68,
+          "at": 1,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "line",
+          "points": [
+            [
+              210,
+              495
+            ],
+            [
+              1160,
+              495
+            ]
+          ],
+          "at": 2,
+          "color": "ink",
+          "stroke": 5,
+          "dur": 0.7
+        },
+        {
+          "type": "text",
+          "text": "NaCl：58.44 g/mol",
+          "x": 230,
+          "y": 535,
+          "size": 68,
+          "at": 2.5,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            1210,
+            490
+          ],
+          "to": [
+            1390,
+            490
+          ],
+          "at": 4,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "≈0.3934",
+          "x": 1400,
+          "y": 445,
+          "size": 62,
+          "at": 5,
+          "color": "blue",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "text",
+          "text": "先對齊單位，再做除法。",
+          "x": 240,
+          "y": 740,
+          "size": 48,
+          "at": 6,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "題設把所有鈉換算成氯化鈉當量。標示一千八百毫克鈉，應該乘零點三九三四，還是除以它？",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "1800 mg鈉相當於多少鹽",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "1800 mg Na × (58.44/22.99)",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "先把mg換成g也可以。",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "一點八公克鈉，乘五十八點四四，再除二十二點九九，約四點五八公克氯化鈉當量。氯化鈉還包含氯，因此總質量會比鈉本身大。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "鹽的量，會比鈉的量大",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "1.800×58.44÷22.99",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "≈4.58 g NaCl當量",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "假設一百公克樣品，碳四十點零、氫六點七一、氧五十三點二九公克。各自除原子莫耳質量，再除以最小值，得到約一比二比一。實驗式只給最簡整數比例。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "實驗式，要先轉莫耳比",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "C：40.0÷12.01≈3.33 mol",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "H：6.71÷1.008≈6.66 mol",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "O：53.29÷16.00≈3.33 mol",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step4",
+          "text": "最簡比例1:2:1 → CH₂O",
+          "x": 190,
+          "y": 699,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "實驗式是碳一、氫二、氧一。已知分子莫耳質量約一百八十，實驗式量約三十。分子式要乘幾倍？",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "實驗式CH₂O，分子式一定一樣嗎",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "180÷30＝？",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "(CH₂O)的整數倍",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "一百八十除三十，是六。分子式為碳六、氫十二、氧六。這仍然無法單靠分子式認定一定是葡萄糖，因為不同結構可以有相同分子式。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "答案：六倍，但不能認定結構",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "分子式＝C₆H₁₂O₆",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "分子式相同，可以結構不同",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "比例 → 分子式 → 結構，層次不同。",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "box",
+          "of": "step3",
+          "color": "blue",
+          "dur": 0.55
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    }
+  ]
+}

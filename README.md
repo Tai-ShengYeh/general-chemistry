@@ -4,6 +4,8 @@
 
 **線上瀏覽：** https://tai-shengyeh.github.io/general-chemistry/
 
+**手寫動畫：** [16個主題與2個延伸專題，共40章](https://tai-shengyeh.github.io/general-chemistry/handwrite/index.html)。逐步板書、台灣女聲旁白、先作答再看解答；可暫停、拖曳、調速與切換幕次。各週投影片也有入口。[維護與驗收說明](HANDWRITE.md)。
+
 ---
 
 ## 這是什麼

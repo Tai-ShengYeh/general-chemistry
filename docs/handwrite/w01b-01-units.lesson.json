@@ -1,0 +1,543 @@
+{
+  "title": "單位：先找起點與終點",
+  "objective": "能以單位相消完成換算，並以相同單位和明確標準比較攝入量。",
+  "audience": "食品與營養相關科系普通化學初學者",
+  "aspect": "16:9",
+  "theme": "notebook",
+  "voice": {
+    "preset": "female",
+    "speed": 0.95
+  },
+  "music": false,
+  "sources": [
+    "https://tai-shengyeh.github.io/general-chemistry/%E6%96%B0W01b_%E8%A8%88%E7%AE%97%E5%B0%88%E9%A1%8C.html",
+    "https://apps.who.int/food-additives-contaminants-jecfa-database/Home/Chemical/1227",
+    "數值演算已重新計算；健康指引與法規假設見 teacher-notes.md。"
+  ],
+  "scenes": [
+    {
+      "title": "一整課，只練一個方法",
+      "narration": "看到一長串數字，先別急著按計算機。先問起點是什麼單位，終點要什麼單位，再讓中間的單位上下相消。",
+      "stage": "explain",
+      "steps": [
+        "① 看起點、目標",
+        "② 排換算因子",
+        "③ 單位相消，再計算"
+      ],
+      "source_slides": [
+        1,
+        2,
+        3
+      ],
+      "wait": 1.4
+    },
+    {
+      "title": "換算表：數字要跟著單位",
+      "narration": "本課使用美制體積。盎司和磅量質量，液量盎司和杯量體積。表上的換算數值採課堂近似值，不把四捨五入後的數字當作精確定義。",
+      "stage": "explain",
+      "steps": [
+        "1 lb ≈ 453.59 g",
+        "1 oz ≈ 28.35 g",
+        "1 fl oz ≈ 29.57 mL",
+        "1 cup ≈ 236.6 mL"
+      ],
+      "source_slides": [
+        5,
+        6
+      ],
+      "wait": 1.4
+    },
+    {
+      "title": "12 oz，能直接當 355 mL？",
+      "narration": "食譜寫十二盎司，沒有液量的英文縮寫。你能直接把它當成三百五十五毫升嗎？先說出它量的是質量還是體積。",
+      "stage": "practice",
+      "steps": [
+        "12 oz → 質量？體積？",
+        "12 fl oz 又是什麼？"
+      ],
+      "source_slides": [
+        5,
+        8
+      ],
+      "wait": 4,
+      "pause": true,
+      "answer": "oz 是質量；fl oz 是體積，不能混用。"
+    },
+    {
+      "title": "先分清楚，才開始算",
+      "narration": "十二盎司是約三百四十公克。十二液量盎司才是約三百五十五毫升。若要把牛奶的公克換成毫升，還需要密度。",
+      "stage": "answer",
+      "steps": [
+        {
+          "text": "oz：質量；fl oz：體積",
+          "emphasis": "box"
+        },
+        "12 oz ≈ 340 g",
+        "12 fl oz ≈ 355 mL",
+        "質量 ↔ 體積，需要密度"
+      ],
+      "source_slides": [
+        5,
+        8
+      ],
+      "wait": 1.4
+    },
+    {
+      "title": "例 1：150 lb 換成 kg",
+      "narration": "研究中的體重是一百五十磅。計算每公斤體重的攝取量前，先換成公斤。請先寫出路線，不要先算數字。",
+      "stage": "practice",
+      "steps": [
+        "起點：150 lb",
+        "目標：kg",
+        "路線：lb → g → kg"
+      ],
+      "source_slides": [
+        7
+      ],
+      "wait": 4,
+      "pause": true,
+      "answer": "150 × 453.59 ÷ 1000 ≈ 68.0 kg。"
+    },
+    {
+      "title": "例 1：把 lb 與 g 消掉",
+      "narration": "一百五十磅，乘上每磅四百五十三點五九公克，再乘每一千公克是一公斤。看紅線，磅和公克各自相消，只留下公斤。結果約六十八公斤。",
+      "stage": "example",
+      "steps": [],
+      "source_slides": [
+        7
+      ],
+      "wait": 1.4,
+      "items": [
+        {
+          "type": "note",
+          "text": "lb → g → kg",
+          "x": 180,
+          "y": 285,
+          "size": 43,
+          "color": "blue",
+          "font": "hand",
+          "at": 0.7
+        },
+        {
+          "type": "text",
+          "id": "givenn",
+          "text": "150",
+          "x": 137.10399999999998,
+          "y": 467,
+          "size": 48,
+          "font": "hand",
+          "at": 1.5,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "given",
+          "text": "lb",
+          "x": 213.904,
+          "y": 467,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 1.75,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "text": "×",
+          "x": 355.5,
+          "y": 475,
+          "size": 48,
+          "font": "hand",
+          "at": 2.7
+        },
+        {
+          "type": "text",
+          "id": "n0n",
+          "text": "453.59",
+          "x": 481.728,
+          "y": 415,
+          "size": 48,
+          "font": "hand",
+          "at": 2.7,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "n0",
+          "text": "g",
+          "x": 611.232,
+          "y": 415,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 2.95,
+          "dur": 0.5
+        },
+        {
+          "type": "line",
+          "points": [
+            [
+              412.65,
+              490
+            ],
+            [
+              697.35,
+              490
+            ]
+          ],
+          "at": 3.2,
+          "dur": 0.4,
+          "stroke": 4
+        },
+        {
+          "type": "text",
+          "id": "d0n",
+          "text": "1",
+          "x": 523.704,
+          "y": 510,
+          "size": 48,
+          "font": "hand",
+          "at": 3.3000000000000003,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "d0",
+          "text": "lb",
+          "x": 557.304,
+          "y": 510,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 3.5500000000000003,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "text": "×",
+          "x": 720.5,
+          "y": 475,
+          "size": 48,
+          "font": "hand",
+          "at": 4.300000000000001
+        },
+        {
+          "type": "text",
+          "id": "n1n",
+          "text": "1",
+          "x": 885.92,
+          "y": 415,
+          "size": 48,
+          "font": "hand",
+          "at": 4.300000000000001,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "n1",
+          "text": "kg",
+          "x": 919.52,
+          "y": 415,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 4.550000000000001,
+          "dur": 0.5
+        },
+        {
+          "type": "line",
+          "points": [
+            [
+              777.65,
+              490
+            ],
+            [
+              1062.35,
+              490
+            ]
+          ],
+          "at": 4.800000000000001,
+          "dur": 0.4,
+          "stroke": 4
+        },
+        {
+          "type": "text",
+          "id": "d1n",
+          "text": "1000",
+          "x": 862.28,
+          "y": 510,
+          "size": 48,
+          "font": "hand",
+          "at": 4.9,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "d1",
+          "text": "g",
+          "x": 960.68,
+          "y": 510,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 5.15,
+          "dur": 0.5
+        },
+        {
+          "type": "strike",
+          "of": "given",
+          "color": "red",
+          "stroke": 4,
+          "at": 7.2,
+          "dur": 0.3
+        },
+        {
+          "type": "strike",
+          "of": "d0",
+          "color": "red",
+          "stroke": 4,
+          "at": 7.4,
+          "dur": 0.3
+        },
+        {
+          "type": "strike",
+          "of": "n0",
+          "color": "red",
+          "stroke": 4,
+          "at": 7.6000000000000005,
+          "dur": 0.3
+        },
+        {
+          "type": "strike",
+          "of": "d1",
+          "color": "red",
+          "stroke": 4,
+          "at": 7.800000000000001,
+          "dur": 0.3
+        },
+        {
+          "type": "text",
+          "id": "result",
+          "text": "≈ 68.0 kg",
+          "x": 190,
+          "y": 680,
+          "size": 67,
+          "font": "hand",
+          "at": 8.6,
+          "dur": 1.2
+        },
+        {
+          "type": "box",
+          "of": "result",
+          "color": "blue",
+          "at": 9.9,
+          "dur": 0.6
+        },
+        {
+          "type": "note",
+          "text": "估算：150 ÷ 2.2 ≈ 68，數量級合理。",
+          "x": 190,
+          "y": 805,
+          "size": 39,
+          "font": "hand",
+          "at": 10.7,
+          "dur": 1.3
+        }
+      ]
+    },
+    {
+      "title": "例 2：12 fl oz 牛奶",
+      "narration": "量杯只有毫升刻度。食譜要十二美制液量盎司，應該量多少毫升？換算因子的哪個單位要放在分母？",
+      "stage": "practice",
+      "steps": [
+        "12 fl oz → ? mL",
+        "1 fl oz ≈ 29.57 mL"
+      ],
+      "source_slides": [
+        8
+      ],
+      "wait": 4,
+      "pause": true,
+      "answer": "12 × 29.57 = 354.84，約 355 mL。"
+    },
+    {
+      "title": "例 2：只留 mL",
+      "narration": "起點有液量盎司，所以換算因子的分母也放液量盎司。兩個相消，留下毫升。十二乘二十九點五七，約三百五十五毫升。",
+      "stage": "example",
+      "steps": [],
+      "source_slides": [
+        8
+      ],
+      "wait": 1.4,
+      "items": [
+        {
+          "type": "note",
+          "text": "fl oz → mL",
+          "x": 180,
+          "y": 285,
+          "size": 43,
+          "color": "blue",
+          "font": "hand",
+          "at": 0.7
+        },
+        {
+          "type": "text",
+          "id": "givenn",
+          "text": "12",
+          "x": 129.52,
+          "y": 467,
+          "size": 48,
+          "font": "hand",
+          "at": 1.5,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "given",
+          "text": "fl oz",
+          "x": 184.72000000000003,
+          "y": 467,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 1.75,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "text": "×",
+          "x": 355.5,
+          "y": 475,
+          "size": 48,
+          "font": "hand",
+          "at": 2.7
+        },
+        {
+          "type": "text",
+          "id": "n0n",
+          "text": "29.57",
+          "x": 477.384,
+          "y": 415,
+          "size": 48,
+          "font": "hand",
+          "at": 2.7,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "n0",
+          "text": "mL",
+          "x": 585.288,
+          "y": 415,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 2.95,
+          "dur": 0.5
+        },
+        {
+          "type": "line",
+          "points": [
+            [
+              412.65,
+              490
+            ],
+            [
+              697.35,
+              490
+            ]
+          ],
+          "at": 3.2,
+          "dur": 0.4,
+          "stroke": 4
+        },
+        {
+          "type": "text",
+          "id": "d0n",
+          "text": "1",
+          "x": 505.32,
+          "y": 510,
+          "size": 48,
+          "font": "hand",
+          "at": 3.3000000000000003,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "d0",
+          "text": "fl oz",
+          "x": 538.92,
+          "y": 510,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 3.5500000000000003,
+          "dur": 0.5
+        },
+        {
+          "type": "strike",
+          "of": "given",
+          "color": "red",
+          "stroke": 4,
+          "at": 5.6,
+          "dur": 0.3
+        },
+        {
+          "type": "strike",
+          "of": "d0",
+          "color": "red",
+          "stroke": 4,
+          "at": 5.8,
+          "dur": 0.3
+        },
+        {
+          "type": "text",
+          "id": "result",
+          "text": "≈ 355 mL",
+          "x": 190,
+          "y": 680,
+          "size": 67,
+          "font": "hand",
+          "at": 6.6,
+          "dur": 1.2
+        },
+        {
+          "type": "box",
+          "of": "result",
+          "color": "blue",
+          "at": 7.8999999999999995,
+          "dur": 0.6
+        },
+        {
+          "type": "note",
+          "text": "這裡換的是體積，不是質量。",
+          "x": 190,
+          "y": 805,
+          "size": 39,
+          "font": "hand",
+          "at": 8.7,
+          "dur": 1.3
+        }
+      ]
+    },
+    {
+      "title": "溫度：要用公式",
+      "narration": "長度的一英吋，精確等於二點五四公分。但攝氏與華氏的零點不同，不能只乘一個換算因子；還要加三十二。攝氏二十五度，換成華氏是七十七度。",
+      "stage": "explain",
+      "steps": [
+        "1 in = 2.54 cm（精確）",
+        "°F = °C × 9/5 + 32",
+        "25 × 9/5 + 32 = 77 °F",
+        {
+          "text": "溫度換算，要顧零點。",
+          "emphasis": "box"
+        }
+      ],
+      "source_slides": [
+        6,
+        30
+      ],
+      "wait": 1.4
+    }
+  ]
+}

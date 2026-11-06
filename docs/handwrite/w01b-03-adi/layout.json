@@ -1,0 +1,130 @@
+{
+ "T": 212.961,
+ "width": 1920,
+ "height": 1080,
+ "voices": [
+  {
+   "file": "assets/voice/s01_a9c4b72560.mp3",
+   "start": 0.2,
+   "dur": 15.777
+  },
+  {
+   "file": "assets/voice/s02_3cc3fdd506.mp3",
+   "start": 17.577,
+   "dur": 14.206
+  },
+  {
+   "file": "assets/voice/s03_dad44b0586.mp3",
+   "start": 33.383,
+   "dur": 11.967
+  },
+  {
+   "file": "assets/voice/s04_9ca94c8813.mp3",
+   "start": 49.55,
+   "dur": 14.552
+  },
+  {
+   "file": "assets/voice/s05_5741a5d172.mp3",
+   "start": 65.702,
+   "dur": 15.802
+  },
+  {
+   "file": "assets/voice/s06_e143617723.mp3",
+   "start": 83.104,
+   "dur": 19.948
+  },
+  {
+   "file": "assets/voice/s07_d4cf15bdb9.mp3",
+   "start": 104.652,
+   "dur": 16.535
+  },
+  {
+   "file": "assets/voice/s08_a11d613e06.mp3",
+   "start": 125.387,
+   "dur": 12.574
+  },
+  {
+   "file": "assets/voice/s09_a3076fcfec.mp3",
+   "start": 139.561,
+   "dur": 20.608
+  },
+  {
+   "file": "assets/voice/s10_f8e1c0d57f.mp3",
+   "start": 161.769,
+   "dur": 14.148
+  },
+  {
+   "file": "assets/voice/s11_2f5928c938.mp3",
+   "start": 180.117,
+   "dur": 13.94
+  },
+  {
+   "file": "assets/voice/s12_5a1f74a22d.mp3",
+   "start": 195.657,
+   "dur": 15.904
+  }
+ ],
+ "music": false,
+ "scenes": [
+  {
+   "index": 0,
+   "start": 0.0,
+   "end": 17.377
+  },
+  {
+   "index": 1,
+   "start": 17.377,
+   "end": 33.183
+  },
+  {
+   "index": 2,
+   "start": 33.183,
+   "end": 49.35
+  },
+  {
+   "index": 3,
+   "start": 49.35,
+   "end": 65.502
+  },
+  {
+   "index": 4,
+   "start": 65.502,
+   "end": 82.904
+  },
+  {
+   "index": 5,
+   "start": 82.904,
+   "end": 104.452
+  },
+  {
+   "index": 6,
+   "start": 104.452,
+   "end": 125.187
+  },
+  {
+   "index": 7,
+   "start": 125.187,
+   "end": 139.361
+  },
+  {
+   "index": 8,
+   "start": 139.361,
+   "end": 161.569
+  },
+  {
+   "index": 9,
+   "start": 161.569,
+   "end": 179.917
+  },
+  {
+   "index": 10,
+   "start": 179.917,
+   "end": 195.457
+  },
+  {
+   "index": 11,
+   "start": 195.457,
+   "end": 212.961
+  }
+ ]
+}

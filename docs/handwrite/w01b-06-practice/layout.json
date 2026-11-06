@@ -1,0 +1,210 @@
+{
+ "T": 317.545,
+ "width": 1920,
+ "height": 1080,
+ "voices": [
+  {
+   "file": "assets/voice/s01_23057a947a.mp3",
+   "start": 0.2,
+   "dur": 8.503
+  },
+  {
+   "file": "assets/voice/s02_fc837b2f1c.mp3",
+   "start": 12.903,
+   "dur": 11.653
+  },
+  {
+   "file": "assets/voice/s03_8bb51a9816.mp3",
+   "start": 26.156,
+   "dur": 10.793
+  },
+  {
+   "file": "assets/voice/s04_e6f3e1d57a.mp3",
+   "start": 41.149,
+   "dur": 9.998
+  },
+  {
+   "file": "assets/voice/s05_62f49f13f3.mp3",
+   "start": 52.747,
+   "dur": 12.261
+  },
+  {
+   "file": "assets/voice/s06_d789ea614e.mp3",
+   "start": 69.208,
+   "dur": 14.434
+  },
+  {
+   "file": "assets/voice/s07_f10b9f4900.mp3",
+   "start": 85.242,
+   "dur": 8.502
+  },
+  {
+   "file": "assets/voice/s08_2bfd3e927a.mp3",
+   "start": 97.944,
+   "dur": 14.182
+  },
+  {
+   "file": "assets/voice/s09_223f56e57b.mp3",
+   "start": 113.726,
+   "dur": 13.184
+  },
+  {
+   "file": "assets/voice/s10_19d07ea451.mp3",
+   "start": 131.11,
+   "dur": 14.744
+  },
+  {
+   "file": "assets/voice/s11_5a6a2f740c.mp3",
+   "start": 147.454,
+   "dur": 10.451
+  },
+  {
+   "file": "assets/voice/s12_25f0d7cb44.mp3",
+   "start": 162.105,
+   "dur": 16.015
+  },
+  {
+   "file": "assets/voice/s13_8b25fa7192.mp3",
+   "start": 179.72,
+   "dur": 14.106
+  },
+  {
+   "file": "assets/voice/s14_c3090df9ac.mp3",
+   "start": 198.026,
+   "dur": 15.343
+  },
+  {
+   "file": "assets/voice/s15_a4efbe31dd.mp3",
+   "start": 214.969,
+   "dur": 13.919
+  },
+  {
+   "file": "assets/voice/s16_55cd90ba0f.mp3",
+   "start": 233.088,
+   "dur": 13.143
+  },
+  {
+   "file": "assets/voice/s17_0fce1c6f57.mp3",
+   "start": 247.831,
+   "dur": 9.38
+  },
+  {
+   "file": "assets/voice/s18_39aa6c9a1c.mp3",
+   "start": 261.411,
+   "dur": 18.595
+  },
+  {
+   "file": "assets/voice/s19_1fd706cb8a.mp3",
+   "start": 281.606,
+   "dur": 12.398
+  },
+  {
+   "file": "assets/voice/s20_2063592620.mp3",
+   "start": 298.204,
+   "dur": 17.941
+  }
+ ],
+ "music": false,
+ "scenes": [
+  {
+   "index": 0,
+   "start": 0.0,
+   "end": 12.703
+  },
+  {
+   "index": 1,
+   "start": 12.703,
+   "end": 25.956
+  },
+  {
+   "index": 2,
+   "start": 25.956,
+   "end": 40.949
+  },
+  {
+   "index": 3,
+   "start": 40.949,
+   "end": 52.547
+  },
+  {
+   "index": 4,
+   "start": 52.547,
+   "end": 69.008
+  },
+  {
+   "index": 5,
+   "start": 69.008,
+   "end": 85.042
+  },
+  {
+   "index": 6,
+   "start": 85.042,
+   "end": 97.744
+  },
+  {
+   "index": 7,
+   "start": 97.744,
+   "end": 113.526
+  },
+  {
+   "index": 8,
+   "start": 113.526,
+   "end": 130.91
+  },
+  {
+   "index": 9,
+   "start": 130.91,
+   "end": 147.254
+  },
+  {
+   "index": 10,
+   "start": 147.254,
+   "end": 161.905
+  },
+  {
+   "index": 11,
+   "start": 161.905,
+   "end": 179.52
+  },
+  {
+   "index": 12,
+   "start": 179.52,
+   "end": 197.826
+  },
+  {
+   "index": 13,
+   "start": 197.826,
+   "end": 214.769
+  },
+  {
+   "index": 14,
+   "start": 214.769,
+   "end": 232.888
+  },
+  {
+   "index": 15,
+   "start": 232.888,
+   "end": 247.631
+  },
+  {
+   "index": 16,
+   "start": 247.631,
+   "end": 261.211
+  },
+  {
+   "index": 17,
+   "start": 261.211,
+   "end": 281.406
+  },
+  {
+   "index": 18,
+   "start": 281.406,
+   "end": 298.004
+  },
+  {
+   "index": 19,
+   "start": 298.004,
+   "end": 317.545
+  }
+ ]
+}

@@ -1,0 +1,329 @@
+{
+  "chapters": [
+    {
+      "id": "w01-01-measure",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 114.751,
+      "overflow": []
+    },
+    {
+      "id": "w01-02-units",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 108.871,
+      "overflow": []
+    },
+    {
+      "id": "w01b-01-units",
+      "scenes": 9,
+      "audio_files": 9,
+      "pause_gates_tested": 3,
+      "duration": 133.588,
+      "overflow": []
+    },
+    {
+      "id": "w01b-02-density",
+      "scenes": 9,
+      "audio_files": 9,
+      "pause_gates_tested": 4,
+      "duration": 140.151,
+      "overflow": []
+    },
+    {
+      "id": "w01b-03-adi",
+      "scenes": 12,
+      "audio_files": 12,
+      "pause_gates_tested": 3,
+      "duration": 212.961,
+      "overflow": []
+    },
+    {
+      "id": "w01b-04-residues",
+      "scenes": 8,
+      "audio_files": 8,
+      "pause_gates_tested": 2,
+      "duration": 145.331,
+      "overflow": []
+    },
+    {
+      "id": "w01b-05-dri",
+      "scenes": 8,
+      "audio_files": 8,
+      "pause_gates_tested": 3,
+      "duration": 146.961,
+      "overflow": []
+    },
+    {
+      "id": "w01b-06-practice",
+      "scenes": 20,
+      "audio_files": 20,
+      "pause_gates_tested": 10,
+      "duration": 317.545,
+      "overflow": []
+    },
+    {
+      "id": "w02-01-atoms",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 104.697,
+      "overflow": []
+    },
+    {
+      "id": "w02-02-formula",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 108.126,
+      "overflow": []
+    },
+    {
+      "id": "w02b-01-weighted",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 113.045,
+      "overflow": []
+    },
+    {
+      "id": "w02b-02-isotope",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 113.924,
+      "overflow": []
+    },
+    {
+      "id": "w03-01-mole",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 107.736,
+      "overflow": []
+    },
+    {
+      "id": "w03-02-composition",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 105.091,
+      "overflow": []
+    },
+    {
+      "id": "w04-01-concentration",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 110.072,
+      "overflow": []
+    },
+    {
+      "id": "w04-02-dilution",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 105.808,
+      "overflow": []
+    },
+    {
+      "id": "w05-01-balance",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 108.498,
+      "overflow": []
+    },
+    {
+      "id": "w05-02-ionic",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 104.594,
+      "overflow": []
+    },
+    {
+      "id": "w06-01-stoich",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 107.729,
+      "overflow": []
+    },
+    {
+      "id": "w06-02-limiting",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 113.383,
+      "overflow": []
+    },
+    {
+      "id": "w07-01-titration",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 111.727,
+      "overflow": []
+    },
+    {
+      "id": "w07-02-quality",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 121.664,
+      "overflow": []
+    },
+    {
+      "id": "w08-01-heat",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 111.05,
+      "overflow": []
+    },
+    {
+      "id": "w08-02-hess",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 111.873,
+      "overflow": []
+    },
+    {
+      "id": "w09-01-lewis",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 111.921,
+      "overflow": []
+    },
+    {
+      "id": "w09-02-groups",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 116.47,
+      "overflow": []
+    },
+    {
+      "id": "w10-01-polarity",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 108.564,
+      "overflow": []
+    },
+    {
+      "id": "w10-02-color",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 113.998,
+      "overflow": []
+    },
+    {
+      "id": "w11-01-imf",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 112.366,
+      "overflow": []
+    },
+    {
+      "id": "w11-02-phase",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 111.417,
+      "overflow": []
+    },
+    {
+      "id": "w12-01-solution",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 116.07,
+      "overflow": []
+    },
+    {
+      "id": "w12-02-colligative",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 113.848,
+      "overflow": []
+    },
+    {
+      "id": "w13-01-emulsion",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 111.976,
+      "overflow": []
+    },
+    {
+      "id": "w13-02-aw",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 115.127,
+      "overflow": []
+    },
+    {
+      "id": "w14-01-equilibrium",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 113.065,
+      "overflow": []
+    },
+    {
+      "id": "w14-02-ph",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 123.094,
+      "overflow": []
+    },
+    {
+      "id": "w15-01-buffer",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 113.134,
+      "overflow": []
+    },
+    {
+      "id": "w15-02-pi",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 113.083,
+      "overflow": []
+    },
+    {
+      "id": "w16-01-redox",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 117.891,
+      "overflow": []
+    },
+    {
+      "id": "w16-02-oxidation",
+      "scenes": 7,
+      "audio_files": 7,
+      "pause_gates_tested": 2,
+      "duration": 118.299,
+      "overflow": []
+    }
+  ],
+  "problems": [],
+  "preview": false,
+  "page_errors": [],
+  "failed_requests": [],
+  "cancelled_preloads": 306
+}

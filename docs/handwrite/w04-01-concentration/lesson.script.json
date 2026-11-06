@@ -1,0 +1,559 @@
+{
+  "title": "濃度的分母：定容與百分比",
+  "width": 1920,
+  "height": 1080,
+  "theme": "notebook",
+  "auto_center": false,
+  "subtitle_y": 920,
+  "subtitle_size": 46,
+  "jitter": 0.25,
+  "write_rate": 0.1,
+  "default_anim": "write",
+  "music": false,
+  "voice": {
+    "preset": "female",
+    "speed": 0.94
+  },
+  "pronounce": {
+    "pOH": "P O H",
+    "pH": "P H",
+    "pKa": "P K A",
+    "pI": "等電點",
+    "PPO": "多酚氧化酶",
+    "Henry": "亨利",
+    "Lewis": "路易斯",
+    "Hess": "赫斯",
+    "Beer": "比爾",
+    "ppm": "百萬分比",
+    "PV": "過氧化價",
+    "AV": "酸價",
+    "HLB": "H L B",
+    "B12": "B 十二"
+  },
+  "scenes": [
+    {
+      "narration": "同一個百分比，可能是每百公克溶液、每百毫升溶液，或體積百分比。莫耳濃度的分母，則是溶液的公升數。它們不能只看數字就互換。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "濃度，先問分母是什麼",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "M＝mol溶質/L溶液",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "%w/w：g/100 g溶液",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "%w/v：g/100 mL溶液",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "text": "nồng độ · 濃度",
+          "x": 180,
+          "y": 265,
+          "size": 34,
+          "at": 0.5,
+          "color": "blue",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "把溶質溶解，再加溶劑到指定總體積。配五百毫升溶液，不等於把溶質加進五百毫升水。溶解前後的體積不一定直接相加。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "定容，是最後的總體積",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "line",
+          "points": [
+            [
+              330,
+              330
+            ],
+            [
+              330,
+              740
+            ],
+            [
+              1230,
+              740
+            ],
+            [
+              1230,
+              330
+            ]
+          ],
+          "at": 1,
+          "color": "ink",
+          "stroke": 5,
+          "dur": 0.7
+        },
+        {
+          "type": "line",
+          "points": [
+            [
+              330,
+              425
+            ],
+            [
+              1230,
+              425
+            ]
+          ],
+          "at": 2,
+          "color": "blue",
+          "stroke": 5,
+          "dur": 0.7
+        },
+        {
+          "type": "text",
+          "text": "定容到刻度",
+          "x": 1300,
+          "y": 410,
+          "size": 51,
+          "at": 3,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            1280,
+            460
+          ],
+          "to": [
+            1200,
+            425
+          ],
+          "at": 3,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "溶質＋溶劑＝溶液",
+          "x": 370,
+          "y": 785,
+          "size": 53,
+          "at": 6,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "circle",
+          "cx": 420,
+          "cy": 500,
+          "rx": 16,
+          "ry": 16,
+          "at": 3.0,
+          "color": "red",
+          "stroke": 5,
+          "dur": 1
+        },
+        {
+          "type": "circle",
+          "cx": 635,
+          "cy": 500,
+          "rx": 16,
+          "ry": 16,
+          "at": 3.15,
+          "color": "red",
+          "stroke": 5,
+          "dur": 1
+        },
+        {
+          "type": "circle",
+          "cx": 850,
+          "cy": 500,
+          "rx": 16,
+          "ry": 16,
+          "at": 3.3,
+          "color": "red",
+          "stroke": 5,
+          "dur": 1
+        },
+        {
+          "type": "circle",
+          "cx": 1065,
+          "cy": 500,
+          "rx": 16,
+          "ry": 16,
+          "at": 3.45,
+          "color": "red",
+          "stroke": 5,
+          "dur": 1
+        },
+        {
+          "type": "circle",
+          "cx": 420,
+          "cy": 585,
+          "rx": 16,
+          "ry": 16,
+          "at": 3.6,
+          "color": "red",
+          "stroke": 5,
+          "dur": 1
+        },
+        {
+          "type": "circle",
+          "cx": 635,
+          "cy": 585,
+          "rx": 16,
+          "ry": 16,
+          "at": 3.75,
+          "color": "red",
+          "stroke": 5,
+          "dur": 1
+        },
+        {
+          "type": "circle",
+          "cx": 850,
+          "cy": 585,
+          "rx": 16,
+          "ry": 16,
+          "at": 3.9,
+          "color": "red",
+          "stroke": 5,
+          "dur": 1
+        },
+        {
+          "type": "circle",
+          "cx": 1065,
+          "cy": 585,
+          "rx": 16,
+          "ry": 16,
+          "at": 4.05,
+          "color": "red",
+          "stroke": 5,
+          "dur": 1
+        },
+        {
+          "type": "circle",
+          "cx": 420,
+          "cy": 670,
+          "rx": 16,
+          "ry": 16,
+          "at": 4.2,
+          "color": "red",
+          "stroke": 5,
+          "dur": 1
+        },
+        {
+          "type": "circle",
+          "cx": 635,
+          "cy": 670,
+          "rx": 16,
+          "ry": 16,
+          "at": 4.35,
+          "color": "red",
+          "stroke": 5,
+          "dur": 1
+        },
+        {
+          "type": "circle",
+          "cx": 850,
+          "cy": 670,
+          "rx": 16,
+          "ry": 16,
+          "at": 4.5,
+          "color": "red",
+          "stroke": 5,
+          "dur": 1
+        },
+        {
+          "type": "circle",
+          "cx": 1065,
+          "cy": 670,
+          "rx": 16,
+          "ry": 16,
+          "at": 4.65,
+          "color": "red",
+          "stroke": 5,
+          "dur": 1
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "氯化鈉莫耳質量五十八點四四。把二十五點零公克配成五百點零毫升溶液，莫耳濃度多少？記得把毫升換公升。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "25.0 g鹽配成500.0 mL",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "n＝25.0/58.44 mol",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "V＝0.5000 L",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "M＝n/V",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "先算零點四二七八莫耳，再除零點五零零零公升，得到零點八五六莫耳每公升。中間多保留幾位，最後依三位有效數字報告。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "答案：0.856 M",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "(25.0÷58.44)÷0.5000",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "＝0.856 mol/L",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "本題零點九百分比採重量體積濃度，也就是每一百毫升溶液含零點九公克氯化鈉。換成每公升是九公克，莫耳濃度約零點一五四。這是濃度練習，不是自行配製注射用品的程序。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "0.9%要加上濃度種類",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "0.9%w/v＝0.9 g/100 mL",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "＝9 g/L",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "9÷58.44≈0.154 mol/L",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "一毫克溶質在一公斤溶液中，是一個質量ppm。若要把它寫成每公升多少毫克，需要知道什麼？",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "ppm一定等於mg/L嗎",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "1 ppm（質量）＝1 mg/kg",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "mg/kg → mg/L，需要？",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "質量ppm的分母是公斤，毫克每公升的分母是體積。要靠密度連接。密度接近一公斤每公升的稀水溶液，兩者數值才近似相同；濃糖漿與油都不能直接套用。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "只有密度合適，數字才近似相同",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "mg/kg × kg/L＝mg/L",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "ρ≈1 kg/L：數值才近似相同",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "先看分母，再決定換算法。",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "box",
+          "of": "step3",
+          "color": "blue",
+          "dur": 0.55
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    }
+  ]
+}

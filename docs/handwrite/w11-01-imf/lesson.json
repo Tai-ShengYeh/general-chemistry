@@ -1,0 +1,298 @@
+{
+  "title": "分子間作用力與沸點",
+  "objective": "能比較分子間作用與沸點，分清分子內鍵和相變。",
+  "audience": "食品營養系普通化學初學者；短句中文，越南語關鍵詞輔助",
+  "aspect": "16:9",
+  "theme": "notebook",
+  "music": false,
+  "voice": {
+    "preset": "female",
+    "speed": 0.94
+  },
+  "sources": [
+    "https://tai-shengyeh.github.io/general-chemistry/%E6%96%B0W11_%E5%88%86%E5%AD%90%E9%96%93%E4%BD%9C%E7%94%A8%E5%8A%9B%E8%88%87%E7%9B%B8%E8%AE%8A.html",
+    "對應投影片：[2, 15, 16, 46]；本課為重點重編，非逐張朗讀。",
+    "科學條件與外部來源見上層 teacher-notes.md。"
+  ],
+  "scenes": [
+    {
+      "title": "所有分子都有分散力",
+      "narration": "非極性分子也有瞬間偶極造成的分散力。極性分子還有永久偶極間作用。入門常見氫鍵，需要合適的供體與受體，並非只要化學式有氧就有自己的氫鍵網絡。",
+      "steps": [
+        "分散力：所有分子都有",
+        "極性：另有偶極間作用",
+        "氫鍵：看供體與受體"
+      ],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        15,
+        16,
+        46
+      ],
+      "items": [
+        {
+          "type": "text",
+          "text": "lực liên phân tử · 分子間作用力",
+          "x": 180,
+          "y": 265,
+          "size": 34,
+          "at": 0.5,
+          "color": "blue",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ]
+    },
+    {
+      "title": "乙醇與二甲醚，元素一樣但結構不同",
+      "narration": "兩者分子式相同。乙醇有氧氫鍵，可作氫鍵供體與受體。二甲醚沒有氧氫鍵，純物質中不能像乙醇建立同樣的供體受體網絡，但它能接受水提供的氫鍵。",
+      "steps": [],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        15,
+        16,
+        46
+      ],
+      "items": [
+        {
+          "type": "text",
+          "text": "乙醇",
+          "x": 195,
+          "y": 430,
+          "size": 64,
+          "at": 1,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b0"
+        },
+        {
+          "type": "box",
+          "of": "b0",
+          "color": "blue",
+          "at": 2
+        },
+        {
+          "type": "text",
+          "text": "有O−H，可供氫鍵",
+          "x": 195,
+          "y": 620,
+          "size": 39,
+          "at": 2,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            520,
+            495
+          ],
+          "to": [
+            680,
+            495
+          ],
+          "at": 3,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "二甲醚",
+          "x": 740,
+          "y": 430,
+          "size": 64,
+          "at": 3,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b1"
+        },
+        {
+          "type": "box",
+          "of": "b1",
+          "color": "blue",
+          "at": 4
+        },
+        {
+          "type": "text",
+          "text": "無O−H，可受氫鍵",
+          "x": 740,
+          "y": 620,
+          "size": 39,
+          "at": 4,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            1065,
+            495
+          ],
+          "to": [
+            1225,
+            495
+          ],
+          "at": 5,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "比較結果",
+          "x": 1285,
+          "y": 430,
+          "size": 64,
+          "at": 5,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b2"
+        },
+        {
+          "type": "box",
+          "of": "b2",
+          "color": "blue",
+          "at": 6
+        },
+        {
+          "type": "text",
+          "text": "純物質沸點差很大",
+          "x": 1285,
+          "y": 620,
+          "size": 39,
+          "at": 6,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ]
+    },
+    {
+      "title": "誰的沸點較高",
+      "narration": "比較純乙醇和純二甲醚，在相同外壓下誰的沸點較高？請用結構與分子間作用力說明，不能只說它比較重。",
+      "steps": [
+        "兩者莫耳質量相同",
+        "乙醇有O−H；二甲醚沒有。"
+      ],
+      "stage": "practice",
+      "wait": 4,
+      "source_slides": [
+        2,
+        15,
+        16,
+        46
+      ],
+      "items": [],
+      "pause": true,
+      "answer": "乙醇；可形成較強的分子間氫鍵網絡。"
+    },
+    {
+      "title": "答案：乙醇",
+      "narration": "乙醇分子間可形成氫鍵網絡，純二甲醚缺少同樣的供體，因此相同外壓下乙醇沸點較高。這是結構相近的比較，不能把氫鍵強弱當成適用所有分子的單一排行。",
+      "steps": [
+        "結構相近 → 比較氫鍵條件",
+        "乙醇沸點 > 二甲醚"
+      ],
+      "stage": "answer",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        15,
+        16,
+        46
+      ],
+      "items": []
+    },
+    {
+      "title": "分子較大，分散力也可能很強",
+      "narration": "同一系列非極性烷類，電子雲較容易極化、接觸面較大時，分散力通常較強。大分子的分散力總效應可以很大，不能說非極性分子的作用力永遠最弱。",
+      "steps": [
+        "同系列烷類常見：",
+        "CH₄ < C₃H₈ < C₈H₁₈（沸點）",
+        "也要考慮形狀、支鏈與堆積"
+      ],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        15,
+        16,
+        46
+      ],
+      "items": []
+    },
+    {
+      "title": "水沸騰，氧氫共價鍵斷了嗎",
+      "narration": "水在常壓下沸騰，變成水蒸氣。主要克服分子間吸引，還是把水拆成氫與氧？請分清分子內與分子間。",
+      "steps": [
+        "H₂O(l) → H₂O(g)",
+        "分子種類有改變嗎？"
+      ],
+      "stage": "practice",
+      "wait": 4,
+      "source_slides": [
+        2,
+        15,
+        16,
+        46
+      ],
+      "items": [],
+      "pause": true,
+      "answer": "主要克服分子間作用，水分子仍是H₂O。"
+    },
+    {
+      "title": "相變時，仍然是水分子",
+      "narration": "液態水變氣態水，主要改變分子間距離與排列，沒有把水分子分解成氫氣和氧氣。分子內共價鍵與分子間作用力，要分層次描述。",
+      "steps": [
+        "汽化：主要克服分子間吸引",
+        "不是H₂O分解成H₂與O₂",
+        {
+          "text": "先問：分子內，還是分子間？",
+          "emphasis": "box"
+        }
+      ],
+      "stage": "answer",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        15,
+        16,
+        46
+      ],
+      "items": []
+    }
+  ],
+  "pronounce": {
+    "pOH": "P O H",
+    "pH": "P H",
+    "pKa": "P K A",
+    "pI": "等電點",
+    "PPO": "多酚氧化酶",
+    "Henry": "亨利",
+    "Lewis": "路易斯",
+    "Hess": "赫斯",
+    "Beer": "比爾",
+    "ppm": "百萬分比",
+    "PV": "過氧化價",
+    "AV": "酸價",
+    "HLB": "H L B",
+    "B12": "B 十二"
+  }
+}

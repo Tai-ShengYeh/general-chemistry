@@ -1,0 +1,285 @@
+{
+  "title": "Hess定律與食品熱量",
+  "objective": "能操作Hess加總與反寫，區分食品可代謝能與燃燒能。",
+  "audience": "食品營養系普通化學初學者；短句中文，越南語關鍵詞輔助",
+  "aspect": "16:9",
+  "theme": "notebook",
+  "music": false,
+  "voice": {
+    "preset": "female",
+    "speed": 0.94
+  },
+  "sources": [
+    "https://tai-shengyeh.github.io/general-chemistry/%E6%96%B0W08_%E7%86%B1%E5%8C%96%E5%AD%B8.html",
+    "對應投影片：[2, 51]；本課為重點重編，非逐張朗讀。",
+    "科學條件與外部來源見上層 teacher-notes.md。"
+  ],
+  "scenes": [
+    {
+      "title": "焓變，跟起終點有關",
+      "narration": "同樣的起點與終點，不管分幾步反應，總焓變相同。加總反應式時，中間物可以消去，對應焓變也要一起相加。這是Hess定律。",
+      "steps": [
+        "反應式相加 → 焓變相加",
+        "反寫反應 → 焓變反號",
+        "係數乘倍 → 焓變也乘倍"
+      ],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        51
+      ],
+      "items": [
+        {
+          "type": "text",
+          "text": "năng lượng · 能量",
+          "x": 180,
+          "y": 265,
+          "size": 34,
+          "at": 0.5,
+          "color": "blue",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ]
+    },
+    {
+      "title": "走兩段，也算同一段總差",
+      "narration": "這裡用教學假設數值。甲到乙放出一百千焦耳，乙到丙吸收三十千焦耳。把兩步相加，乙消去，甲到丙的總焓變是負七十千焦耳。",
+      "steps": [],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        51
+      ],
+      "items": [
+        {
+          "type": "text",
+          "text": "甲",
+          "x": 195,
+          "y": 430,
+          "size": 64,
+          "at": 1,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b0"
+        },
+        {
+          "type": "box",
+          "of": "b0",
+          "color": "blue",
+          "at": 2
+        },
+        {
+          "type": "text",
+          "text": "甲→乙：−100 kJ",
+          "x": 195,
+          "y": 620,
+          "size": 39,
+          "at": 2,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            520,
+            495
+          ],
+          "to": [
+            680,
+            495
+          ],
+          "at": 3,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "乙",
+          "x": 740,
+          "y": 430,
+          "size": 64,
+          "at": 3,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b1"
+        },
+        {
+          "type": "box",
+          "of": "b1",
+          "color": "blue",
+          "at": 4
+        },
+        {
+          "type": "text",
+          "text": "乙→丙：＋30 kJ",
+          "x": 740,
+          "y": 620,
+          "size": 39,
+          "at": 4,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            1065,
+            495
+          ],
+          "to": [
+            1225,
+            495
+          ],
+          "at": 5,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "丙",
+          "x": 1285,
+          "y": 430,
+          "size": 64,
+          "at": 5,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b2"
+        },
+        {
+          "type": "box",
+          "of": "b2",
+          "color": "blue",
+          "at": 6
+        },
+        {
+          "type": "text",
+          "text": "甲→丙：−70 kJ",
+          "x": 1285,
+          "y": 620,
+          "size": 39,
+          "at": 6,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ]
+    },
+    {
+      "title": "把反應反過來，數字怎麼變",
+      "narration": "剛才甲到丙的焓變是負七十千焦耳。若反過來走丙到甲，而且所有物質量也加倍，焓變是多少？",
+      "steps": [
+        "甲→丙：ΔH＝−70 kJ",
+        "2丙→2甲：ΔH＝？"
+      ],
+      "stage": "practice",
+      "wait": 4,
+      "source_slides": [
+        2,
+        51
+      ],
+      "items": [],
+      "pause": true,
+      "answer": "＋140 kJ。"
+    },
+    {
+      "title": "先反號，再乘二",
+      "narration": "反過來時，負七十變正七十；再把反應物與產物都乘二，焓變也乘二，成為正一百四十千焦耳。反應條件與物理狀態也必須一致，才能相加。",
+      "steps": [
+        "反寫：＋70 kJ",
+        "乘2：＋140 kJ"
+      ],
+      "stage": "answer",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        51
+      ],
+      "items": []
+    },
+    {
+      "title": "食品大卡，不只看燃燒熱",
+      "narration": "一大卡是一千小卡，精確等於四點一八四千焦耳。食品常用營養素能量因子估算可代謝能；彈卡計量得的是燃燒能，兩者概念不同。九、四、四只是常見概略因子。",
+      "steps": [
+        "1 kcal＝4.184 kJ",
+        "脂肪約9 kcal/g",
+        "蛋白質、可利用醣類常取4 kcal/g",
+        "燃燒能 ≠ 可代謝能"
+      ],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        51
+      ],
+      "items": []
+    },
+    {
+      "title": "8.0 g脂肪，用9估算",
+      "narration": "題設只用脂肪能量因子，每公克九大卡。八點零公克脂肪提供約多少大卡？能不能把它當成整份食品的實測熱量？",
+      "steps": [
+        "8.0×9 kcal",
+        "還有其他營養素與方法差異嗎？"
+      ],
+      "stage": "practice",
+      "wait": 4,
+      "source_slides": [
+        2,
+        51
+      ],
+      "items": [],
+      "pause": true,
+      "answer": "約72 kcal；不是整份食品實測總熱量。"
+    },
+    {
+      "title": "答案：此部分約72大卡",
+      "narration": "八乘九，約七十二大卡，只是本題脂肪部分的估算。整份食品還要考慮其他供能成分、採用因子與標示規則。會算乘法，也要能說出計算回答了什麼問題。",
+      "steps": [
+        "脂肪部分：約72 kcal",
+        "估算範圍：題設8.0 g脂肪",
+        {
+          "text": "數字要帶著範圍與假設。",
+          "emphasis": "box"
+        }
+      ],
+      "stage": "answer",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        51
+      ],
+      "items": []
+    }
+  ],
+  "pronounce": {
+    "pOH": "P O H",
+    "pH": "P H",
+    "pKa": "P K A",
+    "pI": "等電點",
+    "PPO": "多酚氧化酶",
+    "Henry": "亨利",
+    "Lewis": "路易斯",
+    "Hess": "赫斯",
+    "Beer": "比爾",
+    "ppm": "百萬分比",
+    "PV": "過氧化價",
+    "AV": "酸價",
+    "HLB": "H L B",
+    "B12": "B 十二"
+  }
+}

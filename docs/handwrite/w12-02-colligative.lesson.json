@@ -1,0 +1,313 @@
+{
+  "title": "依數性質：先數粒子再計算",
+  "objective": "能依粒子數計算凝固點下降，分清M、m與i的近似條件。",
+  "audience": "食品營養系普通化學初學者；短句中文，越南語關鍵詞輔助",
+  "aspect": "16:9",
+  "theme": "notebook",
+  "music": false,
+  "voice": {
+    "preset": "female",
+    "speed": 0.94
+  },
+  "sources": [
+    "https://tai-shengyeh.github.io/general-chemistry/%E6%96%B0W12_%E6%BA%B6%E6%B6%B2%E8%88%87%E4%BE%9D%E6%95%B8%E6%80%A7%E8%B3%AA.html",
+    "對應投影片：[2, 27, 29, 32, 39, 40]；本課為重點重編，非逐張朗讀。",
+    "科學條件與外部來源見上層 teacher-notes.md。"
+  ],
+  "scenes": [
+    {
+      "title": "粒子濃度，改變溶劑性質",
+      "narration": "在稀、近理想溶液模型中，依數性質主要取決於溶質粒子濃度。電解質可能解離成多個離子，所以要用范特荷夫因子修正。濃溶液不能保證沿用同一近似。",
+      "steps": [
+        "ΔTf＝iKf m",
+        "m＝mol溶質/kg溶劑",
+        "i反映有效粒子數"
+      ],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        27,
+        29,
+        32,
+        39,
+        40
+      ],
+      "items": [
+        {
+          "type": "text",
+          "text": "tính chất tập hợp · 依數性質",
+          "x": 180,
+          "y": 265,
+          "size": 34,
+          "at": 0.5,
+          "color": "blue",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ]
+    },
+    {
+      "title": "M和m，只差一字母卻不同",
+      "narration": "大寫莫耳濃度分母是公升溶液，小寫重量莫耳濃度分母是公斤溶劑。凝固點下降用小寫濃度；滲透壓近似式用大寫濃度，溫度必須用克耳文。",
+      "steps": [],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        27,
+        29,
+        32,
+        39,
+        40
+      ],
+      "items": [
+        {
+          "type": "text",
+          "text": "凝固點下降",
+          "x": 195,
+          "y": 430,
+          "size": 64,
+          "at": 1,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b0"
+        },
+        {
+          "type": "box",
+          "of": "b0",
+          "color": "blue",
+          "at": 2
+        },
+        {
+          "type": "text",
+          "text": "ΔTf＝iKf m",
+          "x": 195,
+          "y": 620,
+          "size": 39,
+          "at": 2,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            520,
+            495
+          ],
+          "to": [
+            680,
+            495
+          ],
+          "at": 3,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "滲透壓",
+          "x": 740,
+          "y": 430,
+          "size": 64,
+          "at": 3,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b1"
+        },
+        {
+          "type": "box",
+          "of": "b1",
+          "color": "blue",
+          "at": 4
+        },
+        {
+          "type": "text",
+          "text": "Π＝iMRT",
+          "x": 740,
+          "y": 620,
+          "size": 39,
+          "at": 4,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            1065,
+            495
+          ],
+          "to": [
+            1225,
+            495
+          ],
+          "at": 5,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "濃度分母",
+          "x": 1285,
+          "y": 430,
+          "size": 64,
+          "at": 5,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b2"
+        },
+        {
+          "type": "box",
+          "of": "b2",
+          "color": "blue",
+          "at": 6
+        },
+        {
+          "type": "text",
+          "text": "kg溶劑 與 L溶液不同",
+          "x": 1285,
+          "y": 620,
+          "size": 39,
+          "at": 6,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ]
+    },
+    {
+      "title": "0.100 m糖水降幾度",
+      "narration": "水的凝固點下降常數取一點八六度公斤每莫耳。零點一零零重量莫耳濃度葡萄糖，近理想且不解離，凝固點下降多少？",
+      "steps": [
+        "i＝1；m＝0.100 mol/kg",
+        "ΔTf＝1×1.86×0.100"
+      ],
+      "stage": "practice",
+      "wait": 4,
+      "source_slides": [
+        2,
+        27,
+        29,
+        32,
+        39,
+        40
+      ],
+      "items": [],
+      "pause": true,
+      "answer": "下降0.186 °C；凝固點約−0.186 °C。"
+    },
+    {
+      "title": "答案：下降0.186度",
+      "narration": "一乘一點八六乘零點一，是零點一八六度。凝固點下降量是正值，新的凝固點則是零減下降量。不要把下降量的正號，直接當成新的凝固點。",
+      "steps": [
+        "ΔTf＝0.186 °C",
+        "Tf≈0−0.186＝−0.186 °C"
+      ],
+      "stage": "answer",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        27,
+        29,
+        32,
+        39,
+        40
+      ],
+      "items": []
+    },
+    {
+      "title": "鹽類的i，不一定是理想整數",
+      "narration": "氯化鈉理想完全解離可給兩個離子，但實際離子交互作用會影響有效粒子數。本題若實測取一點九，就使用一點九，不擅自改成二。",
+      "steps": [
+        "NaCl：理想i≈2",
+        "若題設i＝1.9，應使用1.9",
+        "0.500 m：ΔTf＝1.9×1.86×0.500",
+        "≈1.77 °C（計算值）"
+      ],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        27,
+        29,
+        32,
+        39,
+        40
+      ],
+      "items": []
+    },
+    {
+      "title": "同樣0.100 m，誰降得更多",
+      "narration": "在理想解離模型下，比較葡萄糖、氯化鈉與氯化鈣，溶劑與濃度相同。哪一種凝固點下降最大？請先算解離後的粒子比例。",
+      "steps": [
+        "葡萄糖：1",
+        "NaCl：2；CaCl₂：3"
+      ],
+      "stage": "practice",
+      "wait": 4,
+      "source_slides": [
+        2,
+        27,
+        29,
+        32,
+        39,
+        40
+      ],
+      "items": [],
+      "pause": true,
+      "answer": "CaCl₂；理想模型的有效粒子最多。"
+    },
+    {
+      "title": "答案：理想模型下氯化鈣最多",
+      "narration": "理想氯化鈣分成一個鈣離子與兩個氯離子，所以同樣重量莫耳濃度下，預測下降最大。冰淇淋的糖讓凍結溫度降低，但質地也受脂肪、空氣、冰晶大小與製程影響。",
+      "steps": [
+        "理想i：CaCl₂ 3 > NaCl 2 > 糖1",
+        "真實i受濃度與交互作用影響",
+        {
+          "text": "模型能解釋一部分，不包辦全部。",
+          "emphasis": "box"
+        }
+      ],
+      "stage": "answer",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        27,
+        29,
+        32,
+        39,
+        40
+      ],
+      "items": []
+    }
+  ],
+  "pronounce": {
+    "pOH": "P O H",
+    "pH": "P H",
+    "pKa": "P K A",
+    "pI": "等電點",
+    "PPO": "多酚氧化酶",
+    "Henry": "亨利",
+    "Lewis": "路易斯",
+    "Hess": "赫斯",
+    "Beer": "比爾",
+    "ppm": "百萬分比",
+    "PV": "過氧化價",
+    "AV": "酸價",
+    "HLB": "H L B",
+    "B12": "B 十二"
+  }
+}

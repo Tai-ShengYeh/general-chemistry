@@ -1,0 +1,955 @@
+{
+  "title": "殘留：mg、μg 與 ppb",
+  "width": 1920,
+  "height": 1080,
+  "theme": "notebook",
+  "auto_center": false,
+  "subtitle_y": 920,
+  "subtitle_size": 46,
+  "jitter": 0.25,
+  "write_rate": 0.1,
+  "default_anim": "write",
+  "music": false,
+  "voice": {
+    "preset": "female",
+    "speed": 0.95
+  },
+  "pronounce": {},
+  "scenes": [
+    {
+      "narration": "本章用質量比表示食品殘留。每公斤一毫克，相當於百萬分之一。每公斤一微克，相當於十億分之一。毫克與微克差一千倍，千萬不要把它們看成同一個單位。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "先把濃度單位看清楚",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "質量比：1 ppm = 1 mg/kg",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "質量比：1 ppb = 1 μg/kg",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "1 mg = 1000 μg",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "box",
+          "of": "step3",
+          "color": "blue",
+          "dur": 0.55
+        },
+        {
+          "type": "text",
+          "id": "step4",
+          "text": "分母的 kg，要看是食品或體重",
+          "x": 190,
+          "y": 699,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 1.4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "依題設，五百毫升汽水，密度一點零四，每公斤有零點一毫克殘留。體重六十公斤，指引值也是零點一毫克每公斤體重每天。你能先算出一瓶的殘留量嗎？",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "例 10：清潔劑殘留",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "500 mL；ρ = 1.04 g/mL",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "殘留：0.1 mg/kg 食品",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "本題 ADI = 0.1 mg/kg 體重/天",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "先將汽水體積換成質量，再接上每一千公克零點一毫克的殘留濃度。得到一瓶零點零五二毫克。請注意，這題所有標準值都沿用教材題設。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "例 10：先算每瓶殘留",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "note",
+          "text": "mL → g 飲料 → mg 殘留",
+          "x": 180,
+          "y": 285,
+          "size": 43,
+          "color": "blue",
+          "font": "hand",
+          "at": 0.7
+        },
+        {
+          "type": "text",
+          "id": "givenn",
+          "text": "500",
+          "x": 127.93599999999999,
+          "y": 467,
+          "size": 48,
+          "font": "hand",
+          "at": 1.5,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "given",
+          "text": "mL",
+          "x": 204.736,
+          "y": 467,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 1.75,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "text": "×",
+          "x": 355.5,
+          "y": 475,
+          "size": 48,
+          "font": "hand",
+          "at": 2.7
+        },
+        {
+          "type": "text",
+          "id": "n0n",
+          "text": "1.04",
+          "x": 503.328,
+          "y": 415,
+          "size": 48,
+          "font": "hand",
+          "at": 2.7,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "n0",
+          "text": "g",
+          "x": 589.632,
+          "y": 415,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 2.95,
+          "dur": 0.5
+        },
+        {
+          "type": "line",
+          "points": [
+            [
+              412.65,
+              490
+            ],
+            [
+              697.35,
+              490
+            ]
+          ],
+          "at": 3.2,
+          "dur": 0.4,
+          "stroke": 4
+        },
+        {
+          "type": "text",
+          "id": "d0n",
+          "text": "1",
+          "x": 514.5360000000001,
+          "y": 510,
+          "size": 48,
+          "font": "hand",
+          "at": 3.3000000000000003,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "d0",
+          "text": "mL",
+          "x": 548.1360000000001,
+          "y": 510,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 3.5500000000000003,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "text": "×",
+          "x": 720.5,
+          "y": 475,
+          "size": 48,
+          "font": "hand",
+          "at": 4.300000000000001
+        },
+        {
+          "type": "text",
+          "id": "n1n",
+          "text": "0.1",
+          "x": 865.688,
+          "y": 415,
+          "size": 48,
+          "font": "hand",
+          "at": 4.300000000000001,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "n1",
+          "text": "mg",
+          "x": 930.392,
+          "y": 415,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 4.550000000000001,
+          "dur": 0.5
+        },
+        {
+          "type": "line",
+          "points": [
+            [
+              777.65,
+              490
+            ],
+            [
+              1062.35,
+              490
+            ]
+          ],
+          "at": 4.800000000000001,
+          "dur": 0.4,
+          "stroke": 4
+        },
+        {
+          "type": "text",
+          "id": "d1n",
+          "text": "1000",
+          "x": 862.28,
+          "y": 510,
+          "size": 48,
+          "font": "hand",
+          "at": 4.9,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "d1",
+          "text": "g",
+          "x": 960.68,
+          "y": 510,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 5.15,
+          "dur": 0.5
+        },
+        {
+          "type": "strike",
+          "of": "given",
+          "color": "red",
+          "stroke": 4,
+          "at": 7.2,
+          "dur": 0.3
+        },
+        {
+          "type": "strike",
+          "of": "d0",
+          "color": "red",
+          "stroke": 4,
+          "at": 7.4,
+          "dur": 0.3
+        },
+        {
+          "type": "strike",
+          "of": "n0",
+          "color": "red",
+          "stroke": 4,
+          "at": 7.6000000000000005,
+          "dur": 0.3
+        },
+        {
+          "type": "strike",
+          "of": "d1",
+          "color": "red",
+          "stroke": 4,
+          "at": 7.800000000000001,
+          "dur": 0.3
+        },
+        {
+          "type": "text",
+          "id": "result",
+          "text": "= 0.052 mg 殘留",
+          "x": 190,
+          "y": 680,
+          "size": 67,
+          "font": "hand",
+          "at": 8.6,
+          "dur": 1.2
+        },
+        {
+          "type": "box",
+          "of": "result",
+          "color": "blue",
+          "at": 9.9,
+          "dur": 0.6
+        },
+        {
+          "type": "note",
+          "text": "教材題設；不把這個數字當作通用法規值。",
+          "x": 190,
+          "y": 805,
+          "size": 39,
+          "font": "hand",
+          "at": 10.7,
+          "dur": 1.3
+        }
+      ],
+      "hold": 1.4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "零點零五二毫克，除以六十，再除以零點一，乘百分之一百，約百分之零點八七。反算達到等量約一百一十五點四瓶。這只是數學反算，殘留限量的大小也不能直接拿來比較毒性。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "例 10：接上體重與 ADI",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "0.052 ÷60 ÷0.1 ×100%",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "≈ 0.87%（題設標準）",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "等量瓶數：約 115.4 瓶",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step4",
+          "text": "殘留限量 ≠ 毒性排名",
+          "x": 190,
+          "y": 699,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 1.4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "牛排十盎司，題設殘留十微克每公斤肉。體重六十公斤，指引值每公斤體重每天一微克。算之前，先把盎司變成公斤肉。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "例 11：10 oz 牛排，10 ppb",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "10 oz 肉；殘留 10 ppb",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "10 ppb = 10 μg/kg 肉",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "本題 ADI = 1 μg/kg 體重/天",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "十盎司乘每盎司二十八點三五公克，再除一千換成公斤，接上每公斤十微克。盎司、公克和公斤肉依序相消，留下微克殘留量。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "例 11：盎司一路接到微克",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "note",
+          "text": "oz → g 肉 → kg 肉 → μg 殘留",
+          "x": 180,
+          "y": 285,
+          "size": 43,
+          "color": "blue",
+          "font": "hand",
+          "at": 0.7
+        },
+        {
+          "type": "text",
+          "id": "givenn",
+          "text": "10",
+          "x": 146.368,
+          "y": 467,
+          "size": 48,
+          "font": "hand",
+          "at": 1.5,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "given",
+          "text": "oz",
+          "x": 201.56799999999998,
+          "y": 467,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 1.75,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "text": "×",
+          "x": 346.75,
+          "y": 475,
+          "size": 48,
+          "font": "hand",
+          "at": 2.7
+        },
+        {
+          "type": "text",
+          "id": "n0n",
+          "text": "28.35",
+          "x": 475.028,
+          "y": 415,
+          "size": 48,
+          "font": "hand",
+          "at": 2.7,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "n0",
+          "text": "g",
+          "x": 582.932,
+          "y": 415,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 2.95,
+          "dur": 0.5
+        },
+        {
+          "type": "line",
+          "points": [
+            [
+              401.975,
+              490
+            ],
+            [
+              673.025,
+              490
+            ]
+          ],
+          "at": 3.2,
+          "dur": 0.4,
+          "stroke": 4
+        },
+        {
+          "type": "text",
+          "id": "d0n",
+          "text": "1",
+          "x": 504.668,
+          "y": 510,
+          "size": 48,
+          "font": "hand",
+          "at": 3.3000000000000003,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "d0",
+          "text": "oz",
+          "x": 538.268,
+          "y": 510,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 3.5500000000000003,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "text": "×",
+          "x": 694.25,
+          "y": 475,
+          "size": 48,
+          "font": "hand",
+          "at": 4.300000000000001
+        },
+        {
+          "type": "text",
+          "id": "n1n",
+          "text": "1",
+          "x": 850.92,
+          "y": 415,
+          "size": 48,
+          "font": "hand",
+          "at": 4.300000000000001,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "n1",
+          "text": "kg",
+          "x": 884.52,
+          "y": 415,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 4.550000000000001,
+          "dur": 0.5
+        },
+        {
+          "type": "line",
+          "points": [
+            [
+              749.475,
+              490
+            ],
+            [
+              1020.525,
+              490
+            ]
+          ],
+          "at": 4.800000000000001,
+          "dur": 0.4,
+          "stroke": 4
+        },
+        {
+          "type": "text",
+          "id": "d1n",
+          "text": "1000",
+          "x": 827.28,
+          "y": 510,
+          "size": 48,
+          "font": "hand",
+          "at": 4.9,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "d1",
+          "text": "g",
+          "x": 925.68,
+          "y": 510,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 5.15,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "text": "×",
+          "x": 1041.75,
+          "y": 475,
+          "size": 48,
+          "font": "hand",
+          "at": 5.9
+        },
+        {
+          "type": "text",
+          "id": "n2n",
+          "text": "10",
+          "x": 1187.5,
+          "y": 415,
+          "size": 48,
+          "font": "hand",
+          "at": 5.9,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "n2",
+          "text": "μg",
+          "x": 1242.7,
+          "y": 415,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 6.15,
+          "dur": 0.5
+        },
+        {
+          "type": "line",
+          "points": [
+            [
+              1096.975,
+              490
+            ],
+            [
+              1368.025,
+              490
+            ]
+          ],
+          "at": 6.4,
+          "dur": 0.4,
+          "stroke": 4
+        },
+        {
+          "type": "text",
+          "id": "d2n",
+          "text": "1",
+          "x": 1198.42,
+          "y": 510,
+          "size": 48,
+          "font": "hand",
+          "at": 6.5,
+          "dur": 0.5
+        },
+        {
+          "type": "text",
+          "id": "d2",
+          "text": "kg",
+          "x": 1232.02,
+          "y": 510,
+          "size": 48,
+          "font": "hand",
+          "color": "blue",
+          "at": 6.75,
+          "dur": 0.5
+        },
+        {
+          "type": "strike",
+          "of": "given",
+          "color": "red",
+          "stroke": 4,
+          "at": 8.8,
+          "dur": 0.3
+        },
+        {
+          "type": "strike",
+          "of": "d0",
+          "color": "red",
+          "stroke": 4,
+          "at": 9.0,
+          "dur": 0.3
+        },
+        {
+          "type": "strike",
+          "of": "n0",
+          "color": "red",
+          "stroke": 4,
+          "at": 9.200000000000001,
+          "dur": 0.3
+        },
+        {
+          "type": "strike",
+          "of": "d1",
+          "color": "red",
+          "stroke": 4,
+          "at": 9.4,
+          "dur": 0.3
+        },
+        {
+          "type": "strike",
+          "of": "n1",
+          "color": "red",
+          "stroke": 4,
+          "at": 9.600000000000001,
+          "dur": 0.3
+        },
+        {
+          "type": "strike",
+          "of": "d2",
+          "color": "red",
+          "stroke": 4,
+          "at": 9.8,
+          "dur": 0.3
+        },
+        {
+          "type": "text",
+          "id": "result",
+          "text": "= 2.835 μg 殘留",
+          "x": 190,
+          "y": 680,
+          "size": 67,
+          "font": "hand",
+          "at": 10.6,
+          "dur": 1.2
+        },
+        {
+          "type": "box",
+          "of": "result",
+          "color": "blue",
+          "at": 11.9,
+          "dur": 0.6
+        },
+        {
+          "type": "note",
+          "text": "這裡是 μg，不是 mg。",
+          "x": 190,
+          "y": 805,
+          "size": 39,
+          "font": "hand",
+          "at": 12.7,
+          "dur": 1.3
+        }
+      ],
+      "hold": 1.4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "二點八三五微克除以六十公斤，再比每公斤一微克，是百分之四點七二五。若同份量由二十五公斤兒童食用，約百分之十一點三。這只是原題假設下，單一食物的估算。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "例 11：不要把 μg 看成 mg",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "成人：2.835÷60÷1×100%",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "= 4.725% ≈ 4.7%",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "25 kg：2.835÷25 = 0.1134",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step4",
+          "text": "佔題設 ADI 約 11.3%",
+          "x": 190,
+          "y": 699,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 1.4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "反算時，每公斤體重一微克，乘六十公斤，得到每日六十微克。再除以每公斤肉十微克，是六公斤肉。換成十盎司一客，約二十一點二客。這是等量溝通，不是食用建議。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "例 12：沿著路線反走",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "1 ×60 = 60 μg/天",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "60 μg ÷10 μg/kg = 6 kg 肉",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "6000÷28.35÷10 ≈ 21.2 客",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step4",
+          "text": "同一條路，因子倒過來",
+          "x": 190,
+          "y": 699,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 1.4,
+      "center": false,
+      "min_dur": 0
+    }
+  ]
+}

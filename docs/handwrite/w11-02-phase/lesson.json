@@ -1,0 +1,292 @@
+{
+  "title": "相變熱量與食品結構",
+  "objective": "能分段計算相變熱量，區分純物質相變與食品結構變化。",
+  "audience": "食品營養系普通化學初學者；短句中文，越南語關鍵詞輔助",
+  "aspect": "16:9",
+  "theme": "notebook",
+  "music": false,
+  "voice": {
+    "preset": "female",
+    "speed": 0.94
+  },
+  "sources": [
+    "https://tai-shengyeh.github.io/general-chemistry/%E6%96%B0W11_%E5%88%86%E5%AD%90%E9%96%93%E4%BD%9C%E7%94%A8%E5%8A%9B%E8%88%87%E7%9B%B8%E8%AE%8A.html",
+    "對應投影片：[2, 46]；本課為重點重編，非逐張朗讀。",
+    "科學條件與外部來源見上層 teacher-notes.md。"
+  ],
+  "scenes": [
+    {
+      "title": "加熱，不保證一直升溫",
+      "narration": "純物質在固定壓力的相變平台上，加入能量主要用於相變，溫度可維持不變。平台前後升溫用比熱，相變本身則用熔化或汽化焓。",
+      "steps": [
+        "升溫：q＝mcΔT",
+        "相變：q＝nΔH",
+        "適用條件：純物質、固定壓力"
+      ],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        46
+      ],
+      "items": [
+        {
+          "type": "text",
+          "text": "chuyển pha · 相變",
+          "x": 180,
+          "y": 265,
+          "size": 34,
+          "at": 0.5,
+          "color": "blue",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ]
+    },
+    {
+      "title": "先分段，再加總",
+      "narration": "加熱曲線的斜段代表同一相升溫，水平段代表兩相共存的相變。這是理想純物質示意。食品通常是混合物，可能出現較寬的相變區間。",
+      "steps": [],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        46
+      ],
+      "items": [
+        {
+          "type": "line",
+          "points": [
+            [
+              260,
+              760
+            ],
+            [
+              260,
+              325
+            ]
+          ],
+          "at": 1,
+          "color": "ink",
+          "stroke": 5,
+          "dur": 0.7
+        },
+        {
+          "type": "line",
+          "points": [
+            [
+              260,
+              760
+            ],
+            [
+              1570,
+              760
+            ]
+          ],
+          "at": 1,
+          "color": "ink",
+          "stroke": 5,
+          "dur": 0.7
+        },
+        {
+          "type": "text",
+          "text": "溫度",
+          "x": 150,
+          "y": 290,
+          "size": 43,
+          "at": 1,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "text",
+          "text": "加入熱量",
+          "x": 1330,
+          "y": 805,
+          "size": 43,
+          "at": 1,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "line",
+          "points": [
+            [
+              350,
+              700
+            ],
+            [
+              650,
+              520
+            ],
+            [
+              1000,
+              520
+            ],
+            [
+              1380,
+              350
+            ]
+          ],
+          "at": 2,
+          "color": "red",
+          "stroke": 7,
+          "dur": 4
+        },
+        {
+          "type": "text",
+          "text": "升溫",
+          "x": 360,
+          "y": 540,
+          "size": 44,
+          "at": 3,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "text",
+          "text": "相變平台",
+          "x": 670,
+          "y": 420,
+          "size": 44,
+          "at": 4,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "text",
+          "text": "q = mcΔT",
+          "x": 340,
+          "y": 800,
+          "size": 45,
+          "at": 5,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "text",
+          "text": "q = nΔH",
+          "x": 780,
+          "y": 625,
+          "size": 45,
+          "at": 6,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        }
+      ]
+    },
+    {
+      "title": "冰在0度融化，需要多少熱",
+      "narration": "題設十八點零公克純冰，在一個大氣壓、零度全部融成零度水。熔化焓每莫耳六點零一千焦耳，莫耳質量十八點零二。需要多少熱？",
+      "steps": [
+        "n＝18.0/18.02 mol",
+        "q＝n×6.01 kJ/mol"
+      ],
+      "stage": "practice",
+      "wait": 4,
+      "source_slides": [
+        2,
+        46
+      ],
+      "items": [],
+      "pause": true,
+      "answer": "約6.00 kJ。"
+    },
+    {
+      "title": "答案：約6.00 kJ",
+      "narration": "十八點零公克除十八點零二，再乘六點零一，約六點零零千焦耳。溫度雖然沒有變，能量仍增加。若之後繼續把液態水加熱，才另外加上比熱那一段。",
+      "steps": [
+        "q＝(18.0/18.02)×6.01",
+        "≈6.00 kJ",
+        "ΔT＝0，不代表q＝0"
+      ],
+      "stage": "answer",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        46
+      ],
+      "items": []
+    },
+    {
+      "title": "巧克力起霜與蛋白凝固，不能混稱",
+      "narration": "脂肪多晶型與遷移會影響巧克力外觀；糖霜還可能來自水分與糖再結晶。蛋白質受熱變性聚集，涉及分子結構與交互作用，不能直接當成純物質的普通熔融相變。",
+      "steps": [
+        "脂霜：脂肪晶型與遷移",
+        "糖霜：水分、糖再結晶",
+        "蛋白凝固：變性與聚集"
+      ],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        46
+      ],
+      "items": []
+    },
+    {
+      "title": "外壓降低，沸點怎麼變",
+      "narration": "液體沸騰的條件，是蒸氣壓等於外壓。若外壓降低，同一液體需要較高還是較低的溫度才能沸騰？",
+      "steps": [
+        "沸騰：P蒸氣＝P外界",
+        "高山外壓較低。"
+      ],
+      "stage": "practice",
+      "wait": 4,
+      "source_slides": [
+        2,
+        46
+      ],
+      "items": [],
+      "pause": true,
+      "answer": "較低溫度。"
+    },
+    {
+      "title": "答案：外壓低，沸點降低",
+      "narration": "較低溫度時，蒸氣壓就可以等於較低外壓，所以沸點下降。不同壓力下的沸點不能直接比較。讀相變圖，要同時說明物質、組成與壓力。",
+      "steps": [
+        "P外界下降 → 沸點下降",
+        {
+          "text": "相變條件要交代壓力與組成。",
+          "emphasis": "box"
+        }
+      ],
+      "stage": "answer",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        46
+      ],
+      "items": []
+    }
+  ],
+  "pronounce": {
+    "pOH": "P O H",
+    "pH": "P H",
+    "pKa": "P K A",
+    "pI": "等電點",
+    "PPO": "多酚氧化酶",
+    "Henry": "亨利",
+    "Lewis": "路易斯",
+    "Hess": "赫斯",
+    "Beer": "比爾",
+    "ppm": "百萬分比",
+    "PV": "過氧化價",
+    "AV": "酸價",
+    "HLB": "H L B",
+    "B12": "B 十二"
+  }
+}

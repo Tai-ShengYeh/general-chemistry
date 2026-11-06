@@ -1,0 +1,474 @@
+{
+  "title": "DRIs：充足與過量分開問",
+  "width": 1920,
+  "height": 1080,
+  "theme": "notebook",
+  "auto_center": false,
+  "subtitle_y": 920,
+  "subtitle_size": 46,
+  "jitter": 0.25,
+  "write_rate": 0.1,
+  "default_anim": "write",
+  "music": false,
+  "voice": {
+    "preset": "female",
+    "speed": 0.95
+  },
+  "pronounce": {},
+  "scenes": [
+    {
+      "narration": "平均需要量，是群體需要量分布的概念。建議攝取量，是為滿足大多數健康人的需要而設定。它們都要配合年齡、性別和生理狀態，不能把同一個值套用給所有人。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "營養參考值：先認識兩個量",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "EAR：估計平均需要量",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "RDA：建議攝取量",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "RDA 涵蓋大多數健康人的需要",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step4",
+          "text": "先找適用的族群",
+          "x": 190,
+          "y": 699,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 1.4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "資料不足以訂出建議攝取量時，會採用足夠攝取量。上限攝取量則是另一個問題。超過足夠攝取量，不等於已超過上限；低於上限也不是零風險保證。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "AI 是參考，UL 是上限",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "AI：足夠攝取量",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "UL：上限攝取量",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "需要量與上限，分開比較",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step4",
+          "text": "超過 AI ≠ 已超過 UL",
+          "x": 190,
+          "y": 699,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "box",
+          "of": "step4",
+          "color": "blue",
+          "dur": 0.55
+        }
+      ],
+      "hold": 1.4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "沿用前面算出的一杯兩百七十五毫克鈣。題設足夠攝取量每天一千毫克，上限兩千五百毫克。一杯和三杯，各提供足夠攝取量的百分之多少？",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "例 13：一杯牛奶提供多少？",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "每杯鈣：275 mg",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "本題 AI = 1000 mg/天",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "本題 UL = 2500 mg/天",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "一杯兩百七十五，除以一千是百分之二十七點五。三杯八百二十五毫克，是百分之八十二點五。三杯牛奶本身低於題設上限，但全天其他食品和補充劑也要加進去。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "例 13：兩個比較，各自計算",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "1 杯：275÷1000 = 27.5%",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "3 杯：825÷1000 = 82.5%",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "825 mg < 題設 UL 2500 mg",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step4",
+          "text": "全天總量＝食品＋補充劑",
+          "x": 190,
+          "y": 699,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 1.4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "題設鐵的建議攝取量十五毫克，上限四十毫克。一份牛肉有二點六毫克，一顆補充劑有六十五毫克元素鐵。要問充足性和是否超過上限，各應用哪個分母？",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "例 14：鐵，分母選哪個？",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "本題 RDA = 15 mg/天",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "本題 UL = 40 mg/天",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "牛肉 2.6 mg；元素鐵 65 mg",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "牛肉的鐵除以十五，約百分之十七點三，是在談建議攝取量。六十五除以四十，是上限的百分之一百六十二點五，已超過題設上限。補充劑標示要看元素鐵；治療用量需由醫療人員判斷。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "例 14：不要比錯分母",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "2.6÷15×100% ≈ 17.3% RDA",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "65÷40×100% = 162.5% UL",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "看清楚：元素鐵的含量",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step4",
+          "text": "治療劑量另由醫療人員評估",
+          "x": 190,
+          "y": 699,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 1.4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "某人攝取量是足夠攝取量的百分之一百二十，而上限是足夠攝取量的二點五倍。單看這些資料，攝取量有超過上限嗎？請說出你比較的分母。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "快問：120% AI，就過量？",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "攝取量：120% AI",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "UL：250% AI",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "120% AI 是否 > UL？",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "一百二十小於兩百五十，所以沒有超過題設上限。也可以用一百二十除以兩百五十，等於上限的百分之四十八。達到需要量和超過上限，是兩個不同問題。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "快問解答：還沒超過題設 UL",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "120% AI < 250% AI",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "120÷250×100% = 48% UL",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "充足：比 RDA 或 AI",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "box",
+          "of": "step3",
+          "color": "blue",
+          "dur": 0.55
+        },
+        {
+          "type": "text",
+          "id": "step4",
+          "text": "上限：另外比 UL",
+          "x": 190,
+          "y": 699,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 1.4,
+      "center": false,
+      "min_dur": 0
+    }
+  ]
+}

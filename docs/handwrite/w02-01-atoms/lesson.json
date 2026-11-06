@@ -1,0 +1,307 @@
+{
+  "title": "原子、同位素與離子",
+  "objective": "能分辨同位素與離子，計算粒子數及平均原子量。",
+  "audience": "食品營養系普通化學初學者；短句中文，越南語關鍵詞輔助",
+  "aspect": "16:9",
+  "theme": "notebook",
+  "music": false,
+  "voice": {
+    "preset": "female",
+    "speed": 0.94
+  },
+  "sources": [
+    "https://tai-shengyeh.github.io/general-chemistry/%E6%96%B0W02_%E5%8E%9F%E5%AD%90%E8%88%87%E5%91%BD%E5%90%8D.html",
+    "對應投影片：[2, 10, 14, 15, 63]；本課為重點重編，非逐張朗讀。",
+    "科學條件與外部來源見上層 teacher-notes.md。"
+  ],
+  "scenes": [
+    {
+      "title": "三個數字，分開數",
+      "narration": "元素身分由質子數決定。質量數是質子加中子。電荷則讓我們知道電子比質子多，還是少。形成普通離子，不會改變原子核。",
+      "steps": [
+        "Z＝質子數",
+        "A＝質子＋中子",
+        "電子數＝Z−帶正負號的電荷"
+      ],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        10,
+        14,
+        15,
+        63
+      ],
+      "items": [
+        {
+          "type": "text",
+          "text": "nguyên tử · 原子",
+          "x": 180,
+          "y": 265,
+          "size": 34,
+          "at": 0.5,
+          "color": "blue",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ]
+    },
+    {
+      "title": "核不變，電子可以改變",
+      "narration": "中性鐵原子與三價鐵離子，都有二十六個質子。變成三價陽離子時，少了三個電子。同位素則是同元素的中子數不同，不是電子不同。",
+      "steps": [],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        10,
+        14,
+        15,
+        63
+      ],
+      "items": [
+        {
+          "type": "text",
+          "text": "原子核",
+          "x": 195,
+          "y": 430,
+          "size": 64,
+          "at": 1,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b0"
+        },
+        {
+          "type": "box",
+          "of": "b0",
+          "color": "blue",
+          "at": 2
+        },
+        {
+          "type": "text",
+          "text": "質子＋中子",
+          "x": 195,
+          "y": 620,
+          "size": 39,
+          "at": 2,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            520,
+            495
+          ],
+          "to": [
+            680,
+            495
+          ],
+          "at": 3,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "中性原子",
+          "x": 740,
+          "y": 430,
+          "size": 64,
+          "at": 3,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b1"
+        },
+        {
+          "type": "box",
+          "of": "b1",
+          "color": "blue",
+          "at": 4
+        },
+        {
+          "type": "text",
+          "text": "電子數＝質子數",
+          "x": 740,
+          "y": 620,
+          "size": 39,
+          "at": 4,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            1065,
+            495
+          ],
+          "to": [
+            1225,
+            495
+          ],
+          "at": 5,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "陽離子",
+          "x": 1285,
+          "y": 430,
+          "size": 64,
+          "at": 5,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b2"
+        },
+        {
+          "type": "box",
+          "of": "b2",
+          "color": "blue",
+          "at": 6
+        },
+        {
+          "type": "text",
+          "text": "失去電子；核不變",
+          "x": 1285,
+          "y": 620,
+          "size": 39,
+          "at": 6,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ]
+    },
+    {
+      "title": "鐵56的三價離子有幾個電子",
+      "narration": "鐵五十六的原子序是二十六。三價鐵離子的質子、中子、電子各有多少？先判斷陽離子的電子應該增加還是減少。",
+      "steps": [
+        "A = 56；Z = 26；電荷 +3",
+        "質子？中子？電子？"
+      ],
+      "stage": "practice",
+      "wait": 4,
+      "source_slides": [
+        2,
+        10,
+        14,
+        15,
+        63
+      ],
+      "items": [],
+      "pause": true,
+      "answer": "26、30、23。"
+    },
+    {
+      "title": "答案：26、30、23",
+      "narration": "質子二十六，中子五十六減二十六，是三十。電子二十六減三，是二十三。中子變化會形成同位素，電子變化會改變電荷。",
+      "steps": [
+        "質子：26",
+        "中子：56−26 = 30",
+        "電子：26−3 = 23"
+      ],
+      "stage": "answer",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        10,
+        14,
+        15,
+        63
+      ],
+      "items": []
+    },
+    {
+      "title": "平均原子量，是加權平均",
+      "narration": "氯的兩種同位素質量不同，豐度也不同。將每個同位素的質量乘豐度分率，再加總。答案要位在兩者之間，且靠近豐度較高的一方。",
+      "steps": [
+        "34.969×0.7577",
+        "＋36.966×0.2423",
+        "≈ 35.45 u",
+        "豐度分率總和＝1"
+      ],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        10,
+        14,
+        15,
+        63
+      ],
+      "items": []
+    },
+    {
+      "title": "硫32的二價陰離子",
+      "narration": "硫的原子序是十六，質量數三十二。二價陰離子有幾個電子？負電荷要帶符號代入。",
+      "steps": [
+        "電子數＝16−(−2)",
+        "中子數＝32−16"
+      ],
+      "stage": "practice",
+      "wait": 4,
+      "source_slides": [
+        2,
+        10,
+        14,
+        15,
+        63
+      ],
+      "items": [],
+      "pause": true,
+      "answer": "電子18、中子16。"
+    },
+    {
+      "title": "陰離子，是電子較多",
+      "narration": "十六減負二，等於十八個電子。質子與中子仍各十六。最後檢查總電荷，十六個正電減十八個負電，確實是負二。",
+      "steps": [
+        "質子 16；中子 16；電子 18",
+        "16−18 = −2",
+        {
+          "text": "同位素看中子；離子看電子。",
+          "emphasis": "box"
+        }
+      ],
+      "stage": "answer",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        10,
+        14,
+        15,
+        63
+      ],
+      "items": []
+    }
+  ],
+  "pronounce": {
+    "pOH": "P O H",
+    "pH": "P H",
+    "pKa": "P K A",
+    "pI": "等電點",
+    "PPO": "多酚氧化酶",
+    "Henry": "亨利",
+    "Lewis": "路易斯",
+    "Hess": "赫斯",
+    "Beer": "比爾",
+    "ppm": "百萬分比",
+    "PV": "過氧化價",
+    "AV": "酸價",
+    "HLB": "H L B",
+    "B12": "B 十二"
+  }
+}

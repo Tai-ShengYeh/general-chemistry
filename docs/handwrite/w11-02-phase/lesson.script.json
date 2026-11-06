@@ -1,0 +1,467 @@
+{
+  "title": "相變熱量與食品結構",
+  "width": 1920,
+  "height": 1080,
+  "theme": "notebook",
+  "auto_center": false,
+  "subtitle_y": 920,
+  "subtitle_size": 46,
+  "jitter": 0.25,
+  "write_rate": 0.1,
+  "default_anim": "write",
+  "music": false,
+  "voice": {
+    "preset": "female",
+    "speed": 0.94
+  },
+  "pronounce": {
+    "pOH": "P O H",
+    "pH": "P H",
+    "pKa": "P K A",
+    "pI": "等電點",
+    "PPO": "多酚氧化酶",
+    "Henry": "亨利",
+    "Lewis": "路易斯",
+    "Hess": "赫斯",
+    "Beer": "比爾",
+    "ppm": "百萬分比",
+    "PV": "過氧化價",
+    "AV": "酸價",
+    "HLB": "H L B",
+    "B12": "B 十二"
+  },
+  "scenes": [
+    {
+      "narration": "純物質在固定壓力的相變平台上，加入能量主要用於相變，溫度可維持不變。平台前後升溫用比熱，相變本身則用熔化或汽化焓。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "加熱，不保證一直升溫",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "升溫：q＝mcΔT",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "相變：q＝nΔH",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "適用條件：純物質、固定壓力",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "text": "chuyển pha · 相變",
+          "x": 180,
+          "y": 265,
+          "size": 34,
+          "at": 0.5,
+          "color": "blue",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "加熱曲線的斜段代表同一相升溫，水平段代表兩相共存的相變。這是理想純物質示意。食品通常是混合物，可能出現較寬的相變區間。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "先分段，再加總",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "line",
+          "points": [
+            [
+              260,
+              760
+            ],
+            [
+              260,
+              325
+            ]
+          ],
+          "at": 1,
+          "color": "ink",
+          "stroke": 5,
+          "dur": 0.7
+        },
+        {
+          "type": "line",
+          "points": [
+            [
+              260,
+              760
+            ],
+            [
+              1570,
+              760
+            ]
+          ],
+          "at": 1,
+          "color": "ink",
+          "stroke": 5,
+          "dur": 0.7
+        },
+        {
+          "type": "text",
+          "text": "溫度",
+          "x": 150,
+          "y": 290,
+          "size": 43,
+          "at": 1,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "text",
+          "text": "加入熱量",
+          "x": 1330,
+          "y": 805,
+          "size": 43,
+          "at": 1,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "line",
+          "points": [
+            [
+              350,
+              700
+            ],
+            [
+              650,
+              520
+            ],
+            [
+              1000,
+              520
+            ],
+            [
+              1380,
+              350
+            ]
+          ],
+          "at": 2,
+          "color": "red",
+          "stroke": 7,
+          "dur": 4
+        },
+        {
+          "type": "text",
+          "text": "升溫",
+          "x": 360,
+          "y": 540,
+          "size": 44,
+          "at": 3,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "text",
+          "text": "相變平台",
+          "x": 670,
+          "y": 420,
+          "size": 44,
+          "at": 4,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "text",
+          "text": "q = mcΔT",
+          "x": 340,
+          "y": 800,
+          "size": 45,
+          "at": 5,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "text",
+          "text": "q = nΔH",
+          "x": 780,
+          "y": 625,
+          "size": 45,
+          "at": 6,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "題設十八點零公克純冰，在一個大氣壓、零度全部融成零度水。熔化焓每莫耳六點零一千焦耳，莫耳質量十八點零二。需要多少熱？",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "冰在0度融化，需要多少熱",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "n＝18.0/18.02 mol",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "q＝n×6.01 kJ/mol",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "十八點零公克除十八點零二，再乘六點零一，約六點零零千焦耳。溫度雖然沒有變，能量仍增加。若之後繼續把液態水加熱，才另外加上比熱那一段。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "答案：約6.00 kJ",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "q＝(18.0/18.02)×6.01",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "≈6.00 kJ",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "ΔT＝0，不代表q＝0",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "脂肪多晶型與遷移會影響巧克力外觀；糖霜還可能來自水分與糖再結晶。蛋白質受熱變性聚集，涉及分子結構與交互作用，不能直接當成純物質的普通熔融相變。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "巧克力起霜與蛋白凝固，不能混稱",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "脂霜：脂肪晶型與遷移",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "糖霜：水分、糖再結晶",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "蛋白凝固：變性與聚集",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "液體沸騰的條件，是蒸氣壓等於外壓。若外壓降低，同一液體需要較高還是較低的溫度才能沸騰？",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "外壓降低，沸點怎麼變",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "沸騰：P蒸氣＝P外界",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "高山外壓較低。",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "較低溫度時，蒸氣壓就可以等於較低外壓，所以沸點下降。不同壓力下的沸點不能直接比較。讀相變圖，要同時說明物質、組成與壓力。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "答案：外壓低，沸點降低",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "P外界下降 → 沸點下降",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "相變條件要交代壓力與組成。",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "box",
+          "of": "step2",
+          "color": "blue",
+          "dur": 0.55
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+[
+  {
+    "unit": "w01",
+    "file": "新W01_測量與有效數字.html",
+    "title": "測量與有效數字",
+    "slides": 58,
+    "sha256": "fe39740266d2723696a25e0fc8c2a1bc2b6e8def39dd00452b2adfc697bef053"
+  },
+  {
+    "unit": "w01b",
+    "file": "新W01b_計算專題.html",
+    "title": "計算專題",
+    "slides": 34,
+    "sha256": "cc799b093023705b314cfe4b3e6b53b22fc6d00ed3f8f38bdbeacdff896bd7ee"
+  },
+  {
+    "unit": "w02",
+    "file": "新W02_原子與命名.html",
+    "title": "原子與命名",
+    "slides": 67,
+    "sha256": "25c8b8cfb6464d92a5ca860ce0a7cab44b182bd888bae1adc841309860ec4a82"
+  },
+  {
+    "unit": "w02b",
+    "file": "新W02b_計算專題.html",
+    "title": "計算專題",
+    "slides": 33,
+    "sha256": "b59b31ce1c94a0f89018c205ddd535812af49a892f527e27c3594d56a75631b0"
+  },
+  {
+    "unit": "w03",
+    "file": "新W03_莫耳與化學式.html",
+    "title": "莫耳與化學式",
+    "slides": 40,
+    "sha256": "b790f26c1b6b48cc065339bc07e83522ba41103208f3c2552acf5f48ccbb91ba"
+  },
+  {
+    "unit": "w04",
+    "file": "新W04_溶液濃度.html",
+    "title": "溶液濃度",
+    "slides": 46,
+    "sha256": "29b755ccb3c85c5f3d574a66cddf8f5d7e6df0d3d9a9016ebcbe68edb9cc60d6"
+  },
+  {
+    "unit": "w05",
+    "file": "新W05_化學反應.html",
+    "title": "化學反應",
+    "slides": 52,
+    "sha256": "cdea4f6587b1bdc5336785ef5f46cef9b38e5e55b9e6f6d7ff7714ad1f13927d"
+  },
+  {
+    "unit": "w06",
+    "file": "新W06_化學計量.html",
+    "title": "化學計量",
+    "slides": 38,
+    "sha256": "3bd1bfa1e5182c85972b07c2acd8e9ae9a80edb7f23561a8c437b80faf789848"
+  },
+  {
+    "unit": "w07",
+    "file": "新W07_滴定與定量分析.html",
+    "title": "滴定與定量分析",
+    "slides": 41,
+    "sha256": "25fd0339d3d87b57af276209ce34c0abe2d8ff56905d2838307197272a315e4c"
+  },
+  {
+    "unit": "w08",
+    "file": "新W08_熱化學.html",
+    "title": "熱化學",
+    "slides": 53,
+    "sha256": "2c9b585d8aeb9ce7bca62f74653eafff9d1a5679a9fb0f0f2d1e705d7f5aa23c"
+  },
+  {
+    "unit": "w09",
+    "file": "新W09_化學鍵與分子結構.html",
+    "title": "化學鍵與分子結構",
+    "slides": 58,
+    "sha256": "9b760f4021044ccb4e23c8848f058f26ca1b85415441875a0d4f926220363c9e"
+  },
+  {
+    "unit": "w10",
+    "file": "新W10_分子極性與顏色.html",
+    "title": "分子極性與顏色",
+    "slides": 58,
+    "sha256": "46e2ed811b4a9de49ddc471c58662bc99c5e71f47ab5aff6a4b6056ffc3d4d8b"
+  },
+  {
+    "unit": "w11",
+    "file": "新W11_分子間作用力與相變.html",
+    "title": "分子間作用力與相變",
+    "slides": 48,
+    "sha256": "04b53643609a55a7f9b8f82170b9bff082eb85584651e16b9828976b586d212a"
+  },
+  {
+    "unit": "w12",
+    "file": "新W12_溶液與依數性質.html",
+    "title": "溶液與依數性質",
+    "slides": 42,
+    "sha256": "bb2fb874b5e67369a7499892b52affaa056a360440a55604963e46a2efc66394"
+  },
+  {
+    "unit": "w13",
+    "file": "新W13_膠體乳化與水活性.html",
+    "title": "膠體乳化與水活性",
+    "slides": 35,
+    "sha256": "e69978f5bb51d22636beec4fa23f6f1745e67c2951e5386a4a4e1a642e8805c9"
+  },
+  {
+    "unit": "w14",
+    "file": "新W14_酸鹼I.html",
+    "title": "酸鹼I",
+    "slides": 48,
+    "sha256": "6d65514098b6da5455f4d7f19ec73174ca3cbb2b521ec781397d0ccb5479df71"
+  },
+  {
+    "unit": "w15",
+    "file": "新W15_酸鹼II緩衝.html",
+    "title": "酸鹼II緩衝",
+    "slides": 43,
+    "sha256": "18b99e37396b445f98d8900a74a2327449fbba0dc611598539aa0efc745ff68f"
+  },
+  {
+    "unit": "w16",
+    "file": "新W16_氧化還原.html",
+    "title": "氧化還原",
+    "slides": 42,
+    "sha256": "3e61c74b80f030b8b85b8b72c3b131f055523011f73cc73bdb7912a858ec89b4"
+  }
+]

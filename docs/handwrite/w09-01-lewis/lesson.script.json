@@ -1,0 +1,442 @@
+{
+  "title": "Lewis結構與電子群",
+  "width": 1920,
+  "height": 1080,
+  "theme": "notebook",
+  "auto_center": false,
+  "subtitle_y": 920,
+  "subtitle_size": 46,
+  "jitter": 0.25,
+  "write_rate": 0.1,
+  "default_anim": "write",
+  "music": false,
+  "voice": {
+    "preset": "female",
+    "speed": 0.94
+  },
+  "pronounce": {
+    "pOH": "P O H",
+    "pH": "P H",
+    "pKa": "P K A",
+    "pI": "等電點",
+    "PPO": "多酚氧化酶",
+    "Henry": "亨利",
+    "Lewis": "路易斯",
+    "Hess": "赫斯",
+    "Beer": "比爾",
+    "ppm": "百萬分比",
+    "PV": "過氧化價",
+    "AV": "酸價",
+    "HLB": "H L B",
+    "B12": "B 十二"
+  },
+  "scenes": [
+    {
+      "narration": "Lewis結構先把所有價電子加總。陰離子增加電子，陽離子減少電子。再排骨架、放單鍵、補孤對，最後檢查電子總數、八隅體與形式電荷。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "先數電子，再畫鍵",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "價電子總數要守恆",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "每條單鍵＝一對電子",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "H常滿2電子；八隅體有例外",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "text": "liên kết · 化學鍵",
+          "x": 180,
+          "y": 265,
+          "size": 34,
+          "at": 0.5,
+          "color": "blue",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "兩個氫各一個價電子，氧有六個，總共八個。兩條氧氫鍵用掉四個，剩下四個放成氧上的兩個孤對。這張是Lewis電子配置示意，不是完整三維比例模型。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "水的八個價電子放在哪",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "text": "O",
+          "x": 870,
+          "y": 400,
+          "size": 95,
+          "at": 1,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "text",
+          "text": "H",
+          "x": 610,
+          "y": 650,
+          "size": 85,
+          "at": 2,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "text",
+          "text": "H",
+          "x": 1180,
+          "y": 650,
+          "size": 85,
+          "at": 2,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "line",
+          "points": [
+            [
+              860,
+              530
+            ],
+            [
+              740,
+              650
+            ]
+          ],
+          "at": 3,
+          "color": "ink",
+          "stroke": 5,
+          "dur": 0.7
+        },
+        {
+          "type": "line",
+          "points": [
+            [
+              990,
+              530
+            ],
+            [
+              1160,
+              650
+            ]
+          ],
+          "at": 3,
+          "color": "ink",
+          "stroke": 5,
+          "dur": 0.7
+        },
+        {
+          "type": "text",
+          "text": "••",
+          "x": 770,
+          "y": 325,
+          "size": 55,
+          "at": 4,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "text",
+          "text": "••",
+          "x": 1030,
+          "y": 325,
+          "size": 55,
+          "at": 4,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "text",
+          "text": "2 個鍵結對＋2 個孤對",
+          "x": 420,
+          "y": 790,
+          "size": 59,
+          "at": 5,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "氮五個價電子，加三個氫各一個，總共八個。畫三條氮氫鍵後，剩下幾個電子？氮上有幾個孤對？",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "氨的氮，有幾個孤對",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "NH₃：5＋3＝8個價電子",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "3條單鍵用掉6個",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "三條鍵用六個電子，剩兩個，形成一個孤對。氮周圍共有四個電子群：三個鍵結群加一個孤對。電子群數不等於鍵結原子數。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "答案：一個孤對",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "NH₃：3鍵結群＋1孤對",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "共4個電子群",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "二氧化碳總共有十六個價電子。常用Lewis式是氧碳氧兩個雙鍵，碳周圍沒有孤對。判斷VSEPR電子群時，每個多重鍵算一個方向，所以碳周圍只有兩群。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "二氧化碳：雙鍵也算一群",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "O=C=O",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "價電子：4＋2×6＝16",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "碳中心：2個雙鍵＝2群",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "甲烷有四個碳氫鍵，水有兩個氧氫鍵與兩個孤對。它們電子群數都四個，分子的形狀一定相同嗎？",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "甲烷和水，都是四群嗎",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "CH₄：4鍵、0孤對",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "H₂O：2鍵、2孤對",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "兩者都有四個電子群。電子群幾何都以四面體排列為基礎，但分子形狀只看原子位置。甲烷是四面體，水只有兩個鍵結原子，所以是彎曲形。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "電子群幾何與分子形狀分開",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "4群：看全部鍵結群與孤對",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "分子形狀：只看原子位置",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "先Lewis，再電子群，才談形狀。",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "box",
+          "of": "step3",
+          "color": "blue",
+          "dur": 0.55
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    }
+  ]
+}

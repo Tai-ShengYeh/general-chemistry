@@ -1,0 +1,460 @@
+{
+  "title": "形狀、鍵偶極與分子極性",
+  "width": 1920,
+  "height": 1080,
+  "theme": "notebook",
+  "auto_center": false,
+  "subtitle_y": 920,
+  "subtitle_size": 46,
+  "jitter": 0.25,
+  "write_rate": 0.1,
+  "default_anim": "write",
+  "music": false,
+  "voice": {
+    "preset": "female",
+    "speed": 0.94
+  },
+  "pronounce": {
+    "pOH": "P O H",
+    "pH": "P H",
+    "pKa": "P K A",
+    "pI": "等電點",
+    "PPO": "多酚氧化酶",
+    "Henry": "亨利",
+    "Lewis": "路易斯",
+    "Hess": "赫斯",
+    "Beer": "比爾",
+    "ppm": "百萬分比",
+    "PV": "過氧化價",
+    "AV": "酸價",
+    "HLB": "H L B",
+    "B12": "B 十二"
+  },
+  "scenes": [
+    {
+      "narration": "鍵偶極有大小，也有方向。整個分子的偶極要把各方向向量相加。只有方向和大小配合，才會互相抵消；不能只看外形好像對稱。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "有極性鍵，不保證分子有極性",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "先Lewis → 形狀",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "再加總鍵偶極向量",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "text": "phân cực · 極性",
+          "x": 180,
+          "y": 265,
+          "size": 34,
+          "at": 0.5,
+          "color": "blue",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "二氧化碳是直線形，兩個碳氧鍵偶極大小相同，方向相反，所以相消。箭頭是指向電負度較高的氧；分子沒有淨偶極，但每個碳氧鍵仍有極性。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "二氧化碳的兩支箭頭相消",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "text": "O",
+          "x": 300,
+          "y": 420,
+          "size": 85,
+          "at": 1,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "text",
+          "text": "C",
+          "x": 600,
+          "y": 420,
+          "size": 85,
+          "at": 1,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "text",
+          "text": "O",
+          "x": 900,
+          "y": 420,
+          "size": 85,
+          "at": 1,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "line",
+          "points": [
+            [
+              400,
+              470
+            ],
+            [
+              570,
+              470
+            ]
+          ],
+          "at": 2,
+          "color": "ink",
+          "stroke": 5,
+          "dur": 0.7
+        },
+        {
+          "type": "line",
+          "points": [
+            [
+              700,
+              470
+            ],
+            [
+              870,
+              470
+            ]
+          ],
+          "at": 2,
+          "color": "ink",
+          "stroke": 5,
+          "dur": 0.7
+        },
+        {
+          "type": "arrow",
+          "from": [
+            585,
+            565
+          ],
+          "to": [
+            350,
+            565
+          ],
+          "at": 3,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "arrow",
+          "from": [
+            720,
+            565
+          ],
+          "to": [
+            960,
+            565
+          ],
+          "at": 3,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "直線、等大反向 → 相消",
+          "x": 260,
+          "y": 730,
+          "size": 54,
+          "at": 5,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "text",
+          "text": "CO₂：有極性鍵，分子無淨偶極",
+          "x": 260,
+          "y": 810,
+          "size": 48,
+          "at": 6,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "水分子是彎曲形，不是直線。兩個氧氫鍵的偶極都偏向氧。它們的向量和會等於零嗎？",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "水的兩個偶極能相消嗎",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "H₂O：彎曲形",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "兩個O−H偶極不能等大反向。",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "兩支偶極箭頭形成夾角，沒有完全抵消，因此水有淨偶極。注意，這裡把鍵偶極相加當作入門模型；完整偶極還反映整體電子分布。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "答案：水是極性分子",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "CO₂：直線 → 相消",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "H₂O：彎曲 → 不相消",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "甲烷、氨與水都是四個電子群，但孤對數依序是零、一、二。形狀分別是四面體、三角錐與彎曲。孤對的排斥通常讓鍵角相對理想四面體角縮小。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "電子群數相同，也要看孤對",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "CH₄：約109.5°",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "NH₃：約107°",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "H₂O：約104.5°",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step4",
+          "text": "這些角度對應指定分子",
+          "x": 190,
+          "y": 699,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "四氯化碳的四個周邊原子相同；一氯甲烷則有三個氫和一個氯。兩者碳周圍都是四面體排列，極性一定相同嗎？",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "四面體形狀，就一定無極性嗎",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "CCl₄ 與 CH₃Cl",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "要比較偶極大小，也要比較方向。",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        }
+      ],
+      "hold": 4,
+      "center": false,
+      "min_dur": 0
+    },
+    {
+      "narration": "四氯化碳的四個等同鍵偶極可相消。一氯甲烷的鍵不相同，向量和不為零。判斷順序是結構、形狀、方向與大小，最後才下分子極性的結論。",
+      "items": [
+        {
+          "type": "text",
+          "id": "heading",
+          "text": "相消，需要相同的向量配合",
+          "x": 170,
+          "y": 145,
+          "size": 86,
+          "font": "marker",
+          "anim": "write",
+          "at": 0.15
+        },
+        {
+          "type": "text",
+          "id": "step1",
+          "text": "CCl₄：偶極相消",
+          "x": 190,
+          "y": 330,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step2",
+          "text": "CH₃Cl：偶極未相消",
+          "x": 190,
+          "y": 453,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "text",
+          "id": "step3",
+          "text": "形狀與鍵的身分，要一起看。",
+          "x": 190,
+          "y": 576,
+          "size": 68,
+          "font": "hand",
+          "anim": "write"
+        },
+        {
+          "type": "box",
+          "of": "step3",
+          "color": "blue",
+          "dur": 0.55
+        }
+      ],
+      "hold": 1.3,
+      "center": false,
+      "min_dur": 0
+    }
+  ]
+}

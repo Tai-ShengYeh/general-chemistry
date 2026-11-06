@@ -1,0 +1,368 @@
+[
+  {
+    "id": "w01-01-measure",
+    "unit": "w01",
+    "title": "測量、分類與可信位數",
+    "scenes": 7,
+    "minutes": 1.913,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w01-02-units",
+    "unit": "w01",
+    "title": "單位相消與密度判斷",
+    "scenes": 7,
+    "minutes": 1.815,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w01b-01-units",
+    "title": "單位：先找起點與終點",
+    "scenes": 9,
+    "minutes": 2.23,
+    "pauses": 3,
+    "audio": true,
+    "unit": "w01b",
+    "legacy": true
+  },
+  {
+    "id": "w01b-02-density",
+    "title": "密度：雙向換算與長鏈",
+    "scenes": 9,
+    "minutes": 2.34,
+    "pauses": 4,
+    "audio": true,
+    "unit": "w01b",
+    "legacy": true
+  },
+  {
+    "id": "w01b-03-adi",
+    "title": "ADI：體重、百分比與反算",
+    "scenes": 12,
+    "minutes": 3.55,
+    "pauses": 3,
+    "audio": true,
+    "unit": "w01b",
+    "legacy": true
+  },
+  {
+    "id": "w01b-04-residues",
+    "title": "殘留：mg、μg 與 ppb",
+    "scenes": 8,
+    "minutes": 2.42,
+    "pauses": 2,
+    "audio": true,
+    "unit": "w01b",
+    "legacy": true
+  },
+  {
+    "id": "w01b-05-dri",
+    "title": "DRIs：充足與過量分開問",
+    "scenes": 8,
+    "minutes": 2.45,
+    "pauses": 3,
+    "audio": true,
+    "unit": "w01b",
+    "legacy": true
+  },
+  {
+    "id": "w01b-06-practice",
+    "title": "課後練習：九題逐步核對",
+    "scenes": 20,
+    "minutes": 5.29,
+    "pauses": 10,
+    "audio": true,
+    "unit": "w01b",
+    "legacy": true
+  },
+  {
+    "id": "w02-01-atoms",
+    "unit": "w02",
+    "title": "原子、同位素與離子",
+    "scenes": 7,
+    "minutes": 1.745,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w02-02-formula",
+    "unit": "w02",
+    "title": "離子配對、命名與元素含量",
+    "scenes": 7,
+    "minutes": 1.802,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w02b-01-weighted",
+    "unit": "w02b",
+    "title": "加權平均與化學式計算",
+    "scenes": 7,
+    "minutes": 1.884,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w02b-02-isotope",
+    "unit": "w02b",
+    "title": "同位素比值與混合模型",
+    "scenes": 7,
+    "minutes": 1.899,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w03-01-mole",
+    "unit": "w03",
+    "title": "莫耳：公克、粒子與化學式",
+    "scenes": 7,
+    "minutes": 1.796,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w03-02-composition",
+    "unit": "w03",
+    "title": "元素組成、實驗式與鈉鹽換算",
+    "scenes": 7,
+    "minutes": 1.752,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w04-01-concentration",
+    "unit": "w04",
+    "title": "濃度的分母：定容與百分比",
+    "scenes": 7,
+    "minutes": 1.835,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w04-02-dilution",
+    "unit": "w04",
+    "title": "稀釋守恆與水合物配液",
+    "scenes": 7,
+    "minutes": 1.763,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w05-01-balance",
+    "unit": "w05",
+    "title": "反應式守恆與小蘇打產氣",
+    "scenes": 7,
+    "minutes": 1.808,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w05-02-ionic",
+    "unit": "w05",
+    "title": "淨離子式與電子去向",
+    "scenes": 7,
+    "minutes": 1.743,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w06-01-stoich",
+    "unit": "w06",
+    "title": "反應係數是莫耳比",
+    "scenes": 7,
+    "minutes": 1.795,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w06-02-limiting",
+    "unit": "w06",
+    "title": "限量試劑、剩餘量與產率",
+    "scenes": 7,
+    "minutes": 1.89,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w07-01-titration",
+    "unit": "w07",
+    "title": "滴定：從體積到未知濃度",
+    "scenes": 7,
+    "minutes": 1.862,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w07-02-quality",
+    "unit": "w07",
+    "title": "酸價、過氧化價與可信結果",
+    "scenes": 7,
+    "minutes": 2.028,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w08-01-heat",
+    "unit": "w08",
+    "title": "熱量、系統與正負號",
+    "scenes": 7,
+    "minutes": 1.851,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w08-02-hess",
+    "unit": "w08",
+    "title": "Hess定律與食品熱量",
+    "scenes": 7,
+    "minutes": 1.865,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w09-01-lewis",
+    "unit": "w09",
+    "title": "Lewis結構與電子群",
+    "scenes": 7,
+    "minutes": 1.865,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w09-02-groups",
+    "unit": "w09",
+    "title": "官能基、鍵型與親水親脂",
+    "scenes": 7,
+    "minutes": 1.941,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w10-01-polarity",
+    "unit": "w10",
+    "title": "形狀、鍵偶極與分子極性",
+    "scenes": 7,
+    "minutes": 1.809,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w10-02-color",
+    "unit": "w10",
+    "title": "共軛、吸收與比色定量",
+    "scenes": 7,
+    "minutes": 1.9,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w11-01-imf",
+    "unit": "w11",
+    "title": "分子間作用力與沸點",
+    "scenes": 7,
+    "minutes": 1.873,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w11-02-phase",
+    "unit": "w11",
+    "title": "相變熱量與食品結構",
+    "scenes": 7,
+    "minutes": 1.857,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w12-01-solution",
+    "unit": "w12",
+    "title": "溶解、溫度與氣體壓力",
+    "scenes": 7,
+    "minutes": 1.934,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w12-02-colligative",
+    "unit": "w12",
+    "title": "依數性質：先數粒子再計算",
+    "scenes": 7,
+    "minutes": 1.897,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w13-01-emulsion",
+    "unit": "w13",
+    "title": "乳化：界面、連續相與穩定",
+    "scenes": 7,
+    "minutes": 1.866,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w13-02-aw",
+    "unit": "w13",
+    "title": "水活性：不是含水量",
+    "scenes": 7,
+    "minutes": 1.919,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w14-01-equilibrium",
+    "unit": "w14",
+    "title": "動態平衡、K與酸的強弱",
+    "scenes": 7,
+    "minutes": 1.884,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w14-02-ph",
+    "unit": "w14",
+    "title": "pH計算與食品判讀",
+    "scenes": 7,
+    "minutes": 2.052,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w15-01-buffer",
+    "unit": "w15",
+    "title": "緩衝液：先收支，再算比值",
+    "scenes": 7,
+    "minutes": 1.886,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w15-02-pi",
+    "unit": "w15",
+    "title": "等電點與酸凝：電荷會改變",
+    "scenes": 7,
+    "minutes": 1.885,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w16-01-redox",
+    "unit": "w16",
+    "title": "電子收支、電位與反應速度",
+    "scenes": 7,
+    "minutes": 1.965,
+    "pauses": 2,
+    "audio": true
+  },
+  {
+    "id": "w16-02-oxidation",
+    "unit": "w16",
+    "title": "油脂鏈鎖氧化與褐變",
+    "scenes": 7,
+    "minutes": 1.972,
+    "pauses": 2,
+    "audio": true
+  }
+]

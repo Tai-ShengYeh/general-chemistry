@@ -1,0 +1,436 @@
+{
+  "base": "http://127.0.0.1:59097/general-chemistry/",
+  "preview": false,
+  "units": [
+    {
+      "unit": "w01",
+      "original_slides": 58,
+      "chapters": 2,
+      "projection": true,
+      "mobile": true,
+      "original_answers": true
+    },
+    {
+      "unit": "w01b",
+      "original_slides": 34,
+      "chapters": 6,
+      "projection": true,
+      "mobile": true,
+      "original_answers": true
+    },
+    {
+      "unit": "w02",
+      "original_slides": 67,
+      "chapters": 2,
+      "projection": true,
+      "mobile": true,
+      "original_answers": true
+    },
+    {
+      "unit": "w02b",
+      "original_slides": 33,
+      "chapters": 2,
+      "projection": true,
+      "mobile": true,
+      "original_answers": true
+    },
+    {
+      "unit": "w03",
+      "original_slides": 40,
+      "chapters": 2,
+      "projection": true,
+      "mobile": true,
+      "original_answers": true
+    },
+    {
+      "unit": "w04",
+      "original_slides": 46,
+      "chapters": 2,
+      "projection": true,
+      "mobile": true,
+      "original_answers": true
+    },
+    {
+      "unit": "w05",
+      "original_slides": 52,
+      "chapters": 2,
+      "projection": true,
+      "mobile": true,
+      "original_answers": true
+    },
+    {
+      "unit": "w06",
+      "original_slides": 38,
+      "chapters": 2,
+      "projection": true,
+      "mobile": true,
+      "original_answers": true
+    },
+    {
+      "unit": "w07",
+      "original_slides": 41,
+      "chapters": 2,
+      "projection": true,
+      "mobile": true,
+      "original_answers": true
+    },
+    {
+      "unit": "w08",
+      "original_slides": 53,
+      "chapters": 2,
+      "projection": true,
+      "mobile": true,
+      "original_answers": true
+    },
+    {
+      "unit": "w09",
+      "original_slides": 58,
+      "chapters": 2,
+      "projection": true,
+      "mobile": true,
+      "original_answers": true
+    },
+    {
+      "unit": "w10",
+      "original_slides": 58,
+      "chapters": 2,
+      "projection": true,
+      "mobile": true,
+      "original_answers": true
+    },
+    {
+      "unit": "w11",
+      "original_slides": 48,
+      "chapters": 2,
+      "projection": true,
+      "mobile": true,
+      "original_answers": true
+    },
+    {
+      "unit": "w12",
+      "original_slides": 42,
+      "chapters": 2,
+      "projection": true,
+      "mobile": true,
+      "original_answers": true
+    },
+    {
+      "unit": "w13",
+      "original_slides": 35,
+      "chapters": 2,
+      "projection": true,
+      "mobile": true,
+      "original_answers": true
+    },
+    {
+      "unit": "w14",
+      "original_slides": 48,
+      "chapters": 2,
+      "projection": true,
+      "mobile": true,
+      "original_answers": true
+    },
+    {
+      "unit": "w15",
+      "original_slides": 43,
+      "chapters": 2,
+      "projection": true,
+      "mobile": true,
+      "original_answers": true
+    },
+    {
+      "unit": "w16",
+      "original_slides": 42,
+      "chapters": 2,
+      "projection": true,
+      "mobile": true,
+      "original_answers": true
+    }
+  ],
+  "chapters": [
+    {
+      "id": "w01-01-measure",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w01-02-units",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w01b-01-units",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w01b-02-density",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w01b-03-adi",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w01b-04-residues",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w01b-05-dri",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w01b-06-practice",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w02-01-atoms",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w02-02-formula",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w02b-01-weighted",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w02b-02-isotope",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w03-01-mole",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w03-02-composition",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w04-01-concentration",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w04-02-dilution",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w05-01-balance",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w05-02-ionic",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w06-01-stoich",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w06-02-limiting",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w07-01-titration",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w07-02-quality",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w08-01-heat",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w08-02-hess",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w09-01-lewis",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w09-02-groups",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w10-01-polarity",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w10-02-color",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w11-01-imf",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w11-02-phase",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w12-01-solution",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w12-02-colligative",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w13-01-emulsion",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w13-02-aw",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w14-01-equilibrium",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w14-02-ph",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w15-01-buffer",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w15-02-pi",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w16-01-redox",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    },
+    {
+      "id": "w16-02-oxidation",
+      "audio": true,
+      "seek_speed_reset": true,
+      "pause": true,
+      "mobile": true
+    }
+  ],
+  "static_references": 940,
+  "page_errors": [],
+  "failed_requests": [],
+  "http_errors": []
+}

@@ -1,0 +1,290 @@
+{
+  "title": "動態平衡、K與酸的強弱",
+  "objective": "能分辨動態平衡、反應速度及強弱酸與濃度。",
+  "audience": "食品營養系普通化學初學者；短句中文，越南語關鍵詞輔助",
+  "aspect": "16:9",
+  "theme": "notebook",
+  "music": false,
+  "voice": {
+    "preset": "female",
+    "speed": 0.94
+  },
+  "sources": [
+    "https://tai-shengyeh.github.io/general-chemistry/%E6%96%B0W14_%E9%85%B8%E9%B9%BCI.html",
+    "對應投影片：[2, 11, 46]；本課為重點重編，非逐張朗讀。",
+    "科學條件與外部來源見上層 teacher-notes.md。"
+  ],
+  "scenes": [
+    {
+      "title": "平衡，不是停止反應",
+      "narration": "封閉且條件固定的反應系統，正逆反應可以同時持續。達平衡時兩者速率相等，所以巨觀組成不再改變。反應物與產物濃度不需要相等。",
+      "steps": [
+        "平衡：正速率＝逆速率",
+        "不是濃度相等，也不是反應停止"
+      ],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        11,
+        46
+      ],
+      "items": [
+        {
+          "type": "text",
+          "text": "cân bằng · 平衡",
+          "x": 180,
+          "y": 265,
+          "size": 34,
+          "at": 0.5,
+          "color": "blue",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ]
+    },
+    {
+      "title": "K看平衡，Q看當下",
+      "narration": "同一反應與溫度下，平衡常數是比較基準。反應商用當下組成計算，和K比較就能預測趨向。嚴格形式用活性，入門常在適用條件下以濃度近似。",
+      "steps": [],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        11,
+        46
+      ],
+      "items": [
+        {
+          "type": "text",
+          "text": "Q < K",
+          "x": 195,
+          "y": 430,
+          "size": 64,
+          "at": 1,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b0"
+        },
+        {
+          "type": "box",
+          "of": "b0",
+          "color": "blue",
+          "at": 2
+        },
+        {
+          "type": "text",
+          "text": "趨向生成物",
+          "x": 195,
+          "y": 620,
+          "size": 39,
+          "at": 2,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            520,
+            495
+          ],
+          "to": [
+            680,
+            495
+          ],
+          "at": 3,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "Q = K",
+          "x": 740,
+          "y": 430,
+          "size": 64,
+          "at": 3,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b1"
+        },
+        {
+          "type": "box",
+          "of": "b1",
+          "color": "blue",
+          "at": 4
+        },
+        {
+          "type": "text",
+          "text": "已達平衡",
+          "x": 740,
+          "y": 620,
+          "size": 39,
+          "at": 4,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            1065,
+            495
+          ],
+          "to": [
+            1225,
+            495
+          ],
+          "at": 5,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "Q > K",
+          "x": 1285,
+          "y": 430,
+          "size": 64,
+          "at": 5,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b2"
+        },
+        {
+          "type": "box",
+          "of": "b2",
+          "color": "blue",
+          "at": 6
+        },
+        {
+          "type": "text",
+          "text": "趨向反應物",
+          "x": 1285,
+          "y": 620,
+          "size": 39,
+          "at": 6,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ]
+    },
+    {
+      "title": "加入催化劑，K會變嗎",
+      "narration": "在同一溫度下，加入催化劑讓反應更快到達平衡。平衡常數會因此變大嗎？請分開速度與平衡位置。",
+      "steps": [
+        "催化劑降低反應能障",
+        "是否改變起終態自由能差？"
+      ],
+      "stage": "practice",
+      "wait": 4,
+      "source_slides": [
+        2,
+        11,
+        46
+      ],
+      "items": [],
+      "pause": true,
+      "answer": "不會；催化劑不改變K。"
+    },
+    {
+      "title": "答案：更快到達同一平衡",
+      "narration": "催化劑加快正逆兩方向到平衡的過程，不改變指定溫度下的平衡常數。若系統原本已在平衡，不能只靠催化劑把平衡產率推高。",
+      "steps": [
+        "催化劑：改速度",
+        "同溫同反應：K不變"
+      ],
+      "stage": "answer",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        11,
+        46
+      ],
+      "items": []
+    },
+    {
+      "title": "強弱與濃稀，是兩條軸",
+      "narration": "強酸在水中通常幾乎完全電離，弱酸則只有部分電離。濃稀是每體積含多少酸。弱酸可以很濃，強酸也可以很稀；比較pH還要把濃度和酸的平衡一起看。",
+      "steps": [
+        "強弱：電離平衡程度",
+        "濃稀：分析濃度大小",
+        "Ka越大、pKa越小，酸通常越強"
+      ],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        11,
+        46
+      ],
+      "items": []
+    },
+    {
+      "title": "強酸一定比弱酸pH低嗎",
+      "narration": "有人只知道甲是強酸，乙是弱酸，就斷定甲的pH一定較低。還缺什麼資料？不要把強酸兩字當成酸度數值。",
+      "steps": [
+        "甲乙的濃度？",
+        "溫度、介質與平衡條件？"
+      ],
+      "stage": "practice",
+      "wait": 4,
+      "source_slides": [
+        2,
+        11,
+        46
+      ],
+      "items": [],
+      "pause": true,
+      "answer": "至少還要知道濃度與條件；不能僅憑強弱判斷。"
+    },
+    {
+      "title": "先補濃度，才能比較",
+      "narration": "至少要知道酸的濃度和適用條件，才能比較pH。強弱描述電離傾向，pH描述溶液氫離子活性。化學詞語要分清它指的是物質性質，還是這杯溶液的狀態。",
+      "steps": [
+        "酸強弱 ≠ 這杯溶液的pH",
+        "平衡位置 ≠ 到達平衡的速度",
+        {
+          "text": "先說比較條件，再說大小。",
+          "emphasis": "box"
+        }
+      ],
+      "stage": "answer",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        11,
+        46
+      ],
+      "items": []
+    }
+  ],
+  "pronounce": {
+    "pOH": "P O H",
+    "pH": "P H",
+    "pKa": "P K A",
+    "pI": "等電點",
+    "PPO": "多酚氧化酶",
+    "Henry": "亨利",
+    "Lewis": "路易斯",
+    "Hess": "赫斯",
+    "Beer": "比爾",
+    "ppm": "百萬分比",
+    "PV": "過氧化價",
+    "AV": "酸價",
+    "HLB": "H L B",
+    "B12": "B 十二"
+  }
+}

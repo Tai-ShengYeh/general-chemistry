@@ -1,0 +1,294 @@
+{
+  "title": "反應係數是莫耳比",
+  "objective": "能以莫耳比完成反應物與產物的質量換算。",
+  "audience": "食品營養系普通化學初學者；短句中文，越南語關鍵詞輔助",
+  "aspect": "16:9",
+  "theme": "notebook",
+  "music": false,
+  "voice": {
+    "preset": "female",
+    "speed": 0.94
+  },
+  "sources": [
+    "https://tai-shengyeh.github.io/general-chemistry/%E6%96%B0W06_%E5%8C%96%E5%AD%B8%E8%A8%88%E9%87%8F.html",
+    "對應投影片：[2, 9, 10, 36]；本課為重點重編，非逐張朗讀。",
+    "科學條件與外部來源見上層 teacher-notes.md。"
+  ],
+  "scenes": [
+    {
+      "title": "反應式不是公克食譜",
+      "narration": "反應係數代表指定粒子的個數比，也代表莫耳比。不同物質的莫耳質量不同，所以公克不能直接套係數。先從公克換莫耳，再走反應比例。",
+      "steps": [
+        "g反應物 → mol反應物",
+        "→ mol產物 → g產物"
+      ],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        9,
+        10,
+        36
+      ],
+      "items": [
+        {
+          "type": "text",
+          "text": "tỉ lệ mol · 莫耳比",
+          "x": 180,
+          "y": 265,
+          "size": 34,
+          "at": 0.5,
+          "color": "blue",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ]
+    },
+    {
+      "title": "一組反應，按比例消耗",
+      "narration": "一莫耳氮氣需要三莫耳氫氣，可生成兩莫耳氨。這些數字是反應進行一組的比例，不代表只會發生在剛好一莫耳的時候。量變小或變大，比例仍一致。",
+      "steps": [],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        9,
+        10,
+        36
+      ],
+      "items": [
+        {
+          "type": "text",
+          "text": "1 mol N₂",
+          "x": 195,
+          "y": 430,
+          "size": 64,
+          "at": 1,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b0"
+        },
+        {
+          "type": "box",
+          "of": "b0",
+          "color": "blue",
+          "at": 2
+        },
+        {
+          "type": "text",
+          "text": "每組需要 1",
+          "x": 195,
+          "y": 620,
+          "size": 39,
+          "at": 2,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            520,
+            495
+          ],
+          "to": [
+            680,
+            495
+          ],
+          "at": 3,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "3 mol H₂",
+          "x": 740,
+          "y": 430,
+          "size": 64,
+          "at": 3,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b1"
+        },
+        {
+          "type": "box",
+          "of": "b1",
+          "color": "blue",
+          "at": 4
+        },
+        {
+          "type": "text",
+          "text": "每組需要 3",
+          "x": 740,
+          "y": 620,
+          "size": 39,
+          "at": 4,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        },
+        {
+          "type": "arrow",
+          "from": [
+            1065,
+            495
+          ],
+          "to": [
+            1225,
+            495
+          ],
+          "at": 5,
+          "color": "blue",
+          "bend": 0.1,
+          "dur": 0.8
+        },
+        {
+          "type": "text",
+          "text": "2 mol NH₃",
+          "x": 1285,
+          "y": 430,
+          "size": 64,
+          "at": 5,
+          "color": "ink",
+          "font": "hand",
+          "anim": "write",
+          "jitter": 0,
+          "id": "b2"
+        },
+        {
+          "type": "box",
+          "of": "b2",
+          "color": "blue",
+          "at": 6
+        },
+        {
+          "type": "text",
+          "text": "每組產出 2",
+          "x": 1285,
+          "y": 620,
+          "size": 39,
+          "at": 6,
+          "color": "ink",
+          "font": "cute",
+          "anim": "write",
+          "jitter": 0
+        }
+      ]
+    },
+    {
+      "title": "0.600 mol氮氣會產多少氨",
+      "narration": "氫氣足量時，零點六零零莫耳氮氣完全反應，生成幾莫耳氨？請把已知的氮氣放在換算因子分母。",
+      "steps": [
+        "0.600 mol N₂",
+        "× (2 mol NH₃/1 mol N₂)"
+      ],
+      "stage": "practice",
+      "wait": 4,
+      "source_slides": [
+        2,
+        9,
+        10,
+        36
+      ],
+      "items": [],
+      "pause": true,
+      "answer": "1.20 mol NH₃。"
+    },
+    {
+      "title": "答案：1.20 mol氨",
+      "narration": "零點六乘二，得到一點二零莫耳氨。同時需要一點八零莫耳氫氣。題目必須給氫氣足量，才可以把全部氮氣都當成已反應。",
+      "steps": [
+        "NH₃：0.600×2＝1.20 mol",
+        "H₂需求：0.600×3＝1.80 mol"
+      ],
+      "stage": "answer",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        9,
+        10,
+        36
+      ],
+      "items": []
+    },
+    {
+      "title": "再把莫耳換成產物質量",
+      "narration": "兩莫耳氯酸鉀分解，得到三莫耳氧氣。二點五零莫耳氯酸鉀，先乘三除二，再乘氧氣莫耳質量三十二，得到一百二十公克。寫科學記號讓三位有效數字清楚。",
+      "steps": [
+        "2KClO₃ → 2KCl＋3O₂",
+        "2.50×3/2＝3.75 mol O₂",
+        "3.75×32.00＝1.20×10² g"
+      ],
+      "stage": "explain",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        9,
+        10,
+        36
+      ],
+      "items": []
+    },
+    {
+      "title": "氨17.0 g，能直接乘2嗎",
+      "narration": "已知氨的質量時，要反推反應需要的氫氣質量，能不能直接照反應式乘三除二？請指出少了哪一步。",
+      "steps": [
+        "g NH₃ → ? → mol H₂ → g H₂",
+        "反應式的3:2是什麼比例？"
+      ],
+      "stage": "practice",
+      "wait": 4,
+      "source_slides": [
+        2,
+        9,
+        10,
+        36
+      ],
+      "items": [],
+      "pause": true,
+      "answer": "先把g NH₃換成mol；係數不是質量比。"
+    },
+    {
+      "title": "把兩座質量橋補齊",
+      "narration": "先用氨的莫耳質量除，換成莫耳氨；再乘三比二，得到莫耳氫氣；最後乘氫氣莫耳質量。每一步都要保留物質名稱，只有相同物質的單位才能消去。",
+      "steps": [
+        "g NH₃ ÷ M(NH₃)",
+        "×(3 mol H₂/2 mol NH₃)",
+        "× M(H₂) → g H₂"
+      ],
+      "stage": "answer",
+      "wait": 1.3,
+      "source_slides": [
+        2,
+        9,
+        10,
+        36
+      ],
+      "items": []
+    }
+  ],
+  "pronounce": {
+    "pOH": "P O H",
+    "pH": "P H",
+    "pKa": "P K A",
+    "pI": "等電點",
+    "PPO": "多酚氧化酶",
+    "Henry": "亨利",
+    "Lewis": "路易斯",
+    "Hess": "赫斯",
+    "Beer": "比爾",
+    "ppm": "百萬分比",
+    "PV": "過氧化價",
+    "AV": "酸價",
+    "HLB": "H L B",
+    "B12": "B 十二"
+  }
+}

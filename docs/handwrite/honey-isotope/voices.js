@@ -1,0 +1,1 @@
+window.HONEY_VOICES=["guide/assets/voice/s02_867fd419ed.mp3", "guide/assets/voice/s04_fd333f7cae.mp3", "guide/assets/voice/s07_6a6c1034f4.mp3", "guide/assets/voice/s08_a115445820.mp3", "guide/assets/voice/s11_6d1dd412c2.mp3"];

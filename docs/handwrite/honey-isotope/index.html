@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>蜂蜜摻糖，數值會往哪裡走？｜普通化學動畫實驗室</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<main>
+ <header><a class="back" href="https://tai-shengyeh.github.io/general-chemistry/%E6%96%B0W02_%E5%8E%9F%E5%AD%90%E8%88%87%E5%91%BD%E5%90%8D.html#21">← 回第21張投影片</a><a href="guide/player.html">看逐步板書講解 ↗</a><h1>蜂蜜摻糖，<br class="phone">數值會往哪裡走？</h1><p>每次只解決一個問題。先猜、看動畫、動手改，再用新例子試一次。</p></header>
+ <nav class="steps" aria-label="教學步驟"></nav>
+ <section class="lesson" aria-labelledby="lesson-heading">
+  <div class="heading"><span id="step-count"></span><h2 id="lesson-heading"></h2><p id="lead"></p></div>
+  <div class="workspace">
+   <div class="paper">
+    <div class="paper-title"><span id="board-caption"></span><button id="replay-draw" type="button">重畫數線</button></div>
+    <svg id="plot" viewBox="0 0 900 350" role="img" aria-label="碳同位素數線：向右表示數值較大、較不負"></svg>
+    <div class="readouts"><div><span>蛋白質參考</span><strong id="protein-readout"></strong></div><div class="honey"><span>蜂蜜整體</span><strong id="honey-readout"></strong></div><div><span id="syrup-label">C4糖端點</span><strong id="syrup-readout"></strong></div></div>
+    <div id="contribution"><div class="contribution-label">混合中的糖碳來源 <span id="fraction-label"></span></div><div class="source-bar" role="img" aria-label="糖碳來源比例示意"><div id="c3-fill">原本的蜜</div><div id="added-fill">添加糖</div></div><p class="small">顏色只區分來源，不代表蜂蜜的真實顏色，也不是¹³C所占百分比。</p></div>
+    <p id="board-note" class="board-note"></p>
+   </div>
+   <aside class="controls" aria-label="本步操作">
+    <div id="controls-content"></div>
+    <div class="listen"><label for="narration">聽這一步的重點</label><audio id="narration" controls preload="none"></audio></div>
+   </aside>
+  </div>
+  <section id="question" class="question" aria-labelledby="question-title"><h3 id="question-title"></h3><div id="answer-controls"></div><p id="feedback" role="status" aria-live="polite"></p><div id="explanation" hidden></div></section>
+  <div class="navigation"><button id="prev" type="button">← 上一步</button><span id="progress" aria-live="polite"></span><button id="next" class="primary" type="button">想清楚，下一步 →</button></div>
+  <section id="complete" hidden><h3>你已經把三件事連起來了</h3><p>數線：較不負就是變大。混合：往另一個來源靠近。比較：用同一份蜂蜜的蛋白質作參考，再依模型估算。</p><p><a href="https://tai-shengyeh.github.io/general-chemistry/%E6%96%B0W02_%E5%8E%9F%E5%AD%90%E8%88%87%E5%91%BD%E5%90%8D.html#22">回第22張，讀懂原例題 →</a></p></section>
+ </section>
+ <footer><button id="reset" type="button">重新練習</button><details><summary>我需要知道的符號</summary><p><b>δ¹³C</b>：比較樣品與標準的¹³C／¹²C比值後，得到的相對差異。單位為‰，不是蜂蜜裡¹³C的百分比。負值仍能比較大小。</p><p><b>C3、C4</b>：兩類植物的光合作用途徑名稱；不表示糖分子只有3個或4個碳。甘蔗與玉米屬C4，常見蜜源多屬C3。</p></details><details><summary>這個模型能說什麼？</summary><p>這是糖碳來源加權的入門近似，不是糖漿的體積比或蜂蜜含量檢驗。先假設真蜜與自身蛋白質的δ¹³C相同、外加糖不帶入蛋白質；實際樣品有天然差異、量測不確定度與方法適用限制。</p><p>第2、3步為了方便看方向，C4端點用−10‰；第4步回到課本的−9.7‰。C3糖可能沒有明顯位移；未看到差異不能證明沒有任何摻糖。本頁不作商品合格判定。</p></details><p class="sources">教材：<a href="https://tai-shengyeh.github.io/general-chemistry/%E6%96%B0W02_%E5%8E%9F%E5%AD%90%E8%88%87%E5%91%BD%E5%90%8D.html#21">原投影片21–22</a>；方法與限制：<a href="https://www.fda.gov.tw/tc/includes/GetFile.ashx?id=f636812670113442010" target="_blank" rel="noopener">食藥署2018年研究，第104–105頁</a>。逐步板書沿用手寫教學引擎；原始程式與素材作者：阿亮老師（曾慶良）／3A科技研究社。<a href="assets/fonts/OFL-Iansui.txt">字型授權</a> · <a href="guide/assets/vendor/THIRD-PARTY.txt">動畫程式來源</a>。</p></footer>
+</main><script src="voices.js"></script><script src="app.js"></script>
+</body></html>

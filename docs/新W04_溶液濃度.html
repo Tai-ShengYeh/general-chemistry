@@ -174,6 +174,7 @@ body.scroll .cover h1{font-size:44px}
 body.scroll .divider h1{font-size:40px}
 body.scroll .two-col,body.scroll .hookcols{flex-direction:column;align-items:stretch;gap:14px}
 body.scroll .two-col>div{min-width:0}
+@media (max-width:760px){body.scroll .animbox{grid-template-columns:minmax(0,1fr);gap:14px}}
 body.scroll .frow{flex-wrap:wrap;gap:16px 40px}
 .figwrap{flex-shrink:0;margin:6px 0}
 .figwrap>svg.fig{margin:0 auto}
@@ -460,6 +461,27 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="box key"><span class="tag">技巧</span>稀釋前後「濃度、體積」都變,唯一不變的是<b>溶質莫耳數</b> — 這就是 C<sub>1</sub>V<sub>1</sub> = C<sub>2</sub>V<sub>2</sub> 的本質。</div>
 </section>
 
+<section class="slide hook" id="w04-dilution">
+  <h2>教學動畫：稀釋時，溶質去哪了？ <span class="en">Short Explainer Video · 1:23</span></h2>
+  <div class="animbox">
+    <div>
+      <video controls playsinline preload="none" poster="animations/w04_dilution/poster.jpg" aria-label="稀釋時，溶質去哪了？">
+        <source src="animations/w04_dilution/W04_dilution.mp4" type="video/mp4">
+        您的瀏覽器不支援影片播放。
+      </video>
+      <div class="animlinks"><a href="animations/w04_dilution/W04_dilution.mp4" download>下載 MP4</a>　<a href="animations/w04_dilution/W04_dilution.srt" download>下載繁中字幕 SRT</a></div>
+    </div>
+    <div class="animnote">
+      <b>看影片時請想一想</b>
+      <ul>
+        <li>加水後，溶質莫耳數、溶液體積與濃度各怎麼變？</li>
+        <li>體積變成十倍，為什麼濃度會剩下十分之一？</li>
+      </ul>
+      <div class="box key" style="font-size:20px;margin:10px 0 0"><span class="tag">課堂暫停點</span>約 0:59 進入快問，先判斷「稀釋至 100.0 mL」指的是什麼。</div>
+    </div>
+  </div>
+</section>
+
 <!-- 23 -->
 <section class="slide">
   <h2>常見錯誤提醒 <span class="en">Common Pitfalls</span></h2>
@@ -633,6 +655,27 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="sol"><b>解答:</b><br>① 需要的目標離子:1000 mg/L × 0.1000 L = <b>100.0 mg</b><br>② 換成莫耳:100.0 ÷ 211.95 = <b>0.4718 mmol</b><br>③ 這些離子來自同莫耳數的鹽 → 秤<b>十水合鹽</b>:0.4718 × 484.06 = <span class="hl">228.4 mg</span><br><b>若誤用無水式量:</b>0.4718 × 303.91 = 143.4 mg,少秤 85.0 mg,配出來只有 <b>628 mg/L</b>。<br><b>後果比算錯一題嚴重:</b>儀器把真實只有 628 mg/L 的標準液當成 1000 mg/L,於是同樣的訊號會被翻譯成比實際更高的濃度 → 檢量線的斜率(每單位濃度對應多少訊號)偏了,之後每個樣品的測值都<b>偏高約 59%</b>。<b>而且從數據上完全看不出來</b> —— 每一點都乖乖排成直線,只是整條線站錯位置。<br><b>實際檢驗請以主管機關公告的方法為準。</b></div>
 </section>
 
+<section class="slide hook" id="w04-hydrate">
+  <h2>教學動畫：標準液配得太稀，樣品為何反而測得偏高？ <span class="en">Short Explainer Video · 1:47</span></h2>
+  <div class="animbox">
+    <div>
+      <video controls playsinline preload="none" poster="animations/w04_hydrate/poster.jpg" aria-label="標準液配得太稀，樣品為何反而測得偏高？">
+        <source src="animations/w04_hydrate/W04_hydrate.mp4" type="video/mp4">
+        您的瀏覽器不支援影片播放。
+      </video>
+      <div class="animlinks"><a href="animations/w04_hydrate/W04_hydrate.mp4" download>下載 MP4</a>　<a href="animations/w04_hydrate/W04_hydrate.srt" download>下載繁中字幕 SRT</a></div>
+    </div>
+    <div class="animnote">
+      <b>看影片時請想一想</b>
+      <ul>
+        <li>秤取十水合鹽時，結晶水如何影響應秤的質量？</li>
+        <li>固定同一個樣品訊號，用兩條檢量線會讀出什麼差異？</li>
+      </ul>
+      <div class="box key" style="font-size:20px;margin:10px 0 0"><span class="tag">課堂暫停點</span>約 1:22 進入快問。先判斷高 R² 能不能確認標準液配對了。</div>
+    </div>
+  </div>
+</section>
+
 <!-- 39 -->
 <section class="slide">
   <h2>食品分析常遇到的含結晶水試劑 <span class="en">Hydrated Reagents You Will Meet</span></h2>
@@ -722,11 +765,21 @@ slides.forEach(s=>{
   hint.innerHTML='<span class="kbd">空白鍵</span><span>先自己想／算，準備好再顯示解答</span>';
   sol.insertAdjacentElement('beforebegin',hint);
 });
+function slideHash(index){return slides[index].id||String(index+1);}
+function slideIndexFromHash(){
+  const hash=location.hash.slice(1);
+  const index=slides.findIndex(slide=>slide.id&&slide.id===hash);
+  return index>=0?index:Math.max(0,Math.min(slides.length-1,(parseInt(hash,10)||1)-1));
+}
 function show(n){
-  cur=Math.max(0,Math.min(slides.length-1,n));
+  const nextIndex=Math.max(0,Math.min(slides.length-1,n));
+  if(!document.body.classList.contains('scroll')&&nextIndex!==cur){
+    slides[cur].querySelectorAll('video').forEach(video=>video.pause());
+  }
+  cur=nextIndex;
   slides.forEach((s,i)=>{s.classList.toggle('active',i===cur);s.classList.remove('reveal');});
   document.getElementById('bar').style.width=((cur+1)/slides.length*100)+'%';
-  location.hash=cur+1;
+  location.hash=slideHash(cur);
   if(document.body.classList.contains('scroll'))slides[cur].scrollIntoView({block:'start'});
 }
 function next(){
@@ -746,25 +799,29 @@ function fit(){
 }
 addEventListener('resize',fit);
 addEventListener('keydown',e=>{
-  if(document.body.classList.contains('scroll'))return;
+  if(document.body.classList.contains('scroll')||e.target.closest?.('video'))return;
   if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();next();}
   else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev();}
   else if(e.key==='Home')show(0);
   else if(e.key==='End')show(slides.length-1);
 });
 addEventListener('click',e=>{
-  if(document.body.classList.contains('scroll')||e.target.closest('a,#mtb'))return;
+  if(document.body.classList.contains('scroll')||e.target.closest('a,#mtb,video'))return;
   (e.clientX>innerWidth/3)?next():prev();
 });
 let tx=null;
-addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+addEventListener('touchstart',e=>tx=e.target.closest('video')?null:e.touches[0].clientX);
 addEventListener('touchend',e=>{
   if(document.body.classList.contains('scroll')){tx=null;return;}
   if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;
   if(dx<-40)next();else if(dx>40)prev();tx=null;
 });
 fit();
-show(parseInt(location.hash.slice(1))-1||0);
+show(slideIndexFromHash());
+addEventListener('hashchange',()=>{
+  const index=slideIndexFromHash();
+  if(index!==cur)show(index);
+});
 </script>
 <script id="mobile-js">
 (function(){
@@ -807,7 +864,7 @@ show(parseInt(location.hash.slice(1))-1||0);
     requestAnimationFrame(()=>{tick=false;
       let best=0,bd=1e9;
       slides.forEach((s,i)=>{const d=Math.abs(s.getBoundingClientRect().top-60);if(d<bd){bd=d;best=i;}});
-      cur=best;history.replaceState(null,'','#'+(cur+1));
+      cur=best;history.replaceState(null,'','#'+slideHash(cur));
     });
   },{passive:true});
   addEventListener('beforeprint',()=>{B.dataset.wasScroll=isScroll()?'1':'';B.classList.remove('scroll');});

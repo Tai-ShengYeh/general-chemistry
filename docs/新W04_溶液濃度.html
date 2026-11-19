@@ -193,6 +193,35 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 @media (max-width:600px){body.scroll #deck{zoom:.8;padding:6px}body.scroll .slide{padding:18px 16px 44px}}
 @media print{#mtb{display:none!important}body{padding-top:0!important}}
 </style>
+<style id="lab-css">
+/* ── 互動實驗台(先預測、再動手)──────────────────────── */
+.lab{display:flex;gap:30px;align-items:flex-start}
+.labfig{flex:0 0 auto}
+.labfig .fig{margin:0 auto}
+.labside{flex:1;min-width:0}
+.labside .box{margin:0 0 8px;font-size:21px;line-height:1.45;padding:9px 18px}
+.labside .eq{margin:6px 0;font-size:26px}
+.labctl{display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:center;font-size:20px;margin:6px 0}
+.labctl input[type=range]{width:100%;height:28px;accent-color:var(--primary);cursor:pointer}
+.labctl output{font-weight:700;color:var(--primary);min-width:96px;text-align:right}
+.labread{font-size:21px;line-height:1.5;background:#f4f6f7;border-radius:8px;padding:7px 16px;margin:6px 0}
+.labread .M{font-size:27px}
+.lbtn{font-family:inherit;font-size:19px;font-weight:700;padding:6px 16px;border-radius:8px;border:2px solid var(--primary);background:#fff;color:var(--primary);cursor:pointer;margin:2px 8px 2px 0}
+.lbtn:hover{background:var(--def-bg)}
+.lbtn:disabled{color:var(--muted);border-color:#aab7b8;background:#f4f6f7;cursor:default}
+.lbtn.bad{border-color:#c0392b;color:#c0392b}
+.labmsg{font-size:20px;line-height:1.42;min-height:86px;margin:6px 0;padding:7px 16px;border-radius:8px;background:#f4f6f7}
+.labmsg.bad{background:var(--warn-bg);color:#922b21}
+.slide ol.steps{font-size:21px;line-height:1.4;margin:0 0 6px 30px}
+.steps li{margin:4px 0;color:var(--muted)}
+.steps li.on{color:var(--ink)}
+.steps li.now{color:var(--primary);font-weight:700}
+body.scroll .lab{flex-direction:column;align-items:stretch;gap:12px}
+/* 閱讀模式:圖釘在上方,按按鈕時動畫才看得到 */
+body.scroll .labfig{position:sticky;top:50px;z-index:2;background:var(--card);border-bottom:1px solid #d5dbdb}
+body.scroll .labfig svg.fig{max-height:36vh;width:auto;min-width:0!important}
+@media print{.steps li{color:var(--ink)!important;font-weight:400!important}.noprint{display:none!important}}
+</style>
 </head>
 <body>
 <div id="bar"></div>
@@ -291,22 +320,77 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="box warn"><span class="tag">注意</span>分母是<b>溶液</b>總體積,不是溶劑體積!體積務必換成公升。</div>
 </section>
 
+<!-- 7b 互動:濃度實驗台 -->
+<section class="slide">
+  <h2>動手試:什麼會改變濃度? <span class="en">Concentration Lab — predict first, then drag</span></h2>
+  <div class="lab" id="w4lab1">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 360 350" width="360" height="350" role="img" aria-labelledby="w4lab1-t w4lab1-d">
+        <title id="w4lab1-t">濃度實驗台</title>
+        <desc id="w4lab1-d">一個有刻度的燒杯。橘色圓點代表溶質粒子,藍色區域代表溶液體積。拖動滑桿改變溶質質量與溶液體積時,粒子的疏密隨濃度改變。</desc>
+        <g class="liq"></g>
+        <path d="M88,28 L88,324 L312,324 L312,28" fill="none" stroke="#2c3e50" stroke-width="4" stroke-linejoin="round"/>
+        <g stroke="#2c3e50" stroke-width="2"><line x1="88" y1="250" x2="106" y2="250"/><line x1="88" y1="180" x2="106" y2="180"/><line x1="88" y1="110" x2="106" y2="110"/><line x1="88" y1="40" x2="106" y2="40"/></g>
+        <g font-size="16" fill="#2c3e50" text-anchor="end"><text x="80" y="256">250</text><text x="80" y="186">500</text><text x="80" y="116">750</text><text x="80" y="46">1000</text><text x="80" y="18">mL</text></g>
+        <text x="200" y="345" font-size="16" fill="#2c3e50" text-anchor="middle">一個點 = 0.01 mol NaCl</text>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 溶質不變、溶液體積變 2 倍,M 變成幾倍?<br>② 把溶液<b>倒掉一半</b>,留在燒杯裡的那一半,M 會變嗎?</div>
+      <div class="labctl noprint">
+        <label for="w4lab1-m">NaCl 質量</label><input type="range" id="w4lab1-m" min="2" max="30" step="0.1" value="11.7"><output id="w4lab1-mo">11.7 g</output>
+        <label for="w4lab1-v">溶液體積</label><input type="range" id="w4lab1-v" min="100" max="1000" step="50" value="500"><output id="w4lab1-vo">500 mL</output>
+      </div>
+      <div class="labread">n = <span id="w4lab1-n1">11.7 g ÷ 58.44 g/mol</span> = <b id="w4lab1-n">0.200 mol</b>　　V = <b id="w4lab1-V">0.500 L</b><br>M = n ÷ V = <span class="hl M" id="w4lab1-M">0.400 M</span></div>
+      <div class="noprint"><button type="button" class="lbtn" id="w4lab1-half">倒出一半</button><button type="button" class="lbtn" id="w4lab1-reset">重設</button><span class="small" id="w4lab1-msg"></span></div>
+      <div class="sol" style="font-size:21px;line-height:1.45"><b>你剛剛看到的:</b>① 體積 2 倍 → 同樣的粒子分散到 2 倍空間 → M 變 <span class="hl">½</span>。② 倒掉一半 → n 與 V <b>同時</b>減半 → M <span class="hl">不變</span>。濃度是比值 n/V,不是「有多少」。</div>
+    </div>
+  </div>
+</section>
+
 <!-- 8 -->
 <section class="slide">
-  <h2>配製標準濃度溶液 <span class="en">Preparing a Solution</span></h2>
-  <ol>
-    <li>計算所需溶質質量並<b>精確稱量</b></li>
-    <li>將溶質置入<b>容量瓶 (volumetric flask)</b>,加入少量蒸餾水搖盪溶解</li>
-    <li>加水至<b>刻度線</b>(凹液面底部對齊刻度)</li>
-    <li>塞緊瓶塞,倒轉混合均勻</li>
-  </ol>
-  <div class="box warn"><span class="tag">注意</span>順序是「先溶解、再加水到刻度」;不可先加滿水再放溶質 — 溶質溶解會改變總體積。</div>
+  <h2>配製標準濃度溶液 <span class="en">Preparing a Solution — the order matters</span></h2>
+  <div class="lab" id="w4lab2">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 24 400 368" width="400" height="368" role="img" aria-labelledby="w4lab2-t w4lab2-d">
+        <title id="w4lab2-t">用容量瓶配製 500.0 mL 的 0.200 M NaCl</title>
+        <desc id="w4lab2-d">左邊是秤量紙上的 5.84 g NaCl,右邊是 500 mL 容量瓶,瓶頸上有一條刻度線。四個步驟依序為秤量、少量水溶解、加水至刻度線、塞緊倒轉混勻。錯誤做法是先加水到刻度再放溶質,液面會超過刻度線。</desc>
+        <defs><clipPath id="w4lab2-clip"><rect x="234" y="58" width="32" height="150"/><circle cx="250" cy="285" r="85"/></clipPath></defs>
+        <g clip-path="url(#w4lab2-clip)"><rect class="liq" x="150" y="372" width="200" height="0" fill="#1a5276" fill-opacity=".22"/></g>
+        <path d="M232,54 L232,200 A87,87 0 1,0 268,200 L268,54" fill="none" stroke="#2c3e50" stroke-width="4" stroke-linejoin="round"/>
+        <line x1="224" y1="110" x2="276" y2="110" stroke="#a04c08" stroke-width="3"/>
+        <text x="284" y="106" font-size="16" fill="#a04c08" font-weight="700">刻度線</text>
+        <text x="284" y="126" font-size="16" fill="#a04c08">500.0 mL</text>
+        <path class="men" d="M235,106 Q250,114 265,106" fill="none" stroke="#1a5276" stroke-width="2.5" visibility="hidden"/>
+        <path class="stop" d="M238,34 h24 a4,4 0 0 1 4,4 v16 h-32 v-16 a4,4 0 0 1 4,-4 z" fill="#5a6a6b" visibility="hidden"/>
+        <g class="mix" visibility="hidden" fill="none" stroke="#117a65" stroke-width="3.5" stroke-linecap="round"><path d="M352,250 A104,104 0 0,1 352,322"/><path d="M352,322 l-2,-13 M352,322 l11,-8"/><path d="M148,322 A104,104 0 0,1 148,250"/><path d="M148,250 l2,13 M148,250 l-11,8"/></g>
+        <path d="M24,350 Q84,362 144,350" fill="none" stroke="#2c3e50" stroke-width="3" stroke-linecap="round"/>
+        <text x="84" y="384" font-size="16" fill="#2c3e50" text-anchor="middle">5.84 g NaCl</text>
+        <g class="dots" fill="#a04c08"></g>
+        <text class="lbl" x="250" y="388" font-size="17" font-weight="700" fill="#1a5276" text-anchor="middle"></text>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox" style="font-size:20px"><span class="tag">任務</span>配 <b>500.0 mL</b> 的 <b>0.200 M NaCl</b>。先預測:A「先把水加到刻度,再放 NaCl」與 B「先溶解,再加水到刻度」,哪一個才是 0.200 M?</div>
+      <ol class="steps">
+        <li>計算並<b>精確稱量</b>:0.200 mol/L × 0.5000 L = 0.100 mol → 5.84 g</li>
+        <li>置入<b>容量瓶 (volumetric flask)</b>,加少量蒸餾水搖盪溶解</li>
+        <li>加水至<b>刻度線</b>(凹液面底部對齊刻度)</li>
+        <li>塞緊瓶塞,倒轉混合均勻</li>
+      </ol>
+      <div class="noprint"><button type="button" class="lbtn" id="w4lab2-prev">◀ 上一步</button><button type="button" class="lbtn" id="w4lab2-next">下一步 ▶</button><button type="button" class="lbtn bad" id="w4lab2-bad">✗ 試試做法 A</button></div>
+      <div class="labmsg noprint" id="w4lab2-msg">按「下一步」一步一步配;也按一次「做法 A」,看液面停在哪裡。</div>
+      <div class="sol" style="margin-top:6px;padding-top:6px"><div class="box warn" style="font-size:20px;margin:0"><span class="tag">注意</span>順序是「先溶解、再加水到刻度」;不可先加滿水再放溶質 — 溶質溶解會改變總體積。</div></div>
+    </div>
+  </div>
 </section>
 
 <!-- 9 -->
 <section class="slide">
   <h2>例題 1:濃度計算 <span class="en">Example 1</span></h2>
   <div class="box exbox"><span class="tag">例題</span>將 25.0 g NaCl 溶於水配成 500.0 mL 溶液,求其體積莫耳濃度。(NaCl 58.44 g/mol)
+  <div class="small" style="margin-top:8px">先估再算:25 g 大約是幾 mol?裝在半公升裡,M 會比 1 M 大還是小?</div>
   <div class="sol"><b>解:</b><br>
   步驟 1(g → mol):n = 25.0 g ÷ 58.44 g/mol = 0.428 mol<br>
   步驟 2(mL → L):V = 500.0 mL = 0.5000 L<br>
@@ -327,13 +411,27 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <!-- 11 -->
 <section class="slide">
   <h2>稀釋 <span class="en">Dilution</span></h2>
-  <div class="box def"><span class="tag">定義</span><b>稀釋 (dilution)</b>:加入溶劑使濃度降低。過程中<b>溶質的莫耳數不變</b>,只有體積變大。</div>
-  <div class="eq">n<sub>前</sub> = n<sub>後</sub>&nbsp;&nbsp;⇒&nbsp;&nbsp;<span class="hl">C<sub>1</sub>V<sub>1</sub> = C<sub>2</sub>V<sub>2</sub></span></div>
-  <ul>
-    <li>C<sub>1</sub>, V<sub>1</sub>:稀釋前(濃)的濃度與取用體積;C<sub>2</sub>, V<sub>2</sub>:稀釋後(稀)</li>
-    <li>V<sub>1</sub>、V<sub>2</sub> 單位一致即可(mL 對 mL、L 對 L)</li>
-    <li>實驗室常由市售濃溶液(stock solution)稀釋配製工作溶液</li>
-  </ul>
+  <div class="lab" id="w4lab3">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 360 350" width="360" height="350" role="img" aria-labelledby="w4lab3-t w4lab3-d">
+        <title id="w4lab3-t">稀釋:粒子數不變,體積變大</title>
+        <desc id="w4lab3-d">燒杯裡原有 100 mL 的 1.00 M 溶液。拖動滑桿加水時,藍色液面升高、顏色變淡,但橘色溶質粒子的數目維持 10 個不變。</desc>
+        <g class="liq"></g>
+        <path d="M88,28 L88,324 L312,324 L312,28" fill="none" stroke="#2c3e50" stroke-width="4" stroke-linejoin="round"/>
+        <g stroke="#2c3e50" stroke-width="2"><line x1="88" y1="250" x2="106" y2="250"/><line x1="88" y1="180" x2="106" y2="180"/><line x1="88" y1="110" x2="106" y2="110"/><line x1="88" y1="40" x2="106" y2="40"/></g>
+        <g font-size="16" fill="#2c3e50" text-anchor="end"><text x="80" y="256">250</text><text x="80" y="186">500</text><text x="80" y="116">750</text><text x="80" y="46">1000</text><text x="80" y="18">mL</text></g>
+        <text x="200" y="345" font-size="16" fill="#2c3e50" text-anchor="middle">一個點 = 0.01 mol 溶質</text>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box def"><span class="tag">定義</span><b>稀釋 (dilution)</b>:加入溶劑使濃度降低。過程中<b>溶質的莫耳數不變</b>,只有體積變大。</div>
+      <div class="box exbox"><span class="tag">先預測,再拖</span>100 mL 的 1.00 M 溶液加水到 <b>500 mL</b>:濃度變幾 M?若要稀釋成 0.250 M,該加水到幾 mL?</div>
+      <div class="labctl noprint"><label for="w4lab3-v">加水到</label><input type="range" id="w4lab3-v" min="100" max="1000" step="10" value="100"><output id="w4lab3-vo">100 mL</output></div>
+      <div class="labread">n = <b>0.100 mol</b>(不變)　V = <b id="w4lab3-V">0.100 L</b>　C = <span class="hl M" id="w4lab3-C">1.00 M</span><br>C × V = <span id="w4lab3-cv">1.00 M × 0.100 L</span> = <b>0.100 mol</b> ✓</div>
+      <div class="eq">n<sub>前</sub> = n<sub>後</sub>&nbsp;&nbsp;⇒&nbsp;&nbsp;<span class="hl">C<sub>1</sub>V<sub>1</sub> = C<sub>2</sub>V<sub>2</sub></span></div>
+      <div class="small">C<sub>1</sub>, V<sub>1</sub>:稀釋前(濃)的濃度與取用體積;C<sub>2</sub>, V<sub>2</sub>:稀釋後。V 單位一致即可(mL 對 mL)。實驗室常由市售濃溶液 (stock solution) 稀釋成工作溶液。</div>
+    </div>
+  </div>
 </section>
 
 <!-- 12 -->
@@ -822,6 +920,151 @@ addEventListener('hashchange',()=>{
   const index=slideIndexFromHash();
   if(index!==cur)show(index);
 });
+</script>
+<script id="lab-js">
+/* 互動實驗台:濃度(w4lab1)、配製步驟(w4lab2)、稀釋(w4lab3) */
+(function(){
+  const NS='http://www.w3.org/2000/svg',$=id=>document.getElementById(id);
+  const el=(n,a,p)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;};
+  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let seed=7;const rnd=()=>(seed=seed*16807%2147483647)/2147483647;
+  function tw(ms,fn,done){
+    if(still||ms<=0){fn(1);if(done)done();return;}
+    let t0=null;
+    requestAnimationFrame(function f(t){
+      if(t0===null)t0=t;
+      const k=Math.min(1,(t-t0)/ms),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+      fn(e);if(k<1)requestAnimationFrame(f);else if(done)done();
+    });
+  }
+  // 控制項上的點擊、觸控、方向鍵不可觸發翻頁
+  document.querySelectorAll('.lab').forEach(l=>{
+    ['click','touchstart','touchend'].forEach(t=>l.addEventListener(t,e=>{if(e.target.closest('button,input,label'))e.stopPropagation();}));
+    l.addEventListener('keydown',e=>{if(e.target.matches('input'))e.stopPropagation();});
+    l.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>b.blur()));
+    l.querySelectorAll('input[type=range]').forEach(r=>r.addEventListener('pointerup',()=>r.blur()));
+  });
+  // 燒杯:底 y=320,0.28 px/mL
+  function beaker(root){
+    const g=root.querySelector('.liq');
+    const liq=el('rect',{x:90,width:220,fill:'#1a5276'},g),dg=el('g',{fill:'#a04c08'},g),ds=[];
+    return function(V,nd,op){
+      const h=V*.28;
+      liq.setAttribute('y',320-h);liq.setAttribute('height',h);liq.setAttribute('fill-opacity',op);
+      while(ds.length<nd)ds.push({u:rnd(),v:rnd(),c:el('circle',{r:4.5},dg)});
+      ds.forEach((d,i)=>{
+        d.c.setAttribute('visibility',i<nd?'visible':'hidden');
+        d.c.setAttribute('cx',98+d.u*204);d.c.setAttribute('cy',314-d.v*Math.max(0,h-12));
+      });
+    };
+  }
+  /* ── 1 濃度實驗台 ── */
+  (function(){
+    const root=$('w4lab1');if(!root)return;
+    const draw=beaker(root),sm=$('w4lab1-m'),sv=$('w4lab1-v'),half=$('w4lab1-half');
+    let m=11.7,V=500,busy=false;
+    function render(){
+      const n=m/58.44,M=n/(V/1000);
+      draw(V,Math.round(n/.01),.10+Math.min(.5,M*.11));
+      const ms=(Math.abs(m*10-Math.round(m*10))<1e-6?m.toFixed(1):m.toFixed(2))+' g';
+      $('w4lab1-mo').textContent=ms;$('w4lab1-vo').textContent=Math.round(V)+' mL';
+      $('w4lab1-n1').textContent=ms+' ÷ 58.44 g/mol';
+      $('w4lab1-n').textContent=n.toFixed(3)+' mol';$('w4lab1-V').textContent=(V/1000).toFixed(3)+' L';
+      $('w4lab1-M').textContent=M.toPrecision(3)+' M';
+      half.disabled=busy||m/2<2||V/2<100;
+    }
+    sm.addEventListener('input',()=>{m=+sm.value;$('w4lab1-msg').textContent='';render();});
+    sv.addEventListener('input',()=>{V=+sv.value;$('w4lab1-msg').textContent='';render();});
+    half.addEventListener('click',()=>{
+      const m0=m,V0=V;busy=true;
+      tw(900,k=>{m=m0*(1-k/2);V=V0*(1-k/2);render();},()=>{
+        busy=false;sm.value=m;sv.value=V;render();
+        $('w4lab1-msg').textContent='n、V 都剩一半,M 呢?';
+      });
+    });
+    $('w4lab1-reset').addEventListener('click',()=>{m=11.7;V=500;sm.value=m;sv.value=V;$('w4lab1-msg').textContent='';render();});
+    render();
+  })();
+  /* ── 2 配製步驟 ── */
+  (function(){
+    const root=$('w4lab2');if(!root)return;
+    const liq=root.querySelector('.liq'),dg=root.querySelector('.dots'),lis=[...root.querySelectorAll('.steps li')];
+    const msg=$('w4lab2-msg'),lbl=root.querySelector('.lbl');
+    const N=24,ds=[];
+    for(let i=0;i<N;i++){
+      const px=52+(i%8)*9+rnd()*4,py=344-Math.floor(i/8)*8-rnd()*2;
+      ds.push({px,py,u:rnd()*2-1,v:rnd(),x:px,y:py,c:el('circle',{r:4,cx:px,cy:py},dg)});
+    }
+    const inFlask=(d,L)=>{
+      const top=Math.max(L,212)+8,y=362-d.v*(362-top),hc=Math.sqrt(Math.max(0,85*85-(y-285)*(y-285)));
+      return [250+d.u*Math.max(0,hc-10),y];
+    };
+    const MSG=['按「下一步」一步一步配;也按一次「做法 A」,看液面停在哪裡。',
+      '先算再秤:n = M × V = 0.100 mol,乘上莫耳質量 58.44 → <b>5.84 g</b>。',
+      '只加<b>少量</b>水把固體完全溶解。這時體積還沒定,不必看刻度。',
+      '最後才補水到刻度線:此刻<b>溶液總體積</b>才正好是 500.0 mL。',
+      '倒轉數次 → 整瓶濃度一致。這是做法 B,得到 <b>0.200 M</b>。'];
+    const LV=[372,372,300,110,110];
+    let s=0,L=372,run=0;
+    function setL(v){L=v;liq.setAttribute('y',v);liq.setAttribute('height',Math.max(0,372-v));}
+    function deco(){
+      const st=typeof s==='number'?s:0;
+      lis.forEach((li,i)=>{li.classList.toggle('on',i<st);li.classList.toggle('now',i===st-1);});
+      root.querySelector('.men').setAttribute('visibility',s===3||s===4?'visible':'hidden');
+      root.querySelector('.stop').setAttribute('visibility',s===4?'visible':'hidden');
+      root.querySelector('.mix').setAttribute('visibility',s===4?'visible':'hidden');
+      lbl.textContent=s===4?'0.200 M NaCl':'';
+      msg.classList.toggle('bad',s==='w');
+      $('w4lab2-prev').disabled=s===0;$('w4lab2-next').disabled=s===4;
+    }
+    function move(Lto,into,ms,done){
+      const my=run,L0=L,from=ds.map(d=>[d.x,d.y]);
+      const to=ds.map(d=>into?inFlask(d,Lto):[d.px,d.py]);
+      tw(ms,k=>{
+        if(my!==run)return;
+        setL(L0+(Lto-L0)*k);
+        ds.forEach((d,i)=>{d.x=from[i][0]+(to[i][0]-from[i][0])*k;d.y=from[i][1]+(to[i][1]-from[i][1])*k;d.c.setAttribute('cx',d.x);d.c.setAttribute('cy',d.y);});
+      },()=>{if(my===run&&done)done();});
+    }
+    function go(n,fast){
+      run++;s=n;
+      if(n===4)ds.forEach(d=>{d.u=rnd()*2-1;d.v=rnd();});
+      msg.innerHTML=MSG[n];deco();
+      move(LV[n],n>=2,fast?0:800);
+    }
+    function wrong(){
+      run++;s='w';deco();lbl.textContent='';
+      msg.innerHTML='做法 A:先把水加到刻度線……';
+      move(110,false,800,()=>{
+        msg.innerHTML='✗ 再放入 NaCl:溶解後液面<b>超過刻度線</b>(示意,已誇大)。總體積 &gt; 500.0 mL → 濃度 &lt; 0.200 M,而且不知道差多少。';
+        move(92,true,900);
+      });
+    }
+    $('w4lab2-next').addEventListener('click',()=>go(s==='w'?1:Math.min(4,s+1)));
+    $('w4lab2-prev').addEventListener('click',()=>go(s==='w'?0:Math.max(0,s-1)));
+    $('w4lab2-bad').addEventListener('click',wrong);
+    let keep=0;
+    addEventListener('beforeprint',()=>{keep=s;go(4,true);});
+    addEventListener('afterprint',()=>{if(keep==='w')go(0,true);else go(keep,true);});
+    deco();
+  })();
+  /* ── 3 稀釋 ── */
+  (function(){
+    const root=$('w4lab3');if(!root)return;
+    const draw=beaker(root),sv=$('w4lab3-v');
+    function render(){
+      const V=+sv.value,C=0.100/(V/1000);
+      draw(V,10,.10+Math.min(.5,C*.45));
+      $('w4lab3-vo').textContent=V+' mL';$('w4lab3-V').textContent=(V/1000).toFixed(3)+' L';
+      $('w4lab3-C').textContent=C.toPrecision(3)+' M';
+      $('w4lab3-cv').textContent=C.toPrecision(3)+' M × '+(V/1000).toFixed(3)+' L';
+    }
+    sv.addEventListener('input',render);render();
+    let keep=100;
+    addEventListener('beforeprint',()=>{keep=sv.value;sv.value=500;render();});
+    addEventListener('afterprint',()=>{sv.value=keep;render();});
+  })();
+})();
 </script>
 <script id="mobile-js">
 (function(){

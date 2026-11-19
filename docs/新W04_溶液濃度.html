@@ -216,6 +216,12 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 .steps li{margin:4px 0;color:var(--muted)}
 .steps li.on{color:var(--ink)}
 .steps li.now{color:var(--primary);font-weight:700}
+.lab.labcol{display:block}
+.lbtn.sel{background:var(--primary);color:#fff}
+.labrow{display:flex;gap:10px;align-items:center;font-size:20px;margin:4px 0}
+.labrow input[type=range]{flex:1;min-width:120px;height:28px;accent-color:var(--primary);cursor:pointer}
+.labrow .lbtn{margin:0;font-size:17px;padding:5px 11px;white-space:nowrap}
+body.scroll .labrow{flex-wrap:wrap}
 body.scroll .lab{flex-direction:column;align-items:stretch;gap:12px}
 /* 閱讀模式:圖釘在上方,按按鈕時動畫才看得到 */
 body.scroll .labfig{position:sticky;top:50px;z-index:2;background:var(--card);border-bottom:1px solid #d5dbdb}
@@ -515,13 +521,32 @@ body.scroll .labfig svg.fig{max-height:36vh;width:auto;min-width:0!important}
 
 <!-- 19 -->
 <section class="slide">
-  <h2>ppm 與 ppb <span class="en">Parts per Million / Billion</span></h2>
-  <div class="box def"><span class="tag">定義</span>用於<b>極稀薄</b>溶液:<br>ppm = (溶質質量 ÷ 溶液質量) × 10<sup>6</sup>;ppb = × 10<sup>9</sup></div>
-  <ul>
-    <li>1 ppm = 每百萬份中 1 份 = 1 mg 溶質 / 1 kg 溶液</li>
-    <li>稀水溶液密度 ≈ 1.00 g/mL → <span class="hlb">1 ppm ≈ 1 mg/L;1 ppb ≈ 1 μg/L</span></li>
-    <li>應用:飲用水氟化物約 0.7 ppm、污染物管制值常以 ppb 表示</li>
-  </ul>
+  <h2 style="margin-bottom:14px">ppm 與 ppb <span class="en">Parts per Million / Billion — one ruler, three scales</span></h2>
+  <div class="box def" style="margin:0 0 6px;padding:7px 20px;font-size:20px;line-height:1.42"><span class="tag">定義</span>用於<b>極稀薄</b>溶液:ppm = (溶質質量 ÷ 溶液質量) × 10<sup>6</sup>;ppb = × 10<sup>9</sup>。1 ppm = 1 mg 溶質 / 1 kg 溶液;<br>稀水溶液密度 ≈ 1.00 g/mL → <span class="hlb">1 ppm ≈ 1 mg/L;1 ppb ≈ 1 μg/L</span></div>
+  <div class="lab labcol" id="w4lab4">
+    <div class="box exbox" style="margin:0 0 4px;padding:7px 20px;font-size:20px"><span class="tag">先預測,再拖</span>生理食鹽水的 0.9% 換成 ppm 是多少?反過來,1 ppm 等於幾 %?</div>
+    <svg class="fig" viewBox="0 0 1080 152" width="1080" height="152" role="img" aria-labelledby="w4lab4-t w4lab4-d">
+      <title id="w4lab4-t">同一把濃度尺上的三種刻度:%、ppm、ppb</title>
+      <desc id="w4lab4-d">一條對數刻度的橫軸,由左到右是每公斤溶液含 1 微克到 100 公克溶質。上方三條色帶分別標出 %、ppm、ppb 各自常用的範圍與對應的數字,一條直線標記目前的濃度。</desc>
+      <rect x="650" y="16" width="415" height="26" rx="13" fill="#eaf2f8"/>
+      <rect x="190" y="48" width="645" height="26" rx="13" fill="#e8f8f5"/>
+      <rect x="84" y="80" width="406" height="26" rx="13" fill="#fef9e7"/>
+      <g stroke="#2c3e50" stroke-width="2"><line x1="110" y1="106" x2="110" y2="118"/><line x1="225" y1="106" x2="225" y2="118"/><line x1="340" y1="106" x2="340" y2="118"/><line x1="455" y1="106" x2="455" y2="118"/><line x1="570" y1="106" x2="570" y2="118"/><line x1="685" y1="106" x2="685" y2="118"/><line x1="800" y1="106" x2="800" y2="118"/><line x1="915" y1="106" x2="915" y2="118"/><line x1="1030" y1="106" x2="1030" y2="118"/></g>
+      <g font-size="17" font-weight="700" fill="#2c3e50" text-anchor="end"><text x="72" y="35">%</text><text x="72" y="67">ppm</text><text x="72" y="99">ppb</text></g>
+      <g font-size="16" fill="#2c3e50" text-anchor="middle">
+        <text x="685" y="35">0.01</text><text x="800" y="35">0.1</text><text x="915" y="35">1</text><text x="1030" y="35">10</text>
+        <text x="225" y="67">0.01</text><text x="340" y="67">0.1</text><text x="455" y="67">1</text><text x="570" y="67">10</text><text x="685" y="67">100</text><text x="800" y="67">1000</text>
+        <text x="110" y="99">1</text><text x="225" y="99">10</text><text x="340" y="99">100</text><text x="455" y="99">1000</text>
+      </g>
+      <line x1="110" y1="112" x2="1030" y2="112" stroke="#2c3e50" stroke-width="2"/>
+      <g font-size="16" fill="#2c3e50" text-anchor="middle"><text x="110" y="132">1 μg</text><text x="455" y="132">1 mg</text><text x="800" y="132">1 g</text><text x="1030" y="132">100 g</text></g>
+      <text x="570" y="149" font-size="16" fill="#5a6a6b" text-anchor="middle">每 1 kg 溶液裡的溶質質量(每一格差 10 倍)</text>
+      <g class="mk"><line x1="0" y1="8" x2="0" y2="116" stroke="#a04c08" stroke-width="3"/><path d="M-8,0 L8,0 L0,11 Z" fill="#a04c08"/></g>
+    </svg>
+    <div class="labrow noprint"><label for="w4lab4-s">濃度</label><input type="range" id="w4lab4-s" min="0" max="800" step="0.1" value="695.4"><button type="button" class="lbtn" data-lg="-1.523">雙氧水 3%</button><button type="button" class="lbtn" data-lg="-3.222">苯甲酸上限 600 mg/kg</button><button type="button" class="lbtn" data-lg="-6.155">飲水氟 0.7 mg/L</button><button type="button" class="lbtn" data-lg="-8">萊克多巴胺 10 μg/kg</button></div>
+    <div class="labread" style="margin:4px 0">每 1 kg 溶液含溶質 <b id="w4lab4-m">9 g</b>　=　<span id="w4lab4-pct">0.9 %</span>　=　<span id="w4lab4-ppm">9000 ppm</span>　=　<span id="w4lab4-ppb">9 × 10⁶ ppb</span></div>
+    <div class="sol" style="font-size:20px;line-height:1.42;margin-top:6px;padding-top:6px">0.9% = <span class="hl">9000 ppm</span>;1 ppm = <span class="hl">0.0001%</span>。% → ppm 乘 10<sup>4</sup>,ppm → ppb 再乘 10<sup>3</sup>。三個單位是<b>同一把尺</b>上的不同刻度 —— 挑數字好讀的那一個:食品添加物用 ppm,藥物殘留用 ppb。</div>
+  </div>
 </section>
 
 <!-- 20 -->
@@ -642,6 +667,36 @@ body.scroll .labfig svg.fig{max-height:36vh;width:auto;min-width:0!important}
     </div>
   </div>
   <div class="box exbox" style="margin:5px 0;padding:8px 20px;font-size:19px;line-height:1.4"><span class="tag">5% 葡萄糖為什麼也可以</span>葡萄糖 M = 180.2,5% (w/v) = 50 g/L → 0.278 mol/L;葡萄糖<b>不會拆開</b>(i = 1),粒子濃度就是 278 mmol/L,同樣落在血漿區間。<b>兩種點滴的百分濃度差 5 倍,粒子數卻一樣多——這就是「數粒子」的意思</b>;第 12 週的依數性質會把這個想法講完整。</div>
+</section>
+
+<!-- 27b 互動:紅血球與等張 -->
+<section class="slide">
+  <h2>動手試:紅血球泡在不同的點滴裡 <span class="en">Tonicity Lab — count particles, not grams</span></h2>
+  <div class="lab" id="w4lab5">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 380 356" width="380" height="356" role="img" aria-labelledby="w4lab5-t w4lab5-d">
+        <title id="w4lab5-t">紅血球在不同濃度溶液中的變化(示意)</title>
+        <desc id="w4lab5-d">中央是一顆紅血球,周圍的橘色圓點是溶液中的溶質粒子。溶液粒子濃度低於血漿時,藍色箭頭指向細胞內,紅血球脹大甚至脹破;高於血漿時箭頭指向細胞外,紅血球皺縮。下方的橫條標出粒子濃度與血漿的位置。</desc>
+        <g class="dout" fill="#a04c08"></g>
+        <path class="cell" d="" fill="#c0392b" fill-opacity=".28" stroke="#922b21" stroke-width="3" stroke-linejoin="round"/>
+        <g class="din" fill="#922b21"></g>
+        <g class="arr" fill="none" stroke="#1a5276" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></g>
+        <text class="state" x="190" y="24" font-size="19" font-weight="700" fill="#1a5276" text-anchor="middle"></text>
+        <text x="190" y="298" font-size="16" fill="#5a6a6b" text-anchor="middle">藍箭頭 = 水的流向(示意)</text>
+        <rect x="30" y="316" width="320" height="12" rx="6" fill="#d5dbdb"/>
+        <rect x="182" y="316" width="6" height="12" fill="#117a65"/>
+        <g font-size="16" fill="#2c3e50" text-anchor="middle"><text x="30" y="350">0</text><text x="185" y="350">血漿</text><text x="318" y="350">600 mOsm/L</text></g>
+        <path class="gm" d="M-8,302 L8,302 L0,314 Z" fill="#a04c08"/>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① <b>0.9% 的葡萄糖</b>也等張嗎?<br>② 把紅血球放進 <b>2% 食鹽水</b>,它會脹還是縮?</div>
+      <div class="labrow noprint"><span>溶質</span><button type="button" class="lbtn sel" data-k="nacl">NaCl</button><button type="button" class="lbtn" data-k="glu">葡萄糖</button><label for="w4lab5-s">濃度</label><input type="range" id="w4lab5-s" min="0.1" max="6" step="0.05" value="0.9"><b id="w4lab5-po" style="min-width:70px;text-align:right;color:var(--primary)">0.90%</b></div>
+      <div class="labread"><span id="w4lab5-l1">0.90% (w/v) = 9.0 g/L ÷ 58.44 = 0.154 mol/L</span><br><span id="w4lab5-l2">× 1.85(一個 NaCl 拆成約 1.85 個粒子)</span> = <span class="hl M" id="w4lab5-o">285 mOsm/L</span></div>
+      <div class="small">1 mOsm/L = 每公升 1 mmol 粒子。血漿約 285–295。</div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① 不是。0.9% 葡萄糖只有 <span class="hl">50 mOsm/L</span>,水大量灌入,紅血球脹破;葡萄糖要到 5% 才等張。② 2% NaCl 約 <span class="hl">633 mOsm/L</span>,水往外跑,皺縮。<b>等不等張看粒子濃度,不看百分比。</b></div>
+    </div>
+  </div>
 </section>
 
 <!-- 28 -->
@@ -770,6 +825,40 @@ body.scroll .labfig svg.fig{max-height:36vh;width:auto;min-width:0!important}
         <li>固定同一個樣品訊號，用兩條檢量線會讀出什麼差異？</li>
       </ul>
       <div class="box key" style="font-size:20px;margin:10px 0 0"><span class="tag">課堂暫停點</span>約 1:22 進入快問。先判斷高 R² 能不能確認標準液配對了。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 38b 互動:結晶水與檢量線 -->
+<section class="slide">
+  <h2>動手試:秤錯式量,檢量線怎麼歪? <span class="en">Calibration Lab — a perfect line can still be wrong</span></h2>
+  <div class="lab" id="w4lab6">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 430 356" width="430" height="356" role="img" aria-labelledby="w4lab6-t w4lab6-d">
+        <title id="w4lab6-t">標準液配對與配得太稀的兩條檢量線</title>
+        <desc id="w4lab6-d">橫軸是標準液的標示濃度,縱軸是訊號。綠線是標準液配對時的檢量線,紅線是用無水式量去秤水合鹽、標準液實際太稀時的檢量線,斜率較低。同一個樣品訊號在紅線上讀到的濃度比綠線高。</desc>
+        <g stroke="#e5e8e8" stroke-width="1"><line x1="60" y1="170" x2="400" y2="170"/><line x1="60" y1="40" x2="400" y2="40"/><line x1="128" y1="40" x2="128" y2="300"/><line x1="196" y1="40" x2="196" y2="300"/><line x1="264" y1="40" x2="264" y2="300"/><line x1="332" y1="40" x2="332" y2="300"/><line x1="400" y1="40" x2="400" y2="300"/></g>
+        <path d="M60,34 L60,300 L406,300" fill="none" stroke="#2c3e50" stroke-width="2.5"/>
+        <g font-size="16" fill="#2c3e50" text-anchor="middle"><text x="60" y="320">0</text><text x="128" y="320">2</text><text x="196" y="320">4</text><text x="264" y="320">6</text><text x="332" y="320">8</text><text x="400" y="320">10</text></g>
+        <g font-size="16" fill="#2c3e50" text-anchor="end"><text x="52" y="305">0</text><text x="52" y="176">0.5</text><text x="52" y="46">1.0</text></g>
+        <text x="230" y="346" font-size="16" fill="#2c3e50" text-anchor="middle">標示濃度 (mg/L)</text>
+        <text x="66" y="24" font-size="16" fill="#2c3e50">訊號</text>
+        <text x="150" y="24" font-size="16" font-weight="700" fill="#117a65">● 配對了</text>
+        <text x="250" y="24" font-size="16" font-weight="700" fill="#c0392b">● 標準液太稀</text>
+        <line class="good" x1="60" y1="300" x2="400" y2="40" stroke="#117a65" stroke-width="3"/>
+        <line class="bad" x1="60" y1="300" x2="400" y2="137" stroke="#c0392b" stroke-width="3"/>
+        <g class="pg" fill="#117a65"></g><g class="pb" fill="#c0392b"></g>
+        <path class="rd" d="" fill="none" stroke="#2c3e50" stroke-width="2" stroke-dasharray="6 5"/>
+        <path class="rb" d="" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="6 5"/>
+        <text class="sl" x="0" y="0" font-size="16" fill="#2c3e50">樣品訊號</text>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>用無水式量去秤十水合鹽,標準液只有標示值的 62.8%。拿這條線去讀<b>同一個樣品</b>:偏高還是偏低?差 37%、59%、還是 63%?</div>
+      <div class="labrow noprint"><span>試劑</span><button type="button" class="lbtn sel" data-r="fe">亞鐵氰化鈉·10H<sub>2</sub>O</button><button type="button" class="lbtn" data-r="cu">硫酸銅·5H<sub>2</sub>O</button><button type="button" class="lbtn" data-r="glu">葡萄糖·H<sub>2</sub>O</button></div>
+      <div class="labrow noprint"><label for="w4lab6-s">樣品真值</label><input type="range" id="w4lab6-s" min="1" max="6" step="0.1" value="4"><b id="w4lab6-co" style="min-width:96px;text-align:right;color:var(--primary)">4.00 mg/L</b></div>
+      <div class="labread">標準液實際濃度 = 標示值 × <b id="w4lab6-f">62.8%</b>(<span id="w4lab6-fw">303.91 ÷ 484.06</span>)<br>樣品真值 <b id="w4lab6-c">4.00</b> mg/L → 紅線讀出 <span class="hl M" id="w4lab6-w">6.37 mg/L</span>(<span id="w4lab6-e">高估 59.3%</span>)<br>兩條線的 R² 都是 <b>1.000</b></div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>偏<span class="hl">高 59.3%</span>。讀值 = 真值 ÷ 0.628 = 真值 × 1.593;少秤 37% 並不等於高估 37%。兩條線都是完美直線、R² 相同 —— <b>從數據本身看不出來</b>,只能回頭查秤量紀錄。</div>
     </div>
   </div>
 </section>
@@ -1063,6 +1152,102 @@ addEventListener('hashchange',()=>{
     let keep=100;
     addEventListener('beforeprint',()=>{keep=sv.value;sv.value=500;render();});
     addEventListener('afterprint',()=>{sv.value=keep;render();});
+  })();
+  /* ── 4 ppm 尺:% / ppm / ppb 是同一把尺 ── */
+  (function(){
+    const root=$('w4lab4');if(!root)return;
+    const s=$('w4lab4-s'),mk=root.querySelector('.mk'),svg=root.querySelector('svg');
+    const sup=n=>String(n).replace('-','⁻').replace(/\d/g,d=>'⁰¹²³⁴⁵⁶⁷⁸⁹'[d]);
+    function fmt(x){
+      if(x>=0.001&&x<1e5)return String(Number(x.toPrecision(2)));
+      const e=Math.floor(Math.log10(x)+1e-9),m=Number((x/Math.pow(10,e)).toPrecision(2));
+      return (m===1?'':m+' × ')+'10'+sup(e);
+    }
+    function render(){
+      const lg=-9+(+s.value)/100,w=Math.pow(10,lg),x=110+(lg+9)*115,g=w*1000;
+      mk.setAttribute('transform','translate('+x+',0)');
+      $('w4lab4-m').textContent=g>=1?fmt(g)+' g':g>=1e-3?fmt(g*1e3)+' mg':fmt(g*1e6)+' μg';
+      const best=w>=1e-3?'pct':w>=1e-7?'ppm':'ppb';
+      [['pct',w*100,' %'],['ppm',w*1e6,' ppm'],['ppb',w*1e9,' ppb']].forEach(([k,v,u])=>{
+        const o=$('w4lab4-'+k);o.textContent=fmt(v)+u;o.className=k===best?'hl M':'';
+      });
+      const wrap=svg.parentElement;
+      if(wrap.scrollWidth>wrap.clientWidth+2)wrap.scrollLeft=x*svg.getBoundingClientRect().width/1080-wrap.clientWidth/2;
+    }
+    s.addEventListener('input',render);
+    root.querySelectorAll('[data-lg]').forEach(b=>b.addEventListener('click',()=>{s.value=((+b.dataset.lg+9)*100).toFixed(1);render();}));
+    render();setTimeout(render,0);addEventListener('resize',render);
+  })();
+  /* ── 5 紅血球與等張 ── */
+  (function(){
+    const root=$('w4lab5');if(!root)return;
+    const SOL={nacl:{mw:58.44,i:1.85,t:'× 1.85(一個 NaCl 拆成約 1.85 個粒子)'},glu:{mw:180.2,i:1,t:'× 1(葡萄糖不會拆開)'}};
+    const s=$('w4lab5-s'),cell=root.querySelector('.cell'),arr=root.querySelector('.arr'),st=root.querySelector('.state'),gm=root.querySelector('.gm');
+    const CX=190,CY=158,R0=60;let k='nacl';
+    const din=[],dout=[];
+    for(let i=0;i<6;i++)din.push({r:Math.sqrt(rnd())*.72,a:rnd()*6.283,c:el('circle',{r:4.5},root.querySelector('.din'))});
+    while(dout.length<70){
+      const x=16+rnd()*348,y=40+rnd()*236;
+      if(Math.hypot(x-CX,y-CY)>104)dout.push(el('circle',{r:4.5,cx:x,cy:y},root.querySelector('.dout')));
+    }
+    function render(){
+      const p=+s.value,S=SOL[k],gl=p*10,M=gl/S.mw,osm=M*S.i*1000;
+      const burst=osm<110,hypo=osm<260,hyper=osm>310;
+      const r=R0*(burst?1.42:Math.max(.6,Math.cbrt(290/osm))),amp=hyper?Math.min(.13,(osm-310)/2600+.03):0;
+      let d='';
+      for(let j=0;j<=72;j++){
+        const a=j/72*6.283,rr=r*(1+amp*Math.sin(9*a));
+        d+=(j?'L':'M')+(CX+rr*Math.cos(a)).toFixed(1)+','+(CY+rr*Math.sin(a)).toFixed(1);
+      }
+      cell.setAttribute('d',d+'Z');
+      cell.setAttribute('stroke-dasharray',burst?'5 9':'none');cell.setAttribute('fill-opacity',burst?.08:.28);
+      din.forEach(o=>{o.c.setAttribute('cx',CX+o.r*r*Math.cos(o.a));o.c.setAttribute('cy',CY+o.r*r*Math.sin(o.a));});
+      const n=Math.min(70,Math.round(osm/10.4));
+      dout.forEach((c,j)=>c.setAttribute('visibility',j<n?'visible':'hidden'));
+      let a='';
+      if(hypo||hyper)for(let j=0;j<6;j++){
+        const t=j/6*6.283+.5,c=Math.cos(t),sn=Math.sin(t);
+        const r1=hypo?r+44:r+12,r2=hypo?r+14:r+42,hx=CX+r2*c,hy=CY+r2*sn,dir=hypo?-1:1;
+        a+='M'+(CX+r1*c).toFixed(1)+','+(CY+r1*sn).toFixed(1)+'L'+hx.toFixed(1)+','+hy.toFixed(1);
+        [-.5,.5].forEach(q=>{const back=t+(dir>0?Math.PI:0)+q;a+='M'+hx.toFixed(1)+','+hy.toFixed(1)+'L'+(hx+11*Math.cos(back)).toFixed(1)+','+(hy+11*Math.sin(back)).toFixed(1);});
+      }
+      arr.setAttribute('d','');arr.innerHTML='';if(a)el('path',{d:a},arr);
+      st.textContent=burst?'低張:脹破(溶血)':hypo?'低張:水往裡灌,脹大':hyper?'高張:水往外跑,皺縮':'等張:不脹不縮';
+      gm.setAttribute('transform','translate('+(30+Math.min(600,osm)*320/600)+',0)');
+      $('w4lab5-po').textContent=p.toFixed(2)+'%';
+      $('w4lab5-l1').textContent=p.toFixed(2)+'% (w/v) = '+gl.toFixed(1)+' g/L ÷ '+S.mw+' = '+M.toFixed(3)+' mol/L';
+      $('w4lab5-l2').textContent=S.t;
+      $('w4lab5-o').textContent=Math.round(osm)+' mOsm/L';
+    }
+    s.addEventListener('input',render);
+    root.querySelectorAll('[data-k]').forEach(b=>b.addEventListener('click',()=>{
+      k=b.dataset.k;root.querySelectorAll('[data-k]').forEach(o=>o.classList.toggle('sel',o===b));render();
+    }));
+    render();
+  })();
+  /* ── 6 結晶水與檢量線 ── */
+  (function(){
+    const root=$('w4lab6');if(!root)return;
+    const R={fe:[303.91,484.06],cu:[159.60,249.68],glu:[180.16,198.17]};
+    const s=$('w4lab6-s'),X=c=>60+c*34,Y=a=>300-a*260;let key='fe';
+    const pg=[],pb=[];
+    [2,4,6,8,10].forEach(c=>{pg.push(el('circle',{r:5.5,cx:X(c),cy:Y(.1*c)},root.querySelector('.pg')));pb.push(el('circle',{r:5.5,cx:X(c)},root.querySelector('.pb')));});
+    function render(){
+      const [a,h]=R[key],f=a/h,c=+s.value,A=.1*c,cw=c/f;
+      root.querySelector('.bad').setAttribute('y2',Y(f));
+      pb.forEach((p,i)=>p.setAttribute('cy',Y(.1*f*(i+1)*2)));
+      root.querySelector('.rd').setAttribute('d','M60,'+Y(A)+'L'+X(cw)+','+Y(A)+'M'+X(c)+','+Y(A)+'L'+X(c)+',300');
+      root.querySelector('.rb').setAttribute('d','M'+X(cw)+','+Y(A)+'L'+X(cw)+',300');
+      const sl=root.querySelector('.sl');sl.setAttribute('x',66);sl.setAttribute('y',Y(A)-7);
+      $('w4lab6-co').textContent=c.toFixed(2)+' mg/L';$('w4lab6-c').textContent=c.toFixed(2);
+      $('w4lab6-f').textContent=(f*100).toFixed(1)+'%';$('w4lab6-fw').textContent=a.toFixed(2)+' ÷ '+h.toFixed(2);
+      $('w4lab6-w').textContent=cw.toFixed(2)+' mg/L';$('w4lab6-e').textContent='高估 '+((1/f-1)*100).toFixed(1)+'%';
+    }
+    s.addEventListener('input',render);
+    root.querySelectorAll('[data-r]').forEach(b=>b.addEventListener('click',()=>{
+      key=b.dataset.r;root.querySelectorAll('[data-r]').forEach(o=>o.classList.toggle('sel',o===b));render();
+    }));
+    render();
   })();
 })();
 </script>

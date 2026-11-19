@@ -147,6 +147,41 @@ tr:nth-child(even) td{background:#f4f6f7}
   #bar{display:none}
 }
 </style>
+<style id="lab-css">
+/* ── 互動實驗台(先預測、再動手)──────────────────────── */
+.lab{display:flex;gap:30px;align-items:flex-start}
+.labfig{flex:0 0 auto}
+.labfig .fig{margin:0 auto}
+.labside{flex:1;min-width:0}
+.labside .box{margin:0 0 8px;font-size:21px;line-height:1.45;padding:9px 18px}
+.labside .eq{margin:6px 0;font-size:26px}
+.labctl{display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:center;font-size:20px;margin:6px 0}
+.labctl input[type=range]{width:100%;height:28px;accent-color:var(--primary);cursor:pointer}
+.labctl output{font-weight:700;color:var(--primary);min-width:96px;text-align:right}
+.labread{font-size:21px;line-height:1.5;background:#f4f6f7;border-radius:8px;padding:7px 16px;margin:6px 0}
+.labread .M{font-size:27px}
+.lbtn{font-family:inherit;font-size:19px;font-weight:700;padding:6px 16px;border-radius:8px;border:2px solid var(--primary);background:#fff;color:var(--primary);cursor:pointer;margin:2px 8px 2px 0}
+.lbtn:hover{background:var(--def-bg)}
+.lbtn:disabled{color:var(--muted);border-color:#aab7b8;background:#f4f6f7;cursor:default}
+.lbtn.bad{border-color:#c0392b;color:#c0392b}
+.labmsg{font-size:20px;line-height:1.42;min-height:86px;margin:6px 0;padding:7px 16px;border-radius:8px;background:#f4f6f7}
+.labmsg.bad{background:var(--warn-bg);color:#922b21}
+.slide ol.steps{font-size:21px;line-height:1.4;margin:0 0 6px 30px}
+.steps li{margin:4px 0;color:var(--muted)}
+.steps li.on{color:var(--ink)}
+.steps li.now{color:var(--primary);font-weight:700}
+.lab.labcol{display:block}
+.lbtn.sel{background:var(--primary);color:#fff}
+.labrow{display:flex;gap:10px;align-items:center;font-size:20px;margin:4px 0}
+.labrow input[type=range]{flex:1;min-width:120px;height:28px;accent-color:var(--primary);cursor:pointer}
+.labrow .lbtn{margin:0;font-size:17px;padding:5px 11px;white-space:nowrap}
+body.scroll .labrow{flex-wrap:wrap}
+body.scroll .lab{flex-direction:column;align-items:stretch;gap:12px}
+/* 閱讀模式:圖釘在上方,按按鈕時動畫才看得到 */
+body.scroll .labfig{position:sticky;top:50px;z-index:2;background:var(--card);border-bottom:1px solid #d5dbdb}
+body.scroll .labfig svg.fig{max-height:36vh;width:auto;min-width:0!important}
+@media print{.steps li{color:var(--ink)!important;font-weight:400!important}.noprint{display:none!important}}
+</style>
 <style id="mobile-css">
 /* ── 行動裝置閱讀模式（body.scroll）與工具列 ─────────────── */
 #mtb{position:fixed;top:8px;right:8px;z-index:20;display:flex;gap:6px;align-items:center}
@@ -417,6 +452,48 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <span class="small">ADI 乘上體重後,單位從 mg/kg/天 變回 mg/天 —— <b>體重在這裡是換算因子,不是「除法規則」</b>。<br>這也是回答家長提問的標準做法:與其說「安不安全」,不如給一個可理解的份量。</span></div></div>
   <div class="box key"><span class="tag">兩題的關係</span>例題 6 是順算(份量 → %ADI),例題 7 是反算(ADI → 份量)。<b>同一條路線,反方向走</b> —— 每個因子上下顛倒即可。</div>
 </section>
+
+<!-- LAB w1blab1 -->
+<section class="slide">
+  <h2>動手試:同一罐,換一個體重 <span class="en">ADI Lab — divide by body weight first</span></h2>
+  <div class="lab" id="w1blab1">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 440 376" width="440" height="376" role="img" aria-labelledby="w1blab1-t w1blab1-d">
+        <title id="w1blab1-t">阿斯巴甜攝入量除以體重、再除以 ADI 的三段路線與佔 ADI 橫條</title>
+        <desc id="w1blab1-d">由上而下三個方框:每天攝入的毫克數、除以體重後的每公斤體重毫克數、除以 ADI 40 後的佔 ADI 百分比。兩個方框之間的箭頭標出這一步做了什麼,其中「除以體重」以紅色標示,是最常漏掉的一步。若選擇漏掉除以體重,該箭頭變成灰色虛線,最後的百分比以紅色顯示錯誤的結果。最下方的橫條標出 0 到 200%,中間的直線是 ADI 100%。</desc>
+        <path d="M20,8h400v52h-400Z" fill="#f4f6f7" stroke="#1a5276" stroke-width="2"/>
+        <text x="36" y="41" font-size="18" font-weight="700" fill="#2c3e50">每天攝入</text>
+        <text class="vA" x="404" y="43" font-size="24" font-weight="700" fill="#1a5276" text-anchor="end"></text>
+        <g class="a1"><path class="a1l" d="M70,62V108" stroke="#c0392b" stroke-width="4" fill="none"/><path class="a1h" d="M61,104L70,117L79,104Z" fill="#c0392b"/></g>
+        <text class="t1" x="92" y="88" font-size="19" font-weight="700" fill="#c0392b"></text>
+        <text class="t1b" x="92" y="110" font-size="16" fill="#922b21"></text>
+        <path d="M20,118h400v52h-400Z" fill="#f4f6f7" stroke="#1a5276" stroke-width="2"/>
+        <text x="36" y="151" font-size="18" font-weight="700" fill="#2c3e50">每公斤體重</text>
+        <text class="vB" x="404" y="153" font-size="24" font-weight="700" fill="#1a5276" text-anchor="end"></text>
+        <path d="M70,172V218" stroke="#117a65" stroke-width="4" fill="none"/><path d="M61,214L70,227L79,214Z" fill="#117a65"/>
+        <text class="t2" x="92" y="198" font-size="19" font-weight="700" fill="#117a65"></text>
+        <text class="t2b" x="92" y="220" font-size="16" fill="#5a6a6b"></text>
+        <path d="M20,228h400v52h-400Z" fill="#f4f6f7" stroke="#1a5276" stroke-width="2"/>
+        <text x="36" y="261" font-size="18" font-weight="700" fill="#2c3e50">佔 ADI</text>
+        <text class="vC" x="404" y="264" font-size="26" font-weight="700" fill="#117a65" text-anchor="end"></text>
+        <path d="M20,318h400v26h-400Z" fill="#f4f6f7" stroke="#5a6a6b" stroke-width="1.5"/>
+        <path class="bf" d="" fill="#117a65"/>
+        <text class="ov" x="414" y="337" font-size="16" font-weight="700" fill="#ffffff" text-anchor="end"></text>
+        <path d="M220,310V352" stroke="#2c3e50" stroke-width="3" fill="none"/>
+        <g font-size="16" fill="#2c3e50"><text x="20" y="306">佔 ADI 的橫條</text><text x="20" y="370">0</text><text x="220" y="370" text-anchor="middle">ADI 100%</text><text x="420" y="370" text-anchor="end">200%</text></g>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 90 kg 喝 1 罐;<b>體重減半</b>(45 kg)喝同一罐,%ADI 變幾倍?<br>② <b>漏掉「÷ 體重」</b>,算出的 % 會比正確值大幾倍?</div>
+      <div class="labrow noprint"><label for="w1blab1-w" style="min-width:96px">體重</label><input type="range" id="w1blab1-w" min="15" max="100" step="1" value="90"><b id="w1blab1-wv" style="min-width:80px;text-align:right;color:var(--primary)">90 kg</b></div>
+      <div class="labrow noprint"><label for="w1blab1-n" style="min-width:96px">每天幾罐</label><input type="range" id="w1blab1-n" min="1" max="6" step="1" value="1"><b id="w1blab1-nv" style="min-width:80px;text-align:right;color:var(--primary)">1 罐</b></div>
+      <div class="labrow noprint"><button type="button" class="lbtn" data-x="half">體重減半</button><button type="button" class="lbtn bad" data-x="skip">漏掉「÷ 體重」</button><button type="button" class="lbtn" data-x="0">回到 90 kg、1 罐</button></div>
+      <div class="labread"><span id="w1blab1-l1">1 罐 × 180 mg = 180 mg/天</span><br><span id="w1blab1-l2">÷ 90 kg = 2.0 mg/kg 體重/天</span><br><span id="w1blab1-l3">÷ 40 × 100% = 5.0% ADI</span></div>
+      <div class="small" style="font-size:17px;line-height:1.35">ADI 已內含約 100 倍安全係數、是<b>長期平均</b>的概念 —— 偶爾超過一點<b>不等於</b>中毒。</div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① <span class="hl">2 倍</span>:90 kg 是 5.0%、45 kg 是 10%,每公斤體重分到的量加倍。② 大了「體重數值」倍:90 kg 會算成 450%,是正確值的 <span class="hl">90 倍</span>。<b>ADI 的分母有 kg 體重 —— 先 ÷ 體重才能比。</b></div>
+    </div>
+  </div>
+</section>
 <!-- 19 -->
 <section class="slide">
   <h2>例題 8:苯甲酸(淡出練習) <span class="en">Example 8 — Faded</span></h2>
@@ -467,7 +544,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="railnote" style="margin:4px 0 2px"><b>路線:</b>　oz → g 牛肉 → kg 牛肉 → μg 殘留 → μg/kg 體重 → %ADI</div>
   <div class="sol"><b>解:</b>10 oz × (28.35 g/1 oz) = 283.5 g = 0.2835 kg<br>
   0.2835 kg × (10 μg/1 kg) = <b>2.84 μg</b>　→　2.84 ÷ 60 kg = 0.047 μg/kg/天 → <span class="hl">4.7% ADI</span><br>
-  <span class="small">25 kg 兒童同一客牛排:0.113 μg/kg/天 = <b>11.3% ADI</span></span></div></div>
+  <span class="small">25 kg 兒童同一客牛排:0.113 μg/kg/天 = <b>11.3% ADI</b></span></div></div>
   <div class="box warn" style="margin:6px 0;padding:10px 22px"><span class="tag">本題的假設要說清楚</span>此估算假設<b>每一口都剛好在標準上限</b>,是刻意保守的最壞情況;實際抽驗殘留通常遠低於上限,且這只是<b>單一食物</b>的估算,不是完整的總膳食暴露評估。<span class="small">（法規值請以衛福部最新公告為準。）</span></div>
 </section>
 <!-- 23 -->
@@ -514,6 +591,36 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="sol"><b>解:</b>(a) 2.6 ÷ 15 × 100% = <span class="hl">17%</span> —— 要靠多樣飲食累積<br>
   (b) 65 ÷ 40 × 100% = <span class="hl">162%</span>,<b>單顆就超過上限</b><br>
   <span class="small">補充劑需由醫療人員評估後使用。<br><b>提醒:</b>這裡的 65 mg 是<b>元素鐵</b>;若標示寫「硫酸亞鐵 325 mg」,要先用百分組成換算 —— 和第 2 週的鈣片題是同一件事。</span></div></div>
+</section>
+
+<!-- LAB w1blab2 -->
+<section class="slide">
+  <h2>動手試:夠不夠?過不過量? <span class="en">DRIs Lab — the target and the ceiling</span></h2>
+  <div class="lab" id="w1blab2">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 440 290" width="440" height="290" role="img" aria-labelledby="w1blab2-t w1blab2-d">
+        <title id="w1blab2-t">每日攝取量落在 DRIs 橫尺的哪一區</title>
+        <desc id="w1blab2-d">一條橫尺分成三區:左邊灰色是未達建議量(鈣為 AI、鐵為 RDA),中間綠色是達標的安全區,右邊紅色是超過上限攝取量 UL。尺的上方標出建議量與 UL 的數值,下方的三角形指出目前的每日攝取量。圖的下半部寫出落在哪一區,以及攝取量佔建議量與佔 UL 各是幾 %。</desc>
+        <text class="hd" x="20" y="26" font-size="20" font-weight="700" fill="#1a5276"></text>
+        <text class="hd2" x="20" y="52" font-size="17" fill="#2c3e50"></text>
+        <g class="ticks" font-size="16" fill="#2c3e50"></g>
+        <g class="zones" font-size="16" font-weight="700" text-anchor="middle"></g>
+        <path class="ptr" d="" fill="#2c3e50"/>
+        <text class="pv" x="0" y="184" font-size="17" font-weight="700" fill="#2c3e50" text-anchor="middle"></text>
+        <path d="M20,204H420" stroke="#d5dbdb" stroke-width="2" fill="none"/>
+        <text class="zn" x="220" y="238" font-size="24" font-weight="700" text-anchor="middle"></text>
+        <text class="zp" x="220" y="270" font-size="18" fill="#2c3e50" text-anchor="middle"></text>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 鈣的 UL 是 AI 的幾倍?鐵的 UL 是 RDA 的幾倍?哪一種的天花板離目標比較近?<br>② <b>剛好達標</b>後再多吃一份(變 2 倍),會「更充足」嗎?</div>
+      <div class="labrow noprint"><button type="button" class="lbtn sel" data-k="ca">鈣(成人)</button><button type="button" class="lbtn" data-k="fe">鐵(成年女性)</button><button type="button" class="lbtn" data-x="t">剛好達標</button><button type="button" class="lbtn" data-x="d">再多吃一份(×2)</button></div>
+      <div class="labrow noprint"><label for="w1blab2-v" style="min-width:96px">每日攝取</label><input type="range" id="w1blab2-v" min="0" max="3500" step="250" value="750"><b id="w1blab2-vv" style="min-width:110px;text-align:right;color:var(--primary)">750 mg</b></div>
+      <div class="labread"><span id="w1blab2-l1">夠不夠:750 ÷ AI 1000 = 75% AI</span><br><span id="w1blab2-l2">會不會過量:750 ÷ UL 2500 = 30% UL</span><br><span id="w1blab2-l3">→ 未達 AI</span></div>
+      <div class="small" style="font-size:17px;line-height:1.35">數值取自例題 13、14。補充劑需由醫療人員評估後使用。</div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① 鈣 2500 ÷ 1000 = <span class="hl">2.5 倍</span>、鐵 40 ÷ 15 = <span class="hl">2.7 倍</span>:用 mg 看鐵只差 25 mg,用倍數看兩者差不多,鈣還略近。② 不會。2 倍仍是「達標」,只是更靠近 UL(鈣 2000 = 80% UL、鐵 30 = 75% UL)。<b>達標之後多吃不會更好,只會更靠近天花板。</b></div>
+    </div>
+  </div>
 </section>
 <!-- 28 -->
 <section class="slide quiz">
@@ -665,6 +772,142 @@ addEventListener('touchend',e=>{
 addEventListener('hashchange',()=>{const n=parseInt(location.hash.slice(1))-1;if(n!==cur&&!isNaN(n))show(n);});
 fit();
 show(parseInt(location.hash.slice(1))-1||0);
+</script>
+<script id="lab-js">
+(function(){
+/* 共用工具(每支 deck 相同,不要改) */
+  const NS='http://www.w3.org/2000/svg',$=id=>document.getElementById(id);
+  const el=(n,a,p)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;};
+  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let seed=7;const rnd=()=>(seed=seed*16807%2147483647)/2147483647;
+  function tw(ms,fn,done){
+    if(still||ms<=0){fn(1);if(done)done();return;}
+    let t0=null;
+    requestAnimationFrame(function f(t){
+      if(t0===null)t0=t;
+      const k=Math.min(1,(t-t0)/ms),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+      fn(e);if(k<1)requestAnimationFrame(f);else if(done)done();
+    });
+  }
+  // 控制項上的點擊、觸控、方向鍵不可觸發翻頁
+  document.querySelectorAll('.lab').forEach(l=>{
+    ['click','touchstart','touchend'].forEach(t=>l.addEventListener(t,e=>{if(e.target.closest('button,input,label'))e.stopPropagation();}));
+    l.addEventListener('keydown',e=>{if(e.target.matches('input'))e.stopPropagation();});
+    l.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>b.blur()));
+    l.querySelectorAll('input[type=range]').forEach(r=>r.addEventListener('pointerup',()=>r.blur()));
+  });
+/* w1blab1 */
+(function(){
+  const root=$('w1blab1');if(!root)return;
+  /* 數值全部取自例題 6:每罐阿斯巴甜 180 mg、ADI 40 mg/kg 體重/天 */
+  const PER=180,ADI=40,X0=20,PX=2;          /* 橫條 0–200%,每 1% = 2 px */
+  const sw=$('w1blab1-w'),sn=$('w1blab1-n'),q=c=>root.querySelector(c);
+  let skip=false;
+  /* 有效位數比照 deck:< 100 取 2 位(7.5、18),≥ 100 取整數(240、197) */
+  const pc=p=>p>=99.5?String(Math.round(p)):p.toPrecision(2);
+  const mk=v=>v.toPrecision(2);
+  function render(){
+    const W=+sw.value,n=+sn.value,day=PER*n,perkg=+mk(day/W),p=+(perkg/ADI*100).toFixed(9),wrong=day/ADI*100;
+    /* 比照例題 6:中間值先取 2 位(3.0),% 由顯示的中間值算(3.0/40 = 7.5%),兩行讀數才自洽 */
+    $('w1blab1-wv').textContent=W+' kg';$('w1blab1-nv').textContent=n+' 罐';
+    q('.vA').textContent=day+' mg/天';
+    $('w1blab1-l1').textContent=n+' 罐 × '+PER+' mg = '+day+' mg/天';
+    const show=skip?wrong:p,col=skip?'#c0392b':(p>100?'#a04c08':'#117a65');
+    if(!skip){
+      q('.a1l').setAttribute('stroke','#c0392b');q('.a1l').removeAttribute('stroke-dasharray');q('.a1h').setAttribute('fill','#c0392b');
+      q('.t1').textContent='÷ 體重 '+W+' kg';q('.t1b').textContent='← 本節最常漏掉的一步';
+      q('.vB').textContent=mk(perkg)+' mg/kg 體重/天';q('.vB').setAttribute('fill','#1a5276');
+      q('.t2').textContent='÷ ADI '+ADI+' × 100%';q('.t2').setAttribute('fill','#117a65');
+      q('.t2b').textContent='兩邊都是 mg/kg 體重/天,才能相除';
+      $('w1blab1-l2').textContent='÷ '+W+' kg = '+mk(perkg)+' mg/kg 體重/天';
+      $('w1blab1-l3').innerHTML='÷ '+ADI+' × 100% = <span class="hl M">'+pc(p)+'% ADI</span>';
+    }else{
+      q('.a1l').setAttribute('stroke','#5a6a6b');q('.a1l').setAttribute('stroke-dasharray','6 5');q('.a1h').setAttribute('fill','#5a6a6b');
+      q('.t1').textContent='✘ 跳過了 ÷ 體重';q('.t1b').textContent='單位還停在 mg/天';
+      q('.vB').textContent='(沒有算)';q('.vB').setAttribute('fill','#5a6a6b');
+      q('.t2').textContent='直接 ÷ '+ADI+' × 100%';q('.t2').setAttribute('fill','#c0392b');
+      q('.t2b').textContent='拿 mg/天 去比 mg/kg 體重/天';
+      $('w1blab1-l2').innerHTML='÷ 體重 → <b style="color:#c0392b">跳過了</b>';
+      $('w1blab1-l3').innerHTML=day+' ÷ '+ADI+' × 100% = <span class="hl M" style="color:#c0392b">'+pc(wrong)+'%</span> ✘ 少除了 '+W+' kg,就大了 '+W+' 倍';
+    }
+    q('.vC').textContent=pc(show)+'%'+(skip?' ✘':'');q('.vC').setAttribute('fill',col);
+    const L=Math.min(show,200)*PX;
+    q('.bf').setAttribute('d',L>0?'M'+X0+',318h'+L+'v26h'+(-L)+'Z':'');q('.bf').setAttribute('fill',col);
+    q('.ov').textContent=show>200?'> 200%':'';
+    const b=q('[data-x="half"]');b.disabled=W%2===1||W/2<+sw.min;
+    const s=q('[data-x="skip"]');s.textContent=skip?'改回正確算法':'漏掉「÷ 體重」';s.classList.toggle('bad',!skip);
+  }
+  sw.addEventListener('input',render);sn.addEventListener('input',render);
+  root.querySelectorAll('[data-x]').forEach(b=>b.addEventListener('click',()=>{
+    const x=b.dataset.x;
+    if(x==='half')sw.value=+sw.value/2;
+    if(x==='skip')skip=!skip;
+    if(x==='0'){sw.value=90;sn.value=1;skip=false;}
+    render();
+  }));
+  render();
+})();
+/* w1blab2 */
+(function(){
+  const root=$('w1blab2');if(!root)return;
+  /* 參考值只用 deck 例題 13(鈣 AI 1000、UL 2500)與例題 14(成年女性鐵 RDA 15、UL 40),單位 mg/天 */
+  const N={
+    ca:{hd:'鈣(成人)',ref:'AI',T:1000,UL:2500,max:3500,step:250,def:750},
+    fe:{hd:'鐵(成年女性)',ref:'RDA',T:15,UL:40,max:50,step:0.5,def:10}
+  };
+  const X0=20,WD=400,Y0=96,H=40;
+  const sv=$('w1blab2-v'),q=c=>root.querySelector(c),gt=q('.ticks'),gz=q('.zones');
+  const f=v=>(Math.round(v*10)/10).toString();
+  let k='ca';
+  const X=v=>X0+WD*v/N[k].max;
+  const box=(a,b)=>'M'+a+','+Y0+'H'+b+'V'+(Y0+H)+'H'+a+'Z';
+  function scale(){
+    const M=N[k];
+    q('.hd').textContent=M.hd;
+    q('.hd2').textContent=M.ref+' '+M.T+' mg/天・UL '+M.UL+' mg/天';
+    gt.innerHTML='';gz.innerHTML='';
+    const xa=X(M.T),xu=X(M.UL);
+    [[X0,xa,'#d5dbdb','#2c3e50','未達 '+M.ref],[xa,xu,'#117a65','#ffffff','達標(安全區)'],[xu,X0+WD,'#c0392b','#ffffff','超過 UL']].forEach(([a,b,c,tc,t])=>{
+      el('path',{d:box(a,b),fill:c},gz);
+      el('text',{x:(a+b)/2,y:Y0+26,fill:tc},gz).textContent=t;
+    });
+    el('path',{d:'M'+xa+','+(Y0-6)+'V'+(Y0+H+4)+'M'+xu+','+(Y0-6)+'V'+(Y0+H+4),stroke:'#2c3e50','stroke-width':3,fill:'none'},gt);
+    el('text',{x:xa,y:Y0-12,'text-anchor':'middle','font-weight':700},gt).textContent=M.ref+' '+M.T;
+    el('text',{x:xu,y:Y0-12,'text-anchor':'middle','font-weight':700,fill:'#c0392b'},gt).textContent='UL '+M.UL;
+    el('text',{x:X0,y:Y0-12},gt).textContent='0';
+    el('text',{x:X0+WD,y:Y0-12,'text-anchor':'end'},gt).textContent=M.max;
+    sv.min=0;sv.max=M.max;sv.step=M.step;
+  }
+  function render(){
+    const M=N[k],v=+sv.value,pr=Math.round(v/M.T*100),pu=Math.round(v/M.UL*100);
+    const z=v<M.T?0:v<=M.UL?1:2;
+    const name=['未達 '+M.ref,'達標(安全區)','超過 UL'][z],col=['#5a6a6b','#117a65','#c0392b'][z];
+    $('w1blab2-vv').textContent=f(v)+' mg';
+    const x=X(v);
+    q('.ptr').setAttribute('d','M'+x+','+(Y0+H+2)+'L'+(x+9)+','+(Y0+H+18)+'L'+(x-9)+','+(Y0+H+18)+'Z');
+    const pv=q('.pv');pv.setAttribute('x',Math.max(X0+36,Math.min(X0+WD-36,x)));pv.textContent=f(v)+' mg';
+    q('.zn').textContent='落點:'+name;q('.zn').setAttribute('fill',col);
+    q('.zp').textContent='佔 '+M.ref+' '+pr+'%・佔 UL '+pu+'%';
+    $('w1blab2-l1').textContent='夠不夠:'+f(v)+' ÷ '+M.ref+' '+M.T+' = '+pr+'% '+M.ref;
+    $('w1blab2-l2').textContent='會不會過量:'+f(v)+' ÷ UL '+M.UL+' = '+pu+'% UL';
+    $('w1blab2-l3').innerHTML='→ <span class="hl M" style="color:'+col+'">'+name+'</span>';
+    q('[data-x="d"]').disabled=v*2>M.max+1e-9||v===0;
+  }
+  sv.addEventListener('input',render);
+  root.querySelectorAll('[data-k]').forEach(b=>b.addEventListener('click',()=>{
+    if(b.dataset.k===k)return;
+    k=b.dataset.k;
+    root.querySelectorAll('[data-k]').forEach(o=>o.classList.toggle('sel',o===b));
+    scale();sv.value=N[k].def;render();
+  }));
+  root.querySelectorAll('[data-x]').forEach(b=>b.addEventListener('click',()=>{
+    if(b.dataset.x==='t')sv.value=N[k].T;
+    if(b.dataset.x==='d')sv.value=+sv.value*2;
+    render();
+  }));
+  scale();render();
+})();
+})();
 </script>
 <script id="mobile-js">
 (function(){

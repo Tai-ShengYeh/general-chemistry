@@ -155,6 +155,41 @@ body.scroll .animation-layout{grid-template-columns:1fr}
 body.scroll .animation-layout video{max-height:none}
 @media(max-width:720px){.animation-layout{grid-template-columns:1fr}}
 </style>
+<style id="lab-css">
+/* ── 互動實驗台(先預測、再動手)──────────────────────── */
+.lab{display:flex;gap:30px;align-items:flex-start}
+.labfig{flex:0 0 auto}
+.labfig .fig{margin:0 auto}
+.labside{flex:1;min-width:0}
+.labside .box{margin:0 0 8px;font-size:21px;line-height:1.45;padding:9px 18px}
+.labside .eq{margin:6px 0;font-size:26px}
+.labctl{display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:center;font-size:20px;margin:6px 0}
+.labctl input[type=range]{width:100%;height:28px;accent-color:var(--primary);cursor:pointer}
+.labctl output{font-weight:700;color:var(--primary);min-width:96px;text-align:right}
+.labread{font-size:21px;line-height:1.5;background:#f4f6f7;border-radius:8px;padding:7px 16px;margin:6px 0}
+.labread .M{font-size:27px}
+.lbtn{font-family:inherit;font-size:19px;font-weight:700;padding:6px 16px;border-radius:8px;border:2px solid var(--primary);background:#fff;color:var(--primary);cursor:pointer;margin:2px 8px 2px 0}
+.lbtn:hover{background:var(--def-bg)}
+.lbtn:disabled{color:var(--muted);border-color:#aab7b8;background:#f4f6f7;cursor:default}
+.lbtn.bad{border-color:#c0392b;color:#c0392b}
+.labmsg{font-size:20px;line-height:1.42;min-height:86px;margin:6px 0;padding:7px 16px;border-radius:8px;background:#f4f6f7}
+.labmsg.bad{background:var(--warn-bg);color:#922b21}
+.slide ol.steps{font-size:21px;line-height:1.4;margin:0 0 6px 30px}
+.steps li{margin:4px 0;color:var(--muted)}
+.steps li.on{color:var(--ink)}
+.steps li.now{color:var(--primary);font-weight:700}
+.lab.labcol{display:block}
+.lbtn.sel{background:var(--primary);color:#fff}
+.labrow{display:flex;gap:10px;align-items:center;font-size:20px;margin:4px 0}
+.labrow input[type=range]{flex:1;min-width:120px;height:28px;accent-color:var(--primary);cursor:pointer}
+.labrow .lbtn{margin:0;font-size:17px;padding:5px 11px;white-space:nowrap}
+body.scroll .labrow{flex-wrap:wrap}
+body.scroll .lab{flex-direction:column;align-items:stretch;gap:12px}
+/* 閱讀模式:圖釘在上方,按按鈕時動畫才看得到 */
+body.scroll .labfig{position:sticky;top:50px;z-index:2;background:var(--card);border-bottom:1px solid #d5dbdb}
+body.scroll .labfig svg.fig{max-height:36vh;width:auto;min-width:0!important}
+@media print{.steps li{color:var(--ink)!important;font-weight:400!important}.noprint{display:none!important}}
+</style>
 <style id="mobile-css">
 /* ── 行動裝置閱讀模式（body.scroll）與工具列 ─────────────── */
 #mtb{position:fixed;top:8px;right:8px;z-index:20;display:flex;gap:6px;align-items:center}
@@ -397,6 +432,32 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
     <tr><td>水蒸氣</td><td>2.01</td><td>金</td><td>0.129</td></tr>
   </table>
   <div class="box key"><span class="tag">重點</span>水的比熱<b>特別大</b>:海洋調節氣候、體溫恆定、汽車引擎用水冷卻,都與此有關。金屬比熱普遍小 → 一曬就燙。</div>
+</section>
+
+<!-- LAB w8lab1 -->
+<section class="slide">
+  <h2>動手試:給一樣的熱,誰升溫多? <span class="en">Heat Capacity Lab — specific heat is not the whole story</span></h2>
+  <div class="lab" id="w8lab1">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 440 352" width="440" height="352" role="img" aria-labelledby="w8lab1-t w8lab1-d">
+        <title id="w8lab1-t">200 g 水與一塊金屬吸收同樣熱量時的熱容量與升溫比較</title>
+        <desc id="w8lab1-d">左半邊是兩者的熱容量,也就是質量乘以比熱、每升高 1 °C 需要的熱量;右半邊是吸收同樣熱量 q 之後各升高幾度。熱容量較大的那一個,升溫較小。藍色是 200 g 的水,橘色是所選的金屬,右半邊的虛線標出水的升溫高度。</desc>
+        <text class="hd" x="220" y="24" font-size="19" font-weight="700" fill="#2c3e50" text-anchor="middle"></text>
+        <g font-size="17" font-weight="700" fill="#1a5276" text-anchor="middle"><text x="115" y="54">① 熱容量 C(J/°C)</text><text x="335" y="54">② 升溫 ΔT(°C)</text></g>
+        <line x1="226" y1="40" x2="226" y2="320" stroke="#d5dbdb" stroke-width="2" stroke-dasharray="6 5"/>
+        <line x1="20" y1="300" x2="432" y2="300" stroke="#2c3e50" stroke-width="2"/>
+        <g class="bars" font-size="16" text-anchor="middle"></g>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 2 kg 的鐵鍋和鍋裡 200 g 的水吸收<b>一樣多的熱</b>。鐵的比熱不到水的 1/9,所以鐵鍋升溫比水多?<br>② 鋁塊要<b>幾克</b>,吸同樣的熱時才會和 200 g 水升溫一樣多?</div>
+      <div class="labrow noprint"><span style="min-width:96px">金屬</span><button type="button" class="lbtn" data-k="al">鋁 0.897</button><button type="button" class="lbtn sel" data-k="fe">鐵 0.449</button><button type="button" class="lbtn" data-k="cu">銅 0.385</button><span class="small">J/g·°C</span></div>
+      <div class="labrow noprint"><label for="w8lab1-m" style="min-width:96px">金屬質量</label><input type="range" id="w8lab1-m" min="800" max="2000" step="10" value="1000"><b id="w8lab1-mv" style="min-width:96px;text-align:right;color:var(--primary)">1000 g</b></div>
+      <div class="labrow noprint"><label for="w8lab1-q" style="min-width:96px">給的熱 q</label><input type="range" id="w8lab1-q" min="2000" max="10000" step="500" value="6000"><b id="w8lab1-qv" style="min-width:96px;text-align:right;color:var(--primary)">6000 J</b></div>
+      <div class="labread"><span id="w8lab1-l1">水 200 g × 4.184 = 836.8 J/°C → ΔT = 7.17 °C</span><br><span id="w8lab1-l2">鐵 1000 g × 0.449 = 449.0 J/°C → ΔT = 13.4 °C</span><br><span id="w8lab1-l3">→ 鐵升得多:是水的 1.86 倍</span></div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① 不是,反而<span class="hl">水升得多</span>。鐵鍋 2000 g × 0.449 = 898 J/°C,比 200 g 水的 836.8 J/°C 還大,同樣的熱只讓鐵鍋升到水的 0.93 倍。② 約 <span class="hl">933 g</span>(= 200 × 4.184 ÷ 0.897),是水的 4.66 倍重。<b>升溫多少看的是熱容量 m × c,不是只比比熱。</b></div>
+    </div>
+  </div>
 </section>
 
 <!-- 15 -->
@@ -797,6 +858,33 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="box warn"><span class="tag">科學修正</span><b>食物熱量 ≠ 燃燒熱。</b>彈卡計測「總燃燒能量 gross energy」;人體不是彈卡計 — 蛋白質的氮以尿素排出、膳食纖維難消化、吸收 &lt; 100%,故營養標示採「代謝能 metabolizable energy」,以 Atwater 因子計:醣 4、蛋白 4、脂 9、酒精 7 kcal/g(經驗平均值)。</div>
 </section>
 
+<!-- LAB w8lab2 -->
+<section class="slide">
+  <h2>動手試:標示的大卡怎麼算? <span class="en">Food Energy Lab — grams × factor, label vs bomb</span></h2>
+  <div class="lab" id="w8lab2">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 400 388" width="400" height="388" role="img" aria-labelledby="w8lab2-t w8lab2-d">
+        <title id="w8lab2-t">同一份食物的標示熱量與彈卡計燃燒熱(堆疊長條)</title>
+        <desc id="w8lab2-d">左邊的長條是營養標示的算法:醣與蛋白質每克 4 大卡、脂肪每克 9 大卡;右邊的長條是彈卡計的燃燒熱:醣 4.1、蛋白質 5.65、脂肪 9.4 大卡每克。每條由下而上分成醣、蛋白質、脂肪三段,段的高度就是該營養素貢獻的大卡數;右邊長條上方的括號是比標示多出的大卡數。</desc>
+        <g font-size="16" fill="#2c3e50"><text x="20" y="22" font-weight="700" fill="#1a5276">每克 kcal:標示 → 彈卡計</text><text x="44" y="48">醣　　4 → 4.1</text><text x="44" y="72">蛋白質 4 → 5.65</text><text x="236" y="48">脂肪 9 → 9.4</text></g>
+        <path d="M20,35h16v16h-16Z" fill="#8a6d00"/><path d="M20,59h16v16h-16Z" fill="#1a5276"/><path d="M212,35h16v16h-16Z" fill="#a04c08"/>
+        <line x1="30" y1="350" x2="390" y2="350" stroke="#2c3e50" stroke-width="2"/>
+        <g class="bars" font-size="16" text-anchor="middle"></g>
+        <g font-size="17" font-weight="700" fill="#2c3e50" text-anchor="middle"><text x="130" y="374">標示值</text><text x="290" y="374">彈卡計燒出</text></g>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 蛋糕一塊:醣 30 g、脂肪 15 g、蛋白質 5 g。醣最多,熱量最大的一塊也是醣?<br>② 食品 A、B <b>標示熱量一樣</b>,丟進彈卡計燒出來也一樣嗎?</div>
+      <div class="labrow noprint"><button type="button" class="lbtn" data-x="a">食品 A:醣 10、蛋白質 30、脂肪 2 g</button><button type="button" class="lbtn" data-x="b">食品 B:醣 10、蛋白質 3、脂肪 14 g</button></div>
+      <div class="labrow noprint"><label for="w8lab2-c" style="min-width:72px">醣</label><input type="range" id="w8lab2-c" min="0" max="30" step="1" value="28"><b id="w8lab2-cv" style="min-width:60px;text-align:right;color:var(--primary)">28 g</b></div>
+      <div class="labrow noprint"><label for="w8lab2-p" style="min-width:72px">蛋白質</label><input type="range" id="w8lab2-p" min="0" max="30" step="1" value="10"><b id="w8lab2-pv" style="min-width:60px;text-align:right;color:var(--primary)">10 g</b></div>
+      <div class="labrow noprint"><label for="w8lab2-f" style="min-width:72px">脂肪</label><input type="range" id="w8lab2-f" min="0" max="30" step="1" value="12"><b id="w8lab2-fv" style="min-width:60px;text-align:right;color:var(--primary)">12 g</b></div>
+      <div class="labread"><span id="w8lab2-l1">標示 = 28×4 + 10×4 + 12×9 = 112 + 40 + 108 = 260 kcal</span><br><span id="w8lab2-l2">→ 最大的一塊:醣 112 kcal(43%)</span></div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① 不是。醣 30 × 4 = 120,脂肪 15 × 9 = <span class="hl">135 kcal</span>:克數只有一半,熱量卻最大。② 不一樣。標示都是 178 kcal,彈卡計燒出 A <span class="hl">229</span>、B 190 kcal;A 的 30 g 蛋白質每克燒出 5.65、標示只算 4,這一項就差 49.5 kcal。<b>熱量 = 克數 × 每克係數;燒出來的和標示的是兩個數。</b></div>
+    </div>
+  </div>
+</section>
+
 <!-- 48 -->
 <section class="slide quiz">
   <h2>隨堂快問 ⑥:標準生成焓 <span class="en">Quick Check 6</span></h2>
@@ -929,6 +1017,132 @@ addEventListener('touchend',e=>{
 });
 fit();
 show(parseInt(location.hash.slice(1))-1||0);
+</script>
+<script id="lab-js">
+(function(){
+/* 共用工具(每支 deck 相同,不要改) */
+  const NS='http://www.w3.org/2000/svg',$=id=>document.getElementById(id);
+  const el=(n,a,p)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;};
+  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let seed=7;const rnd=()=>(seed=seed*16807%2147483647)/2147483647;
+  function tw(ms,fn,done){
+    if(still||ms<=0){fn(1);if(done)done();return;}
+    let t0=null;
+    requestAnimationFrame(function f(t){
+      if(t0===null)t0=t;
+      const k=Math.min(1,(t-t0)/ms),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+      fn(e);if(k<1)requestAnimationFrame(f);else if(done)done();
+    });
+  }
+  // 控制項上的點擊、觸控、方向鍵不可觸發翻頁
+  document.querySelectorAll('.lab').forEach(l=>{
+    ['click','touchstart','touchend'].forEach(t=>l.addEventListener(t,e=>{if(e.target.closest('button,input,label'))e.stopPropagation();}));
+    l.addEventListener('keydown',e=>{if(e.target.matches('input'))e.stopPropagation();});
+    l.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>b.blur()));
+    l.querySelectorAll('input[type=range]').forEach(r=>r.addEventListener('pointerup',()=>r.blur()));
+  });
+/* w8lab1 */
+(function(){
+  const root=$('w8lab1');if(!root)return;
+  /* 比熱取自「常見物質的比熱」表:水 4.184、鋁 0.897、鐵 0.449、銅 0.385 J/g·°C */
+  const CW=4.184,MW=200,MAT={al:['鋁',0.897],fe:['鐵',0.449],cu:['銅',0.385]};
+  const sm=$('w8lab1-m'),sq=$('w8lab1-q'),g=root.querySelector('.bars'),hd=root.querySelector('.hd');
+  /* 刻度固定:C 最大 = 鋁 2000 g = 1794 J/°C;ΔT 最大 = 10000 J ÷ 銅 800 g(308 J/°C)= 32.5 °C */
+  const BASE=300,H=220,CMAX=1800,TMAX=35,W=62,X=[70,160,290,380];
+  const bar=(cx,h)=>'M'+(cx-W/2)+','+BASE+'h'+W+'v'+(-h)+'h'+(-W)+'Z';
+  const f3=x=>x>=100?x.toFixed(0):x>=10?x.toFixed(1):x.toFixed(2);
+  let k='fe',shown=null;
+  function draw(o){
+    g.innerHTML='';
+    const ch=[o.Cw/CMAX*H,o.Cm/CMAX*H],th=[o.Tw/TMAX*H,o.Tm/TMAX*H],col=['#1a5276','#a04c08'];
+    [0,1].forEach(i=>{
+      el('path',{d:bar(X[i],ch[i]),fill:col[i]},g);
+      el('path',{d:bar(X[i+2],th[i]),fill:col[i]},g);
+    });
+    el('path',{d:'M244,'+(BASE-th[0])+'H426',stroke:'#1a5276','stroke-width':2,'stroke-dasharray':'6 4',fill:'none'},g);
+    const lab=[[X[0],ch[0],o.Cw.toFixed(1),col[0]],[X[1],ch[1],o.Cm.toFixed(1),col[1]],[X[2],th[0],f3(o.Tw),col[0]],[X[3],th[1],f3(o.Tm),col[1]]];
+    lab.forEach(([x,h,t,c])=>{el('text',{x:x,y:BASE-h-8,fill:c,'font-weight':700},g).textContent=t;});
+    [[X[0],'水 '+MW+' g','c = 4.184'],[X[1],o.nm+' '+o.m+' g','c = '+o.c],[X[2],'水',''],[X[3],o.nm,'']].forEach(([x,a,b])=>{
+      el('text',{x:x,y:BASE+22,fill:'#2c3e50'},g).textContent=a;
+      if(b)el('text',{x:x,y:BASE+44,fill:'#5a6a6b'},g).textContent=b;
+    });
+  }
+  function render(anim){
+    const [nm,c]=MAT[k],m=+sm.value,q=+sq.value,Cw=MW*CW,Cm=m*c,o={nm,c,m,q,Cw,Cm,Tw:q/Cw,Tm:q/Cm};
+    hd.textContent='兩者各吸收 q = '+q+' J';
+    $('w8lab1-mv').textContent=m+' g';$('w8lab1-qv').textContent=q+' J';
+    $('w8lab1-l1').textContent='水 '+MW+' g × 4.184 = '+Cw.toFixed(1)+' J/°C → ΔT = '+f3(o.Tw)+' °C';
+    $('w8lab1-l2').textContent=nm+' '+m+' g × '+c+' = '+Cm.toFixed(1)+' J/°C → ΔT = '+f3(o.Tm)+' °C';
+    const r=o.Tm/o.Tw;let h;
+    if(Math.abs(r-1)<0.005)h='→ <span class="hl M">兩者升溫幾乎一樣</span>';
+    else if(r>1)h='→ <span class="hl M">'+nm+'升得多</span>:是水的 '+r.toFixed(2)+' 倍';
+    else h='→ <span class="hl M">水升得多</span>:'+nm+'只升到水的 '+r.toFixed(2)+' 倍';
+    $('w8lab1-l3').innerHTML=h;
+    const from=shown;shown=o;
+    if(anim&&from)tw(450,t=>{const L=key=>from[key]+(o[key]-from[key])*t;draw(Object.assign({},o,{Cm:L('Cm'),Tw:L('Tw'),Tm:L('Tm')}));});
+    else draw(o);
+  }
+  sm.addEventListener('input',()=>render(false));sq.addEventListener('input',()=>render(false));
+  root.querySelectorAll('[data-k]').forEach(b=>b.addEventListener('click',()=>{
+    if(b.dataset.k===k)return;k=b.dataset.k;
+    root.querySelectorAll('[data-k]').forEach(o=>o.classList.toggle('sel',o===b));
+    render(true);
+  }));
+  render(false);
+})();
+/* w8lab2 */
+(function(){
+  const root=$('w8lab2');if(!root)return;
+  /* 係數取自 deck:標示 Atwater 醣 4、蛋白 4、脂 9(「燃料熱值 vs 食物代謝能」);
+     彈卡計燃燒熱 醣 4.1、蛋白 5.65、脂 9.4 kcal/g(錨點回收頁)。燃燒熱以 0.01 kcal 為單位用整數算,避免浮點捨入。 */
+  const N=[['c','醣',4,410,'#8a6d00'],['p','蛋白質',4,565,'#1a5276'],['f','脂肪',9,940,'#a04c08']];
+  const S={c:$('w8lab2-c'),p:$('w8lab2-p'),f:$('w8lab2-f')},g=root.querySelector('.bars');
+  const BASE=350,SC=250/600,W=96,XL=130,XB=290;
+  const r100=x=>Math.floor((x+50)/100);           /* 0.01 kcal → 整數 kcal,四捨五入 */
+  const d1=x=>(Math.floor((x+5)/10)/10).toFixed(1); /* 0.01 kcal → 一位小數 */
+  let shown=null;
+  function draw(v,gap){
+    g.innerHTML='';
+    [[XL,0],[XB,1]].forEach(([cx,bomb])=>{
+      let y=BASE,tot=0;
+      N.forEach(([k,nm,a,b,col])=>{
+        const kc=bomb?v[k]*b/100:v[k]*a,h=kc*SC;tot+=kc;
+        if(h>0){
+          el('path',{d:'M'+(cx-W/2)+','+y+'h'+W+'v'+(-h)+'h'+(-W)+'Z',fill:col},g);
+          if(h>=22)el('text',{x:cx,y:y-h/2+6,fill:'#ffffff','font-weight':700},g).textContent=bomb?d1(Math.round(v[k]*b)):String(Math.round(kc));
+        }
+        y-=h;
+      });
+      el('text',{x:cx,y:y-8,fill:'#2c3e50','font-weight':700},g).textContent=(bomb?r100(Math.round(tot*100)):Math.round(tot))+' kcal'+(bomb&&gap?'(+'+gap+')':'');
+    });
+  }
+  function render(anim){
+    const v={c:+S.c.value,p:+S.p.value,f:+S.f.value};
+    N.forEach(([k])=>{$('w8lab2-'+k+'v').textContent=v[k]+' g';});
+    const part=N.map(([k,nm,a])=>v[k]*a),lab=part[0]+part[1]+part[2];
+    const g100=N.reduce((s,[k,nm,a,b])=>s+v[k]*b,0),gross=r100(g100);
+    $('w8lab2-l1').textContent='標示 = '+v.c+'×4 + '+v.p+'×4 + '+v.f+'×9 = '+part.join(' + ')+' = '+lab+' kcal';
+    let h;
+    if(lab===0)h='→ <span class="hl M">還沒有食物</span>';
+    else{
+      const mx=Math.max(...part),who=N.filter((n,i)=>part[i]===mx).map(n=>n[1]);
+      h='→ 最大的一塊:<span class="hl M">'+who.join('與')+' '+mx+' kcal</span>('+(who.length>1?'各 ':'')+Math.round(100*mx/lab)+'%'+')';
+    }
+    $('w8lab2-l2').innerHTML=h;
+    const d=gross-lab;
+    const from=shown;shown=v;
+    if(anim&&from)tw(450,t=>{const L=k=>from[k]+(v[k]-from[k])*t;draw({c:L('c'),p:L('p'),f:L('f')},0);},()=>draw(v,d));
+    else draw(v,d);
+  }
+  N.forEach(([k])=>S[k].addEventListener('input',()=>render(false)));
+  const PRE={a:{c:10,p:30,f:2},b:{c:10,p:3,f:14}};
+  root.querySelectorAll('[data-x]').forEach(b=>b.addEventListener('click',()=>{
+    const p=PRE[b.dataset.x];N.forEach(([k])=>{S[k].value=p[k];});
+    render(true);
+  }));
+  render(false);
+})();
+})();
 </script>
 <script id="mobile-js">
 (function(){

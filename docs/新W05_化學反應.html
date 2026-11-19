@@ -155,6 +155,41 @@ body.scroll .animation-layout{grid-template-columns:1fr}
 body.scroll .animation-layout video{max-height:none}
 @media(max-width:720px){.animation-layout{grid-template-columns:1fr}}
 </style>
+<style id="lab-css">
+/* ── 互動實驗台(先預測、再動手)──────────────────────── */
+.lab{display:flex;gap:30px;align-items:flex-start}
+.labfig{flex:0 0 auto}
+.labfig .fig{margin:0 auto}
+.labside{flex:1;min-width:0}
+.labside .box{margin:0 0 8px;font-size:21px;line-height:1.45;padding:9px 18px}
+.labside .eq{margin:6px 0;font-size:26px}
+.labctl{display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:center;font-size:20px;margin:6px 0}
+.labctl input[type=range]{width:100%;height:28px;accent-color:var(--primary);cursor:pointer}
+.labctl output{font-weight:700;color:var(--primary);min-width:96px;text-align:right}
+.labread{font-size:21px;line-height:1.5;background:#f4f6f7;border-radius:8px;padding:7px 16px;margin:6px 0}
+.labread .M{font-size:27px}
+.lbtn{font-family:inherit;font-size:19px;font-weight:700;padding:6px 16px;border-radius:8px;border:2px solid var(--primary);background:#fff;color:var(--primary);cursor:pointer;margin:2px 8px 2px 0}
+.lbtn:hover{background:var(--def-bg)}
+.lbtn:disabled{color:var(--muted);border-color:#aab7b8;background:#f4f6f7;cursor:default}
+.lbtn.bad{border-color:#c0392b;color:#c0392b}
+.labmsg{font-size:20px;line-height:1.42;min-height:86px;margin:6px 0;padding:7px 16px;border-radius:8px;background:#f4f6f7}
+.labmsg.bad{background:var(--warn-bg);color:#922b21}
+.slide ol.steps{font-size:21px;line-height:1.4;margin:0 0 6px 30px}
+.steps li{margin:4px 0;color:var(--muted)}
+.steps li.on{color:var(--ink)}
+.steps li.now{color:var(--primary);font-weight:700}
+.lab.labcol{display:block}
+.lbtn.sel{background:var(--primary);color:#fff}
+.labrow{display:flex;gap:10px;align-items:center;font-size:20px;margin:4px 0}
+.labrow input[type=range]{flex:1;min-width:120px;height:28px;accent-color:var(--primary);cursor:pointer}
+.labrow .lbtn{margin:0;font-size:17px;padding:5px 11px;white-space:nowrap}
+body.scroll .labrow{flex-wrap:wrap}
+body.scroll .lab{flex-direction:column;align-items:stretch;gap:12px}
+/* 閱讀模式:圖釘在上方,按按鈕時動畫才看得到 */
+body.scroll .labfig{position:sticky;top:50px;z-index:2;background:var(--card);border-bottom:1px solid #d5dbdb}
+body.scroll .labfig svg.fig{max-height:36vh;width:auto;min-width:0!important}
+@media print{.steps li{color:var(--ink)!important;font-weight:400!important}.noprint{display:none!important}}
+</style>
 <style id="mobile-css">
 /* ── 行動裝置閱讀模式（body.scroll）與工具列 ─────────────── */
 #mtb{position:fixed;top:8px;right:8px;z-index:20;display:flex;gap:6px;align-items:center}
@@ -311,6 +346,38 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   </ol>
 </section>
 
+<!-- LAB w5lab1 -->
+<section class="slide">
+  <h2>動手試:只動係數,數到兩邊相等 <span class="en">Balancing Lab — count every atom on both sides</span></h2>
+  <div class="lab" id="w5lab1">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 500 336" width="500" height="336" role="img" aria-labelledby="w5lab1-t w5lab1-d">
+        <title id="w5lab1-t">反應式左右兩邊各元素的原子數</title>
+        <desc id="w5lab1-d">上方是目前係數下的反應式,係數以橘色標示。下方每一列是一種元素:中間寫元素符號,左邊的長條是反應物那一側的原子數,右邊的長條是生成物那一側的原子數,每一格代表一個原子。左右相等的列以綠色標示,不相等的以橘色標示。</desc>
+        <text class="eq1" x="250" y="36" font-size="22" font-weight="700" fill="#2c3e50" text-anchor="middle"></text>
+        <g font-size="17" font-weight="700" fill="#1a5276" text-anchor="middle"><text x="120" y="80">左邊(反應物)</text><text x="250" y="80">元素</text><text x="380" y="80">右邊(生成物)</text></g>
+        <line x1="20" y1="92" x2="480" y2="92" stroke="#d5dbdb" stroke-width="2"/>
+        <g class="rows"></g>
+        <text x="250" y="326" font-size="16" fill="#5a6a6b" text-anchor="middle">每一格 = 1 個原子;綠色 = 左右相等</text>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 小蘇打受熱的骨架式,四種元素左右<b>都不相等</b>。最少要改<b>幾個</b>係數?<br>② 平衡後把係數全部<b>乘 2</b>,還平衡嗎?為什麼要最簡整數比?</div>
+      <div class="labrow noprint"><button type="button" class="lbtn sel" data-r="s">小蘇打受熱分解</button><button type="button" class="lbtn" data-r="h">雙氧水分解</button><button type="button" class="lbtn" data-z="1">係數全部回到 1</button></div>
+      <div class="labrow noprint">
+        <span id="w5lab1-g0" style="display:inline-flex;align-items:center;gap:6px;min-width:300px"><button type="button" class="lbtn" data-i="0" data-d="-1">−</button><b id="w5lab1-c0" style="min-width:22px;text-align:center;color:var(--accent)">1</b><button type="button" class="lbtn" data-i="0" data-d="1">+</button><span id="w5lab1-f0">NaHCO<sub>3</sub></span></span>
+        <span id="w5lab1-g1" style="display:inline-flex;align-items:center;gap:6px"><button type="button" class="lbtn" data-i="1" data-d="-1">−</button><b id="w5lab1-c1" style="min-width:22px;text-align:center;color:var(--accent)">1</b><button type="button" class="lbtn" data-i="1" data-d="1">+</button><span id="w5lab1-f1">Na<sub>2</sub>CO<sub>3</sub></span></span>
+      </div>
+      <div class="labrow noprint">
+        <span id="w5lab1-g2" style="display:inline-flex;align-items:center;gap:6px;min-width:300px"><button type="button" class="lbtn" data-i="2" data-d="-1">−</button><b id="w5lab1-c2" style="min-width:22px;text-align:center;color:var(--accent)">1</b><button type="button" class="lbtn" data-i="2" data-d="1">+</button><span id="w5lab1-f2">H<sub>2</sub>O</span></span>
+        <span id="w5lab1-g3" style="display:inline-flex;align-items:center;gap:6px"><button type="button" class="lbtn" data-i="3" data-d="-1">−</button><b id="w5lab1-c3" style="min-width:22px;text-align:center;color:var(--accent)">1</b><button type="button" class="lbtn" data-i="3" data-d="1">+</button><span id="w5lab1-f3">CO<sub>2</sub></span></span>
+      </div>
+      <div class="labread"><span id="w5lab1-l2">→ 還沒平衡</span></div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① <span class="hl">一個</span>:NaHCO<sub>3</sub> 前改成 2,四種元素一次全部相等(右邊每種原子剛好都是左邊的 2 倍)。② 原子數仍相等,但係數表示<b>比例</b>,乘 2 還是同一個比例,所以約成<span class="hl">最簡整數比</span> 2 : 1 : 1 : 1。<b>只動係數,每動一次把每種元素重數一遍。</b></div>
+    </div>
+  </div>
+</section>
+
 <!-- 9 -->
 <section class="slide">
   <h2>例題 1:平衡反應式 <span class="en">Example 1</span></h2>
@@ -374,6 +441,43 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
     <tr><td>方程式寫法</td><td>拆成離子</td><td>保留分子式</td><td>保留分子式</td></tr>
   </table>
   <div class="box key"><span class="tag">重點</span>NaCl(aq) 實際上是 Na<sup>+</sup>(aq) + Cl<sup>−</sup>(aq);醋酸則以 CH<sub>3</sub>COOH ⇌ CH<sub>3</sub>COO<sup>−</sup> + H<sup>+</sup> 部分解離。</div>
+</section>
+
+<!-- LAB w5lab2 -->
+<section class="slide">
+  <h2>動手試:燈泡會不會亮? <span class="en">Conductivity Lab — which solutions light the bulb?</span></h2>
+  <div class="lab" id="w5lab2">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 460 392" width="460" height="392" role="img" aria-labelledby="w5lab2-t w5lab2-d">
+        <title id="w5lab2-t">導電性測試:燈泡亮度與溶液中的粒子(示意)</title>
+        <desc id="w5lab2-d">燒杯裡插著兩根電極,經電池連到上方的燈泡。燒杯中畫出溶質粒子:帶加號與減號的圓是可以自由移動的陽離子與陰離子,兩個灰色圓黏在一起的是沒有解離的分子。離子越多,燈泡越亮;燈泡下方寫著亮、微亮或不亮。粒子個數只是示意,不代表真實比例。</desc>
+        <path d="M63,180 H397 V362 H63 Z" fill="#f4f6f7"/>
+        <path d="M63,180 H397" stroke="#1a5276" stroke-width="2" fill="none"/>
+        <path d="M60,150 V365 H400 V150" stroke="#5a6a6b" stroke-width="3" fill="none" stroke-linejoin="round"/>
+        <g class="rays" stroke-linecap="round"></g>
+        <path d="M95,200 V60 H208 M252,60 H298 M314,60 H365 V200" stroke="#2c3e50" stroke-width="4" fill="none" stroke-linejoin="round"/>
+        <path d="M300,42 V78" stroke="#2c3e50" stroke-width="4"/><path d="M312,50 V70" stroke="#2c3e50" stroke-width="7"/>
+        <path d="M95,200 V335 M365,200 V335" stroke="#5a6a6b" stroke-width="9" stroke-linecap="round"/>
+        <circle class="bulb" cx="230" cy="60" r="22" stroke-width="3"/>
+        <text class="st" x="230" y="112" font-size="20" font-weight="700" text-anchor="middle"></text>
+        <text class="nm" x="230" y="142" font-size="18" font-weight="700" fill="#2c3e50" text-anchor="middle"></text>
+        <g class="pts" font-size="18" font-weight="700" text-anchor="middle"></g>
+        <g font-size="16" fill="#2c3e50">
+          <circle cx="30" cy="382" r="9" fill="#1a5276"/><text x="44" y="388">陽離子</text>
+          <circle cx="122" cy="382" r="9" fill="#c0392b"/><text x="136" y="388">陰離子</text>
+          <circle cx="210" cy="382" r="8" fill="#5a6a6b"/><circle cx="224" cy="382" r="8" fill="#5a6a6b"/><text x="240" y="388">分子</text>
+          <text x="440" y="388" fill="#5a6a6b" text-anchor="end">示意,個數不代表比例</text>
+        </g>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 蔗糖在水裡溶得非常好(糖水清澈、很甜)。糖水會讓燈泡亮嗎?<br>② 氨 NH<sub>3</sub> 的化學式裡<b>沒有 OH</b>。氨水會導電嗎?會和 NaOH 溶液一樣亮嗎?</div>
+      <div class="labrow noprint"><button type="button" class="lbtn sel" data-k="nacl">NaCl</button><button type="button" class="lbtn" data-k="hcl">HCl</button><button type="button" class="lbtn" data-k="naoh">NaOH</button><button type="button" class="lbtn" data-k="hac">醋酸 CH<sub>3</sub>COOH</button></div>
+      <div class="labrow noprint"><button type="button" class="lbtn" data-k="nh3">氨 NH<sub>3</sub></button><button type="button" class="lbtn" data-k="suc">蔗糖</button><button type="button" class="lbtn" data-k="eth">乙醇</button></div>
+      <div class="labread"><span id="w5lab2-l1">NaCl(aq) → Na<sup>+</sup>(aq) + Cl<sup>−</sup>(aq)</span><br><span id="w5lab2-l2">→ 強電解質</span></div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① <span class="hl">不亮</span>。蔗糖溶解後是完整的分子散在水中,沒有離子 —— 溶得掉不等於解離。② 會,但只有<span class="hl">微亮</span>:NH<sub>3</sub> 是弱電解質,只有一小部分與水作用成 NH<sub>4</sub><sup>+</sup> 與 OH<sup>−</sup>(PART 5.4 解釋),NaOH 則完全解離。<b>亮度看的是能自由移動的離子有多少,不是溶不溶、也不是化學式裡有沒有 OH。</b></div>
+    </div>
+  </div>
 </section>
 
 <!-- 15 -->
@@ -478,6 +582,38 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
     <li>兩個組合都可溶 → <span class="hl">無反應 (no reaction, NR)</span></li>
     <li>寫出平衡的分子方程式與淨離子方程式</li>
   </ol>
+</section>
+
+<!-- LAB w5lab3 -->
+<section class="slide">
+  <h2>動手試:倒在一起會不會沉澱? <span class="en">Mixing Lab — swap partners, then check both</span></h2>
+  <div class="lab" id="w5lab3">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 480 384" width="480" height="384" role="img" aria-labelledby="w5lab3-t w5lab3-d">
+        <title id="w5lab3-t">兩杯鹽溶液混合後是否生成沉澱(示意)</title>
+        <desc id="w5lab3-d">上方左右兩個小燒杯分別是陽離子來源與陰離子來源的溶液,杯中寫出各自解離出的離子。兩杯倒進下方的大燒杯後交換配對:若有一對陰陽離子依溶解度規則不溶,它們沉到杯底成為沉澱,杯底出現灰色固體並寫出化學式,其餘離子以灰色標示為旁觀離子;若兩個新組合都可溶,四種離子都留在溶液中,杯底寫著沒有沉澱。</desc>
+        <defs><marker id="w5lab3-ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#5a6a6b"/></marker></defs>
+        <path d="M33,62 H197 V137 H33 Z M283,62 H447 V137 H283 Z M93,222 H387 V365 H93 Z" fill="#f4f6f7"/>
+        <path d="M30,40 V140 H200 V40 M280,40 V140 H450 V40 M90,200 V368 H390 V200" stroke="#5a6a6b" stroke-width="3" fill="none" stroke-linejoin="round"/>
+        <path d="M120,150 L188,192" stroke="#5a6a6b" stroke-width="3" fill="none" marker-end="url(#w5lab3-ar)"/>
+        <path d="M360,150 L292,192" stroke="#5a6a6b" stroke-width="3" fill="none" marker-end="url(#w5lab3-ar)"/>
+        <g font-size="18" font-weight="700" fill="#2c3e50" text-anchor="middle"><text class="la" x="115" y="28"></text><text class="lb" x="365" y="28"></text></g>
+        <g font-size="20" font-weight="700" text-anchor="middle">
+          <text class="ac" x="78" y="108" fill="#1a5276"></text><text x="152" y="108" fill="#1a5276">NO₃⁻</text>
+          <text x="328" y="108" fill="#c0392b">Na⁺</text><text class="ba" x="402" y="108" fill="#c0392b"></text>
+        </g>
+        <text x="398" y="238" font-size="17" font-weight="700" fill="#5a6a6b">混合後</text>
+        <g class="mix" font-size="20" font-weight="700" text-anchor="middle"></g>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① BaSO<sub>4</sub> 是沉澱。<b>Mg(NO<sub>3</sub>)<sub>2</sub> + Na<sub>2</sub>SO<sub>4</sub></b> 也會沉澱嗎?<br>② Mg(NO<sub>3</sub>)<sub>2</sub> + NaOH 的淨離子式,OH<sup>−</sup> 的係數是幾?為什麼?</div>
+      <div class="labrow noprint"><span style="min-width:100px">陽離子來源</span><button type="button" class="lbtn" data-c="mg">Mg(NO<sub>3</sub>)<sub>2</sub></button><button type="button" class="lbtn" data-c="cu">Cu(NO<sub>3</sub>)<sub>2</sub></button><button type="button" class="lbtn sel" data-c="pb">Pb(NO<sub>3</sub>)<sub>2</sub></button></div>
+      <div class="labrow noprint"><span style="min-width:100px">陰離子來源</span><button type="button" class="lbtn" data-a="cl">NaCl</button><button type="button" class="lbtn sel" data-a="so4">Na<sub>2</sub>SO<sub>4</sub></button><button type="button" class="lbtn" data-a="oh">NaOH</button><button type="button" class="lbtn" data-a="po4">Na<sub>3</sub>PO<sub>4</sub></button></div>
+      <div class="labread"><span id="w5lab3-l1">交換配對</span><br><span id="w5lab3-l2">→</span></div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① <span class="hl">不會</span>。硫酸鹽的例外是 Ba、Pb、Ca、Sr,沒有 Mg;MgSO<sub>4</sub>、NaNO<sub>3</sub> 都可溶 → 無反應。② <span class="hl">2</span>:原子與電荷都要平衡,(+2) + 2(−1) = 0。<b>會不會沉澱看的是「哪一對」陰陽離子,不是有沒有某一個離子。</b></div>
+    </div>
+  </div>
 </section>
 
 <!-- 23 -->
@@ -911,6 +1047,238 @@ addEventListener('touchend',e=>{
 });
 fit();
 show(parseInt(location.hash.slice(1))-1||0);
+</script>
+<script id="lab-js">
+(function(){
+/* 共用工具(每支 deck 相同,不要改) */
+  const NS='http://www.w3.org/2000/svg',$=id=>document.getElementById(id);
+  const el=(n,a,p)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;};
+  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let seed=7;const rnd=()=>(seed=seed*16807%2147483647)/2147483647;
+  function tw(ms,fn,done){
+    if(still||ms<=0){fn(1);if(done)done();return;}
+    let t0=null;
+    requestAnimationFrame(function f(t){
+      if(t0===null)t0=t;
+      const k=Math.min(1,(t-t0)/ms),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+      fn(e);if(k<1)requestAnimationFrame(f);else if(done)done();
+    });
+  }
+  // 控制項上的點擊、觸控、方向鍵不可觸發翻頁
+  document.querySelectorAll('.lab').forEach(l=>{
+    ['click','touchstart','touchend'].forEach(t=>l.addEventListener(t,e=>{if(e.target.closest('button,input,label'))e.stopPropagation();}));
+    l.addEventListener('keydown',e=>{if(e.target.matches('input'))e.stopPropagation();});
+    l.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>b.blur()));
+    l.querySelectorAll('input[type=range]').forEach(r=>r.addEventListener('pointerup',()=>r.blur()));
+  });
+/* w5lab1 */
+(function(){
+  const root=$('w5lab1');if(!root)return;
+  const g=root.querySelector('.rows'),eq=root.querySelector('.eq1');
+  /* 兩條反應都取自本週 deck:小蘇打受熱分解(錨點回收頁)、雙氧水分解(化合與分解頁) */
+  const R={
+    s:{arrow:' →(Δ) ',el:['Na','H','C','O'],sp:[
+      ['NaHCO₃','NaHCO<sub>3</sub>',0,{Na:1,H:1,C:1,O:3}],
+      ['Na₂CO₃','Na<sub>2</sub>CO<sub>3</sub>',1,{Na:2,C:1,O:3}],
+      ['H₂O','H<sub>2</sub>O',1,{H:2,O:1}],
+      ['CO₂','CO<sub>2</sub>',1,{C:1,O:2}]]},
+    h:{arrow:' → ',el:['H','O'],sp:[
+      ['H₂O₂','H<sub>2</sub>O<sub>2</sub>',0,{H:2,O:2}],
+      ['H₂O','H<sub>2</sub>O',1,{H:2,O:1}],
+      ['O₂','O<sub>2</sub>',1,{O:2}]]}
+  };
+  const MAX=8,HALF=140,XL=190,XR=310;
+  let r='s',c=[1,1,1,1];
+  const gcd=(a,b)=>b?gcd(b,a%b):a;
+  function counts(){
+    const M=R[r];
+    return M.el.map(e=>{let L=0,Rt=0;M.sp.forEach((s,i)=>{const n=(s[3][e]||0)*c[i];if(s[2])Rt+=n;else L+=n;});return [e,L,Rt];});
+  }
+  function bar(x0,y,w,dir,n,u,col){
+    if(n<=0)return;
+    const x=dir<0?x0-w:x0;
+    el('path',{d:'M'+x+','+(y-13)+'h'+w+'v26h'+(-w)+'Z',fill:col},g);
+    if(u>=5&&n>1){let d='';for(let k=1;k<n;k++){const xx=dir<0?x0-k*u:x0+k*u;d+='M'+xx+','+(y-11)+'v22';}el('path',{d:d,stroke:'#ffffff','stroke-width':1.5},g);}
+  }
+  function render(){
+    const M=R[r],n=M.sp.length,C=counts();
+    /* 反應式(係數一律顯示,1 也寫出來) */
+    eq.textContent='';
+    M.sp.forEach((s,i)=>{
+      if(i>0)el('tspan',{},eq).textContent=(s[2]!==M.sp[i-1][2])?M.arrow:' + ';
+      el('tspan',{fill:'#a04c08'},eq).textContent=String(c[i]);
+      el('tspan',{},eq).textContent=' '+s[0];
+    });
+    /* 控制項 */
+    for(let i=0;i<4;i++){
+      const on=i<n;
+      $('w5lab1-g'+i).style.display=on?'inline-flex':'none';
+      if(!on)continue;
+      $('w5lab1-c'+i).textContent=c[i];
+      $('w5lab1-f'+i).innerHTML=M.sp[i][1];
+      root.querySelector('[data-i="'+i+'"][data-d="-1"]').disabled=c[i]<=1;
+      root.querySelector('[data-i="'+i+'"][data-d="1"]').disabled=c[i]>=MAX;
+    }
+    /* 長條 */
+    g.innerHTML='';
+    const mx=Math.max(...C.map(x=>Math.max(x[1],x[2]))),u=Math.min(26,HALF/mx);
+    const ys=C.length===4?[122,170,218,266]:[150,240];
+    C.forEach(([e,L,Rt],k)=>{
+      const y=ys[k],ok=L===Rt,col=ok?'#117a65':'#a04c08';
+      bar(XL,y,L*u,-1,L,u,col);bar(XR,y,Rt*u,1,Rt,u,col);
+      el('text',{x:250,y:y+7,'font-size':21,'font-weight':700,fill:col,'text-anchor':'middle'},g).textContent=e;
+      el('text',{x:XL-L*u-6,y:y+6,'font-size':18,'font-weight':700,fill:col,'text-anchor':'end'},g).textContent=L;
+      el('text',{x:XR+Rt*u+6,y:y+6,'font-size':18,'font-weight':700,fill:col,'text-anchor':'start'},g).textContent=Rt;
+    });
+    const bad=C.filter(x=>x[1]!==x[2]).map(x=>x[0]);
+    const gg=c.slice(0,n).reduce(gcd);
+    let h;
+    if(bad.length)h='→ <span class="hl M">還沒平衡</span>:'+bad.join('、')+' 左右不相等';
+    else if(gg>1)h='→ <span class="hl M">原子數相等</span>,但係數可以同除以 '+gg;
+    else h='→ <span class="hl M">平衡 ✓</span>,而且是最簡整數比';
+    $('w5lab1-l2').innerHTML=h;
+  }
+  root.querySelectorAll('[data-d]').forEach(b=>b.addEventListener('click',()=>{
+    const i=+b.dataset.i;c[i]=Math.max(1,Math.min(MAX,c[i]+(+b.dataset.d)));render();
+  }));
+  root.querySelectorAll('[data-r]').forEach(b=>b.addEventListener('click',()=>{
+    if(b.dataset.r===r)return;r=b.dataset.r;c=[1,1,1,1];
+    root.querySelectorAll('[data-r]').forEach(o=>o.classList.toggle('sel',o===b));render();
+  }));
+  root.querySelector('[data-z]').addEventListener('click',()=>{c=[1,1,1,1];render();});
+  render();
+})();
+/* w5lab2 */
+(function(){
+  const root=$('w5lab2');if(!root)return;
+  const pts=root.querySelector('.pts'),rays=root.querySelector('.rays'),bulb=root.querySelector('.bulb'),st=root.querySelector('.st'),nm=root.querySelector('.nm');
+  /* 例子與分類全部取自「電解質與非電解質」「強電解質與弱電解質」兩頁;HCl、NaOH 的解離式見 Arrhenius 頁,NH3 的見 Brønsted-Lowry 頁 */
+  const S={
+    nacl:{n:'NaCl(aq)',t:2,eq:'NaCl(aq) → Na<sup>+</sup>(aq) + Cl<sup>−</sup>(aq)'},
+    hcl:{n:'HCl(aq)',t:2,eq:'HCl(aq) → H<sup>+</sup>(aq) + Cl<sup>−</sup>(aq)'},
+    naoh:{n:'NaOH(aq)',t:2,eq:'NaOH(aq) → Na<sup>+</sup>(aq) + OH<sup>−</sup>(aq)'},
+    hac:{n:'CH₃COOH(aq)',t:1,eq:'CH<sub>3</sub>COOH ⇌ CH<sub>3</sub>COO<sup>−</sup> + H<sup>+</sup>'},
+    nh3:{n:'NH₃(aq)',t:1,eq:'NH<sub>3</sub> + H<sub>2</sub>O ⇌ NH<sub>4</sub><sup>+</sup> + OH<sup>−</sup>'},
+    suc:{n:'蔗糖(aq)',t:0,eq:'蔗糖:整個分子散在水中'},
+    eth:{n:'乙醇(aq)',t:0,eq:'乙醇:整個分子散在水中'}
+  };
+  const T=[
+    {c:'非電解質',d:'不解離 → 燈泡<b>不亮</b>;方程式保留分子式',s:'燈泡:不亮',col:'#5a6a6b'},
+    {c:'弱電解質',d:'部分解離(⇌)→ 燈泡<b>微亮</b>;方程式保留分子式',s:'燈泡:微亮',col:'#8a6d00'},
+    {c:'強電解質',d:'完全解離 → 燈泡<b>亮</b>;方程式拆成離子',s:'燈泡:亮',col:'#8a6d00'}
+  ];
+  const CX=[150,205,260,315],CY=[230,305],WEAK=5;
+  let k='nacl',gen=0;
+  function draw(t,f){
+    pts.innerHTML='';
+    let u=0;
+    CY.forEach(cy=>CX.forEach(cx=>{
+      const ion=t===2||(t===1&&u===WEAK);u++;
+      if(ion){
+        const dx=13*f,dy=15*f;
+        el('circle',{cx:cx-dx,cy:cy-dy,r:12,fill:'#1a5276'},pts);
+        el('text',{x:cx-dx,y:cy-dy+6,fill:'#ffffff'},pts).textContent='+';
+        el('circle',{cx:cx+dx,cy:cy+dy,r:12,fill:'#c0392b'},pts);
+        el('text',{x:cx+dx,y:cy+dy+6,fill:'#ffffff'},pts).textContent='−';
+      }else{
+        el('circle',{cx:cx-9,cy:cy,r:11,fill:'#5a6a6b',stroke:'#ffffff','stroke-width':2},pts);
+        el('circle',{cx:cx+9,cy:cy,r:11,fill:'#5a6a6b',stroke:'#ffffff','stroke-width':2},pts);
+      }
+    }));
+  }
+  function lamp(t){
+    rays.innerHTML='';
+    const A=t===2?[-165,-135,-110,-90,-70,-45,-15]:t===1?[-135,-90,-45]:[],r1=28,r2=t===2?42:35;
+    A.forEach(a=>{const q=a*Math.PI/180;
+      el('path',{d:'M'+(230+r1*Math.cos(q)).toFixed(1)+','+(60+r1*Math.sin(q)).toFixed(1)+'L'+(230+r2*Math.cos(q)).toFixed(1)+','+(60+r2*Math.sin(q)).toFixed(1),stroke:'#8a6d00','stroke-width':t===2?4:3},rays);});
+    bulb.setAttribute('fill',t===2?'#8a6d00':t===1?'#ffffff':'#d5dbdb');
+    bulb.setAttribute('stroke',t===0?'#5a6a6b':'#8a6d00');
+    st.textContent=T[t].s;st.setAttribute('fill',t===0?'#5a6a6b':'#8a6d00');
+  }
+  function render(anim){
+    const s=S[k];
+    nm.textContent=s.n;lamp(s.t);
+    $('w5lab2-l1').innerHTML=s.eq;
+    $('w5lab2-l2').innerHTML='→ <span class="hl M">'+T[s.t].c+'</span>:'+T[s.t].d;
+    const my=++gen;
+    if(anim)tw(500,f=>{if(my===gen)draw(s.t,f);});else draw(s.t,1);
+  }
+  root.querySelectorAll('[data-k]').forEach(b=>b.addEventListener('click',()=>{
+    if(b.dataset.k===k)return;k=b.dataset.k;
+    root.querySelectorAll('[data-k]').forEach(o=>o.classList.toggle('sel',o===b));render(true);
+  }));
+  render(false);
+})();
+/* w5lab3 */
+(function(){
+  const root=$('w5lab3');if(!root)return;
+  const mix=root.querySelector('.mix');
+  /* 判定只用「溶解度規則」那一頁:Cl⁻ 例外 Ag/Pb/Hg₂、SO₄²⁻ 例外 Ba/Pb/Ca/Sr、OH⁻ 與 PO₄³⁻ 多不溶、硝酸鹽與第 1 族全溶 */
+  const C={
+    mg:{f:'Mg(NO₃)₂',s:'Mg',i:'Mg²⁺',h:'Mg<sup>2+</sup>'},
+    cu:{f:'Cu(NO₃)₂',s:'Cu',i:'Cu²⁺',h:'Cu<sup>2+</sup>'},
+    pb:{f:'Pb(NO₃)₂',s:'Pb',i:'Pb²⁺',h:'Pb<sup>2+</sup>'}
+  };
+  const A={
+    cl:{f:'NaCl',i:'Cl⁻',h:'Cl<sup>−</sup>',
+        p:m=>[m+'Cl₂',m+'Cl<sub>2</sub>'],n:[1,2],
+        ins:m=>m==='Pb',why:(m,x)=>x?'Cl<sup>−</sup> 的例外':'Cl<sup>−</sup> 多可溶'},
+    so4:{f:'Na₂SO₄',i:'SO₄²⁻',h:'SO<sub>4</sub><sup>2−</sup>',
+        p:m=>[m+'SO₄',m+'SO<sub>4</sub>'],n:[1,1],
+        ins:m=>m==='Pb',why:(m,x)=>x?'SO<sub>4</sub><sup>2−</sup> 的例外':m+'<sup>2+</sup> 不在例外'},
+    oh:{f:'NaOH',i:'OH⁻',h:'OH<sup>−</sup>',
+        p:m=>[m+'(OH)₂',m+'(OH)<sub>2</sub>'],n:[1,2],
+        ins:()=>true,why:()=>'OH<sup>−</sup> 多不溶'},
+    po4:{f:'Na₃PO₄',i:'PO₄³⁻',h:'PO<sub>4</sub><sup>3−</sup>',
+        p:m=>[m+'₃(PO₄)₂',m+'<sub>3</sub>(PO<sub>4</sub>)<sub>2</sub>'],n:[3,2],
+        ins:()=>true,why:()=>'PO<sub>4</sub><sup>3−</sup> 多不溶'}
+  };
+  let c='pb',a='so4',gen=0;
+  const P0=[[165,252],[315,252]],SP=[[165,312],[315,312]];
+  function draw(k,o){
+    mix.innerHTML='';
+    if(o.ins){
+      el('path',{d:'M128,365 Q240,305 352,365 Z',fill:'#d5dbdb',stroke:'#5a6a6b','stroke-width':2,'fill-opacity':k,'stroke-opacity':k},mix);
+      if(k>0.5)el('text',{x:240,y:358,fill:'#2c3e50','font-size':18},mix).textContent=o.p[0]+'(s)';
+      [[o.ci,'#1a5276'],[o.ai,'#c0392b']].forEach(([t,col],j)=>{
+        const x=P0[j][0]+(240-P0[j][0])*k,y=P0[j][1]+(340-P0[j][1])*k;
+        if(k<1)el('text',{x:x,y:y,fill:col,'fill-opacity':1-k},mix).textContent=t;
+      });
+      el('text',{x:240,y:288,fill:'#5a6a6b','font-size':16},mix).textContent='旁觀離子';
+    }else{
+      el('text',{x:P0[0][0],y:P0[0][1],fill:'#5a6a6b'},mix).textContent=o.ci;
+      el('text',{x:P0[1][0],y:P0[1][1],fill:'#5a6a6b'},mix).textContent=o.ai;
+      el('text',{x:240,y:356,fill:'#5a6a6b','font-size':18},mix).textContent='沒有沉澱';
+    }
+    el('text',{x:SP[0][0],y:SP[0][1],fill:'#5a6a6b'},mix).textContent='NO₃⁻';
+    el('text',{x:SP[1][0],y:SP[1][1],fill:'#5a6a6b'},mix).textContent='Na⁺';
+  }
+  function render(anim){
+    const K=C[c],X=A[a],ins=X.ins(K.s),p=X.p(K.s);
+    root.querySelector('.la').textContent=K.f+'(aq)';root.querySelector('.lb').textContent=X.f+'(aq)';
+    root.querySelector('.ac').textContent=K.i;root.querySelector('.ba').textContent=X.i;
+    $('w5lab3-l1').innerHTML=p[1]+(ins?' 不溶':' 可溶')+'('+X.why(K.s,ins)+')、NaNO<sub>3</sub> 可溶';
+    if(ins){
+      const co=n=>n>1?String(n):'';
+      $('w5lab3-l2').innerHTML='→ <span class="hl M">'+co(X.n[0])+K.h+' + '+co(X.n[1])+X.h+' → '+p[1]+'(s)</span>';
+    }else{
+      $('w5lab3-l2').innerHTML='→ <span class="hl M">無反應(NR)</span>:四種離子都是旁觀離子';
+    }
+    const o={ins:ins,p:p,ci:K.i,ai:X.i};
+    const my=++gen;
+    if(anim&&ins)tw(700,k=>{if(my===gen)draw(k,o);});else draw(1,o);
+  }
+  root.querySelectorAll('[data-c]').forEach(b=>b.addEventListener('click',()=>{
+    if(b.dataset.c===c)return;c=b.dataset.c;
+    root.querySelectorAll('[data-c]').forEach(x=>x.classList.toggle('sel',x===b));render(true);
+  }));
+  root.querySelectorAll('[data-a]').forEach(b=>b.addEventListener('click',()=>{
+    if(b.dataset.a===a)return;a=b.dataset.a;
+    root.querySelectorAll('[data-a]').forEach(x=>x.classList.toggle('sel',x===b));render(true);
+  }));
+  render(false);
+})();
+})();
 </script>
 <script id="mobile-js">
 (function(){

@@ -155,6 +155,41 @@ body.scroll .animation-layout{grid-template-columns:1fr}
 body.scroll .animation-layout video{max-height:none}
 @media(max-width:720px){.animation-layout{grid-template-columns:1fr}}
 </style>
+<style id="lab-css">
+/* ── 互動實驗台(先預測、再動手)──────────────────────── */
+.lab{display:flex;gap:30px;align-items:flex-start}
+.labfig{flex:0 0 auto}
+.labfig .fig{margin:0 auto}
+.labside{flex:1;min-width:0}
+.labside .box{margin:0 0 8px;font-size:21px;line-height:1.45;padding:9px 18px}
+.labside .eq{margin:6px 0;font-size:26px}
+.labctl{display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:center;font-size:20px;margin:6px 0}
+.labctl input[type=range]{width:100%;height:28px;accent-color:var(--primary);cursor:pointer}
+.labctl output{font-weight:700;color:var(--primary);min-width:96px;text-align:right}
+.labread{font-size:21px;line-height:1.5;background:#f4f6f7;border-radius:8px;padding:7px 16px;margin:6px 0}
+.labread .M{font-size:27px}
+.lbtn{font-family:inherit;font-size:19px;font-weight:700;padding:6px 16px;border-radius:8px;border:2px solid var(--primary);background:#fff;color:var(--primary);cursor:pointer;margin:2px 8px 2px 0}
+.lbtn:hover{background:var(--def-bg)}
+.lbtn:disabled{color:var(--muted);border-color:#aab7b8;background:#f4f6f7;cursor:default}
+.lbtn.bad{border-color:#c0392b;color:#c0392b}
+.labmsg{font-size:20px;line-height:1.42;min-height:86px;margin:6px 0;padding:7px 16px;border-radius:8px;background:#f4f6f7}
+.labmsg.bad{background:var(--warn-bg);color:#922b21}
+.slide ol.steps{font-size:21px;line-height:1.4;margin:0 0 6px 30px}
+.steps li{margin:4px 0;color:var(--muted)}
+.steps li.on{color:var(--ink)}
+.steps li.now{color:var(--primary);font-weight:700}
+.lab.labcol{display:block}
+.lbtn.sel{background:var(--primary);color:#fff}
+.labrow{display:flex;gap:10px;align-items:center;font-size:20px;margin:4px 0}
+.labrow input[type=range]{flex:1;min-width:120px;height:28px;accent-color:var(--primary);cursor:pointer}
+.labrow .lbtn{margin:0;font-size:17px;padding:5px 11px;white-space:nowrap}
+body.scroll .labrow{flex-wrap:wrap}
+body.scroll .lab{flex-direction:column;align-items:stretch;gap:12px}
+/* 閱讀模式:圖釘在上方,按按鈕時動畫才看得到 */
+body.scroll .labfig{position:sticky;top:50px;z-index:2;background:var(--card);border-bottom:1px solid #d5dbdb}
+body.scroll .labfig svg.fig{max-height:36vh;width:auto;min-width:0!important}
+@media print{.steps li{color:var(--ink)!important;font-weight:400!important}.noprint{display:none!important}}
+</style>
 <style id="mobile-css">
 /* ── 行動裝置閱讀模式（body.scroll）與工具列 ─────────────── */
 #mtb{position:fixed;top:8px;right:8px;z-index:20;display:flex;gap:6px;align-items:center}
@@ -324,6 +359,43 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="box warn"><span class="tag">注意</span>當量點是「化學計量的事實」,終點是「實驗觀察的訊號」,兩者概念不同。</div>
 </section>
 
+<!-- LAB w7lab1 -->
+<section class="slide">
+  <h2>動手試:一滴一滴滴到終點 <span class="en">Titration Lab — watch the flask, count the moles</span></h2>
+  <div class="lab" id="w7lab1">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 440 400" width="440" height="400" role="img" aria-labelledby="w7lab1-t w7lab1-d">
+        <title id="w7lab1-t">NaOH 滴定 HCl:滴定管液面、錐形瓶顏色與兩者莫耳數的比較(示意)</title>
+        <desc id="w7lab1-d">左邊是裝 0.08000 M NaOH 的滴定管,刻度 0 到 40 mL,加入越多液面越低;下方的錐形瓶裝 10.00 mL HCl 加酚酞。右邊兩條直條比較瓶中 HCl 的莫耳數(固定 2.400 × 10⁻³ mol)與已加入 NaOH 的莫耳數,一條虛線標出兩者依 1 : 1 剛好對上的高度,也就是當量點。瓶中還有酸剩下時是無色,NaOH 一過量就變粉紅,過量越多顏色越深。顏色深淺為示意。</desc>
+        <defs><clipPath id="w7lab1-clip"><path d="M60,318 V334 L18,396 H126 L84,334 V318 Z"/></clipPath></defs>
+        <text x="72" y="22" font-size="16" font-weight="700" fill="#1a5276" text-anchor="middle">NaOH 0.08000 M</text>
+        <path class="bliq" d="M62,40 H82 V280 H62 Z" fill="#1a5276" fill-opacity=".18"/>
+        <path d="M60,32 V282 M84,32 V282" fill="none" stroke="#2c3e50" stroke-width="3"/>
+        <path d="M60,282 L66,292 V300 L70,308 H74 L78,300 V292 L84,282" fill="none" stroke="#2c3e50" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M54,288 H90" stroke="#2c3e50" stroke-width="5"/>
+        <path d="M84,40 h8 M84,70 h5 M84,100 h8 M84,130 h5 M84,160 h8 M84,190 h5 M84,220 h8 M84,250 h5 M84,280 h8" stroke="#2c3e50" stroke-width="2"/>
+        <g font-size="16" fill="#2c3e50"><text x="96" y="46">0</text><text x="96" y="106">10</text><text x="96" y="166">20</text><text x="96" y="226">30</text><text x="96" y="286">40 mL</text></g>
+        <path class="bmen" d="M62,40 H82" stroke="#1a5276" stroke-width="3"/>
+        <g clip-path="url(#w7lab1-clip)"><path class="fliq" d="M0,385 H140 V400 H0 Z" fill="#1a5276" fill-opacity=".10"/></g>
+        <path d="M60,318 V334 L18,396 H126 L84,334 V318" fill="none" stroke="#2c3e50" stroke-width="3" stroke-linejoin="round"/>
+        <circle class="drop" cx="72" cy="310" r="4" fill="#1a5276" visibility="hidden"/>
+        <g font-size="16" fill="#2c3e50"><text x="138" y="352">HCl 10.00 mL</text><text x="138" y="372">+ 酚酞</text></g>
+        <text class="col" x="138" y="394" font-size="16" font-weight="700" fill="#5a6a6b">無色</text>
+        <text x="330" y="22" font-size="16" font-weight="700" fill="#1a5276" text-anchor="middle">莫耳數(× 10⁻³ mol)</text>
+        <path d="M222,290 H436" stroke="#2c3e50" stroke-width="2"/>
+        <g class="bars" font-size="16" text-anchor="middle"></g>
+        <text x="330" y="40" font-size="16" fill="#5a6a6b" text-anchor="middle">依 1 : 1 反應・示意</text>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 瓶裡是 <b>10.00 mL</b> HCl,滴定管是 0.08000 M NaOH。加到 <b>10.00 mL</b>(體積相等)時,酸被中和完、瓶子變粉紅了嗎?<br>② 從無色到粉紅,是隨著 NaOH 慢慢變紅,還是在某一刻<b>突然</b>變?</div>
+      <div class="labrow noprint"><button type="button" class="lbtn" data-v="500">+5.00 mL</button><button type="button" class="lbtn" data-v="100">+1.00 mL</button><button type="button" class="lbtn" data-v="10">+0.10 mL</button><button type="button" class="lbtn" data-v="0">重來</button></div>
+      <div class="labread"><span id="w7lab1-l1">已加 NaOH:0.00 mL → 0 mol</span><br><span id="w7lab1-l2">瓶中 HCl 0.2400 M × 0.01000 L = 2.400 × 10⁻³ mol(設定值)</span><br><span id="w7lab1-l3">→ <span class="hl M">還沒開始</span></span></div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① 沒有。10.00 mL 只送進 0.8000 × 10<sup>−3</sup> mol NaOH,瓶裡有 2.400 × 10<sup>−3</sup> mol HCl;依 1 : 1 要加到 <span class="hl">30.00 mL</span> 才對上。② <span class="hl">突然</span>:只要還剩一點酸就是無色,酸一用完、多出一點 OH<sup>−</sup> 就變色——所以接近終點要逐滴加。<b>當量點是「mol 依係數比對上」,不是「體積相等」;終點是你看到變色的那一刻。</b></div>
+    </div>
+  </div>
+</section>
+
 <!-- 10 -->
 <section class="slide">
   <h2>滴定計算步驟 <span class="en">Titration Calculations</span></h2>
@@ -385,6 +457,38 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
     <li>量出來是多少就寫多少——於是得到 <span class="hl">0.1020 M</span> 這種數字</li>
   </ul>
 <div class="box key"><span class="tag">這一步叫「標定」(standardization)</span><b>標準液的濃度是「測得的」,不是「配出來的」。</b>看到 0.1020 M 這種不漂亮的數字,代表這瓶溶液<b>被認真標定過</b>——它是可信度的記號,不是隨便寫的。</div>
+</section>
+
+<!-- LAB w7lab2 -->
+<section class="slide">
+  <h2>動手試:天平這麼準,濃度為什麼還不準? <span class="en">Weighing Lab — where the error really comes from</span></h2>
+  <div class="lab" id="w7lab2">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 440 372" width="440" height="372" role="img" aria-labelledby="w7lab2-t w7lab2-d">
+        <title id="w7lab2-t">秤到的 NaOH 固體組成、想配與實際的濃度、以及兩種誤差來源的大小(示意)</title>
+        <desc id="w7lab2-d">最上面一條是秤到的固體,藍色是真正的 NaOH,虛線框是吸進的水。中間兩條比較想配的 0.1000 M 與實際濃度。最下面兩條比較濃度的相對誤差:天平 ±0.0001 g 造成的那一條短到幾乎畫不出來,吸水造成的那一條則隨含水比例變長。這是簡化的示意:把不是 NaOH 的部分都當成水;實際上吸收的二氧化碳會變成碳酸鈉,情況更複雜。</desc>
+        <text x="20" y="22" font-size="17" font-weight="700" fill="#1a5276">秤到的固體(示意・簡化)</text>
+        <g class="solid"></g>
+        <text x="20" y="134" font-size="17" font-weight="700" fill="#1a5276">濃度</text>
+        <g font-size="16" fill="#2c3e50"><text x="20" y="168">想配的</text><text x="20" y="208">實際</text></g>
+        <path d="M92,152 h240 v22 h-240 Z" fill="#5a6a6b"/>
+        <text x="340" y="169" font-size="16" font-weight="700" fill="#2c3e50">0.1000 M</text>
+        <g class="conc"></g>
+        <text x="20" y="250" font-size="17" font-weight="700" fill="#1a5276">濃度的相對誤差從哪裡來</text>
+        <g font-size="16" fill="#2c3e50"><text x="20" y="284">天平</text><text x="20" y="324">吸水</text></g>
+        <path d="M92,262 V340" stroke="#2c3e50" stroke-width="2"/>
+        <g class="err" font-size="16"></g>
+        <text x="20" y="364" font-size="16" fill="#5a6a6b">兩條誤差用同一把尺畫</text>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 秤 <b>1.0000 g</b> NaOH(天平 ±0.0001 g)配「0.1000 M」。若固體有 <b>2.0%</b> 是吸進的水,濃度誤差約是天平誤差的<b>幾倍</b>?<br>② 改秤 <b>5.0000 g</b>,天平的相對誤差變 1/5;吸水的誤差也變 1/5 嗎?</div>
+      <div class="labrow noprint"><label for="w7lab2-p" style="min-width:150px">假設 NaOH 占</label><input type="range" id="w7lab2-p" min="90" max="100" step="0.5" value="100"><b id="w7lab2-pv" style="min-width:80px;text-align:right;color:var(--primary)">100.0%</b></div>
+      <div class="labrow noprint"><label for="w7lab2-m" style="min-width:150px">秤取量</label><input type="range" id="w7lab2-m" min="1" max="5" step="0.5" value="1"><b id="w7lab2-mv" style="min-width:80px;text-align:right;color:var(--primary)">1.0000 g</b></div>
+      <div class="labread"><span id="w7lab2-l1">天平:±0.0001 g ÷ 1.0000 g = 0.010%</span><br><span id="w7lab2-l2">吸水:沒有(假設全是 NaOH)</span><br><span id="w7lab2-l3">→ <span class="hl M">實際 0.1000 M</span></span></div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① 約 <span class="hl">200 倍</span>:天平 0.0001 ÷ 1.0000 = 0.010%,吸水卻少 2.0%(實際 0.09800 M)。② 不會:2.0% 是<b>比例</b>,秤多少都一樣,秤多只縮小天平那一項。<b>天平量的是「秤到幾克」,不是「其中多少是 NaOH」——濃度只能靠一級標準品標定量出來(例題 4)。</b></div>
+    </div>
+  </div>
 </section>
 
 <!-- 16 -->
@@ -715,6 +819,151 @@ addEventListener('touchend',e=>{
 });
 fit();
 show(parseInt(location.hash.slice(1))-1||0);
+</script>
+<script id="lab-js">
+(function(){
+/* 共用工具(每支 deck 相同,不要改) */
+  const NS='http://www.w3.org/2000/svg',$=id=>document.getElementById(id);
+  const el=(n,a,p)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;};
+  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let seed=7;const rnd=()=>(seed=seed*16807%2147483647)/2147483647;
+  function tw(ms,fn,done){
+    if(still||ms<=0){fn(1);if(done)done();return;}
+    let t0=null;
+    requestAnimationFrame(function f(t){
+      if(t0===null)t0=t;
+      const k=Math.min(1,(t-t0)/ms),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+      fn(e);if(k<1)requestAnimationFrame(f);else if(done)done();
+    });
+  }
+  // 控制項上的點擊、觸控、方向鍵不可觸發翻頁
+  document.querySelectorAll('.lab').forEach(l=>{
+    ['click','touchstart','touchend'].forEach(t=>l.addEventListener(t,e=>{if(e.target.closest('button,input,label'))e.stopPropagation();}));
+    l.addEventListener('keydown',e=>{if(e.target.matches('input'))e.stopPropagation();});
+    l.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>b.blur()));
+    l.querySelectorAll('input[type=range]').forEach(r=>r.addEventListener('pointerup',()=>r.blur()));
+  });
+/* w7lab1 */
+(function(){
+  const root=$('w7lab1');if(!root)return;
+  /* 單位一律用整數:體積 0.01 mL(Vh)、莫耳數 1e-6 mol(u)。NaOH 0.08000 M → u = 0.8 × Vh;HCl 0.2400 M × 10.00 mL = 2400 */
+  const ACID=2400,VMAX=4000,BASE=290,SC=0.06,W=70,XA=280,XB=390;
+  const g=root.querySelector('.bars'),bliq=root.querySelector('.bliq'),bmen=root.querySelector('.bmen');
+  const fliq=root.querySelector('.fliq'),drop=root.querySelector('.drop'),col=root.querySelector('.col');
+  const bar=(cx,y0,h)=>'M'+(cx-W/2)+','+y0+'h'+W+'v'+(-h)+'h'+(-W)+'Z';
+  const nu=vh=>Math.round(vh*8/10);
+  const sf=vh=>{const s=(vh/100).toFixed(2).replace('.','').replace(/^0+/,'');return Math.min(4,s.length);};
+  const ns=vh=>vh===0?'0':(nu(vh)/1000).toPrecision(sf(vh));
+  const f3=u=>(u/1000).toFixed(3);
+  let V=0,run=0;
+  function shade(u){
+    const e=u-ACID;
+    if(e<=0)return {c:'#1a5276',o:0.10,t:'無色',tc:'#5a6a6b'};
+    return {c:'#c0392b',o:0.16+0.44*Math.min(1,e/160),t:e<=16?'淡粉紅(終點)':e<=80?'粉紅':'深粉紅',tc:'#c0392b'};
+  }
+  function draw(vh,dropY){
+    const v=vh/100,u=vh*0.8,y=40+6*v;
+    bliq.setAttribute('d','M62,'+y+' H82 V280 H62 Z');bmen.setAttribute('d','M62,'+y+' H82');
+    fliq.setAttribute('d','M0,'+(385-v)+' H140 V400 H0 Z');
+    const s=shade(u);fliq.setAttribute('fill',s.c);fliq.setAttribute('fill-opacity',s.o);
+    col.textContent=s.t;col.setAttribute('fill',s.tc);
+    if(dropY===null)drop.setAttribute('visibility','hidden');
+    else{drop.setAttribute('visibility','visible');drop.setAttribute('cy',dropY);}
+    g.innerHTML='';
+    el('path',{d:bar(XA,BASE,ACID*SC),fill:'#a04c08'},g);
+    const ub=Math.min(u,ACID),ux=Math.max(0,u-ACID);
+    if(ub>0)el('path',{d:bar(XB,BASE,ub*SC),fill:'#1a5276'},g);
+    if(ux>0)el('path',{d:bar(XB,BASE-ACID*SC,ux*SC),fill:'#c0392b'},g);
+    const yq=BASE-ACID*SC;
+    el('path',{d:'M240,'+yq+'H432',stroke:'#2c3e50','stroke-width':2,'stroke-dasharray':'7 5',fill:'none'},g);
+    el('text',{x:238,y:yq+6,fill:'#2c3e50','text-anchor':'end'},g).textContent='當量點';
+    el('text',{x:XA,y:yq-8,fill:'#a04c08','font-weight':700},g).textContent='2.400';
+    let ly=BASE-u*SC-8;if(ly>yq-6&&ly<yq+20)ly=yq-8;
+    el('text',{x:XB,y:ly,fill:ux>0?'#c0392b':'#1a5276','font-weight':700},g).textContent=f3(Math.round(u));
+    el('text',{x:XA,y:BASE+22,fill:'#2c3e50'},g).textContent='瓶中 HCl';
+    el('text',{x:XB,y:BASE+22,fill:'#2c3e50'},g).textContent='已加 NaOH';
+    const st=u===0?['還沒加 NaOH','#5a6a6b']:Math.round(u)<ACID?['還有酸剩下','#5a6a6b']:Math.round(u)===ACID?['mol 剛好對上','#117a65']:['NaOH 過量','#c0392b'];
+    el('text',{x:335,y:BASE+52,fill:st[1],'font-size':18,'font-weight':700},g).textContent=st[0];
+  }
+  function read(){
+    const u=nu(V),v=(V/100).toFixed(2),L=(V/100000).toFixed(5);
+    $('w7lab1-l1').textContent=V===0?'已加 NaOH:0.00 mL → 0 mol':'已加 NaOH '+v+' mL:0.08000 × '+L+' L = '+ns(V)+' × 10⁻³ mol';
+    const h='瓶中 HCl 2.400 × 10⁻³ mol';
+    let l2,l3;
+    if(V===0){l2='瓶中 HCl 0.2400 M × 0.01000 L = 2.400 × 10⁻³ mol(設定值)';l3='→ <span class="hl M">還沒開始</span>';}
+    else if(u<ACID){l2=h+' → 還剩 '+f3(ACID-u)+' × 10⁻³ mol 酸';l3='→ <span class="hl M">無色</span>:還有酸,不能停';}
+    else if(u===ACID){l2=h+' → 依 1 : 1 剛好對上';l3='→ <span class="hl M">當量點</span>:仍無色,再多一點點就變色';}
+    else{
+      const e=Math.round((u-ACID)*10/24)/10;
+      l2=h+' → NaOH 過量 '+f3(u-ACID)+' × 10⁻³ mol';
+      l3='→ <span class="hl M">'+shade(u).t+'</span>:用 '+v+' mL 算,HCl = '+(u/10000).toFixed(4)+' M(偏高 '+e.toFixed(1)+'%)';
+    }
+    $('w7lab1-l2').textContent=l2;$('w7lab1-l3').innerHTML=l3;
+    root.querySelectorAll('[data-v]').forEach(b=>{const d=+b.dataset.v;b.disabled=d===0?V===0:V+d>VMAX;});
+  }
+  function go(to,anim){
+    const my=++run,from=V;V=to;read();
+    if(!anim||to<=from){draw(V,null);return;}
+    const v1=to/100;
+    tw(600,k=>{if(my!==run)return;draw(from+(to-from)*k,k<1?310+(385-v1-310)*Math.min(1,k*1.6):null);},()=>{if(my===run)draw(V,null);});
+  }
+  root.querySelectorAll('[data-v]').forEach(b=>b.addEventListener('click',()=>{
+    const d=+b.dataset.v;go(d===0?0:Math.min(VMAX,V+d),d!==0);
+  }));
+  let keep=0;
+  addEventListener('beforeprint',()=>{keep=V;go(3000,false);});
+  addEventListener('afterprint',()=>go(keep,false));
+  go(0,false);
+})();
+/* w7lab2 */
+(function(){
+  const root=$('w7lab2');if(!root)return;
+  /* 全部是比例:不用 NaOH 的莫耳質量。a = 含水比例(0.5% 為一格),b = 秤取量(0.5 g 為一格) */
+  const sp=$('w7lab2-p'),sm=$('w7lab2-m');
+  const gs=root.querySelector('.solid'),gc=root.querySelector('.conc'),ge=root.querySelector('.err');
+  const box=(x,y,w,h)=>'M'+x+','+y+'h'+w+'v'+h+'h'+(-w)+'Z';
+  function render(){
+    const a=Math.round((100-(+sp.value))*2),b=Math.round(+sm.value*2);
+    const p=100-a/2,m=b/2,water=a/2;
+    const conc=a===0?'0.1000':'0.0'+(Math.round(p*10)*10);
+    const bal=(0.01/m).toPrecision(2);
+    $('w7lab2-pv').textContent=p.toFixed(1)+'%';$('w7lab2-mv').textContent=m.toFixed(4)+' g';
+    /* 固體組成 */
+    gs.innerHTML='';
+    const wn=4*p;
+    el('path',{d:box(20,36,wn,40),fill:'#1a5276'},gs);
+    if(a>0)el('path',{d:box(20+wn,36,400-wn,40),fill:'#f4f6f7',stroke:'#5a6a6b','stroke-width':2,'stroke-dasharray':'5 4'},gs);
+    el('text',{x:32,y:63,fill:'#ffffff','font-size':17,'font-weight':700},gs).textContent='NaOH '+p.toFixed(1)+'%';
+    el('text',{x:420,y:100,fill:a>0?'#922b21':'#5a6a6b','font-size':16,'text-anchor':'end'},gs).textContent=a>0?'吸進的水 '+water.toFixed(1)+'%':'假設沒有吸水';
+    /* 濃度 */
+    gc.innerHTML='';
+    const c=a>0?'#a04c08':'#117a65';
+    el('path',{d:box(92,192,2.4*p,22),fill:c},gc);
+    el('text',{x:340,y:209,fill:c,'font-size':16,'font-weight':700},gc).textContent=conc+' M';
+    /* 相對誤差:1% = 24 px */
+    ge.innerHTML='';
+    const wb=24*0.01/m,ww=24*water;
+    el('path',{d:box(92,272,wb,22),fill:'#117a65'},ge);
+    el('text',{x:100,y:289,fill:'#117a65','font-weight':700},ge).textContent='±'+bal+'%(短到畫不出來)';
+    if(a>0)el('path',{d:box(92,312,ww,22),fill:'#c0392b'},ge);
+    el('text',{x:100+ww,y:329,fill:a>0?'#c0392b':'#5a6a6b','font-weight':700},ge).textContent=water.toFixed(1)+'%';
+    /* 讀數 */
+    $('w7lab2-l1').textContent='天平:±0.0001 g ÷ '+m.toFixed(4)+' g = '+bal+'%';
+    if(a===0){
+      $('w7lab2-l2').textContent='吸水:沒有(假設全是 NaOH)';
+      $('w7lab2-l3').innerHTML='→ <span class="hl M">實際 0.1000 M</span>,只剩天平誤差';
+    }else{
+      $('w7lab2-l2').textContent='吸水:只有 '+p.toFixed(1)+'% 是 NaOH → 濃度少 '+water.toFixed(1)+'%';
+      $('w7lab2-l3').innerHTML='→ <span class="hl M">實際 '+conc+' M</span>,誤差約為天平的 '+Number((a*b*25).toPrecision(2))+' 倍';
+    }
+  }
+  sp.addEventListener('input',render);sm.addEventListener('input',render);
+  let keep=null;
+  addEventListener('beforeprint',()=>{keep=[sp.value,sm.value];sp.value=98;sm.value=1;render();});
+  addEventListener('afterprint',()=>{if(keep){sp.value=keep[0];sm.value=keep[1];keep=null;render();}});
+  render();
+})();
+})();
 </script>
 <script id="mobile-js">
 (function(){

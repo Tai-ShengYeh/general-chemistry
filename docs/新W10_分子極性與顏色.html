@@ -155,6 +155,41 @@ body.scroll .animation-layout{grid-template-columns:1fr}
 body.scroll .animation-layout video{max-height:none}
 @media(max-width:720px){.animation-layout{grid-template-columns:1fr}}
 </style>
+<style id="lab-css">
+/* ── 互動實驗台(先預測、再動手)──────────────────────── */
+.lab{display:flex;gap:30px;align-items:flex-start}
+.labfig{flex:0 0 auto}
+.labfig .fig{margin:0 auto}
+.labside{flex:1;min-width:0}
+.labside .box{margin:0 0 8px;font-size:21px;line-height:1.45;padding:9px 18px}
+.labside .eq{margin:6px 0;font-size:26px}
+.labctl{display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:center;font-size:20px;margin:6px 0}
+.labctl input[type=range]{width:100%;height:28px;accent-color:var(--primary);cursor:pointer}
+.labctl output{font-weight:700;color:var(--primary);min-width:96px;text-align:right}
+.labread{font-size:21px;line-height:1.5;background:#f4f6f7;border-radius:8px;padding:7px 16px;margin:6px 0}
+.labread .M{font-size:27px}
+.lbtn{font-family:inherit;font-size:19px;font-weight:700;padding:6px 16px;border-radius:8px;border:2px solid var(--primary);background:#fff;color:var(--primary);cursor:pointer;margin:2px 8px 2px 0}
+.lbtn:hover{background:var(--def-bg)}
+.lbtn:disabled{color:var(--muted);border-color:#aab7b8;background:#f4f6f7;cursor:default}
+.lbtn.bad{border-color:#c0392b;color:#c0392b}
+.labmsg{font-size:20px;line-height:1.42;min-height:86px;margin:6px 0;padding:7px 16px;border-radius:8px;background:#f4f6f7}
+.labmsg.bad{background:var(--warn-bg);color:#922b21}
+.slide ol.steps{font-size:21px;line-height:1.4;margin:0 0 6px 30px}
+.steps li{margin:4px 0;color:var(--muted)}
+.steps li.on{color:var(--ink)}
+.steps li.now{color:var(--primary);font-weight:700}
+.lab.labcol{display:block}
+.lbtn.sel{background:var(--primary);color:#fff}
+.labrow{display:flex;gap:10px;align-items:center;font-size:20px;margin:4px 0}
+.labrow input[type=range]{flex:1;min-width:120px;height:28px;accent-color:var(--primary);cursor:pointer}
+.labrow .lbtn{margin:0;font-size:17px;padding:5px 11px;white-space:nowrap}
+body.scroll .labrow{flex-wrap:wrap}
+body.scroll .lab{flex-direction:column;align-items:stretch;gap:12px}
+/* 閱讀模式:圖釘在上方,按按鈕時動畫才看得到 */
+body.scroll .labfig{position:sticky;top:50px;z-index:2;background:var(--card);border-bottom:1px solid #d5dbdb}
+body.scroll .labfig svg.fig{max-height:36vh;width:auto;min-width:0!important}
+@media print{.steps li{color:var(--ink)!important;font-weight:400!important}.noprint{display:none!important}}
+</style>
 <style id="mobile-css">
 /* ── 行動裝置閱讀模式（body.scroll）與工具列 ─────────────── */
 #mtb{position:fixed;top:8px;right:8px;z-index:20;display:flex;gap:6px;align-items:center}
@@ -293,7 +328,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   (a) CO<sub>2</sub> 的 C&nbsp;&nbsp;(b) SO<sub>2</sub> 的 S&nbsp;&nbsp;(c) NH<sub>3</sub> 的 N&nbsp;&nbsp;(d) SF<sub>6</sub> 的 S
   <div class="sol"><b>解:</b>先畫 Lewis 結構再數:<br>
   (a) O=C=O:2 個雙鍵 → <span class="hl">2 群</span><br>
-  (b) SO<sub>2</sub>(S 接 2 個 O、加 1 對孤對;怎麼畫它的 Lewis 結構第 40 頁再講):2 個鍵 + 1 孤對 → <span class="hl">3 群</span><br>
+  (b) SO<sub>2</sub>(S 接 2 個 O、加 1 對孤對;怎麼畫它的 Lewis 結構第 42 頁再講):2 個鍵 + 1 孤對 → <span class="hl">3 群</span><br>
   (c) NH<sub>3</sub>:3 個 N–H + 1 孤對 → <span class="hl">4 群</span><br>
   (d) SF<sub>6</sub>:6 個 S–F、無孤對 → <span class="hl">6 群</span></div></div>
 </section>
@@ -631,6 +666,30 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="box key"><span class="tag">趨勢</span>同為 4 群:孤對每多一對,鍵角再被壓小 2–3° — 這組數字(109.5 → 107 → 104.5)是必背經典!</div>
 </section>
 
+<!-- LAB w10lab1 -->
+<section class="slide">
+  <h2>動手試:把一個鍵換成孤對 <span class="en">Lone-Pair Lab — invisible, but not empty</span></h2>
+  <div class="lab" id="w10lab1">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 440 380" width="440" height="380" role="img" aria-labelledby="w10lab1-t w10lab1-d">
+        <title id="w10lab1-t">電子群總數固定時,把鍵結對逐一換成孤對(示意)</title>
+        <desc id="w10lab1-d">中心原子 A 周圍有固定數目的電子群,灰色虛線是電子群幾何的輪廓,始終不變。綠色圓圈 X 是鍵結原子,橘色雲狀是孤對電子。每把一個鍵換成孤對,上方的分子形狀名稱改變,兩個 X 之間標示的鍵角也跟著改變。</desc>
+        <text class="t1" x="220" y="24" font-size="18" font-weight="700" fill="#1a5276" text-anchor="middle"></text>
+        <text class="t2" x="220" y="50" font-size="18" font-weight="700" fill="#a04c08" text-anchor="middle"></text>
+        <g class="mol"></g>
+        <g font-size="16" fill="#2c3e50"><text x="20" y="334">綠圈 X = 鍵結原子</text><text x="20" y="354" fill="#a04c08">橘色雲 = 孤對電子</text><text x="20" y="374" fill="#5a6a6b">灰虛線 = 電子群幾何的輪廓(示意)</text></g>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 四面體的一個鍵換成孤對(AX<sub>4</sub> → AX<sub>3</sub>E)。孤對<b>看不見</b>,剩下 3 個鍵會<b>攤平成平面三角(120°)</b>嗎?<br>② 再換一個(AX<sub>2</sub>E<sub>2</sub>):<b>電子群幾何</b>還是四面體嗎?</div>
+      <div class="labrow noprint"><button type="button" class="lbtn sel" data-g="4">4 個電子群</button><button type="button" class="lbtn" data-g="3">3 個電子群</button></div>
+      <div class="labrow noprint"><button type="button" class="lbtn" data-a="add">把一個鍵換成孤對</button><button type="button" class="lbtn" data-a="reset">還原</button></div>
+      <div class="labread"><span id="w10lab1-l1"></span><br><span id="w10lab1-l2"></span><br><span id="w10lab1-l3"></span></div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① 不會攤平。孤對雖然看不見,仍<b>占一個位置</b>,而且比鍵結對更「胖」—— 3 個 X 被推成<span class="hl">三角錐</span>,鍵角從 109.5° 變成 107°,是變<b>小</b>,不是變成 120°。② 是。4 群仍是<span class="hl">四面體</span>;變的是分子形狀:四面體 → 三角錐 → 角形。<b>電子群幾何看全部的群,分子形狀只看原子。</b></div>
+    </div>
+  </div>
+</section>
+
 <!-- 25 -->
 <section class="slide">
   <h2>多重鍵也會壓縮鄰角 <span class="en">Multiple Bonds Occupy More Space</span></h2>
@@ -744,6 +803,37 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
     </div>
   </div>
   <p class="small">「有極性鍵」不代表「是極性分子」— 形狀決定是否抵消。</p>
+</section>
+
+<!-- LAB w10lab2 -->
+<section class="slide">
+  <h2>動手試:兩個鍵偶極會不會抵消? <span class="en">Dipole Lab — polar bonds are not enough</span></h2>
+  <div class="lab" id="w10lab2">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 440 370" width="440" height="370" role="img" aria-labelledby="w10lab2-t w10lab2-d">
+        <title id="w10lab2-t">AX2 分子的鍵角與兩個鍵偶極的向量和(示意)</title>
+        <desc id="w10lab2-d">中心原子 A 接兩個 X。兩支藍色箭頭是等大的鍵偶極,由 A 指向 X;紅色箭頭是它們的向量和,也就是淨偶極,灰色虛線畫出平行四邊形。鍵角 180 度時兩支藍箭頭反向,紅箭頭消失;分子越彎,紅箭頭越長。下方刻度標出 CO2 的 180 度與 H2O 的 104.5 度,三角形指出目前的鍵角。</desc>
+        <text x="20" y="22" font-size="16" fill="#5a6a6b">示意:兩個鍵偶極等大(各算 1)</text>
+        <g class="mol"></g>
+        <path d="M40,290 H400" stroke="#2c3e50" stroke-width="2.5" fill="none"/>
+        <path d="M40,282 V298 M160,284 V296 M280,284 V296 M400,282 V298" stroke="#2c3e50" stroke-width="2" fill="none"/>
+        <path d="M98,276 V290" stroke="#117a65" stroke-width="3" fill="none"/>
+        <path d="M400,276 V290" stroke="#117a65" stroke-width="3" fill="none"/>
+        <g font-size="16" font-weight="700" fill="#117a65"><text x="98" y="270" text-anchor="middle">H₂O 104.5°</text><text x="404" y="270" text-anchor="end">CO₂ 180°</text></g>
+        <g font-size="16" fill="#2c3e50" text-anchor="middle"><text x="40" y="327">90°</text><text x="160" y="327">120°</text><text x="280" y="327">150°</text><text x="400" y="327">180°</text></g>
+        <path class="gm" d="M-8,306 L8,306 L0,294 Z" fill="#a04c08"/>
+        <g font-size="16" font-weight="700"><text x="20" y="348" fill="#1a5276">藍 = 鍵偶極(δ+ → δ−)</text><text x="20" y="366" fill="#c0392b">紅 = 兩支藍箭頭的向量和(淨偶極)</text></g>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 鍵偶極大小不變,只把 180° 的 AX<sub>2</sub> <b>彎到 150°</b>:它算極性分子了嗎?還是要彎到像 H<sub>2</sub>O 那麼多才算?<br>② 彎到 <b>90°</b> 時,淨偶極比<b>一支</b>鍵偶極大還是小?</div>
+      <div class="labrow noprint"><label for="w10lab2-s" style="min-width:64px">鍵角</label><input type="range" id="w10lab2-s" min="90" max="180" step="0.5" value="180"><b id="w10lab2-sv" style="min-width:80px;text-align:right;color:var(--primary)">180°</b></div>
+      <div class="labrow noprint"><button type="button" class="lbtn" data-p="180">CO<sub>2</sub> 的 180°</button><button type="button" class="lbtn" data-p="104.5">H<sub>2</sub>O 的 104.5°</button></div>
+      <div class="labread"><span id="w10lab2-l1"></span><br><span id="w10lab2-l2"></span></div>
+      <div class="small">CO<sub>2</sub> 與 H<sub>2</sub>O 的鍵極性其實不同(ΔEN 1.0 與 1.4),這裡只看角度的效果,所以用相對大小、不寫單位。</div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① 已經是極性。150° 時淨偶極 = 2 × cos 75° ≈ <span class="hl">0.52</span> 支鍵偶極,不是 0;只有<b>剛好 180°</b> 才完全抵消。② 比一支還大:90° 時是 2 × cos 45° ≈ <span class="hl">1.41</span>(H<sub>2</sub>O 的 104.5° 是 1.22)—— 夾角越小,兩支越「同向」。<b>有極性鍵只是必要條件;會不會抵消,由形狀決定。</b></div>
+    </div>
+  </div>
 </section>
 
 <!-- 34 -->
@@ -978,6 +1068,42 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <div class="box def" style="margin:5px 0;padding:8px 20px;font-size:19px;line-height:1.4"><span class="tag">為什麼食品分析離不開它</span>總酚、蛋白質(Bradford 法)、還原糖(DNS 法)——這些例行檢驗都是比色法,用的都是這條式子。<b>這條式子是分析化學實驗課的日常。</b></div>
 </section>
 
+<!-- LAB w10lab3 -->
+<section class="slide">
+  <h2>動手試:顏色深淺可以定量 <span class="en">Beer–Lambert Lab — depth of color is εbc</span></h2>
+  <div class="lab" id="w10lab3">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 440 384" width="440" height="384" role="img" aria-labelledby="w10lab3-t w10lab3-d">
+        <title id="w10lab3-t">比色管的光徑、濃度與吸光度(示意)</title>
+        <desc id="w10lab3-d">上半部是藍光穿過一支橙色比色管射向偵測器,比色管的寬度代表光徑,顏色深淺代表濃度,穿出去的光越淡代表吸收越多。下半部是吸光度對濃度的圖:實線是目前光徑下的直線,灰色細線是光徑 1.00 公分的參考線,圓點是目前的樣品;吸光度 1.5 以上的灰色區域表示偏離直線,要先稀釋再測。</desc>
+        <text x="20" y="20" font-size="16" fill="#5a6a6b">以例題的 β-胡蘿蔔素檢量線為例(450 nm,示意)</text>
+        <text x="20" y="96" font-size="16" font-weight="700" fill="#1a5276">藍光</text>
+        <text x="420" y="130" font-size="16" fill="#2c3e50" text-anchor="end">偵測器</text>
+        <path d="M395,70 h25 v40 h-25 Z" fill="#2c3e50"/>
+        <g class="cuv"></g>
+        <text class="bl" x="220" y="172" font-size="16" font-weight="700" fill="#2c3e50" text-anchor="middle"></text>
+        <path d="M60,195.6 H396 V267 H60 Z" fill="#f4f6f7"/>
+        <text x="70" y="214" font-size="16" fill="#5a6a6b">A &gt; 1.5:偏離直線</text>
+        <path d="M60,267 H396" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="6 4" fill="none"/>
+        <path d="M60,190 V330 H400" stroke="#2c3e50" stroke-width="2.5" fill="none"/>
+        <g font-size="16" fill="#2c3e50" text-anchor="middle"><text x="60" y="350">0</text><text x="144" y="350">2</text><text x="228" y="350">4</text><text x="312" y="350">6</text><text x="396" y="350">8</text><text x="228" y="374">濃度 c (μg/mL)</text></g>
+        <g font-size="16" fill="#2c3e50" text-anchor="end"><text x="52" y="335">0</text><text x="52" y="293">1.0</text><text x="52" y="251">2.0</text><text x="52" y="209">3.0</text></g>
+        <text x="66" y="190" font-size="16" fill="#2c3e50">A</text>
+        <g class="plot"></g>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 濃度不變,改用光徑 <b>2.00 cm</b> 的比色管:A 會變嗎?<br>② <b>稀釋一半</b>,同時改用 2.00 cm 的比色管:A 變大、變小,還是一樣?</div>
+      <div class="labrow noprint"><label for="w10lab3-c" style="min-width:64px">濃度 c</label><input type="range" id="w10lab3-c" min="0.25" max="8" step="0.25" value="2.5"><b id="w10lab3-cv" style="min-width:118px;text-align:right;color:var(--primary)">2.50 μg/mL</b></div>
+      <div class="labrow noprint"><label for="w10lab3-b" style="min-width:64px">光徑 b</label><input type="range" id="w10lab3-b" min="0.5" max="2" step="0.25" value="1"><b id="w10lab3-bv" style="min-width:118px;text-align:right;color:var(--primary)">1.00 cm</b></div>
+      <div class="labrow noprint"><button type="button" class="lbtn" data-x="c">濃度 ×½</button><button type="button" class="lbtn" data-x="b">光徑 ×2</button><button type="button" class="lbtn" data-x="0">還原(2.50 μg/mL、1.00 cm)</button></div>
+      <div class="labread"><span id="w10lab3-l1"></span><br><span id="w10lab3-l2"></span></div>
+      <div class="small">0.196 = 下一頁例題的檢量線斜率(光徑 1.00 cm);b 以 cm、c 以 μg/mL 代入。</div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① 會,<span class="hl">A 加倍</span>(0.490 → 0.980):光走過的溶液越長,碰到的分子越多,所以檢量線和樣品要用同一種比色管。② <span class="hl">一樣</span>,仍是 0.490:c 減半、b 加倍,b × c 不變。<b>A = εbc:看的是光路上有多少吸光的分子。</b></div>
+    </div>
+  </div>
+</section>
+
 <!-- 52 -->
 <section class="slide">
   <h2>例題:用檢量線定量 <span class="en">Example: A Calibration Curve</span></h2>
@@ -1110,6 +1236,222 @@ addEventListener('touchend',e=>{
 });
 fit();
 show(parseInt(location.hash.slice(1))-1||0);
+</script>
+<script id="lab-js">
+(function(){
+/* 共用工具(每支 deck 相同,不要改) */
+  const NS='http://www.w3.org/2000/svg',$=id=>document.getElementById(id);
+  const el=(n,a,p)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;};
+  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let seed=7;const rnd=()=>(seed=seed*16807%2147483647)/2147483647;
+  function tw(ms,fn,done){
+    if(still||ms<=0){fn(1);if(done)done();return;}
+    let t0=null;
+    requestAnimationFrame(function f(t){
+      if(t0===null)t0=t;
+      const k=Math.min(1,(t-t0)/ms),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+      fn(e);if(k<1)requestAnimationFrame(f);else if(done)done();
+    });
+  }
+  // 控制項上的點擊、觸控、方向鍵不可觸發翻頁
+  document.querySelectorAll('.lab').forEach(l=>{
+    ['click','touchstart','touchend'].forEach(t=>l.addEventListener(t,e=>{if(e.target.closest('button,input,label'))e.stopPropagation();}));
+    l.addEventListener('keydown',e=>{if(e.target.matches('input'))e.stopPropagation();});
+    l.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>b.blur()));
+    l.querySelectorAll('input[type=range]').forEach(r=>r.addEventListener('pointerup',()=>r.blur()));
+  });
+/* w10lab1 */
+(function(){
+  const root=$('w10lab1');if(!root)return;
+  const g=root.querySelector('.mol'),t1=root.querySelector('.t1'),t2=root.querySelector('.t2');
+  const AX=220,AY=195,RAD=Math.PI/180;
+  /* 形狀名稱與鍵角全部取自 deck:四面體 109.5° / 三角錐 107° / 角形 104.5°(孤對壓縮鍵角表);
+     平面三角 120° / 角形「略小於 120°」(3 群含孤對 AX2E 那一張) */
+  const G={
+    /* 四面體:1 個朝上 + 3 個像三腳架朝下(楔形 = 朝向你,虛線 = 朝後方);先換掉朝上的,再換掉朝後的 */
+    4:{geo:'四面體',pos:[{f:-90,R:107,s:'l'},{f:152,R:121,s:'l'},{f:75,R:114,s:'w'},{f:20,R:122,s:'d'}],
+       order:[0,3],arc:[2,1],sh:[0,-3,3,0],
+       nm:['四面體','三角錐','角形'],ang:['109.5°','107°','104.5°'],ax:['AX₄','AX₃E','AX₂E₂'],
+       axh:['AX<sub>4</sub>','AX<sub>3</sub>E','AX<sub>2</sub>E<sub>2</sub>']},
+    3:{geo:'平面三角',pos:[{f:-90,R:115,s:'l'},{f:150,R:118,s:'l'},{f:30,R:118,s:'l'}],
+       order:[0],arc:[2,1],sh:[0,-3,3],
+       nm:['平面三角','角形'],ang:['120°','略小於 120°'],ax:['AX₃','AX₂E'],
+       axh:['AX<sub>3</sub>','AX<sub>2</sub>E']}
+  };
+  let m=4,n=0,tok=0;
+  const P=(f,R)=>[AX+R*Math.cos(f*RAD),AY+R*Math.sin(f*RAD)];
+  const fx=v=>v.toFixed(1);
+  /* q = 已換成孤對的數目(可為小數,補間用) */
+  function draw(q){
+    const C=G[m];g.innerHTML='';
+    const E=C.pos.map((p,i)=>{const j=C.order.indexOf(i);return j<0?0:Math.max(0,Math.min(1,q-j));});
+    const pts=C.pos.map((p,i)=>P(p.f+C.sh[i]*q,p.R));
+    /* 電子群幾何輪廓:不論換掉幾個鍵都在 */
+    let d='';
+    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++)d+='M'+fx(pts[i][0])+','+fx(pts[i][1])+'L'+fx(pts[j][0])+','+fx(pts[j][1]);
+    el('path',{d:d,fill:'none',stroke:'#d5dbdb','stroke-width':2,'stroke-dasharray':'6 5'},g);
+    /* 孤對 */
+    C.pos.forEach((p,i)=>{
+      if(E[i]<=0)return;
+      const f=(p.f+C.sh[i]*q)*RAD,u=[Math.cos(f),Math.sin(f)],v=[-u[1],u[0]],L=100*E[i],w=30*E[i];
+      const at=(a,b)=>fx(AX+u[0]*a+v[0]*b)+','+fx(AY+u[1]*a+v[1]*b);
+      el('path',{d:'M'+at(0,0)+'C'+at(L*.3,w)+' '+at(L*.9,w)+' '+at(L,0)+'C'+at(L*.9,-w)+' '+at(L*.3,-w)+' '+at(0,0)+'Z',
+        fill:'#a04c08','fill-opacity':.16,stroke:'#a04c08','stroke-width':2.5},g);
+      [-9,9].forEach(b=>el('circle',{cx:at(L*.7,b).split(',')[0],cy:at(L*.7,b).split(',')[1],r:4.5*E[i],fill:'#a04c08'},g));
+    });
+    /* 鍵與鍵結原子 */
+    C.pos.forEach((p,i)=>{
+      const o=1-E[i];if(o<=0)return;
+      const [x,y]=pts[i],grp=el('g',{opacity:o.toFixed(2)},g);
+      if(p.s==='l')el('path',{d:'M'+AX+','+AY+'L'+fx(x)+','+fx(y),stroke:'#2c3e50','stroke-width':3,fill:'none'},grp);
+      else{
+        const f=Math.atan2(y-AY,x-AX),vx=-Math.sin(f),vy=Math.cos(f);
+        if(p.s==='w')el('path',{d:'M'+AX+','+AY+'L'+fx(x+vx*7)+','+fx(y+vy*7)+'L'+fx(x-vx*7)+','+fx(y-vy*7)+'Z',fill:'#2c3e50'},grp);
+        else{let h='';for(let k=1;k<=6;k++){const t=k/6.6,cx=AX+(x-AX)*t,cy=AY+(y-AY)*t,hw=1.5+5*t;h+='M'+fx(cx+vx*hw)+','+fx(cy+vy*hw)+'L'+fx(cx-vx*hw)+','+fx(cy-vy*hw);}
+          el('path',{d:h,stroke:'#2c3e50','stroke-width':2.4,fill:'none'},grp);}
+      }
+      el('circle',{cx:fx(x),cy:fx(y),r:20,fill:'#ffffff',stroke:'#117a65','stroke-width':2.5},grp);
+      el('text',{x:fx(x),y:fx(y+6.5),'font-size':19,'font-weight':700,fill:'#117a65','text-anchor':'middle'},grp).textContent='X';
+    });
+    /* 中心原子 */
+    el('circle',{cx:AX,cy:AY,r:22,fill:'#ffffff',stroke:'#1a5276','stroke-width':2.5},g);
+    el('text',{x:AX,y:AY+7,'font-size':20,'font-weight':700,fill:'#1a5276','text-anchor':'middle'},g).textContent='A';
+    /* 鍵角弧與數值 */
+    const [a,b]=C.arc,fa=C.pos[a].f+C.sh[a]*q,fb=C.pos[b].f+C.sh[b]*q,r=54;
+    const pa=P(fa,r),pb=P(fb,r),mid=(fa+fb)/2,pl=P(mid,r+30);
+    el('path',{d:'M'+fx(pa[0])+','+fx(pa[1])+'A'+r+','+r+' 0 0 1 '+fx(pb[0])+','+fx(pb[1]),fill:'none',stroke:'#a04c08','stroke-width':2.5},g);
+    const k=Math.round(q);
+    el('text',{x:fx(pl[0]),y:fx(pl[1]+6),'font-size':18,'font-weight':700,fill:'#a04c08','text-anchor':'middle'},g).textContent=C.ang[k];
+  }
+  function read(){
+    const C=G[m],x=C.pos.length-n;
+    t1.textContent='電子群幾何:'+C.geo+'('+C.pos.length+' 群)';
+    t2.textContent='分子形狀:'+C.nm[n];
+    $('w10lab1-l1').innerHTML=C.axh[n]+':'+x+' 個鍵 + '+n+' 對孤對 = '+C.pos.length+' 群';
+    $('w10lab1-l2').innerHTML='電子群幾何 <b>'+C.geo+'</b> → 分子形狀 <span class="hl M">'+C.nm[n]+'</span>';
+    $('w10lab1-l3').textContent='X–A–X 鍵角 '+C.ang[n]+(m===4?'(實測值,見上一頁的表)':'');
+    root.querySelector('[data-a="add"]').disabled=n>=C.order.length;
+    root.querySelector('[data-a="reset"]').disabled=n===0;
+  }
+  function go(to){
+    const from=n,my=++tok;n=to;read();
+    if(from===to){draw(n);return;}
+    tw(600,k=>{if(my===tok)draw(from+(to-from)*k);},()=>{if(my===tok)draw(n);});
+  }
+  root.querySelectorAll('[data-g]').forEach(b=>b.addEventListener('click',()=>{
+    const v=+b.dataset.g;if(v===m)return;
+    tok++;m=v;n=0;root.querySelectorAll('[data-g]').forEach(o=>o.classList.toggle('sel',o===b));read();draw(0);
+  }));
+  root.querySelector('[data-a="add"]').addEventListener('click',()=>{if(n<G[m].order.length)go(n+1);});
+  root.querySelector('[data-a="reset"]').addEventListener('click',()=>go(0));
+  read();draw(0);
+})();
+/* w10lab2 */
+(function(){
+  const root=$('w10lab2');if(!root)return;
+  const s=$('w10lab2-s'),g=root.querySelector('.mol'),gm=root.querySelector('.gm');
+  const AX=220,AY=78,L=130,D=100,RAD=Math.PI/180;
+  const fx=v=>v.toFixed(1);
+  /* 刻度:90° 在 x=40,180° 在 x=400 */
+  const SX=t=>40+(t-90)*4;
+  function arrow(x1,y1,x2,y2,c,w){
+    const dx=x2-x1,dy=y2-y1,len=Math.hypot(dx,dy);if(len<18)return;
+    const ux=dx/len,uy=dy/len,bx=x2-ux*16,by=y2-uy*16;
+    el('path',{d:'M'+fx(x1)+','+fx(y1)+'L'+fx(bx)+','+fx(by),stroke:c,'stroke-width':w,fill:'none','stroke-linecap':'round'},g);
+    el('path',{d:'M'+fx(x2)+','+fx(y2)+'L'+fx(bx-uy*8)+','+fx(by+ux*8)+'L'+fx(bx+uy*8)+','+fx(by-ux*8)+'Z',fill:c},g);
+  }
+  /* 兩個等大(=1)的鍵偶極,夾角 θ;向量和 = 2 cos(θ/2) */
+  const net=t=>2*Math.cos(t/2*RAD);
+  function draw(t){
+    g.innerHTML='';
+    const h=t/2*RAD,u1=[-Math.sin(h),Math.cos(h)],u2=[Math.sin(h),Math.cos(h)];
+    const X1=[AX+u1[0]*L,AY+u1[1]*L],X2=[AX+u2[0]*L,AY+u2[1]*L];
+    const T1=[AX+u1[0]*D,AY+u1[1]*D],T2=[AX+u2[0]*D,AY+u2[1]*D],R=net(t)*D;
+    el('path',{d:'M'+AX+','+AY+'L'+fx(X1[0])+','+fx(X1[1])+'M'+AX+','+AY+'L'+fx(X2[0])+','+fx(X2[1]),stroke:'#d5dbdb','stroke-width':6,fill:'none'},g);
+    if(R>=18)el('path',{d:'M'+fx(T1[0])+','+fx(T1[1])+'L'+fx(AX)+','+fx(AY+R)+'L'+fx(T2[0])+','+fx(T2[1]),stroke:'#5a6a6b','stroke-width':1.5,'stroke-dasharray':'5 4',fill:'none'},g);
+    arrow(AX,AY,T1[0],T1[1],'#1a5276',4);arrow(AX,AY,T2[0],T2[1],'#1a5276',4);
+    arrow(AX,AY,AX,AY+R,'#c0392b',5);
+    [X1,X2].forEach(p=>{
+      el('circle',{cx:fx(p[0]),cy:fx(p[1]),r:20,fill:'#ffffff',stroke:'#117a65','stroke-width':2.5},g);
+      el('text',{x:fx(p[0]),y:fx(p[1]+6.5),'font-size':19,'font-weight':700,fill:'#117a65','text-anchor':'middle'},g).textContent='X';
+    });
+    el('circle',{cx:AX,cy:AY,r:22,fill:'#ffffff',stroke:'#1a5276','stroke-width':2.5},g);
+    el('text',{x:AX,y:AY+7,'font-size':20,'font-weight':700,fill:'#1a5276','text-anchor':'middle'},g).textContent='A';
+    const v=net(t).toFixed(2);
+    el('text',{x:AX,y:fx(Math.max(AY+48,AY+R+24)),'font-size':18,'font-weight':700,fill:'#c0392b','text-anchor':'middle'},g)
+      .textContent=v==='0.00'?'向量和 = 0':'淨偶極 '+v;
+    gm.setAttribute('transform','translate('+fx(SX(t))+',0)');
+  }
+  function read(t){
+    const v=net(t).toFixed(2),t0=Number.isInteger(t)?String(t):t.toFixed(1);
+    $('w10lab2-sv').textContent=t0+'°';
+    $('w10lab2-l1').innerHTML='淨偶極 = 2 × cos('+t0+'° ÷ 2) = <span class="hl M">'+v+'</span> 支鍵偶極';
+    $('w10lab2-l2').textContent=v==='0.00'?'→ 兩支等大反向,完全抵消:非極性':'→ 抵消不掉:極性分子';
+  }
+  let shown=+s.value,tok=0;
+  function set(t,anim){
+    const from=shown,my=++tok;shown=t;read(t);
+    if(anim&&from!==t)tw(500,k=>{if(my===tok)draw(from+(t-from)*k);});else draw(t);
+  }
+  s.addEventListener('input',()=>set(+s.value,false));
+  root.querySelectorAll('[data-p]').forEach(b=>b.addEventListener('click',()=>{s.value=b.dataset.p;set(+b.dataset.p,true);}));
+  set(+s.value,false);
+})();
+/* w10lab3 */
+(function(){
+  const root=$('w10lab3');if(!root)return;
+  const sc=$('w10lab3-c'),sb=$('w10lab3-b'),cuv=root.querySelector('.cuv'),plot=root.querySelector('.plot'),bl=root.querySelector('.bl');
+  /* 斜率取自 deck 例題:A = 0.196 c(c 單位 μg/mL,光徑 1.00 cm);A = εbc → 光徑 b cm 時 A = 0.196 × b × c。
+     線性上限 A = 1.5 取自同一張例題的解答。 */
+  const K=0.196,LIM=1.5,X=c=>60+c*42,Y=a=>330-a*42,fx=v=>v.toFixed(1);
+  /* 0.196×b×c 在格點上常剛好落在 …5,浮點誤差會讓同值依乘法順序捨入不同;加極小量 → 一律四捨五入 */
+  const fA=a=>(a*(1+1e-9)).toPrecision(3);
+  function draw(c,b){
+    const A=K*b*c,w=b*60,x0=220-w/2,x1=220+w/2;
+    cuv.innerHTML='';
+    el('path',{d:'M62,90 H'+fx(x0),stroke:'#1a5276','stroke-width':12,fill:'none'},cuv);
+    el('path',{d:'M'+fx(x1)+',90 H395',stroke:'#1a5276','stroke-width':12,'stroke-opacity':Math.max(.08,Math.pow(10,-A)).toFixed(3),fill:'none'},cuv);
+    el('path',{d:'M'+fx(x0)+',40 V140 H'+fx(x1)+' V40',fill:'#a04c08','fill-opacity':(.08+.72*c/8).toFixed(3),stroke:'#2c3e50','stroke-width':2.5},cuv);
+    el('path',{d:'M'+fx(x0)+',150 H'+fx(x1)+'M'+fx(x0)+',144 V156 M'+fx(x1)+',144 V156',stroke:'#2c3e50','stroke-width':2,fill:'none'},cuv);
+    bl.textContent='光徑 b = '+b.toFixed(2)+' cm';
+    plot.innerHTML='';
+    if(Math.abs(b-1)>1e-9){
+      el('path',{d:'M60,330 L'+fx(X(8))+','+fx(Y(K*8)),stroke:'#5a6a6b','stroke-width':1.5,fill:'none'},plot);
+      el('text',{x:70,y:238,'font-size':16,fill:'#5a6a6b'},plot).textContent='灰線:光徑 1.00 cm';
+    }
+    const cl=LIM/(K*b);
+    if(cl<8){
+      el('path',{d:'M60,330 L'+fx(X(cl))+','+fx(Y(LIM)),stroke:'#117a65','stroke-width':3,fill:'none'},plot);
+      el('path',{d:'M'+fx(X(cl))+','+fx(Y(LIM))+' L'+fx(X(8))+','+fx(Y(K*b*8)),stroke:'#117a65','stroke-width':3,'stroke-dasharray':'7 5',fill:'none'},plot);
+    }else el('path',{d:'M60,330 L'+fx(X(8))+','+fx(Y(K*b*8)),stroke:'#117a65','stroke-width':3,fill:'none'},plot);
+    const px=X(c),py=Y(A),over=A>LIM+1e-9,col=over?'#c0392b':'#117a65';
+    el('path',{d:'M60,'+fx(py)+' H'+fx(px)+' V330',stroke:col,'stroke-width':1.5,'stroke-dasharray':'4 4',fill:'none'},plot);
+    el('circle',{cx:fx(px),cy:fx(py),r:7,fill:col},plot);
+  }
+  let cur={c:+sc.value,b:+sb.value},tok=0;
+  function render(anim){
+    const c=+sc.value,b=+sb.value,A=K*b*c,from=cur,my=++tok;cur={c,b};
+    $('w10lab3-cv').textContent=c.toFixed(2)+' μg/mL';$('w10lab3-bv').textContent=b.toFixed(2)+' cm';
+    $('w10lab3-l1').textContent='A = 0.196 × b × c = 0.196 × '+b.toFixed(2)+' × '+c.toFixed(2);
+    $('w10lab3-l2').innerHTML='= <span class="hl M">'+fA(A)+'</span>'+(A>LIM+1e-9
+      ?'<b style="color:#c0392b">　超過 1.5:實際會偏離直線,要先稀釋再測</b>':'(在直線範圍內)');
+    root.querySelector('[data-x="c"]').disabled=(c*4)%2!==0;
+    root.querySelector('[data-x="b"]').disabled=b*2>2+1e-9;
+    root.querySelector('[data-x="0"]').disabled=c===2.5&&b===1;
+    if(anim)tw(450,k=>{if(my===tok)draw(from.c+(c-from.c)*k,from.b+(b-from.b)*k);});
+    else draw(c,b);
+  }
+  sc.addEventListener('input',()=>render(false));sb.addEventListener('input',()=>render(false));
+  root.querySelectorAll('[data-x]').forEach(btn=>btn.addEventListener('click',()=>{
+    const x=btn.dataset.x;
+    if(x==='c')sc.value=(+sc.value/2).toFixed(2);
+    if(x==='b')sb.value=(+sb.value*2).toFixed(2);
+    if(x==='0'){sc.value=2.5;sb.value=1;}
+    render(true);
+  }));
+  render(false);
+})();
+})();
 </script>
 <script id="mobile-js">
 (function(){

@@ -151,6 +151,41 @@ tr:nth-child(even) td{background:#f4f6f7}
   #bar{display:none}
 }
 </style>
+<style id="lab-css">
+/* ── 互動實驗台(先預測、再動手)──────────────────────── */
+.lab{display:flex;gap:30px;align-items:flex-start}
+.labfig{flex:0 0 auto}
+.labfig .fig{margin:0 auto}
+.labside{flex:1;min-width:0}
+.labside .box{margin:0 0 8px;font-size:21px;line-height:1.45;padding:9px 18px}
+.labside .eq{margin:6px 0;font-size:26px}
+.labctl{display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:center;font-size:20px;margin:6px 0}
+.labctl input[type=range]{width:100%;height:28px;accent-color:var(--primary);cursor:pointer}
+.labctl output{font-weight:700;color:var(--primary);min-width:96px;text-align:right}
+.labread{font-size:21px;line-height:1.5;background:#f4f6f7;border-radius:8px;padding:7px 16px;margin:6px 0}
+.labread .M{font-size:27px}
+.lbtn{font-family:inherit;font-size:19px;font-weight:700;padding:6px 16px;border-radius:8px;border:2px solid var(--primary);background:#fff;color:var(--primary);cursor:pointer;margin:2px 8px 2px 0}
+.lbtn:hover{background:var(--def-bg)}
+.lbtn:disabled{color:var(--muted);border-color:#aab7b8;background:#f4f6f7;cursor:default}
+.lbtn.bad{border-color:#c0392b;color:#c0392b}
+.labmsg{font-size:20px;line-height:1.42;min-height:86px;margin:6px 0;padding:7px 16px;border-radius:8px;background:#f4f6f7}
+.labmsg.bad{background:var(--warn-bg);color:#922b21}
+.slide ol.steps{font-size:21px;line-height:1.4;margin:0 0 6px 30px}
+.steps li{margin:4px 0;color:var(--muted)}
+.steps li.on{color:var(--ink)}
+.steps li.now{color:var(--primary);font-weight:700}
+.lab.labcol{display:block}
+.lbtn.sel{background:var(--primary);color:#fff}
+.labrow{display:flex;gap:10px;align-items:center;font-size:20px;margin:4px 0}
+.labrow input[type=range]{flex:1;min-width:120px;height:28px;accent-color:var(--primary);cursor:pointer}
+.labrow .lbtn{margin:0;font-size:17px;padding:5px 11px;white-space:nowrap}
+body.scroll .labrow{flex-wrap:wrap}
+body.scroll .lab{flex-direction:column;align-items:stretch;gap:12px}
+/* 閱讀模式:圖釘在上方,按按鈕時動畫才看得到 */
+body.scroll .labfig{position:sticky;top:50px;z-index:2;background:var(--card);border-bottom:1px solid #d5dbdb}
+body.scroll .labfig svg.fig{max-height:36vh;width:auto;min-width:0!important}
+@media print{.steps li{color:var(--ink)!important;font-weight:400!important}.noprint{display:none!important}}
+</style>
 <style id="mobile-css">
 /* ── 行動裝置閱讀模式（body.scroll）與工具列 ─────────────── */
 #mtb{position:fixed;top:8px;right:8px;z-index:20;display:flex;gap:6px;align-items:center}
@@ -363,6 +398,34 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
     </div>
   </div>
   <div class="box key" style="margin-top:20px"><span class="tag">重點</span>莫耳數永遠是「中繼站」:<br>質量 → (÷ 莫耳質量) → mol → (× N<sub>A</sub>) → 粒子數;反向亦然。質量與粒子數之間<b>不能直接換算</b>。<br>怎麼記方向:從公克到莫耳是「除以莫耳質量」(公克數比莫耳數大);從莫耳到粒子數是「乘 N<sub>A</sub>」(粒子數一定比莫耳數大)——想想哪個數字比較大,就知道該乘還是除。</div>
+</section>
+
+<!-- LAB w3lab1 -->
+<section class="slide">
+  <h2>動手試:一樣重,分子一樣多嗎? <span class="en">Mole Lab — equal grams are not equal counts</span></h2>
+  <div class="lab" id="w3lab1">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 440 372" width="440" height="372" role="img" aria-labelledby="w3lab1-t w3lab1-d">
+        <title id="w3lab1-t">兩種物質的質量與粒子數並排比較</title>
+        <desc id="w3lab1-d">左半邊是兩種物質各秤多少公克,右半邊是各含多少個粒子。左邊是水,右邊是選定的物質。「同樣質量」模式下兩條質量長條一樣高、粒子數不同;「同樣莫耳數」模式下兩條粒子數長條一樣高、質量不同。每一半各自有刻度,最上方的數值寫在左右兩側。</desc>
+        <text class="eq1" x="220" y="24" font-size="19" font-weight="700" fill="#2c3e50" text-anchor="middle"></text>
+        <g font-size="17" font-weight="700" fill="#1a5276" text-anchor="middle"><text x="115" y="54">① 秤:質量</text><text x="335" y="54">② 數:粒子數</text></g>
+        <line x1="225" y1="40" x2="225" y2="316" stroke="#d5dbdb" stroke-width="2" stroke-dasharray="6 5"/>
+        <line x1="10" y1="290" x2="430" y2="290" stroke="#2c3e50" stroke-width="2"/>
+        <g class="bars" font-size="16" text-anchor="middle"></g>
+        <text class="foot1" x="220" y="352" font-size="18" font-weight="700" fill="#a04c08" text-anchor="middle"></text>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 秤<b>一樣重</b>的水和葡萄糖,誰的分子多?<b>多幾倍</b>?<br>② 反過來,各取<b>一樣多個</b>分子(同樣莫耳數),兩杯一樣重嗎?差幾倍?</div>
+      <div class="labrow noprint"><span>和水比</span><button type="button" class="lbtn sel" data-k="nacl">食鹽 NaCl</button><button type="button" class="lbtn" data-k="glu">葡萄糖</button><button type="button" class="lbtn" data-k="au">金 Au</button></div>
+      <div class="labrow noprint"><button type="button" class="lbtn sel" data-m="g">同樣質量</button><button type="button" class="lbtn" data-m="n">同樣莫耳數</button></div>
+      <div class="labrow noprint"><label for="w3lab1-s" id="w3lab1-sl" style="min-width:64px">各秤</label><input type="range" id="w3lab1-s" min="0.5" max="39.5" step="0.2" value="7.5"><b id="w3lab1-sv" style="min-width:92px;text-align:right;color:var(--primary)">7.5 g</b></div>
+      <div class="labread"><span id="w3lab1-l1">水 H₂O</span><br><span id="w3lab1-l2">食鹽 NaCl</span></div>
+      <div class="small" id="w3lab1-nt">莫耳質量:H₂O 18.02、NaCl 58.44、Au 196.97 g/mol;葡萄糖 C₆H₁₂O₆ = 6(12.01) + 12(1.008) + 6(16.00) = 180.16(原子量同例題 7)</div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① <span class="hl">水</span>多,約 <span class="hl">10.0 倍</span>(180.16 ÷ 18.02):每個葡萄糖分子比水分子重約 10 倍,同樣的公克數,分子個數就只有水的十分之一。② 不一樣重:同樣莫耳數,葡萄糖也重約 <span class="hl">10.0 倍</span>——兩題是同一個比值。<b>莫耳是「個數」不是「重量」;公克與個數之間,一定要經過莫耳質量。</b></div>
+    </div>
+  </div>
 </section>
 
 <!-- 15 -->
@@ -619,6 +682,33 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <span class="small">這次「g 食鹽」要消掉,所以 g 食鹽放<b>分母</b>——方向跟上一題相反,但規則一樣。算到 0.984 就停筆,是最常見的「沒到站」:單位還是 g,不是題目要的 mg。檢查:鹽裡還有氯,鈉一定比鹽少(約四成)✓</span></div></div>
 </section>
 
+<!-- LAB w3lab2 -->
+<section class="slide">
+  <h2>動手試:標示的鈉,吃下去的鹽 <span class="en">Sodium Lab — sodium is only part of the salt</span></h2>
+  <div class="lab" id="w3lab2">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 430 372" width="430" height="372" role="img" aria-labelledby="w3lab2-t w3lab2-d">
+        <title id="w3lab2-t">鈉的質量與相當的食鹽質量,以及一日上限</title>
+        <desc id="w3lab2-d">兩條長條使用同一個公克刻度。左邊是鈉,右邊是相當的食鹽;食鹽那一條下段的藍色是其中的鈉、上段是氯。兩條各有一條紅色虛線:鈉的一日上限約 2400 毫克,換成食鹽約 6.1 公克,約一平茶匙。</desc>
+        <text class="hd" x="215" y="24" font-size="19" font-weight="700" fill="#2c3e50" text-anchor="middle"></text>
+        <g class="ax" font-size="16" fill="#5a6a6b" text-anchor="end"></g>
+        <line x1="60" y1="300" x2="420" y2="300" stroke="#2c3e50" stroke-width="2"/>
+        <g class="bars" font-size="16" text-anchor="middle"></g>
+        <g font-size="16" text-anchor="middle" fill="#2c3e50"><text x="150" y="322">鈉 Na</text><text x="320" y="322">食鹽 NaCl</text></g>
+        <g font-size="16"><circle cx="22" cy="351" r="7" fill="#1a5276"/><text x="34" y="357" fill="#2c3e50">鈉</text><circle cx="86" cy="351" r="7" fill="#d5dbdb" stroke="#5a6a6b" stroke-width="1.5"/><text x="98" y="357" fill="#2c3e50">氯</text><path d="M150,351h34" stroke="#c0392b" stroke-width="2.5" stroke-dasharray="7 4"/><text x="192" y="357" fill="#2c3e50">一日上限</text></g>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 標示「鈉 1000 mg」,等於吃了 <b>1 g 鹽</b>嗎?<br>② 一包零食標示<b>鈉 500 mg</b>,一份小菜的食譜寫<b>鹽 1.0 g</b>。哪一份的鈉比較多?</div>
+      <div class="labrow noprint"><button type="button" class="lbtn sel" data-m="na">標示的鈉 → 食鹽</button><button type="button" class="lbtn" data-m="salt">食譜的鹽 → 鈉</button></div>
+      <div class="labrow noprint"><label for="w3lab2-s" id="w3lab2-sl" style="min-width:64px">鈉</label><input type="range" id="w3lab2-s" min="250" max="3500" step="250" value="750"><b id="w3lab2-sv" style="min-width:92px;text-align:right;color:var(--primary)">750 mg</b></div>
+      <div class="labread"><span id="w3lab2-l1">750 mg 鈉 × (1 g / 1000 mg) × (58.44 g 食鹽 / 22.99 g 鈉)</span><br>= <span class="hl M" id="w3lab2-o">1.91 g 食鹽</span><br><span id="w3lab2-l2">占鈉上限 2400 mg 的 31%</span></div>
+      <div class="small">鈉上限約 2400 mg/日;建議值依年齡、族群與版本不同,以國人膳食營養素參考攝取量 DRIs 現行版本為準。</div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① 不是,是 <span class="hl">2.54 g 鹽</span>:鹽裡還有氯,鈉只占 22.99 / 58.44 = 39%。② <span class="hl">標示鈉 500 mg 那一包</span>:1.0 g 鹽只含 393 mg 鈉。<b>比之前先換成同一種東西;因子寫上「g 鈉」「g 食鹽」,放反就消不掉。</b></div>
+    </div>
+  </div>
+</section>
+
 <!-- 37 -->
 <section class="slide quiz">
   <h2>隨堂快問 ③:從標示到化學式 <span class="en">Quick Check 3</span></h2>
@@ -741,6 +831,164 @@ addEventListener('touchend',e=>{
 });
 fit();
 show(parseInt(location.hash.slice(1))-1||0);
+</script>
+<script id="lab-js">
+(function(){
+/* 共用工具(每支 deck 相同,不要改) */
+  const NS='http://www.w3.org/2000/svg',$=id=>document.getElementById(id);
+  const el=(n,a,p)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;};
+  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let seed=7;const rnd=()=>(seed=seed*16807%2147483647)/2147483647;
+  function tw(ms,fn,done){
+    if(still||ms<=0){fn(1);if(done)done();return;}
+    let t0=null;
+    requestAnimationFrame(function f(t){
+      if(t0===null)t0=t;
+      const k=Math.min(1,(t-t0)/ms),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+      fn(e);if(k<1)requestAnimationFrame(f);else if(done)done();
+    });
+  }
+  // 控制項上的點擊、觸控、方向鍵不可觸發翻頁
+  document.querySelectorAll('.lab').forEach(l=>{
+    ['click','touchstart','touchend'].forEach(t=>l.addEventListener(t,e=>{if(e.target.closest('button,input,label'))e.stopPropagation();}));
+    l.addEventListener('keydown',e=>{if(e.target.matches('input'))e.stopPropagation();});
+    l.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>b.blur()));
+    l.querySelectorAll('input[type=range]').forEach(r=>r.addEventListener('pointerup',()=>r.blur()));
+  });
+/* w3lab1 */
+(function(){
+  const root=$('w3lab1');if(!root)return;
+  /* 莫耳質量:H₂O 18.02、NaCl 58.44(莫耳質量頁)、Au 196.97(例題 3);
+     葡萄糖由例題 7 的原子量算:6(12.01)+12(1.008)+6(16.00)=180.16;N_A 6.022×10²³ */
+  const NA=6.022e23,W={nm:'水',f:'H₂O',M:18.02,u:'個分子'};
+  const SUB={nacl:{nm:'食鹽',f:'NaCl',M:58.44,u:'個 NaCl 單位'},
+             glu:{nm:'葡萄糖',f:'C₆H₁₂O₆',M:180.16,u:'個分子'},
+             au:{nm:'金',f:'Au',M:196.97,u:'個原子'}};
+  const MODE={g:{lab:'各秤',min:0.5,max:39.5,step:0.2,v:7.5},n:{lab:'各取',min:0.03,max:1.99,step:0.04,v:0.35}};
+  const s=$('w3lab1-s'),g=root.querySelector('.bars'),eq=root.querySelector('.eq1'),ft=root.querySelector('.foot1');
+  const BASE=290,H=200,BW=66,SUPS='⁰¹²³⁴⁵⁶⁷⁸⁹';
+  let k='nacl',m='g',shown=null,gen=0;
+  const sup=n=>String(n).split('').map(c=>c==='-'?'⁻':SUPS[+c]).join('');
+  const p3=x=>+x.toPrecision(3);
+  /* 科學記號:尾數由 toExponential 取,避免 9.996 顯示成 10.0 */
+  const sci=(x,html)=>{const [a,b]=x.toExponential(2).split('e');return a+' × 10'+(html?'<sup>'+(+b)+'</sup>':sup(+b));};
+  const fm=x=>x>=100?x.toFixed(0):x>=10?x.toFixed(1):x>=1?x.toFixed(2):x.toFixed(3);
+  const bar=(cx,h)=>'M'+(cx-BW/2)+','+BASE+'h'+BW+'v'+(-h)+'h'+(-BW)+'Z';
+  function calc(){
+    const B=SUB[k],v=+s.value;
+    let gA,gB,nA,nB;
+    if(m==='g'){gA=gB=v;nA=p3(v/W.M);nB=p3(v/B.M);}
+    else{nA=nB=v;gA=p3(v*W.M);gB=p3(v*B.M);}
+    const fg=x=>m==='g'?x.toFixed(1):fm(x);
+    return {B,v,gA,gB,nA,nB,cA:p3(nA*NA),cB:p3(nB*NA),r:B.M/W.M,fg};
+  }
+  function draw(o){
+    g.innerHTML='';
+    const mg=Math.max(o.gA,o.gB),mc=Math.max(o.cA,o.cB);
+    [[60,o.gA,mg,'#1a5276',o.fg(o.gA)+' g',W.nm],[160,o.gB,mg,'#a04c08',o.fg(o.gB)+' g',o.B.nm],
+     [282,o.cA,mc,'#1a5276',sci(o.cA),W.nm],[384,o.cB,mc,'#a04c08',sci(o.cB),o.B.nm]].forEach(([cx,v,mx,c,t,nm])=>{
+      const h=mx>0?v/mx*H:0;
+      if(h>0)el('path',{d:bar(cx,h),fill:c},g);
+      el('text',{x:cx,y:BASE-h-8,fill:c,'font-weight':700},g).textContent=t;
+      el('text',{x:cx,y:BASE+22,fill:'#2c3e50'},g).textContent=nm;
+    });
+  }
+  function render(anim){
+    const o=calc(),B=o.B,r=o.r.toPrecision(3);
+    $('w3lab1-sl').textContent=MODE[m].lab;
+    $('w3lab1-sv').textContent=m==='g'?o.v.toFixed(1)+' g':o.v.toFixed(2)+' mol';
+    eq.textContent=m==='g'?'各秤 '+o.v.toFixed(1)+' g:水 vs '+B.nm:'各取 '+o.v.toFixed(2)+' mol:水 vs '+B.nm;
+    if(m==='g'){
+      $('w3lab1-l1').innerHTML='<b>水</b> '+o.v.toFixed(1)+' g ÷ 18.02 = '+o.nA.toPrecision(3)+' mol → '+sci(o.cA,1)+' '+W.u;
+      $('w3lab1-l2').innerHTML='<b>'+B.nm+'</b> '+o.v.toFixed(1)+' g ÷ '+B.M+' = '+o.nB.toPrecision(3)+' mol → '+sci(o.cB,1)+' '+B.u;
+      ft.textContent='一樣重 → 水多 '+B.M+' ÷ 18.02 = '+r+' 倍';
+    }else{
+      $('w3lab1-l1').innerHTML='<b>水</b> '+o.v.toFixed(2)+' mol × 18.02 = '+fm(o.gA)+' g('+sci(o.cA,1)+' 個)';
+      $('w3lab1-l2').innerHTML='<b>'+B.nm+'</b> '+o.v.toFixed(2)+' mol × '+B.M+' = '+fm(o.gB)+' g(個數相同)';
+      ft.textContent='一樣多個 → '+B.nm+'重 '+B.M+' ÷ 18.02 = '+r+' 倍';
+    }
+    const from=shown,my=++gen;shown=o;
+    if(anim&&from)tw(400,e=>{if(my!==gen)return;const L=(a,b)=>a+(b-a)*e;
+      draw({B:o.B,fg:o.fg,gA:L(from.gA,o.gA),gB:L(from.gB,o.gB),cA:L(from.cA,o.cA),cB:L(from.cB,o.cB)});
+      if(e>=1)draw(o);});
+    else draw(o);
+  }
+  s.addEventListener('input',()=>{MODE[m].v=+s.value;render(false);});
+  root.querySelectorAll('[data-k]').forEach(b=>b.addEventListener('click',()=>{
+    k=b.dataset.k;root.querySelectorAll('[data-k]').forEach(x=>x.classList.toggle('sel',x===b));render(true);
+  }));
+  root.querySelectorAll('[data-m]').forEach(b=>b.addEventListener('click',()=>{
+    if(b.dataset.m===m)return;m=b.dataset.m;
+    root.querySelectorAll('[data-m]').forEach(x=>x.classList.toggle('sel',x===b));
+    const M=MODE[m];s.min=M.min;s.max=M.max;s.step=M.step;s.value=M.v;render(false);
+  }));
+  render(false);
+})();
+/* w3lab2 */
+(function(){
+  const root=$('w3lab2');if(!root)return;
+  /* 換算因子 58.44 g 食鹽 / 22.99 g 鈉(標示寫鈉那一頁);上限約 2400 mg 鈉 = 6.1 g 鹽(例題:一日鈉建議量) */
+  const NA=22.99,NACL=58.44,LIM=2400;
+  const MODE={na:{lab:'鈉',min:250,max:3500,step:250,v:750},salt:{lab:'鹽',min:0.2,max:8.6,step:0.4,v:2.2}};
+  const s=$('w3lab2-s'),g=root.querySelector('.bars'),ax=root.querySelector('.ax');
+  const BASE=300,H=240,TOP=9,W=80,XN=140,XS=290,Y=x=>BASE-x/TOP*H;
+  let m='na',shown=null,gen=0;
+  root.querySelector('.hd').textContent='同一把尺(公克)';
+  [0,3,6,9].forEach(t=>{
+    if(t)el('line',{x1:60,y1:Y(t),x2:420,y2:Y(t),stroke:'#d5dbdb','stroke-width':1.5},ax);
+    el('text',{x:52,y:Y(t)+6},ax).textContent=String(t);
+  });
+  el('text',{x:52,y:Y(TOP)-18},ax).textContent='g';
+  const bar=(cx,y0,h)=>'M'+(cx-W/2)+','+y0+'h'+W+'v'+(-h)+'h'+(-W)+'Z';
+  function calc(){
+    const v=+s.value;
+    /* 鈉以 mg 取整、鹽以 g 取兩位,圖與讀數用同一組數字 */
+    const mgNa=m==='na'?v:Math.round(v*NA/NACL*1000),gSalt=m==='na'?v/1000*NACL/NA:v;
+    return {v,mgNa,gSalt};
+  }
+  function draw(mgNa,gSalt){
+    g.innerHTML='';
+    const hn=mgNa/1000/TOP*H,hs=gSalt/TOP*H;
+    if(hn>0)el('path',{d:bar(XN,BASE,hn),fill:'#1a5276'},g);
+    if(hn>0)el('path',{d:bar(XS,BASE,hn),fill:'#1a5276'},g);
+    if(hs-hn>0)el('path',{d:bar(XS,BASE-hn,hs-hn),fill:'#d5dbdb',stroke:'#5a6a6b','stroke-width':1.5},g);
+    /* 上限線:鈉 2.4 g;鹽 2400 mg × 58.44 / 22.99 = 6.1 g */
+    const ys=Y(LIM/1000*NACL/NA),yn=Y(LIM/1000);
+    /* 數值標籤若會被上限虛線穿過,就整個抬到虛線上方 */
+    const ly=(h,yl)=>{const y=BASE-h-8;return (yl>=y-17&&yl<=y+6)?yl-9:y;};
+    el('text',{x:XN,y:ly(hn,yn),fill:'#1a5276','font-weight':700},g).textContent=Math.round(mgNa)+' mg';
+    el('text',{x:XS,y:ly(hs,ys),fill:'#a04c08','font-weight':700},g).textContent=gSalt.toFixed(m==='salt'?1:2)+' g';
+    el('path',{d:'M'+(XN-W/2-6)+','+yn+'h'+(W+12)+'M'+(XS-W/2-6)+','+ys+'h'+(W+12),stroke:'#c0392b','stroke-width':2.5,'stroke-dasharray':'7 4',fill:'none'},g);
+    el('text',{x:XN+W/2+10,y:yn+6,fill:'#922b21','text-anchor':'start'},g).textContent='2.4 g';
+    el('text',{x:XS+W/2+10,y:ys+6,fill:'#922b21','text-anchor':'start'},g).textContent='6.1 g';
+    el('text',{x:XS+W/2+10,y:ys+26,fill:'#922b21','text-anchor':'start'},g).textContent='≈一平茶匙';
+  }
+  function render(anim){
+    const o=calc(),pct=Math.round(o.mgNa/LIM*100);
+    $('w3lab2-sl').textContent=MODE[m].lab;
+    if(m==='na'){
+      $('w3lab2-sv').textContent=o.v+' mg';
+      $('w3lab2-l1').textContent=o.v+' mg 鈉 × (1 g / 1000 mg) × (58.44 g 食鹽 / 22.99 g 鈉)';
+      $('w3lab2-o').textContent=o.gSalt.toFixed(2)+' g 食鹽';
+    }else{
+      $('w3lab2-sv').textContent=o.v.toFixed(1)+' g';
+      $('w3lab2-l1').textContent=o.v.toFixed(1)+' g 食鹽 × (22.99 g 鈉 / 58.44 g 食鹽) × (1000 mg / 1 g)';
+      $('w3lab2-o').textContent=o.mgNa+' mg 鈉';
+    }
+    $('w3lab2-l2').textContent='占鈉上限 2400 mg 的 '+pct+'%'+(pct>100?'(超過上限)':'');
+    const from=shown,my=++gen;shown=o;
+    if(anim&&from)tw(400,e=>my===gen&&draw(from.mgNa+(o.mgNa-from.mgNa)*e,from.gSalt+(o.gSalt-from.gSalt)*e));
+    else draw(o.mgNa,o.gSalt);
+  }
+  s.addEventListener('input',()=>{MODE[m].v=+s.value;render(false);});
+  root.querySelectorAll('[data-m]').forEach(b=>b.addEventListener('click',()=>{
+    if(b.dataset.m===m)return;m=b.dataset.m;
+    root.querySelectorAll('[data-m]').forEach(x=>x.classList.toggle('sel',x===b));
+    const M=MODE[m];s.min=M.min;s.max=M.max;s.step=M.step;s.value=M.v;render(true);
+  }));
+  render(false);
+})();
+})();
 </script>
 <script id="mobile-js">
 (function(){

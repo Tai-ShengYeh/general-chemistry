@@ -151,6 +151,41 @@ tr:nth-child(even) td{background:#f4f6f7}
   #bar{display:none}
 }
 </style>
+<style id="lab-css">
+/* ── 互動實驗台(先預測、再動手)──────────────────────── */
+.lab{display:flex;gap:30px;align-items:flex-start}
+.labfig{flex:0 0 auto}
+.labfig .fig{margin:0 auto}
+.labside{flex:1;min-width:0}
+.labside .box{margin:0 0 8px;font-size:21px;line-height:1.45;padding:9px 18px}
+.labside .eq{margin:6px 0;font-size:26px}
+.labctl{display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:center;font-size:20px;margin:6px 0}
+.labctl input[type=range]{width:100%;height:28px;accent-color:var(--primary);cursor:pointer}
+.labctl output{font-weight:700;color:var(--primary);min-width:96px;text-align:right}
+.labread{font-size:21px;line-height:1.5;background:#f4f6f7;border-radius:8px;padding:7px 16px;margin:6px 0}
+.labread .M{font-size:27px}
+.lbtn{font-family:inherit;font-size:19px;font-weight:700;padding:6px 16px;border-radius:8px;border:2px solid var(--primary);background:#fff;color:var(--primary);cursor:pointer;margin:2px 8px 2px 0}
+.lbtn:hover{background:var(--def-bg)}
+.lbtn:disabled{color:var(--muted);border-color:#aab7b8;background:#f4f6f7;cursor:default}
+.lbtn.bad{border-color:#c0392b;color:#c0392b}
+.labmsg{font-size:20px;line-height:1.42;min-height:86px;margin:6px 0;padding:7px 16px;border-radius:8px;background:#f4f6f7}
+.labmsg.bad{background:var(--warn-bg);color:#922b21}
+.slide ol.steps{font-size:21px;line-height:1.4;margin:0 0 6px 30px}
+.steps li{margin:4px 0;color:var(--muted)}
+.steps li.on{color:var(--ink)}
+.steps li.now{color:var(--primary);font-weight:700}
+.lab.labcol{display:block}
+.lbtn.sel{background:var(--primary);color:#fff}
+.labrow{display:flex;gap:10px;align-items:center;font-size:20px;margin:4px 0}
+.labrow input[type=range]{flex:1;min-width:120px;height:28px;accent-color:var(--primary);cursor:pointer}
+.labrow .lbtn{margin:0;font-size:17px;padding:5px 11px;white-space:nowrap}
+body.scroll .labrow{flex-wrap:wrap}
+body.scroll .lab{flex-direction:column;align-items:stretch;gap:12px}
+/* 閱讀模式:圖釘在上方,按按鈕時動畫才看得到 */
+body.scroll .labfig{position:sticky;top:50px;z-index:2;background:var(--card);border-bottom:1px solid #d5dbdb}
+body.scroll .labfig svg.fig{max-height:36vh;width:auto;min-width:0!important}
+@media print{.steps li{color:var(--ink)!important;font-weight:400!important}.noprint{display:none!important}}
+</style>
 <style id="mobile-css">
 /* ── 行動裝置閱讀模式（body.scroll）與工具列 ─────────────── */
 #mtb{position:fixed;top:8px;right:8px;z-index:20;display:flex;gap:6px;align-items:center}
@@ -372,6 +407,34 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="box key"><span class="tag">技巧</span>兩種同位素時設 x 與 (1−x),一元一次方程式即可解。</div>
 </section>
 
+<!-- LAB w2lab1 -->
+<section class="slide">
+  <h2>動手試:平均原子量落在哪裡? <span class="en">Weighted Average Lab — abundance pulls the average</span></h2>
+  <div class="lab" id="w2lab1">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 460 344" width="460" height="344" role="img" aria-labelledby="w2lab1-t w2lab1-d">
+        <title id="w2lab1-t">氯的兩種同位素豐度與平均原子量在數線上的位置(示意)</title>
+        <desc id="w2lab1-d">上半部是 100 顆氯原子的示意圖,藍色是氯-35,橘色是氯-37,顆數依豐度取整。下半部是一條數線,左端是氯-35 的質量 34.969 amu,右端是氯-37 的質量 36.966 amu,中間的灰色虛線是兩者相加除以 2 的中點。橘色三角形標出目前豐度下的平均原子量,豐度改變時它在兩端之間移動。</desc>
+        <text x="20" y="24" font-size="17" font-weight="700" fill="#2c3e50">100 顆氯原子(示意,依豐度取整)</text>
+        <g class="dots"></g>
+        <g font-size="17" font-weight="700"><text x="256" y="80" fill="#1a5276">● ³⁵Cl 34.969 amu</text><text class="n35" x="276" y="106" fill="#1a5276"></text><text x="256" y="160" fill="#a04c08">● ³⁷Cl 36.966 amu</text><text class="n37" x="276" y="186" fill="#a04c08"></text></g>
+        <line x1="40" y1="300" x2="440" y2="300" stroke="#2c3e50" stroke-width="2"/>
+        <path d="M69.4,290V310M416.9,290V310" stroke="#2c3e50" stroke-width="3"/>
+        <path d="M243.2,284V316" stroke="#5a6a6b" stroke-width="2" stroke-dasharray="5 4"/>
+        <g font-size="16" text-anchor="middle"><text x="69" y="334" fill="#1a5276">³⁵Cl 34.969</text><text x="243" y="334" fill="#5a6a6b">中點 35.97</text><text x="410" y="334" fill="#a04c08">³⁷Cl 36.966</text></g>
+        <g class="mk"><path d="M-9,280L9,280L0,296Z" fill="#a04c08"/><text class="mv" x="0" y="272" font-size="18" font-weight="700" fill="#a04c08" text-anchor="middle"></text></g>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 34.969 與 36.966 相加除以 2 得 35.97。<sup>37</sup>Cl 豐度要調到<b>多少</b>,平均原子量才會剛好等於它?<br>② 若某一批氯的 <sup>37</sup>Cl 比天然值<b>多 0.10 個百分點</b>,週期表上的 35.45 要改嗎?</div>
+      <div class="labrow noprint"><label for="w2lab1-s" style="min-width:104px"><sup>37</sup>Cl 豐度</label><input type="range" id="w2lab1-s" min="0" max="100" step="0.01" value="10"><b id="w2lab1-sv" style="min-width:86px;text-align:right;color:var(--primary)">10.00%</b></div>
+      <div class="labrow noprint"><button type="button" class="lbtn" data-x="nat">天然氯 24.23%</button><button type="button" class="lbtn" data-x="half">50 : 50</button><button type="button" class="lbtn" data-x="up">+0.10 個百分點</button></div>
+      <div class="labread"><span id="w2lab1-l2"></span><br><span id="w2lab1-l3"></span></div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① 要 <span class="hl">50 : 50</span>,平均才落在中點 35.97。天然氯的 <sup>37</sup>Cl 只占 24.23%,平均停在 35.45,比中點低約 0.5、靠近 <sup>35</sup>Cl。② 不用改:平均只從 35.453 移到 35.455(多 0.002 amu),4 位有效數字仍是 35.45。<b>「相加除以 2」只是 50 : 50 的特例;豐度的微小差異週期表看不出來,下一段就要拿它來當指紋。</b></div>
+    </div>
+  </div>
+</section>
+
 <!-- 16 -->
 <section class="slide quiz">
   <h2>隨堂快問 ①:同位素與平均原子量 <span class="en">Quick Check 1</span></h2>
@@ -445,6 +508,48 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="eq">C4 糖 (%) = <span style="display:inline-block;text-align:center">δ<sup>13</sup>C<sub>蛋白</sub> − δ<sup>13</sup>C<sub>蜂蜜</sub><hr style="margin:2px 0;border:none;border-top:2px solid #1f5f8b">δ<sup>13</sup>C<sub>蛋白</sub> − (−9.7)</span> × 100　<span class="small">(−9.7‰ 是 AOAC 方法規定的純 C4 糖代表值)</span></div>
     <div class="small"><b>基礎</b> 代入公式算出 C4 糖的百分比　<b>進階</b> 說明為什麼要用蜂蜜自己的蛋白質當內部標準</div>
   <div class="sol"><b>某樣品:</b>蜂蜜 δ<sup>13</sup>C = −23.0‰、蛋白質 δ<sup>13</sup>C = −25.0‰<br>C4 糖 = (−25.0 − (−23.0)) ÷ (−25.0 − (−9.7)) × 100 = (−2.0) ÷ (−15.3) × 100 = <span class="hl">13.1%</span><br><b>依 AOAC(國際公定分析化學家協會,Association of Official Analytical Chemists)官方方法 998.12,C4 糖超過 7% 即判定摻假</b> → 這瓶不合格。<br><br><b>對照一瓶真蜜:</b>蜂蜜 −25.3‰、蛋白質 −25.0‰ → (−25.0 + 25.3) ÷ (−15.3) × 100 = <b>−2.0%</b>,約等於 0 → 合格。<br><b>注意負值不是「負的摻假」</b>,而是量測誤差落在 0 附近的正常結果。<br><b>判定標準與方法細節請以主管機關公告的檢驗方法為準。</b></div>
+</section>
+
+<!-- LAB w2lab2 -->
+<section class="slide">
+  <h2>動手試:同一個 δ 值,摻得一樣多嗎? <span class="en">Honey Lab — compare with its own protein</span></h2>
+  <div class="lab" id="w2lab2">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 480 344" width="480" height="344" role="img" aria-labelledby="w2lab2-t w2lab2-d">
+        <title id="w2lab2-t">蜂蜜與蛋白質的 δ13C 在數線上的位置,以及算出的 C4 糖百分比(示意)</title>
+        <desc id="w2lab2-d">中間是 δ13C 數線,從 −30‰ 到 −8‰,線下標出 C3 蜜源(−30 到 −22‰)與 C4 糖(−16 到 −10‰)的範圍,以及純 C4 糖的代表值 −9.7‰。綠色三角形與綠色虛線是蜂蜜蛋白質的 δ13C,不隨摻假移動;橘色三角形是蜂蜜整體的 δ13C,摻入越多 C4 糖就越往右移,橘色橫線是兩者的差距。灰色括號是公式的分母,也就是蛋白質到 −9.7‰ 的距離。最下方的橫條是由公式算出的 C4 糖百分比,紅色虛線是 7% 的判定門檻。</desc>
+        <path class="pl" d="" stroke="#117a65" stroke-width="2.5" stroke-dasharray="6 4"/>
+        <path class="gap" d="" stroke="#a04c08" stroke-width="4" fill="none"/>
+        <g class="hg"><path d="M-9,30L9,30L0,46Z" fill="#a04c08"/><path d="M0,46V88" stroke="#a04c08" stroke-width="2"/><text class="hv" x="0" y="22" font-size="18" font-weight="700" fill="#a04c08" text-anchor="middle"></text></g>
+        <line x1="30" y1="90" x2="460" y2="90" stroke="#2c3e50" stroke-width="2"/>
+        <path d="M30,84V96M127.7,84V96M225.5,84V96M323.2,84V96" stroke="#2c3e50" stroke-width="2"/>
+        <path d="M30,112H186.4V124H30Z" fill="#f4f6f7" stroke="#117a65" stroke-width="2"/>
+        <path d="M303.6,112H420.9V124H303.6Z" fill="#f4f6f7" stroke="#8a6d00" stroke-width="2"/>
+        <path d="M426.8,78V102" stroke="#2c3e50" stroke-width="3"/>
+        <path class="pt" d="" fill="#117a65"/>
+        <g font-size="16"><text x="30" y="142" fill="#117a65">C3 蜜源 −30 ~ −22</text><text x="303" y="142" fill="#8a6d00">C4 糖 −16 ~ −10</text></g>
+        <g font-size="16" fill="#2c3e50" text-anchor="middle"><text x="34" y="162">−30</text><text x="128" y="162">−25</text><text x="225" y="162">−20</text><text x="323" y="162">−15</text></g>
+        <text x="470" y="182" font-size="16" fill="#2c3e50" text-anchor="end">−9.7 純 C4 糖</text>
+        <text class="pv" x="0" y="182" font-size="17" font-weight="700" fill="#117a65"></text>
+        <path class="den" d="" stroke="#5a6a6b" stroke-width="2" fill="none"/>
+        <text class="dv" x="0" y="214" font-size="16" fill="#5a6a6b" text-anchor="middle"></text>
+        <text x="30" y="242" font-size="17" font-weight="700" fill="#2c3e50">由公式算回的 C4 糖</text>
+        <path d="M30,252H460V274H30Z" fill="#f4f6f7" stroke="#d5dbdb" stroke-width="2"/>
+        <path class="gf" d="" fill="#117a65"/>
+        <path d="M90.2,246V280" stroke="#c0392b" stroke-width="2.5" stroke-dasharray="5 3"/>
+        <g font-size="16" fill="#2c3e50"><text x="30" y="298">0%</text><text x="90" y="298" fill="#c0392b" text-anchor="middle">7%</text><text x="460" y="298" text-anchor="end">50%</text></g>
+        <text class="ver" x="240" y="332" font-size="20" font-weight="700" text-anchor="middle"></text>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 甲、乙兩瓶蜂蜜量到的 δ<sup>13</sup>C <b>都是 −23.5‰</b>。兩瓶摻的 C4 糖一樣多嗎?<br>② 門檻 7% 相當於蜂蜜比自己的蛋白質高幾 ‰?兩種蜜源一樣嗎?</div>
+      <div class="labrow noprint"><span>蜜源</span><button type="button" class="lbtn sel" data-k="a">甲:蛋白質 −27.0‰</button><button type="button" class="lbtn" data-k="b">乙:蛋白質 −23.5‰</button></div>
+      <div class="labrow noprint"><label for="w2lab2-s" style="min-width:126px">實際摻入糖漿</label><input type="range" id="w2lab2-s" min="0" max="50" step="1" value="5"><b id="w2lab2-sv" style="min-width:60px;text-align:right;color:var(--primary)">5%</b></div>
+      <div class="labread"><span id="w2lab2-l1"></span><br><span id="w2lab2-l2"></span></div>
+      <div class="small" style="margin:2px 0">示意:真蜜 δ 設為與蛋白質相同;δ 取到 0.1‰,故 % 與滑桿略有差。</div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① 不一樣。乙的蛋白質也是 −23.5‰ → <span class="hl">0.0%</span>,沒摻;甲的蛋白質是 −27.0‰,同樣 −23.5‰ 代表 3.5 ÷ 17.3 = <span class="hl">20.2%</span>,摻假。② 只有約 <span class="hl">1.2‰(甲)、1.0‰(乙)</span>,而且隨蜜源不同。<b>判定看的不是蜂蜜的 δ 本身,而是它離自己的蛋白質移動了「到 −9.7 那段距離」的幾分之幾。</b></div>
+    </div>
+  </div>
 </section>
 
 <!-- 23 -->
@@ -824,6 +929,34 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="box warn"><span class="tag">注意</span>化學式中不寫出電荷;下標務必化為最簡比(離子化合物),如 Mg<sup>2+</sup> + O<sup>2−</sup> → MgO 而非 Mg<sub>2</sub>O<sub>2</sub>。</div>
 </section>
 
+<!-- LAB w2lab3 -->
+<section class="slide">
+  <h2>動手試:把電荷堆到一樣長 <span class="en">Charge Balance Lab — equal charge, then simplest ratio</span></h2>
+  <div class="lab" id="w2lab3">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 460 330" width="460" height="330" role="img" aria-labelledby="w2lab3-t w2lab3-d">
+        <title id="w2lab3-t">陽離子與陰離子的電荷方塊(示意)</title>
+        <desc id="w2lab3-d">上排藍色方塊是陽離子,下排橘色方塊是陰離子,每一個小方格代表一個電荷,同一個離子的方格連在一起。兩排一樣長時正負電荷相等,總電荷為零,下方才會寫出化學式;不一樣長時,較短的一排以灰色虛線框標出還缺多少電荷。</desc>
+        <text class="ct" x="20" y="26" font-size="18" font-weight="700" fill="#1a5276"></text>
+        <g class="cr"></g>
+        <text class="at" x="20" y="120" font-size="18" font-weight="700" fill="#a04c08"></text>
+        <g class="ar"></g>
+        <text class="st" x="230" y="214" font-size="20" font-weight="700" text-anchor="middle"></text>
+        <text class="fm" x="230" y="262" font-size="34" font-weight="700" fill="#2c3e50" text-anchor="middle"></text>
+        <g font-size="16" fill="#5a6a6b" text-anchor="middle"><text x="230" y="298">示意:一格 = 一個電荷;只看比例,不代表晶體排列</text><text x="230" y="322">灰色按鈕 = 這一對沒有穩定的化合物,不練</text></g>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① Mg<sup>2+</sup> 配 CO<sub>3</sub><sup>2−</sup>,交叉電荷得到 Mg<sub>2</sub>(CO<sub>3</sub>)<sub>2</sub>——化學式就這樣寫嗎?<br>② Al<sup>3+</sup> 配 OH<sup>−</sup>:寫成 AlOH<sub>3</sub> 和 Al(OH)<sub>3</sub> 一樣嗎?各有幾個氧?</div>
+      <div class="labrow noprint"><span style="min-width:64px">陽離子</span><button type="button" class="lbtn sel" data-c="Na">Na<sup>+</sup></button><button type="button" class="lbtn" data-c="Mg">Mg<sup>2+</sup></button><button type="button" class="lbtn" data-c="Al">Al<sup>3+</sup></button><button type="button" class="lbtn" data-c="NH4">NH<sub>4</sub><sup>+</sup></button></div>
+      <div class="labrow noprint"><span style="min-width:64px">陰離子</span><button type="button" class="lbtn sel" data-a="Cl">Cl<sup>−</sup></button><button type="button" class="lbtn" data-a="OH">OH<sup>−</sup></button><button type="button" class="lbtn" data-a="S">S<sup>2−</sup></button><button type="button" class="lbtn" data-a="CO3">CO<sub>3</sub><sup>2−</sup></button><button type="button" class="lbtn" data-a="NO3">NO<sub>3</sub><sup>−</sup></button></div>
+      <div class="labrow noprint"><button type="button" class="lbtn" data-n="c">+1 個陽離子</button><button type="button" class="lbtn" data-n="a">+1 個陰離子</button><button type="button" class="lbtn" data-n="0">重來(各 1 個)</button></div>
+      <div class="labread"><span id="w2lab3-l2"></span></div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① 不是。2 : 2 電荷雖然平衡,離子化合物還要約成最簡比 → <span class="hl">MgCO<sub>3</sub></span>;下標 1 不寫,所以也不必加括號。② 不一樣。Al(OH)<sub>3</sub> 是 3 個完整的 OH<sup>−</sup>:<span class="hl">O 3 個、H 3 個</span>;AlOH<sub>3</sub> 只有 1 個 O、3 個 H,是另一種東西。<b>先讓正負電荷一樣多,再約成最簡比;多原子離子超過一個才加括號。</b></div>
+    </div>
+  </div>
+</section>
+
 <!-- 51 -->
 <section class="slide quiz">
   <h2>隨堂快問 ⑤:離子與化學式 <span class="en">Quick Check 5</span></h2>
@@ -1093,6 +1226,211 @@ addEventListener('touchend',e=>{
 });
 fit();
 show(parseInt(location.hash.slice(1))-1||0);
+</script>
+<script id="lab-js">
+(function(){
+/* 共用工具(每支 deck 相同,不要改) */
+  const NS='http://www.w3.org/2000/svg',$=id=>document.getElementById(id);
+  const el=(n,a,p)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;};
+  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let seed=7;const rnd=()=>(seed=seed*16807%2147483647)/2147483647;
+  function tw(ms,fn,done){
+    if(still||ms<=0){fn(1);if(done)done();return;}
+    let t0=null;
+    requestAnimationFrame(function f(t){
+      if(t0===null)t0=t;
+      const k=Math.min(1,(t-t0)/ms),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+      fn(e);if(k<1)requestAnimationFrame(f);else if(done)done();
+    });
+  }
+  // 控制項上的點擊、觸控、方向鍵不可觸發翻頁
+  document.querySelectorAll('.lab').forEach(l=>{
+    ['click','touchstart','touchend'].forEach(t=>l.addEventListener(t,e=>{if(e.target.closest('button,input,label'))e.stopPropagation();}));
+    l.addEventListener('keydown',e=>{if(e.target.matches('input'))e.stopPropagation();});
+    l.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>b.blur()));
+    l.querySelectorAll('input[type=range]').forEach(r=>r.addEventListener('pointerup',()=>r.blur()));
+  });
+/* w2lab1 */
+(function(){
+  const root=$('w2lab1');if(!root)return;
+  /* 數值全部取自 deck 例題 2:³⁵Cl 34.969、³⁷Cl 36.966 amu;天然豐度 75.77 / 24.23% */
+  const M35=34.969,M37=36.966,X0=40,K=174,LO=34.8;
+  const s=$('w2lab1-s'),dots=root.querySelector('.dots'),mk=root.querySelector('.mk'),mv=root.querySelector('.mv');
+  const xOf=m=>X0+(m-LO)*K;
+  const cs=[];
+  for(let i=0;i<100;i++)cs.push(el('circle',{cx:30+(i%10)*21,cy:52+Math.floor(i/10)*21,r:8},dots));
+  let shown=null;
+  function calc(){
+    const c=Math.round(+s.value*100);           /* 單位 0.01% */
+    const f37=c/10000,f35=(10000-c)/10000;
+    const t1=Math.round(M35*f35*1000),t2=Math.round(M37*f37*1000);  /* 單位 0.001 amu,先捨入再相加,讀數自洽 */
+    return {c,f35,f37,t1,t2,avg:(t1+t2)/1000};
+  }
+  function place(avg){
+    const x=xOf(avg);
+    mk.setAttribute('transform','translate('+x.toFixed(1)+',0)');
+  }
+  function render(anim){
+    const o=calc(),p37=o.c/100,p35=(10000-o.c)/100,n37=Math.round(p37);
+    $('w2lab1-sv').textContent=p37.toFixed(2)+'%';
+    cs.forEach((c,i)=>c.setAttribute('fill',i<n37?'#a04c08':'#1a5276'));
+    root.querySelector('.n35').textContent=(100-n37)+' 顆';
+    root.querySelector('.n37').textContent=n37+' 顆';
+    mv.textContent=o.avg.toFixed(3);
+    $('w2lab1-l2').textContent='34.969 × '+o.f35.toFixed(4)+' + 36.966 × '+o.f37.toFixed(4);
+    $('w2lab1-l3').innerHTML='= '+(o.t1/1000).toFixed(3)+' + '+(o.t2/1000).toFixed(3)+' = <span class="hl M">'+o.avg.toFixed(3)+' amu</span>(4 位:'+o.avg.toPrecision(4)+')';
+    root.querySelector('[data-x="up"]').disabled=o.c>9990;
+    const from=shown;shown=o.avg;
+    if(anim&&from!==null)tw(400,k=>place(from+(o.avg-from)*k));else place(o.avg);
+  }
+  /* 講義印出天然豐度的狀態 */
+  let keep=null;
+  addEventListener('beforeprint',()=>{keep=s.value;s.value=24.23;render(false);});
+  addEventListener('afterprint',()=>{if(keep!==null){s.value=keep;keep=null;render(false);}});
+  s.addEventListener('input',()=>render(false));
+  root.querySelectorAll('[data-x]').forEach(b=>b.addEventListener('click',()=>{
+    const x=b.dataset.x;
+    if(x==='nat')s.value=24.23;
+    if(x==='half')s.value=50;
+    if(x==='up')s.value=((Math.round(+s.value*100)+10)/100).toFixed(2);
+    render(true);
+  }));
+  render(false);
+})();
+/* w2lab2 */
+(function(){
+  const root=$('w2lab2');if(!root)return;
+  /* deck 例題 4 的公式:C4 糖 (%) = (δ蛋白 − δ蜂蜜) ÷ (δ蛋白 − (−9.7)) × 100;> 7% 判定摻假(AOAC 998.12)
+     甲、乙兩個蛋白質值是情境數字,落在 deck 的 C3 範圍 −22 ~ −30‰ 內,避開例題 4 的 −25.0 */
+  const C4=-9.7,SRC={a:-27.0,b:-23.5};
+  const s=$('w2lab2-s');
+  const X=d=>30+(d+30)*430/22,G=p=>30+Math.min(50,p)*8.6;
+  const mi=v=>(v<0?'−':'')+Math.abs(v).toFixed(1);       /* 用真正的減號 */
+  const q=v=>v<0?'('+mi(v)+')':mi(v);
+  let k='a',shown=null;
+  function state(){
+    const P=SRC[k],f=+s.value/100;
+    const H=Math.round(((1-f)*P+f*C4)*10)/10;              /* δ 只報到 0.1‰,先捨入 */
+    const num=Math.round((P-H)*10)/10,den=Math.round((P-C4)*10)/10;
+    const pct=Math.round(num/den*1000)/10;                  /* 由顯示的 δ 算回,讀數自洽 */
+    return {P,f,H,num,den,pct:Math.abs(pct)<1e-9?0:pct};
+  }
+  function draw(P,H,pct){
+    const xp=X(P),xh=X(H);
+    root.querySelector('.pl').setAttribute('d','M'+xp.toFixed(1)+',50V90');
+    root.querySelector('.pt').setAttribute('d','M'+(xp-9).toFixed(1)+',110L'+(xp+9).toFixed(1)+',110L'+xp.toFixed(1)+',94Z');
+    root.querySelector('.hg').setAttribute('transform','translate('+xh.toFixed(1)+',0)');
+    root.querySelector('.gap').setAttribute('d',xh-xp>0.5?'M'+xp.toFixed(1)+',58H'+xh.toFixed(1)+'M'+xp.toFixed(1)+',51V65':'');
+    const xc=X(C4);
+    root.querySelector('.den').setAttribute('d','M'+xp.toFixed(1)+',190V202M'+xp.toFixed(1)+',196H'+xc.toFixed(1)+'M'+xc.toFixed(1)+',190V202');
+    const dv=root.querySelector('.dv');dv.setAttribute('x',((xp+xc)/2).toFixed(1));
+    const gf=root.querySelector('.gf');
+    gf.setAttribute('d',pct>0?'M30,254H'+G(pct).toFixed(1)+'V272H30Z':'');
+    gf.setAttribute('fill',pct>7?'#c0392b':'#117a65');
+  }
+  function render(anim){
+    const o=state();
+    $('w2lab2-sv').textContent=s.value+'%';
+    root.querySelector('.hv').textContent='蜂蜜 '+mi(o.H)+'‰';
+    const pv=root.querySelector('.pv');pv.textContent='蛋白質 '+mi(o.P)+'‰';pv.setAttribute('x',(X(o.P)-8).toFixed(1));
+    root.querySelector('.dv').textContent='分母:離純 C4 糖 '+Math.abs(o.den).toFixed(1)+'‰';
+    const bad=o.pct>7,ver=root.querySelector('.ver');
+    ver.textContent=bad?'C4 糖 '+o.pct.toFixed(1)+'% > 7% → 判定摻假':'C4 糖 '+o.pct.toFixed(1)+'% ≤ 7% → 合格';
+    ver.setAttribute('fill',bad?'#c0392b':'#117a65');
+    $('w2lab2-l1').textContent='蜂蜜 δ¹³C = '+mi(o.H)+'‰,比蛋白質 '+mi(o.P)+'‰ 高 '+Math.abs(o.num).toFixed(1)+'‰';
+    $('w2lab2-l2').innerHTML='C4 糖 = ('+mi(o.P)+' − '+q(o.H)+') ÷ ('+mi(o.P)+' − (−9.7)) × 100 = <span class="hl M">'+o.pct.toFixed(1)+'%</span>';
+    const from=shown;shown=o;
+    if(anim&&from)tw(400,t=>{const L=(a,b)=>a+(b-a)*t;draw(L(from.P,o.P),L(from.H,o.H),L(from.pct,o.pct));});
+    else draw(o.P,o.H,o.pct);
+  }
+  s.addEventListener('input',()=>render(false));
+  root.querySelectorAll('[data-k]').forEach(b=>b.addEventListener('click',()=>{
+    k=b.dataset.k;root.querySelectorAll('[data-k]').forEach(o=>o.classList.toggle('sel',o===b));render(true);
+  }));
+  render(false);
+})();
+/* w2lab3 */
+(function(){
+  const root=$('w2lab3');if(!root)return;
+  /* 離子全部取自 deck「單原子離子電荷與族的關係」與「常見多原子離子」兩張表 */
+  const CAT={Na:{s:'Na',h:'Na',z:1,p:0,lab:'Na⁺',at:[['Na',1]]},
+             Mg:{s:'Mg',h:'Mg',z:2,p:0,lab:'Mg²⁺',at:[['Mg',1]]},
+             Al:{s:'Al',h:'Al',z:3,p:0,lab:'Al³⁺',at:[['Al',1]]},
+             NH4:{s:'NH₄',h:'NH<sub>4</sub>',z:1,p:1,lab:'NH₄⁺',at:[['N',1],['H',4]]}};
+  const AN={Cl:{s:'Cl',h:'Cl',z:1,p:0,lab:'Cl⁻',at:[['Cl',1]]},
+            OH:{s:'OH',h:'OH',z:1,p:1,lab:'OH⁻',at:[['O',1],['H',1]]},
+            S:{s:'S',h:'S',z:2,p:0,lab:'S²⁻',at:[['S',1]]},
+            CO3:{s:'CO₃',h:'CO<sub>3</sub>',z:2,p:1,lab:'CO₃²⁻',at:[['C',1],['O',3]]},
+            NO3:{s:'NO₃',h:'NO<sub>3</sub>',z:1,p:1,lab:'NO₃⁻',at:[['N',1],['O',3]]}};
+  const BAD={'Al|CO3':1,'NH4|OH':1};       /* 沒有穩定的化合物:不讓學生選 */
+  const MAXU=12,U=32,X0=20;
+  const SUB='₀₁₂₃₄₅₆₇₈₉',sub=n=>String(n).split('').map(d=>SUB[+d]).join('');
+  const gcd=(a,b)=>b?gcd(b,a%b):a;
+  let c='Na',a='Cl',nc=1,na=1;
+  function part(I,n,html){
+    const s=html?I.h:I.s,ns=html?'<sub>'+n+'</sub>':sub(n);
+    if(n===1)return s;
+    return I.p?'('+s+')'+ns:s+ns;
+  }
+  const formula=(C,A,x,y,html)=>part(C,x,html)+part(A,y,html);
+  function atoms(C,A,x,y){
+    const m=[];
+    [[C,x],[A,y]].forEach(([I,n])=>I.at.forEach(([e,k])=>{const f=m.find(r=>r[0]===e);if(f)f[1]+=k*n;else m.push([e,k*n]);}));
+    return m.map(r=>r[0]+' '+r[1]+' 個').join('、');
+  }
+  function row(g,I,n,top,col,sign,need){
+    g.innerHTML='';
+    for(let i=0;i<n;i++){
+      const x0=X0+i*I.z*U;
+      el('path',{d:'M'+(x0+3)+','+top+'H'+(x0+I.z*U-3)+'V'+(top+44)+'H'+(x0+3)+'Z',fill:col},g);
+      for(let j=0;j<I.z;j++){
+        if(j)el('path',{d:'M'+(x0+j*U)+','+(top+4)+'V'+(top+40),stroke:'#ffffff','stroke-width':1.5},g);
+        el('text',{x:x0+j*U+U/2,y:top+30,'font-size':24,'font-weight':700,fill:'#ffffff','text-anchor':'middle'},g).textContent=sign;
+      }
+    }
+    if(need>0){
+      const x1=X0+n*I.z*U;
+      el('path',{d:'M'+(x1+3)+','+top+'H'+(x1+need*U-3)+'V'+(top+44)+'H'+(x1+3)+'Z',fill:'none',stroke:'#5a6a6b','stroke-width':2,'stroke-dasharray':'6 4'},g);
+    }
+  }
+  function render(){
+    const C=CAT[c],A=AN[a],P=nc*C.z,N=na*A.z;
+    root.querySelector('.ct').textContent='陽離子 '+C.lab+' × '+nc+' → +'+P;
+    root.querySelector('.at').textContent='陰離子 '+A.lab+' × '+na+' → −'+N;
+    row(root.querySelector('.cr'),C,nc,36,'#1a5276','+',Math.max(0,N-P));
+    row(root.querySelector('.ar'),A,na,130,'#a04c08','−',Math.max(0,P-N));
+    const st=root.querySelector('.st'),fm=root.querySelector('.fm');
+    if(P===N){
+      const g=gcd(nc,na),x=nc/g,y=na/g,f=formula(C,A,x,y,false),fh=formula(C,A,x,y,true);
+      if(g>1){
+        st.textContent='總電荷 = 0,但 '+nc+' : '+na+' 還要約成 '+x+' : '+y;st.setAttribute('fill','#8a6d00');
+        fm.textContent=formula(C,A,nc,na,false)+' ✘ → '+f;fm.setAttribute('font-size',24);
+      }else{
+        st.textContent='總電荷 = 0 ✓ 平衡';st.setAttribute('fill','#117a65');
+        fm.textContent=f;fm.setAttribute('font-size',34);
+      }
+      $('w2lab3-l2').innerHTML='→ <span class="hl M">'+fh+'</span>:'+atoms(C,A,x,y);
+    }else{
+      const d=P-N;
+      st.textContent='總電荷 = '+(d>0?'+':'−')+Math.abs(d)+',還不平衡';st.setAttribute('fill','#c0392b');
+      fm.textContent='';
+      $('w2lab3-l2').innerHTML='→ <span class="hl M">還不能寫化學式</span>:'+(d>0?'正電太多,再加陰離子':'負電太多,再加陽離子');
+    }
+    root.querySelectorAll('[data-c]').forEach(b=>{b.classList.toggle('sel',b.dataset.c===c);b.disabled=!!BAD[b.dataset.c+'|'+a];});
+    root.querySelectorAll('[data-a]').forEach(b=>{b.classList.toggle('sel',b.dataset.a===a);b.disabled=!!BAD[c+'|'+b.dataset.a];});
+    root.querySelector('[data-n="c"]').disabled=(nc+1)*C.z>MAXU;
+    root.querySelector('[data-n="a"]').disabled=(na+1)*A.z>MAXU;
+  }
+  root.querySelectorAll('[data-c]').forEach(b=>b.addEventListener('click',()=>{c=b.dataset.c;nc=na=1;render();}));
+  root.querySelectorAll('[data-a]').forEach(b=>b.addEventListener('click',()=>{a=b.dataset.a;nc=na=1;render();}));
+  root.querySelectorAll('[data-n]').forEach(b=>b.addEventListener('click',()=>{
+    const x=b.dataset.n;
+    if(x==='c')nc++;else if(x==='a')na++;else nc=na=1;
+    render();
+  }));
+  render();
+})();
+})();
 </script>
 <script id="mobile-js">
 (function(){

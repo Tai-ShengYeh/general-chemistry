@@ -155,6 +155,41 @@ body.scroll .animation-layout{grid-template-columns:1fr}
 body.scroll .animation-layout video{max-height:none}
 @media(max-width:720px){.animation-layout{grid-template-columns:1fr}}
 </style>
+<style id="lab-css">
+/* ── 互動實驗台(先預測、再動手)──────────────────────── */
+.lab{display:flex;gap:30px;align-items:flex-start}
+.labfig{flex:0 0 auto}
+.labfig .fig{margin:0 auto}
+.labside{flex:1;min-width:0}
+.labside .box{margin:0 0 8px;font-size:21px;line-height:1.45;padding:9px 18px}
+.labside .eq{margin:6px 0;font-size:26px}
+.labctl{display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:center;font-size:20px;margin:6px 0}
+.labctl input[type=range]{width:100%;height:28px;accent-color:var(--primary);cursor:pointer}
+.labctl output{font-weight:700;color:var(--primary);min-width:96px;text-align:right}
+.labread{font-size:21px;line-height:1.5;background:#f4f6f7;border-radius:8px;padding:7px 16px;margin:6px 0}
+.labread .M{font-size:27px}
+.lbtn{font-family:inherit;font-size:19px;font-weight:700;padding:6px 16px;border-radius:8px;border:2px solid var(--primary);background:#fff;color:var(--primary);cursor:pointer;margin:2px 8px 2px 0}
+.lbtn:hover{background:var(--def-bg)}
+.lbtn:disabled{color:var(--muted);border-color:#aab7b8;background:#f4f6f7;cursor:default}
+.lbtn.bad{border-color:#c0392b;color:#c0392b}
+.labmsg{font-size:20px;line-height:1.42;min-height:86px;margin:6px 0;padding:7px 16px;border-radius:8px;background:#f4f6f7}
+.labmsg.bad{background:var(--warn-bg);color:#922b21}
+.slide ol.steps{font-size:21px;line-height:1.4;margin:0 0 6px 30px}
+.steps li{margin:4px 0;color:var(--muted)}
+.steps li.on{color:var(--ink)}
+.steps li.now{color:var(--primary);font-weight:700}
+.lab.labcol{display:block}
+.lbtn.sel{background:var(--primary);color:#fff}
+.labrow{display:flex;gap:10px;align-items:center;font-size:20px;margin:4px 0}
+.labrow input[type=range]{flex:1;min-width:120px;height:28px;accent-color:var(--primary);cursor:pointer}
+.labrow .lbtn{margin:0;font-size:17px;padding:5px 11px;white-space:nowrap}
+body.scroll .labrow{flex-wrap:wrap}
+body.scroll .lab{flex-direction:column;align-items:stretch;gap:12px}
+/* 閱讀模式:圖釘在上方,按按鈕時動畫才看得到 */
+body.scroll .labfig{position:sticky;top:50px;z-index:2;background:var(--card);border-bottom:1px solid #d5dbdb}
+body.scroll .labfig svg.fig{max-height:36vh;width:auto;min-width:0!important}
+@media print{.steps li{color:var(--ink)!important;font-weight:400!important}.noprint{display:none!important}}
+</style>
 <style id="mobile-css">
 /* ── 行動裝置閱讀模式（body.scroll）與工具列 ─────────────── */
 #mtb{position:fixed;top:8px;right:8px;z-index:20;display:flex;gap:6px;align-items:center}
@@ -419,6 +454,31 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <div class="box key"><span class="tag">一句話</span>「汽水沒氣了」不是一個生活瑣事,它是 Le Châtelier 原理的<b>壓力、溫度、濃度三個因素輪流作用</b>的結果。</div>
 </section>
 
+<!-- LAB w14lab1 -->
+<section class="slide">
+  <h2>動手試:擾動一瓶汽水 <span class="en">Soda Lab — push the equilibrium</span></h2>
+  <div class="lab" id="w14lab1">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 460 366" width="460" height="366" role="img" aria-labelledby="w14lab1-t w14lab1-d">
+        <title id="w14lab1-t">密封汽水中 CO₂ 的溶解平衡受到擾動後的移動(示意)</title>
+        <desc id="w14lab1-d">上方是平衡式 CO₂(g) ⇌ CO₂(aq) + 熱。左邊長條是頂空 CO₂ 的壓力,右邊長條是溶在汽水裡的 CO₂,高度只是示意。灰色虛線標出擾動前的高度,橘色點線標出剛擾動完的高度。按下擾動後,長條先跳到擾動後的高度,再移動到新的平衡,中間的箭頭標出平衡往哪一邊移。</desc>
+        <text x="230" y="30" font-size="22" font-weight="700" fill="#2c3e50" text-anchor="middle">CO₂(g)  ⇌  CO₂(aq) + 熱</text>
+        <text x="230" y="56" font-size="16" fill="#5a6a6b" text-anchor="middle">左:頂空 CO₂ 的壓力　右:溶在汽水裡的量(示意)</text>
+        <line x1="40" y1="296" x2="420" y2="296" stroke="#2c3e50" stroke-width="2"/>
+        <g class="bars" font-size="16" text-anchor="middle"></g>
+        <g font-size="17" font-weight="700" fill="#2c3e50" text-anchor="middle"><text x="130" y="320">頂空 CO₂ 壓力</text><text x="330" y="320">溶解 CO₂(aq)</text></g>
+        <text x="230" y="354" font-size="16" text-anchor="middle"><tspan fill="#5a6a6b">灰虛線 = 擾動前</tspan><tspan fill="#2c3e50">　</tspan><tspan fill="#a04c08">橘點線 = 剛擾動完</tspan></text>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 把頂空的 CO<sub>2</sub> 放掉大半再蓋回,平衡往左補。補完之後,頂空的 CO<sub>2</sub> 會<b>回到原來那麼多</b>嗎?<br>② 灌入更多 CO<sub>2</sub>,溶進去的變多了——<b>K 也跟著變大</b>了嗎?</div>
+      <div class="labrow noprint"><button type="button" class="lbtn" data-a="add">灌入 CO<sub>2</sub></button><button type="button" class="lbtn" data-a="rel">放氣再蓋回</button><button type="button" class="lbtn" data-a="cmp">加壓</button><button type="button" class="lbtn" data-a="hot">升溫</button><button type="button" class="lbtn" data-a="0">重來</button></div>
+      <div class="labread"><span id="w14lab1-l1">密封、冷藏的汽水:已經在平衡</span><br><span id="w14lab1-l2">按一個擾動,看平衡往哪邊移</span><br><span id="w14lab1-l3">(兩邊本來就不一樣多——平衡不是兩邊相等)</span></div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① 不會。平衡往左補回<span class="hl">一部分</span>,但停在比原來低的地方;灌氣、加壓也一樣,都只抵消一部分。② 不會。灌氣後頂空與溶解的都比原來多,兩者的比例回到同一個 K;四個擾動裡只有<span class="hl">升溫</span>改變 K。<b>Le Châtelier 說的是「往抵消的方向移」,不是「回到原狀」。</b></div>
+    </div>
+  </div>
+</section>
+
 <!-- 19 -->
 <section class="slide quiz">
   <h2>隨堂快問 ②:Le Châtelier <span class="en">Quick Check 2</span></h2>
@@ -519,6 +579,29 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
         <text x="654.5714285714286" y="174" font-size="17" fill="#1f5f8b" text-anchor="middle" font-weight="700">低酸性食品:須 121 °C 高壓滅菌</text>
       </svg>
 <div class="box def"><span class="tag">看圖說話</span>大部分<b>水果與發酵品</b>落在酸性側,大部分<b>蔬菜、肉、奶</b>落在 4.6 以上。番茄 4.3 只差 0.3 就跨線——它是少數「天然就在安全側」的蔬果,所以番茄罐頭可以沸水處理,四季豆罐頭不行。</div>
+</section>
+
+<!-- LAB w14lab2 -->
+<section class="slide">
+  <h2>動手試:pH 差一點,[H<sub>3</sub>O<sup>+</sup>] 差多少? <span class="en">pH Lab — a log scale in your hand</span></h2>
+  <div class="lab labcol" id="w14lab2">
+    <div class="box exbox" style="margin:0 0 6px;padding:7px 20px;font-size:20px;line-height:1.42"><span class="tag">先預測,再拖</span>① 番茄 pH 約 4.3,只比法規分界 4.6 低 0.3。番茄的 [H<sub>3</sub>O<sup>+</sup>] 是分界那一點的<b>幾倍</b>?<br>② pH 2.50 的溶液裡,<b>還有沒有</b> OH<sup>−</sup>?</div>
+    <svg class="fig" viewBox="0 0 1080 182" width="1080" height="182" role="img" aria-labelledby="w14lab2-t w14lab2-d">
+      <title id="w14lab2-t">pH 與 pOH 把 0 到 14 的尺分成兩段</title>
+      <desc id="w14lab2-d">一條 0 到 14 的橫條,目前的 pH 把它分成兩段:左段橘色長度是 pH,右段藍色長度是 pOH,兩段相加永遠是 14。紅線標出食品法規的 pH 4.6 分界。橫條下方依上一張圖的位置標出檸檬汁、醋、柳橙汁、番茄、紅蘿蔔、牛奶、純水、蛋白。</desc>
+      <g class="seg"></g>
+      <g stroke="#2c3e50" stroke-width="2"><line x1="60" y1="76" x2="60" y2="84"/><line x1="197.1" y1="76" x2="197.1" y2="84"/><line x1="334.3" y1="76" x2="334.3" y2="84"/><line x1="471.4" y1="76" x2="471.4" y2="84"/><line x1="608.6" y1="76" x2="608.6" y2="84"/><line x1="745.7" y1="76" x2="745.7" y2="84"/><line x1="882.9" y1="76" x2="882.9" y2="84"/><line x1="1020" y1="76" x2="1020" y2="84"/></g>
+      <g font-size="16" fill="#2c3e50" text-anchor="middle"><text x="60" y="102">0</text><text x="197.1" y="102">2</text><text x="334.3" y="102">4</text><text x="471.4" y="102">6</text><text x="608.6" y="102">8</text><text x="745.7" y="102">10</text><text x="882.9" y="102">12</text><text x="1020" y="102">14</text></g>
+      <line x1="375.4" y1="40" x2="375.4" y2="84" stroke="#c0392b" stroke-width="3"/>
+      <text x="375.4" y="102" font-size="16" font-weight="700" fill="#c0392b" text-anchor="middle">4.6</text>
+      <g stroke="#5a6a6b" stroke-width="1.5"><line x1="217.7" y1="108" x2="217.7" y2="116"/><line x1="313.7" y1="108" x2="313.7" y2="116"/><line x1="464.6" y1="108" x2="464.6" y2="116"/><line x1="540" y1="108" x2="540" y2="116"/><line x1="258.9" y1="108" x2="258.9" y2="138"/><line x1="354.9" y1="108" x2="354.9" y2="138"/><line x1="512.6" y1="108" x2="512.6" y2="138"/><line x1="608.6" y1="108" x2="608.6" y2="138"/></g>
+      <g font-size="16" fill="#2c3e50" text-anchor="middle"><text x="217.7" y="132">檸檬汁</text><text x="313.7" y="132">柳橙汁</text><text x="464.6" y="132">紅蘿蔔</text><text x="540" y="132">純水</text><text x="258.9" y="155">醋</text><text x="354.9" y="155">番茄</text><text x="512.6" y="155">牛奶</text><text x="608.6" y="155">蛋白</text></g>
+      <g font-size="16" text-anchor="end"><text x="1020" y="132" font-weight="700" fill="#2c3e50">pH + pOH = 14.00(25 °C)</text><text x="1020" y="155" fill="#2c3e50">pH 每差 1 → [H₃O⁺] 差 10 倍</text><text x="1020" y="176" fill="#5a6a6b">食品位置同上一張圖(示意)</text></g>
+    </svg>
+    <div class="labrow noprint"><label for="w14lab2-s" style="min-width:40px">pH</label><input type="range" id="w14lab2-s" min="0" max="14" step="0.1" value="6"><b id="w14lab2-v" style="min-width:64px;text-align:right;color:var(--primary)">6.00</b><button type="button" class="lbtn sel" data-b="70">比較:純水 pH 7</button><button type="button" class="lbtn" data-b="46">比較:分界 pH 4.6</button></div>
+    <div class="labread" style="margin:4px 0"><span id="w14lab2-l1">[H₃O⁺] = 1.0 × 10⁻⁶ M　　[OH⁻] = 1.0 × 10⁻⁸ M</span><br><span id="w14lab2-l2">與純水(pH 7)相比:[H₃O⁺] 是它的 10 倍</span></div>
+    <div class="sol" style="font-size:20px;line-height:1.42;margin-top:6px;padding-top:6px"><b>你剛剛看到的:</b>① 約 <span class="hl">2.0 倍</span>(10<sup>0.3</sup>):只差 0.3,氫離子就多了一倍。② 有:pOH = 11.50,[OH<sup>−</sup>] = <span class="hl">3.2 × 10<sup>−12</sup> M</span>——很少,但不是零,兩者的乘積永遠是 K<sub>w</sub>。<b>pH 是對數尺度:差 1 就是 10 倍;[H<sub>3</sub>O<sup>+</sup>] 上升,[OH<sup>−</sup>] 必定下降。</b></div>
+  </div>
 </section>
 
 <!-- 25 -->
@@ -718,6 +801,43 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <div class="box warn"><span class="tag">回到開場的蒜頭橄欖油</span>蒜頭是低酸性(pH 約 5.3–6.3),泡在油裡形成<b>無氧</b>環境,而且常溫存放——這正好是肉毒桿菌的理想條件。<b>自製蒜頭油必須冷藏且短期食用,或先酸化處理。</b>這是真實發生過食品中毒的案例類型。</div>
 </section>
 
+<!-- LAB w14lab3 -->
+<section class="slide">
+  <h2>動手試:4.6 這條線的兩邊 <span class="en">The pH 4.6 Line — what protects the food</span></h2>
+  <div class="lab" id="w14lab3">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 460 380" width="460" height="380" role="img" aria-labelledby="w14lab3-t w14lab3-d">
+        <title id="w14lab3-t">pH 4.6 兩側的食品分類與殺菌條件</title>
+        <desc id="w14lab3-d">一條 pH 3 到 7 的橫軸,紅線標在 4.6。左側是酸性食品,肉毒桿菌不生長、不產毒;右側是低酸性食品,肉毒桿菌可能生長並產毒。黑色箭頭標出目前的 pH。下方兩張卡片是兩種殺菌條件:沸水約 100 °C、靠酸度保護;121 °C 高壓滅菌、靠熱殺死孢子,目前適用的那一張會被框起來。選「蒜頭加酸」時,軸上另以灰色帶標出蒜頭原本的 pH 範圍 5.3 到 6.3。</desc>
+        <text x="230" y="24" font-size="19" font-weight="700" fill="#2c3e50" text-anchor="middle">同一條線,兩種保護</text>
+        <path d="M40,38H198V140H40Z" fill="#f4f6f7" stroke="#a04c08" stroke-width="2"/>
+        <path d="M202,38H440V140H202Z" fill="#f4f6f7" stroke="#1a5276" stroke-width="2"/>
+        <g text-anchor="middle" font-size="16" fill="#2c3e50">
+          <text x="119" y="70" font-size="19" font-weight="700" fill="#a04c08">酸性食品</text><text x="119" y="98">肉毒桿菌</text><text x="119" y="122">不生長、不產毒</text>
+          <text x="321" y="70" font-size="19" font-weight="700" fill="#1a5276">低酸性食品</text><text x="321" y="98">肉毒桿菌</text><text x="321" y="122">可能生長並產毒</text>
+        </g>
+        <path class="band" d="M270,176H370V190H270Z" fill="#d5dbdb" stroke="#5a6a6b" stroke-width="2" stroke-dasharray="5 3" style="display:none"/>
+        <text class="band" x="320" y="238" font-size="16" fill="#5a6a6b" text-anchor="middle" style="display:none">蒜頭原本 5.3–6.3</text>
+        <line x1="40" y1="190" x2="440" y2="190" stroke="#2c3e50" stroke-width="2"/>
+        <g stroke="#2c3e50" stroke-width="2"><line x1="40" y1="190" x2="40" y2="198"/><line x1="140" y1="190" x2="140" y2="198"/><line x1="240" y1="190" x2="240" y2="198"/><line x1="340" y1="190" x2="340" y2="198"/><line x1="440" y1="190" x2="440" y2="198"/></g>
+        <g font-size="16" fill="#2c3e50" text-anchor="middle"><text x="40" y="214">3</text><text x="140" y="214">4</text><text x="240" y="214">5</text><text x="340" y="214">6</text><text x="440" y="214">7</text></g>
+        <line x1="200" y1="32" x2="200" y2="198" stroke="#c0392b" stroke-width="4"/>
+        <text x="200" y="214" font-size="17" font-weight="700" fill="#c0392b" text-anchor="middle">4.6</text>
+        <g class="mk"><path d="M-10,146L10,146L0,162Z" fill="#2c3e50"/><line x1="0" y1="160" x2="0" y2="190" stroke="#2c3e50" stroke-width="3"/></g>
+        <g class="cA" text-anchor="middle"><path d="M20,252H220V372H20Z" fill="#ffffff" stroke-width="3"/><text x="120" y="284" font-size="20" font-weight="700">沸水殺菌</text><text x="120" y="314" font-size="17">約 100 °C 即可</text><text x="120" y="344" font-size="17">靠酸度保護</text></g>
+        <g class="cB" text-anchor="middle"><path d="M240,252H440V372H240Z" fill="#ffffff" stroke-width="3"/><text x="340" y="284" font-size="20" font-weight="700">高壓滅菌</text><text x="340" y="314" font-size="17">121 °C</text><text x="340" y="344" font-size="17">靠熱:殺死孢子</text></g>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① pH ≤ 4.6 的酸性食品,是不是就<b>不用殺菌</b>了?<br>② 蒜頭(pH 約 5.3–6.3)泡醋加酸,最終平衡 pH 降到 4.9,<b>已經比原來酸了</b>——可以改用沸水處理嗎?</div>
+      <div class="labrow noprint"><button type="button" class="lbtn sel" data-m="g">一般食品</button><button type="button" class="lbtn" data-m="z">蒜頭加酸(酸化)</button></div>
+      <div class="labrow noprint"><label for="w14lab3-s" id="w14lab3-ls" style="min-width:110px">食品的 pH</label><input type="range" id="w14lab3-s" min="3" max="7" step="0.1" value="6.5"><b id="w14lab3-v" style="min-width:48px;text-align:right;color:var(--primary)">6.5</b></div>
+      <div class="labread"><span id="w14lab3-l1">pH 6.5 &gt; 4.6 → <b>低酸性食品</b></span><br><span id="w14lab3-l2">殺菌:<b>121 °C 高壓滅菌</b>,靠熱</span><br><span id="w14lab3-l3">肉毒桿菌可能生長並產毒</span></div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① 不是:酸性食品仍要<span class="hl">沸水(約 100 °C)</span>殺菌;酸度做的是讓肉毒桿菌不生長、不產毒,所以不必用到 121 °C。② 不行:4.9 &gt; 4.6,仍是低酸性,要 <span class="hl">121 °C 高壓滅菌</span>。「比原來酸」不算數,要<b>整批</b>的最終平衡 pH 降到 4.6 以下,才成為酸化食品、改用沸水。<b>4.6 決定的不是「要不要殺菌」,而是「靠什麼保護」:以下靠酸度,以上靠熱。</b></div>
+    </div>
+  </div>
+</section>
+
 <!-- 40 -->
 <section class="slide">
   <h2>pH 怎麼量:pH 計與指示劑 <span class="en">Measuring pH</span></h2>
@@ -876,6 +996,175 @@ addEventListener('touchend',e=>{
 });
 fit();
 show(parseInt(location.hash.slice(1))-1||0);
+</script>
+<script id="lab-js">
+(function(){
+/* 共用工具(每支 deck 相同,不要改) */
+  const NS='http://www.w3.org/2000/svg',$=id=>document.getElementById(id);
+  const el=(n,a,p)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;};
+  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let seed=7;const rnd=()=>(seed=seed*16807%2147483647)/2147483647;
+  function tw(ms,fn,done){
+    if(still||ms<=0){fn(1);if(done)done();return;}
+    let t0=null;
+    requestAnimationFrame(function f(t){
+      if(t0===null)t0=t;
+      const k=Math.min(1,(t-t0)/ms),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+      fn(e);if(k<1)requestAnimationFrame(f);else if(done)done();
+    });
+  }
+  // 控制項上的點擊、觸控、方向鍵不可觸發翻頁
+  document.querySelectorAll('.lab').forEach(l=>{
+    ['click','touchstart','touchend'].forEach(t=>l.addEventListener(t,e=>{if(e.target.closest('button,input,label'))e.stopPropagation();}));
+    l.addEventListener('keydown',e=>{if(e.target.matches('input'))e.stopPropagation();});
+    l.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>b.blur()));
+    l.querySelectorAll('input[type=range]').forEach(r=>r.addEventListener('pointerup',()=>r.blur()));
+  });
+/* w14lab1 */
+(function(){
+  const root=$('w14lab1');if(!root)return;
+  const g=root.querySelector('.bars');
+  /* 示意模型:密閉瓶,頂空壓力 P、溶解量 C,平衡時 C = K·P(K 只隨溫度變)。
+     起點 P=10、C=20(K=2)。每個擾動都從同一個起點出發:
+     灌氣 頂空 +5 → P 15 → 總量 35 重新分配 → P 35/3、C 70/3
+     放氣 頂空剩 2 → 總量 22 → P 22/3、C 44/3
+     加壓 頂空體積減半 → P 20 → 6 + 24 = 30 → P 12、C 24
+     升溫 K 2 → 1.5 → P 12、C 18(不畫成兩邊相等)
+     長條不顯示數字,只看高低。 */
+  const B={P:10,C:20},BASE=296,SC=8.5,W=100,XP=130,XC=330;
+  const ACT={
+    add:{d:{P:15,C:20},f:{P:35/3,C:70/3},dir:'R',n:'+ CO₂',
+         l1:'擾動:頂空突然多了 CO₂',l2:'→ 平衡往<b>右</b>(溶解),消耗掉多出來的<b>一部分</b>',l3:'K:不變'},
+    rel:{d:{P:2,C:20},f:{P:22/3,C:44/3},dir:'L',n:'− CO₂',
+         l1:'擾動:頂空的 CO₂ 被放掉大半,再蓋回',l2:'→ 平衡往<b>左</b>(氣體),補回<b>一部分</b>',l3:'K:不變(沒蓋回去就一直往左,汽水終究沒氣)'},
+    cmp:{d:{P:20,C:20},f:{P:12,C:24},dir:'R',n:'加壓',
+         l1:'擾動:頂空被壓縮,壓力加倍',l2:'→ 平衡往<b>右</b>:往氣體莫耳數少的一邊(1 → 0)',l3:'K:不變'},
+    hot:{d:{P:10,C:20},f:{P:12,C:18},dir:'L',n:'+ 熱',
+         l1:'擾動:升溫 = 加入「熱」這一項',l2:'→ 平衡往<b>左</b>(氣體):溶解是放熱的',l3:'K:<b>變小</b>——只有溫度會改變 K'}
+  };
+  const DEF=['密封、冷藏的汽水:已經在平衡','按一個擾動,看平衡往哪邊移','(兩邊本來就不一樣多——平衡不是兩邊相等)'];
+  const bar=(cx,h)=>'M'+(cx-W/2)+','+BASE+'h'+W+'v'+(-h)+'h'+(-W)+'Z';
+  const lvl=(cx,v,c,dash)=>el('path',{d:'M'+(cx-W/2-8)+','+(BASE-v*SC)+'h'+(W+16),stroke:c,'stroke-width':2.5,'stroke-dasharray':dash,fill:'none'},g);
+  function draw(P,C,d,dir,k,note){
+    g.innerHTML='';
+    el('path',{d:bar(XP,P*SC),fill:'#1a5276'},g);
+    el('path',{d:bar(XC,C*SC),fill:'#117a65'},g);
+    lvl(XP,B.P,'#5a6a6b','7 5');lvl(XC,B.C,'#5a6a6b','7 5');
+    if(d){if(d.P!==B.P)lvl(XP,d.P,'#a04c08','2 4');if(d.C!==B.C)lvl(XC,d.C,'#a04c08','2 4');}
+    if(note)el('text',{x:230,y:150,fill:'#a04c08','font-size':22,'font-weight':700},g).textContent=note;
+    if(dir&&k>0){
+      const a=el('g',{opacity:k},g),R=dir==='R';
+      el('path',{d:R?'M192,150H254':'M268,150H206',stroke:'#a04c08','stroke-width':4,fill:'none'},a);
+      el('path',{d:R?'M268,150L252,140L252,160Z':'M192,150L208,140L208,160Z',fill:'#a04c08'},a);
+      el('text',{x:230,y:130,fill:'#a04c08','font-size':19,'font-weight':700},a).textContent=R?'往右':'往左';
+      el('text',{x:230,y:182,fill:'#2c3e50'},a).textContent=R?'(溶解)':'(氣體)';
+    }
+  }
+  function say(t){$('w14lab1-l1').textContent=t[0];$('w14lab1-l2').innerHTML=t[1];$('w14lab1-l3').innerHTML=t[2];}
+  let run=0,cur=null;
+  function go(key,anim){
+    const my=++run;cur=key;
+    root.querySelectorAll('[data-a]').forEach(b=>b.classList.toggle('sel',b.dataset.a===key));
+    if(key==='0'){say(DEF);draw(B.P,B.C,null,null,0,'');return;}
+    const a=ACT[key];say([a.l1,a.l2,a.l3]);
+    if(!anim){draw(a.f.P,a.f.C,a.d,a.dir,1,'');return;}
+    const L=(x,y,k)=>x+(y-x)*k;
+    tw(350,k=>{if(my===run)draw(L(B.P,a.d.P,k),L(B.C,a.d.C,k),k>.5?a.d:null,null,0,a.n);},()=>{
+      if(my!==run)return;
+      tw(650,k=>{if(my===run)draw(L(a.d.P,a.f.P,k),L(a.d.C,a.f.C,k),a.d,a.dir,k,'');});
+    });
+  }
+  root.querySelectorAll('[data-a]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.a,true)));
+  let saved='0';
+  addEventListener('beforeprint',()=>{saved=cur||'0';go('rel',false);});
+  addEventListener('afterprint',()=>go(saved,false));
+  go('0',false);
+})();
+/* w14lab2 */
+(function(){
+  const root=$('w14lab2');if(!root)return;
+  const s=$('w14lab2-s'),seg=root.querySelector('.seg');
+  const X=t=>60+t*68.5714/10;               /* t = pH × 10(整數),避免浮點誤差 */
+  /* 10^(k/10) 取 2 位有效數字,k = 0…9;pH 有兩位小數 → 濃度兩位有效數字 */
+  const MT=['1.0','1.3','1.6','2.0','2.5','3.2','4.0','5.0','6.3','7.9'];
+  const SUP=n=>String(n).replace('-','⁻').replace(/\d/g,d=>'⁰¹²³⁴⁵⁶⁷⁸⁹'[d]);
+  function conc(t){                          /* 10^(−t/10) M */
+    if(t===0)return '1.0 M';
+    const q=Math.floor(t/10),r=t%10;
+    return r===0?'1.0 × 10'+SUP(-q)+' M':MT[10-r]+' × 10'+SUP(-(q+1))+' M';
+  }
+  function ratio(d){                         /* 10^(d/10),d ≥ 0 */
+    const a=Math.floor(d/10),b=d%10;
+    if(a===0)return MT[b];
+    if(a<=2)return String(Math.round(parseFloat(MT[b])*Math.pow(10,a)));
+    return MT[b]+' × 10'+SUP(a);
+  }
+  let base=70;
+  const BN={70:'純水(pH 7)',46:'分界(pH 4.6)'};
+  function render(){
+    const t=Math.round(+s.value*10),u=140-t,x=X(t);
+    $('w14lab2-v').textContent=(t/10).toFixed(2);
+    seg.innerHTML='';
+    if(t>0)el('path',{d:'M60,46H'+x+'V76H60Z',fill:'#a04c08'},seg);
+    if(u>0)el('path',{d:'M'+x+',46H1020V76H'+x+'Z',fill:'#1a5276'},seg);
+    el('path',{d:'M'+x+',42V80',stroke:'#2c3e50','stroke-width':3},seg);
+    const cl=v=>Math.max(120,Math.min(960,v));
+    el('text',{x:cl((60+x)/2),y:32,fill:'#a04c08','font-size':19,'font-weight':700,'text-anchor':'middle'},seg).textContent='pH = '+(t/10).toFixed(2);
+    el('text',{x:cl((x+1020)/2),y:32,fill:'#1a5276','font-size':19,'font-weight':700,'text-anchor':'middle'},seg).textContent='pOH = '+(u/10).toFixed(2);
+    $('w14lab2-l1').textContent='[H₃O⁺] = '+conc(t)+'　　[OH⁻] = '+conc(u);
+    const d=base-t,e=(Math.abs(d)/10).toFixed(1);
+    $('w14lab2-l2').innerHTML='與'+BN[base]+'相比:[H₃O⁺] '+(d===0?'一樣多':d>0?'是它的 <span class="hl M">'+ratio(d)+' 倍</span>(10<sup>'+e+'</sup>)':'只有它的 <span class="hl M">1/'+(-d>=30?'('+ratio(-d)+')':ratio(-d))+'</span>(10<sup>−'+e+'</sup>)');
+  }
+  s.addEventListener('input',render);
+  root.querySelectorAll('[data-b]').forEach(b=>b.addEventListener('click',()=>{
+    base=+b.dataset.b;
+    root.querySelectorAll('[data-b]').forEach(o=>o.classList.toggle('sel',o===b));
+    render();
+  }));
+  render();
+})();
+/* w14lab3 */
+(function(){
+  const root=$('w14lab3');if(!root)return;
+  const s=$('w14lab3-s'),mk=root.querySelector('.mk');
+  const cA=root.querySelector('.cA'),cB=root.querySelector('.cB');
+  let m='g';
+  function card(gr,on,c){
+    gr.querySelector('path').setAttribute('stroke',on?c:'#d5dbdb');
+    gr.querySelectorAll('text').forEach(t=>t.setAttribute('fill',on?(t.getAttribute('font-size')==='20'?c:'#2c3e50'):'#5a6a6b'));
+  }
+  function render(){
+    const t=Math.round(+s.value*10),p=(t/10).toFixed(1),acid=t<=46;   /* 依表:≤ 4.6 為酸性 */
+    mk.setAttribute('transform','translate('+(40+(t-30)*10)+',0)');
+    $('w14lab3-v').textContent=p;
+    root.querySelectorAll('.band').forEach(b=>b.style.display=m==='z'?'':'none');
+    card(cA,acid,'#a04c08');card(cB,!acid,'#1a5276');
+    let l1,l3;
+    if(m==='g'){
+      l1='pH '+p+(acid?' ≤ 4.6 → <b>酸性食品</b>':' &gt; 4.6 → <b>低酸性食品</b>');
+      l3=acid?'肉毒桿菌不生長、不產毒':'肉毒桿菌可能生長並產毒';
+    }else{
+      l1=t>=53?'還沒加酸:蒜頭 '+p+' → <b>低酸性食品</b>'
+        :!acid?'加了酸,但最終平衡 pH '+p+' &gt; 4.6 → 仍是<b>低酸性</b>'
+        :'最終平衡 pH '+p+' ≤ 4.6 → <b>酸化食品</b>';
+      l3=acid?'前提:<b>整批料</b>都達到,不是表面沾一下':'若泡在油裡、常溫存放:正是肉毒桿菌的條件';
+    }
+    $('w14lab3-l1').innerHTML=l1;
+    $('w14lab3-l2').innerHTML=acid?'殺菌:<b>沸水(約 100 °C)</b>即可,靠酸度':'殺菌:<b>121 °C 高壓滅菌</b>,靠熱';
+    $('w14lab3-l3').innerHTML=l3;
+  }
+  s.addEventListener('input',render);
+  root.querySelectorAll('[data-m]').forEach(b=>b.addEventListener('click',()=>{
+    if(b.dataset.m===m)return;
+    m=b.dataset.m;
+    root.querySelectorAll('[data-m]').forEach(o=>o.classList.toggle('sel',o===b));
+    if(m==='z'){s.max='6.3';s.value='5.3';$('w14lab3-ls').textContent='最終平衡 pH';}
+    else{s.max='7';$('w14lab3-ls').textContent='食品的 pH';}
+    render();
+  }));
+  render();
+})();
+})();
 </script>
 <script id="mobile-js">
 (function(){

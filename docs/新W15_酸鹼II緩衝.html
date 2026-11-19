@@ -155,6 +155,41 @@ body.scroll .animation-layout{grid-template-columns:1fr}
 body.scroll .animation-layout video{max-height:none}
 @media(max-width:720px){.animation-layout{grid-template-columns:1fr}}
 </style>
+<style id="lab-css">
+/* ── 互動實驗台(先預測、再動手)──────────────────────── */
+.lab{display:flex;gap:30px;align-items:flex-start}
+.labfig{flex:0 0 auto}
+.labfig .fig{margin:0 auto}
+.labside{flex:1;min-width:0}
+.labside .box{margin:0 0 8px;font-size:21px;line-height:1.45;padding:9px 18px}
+.labside .eq{margin:6px 0;font-size:26px}
+.labctl{display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:center;font-size:20px;margin:6px 0}
+.labctl input[type=range]{width:100%;height:28px;accent-color:var(--primary);cursor:pointer}
+.labctl output{font-weight:700;color:var(--primary);min-width:96px;text-align:right}
+.labread{font-size:21px;line-height:1.5;background:#f4f6f7;border-radius:8px;padding:7px 16px;margin:6px 0}
+.labread .M{font-size:27px}
+.lbtn{font-family:inherit;font-size:19px;font-weight:700;padding:6px 16px;border-radius:8px;border:2px solid var(--primary);background:#fff;color:var(--primary);cursor:pointer;margin:2px 8px 2px 0}
+.lbtn:hover{background:var(--def-bg)}
+.lbtn:disabled{color:var(--muted);border-color:#aab7b8;background:#f4f6f7;cursor:default}
+.lbtn.bad{border-color:#c0392b;color:#c0392b}
+.labmsg{font-size:20px;line-height:1.42;min-height:86px;margin:6px 0;padding:7px 16px;border-radius:8px;background:#f4f6f7}
+.labmsg.bad{background:var(--warn-bg);color:#922b21}
+.slide ol.steps{font-size:21px;line-height:1.4;margin:0 0 6px 30px}
+.steps li{margin:4px 0;color:var(--muted)}
+.steps li.on{color:var(--ink)}
+.steps li.now{color:var(--primary);font-weight:700}
+.lab.labcol{display:block}
+.lbtn.sel{background:var(--primary);color:#fff}
+.labrow{display:flex;gap:10px;align-items:center;font-size:20px;margin:4px 0}
+.labrow input[type=range]{flex:1;min-width:120px;height:28px;accent-color:var(--primary);cursor:pointer}
+.labrow .lbtn{margin:0;font-size:17px;padding:5px 11px;white-space:nowrap}
+body.scroll .labrow{flex-wrap:wrap}
+body.scroll .lab{flex-direction:column;align-items:stretch;gap:12px}
+/* 閱讀模式:圖釘在上方,按按鈕時動畫才看得到 */
+body.scroll .labfig{position:sticky;top:50px;z-index:2;background:var(--card);border-bottom:1px solid #d5dbdb}
+body.scroll .labfig svg.fig{max-height:36vh;width:auto;min-width:0!important}
+@media print{.steps li{color:var(--ink)!important;font-weight:400!important}.noprint{display:none!important}}
+</style>
 <style id="mobile-css">
 /* ── 行動裝置閱讀模式（body.scroll）與工具列 ─────────────── */
 #mtb{position:fixed;top:8px;right:8px;z-index:20;display:flex;gap:6px;align-items:center}
@@ -362,6 +397,32 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="sol"><b>解答:</b><br>5.00 = 4.76 + log([A<sup>−</sup>]/[HA]) → log([A<sup>−</sup>]/[HA]) = 0.24<br>[A<sup>−</sup>]/[HA] = 10<sup>0.24</sup> = <span class="hl">1.7</span><br><b>意思是:</b>共軛鹼要比酸多約 7 成。例如取 0.17 mol 醋酸鈉配 0.10 mol 醋酸。<br><b>易錯:</b>忘了最後那一步「取 10 的次方」,直接把 0.24 當成比值——得到「共軛鹼比酸少」的結論,與 pH 高於 pK<sub>a</sub> 矛盾。<b>算完先問方向,再看數字。</b></div>
 </section>
 
+<!-- LAB w15lab1 -->
+<section class="slide">
+  <h2>動手試:比例決定 pH <span class="en">Ratio Lab — pH follows the log of [A⁻]/[HA]</span></h2>
+  <div class="lab" id="w15lab1">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 440 366" width="440" height="366" role="img" aria-labelledby="w15lab1-t w15lab1-d">
+        <title id="w15lab1-t">緩衝液中弱酸與共軛鹼的相對量,以及對應的 pH 位置</title>
+        <desc id="w15lab1-d">上半部兩根直條是弱酸 HA 與共軛鹼 A⁻ 各占緩衝對總量的百分比。下半部是一條 pH 尺,橘色刻線標出這組緩衝對的 pKa,灰色帶是有效範圍 pKa ± 1,藍色三角形指出目前比例下算出來的 pH。</desc>
+        <text class="hd" x="220" y="26" font-size="19" font-weight="700" fill="#2c3e50" text-anchor="middle"></text>
+        <text x="220" y="52" font-size="16" fill="#5a6a6b" text-anchor="middle">直條 = 各占緩衝對總量的百分比</text>
+        <line x1="60" y1="206" x2="380" y2="206" stroke="#2c3e50" stroke-width="2"/>
+        <g class="bars" font-size="16" text-anchor="middle"></g>
+        <g class="rule" font-size="16" text-anchor="middle"></g>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 醋酸緩衝(pK<sub>a</sub> 4.76)裡,共軛鹼從和酸一樣多,加到<b>酸的 100 倍</b>:pH 會比 pK<sub>a</sub> 高多少?<br>② 那時的溶液,還算是好用的緩衝液嗎?</div>
+      <div class="labrow noprint"><span style="min-width:72px">緩衝對</span><button type="button" class="lbtn sel" data-k="ac">醋酸 pK<sub>a</sub> 4.76</button><button type="button" class="lbtn" data-k="ph">磷酸鹽 pK<sub>a</sub> 7.20</button></div>
+      <div class="labrow noprint"><label for="w15lab1-r" style="min-width:72px">比值</label><input type="range" id="w15lab1-r" min="-2" max="2" step="0.05" value="0.5"><b id="w15lab1-rv" style="min-width:150px;text-align:right;color:var(--primary)">[A⁻]/[HA] = 3.16</b></div>
+      <div class="labrow noprint"><span style="min-width:72px">一次跳</span><button type="button" class="lbtn" data-x="-1">比值 ÷ 10</button><button type="button" class="lbtn" data-x="1">比值 × 10</button></div>
+      <div class="labread"><span id="w15lab1-l1">pH = 4.76 + log(3.16) = 4.76 + 0.50 = 5.26</span><br><span id="w15lab1-l2">→ 在有效範圍內:兩型都夠多</span></div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① 醋酸緩衝只高 <span class="hl">2.00</span>(pH 6.76):log 100 = 2,比值每 × 10,pH 才 + 1;反過來酸多 100 倍,就低 2.00,左右對稱。② 不算:HA 只剩約 <span class="hl">1.0%</span>,pH 已在有效範圍 3.8–5.8 之外,再來一點鹼就沒有 HA 可以擋。<b>比例決定 pH 停在哪;比值在 1:10 到 10:1 之間,才擋得住兩個方向。</b></div>
+    </div>
+  </div>
+</section>
+
 <!-- 15 -->
 <section class="slide">
   <h2>例題 3:緩衝到底有多有效 <span class="en">Example 3: How Much Does a Buffer Help?</span></h2>
@@ -440,6 +501,36 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
     <li>一旦某一型被用完,pH 就會<b>急劇</b>改變——緩衝不是無限的</li>
   </ul>
 <div class="box key"><span class="tag">食品裡的意思</span>果汁、牛奶都有天然的緩衝能力(有機酸、蛋白質、磷酸鹽),所以<b>加一點酸不會馬上變很酸</b>。這也是為什麼食品的酸度不能只看 pH——還要看<b>可滴定酸度</b>(第 7 週),那量的是「總酸量」。</div>
+</section>
+
+<!-- LAB w15lab2 -->
+<section class="slide">
+  <h2>動手試:緩衝擋得住多少酸? <span class="en">Capacity Lab — a buffer delays the drop, it does not stop it</span></h2>
+  <div class="lab" id="w15lab2">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 460 362" width="460" height="362" role="img" aria-labelledby="w15lab2-t w15lab2-d">
+        <title id="w15lab2-t">純水與醋酸緩衝液逐次加入 HCl 時的 pH 變化</title>
+        <desc id="w15lab2-d">橫軸是加入的 HCl 毫莫耳數,縱軸是 pH。紅色點線是 200 mL 純水,第一份酸就讓 pH 從 7 掉到 2 多。藍色點線是 200 mL 醋酸緩衝液,前幾份酸只讓 pH 緩慢下降,而且越降越快;橘色虛線標出共軛鹼 A⁻ 用完的那一點,之後多出來的強酸讓 pH 直接掉到與純水同一個水準。</desc>
+        <g font-size="16" font-weight="700"><text x="24" y="22" fill="#c0392b">● 純水 200 mL</text><text x="236" y="22" fill="#1a5276">● 緩衝液 200 mL</text></g>
+        <text x="236" y="46" font-size="16" fill="#5a6a6b" text-anchor="middle">緩衝液 = 醋酸 4.0 + 醋酸鈉 6.0 mmol</text>
+        <path d="M70,76V300H430" stroke="#2c3e50" stroke-width="2" fill="none"/>
+        <g font-size="16" fill="#2c3e50">
+          <g text-anchor="end"><text x="62" y="273">2</text><text x="62" y="209">4</text><text x="62" y="145">6</text><text x="62" y="81">8</text></g>
+          <g text-anchor="middle"><text x="70" y="322">0</text><text x="138" y="322">2</text><text x="206" y="322">4</text><text x="274" y="322">6</text><text x="342" y="322">8</text><text x="410" y="322">10</text></g>
+          <text x="20" y="190" fill="#5a6a6b">pH</text>
+          <text x="430" y="350" fill="#5a6a6b" text-anchor="end">加入的 HCl(mmol;忽略體積變化)</text>
+        </g>
+        <path d="M64,268H70M64,204H70M64,140H70M64,76H70M138,300V306M206,300V306M274,300V306M342,300V306M410,300V306" stroke="#2c3e50" stroke-width="2" fill="none"/>
+        <g class="plot" font-size="16"></g>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 一直加 HCl,緩衝液<b>每 1 mmol 的降幅</b>都一樣小嗎?<br>② 這杯最多擋得住幾 mmol HCl?由 HA、A⁻ 還是總量決定?</div>
+      <div class="labrow noprint"><label for="w15lab2-n" style="min-width:80px">加入 HCl</label><input type="range" id="w15lab2-n" min="0" max="10" step="1" value="0"><b id="w15lab2-nv" style="min-width:86px;text-align:right;color:var(--primary)">0 mmol</b><button type="button" class="lbtn" data-x="1">+ 1 mmol HCl</button><button type="button" class="lbtn" data-x="0">重來</button></div>
+      <div class="labread"><span id="w15lab2-l1">純水:pH 7.00</span><br><span id="w15lab2-l2">緩衝液:pH = 4.76 + log(6.0/4.0) = 4.94</span><br><span id="w15lab2-l3">→ 還沒加酸</span></div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① 不會。第 1、2 mmol 各降 0.18,第 5 mmol 降 0.35;A⁻ 用完後,再 1 mmol 就到約 2.3,和<span class="hl">純水只加 1 mmol</span>一樣。② <span class="hl">6.0 mmol</span> = A⁻ 的量:來酸靠 A⁻ 接走(來鹼才靠 HA),所以不是 HA 的 4.0;總濃度越高,兩型都越多,能撐的也越多。<b>緩衝不是讓 pH 不動,而是把變化延後。</b></div>
+    </div>
+  </div>
 </section>
 
 <!-- 21 -->
@@ -753,6 +844,161 @@ addEventListener('touchend',e=>{
 });
 fit();
 show(parseInt(location.hash.slice(1))-1||0);
+</script>
+<script id="lab-js">
+(function(){
+/* 共用工具(每支 deck 相同,不要改) */
+  const NS='http://www.w3.org/2000/svg',$=id=>document.getElementById(id);
+  const el=(n,a,p)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;};
+  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let seed=7;const rnd=()=>(seed=seed*16807%2147483647)/2147483647;
+  function tw(ms,fn,done){
+    if(still||ms<=0){fn(1);if(done)done();return;}
+    let t0=null;
+    requestAnimationFrame(function f(t){
+      if(t0===null)t0=t;
+      const k=Math.min(1,(t-t0)/ms),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+      fn(e);if(k<1)requestAnimationFrame(f);else if(done)done();
+    });
+  }
+  // 控制項上的點擊、觸控、方向鍵不可觸發翻頁
+  document.querySelectorAll('.lab').forEach(l=>{
+    ['click','touchstart','touchend'].forEach(t=>l.addEventListener(t,e=>{if(e.target.closest('button,input,label'))e.stopPropagation();}));
+    l.addEventListener('keydown',e=>{if(e.target.matches('input'))e.stopPropagation();});
+    l.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>b.blur()));
+    l.querySelectorAll('input[type=range]').forEach(r=>r.addEventListener('pointerup',()=>r.blur()));
+  });
+/* w15lab1 */
+(function(){
+  const root=$('w15lab1');if(!root)return;
+  /* pKa 與有效範圍取自「緩衝的有效範圍」表:醋酸 4.76(3.8–5.8)、H₂PO₄⁻/HPO₄²⁻ 7.20(6.2–8.2) */
+  const SYS={
+    ac:{nm:'醋酸緩衝',pka:4.76,rng:'3.8–5.8',ha:'CH₃COOH',a:'CH₃COO⁻'},
+    ph:{nm:'磷酸鹽緩衝',pka:7.20,rng:'6.2–8.2',ha:'H₂PO₄⁻',a:'HPO₄²⁻'}
+  };
+  const sr=$('w15lab1-r'),g=root.querySelector('.bars'),ru=root.querySelector('.rule'),hd=root.querySelector('.hd');
+  const BASE=206,H=130,W=90,XB=[150,290],P0=2,P1=10,X0=40,PX=45;
+  const px=p=>X0+(p-P0)*PX;
+  const bar=(cx,h)=>'M'+(cx-W/2)+','+BASE+'h'+W+'v'+(-h)+'h'+(-W)+'Z';
+  let k='ac',shown=null;
+  /* 滑桿是 log(比值);pH 直接由 log 值算,比值顯示 3 位有效數字,log(顯示值) 四捨五入後與 log 值一致 */
+  const xv=()=>Math.round(+sr.value*100)/100;
+  function draw(o){
+    g.innerHTML='';
+    [[XB[0],o.fha,'#8a6d00','HA:'+o.S.ha],[XB[1],o.fa,'#1a5276','A⁻:'+o.S.a]].forEach(([cx,f,c,nm])=>{
+      const h=Math.max(f*H,0.5);
+      el('path',{d:bar(cx,h),fill:c},g);
+      el('text',{x:cx,y:BASE-h-8,fill:c,'font-weight':700},g).textContent=(f*100).toFixed(1)+'%';
+      el('text',{x:cx,y:BASE+22,fill:'#2c3e50'},g).textContent=nm;
+    });
+    ru.innerHTML='';
+    const lo=o.S.pka-1,hi=o.S.pka+1;
+    el('path',{d:'M'+px(lo)+',290H'+px(hi)+'V312H'+px(lo)+'Z',fill:'#d5dbdb'},ru);
+    el('path',{d:'M'+X0+',301H'+px(P1),stroke:'#2c3e50','stroke-width':2,fill:'none'},ru);
+    let tk='';for(let p=P0;p<=P1;p++)tk+='M'+px(p)+',295V307';
+    el('path',{d:tk,stroke:'#2c3e50','stroke-width':2,fill:'none'},ru);
+    for(let p=P0;p<=P1;p++)el('text',{x:px(p),y:330,fill:'#2c3e50'},ru).textContent=p;
+    el('path',{d:'M'+px(o.S.pka)+',282V320',stroke:'#a04c08','stroke-width':3,fill:'none'},ru);
+    const xp=px(o.pH);
+    el('path',{d:'M'+(xp-9)+',270L'+(xp+9)+',270L'+xp+',287Z',fill:'#1a5276'},ru);
+    el('text',{x:Math.min(Math.max(xp,46),394),y:262,fill:'#1a5276','font-weight':700},ru).textContent='pH '+o.pHs;
+    el('text',{x:220,y:356,fill:'#5a6a6b'},ru).textContent='橘線 = pKa '+o.S.pka.toFixed(2)+'　灰帶 = 有效範圍 '+o.S.rng;
+  }
+  function render(anim){
+    const S=SYS[k],x=xv(),r=Math.pow(10,x),pH=S.pka+x;
+    const o={S,x,pH,pHs:pH.toFixed(2),fha:1/(1+r),fa:r/(1+r)};
+    hd.textContent=S.nm+'　pKa = '+S.pka.toFixed(2);
+    $('w15lab1-rv').textContent='[A⁻]/[HA] = '+r.toPrecision(3);
+    const sg=x<0?' − ':' + ';
+    $('w15lab1-l1').textContent='pH = '+S.pka.toFixed(2)+' + log('+r.toPrecision(3)+') = '+S.pka.toFixed(2)+sg+Math.abs(x).toFixed(2)+' = '+o.pHs;
+    let h;
+    if(x>1.0001)h='→ <span class="hl M">超出有效範圍</span>:HA 只剩 '+(o.fha*100).toFixed(1)+'%,擋不住加進來的鹼';
+    else if(x<-1.0001)h='→ <span class="hl M">超出有效範圍</span>:A⁻ 只剩 '+(o.fa*100).toFixed(1)+'%,擋不住加進來的酸';
+    else if(Math.abs(x)<0.001)h='→ 兩型一樣多,pH = pKa;在有效範圍內';
+    else h='→ '+(x>0?'A⁻ 較多,pH 高於 pKa':'HA 較多,pH 低於 pKa')+';在有效範圍內';
+    $('w15lab1-l2').innerHTML=h;
+    root.querySelector('[data-x="1"]').disabled=x+1>2.0001;
+    root.querySelector('[data-x="-1"]').disabled=x-1<-2.0001;
+    const from=shown;shown=o;
+    if(anim&&from&&from.S===S)tw(450,t=>{const L=key=>from[key]+(o[key]-from[key])*t;draw(Object.assign({},o,{pH:L('pH'),fha:L('fha'),fa:L('fa')}));});
+    else draw(o);
+  }
+  sr.addEventListener('input',()=>render(false));
+  root.querySelectorAll('[data-x]').forEach(b=>b.addEventListener('click',()=>{
+    sr.value=(xv()+(+b.dataset.x)).toFixed(2);render(true);
+  }));
+  root.querySelectorAll('[data-k]').forEach(b=>b.addEventListener('click',()=>{
+    if(b.dataset.k===k)return;k=b.dataset.k;
+    root.querySelectorAll('[data-k]').forEach(o=>o.classList.toggle('sel',o===b));
+    render(false);
+  }));
+  render(false);
+})();
+/* w15lab2 */
+(function(){
+  const root=$('w15lab2');if(!root)return;
+  /* pKa 4.76 取自 deck;純水起點 pH 7.00 取自例題 3。濃度與體積自訂(200 mL、HA 4.0、A⁻ 6.0 mmol),與例題 3 不同。
+     A⁻ 用完之前用 H–H;剛好用完(6 mmol)只顯示「緩衝失效」不給 pH;之後只算多出來的強酸,寫成 ≈ 一位小數 */
+  const HA0=4.0,A0=6.0,V=200,PKA=4.76,NMAX=10;
+  const sn=$('w15lab2-n'),g=root.querySelector('.plot');
+  const X=n=>70+n*34,Y=p=>300-(p-1)*32;
+  const water=n=>n===0?7:-Math.log10(n/V);              /* n mmol ÷ 200 mL = n/200 M */
+  const buf=n=>{
+    if(n<A0)return {p:+(PKA+Math.log10((A0-n)/(HA0+n))).toFixed(2),ok:true};
+    if(n===A0)return {p:null,ok:false};
+    return {p:-Math.log10((n-A0)/V),ok:false};
+  };
+  function draw(n){
+    g.innerHTML='';
+    if(n>=A0){
+      el('path',{d:'M'+X(A0)+',300V84',stroke:'#a04c08','stroke-width':2,'stroke-dasharray':'6 4',fill:'none'},g);
+      el('text',{x:X(A0)+8,y:96,fill:'#a04c08','font-weight':700},g).textContent='A⁻ 用完';
+    }
+    let dw='',db='',dj='';
+    for(let i=0;i<=n;i++){
+      dw+=(i?'L':'M')+X(i)+','+Y(water(i));
+      const b=buf(i);
+      if(i<A0)db+=(i?'L':'M')+X(i)+','+Y(b.p);
+    }
+    if(n>A0){dj='M'+X(A0-1)+','+Y(buf(A0-1).p);for(let i=A0+1;i<=n;i++)dj+='L'+X(i)+','+Y(buf(i).p);}
+    el('path',{d:dw,stroke:'#c0392b','stroke-width':2.5,fill:'none'},g);
+    el('path',{d:db,stroke:'#1a5276','stroke-width':3,fill:'none'},g);
+    if(dj)el('path',{d:dj,stroke:'#1a5276','stroke-width':3,'stroke-dasharray':'7 5',fill:'none'},g);
+    for(let i=0;i<=n;i++){
+      el('circle',{cx:X(i),cy:Y(water(i)),r:5,fill:'#c0392b'},g);
+      const b=buf(i);
+      if(b.p!==null)el('circle',{cx:X(i),cy:Y(b.p),r:5.5,fill:i>A0?'#ffffff':'#1a5276',stroke:'#1a5276','stroke-width':2.5},g);
+    }
+  }
+  function render(){
+    const n=+sn.value,w=water(n),b=buf(n);
+    $('w15lab2-nv').textContent=n+' mmol';
+    $('w15lab2-l1').textContent=n===0?'純水:pH 7.00':'純水:'+n+' mmol ÷ 200 mL = '+(n/V).toFixed(4)+' M → pH '+w.toFixed(2);
+    let l2,l3;
+    if(n<A0){
+      l2='緩衝液:pH = 4.76 + log('+(A0-n).toFixed(1)+'/'+(HA0+n).toFixed(1)+') = '+b.p.toFixed(2);
+      l3=n===0?'→ 還沒加酸':'→ 第 '+n+' mmol 讓緩衝液降 <b>'+(buf(n-1).p-b.p).toFixed(2)+'</b>,純水共降 '+(7-+w.toFixed(2)).toFixed(2);
+    }else if(n===A0){
+      l2='緩衝液:HA '+(HA0+n).toFixed(1)+' mmol、A⁻ 0 → 已無 A⁻,緩衝失效';
+      l3='→ <span class="hl M">緩衝被打穿</span>';
+    }else{
+      l2='緩衝液:A⁻ 用完,多出 '+(n-A0)+' mmol 強酸 → pH ≈ '+b.p.toFixed(1);
+      l3='→ <span class="hl M">緩衝被打穿</span>:多出的酸就像加進純水';
+    }
+    $('w15lab2-l2').textContent=l2;$('w15lab2-l3').innerHTML=l3;
+    root.querySelector('[data-x="1"]').disabled=n>=NMAX;
+    draw(n);
+  }
+  sn.addEventListener('input',render);
+  root.querySelectorAll('[data-x]').forEach(b=>b.addEventListener('click',()=>{
+    sn.value=b.dataset.x==='0'?0:Math.min(NMAX,+sn.value+1);render();
+  }));
+  let saved=null;
+  addEventListener('beforeprint',()=>{saved=sn.value;sn.value=NMAX;render();});
+  addEventListener('afterprint',()=>{if(saved!==null){sn.value=saved;saved=null;render();}});
+  render();
+})();
+})();
 </script>
 <script id="mobile-js">
 (function(){

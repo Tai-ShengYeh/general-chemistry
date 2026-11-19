@@ -155,6 +155,41 @@ body.scroll .animation-layout{grid-template-columns:1fr}
 body.scroll .animation-layout video{max-height:none}
 @media(max-width:720px){.animation-layout{grid-template-columns:1fr}}
 </style>
+<style id="lab-css">
+/* ── 互動實驗台(先預測、再動手)──────────────────────── */
+.lab{display:flex;gap:30px;align-items:flex-start}
+.labfig{flex:0 0 auto}
+.labfig .fig{margin:0 auto}
+.labside{flex:1;min-width:0}
+.labside .box{margin:0 0 8px;font-size:21px;line-height:1.45;padding:9px 18px}
+.labside .eq{margin:6px 0;font-size:26px}
+.labctl{display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:center;font-size:20px;margin:6px 0}
+.labctl input[type=range]{width:100%;height:28px;accent-color:var(--primary);cursor:pointer}
+.labctl output{font-weight:700;color:var(--primary);min-width:96px;text-align:right}
+.labread{font-size:21px;line-height:1.5;background:#f4f6f7;border-radius:8px;padding:7px 16px;margin:6px 0}
+.labread .M{font-size:27px}
+.lbtn{font-family:inherit;font-size:19px;font-weight:700;padding:6px 16px;border-radius:8px;border:2px solid var(--primary);background:#fff;color:var(--primary);cursor:pointer;margin:2px 8px 2px 0}
+.lbtn:hover{background:var(--def-bg)}
+.lbtn:disabled{color:var(--muted);border-color:#aab7b8;background:#f4f6f7;cursor:default}
+.lbtn.bad{border-color:#c0392b;color:#c0392b}
+.labmsg{font-size:20px;line-height:1.42;min-height:86px;margin:6px 0;padding:7px 16px;border-radius:8px;background:#f4f6f7}
+.labmsg.bad{background:var(--warn-bg);color:#922b21}
+.slide ol.steps{font-size:21px;line-height:1.4;margin:0 0 6px 30px}
+.steps li{margin:4px 0;color:var(--muted)}
+.steps li.on{color:var(--ink)}
+.steps li.now{color:var(--primary);font-weight:700}
+.lab.labcol{display:block}
+.lbtn.sel{background:var(--primary);color:#fff}
+.labrow{display:flex;gap:10px;align-items:center;font-size:20px;margin:4px 0}
+.labrow input[type=range]{flex:1;min-width:120px;height:28px;accent-color:var(--primary);cursor:pointer}
+.labrow .lbtn{margin:0;font-size:17px;padding:5px 11px;white-space:nowrap}
+body.scroll .labrow{flex-wrap:wrap}
+body.scroll .lab{flex-direction:column;align-items:stretch;gap:12px}
+/* 閱讀模式:圖釘在上方,按按鈕時動畫才看得到 */
+body.scroll .labfig{position:sticky;top:50px;z-index:2;background:var(--card);border-bottom:1px solid #d5dbdb}
+body.scroll .labfig svg.fig{max-height:36vh;width:auto;min-width:0!important}
+@media print{.steps li{color:var(--ink)!important;font-weight:400!important}.noprint{display:none!important}}
+</style>
 <style id="mobile-css">
 /* ── 行動裝置閱讀模式（body.scroll）與工具列 ─────────────── */
 #mtb{position:fixed;top:8px;right:8px;z-index:20;display:flex;gap:6px;align-items:center}
@@ -424,6 +459,29 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="sol"><b>例:</b>要調出 HLB = 10.0,手上有 Span 80(HLB 4.3)與 Tween 80(HLB 15.0)(兩種市售乳化劑)。各要多少?<br>設 Tween 的分率為 x:4.3(1 − x) + 15.0x = 10.0<br>10.7x = 5.7 → x = <span class="hl">0.533</span><br>所以 <b>Tween 80 佔 53.3%、Span 80 佔 46.7%</b>。<br><b>為什麼要這樣做:</b>單用 Tween 80(15.0)太親水、單用 Span 80(4.3)太親油,兩者都做不出穩定的乳化液;<b>混用才能同時在界面兩側都站得住</b>。<br><b>就像挑鞋子要挑對尺寸,不是越大越好(第 15 週挑緩衝系統也是同一種思路)。</b></div>
 </section>
 
+<!-- LAB w13lab1 -->
+<section class="slide">
+  <h2 style="margin-bottom:12px">動手試:兩種乳化劑混出想要的 HLB <span class="en">Blending Lab — HLB is a weighted average</span></h2>
+  <div class="lab labcol" id="w13lab1">
+    <div class="box exbox" style="margin:0 0 4px;padding:7px 20px;font-size:20px;line-height:1.42"><span class="tag">先預測,再動手</span>Span 80(4.3)+ Tween 80(15.0)。① <b>各半</b>混,HLB 是多少?「比例差一些沒關係」對嗎?<br>② Tween 的比例從 30% <b>加倍</b>到 60%,混合 HLB 也會加倍嗎?</div>
+    <svg class="fig" viewBox="0 0 1080 174" width="1080" height="174" role="img" aria-labelledby="w13lab1-t w13lab1-d">
+      <title id="w13lab1-t">HLB 尺:兩種乳化劑的混合 HLB 落在哪一個用途範圍</title>
+      <desc id="w13lab1-d">一條 0 到 20 的 HLB 橫軸。上方三列色帶是投影片表上的用途範圍:w/o 乳化劑 3–6、o/w 乳化劑 8–18、潤濕劑 7–9、清潔劑 13–15、增溶劑 15–18。軸下標出 Span 80(4.3)與 Tween 80(15.0)兩個端點,一條直線標記目前混合後的 HLB,目前所在的色帶會變成實心。</desc>
+      <g class="bands" font-size="16" font-weight="700" text-anchor="middle"></g>
+      <g font-size="16" fill="#5a6a6b"><text x="20" y="58">色帶 = 表上的用途範圍</text><text x="20" y="82">HLB 越大越親水 →</text></g>
+      <line x1="20" y1="118" x2="1060" y2="118" stroke="#2c3e50" stroke-width="2"/>
+      <g class="ticks" stroke="#2c3e50" stroke-width="2"></g>
+      <g class="tlab" font-size="16" fill="#2c3e50" text-anchor="middle"></g>
+      <g font-size="16" font-weight="700" text-anchor="middle"><circle cx="243.6" cy="118" r="7" fill="#922b21"/><text x="243.6" y="166" fill="#922b21">Span 80 · 4.3</text><circle cx="800" cy="118" r="7" fill="#1a5276"/><text x="800" y="166" fill="#1a5276">Tween 80 · 15.0</text></g>
+      <g class="mk"><line x1="0" y1="2" x2="0" y2="130" stroke="#a04c08" stroke-width="3"/><path d="M-8,140 L8,140 L0,128 Z" fill="#a04c08"/></g>
+      <g class="btx" font-size="16" font-weight="700" text-anchor="middle"></g>
+    </svg>
+    <div class="labrow noprint"><label for="w13lab1-s" style="min-width:112px">Tween 80 佔</label><input type="range" id="w13lab1-s" min="0" max="100" step="1" value="30"><b id="w13lab1-sv" style="min-width:200px;text-align:right;color:var(--primary)">30%(Span 70%)</b><button type="button" class="lbtn" data-x="half">各半 1 : 1</button><button type="button" class="lbtn" data-x="dbl">Tween 比例 ×2</button><button type="button" class="lbtn" data-x="0">回到 Tween 30%</button></div>
+    <div class="labread" style="margin:4px 0"><span id="w13lab1-l1">HLB<sub>混</sub> = 0.70 × 4.3 + 0.30 × 15.0 = 7.51</span><br><span id="w13lab1-l2">→ 落在:潤濕劑(7–9)</span></div>
+    <div class="sol" style="font-size:20px;line-height:1.42;margin-top:6px;padding-top:6px"><b>你剛剛看到的:</b>① 各半 = 0.5 × 4.3 + 0.5 × 15.0 = <span class="hl">9.65</span>,是中點,在 o/w 區。但比例很重要:Tween 每多 10%,HLB 就多 1.07 —— 10% 是 5.37(w/o 區),90% 是 13.93(清潔劑範圍)。② 不會:30% 是 7.51,60% 是 <span class="hl">10.72</span>,不是 15.02。Tween 那一項 4.5 → 9.0 加倍了,Span 那一項卻從 3.01 掉到 1.72。<b>混合 HLB 近似加權平均:比例決定落在哪一區,且不會等比例放大 —— 要對上目標,就從目標回頭算比例。</b></div>
+  </div>
+</section>
+
 <!-- 19 -->
 <section class="slide divider">
   <div class="secnum">PART 13.3</div>
@@ -487,6 +545,30 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <h2>微生物需要多少水 <span class="en">What Microbes Need</span></h2>
   <table><tr><th>a<sub>w</sub> 下限</th><th>什麼還能生長</th><th>典型食品</th></tr><tr><td>&gt; 0.90</td><td><b>多數細菌</b>(含肉毒桿菌)</td><td>鮮肉、鮮乳、新鮮蔬果</td></tr><tr><td>&gt; 0.88</td><td>多數酵母</td><td>果汁、稀糖漿</td></tr><tr><td>&gt; 0.80</td><td>多數黴菌</td><td>果醬、半乾性食品</td></tr><tr><td>&gt; 0.75</td><td>嗜鹽菌</td><td>鹹魚、醬菜</td></tr><tr><td>&gt; 0.61</td><td>耐旱黴菌、耐滲透酵母</td><td>蜂蜜、高糖蜜餞</td></tr><tr><td>&lt; 0.60</td><td><b>幾乎都停止生長</b></td><td>奶粉、餅乾、乾燥食品</td></tr></table>
 <div class="box key"><span class="tag">兩條界線,兩個機制</span>第 14 週的 <b>pH 4.6</b> 與本週的 <b>a<sub>w</sub> 0.85</b> 是<b>兩條各自獨立</b>的法規界線。法規上「低酸性且高水活性」的食品才需要高壓滅菌——<b>兩個條件都要看,不能互相替代。</b></div>
+</section>
+
+<!-- LAB w13lab2 -->
+<section class="slide">
+  <h2 style="margin-bottom:12px">動手試:水活性尺 —— 誰還長得出來? <span class="en">Water-Activity Ruler — who can still grow?</span></h2>
+  <div class="lab labcol" id="w13lab2">
+    <div class="box exbox" style="margin:0 0 4px;padding:7px 20px;font-size:20px;line-height:1.42"><span class="tag">先預測,再動手</span>① a<sub>w</sub> 從 1.00 往下降:各類微生物是<b>同時</b>停,還是一類一類停?最後停的是誰?<br>② 蜜餞含水量可超過 20%。照「含水量高就容易壞」,它該落在<b>細菌</b>(&gt; 0.90)還長得出來的那一區嗎?</div>
+    <svg class="fig" viewBox="0 0 1080 200" width="1080" height="200" role="img" aria-labelledby="w13lab2-t w13lab2-d">
+      <title id="w13lab2-t">水活性尺:各類微生物的生長下限</title>
+      <desc id="w13lab2-d">橫軸是水活性 a_w,從 0.2 到 1.0。每一列是一類微生物與它的典型食品,色條從它的 a_w 下限畫到 1.0:多數細菌 0.90、多數酵母 0.88、多數黴菌 0.80、嗜鹽菌 0.75、耐旱黴菌與耐滲透酵母 0.61;最下一列是 0.60 以下幾乎都停止生長的區域。一條直線標記目前的 a_w,低於下限的類別變成灰色,正好在下限上的標為邊緣。另有一條虛線標出法規界線 0.85。</desc>
+      <g class="rows" font-size="16"></g>
+      <line x1="420" y1="150" x2="1060" y2="150" stroke="#2c3e50" stroke-width="2"/>
+      <g class="ticks" stroke="#2c3e50" stroke-width="2"></g>
+      <g class="tlab" font-size="16" fill="#2c3e50" text-anchor="middle"></g>
+      <text x="404" y="172" font-size="16" font-weight="700" fill="#2c3e50" text-anchor="end">a_w(示意,依投影片的表)</text>
+      <line x1="940" y1="0" x2="940" y2="178" stroke="#2c3e50" stroke-width="2" stroke-dasharray="6 4"/>
+      <text x="940" y="196" font-size="16" fill="#2c3e50" text-anchor="middle">法規界線 0.85</text>
+      <g class="mk"><line x1="0" y1="0" x2="0" y2="154" stroke="#2c3e50" stroke-width="4"/><circle cx="0" cy="150" r="7" fill="#2c3e50"/></g>
+      <g class="rtx" font-size="16"></g>
+    </svg>
+    <div class="labrow noprint"><label for="w13lab2-s" style="min-width:48px">a<sub>w</sub></label><input type="range" id="w13lab2-s" min="0.2" max="1" step="0.01" value="1"><b id="w13lab2-sv" style="min-width:64px;text-align:right;color:var(--primary)">1.00</b><button type="button" class="lbtn" data-x="dn">往下一條下限 ▼</button><button type="button" class="lbtn" data-x="0">回到純水 1.00</button></div>
+    <div class="labread" style="margin:4px 0"><span id="w13lab2-l1">a_w = 1.00 → 表上各類都還能生長</span><br><span id="w13lab2-l2">純水 a_w = 1.00:這一關什麼都擋不住</span></div>
+    <div class="sol" style="font-size:20px;line-height:1.42;margin-top:6px;padding-top:6px"><b>你剛剛看到的:</b>① 一類一類停:多數細菌(0.90)→ 多數酵母(0.88)→ 多數黴菌(0.80)→ 嗜鹽菌(0.75)→ 最後是<span class="hl">耐旱黴菌、耐滲透酵母</span>(0.61)。② 不會:尺的橫軸是 a<sub>w</sub>,不是含水量。糖把水綁住,表上的高糖蜜餞和蜂蜜在耐旱黴菌那一列 —— 細菌早被擋住,但<b>這一列的微生物仍有機會,所以不是絕對安全、仍需防潮</b>。<b>看水自不自由(a<sub>w</sub>),不是有多少水;pH 4.6 是另一條柵欄。</b></div>
+  </div>
 </section>
 
 <!-- 26 -->
@@ -679,6 +761,162 @@ addEventListener('touchend',e=>{
 });
 fit();
 show(parseInt(location.hash.slice(1))-1||0);
+</script>
+<script id="lab-js">
+(function(){
+/* 共用工具(每支 deck 相同,不要改) */
+  const NS='http://www.w3.org/2000/svg',$=id=>document.getElementById(id);
+  const el=(n,a,p)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;};
+  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let seed=7;const rnd=()=>(seed=seed*16807%2147483647)/2147483647;
+  function tw(ms,fn,done){
+    if(still||ms<=0){fn(1);if(done)done();return;}
+    let t0=null;
+    requestAnimationFrame(function f(t){
+      if(t0===null)t0=t;
+      const k=Math.min(1,(t-t0)/ms),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+      fn(e);if(k<1)requestAnimationFrame(f);else if(done)done();
+    });
+  }
+  // 控制項上的點擊、觸控、方向鍵不可觸發翻頁
+  document.querySelectorAll('.lab').forEach(l=>{
+    ['click','touchstart','touchend'].forEach(t=>l.addEventListener(t,e=>{if(e.target.closest('button,input,label'))e.stopPropagation();}));
+    l.addEventListener('keydown',e=>{if(e.target.matches('input'))e.stopPropagation();});
+    l.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>b.blur()));
+    l.querySelectorAll('input[type=range]').forEach(r=>r.addEventListener('pointerup',()=>r.blur()));
+  });
+/* w13lab1 */
+(function(){
+  const root=$('w13lab1');if(!root)return;
+  const s=$('w13lab1-s'),mk=root.querySelector('.mk'),svg=root.querySelector('svg');
+  const gb=root.querySelector('.bands'),gx=root.querySelector('.btx'),gt=root.querySelector('.ticks'),gl=root.querySelector('.tlab');
+  const X=h=>20+52*h;
+  /* 投影片「HLB:怎麼挑乳化劑」表上的範圍;lo/hi 以 HLB × 10 表示 */
+  const BANDS=[
+    {k:'wo', lo:30, hi:60, row:0,c:'#922b21',t:'w/o 乳化劑 3–6'},
+    {k:'ow', lo:80, hi:180,row:0,c:'#1a5276',t:'o/w 乳化劑 8–18'},
+    {k:'wet',lo:70, hi:90, row:1,c:'#5a6a6b',t:'潤濕劑 7–9'},
+    {k:'det',lo:130,hi:150,row:1,c:'#117a65',t:'清潔劑 13–15'},
+    {k:'sol',lo:150,hi:180,row:2,c:'#a04c08',t:'增溶劑 15–18'}
+  ];
+  const NAME={wo:'w/o 乳化劑(3–6)',ow:'o/w 乳化劑(8–18)',wet:'潤濕劑(7–9)',det:'清潔劑(13–15)',sol:'增溶劑(15–18)'};
+  BANDS.forEach(b=>{
+    const y=6+b.row*32;
+    b.r=el('rect',{x:X(b.lo/10),y:y,width:X(b.hi/10)-X(b.lo/10),height:26,rx:13,'stroke-width':2},gb);
+    b.tx=el('text',{x:(X(b.lo/10)+X(b.hi/10))/2,y:y+19},gx);b.tx.textContent=b.t;
+  });
+  let d='';for(let h=0;h<=20;h++)d+='M'+X(h)+',118v'+(h%2?5:8);
+  el('path',{d:d,fill:'none'},gt);
+  for(let h=0;h<=20;h+=2)el('text',{x:X(h),y:142},gl).textContent=h;
+  let shown=null;
+  /* 混合 HLB × 1000 = 4300 + 107 × p(p = Tween 百分比,整數),全程用整數,讀數與判定一致 */
+  function state(){const p=Math.round(+s.value),k=4300+107*p;return {p,k};}
+  const f2=k=>(Math.round(k/10)/100).toFixed(2);
+  function place(x){
+    mk.setAttribute('transform','translate('+x+',0)');
+  }
+  function render(anim){
+    const o=state(),x=X(o.k/1000),hit=BANDS.filter(b=>o.k>=b.lo*100&&o.k<=b.hi*100);
+    BANDS.forEach(b=>{
+      const on=hit.includes(b);
+      b.r.setAttribute('fill',on?b.c:'#f4f6f7');b.r.setAttribute('stroke',b.c);
+      b.tx.setAttribute('fill',on?'#ffffff':b.c);
+    });
+    $('w13lab1-sv').textContent=o.p+'%(Span '+(100-o.p)+'%)';
+    $('w13lab1-l1').innerHTML='HLB<sub>混</sub> = '+((100-o.p)/100).toFixed(2)+' × 4.3 + '+(o.p/100).toFixed(2)+' × 15.0 = '+f2(o.k);
+    $('w13lab1-l2').innerHTML=hit.length?'→ 落在:<span class="hl">'+hit.map(b=>NAME[b.k]).join('、')+'</span>':'→ <span class="hl">表上沒有列這一段</span>(介於 6 與 7 之間)';
+    root.querySelector('[data-x="dbl"]').disabled=o.p*2>100;
+    const from=shown;shown=x;
+    if(anim&&from!==null&&from!==x)tw(400,k=>place(from+(x-from)*k));else place(x);
+    const wrap=svg.parentElement;
+    if(wrap.scrollWidth>wrap.clientWidth+2)wrap.scrollLeft=x*svg.getBoundingClientRect().width/1080-wrap.clientWidth/2;
+  }
+  s.addEventListener('input',()=>render(false));
+  root.querySelectorAll('[data-x]').forEach(b=>b.addEventListener('click',()=>{
+    const x=b.dataset.x;
+    if(x==='half')s.value=50;
+    if(x==='dbl')s.value=Math.min(100,Math.round(+s.value)*2);
+    if(x==='0')s.value=30;
+    render(true);
+  }));
+  render(false);setTimeout(()=>render(false),0);setTimeout(()=>render(false),300);addEventListener('load',()=>render(false));addEventListener('resize',()=>render(false));
+})();
+/* w13lab2 */
+(function(){
+  const root=$('w13lab2');if(!root)return;
+  const s=$('w13lab2-s'),mk=root.querySelector('.mk'),svg=root.querySelector('svg');
+  const gr=root.querySelector('.rows'),gx=root.querySelector('.rtx'),gt=root.querySelector('.ticks'),gl=root.querySelector('.tlab');
+  const X=a=>420+800*(a-0.2);
+  /* 投影片「微生物需要多少水」表:a_w 下限(以 0.01 為單位的整數)與典型食品 */
+  const ROWS=[
+    {lim:90,c:'#c0392b',n:'多數細菌(含肉毒桿菌)',f:'鮮肉、鮮乳、新鮮蔬果'},
+    {lim:88,c:'#8a6d00',n:'多數酵母',f:'果汁、稀糖漿'},
+    {lim:80,c:'#117a65',n:'多數黴菌',f:'果醬、半乾性食品'},
+    {lim:75,c:'#1a5276',n:'嗜鹽菌',f:'鹹魚、醬菜'},
+    {lim:61,c:'#922b21',n:'耐旱黴菌、耐滲透酵母',f:'蜂蜜、高糖蜜餞'}
+  ];
+  const STOPS=[90,88,80,75,61,60];
+  ROWS.forEach((r,i)=>{
+    const y=2+24*i;
+    r.bar=el('rect',{x:X(r.lim/100),y:y,width:1060-X(r.lim/100),height:22,rx:4,'stroke-width':2},gr);
+    r.num=el('text',{x:X(r.lim/100)+6,y:y+17,'font-weight':700},gx);r.num.textContent=(r.lim/100).toFixed(2);
+    r.lab=el('text',{x:404,y:y+17,'text-anchor':'end'},gx);
+  });
+  const low={bar:el('rect',{x:X(0.2),y:122,width:X(0.6)-X(0.2),height:22,rx:4,'stroke-width':2},gr),
+             lab:el('text',{x:404,y:139,'text-anchor':'end'},gx)};
+  let d='';for(let v=20;v<=100;v+=5)d+='M'+X(v/100)+',150v'+(v%10?5:8);
+  el('path',{d:d,fill:'none'},gt);
+  for(let v=20;v<=100;v+=10)el('text',{x:X(v/100),y:172},gl).textContent=(v/100).toFixed(1);
+  /* 嚴格大於下限 → 能生長;等於下限 → 邊緣;0.60–0.61 之間是表上「> 0.61」與「< 0.60」之間的空隙,也算耐旱黴菌/耐滲透酵母的邊緣 */
+  const st=(r,v)=>v>r.lim?'grow':(v===r.lim||(r.lim===61&&v===60))?'edge':'stop';
+  let shown=null;
+  function place(x){mk.setAttribute('transform','translate('+x+',0)');}
+  function render(anim){
+    const v=Math.round(+s.value*100),a=(v/100).toFixed(2),x=X(v/100);
+    const G=[],E=[],S=[];
+    ROWS.forEach(r=>{
+      const k=st(r,v);(k==='grow'?G:k==='edge'?E:S).push(r.n);
+      r.bar.setAttribute('fill',k==='grow'?r.c:k==='edge'?'#ffffff':'#f4f6f7');
+      r.bar.setAttribute('stroke',k==='grow'?r.c:k==='edge'?'#a04c08':'#d5dbdb');
+      r.bar.setAttribute('stroke-dasharray',k==='edge'?'6 4':'none');
+      r.num.setAttribute('fill',k==='grow'?'#ffffff':k==='edge'?'#a04c08':'#5a6a6b');
+      r.lab.setAttribute('fill',k==='grow'?'#2c3e50':k==='edge'?'#a04c08':'#5a6a6b');
+      r.lab.setAttribute('font-weight',k==='stop'?'400':'700');
+      r.lab.textContent=r.n+(k==='edge'?'(邊緣)':'')+' · '+r.f;
+    });
+    const lo=v<60;
+    low.bar.setAttribute('fill',lo?'#5a6a6b':'#f4f6f7');low.bar.setAttribute('stroke',lo?'#5a6a6b':'#d5dbdb');
+    low.lab.setAttribute('fill',lo?'#2c3e50':'#5a6a6b');low.lab.setAttribute('font-weight',lo?'700':'400');
+    low.lab.textContent='< 0.60 幾乎都停止生長 · 奶粉、餅乾';
+    $('w13lab2-sv').textContent=a;
+    let l1='a_w = '+a+' → ';
+    if(!S.length&&!E.length)l1+='表上各類都還能生長';
+    else if(!G.length&&!E.length)l1+='<span class="hl">表上各類幾乎都停止生長</span>';
+    else l1+='還能生長:<b>'+(G.length?G.join('、'):'(無)')+'</b>'+(E.length?';<span class="hl">邊緣:'+E.join('、')+'</span>':'');
+    $('w13lab2-l1').innerHTML=l1;
+    let l2;
+    if(v===100)l2='純水 a_w = 1.00:這一關什麼都擋不住';
+    else if(v===60||v===61)l2='低於絕大多數微生物的下限,但正好在耐旱黴菌、耐滲透酵母的邊緣 —— <b>不是「完全安全」</b>,仍需防潮包裝';
+    else if(lo)l2='a_w 會跟著環境濕度走:包裝一透濕,它就會往上跑';
+    else if(v<=85)l2='a_w ≤ 0.85(法規界線);這條線與第 14 週的 pH 4.6 是兩條獨立的柵欄';
+    else l2='a_w 已擋住:'+(S.length?S.join('、'):'(還沒有)');
+    $('w13lab2-l2').innerHTML=l2;
+    root.querySelector('[data-x="dn"]').disabled=v<=60;
+    const from=shown;shown=x;
+    if(anim&&from!==null&&from!==x)tw(400,k=>place(from+(x-from)*k));else place(x);
+    const wrap=svg.parentElement;
+    if(wrap.scrollWidth>wrap.clientWidth+2)wrap.scrollLeft=x*svg.getBoundingClientRect().width/1080-wrap.clientWidth/2;
+  }
+  s.addEventListener('input',()=>render(false));
+  root.querySelectorAll('[data-x]').forEach(b=>b.addEventListener('click',()=>{
+    const v=Math.round(+s.value*100);
+    if(b.dataset.x==='dn'){const n=STOPS.find(t=>t<v);if(n!==undefined)s.value=(n/100).toFixed(2);}
+    else s.value='1';
+    render(true);
+  }));
+  render(false);setTimeout(()=>render(false),0);setTimeout(()=>render(false),300);addEventListener('load',()=>render(false));addEventListener('resize',()=>render(false));
+})();
+})();
 </script>
 <script id="mobile-js">
 (function(){

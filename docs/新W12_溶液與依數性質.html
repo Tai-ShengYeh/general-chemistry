@@ -155,6 +155,41 @@ body.scroll .animation-layout{grid-template-columns:1fr}
 body.scroll .animation-layout video{max-height:none}
 @media(max-width:720px){.animation-layout{grid-template-columns:1fr}}
 </style>
+<style id="lab-css">
+/* ── 互動實驗台(先預測、再動手)──────────────────────── */
+.lab{display:flex;gap:30px;align-items:flex-start}
+.labfig{flex:0 0 auto}
+.labfig .fig{margin:0 auto}
+.labside{flex:1;min-width:0}
+.labside .box{margin:0 0 8px;font-size:21px;line-height:1.45;padding:9px 18px}
+.labside .eq{margin:6px 0;font-size:26px}
+.labctl{display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:center;font-size:20px;margin:6px 0}
+.labctl input[type=range]{width:100%;height:28px;accent-color:var(--primary);cursor:pointer}
+.labctl output{font-weight:700;color:var(--primary);min-width:96px;text-align:right}
+.labread{font-size:21px;line-height:1.5;background:#f4f6f7;border-radius:8px;padding:7px 16px;margin:6px 0}
+.labread .M{font-size:27px}
+.lbtn{font-family:inherit;font-size:19px;font-weight:700;padding:6px 16px;border-radius:8px;border:2px solid var(--primary);background:#fff;color:var(--primary);cursor:pointer;margin:2px 8px 2px 0}
+.lbtn:hover{background:var(--def-bg)}
+.lbtn:disabled{color:var(--muted);border-color:#aab7b8;background:#f4f6f7;cursor:default}
+.lbtn.bad{border-color:#c0392b;color:#c0392b}
+.labmsg{font-size:20px;line-height:1.42;min-height:86px;margin:6px 0;padding:7px 16px;border-radius:8px;background:#f4f6f7}
+.labmsg.bad{background:var(--warn-bg);color:#922b21}
+.slide ol.steps{font-size:21px;line-height:1.4;margin:0 0 6px 30px}
+.steps li{margin:4px 0;color:var(--muted)}
+.steps li.on{color:var(--ink)}
+.steps li.now{color:var(--primary);font-weight:700}
+.lab.labcol{display:block}
+.lbtn.sel{background:var(--primary);color:#fff}
+.labrow{display:flex;gap:10px;align-items:center;font-size:20px;margin:4px 0}
+.labrow input[type=range]{flex:1;min-width:120px;height:28px;accent-color:var(--primary);cursor:pointer}
+.labrow .lbtn{margin:0;font-size:17px;padding:5px 11px;white-space:nowrap}
+body.scroll .labrow{flex-wrap:wrap}
+body.scroll .lab{flex-direction:column;align-items:stretch;gap:12px}
+/* 閱讀模式:圖釘在上方,按按鈕時動畫才看得到 */
+body.scroll .labfig{position:sticky;top:50px;z-index:2;background:var(--card);border-bottom:1px solid #d5dbdb}
+body.scroll .labfig svg.fig{max-height:36vh;width:auto;min-width:0!important}
+@media print{.steps li{color:var(--ink)!important;font-weight:400!important}.noprint{display:none!important}}
+</style>
 <style id="mobile-css">
 /* ── 行動裝置閱讀模式（body.scroll）與工具列 ─────────────── */
 #mtb{position:fixed;top:8px;right:8px;z-index:20;display:flex;gap:6px;align-items:center}
@@ -415,6 +450,43 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   濃度相差約一萬倍 → 開瓶後 CO<sub>2</sub> 持續逸出,汽水終將「走氣」。</div></div>
 </section>
 
+<!-- LAB w12lab1 -->
+<section class="slide">
+  <h2>動手試:開瓶之後,氣為什麼跑掉? <span class="en">Henry's Law Lab — pressure sets how much gas stays</span></h2>
+  <div class="lab" id="w12lab1">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 460 372" width="460" height="372" role="img" aria-labelledby="w12lab1-t w12lab1-d">
+        <title id="w12lab1-t">汽水瓶中 CO₂ 分壓與溶解的 CO₂ 濃度(示意)</title>
+        <desc id="w12lab1-d">左邊是一瓶汽水,瓶頸與液面上方的藍點是氣相中的 CO₂,液體裡的藍點是溶解的 CO₂,點的數目與分壓、濃度成比例。右邊是 25 °C 下溶解濃度 C 對 CO₂ 分壓 P 的直線,通過原點;橘色的點標出目前的狀態。按下開瓶,瓶蓋移開,分壓降到空氣中的值,液體裡的 CO₂ 冒出成氣泡,橘點落到原點附近。</desc>
+        <path d="M78,46H112V86C112,104 155,108 155,132V318Q155,332 141,332H49Q35,332 35,318V132C35,108 78,104 78,86Z" fill="#ffffff" stroke="#2c3e50" stroke-width="3"/>
+        <path d="M37,160H153V318Q153,330 141,330H49Q37,330 37,318Z" fill="#d5dbdb"/>
+        <path d="M37,160H153" stroke="#5a6a6b" stroke-width="2"/>
+        <g class="gas" fill="#1a5276"></g>
+        <g class="dis" fill="#1a5276"></g>
+        <path class="cap" d="M72,30H118V48H72Z" fill="#922b21"/>
+        <text x="95" y="360" font-size="16" fill="#2c3e50" text-anchor="middle">● = CO₂(示意)</text>
+        <text x="345" y="30" font-size="17" font-weight="700" fill="#2c3e50" text-anchor="middle">25 °C(溫度固定)</text>
+        <path d="M240,70V300H452" stroke="#2c3e50" stroke-width="2" fill="none"/>
+        <path d="M240,212H452M240,124H452" stroke="#d5dbdb" stroke-width="1.5" stroke-dasharray="5 5" fill="none"/>
+        <g font-size="16" fill="#2c3e50" text-anchor="end"><text x="233" y="306">0</text><text x="233" y="218">0.05</text><text x="233" y="130">0.10</text><text x="262" y="62" text-anchor="middle">C / M</text></g>
+        <g font-size="16" fill="#2c3e50" text-anchor="middle"><text x="298.6" y="322">1</text><text x="357.1" y="322">2</text><text x="415.7" y="322">3</text><text x="346" y="350">瓶內 CO₂ 分壓 P / atm</text></g>
+        <path d="M298.6,300v6M357.1,300v6M415.7,300v6" stroke="#2c3e50" stroke-width="2"/>
+        <path d="M240,300L445,90.6" stroke="#1a5276" stroke-width="3" fill="none"/>
+        <path class="guide" d="" stroke="#5a6a6b" stroke-width="1.5" stroke-dasharray="4 4" fill="none"/>
+        <circle class="pt" cx="240" cy="300" r="7" fill="#a04c08"/>
+        <text class="ptl" x="0" y="0" font-size="17" font-weight="700" fill="#a04c08"></text>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 溫度不變,瓶內 CO<sub>2</sub> 分壓從 1.2 atm <b>加倍</b>到 2.4 atm,溶解的 CO<sub>2</sub> 會變幾倍?<br>② 開瓶時溫度沒變。有人說「氣體溶解度只跟溫度有關,所以開瓶不會改變 CO<sub>2</sub> 能溶多少」——對嗎?</div>
+      <div class="labrow noprint"><button type="button" class="lbtn" data-x="2">分壓 ×2</button><button type="button" class="lbtn" data-x="o">開瓶</button><button type="button" class="lbtn" data-x="0">蓋回,1.2 atm</button></div>
+      <div class="labrow noprint"><label for="w12lab1-p" style="min-width:84px">瓶內分壓</label><input type="range" id="w12lab1-p" min="0.5" max="3.5" step="0.1" value="1.2"><b id="w12lab1-pv" style="min-width:80px;text-align:right;color:var(--primary)">1.2 atm</b></div>
+      <div class="labread"><span id="w12lab1-l1">蓋著瓶蓋:P(CO₂) = 1.2 atm</span><br><span id="w12lab1-l2">C = k·P = 3.4 × 10⁻² × 1.2 = </span><span class="hl M" id="w12lab1-o">0.041 M</span></div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① 剛好 <span class="hl">2 倍</span>:0.041 M → 0.082 M。正比,不是平方,也不是不變。② 不對。溫度沒變,不變的是 <b>k</b>;但 P(CO<sub>2</sub>) 從 2.4 atm 掉到空氣中的 3.9 × 10<sup>−4</sup> atm,C 就從 0.082 M 降到 1.3 × 10<sup>−5</sup> M,多的 CO<sub>2</sub> 變成氣泡跑掉。<b>溫度決定 k,分壓再乘上去:兩個都要看。</b></div>
+    </div>
+  </div>
+</section>
+
 <!-- 18 -->
 <section class="slide quiz">
   <h2>隨堂快問 ②:溶解度 <span class="en">Quick Check 2</span></h2>
@@ -581,6 +653,42 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   若忽略解離(誤用 i = 1)只得 −0.93 °C — 電解質題<b>務必乘 i</b>!</div></div>
 </section>
 
+<!-- LAB w12lab2 -->
+<section class="slide">
+  <h2>動手試:凝固點下降數的是粒子 <span class="en">Freezing Point Lab — count particles, not formula units</span></h2>
+  <div class="lab" id="w12lab2">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 450 374" width="450" height="374" role="img" aria-labelledby="w12lab2-t w12lab2-d">
+        <title id="w12lab2-t">溶質種類與重量莫耳濃度決定溶液的凝固點(示意)</title>
+        <desc id="w12lab2-d">左邊是一燒杯水,裡面的圓點是溶質粒子:葡萄糖一個分子一個點,NaCl 拆成 Na⁺ 與 Cl⁻ 兩個點,MgCl₂ 拆成 Mg²⁺ 與兩個 Cl⁻ 三個點;用實測 i 時,有一部分陰陽離子畫成黏在一起的離子對,算一個粒子。上方寫著粒子濃度 i 乘 m。右邊是一支溫度計,綠色虛線是純水的凝固點 0 °C,紅色液柱的頂端是溶液的凝固點,粒子濃度越高,液柱越低。</desc>
+        <text x="139" y="26" font-size="17" font-weight="700" fill="#2c3e50" text-anchor="middle">1 kg 水 + 溶質(示意)</text>
+        <text class="pc" x="139" y="52" font-size="17" font-weight="700" fill="#1a5276" text-anchor="middle"></text>
+        <path d="M27,116H251V322Q251,335 238,335H40Q27,335 27,322Z" fill="#f4f6f7"/>
+        <path d="M27,116H251" stroke="#1a5276" stroke-width="2"/>
+        <path d="M24,92V322Q24,338 40,338H238Q254,338 254,322V92" fill="none" stroke="#2c3e50" stroke-width="3"/>
+        <g class="dots"></g>
+        <g class="leg" font-size="16" fill="#2c3e50"></g>
+        <text x="368" y="28" font-size="17" font-weight="700" fill="#a04c08" text-anchor="middle">溶液的凝固點</text>
+        <path d="M300,80H362" stroke="#117a65" stroke-width="2" stroke-dasharray="6 4"/>
+        <text x="326" y="70" font-size="16" fill="#117a65" text-anchor="middle">純水 0 °C</text>
+        <path d="M362,72A8,8 0 0 1 378,72V324A18,18 0 1 1 362,324Z" fill="#ffffff" stroke="#2c3e50" stroke-width="2.5"/>
+        <circle cx="370" cy="340" r="13" fill="#c0392b"/>
+        <path class="col" d="M366,80H374V334H366Z" fill="#c0392b"/>
+        <path d="M378,80h10M378,140h10M378,200h10M378,260h10M378,320h10" stroke="#2c3e50" stroke-width="2"/>
+        <g font-size="16" fill="#2c3e50"><text x="393" y="86">0</text><text x="393" y="146">−1</text><text x="393" y="206">−2</text><text x="393" y="266">−3</text><text x="393" y="326">−4</text><text x="393" y="62">°C</text></g>
+        <text class="fl" x="354" y="0" font-size="17" font-weight="700" fill="#a04c08" text-anchor="end"></text>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 0.30 m 葡萄糖、0.15 m NaCl、0.10 m MgCl<sub>2</sub>:用<b>理想 i</b>,哪一杯的凝固點最低?<br>② 改用上一張表的<b>實測 i</b>(1.9、2.7),答案會變嗎?</div>
+      <div class="labrow noprint"><button type="button" class="lbtn" data-s="g">葡萄糖</button><button type="button" class="lbtn sel" data-s="n">NaCl</button><button type="button" class="lbtn" data-s="m">MgCl<sub>2</sub></button><span style="margin-left:14px">i:</span><button type="button" class="lbtn sel" data-i="0">理想</button><button type="button" class="lbtn" data-i="1">實測(0.05 m)</button></div>
+      <div class="labrow noprint"><label for="w12lab2-m" style="min-width:64px">m</label><input type="range" id="w12lab2-m" min="0.05" max="0.6" step="0.05" value="0.4"><b id="w12lab2-mv" style="min-width:80px;text-align:right;color:var(--primary)">0.40 m</b></div>
+      <div class="labread"><span id="w12lab2-l1">理想:NaCl → Na⁺ + Cl⁻,i = 2</span><br><span id="w12lab2-l2">ΔT<sub>f</sub> = i·K<sub>f</sub>·m = 2 × 1.86 × 0.40 = 1.49 °C</span><br><span id="w12lab2-l3">凝固點 = 0.00 − 1.49 = </span><span class="hl M" id="w12lab2-o">−1.49 °C</span></div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① <span class="hl">三杯一樣</span>:粒子濃度 i·m 都是 0.30 m,ΔT<sub>f</sub> = 1.86 × 0.30 = 0.56 °C,凝固點都是 −0.56 °C。② 會:NaCl −0.53 °C、MgCl<sub>2</sub> −0.50 °C,葡萄糖仍 −0.56 °C。離子部分成對,粒子比理想少,MgCl<sub>2</sub> 差最多(2.7 對 3);濃度越高偏差越大。<b>比的是粒子濃度 i·m,不是 m。</b></div>
+    </div>
+  </div>
+</section>
+
 <!-- 32 -->
 <section class="slide quiz">
   <h2>隨堂快問 ③:依數性質 <span class="en">Quick Check 3</span></h2>
@@ -609,6 +717,43 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
     <li>結果是溫度越低凍結的比例越高,但<b>永遠有一部分不會結冰</b></li>
   </ul>
 <div class="box key"><span class="tag">所以糖有三個角色</span>① 甜味　② <b>降低凝固點</b>(決定軟硬)　③ 提高黏度(抑制冰晶長大)。<b>減糖不只是變不甜,質地會直接變硬。</b></div>
+</section>
+
+<!-- LAB w12lab3 -->
+<section class="slide">
+  <h2>動手試:冷凍庫裡的冰淇淋,一步一步結冰 <span class="en">Freeze Concentration Lab — the syrup keeps getting harder to freeze</span></h2>
+  <div class="lab" id="w12lab3">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 460 352" width="460" height="352" role="img" aria-labelledby="w12lab3-t w12lab3-d">
+        <title id="w12lab3-t">冰淇淋降溫時的凍結濃縮(示意)</title>
+        <desc id="w12lab3-d">上方的格子代表冰淇淋裡的水:灰色格是液態糖漿,白底藍框格是結成的冰,棕色圓點是糖。下方一排格子是一杯純水作對照。右邊溫度計的紅色液柱是冷凍庫溫度,左側橘色三角形標出剩下糖液的凝固點。每降溫一步,一部分水結成冰,糖的數目不變但擠在更少的液體裡,凝固點跟著降低;新結的冰一步比一步少,始終留有灰色的液態糖漿。純水則一到 0 °C 以下就整排結冰。格數與溫度都是示意,不代表實際比例。</desc>
+        <text x="156" y="28" font-size="17" font-weight="700" fill="#2c3e50" text-anchor="middle">冰淇淋裡的水與糖(示意)</text>
+        <g class="cells"></g>
+        <g class="sug" fill="#8a6d00"></g>
+        <text x="16" y="271" font-size="16" fill="#2c3e50">一杯純水</text>
+        <g class="pure"></g>
+        <g font-size="16" fill="#2c3e50">
+          <path d="M18,307h20v20h-20Z" fill="#d5dbdb"/><text x="44" y="323">液態糖漿</text>
+          <path d="M126,307h20v20h-20Z" fill="#ffffff" stroke="#1a5276" stroke-width="2"/><text x="152" y="323">冰(純水結成)</text>
+          <circle cx="298" cy="317" r="6" fill="#8a6d00"/><text x="310" y="323">糖</text>
+        </g>
+        <text x="16" y="346" font-size="16" fill="#5a6a6b">格數、溫度刻度都是示意,不代表實際比例</text>
+        <path d="M392,52A8,8 0 0 1 408,52V264A18,18 0 1 1 392,264Z" fill="#ffffff" stroke="#2c3e50" stroke-width="2.5"/>
+        <circle cx="400" cy="280" r="13" fill="#c0392b"/>
+        <path class="col" d="M396,64H404V274H396Z" fill="#c0392b"/>
+        <path d="M382,64h10" stroke="#2c3e50" stroke-width="2"/>
+        <text x="378" y="70" font-size="16" fill="#2c3e50" text-anchor="end">0 °C</text>
+        <text class="tl" x="414" y="0" font-size="16" font-weight="700" fill="#c0392b">溫度</text>
+        <g class="fpg"><path d="M378,-7L390,0L378,7Z" fill="#a04c08"/><text x="374" y="6" font-size="16" font-weight="700" fill="#a04c08" text-anchor="end">糖液凝固點</text></g>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 冰淇淋開始結冰時,結成冰的是糖水還是純水?剩下那些糖液的凝固點會<b>變高、不變還是變低</b>?<br>② 冷凍庫一直降溫下去,冰淇淋裡的水<b>最後會全部結冰</b>嗎?</div>
+      <div class="labrow noprint"><button type="button" class="lbtn" data-x="n">降溫一步 ▶</button><button type="button" class="lbtn" data-x="0">重來</button></div>
+      <div class="labread"><span id="w12lab3-l1"><b>剛放進冷凍庫:溫度 0 °C</b></span><br><span id="w12lab3-l2">純水到 0 °C 就開始結冰;冰淇淋裡有糖,凝固點比 0 °C 低,所以還是液態。</span></div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① 結成冰的是<b>純水</b>,糖留在液體裡 → 糖液變濃 → 凝固點<span class="hl">變低</span>,要再降溫才會再結冰,這叫<b>凍結濃縮</b>。② 不會。溫度越低結的冰越多,但每結一點,剩下的糖漿就更濃、更難結,<span class="hl">永遠有一部分不會結冰</span>;純水則一到 0 °C 以下就整杯結冰。<b>這就是 −18 °C 的冰淇淋還挖得動的原因。</b></div>
+    </div>
+  </div>
 </section>
 
 <!-- 35 -->
@@ -754,6 +899,257 @@ addEventListener('touchend',e=>{
 });
 fit();
 show(parseInt(location.hash.slice(1))-1||0);
+</script>
+<script id="lab-js">
+(function(){
+/* 共用工具(每支 deck 相同,不要改) */
+  const NS='http://www.w3.org/2000/svg',$=id=>document.getElementById(id);
+  const el=(n,a,p)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;};
+  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let seed=7;const rnd=()=>(seed=seed*16807%2147483647)/2147483647;
+  function tw(ms,fn,done){
+    if(still||ms<=0){fn(1);if(done)done();return;}
+    let t0=null;
+    requestAnimationFrame(function f(t){
+      if(t0===null)t0=t;
+      const k=Math.min(1,(t-t0)/ms),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+      fn(e);if(k<1)requestAnimationFrame(f);else if(done)done();
+    });
+  }
+  // 控制項上的點擊、觸控、方向鍵不可觸發翻頁
+  document.querySelectorAll('.lab').forEach(l=>{
+    ['click','touchstart','touchend'].forEach(t=>l.addEventListener(t,e=>{if(e.target.closest('button,input,label'))e.stopPropagation();}));
+    l.addEventListener('keydown',e=>{if(e.target.matches('input'))e.stopPropagation();});
+    l.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>b.blur()));
+    l.querySelectorAll('input[type=range]').forEach(r=>r.addEventListener('pointerup',()=>r.blur()));
+  });
+/* w12lab1 */
+(function(){
+  const root=$('w12lab1');if(!root)return;
+  /* 數值全部取自 deck:k = 3.4 × 10⁻² mol/(L·atm)(25 °C)、空氣中 P(CO₂) = 3.9 × 10⁻⁴ atm(例題 2) */
+  const K=0.034,PAIR=3.9e-4,P0=1.2,PMAX=3.5;
+  const s=$('w12lab1-p'),gG=root.querySelector('.gas'),gD=root.querySelector('.dis'),cap=root.querySelector('.cap');
+  const pt=root.querySelector('.pt'),ptl=root.querySelector('.ptl'),guide=root.querySelector('.guide');
+  const X=p=>240+p*205/PMAX,Y=c=>300-c*1760;
+  /* 點數:氣相 4 點/atm、溶解 10 點/atm(與 C 成正比);位置用固定種子亂數,彼此不重疊 */
+  function place(n,ok,out){
+    let tries=0;
+    while(out.length<n&&tries<5000){
+      tries++;const x=ok.x0+rnd()*(ok.x1-ok.x0),y=ok.y0+rnd()*(ok.y1-ok.y0);
+      if(ok.f&&!ok.f(x,y))continue;
+      if(out.every(q=>Math.hypot(q.x-x,q.y-y)>12.5))out.push({x,y});
+    }
+    return out;
+  }
+  const gp=place(14,{x0:50,x1:140,y0:58,y1:150,f:(x,y)=>y<88?(x>84&&x<106):y<112?(x>66&&x<124):true},[]);
+  const dp=place(35,{x0:47,x1:143,y0:172,y1:322},[]);
+  const gas=gp.map(q=>el('circle',{cx:q.x,cy:q.y,r:5,visibility:'hidden'},gG));
+  const dis=dp.map(q=>el('circle',{cx:q.x,cy:q.y,r:5,visibility:'hidden'},gD));
+  let open=false,shown=null,gen=0;
+  const nG=p=>Math.round(4*p),nD=p=>Math.round(10*p);
+  function setDots(arr,pos,n){arr.forEach((c,i)=>{c.setAttribute('cx',pos[i].x);c.setAttribute('cy',pos[i].y);c.setAttribute('opacity',1);c.setAttribute('visibility',i<n?'visible':'hidden');});}
+  function marker(p,c){
+    const x=X(p),y=Y(c);
+    pt.setAttribute('cx',x.toFixed(1));pt.setAttribute('cy',y.toFixed(1));
+    guide.setAttribute('d',p>0.01?'M'+x.toFixed(1)+','+y.toFixed(1)+'V300M'+x.toFixed(1)+','+y.toFixed(1)+'H240':'');
+  }
+  function label(p,c,txt){
+    const x=X(p),y=Y(c);
+    if(open){ptl.setAttribute('x',252);ptl.setAttribute('y',288);ptl.setAttribute('text-anchor','start');}
+    else if(p<1.8){ptl.setAttribute('x',(x+12).toFixed(1));ptl.setAttribute('y',(y+22).toFixed(1));ptl.setAttribute('text-anchor','start');}
+    else{ptl.setAttribute('x',(x-14).toFixed(1));ptl.setAttribute('y',(y-10).toFixed(1));ptl.setAttribute('text-anchor','end');}
+    ptl.textContent=txt;
+  }
+  function render(anim){
+    const pc=+s.value,p=open?PAIR:pc,c=K*p;
+    const cs=open?'1.3 × 10⁻⁵ M':c.toPrecision(2)+' M';
+    $('w12lab1-pv').textContent=open?'開瓶':pc.toFixed(1)+' atm';
+    $('w12lab1-l1').textContent=open?'開瓶:P(CO₂) 降到空氣中的 3.9 × 10⁻⁴ atm':'蓋著瓶蓋:P(CO₂) = '+pc.toFixed(1)+' atm';
+    $('w12lab1-l2').textContent='C = k·P = 3.4 × 10⁻² × '+(open?'3.9 × 10⁻⁴':pc.toFixed(1))+' = ';
+    $('w12lab1-o').textContent=cs;
+    root.querySelector('[data-x="2"]').disabled=open||pc*2>PMAX+1e-9;
+    root.querySelector('[data-x="o"]').disabled=open;
+    cap.setAttribute('transform',open?'translate(62,-14)':'');
+    const to={p,c,ng:nG(p),nd:nD(p)},from=shown;shown=to;
+    label(p,c,open?'≈ 0':cs);
+    const g=++gen;
+    if(anim&&from&&(from.ng!==to.ng||from.nd!==to.nd||from.p!==to.p)){
+      ptl.setAttribute('visibility','hidden');setDots(dis,dp,from.nd);setDots(gas,gp,from.ng);
+      /* 減少:多出來的點往上冒、淡出;增加:新點淡入 */
+      tw(900,k=>{
+        if(g!==gen)return;
+        const L=(a,b)=>a+(b-a)*k;marker(L(from.p,to.p),L(from.c,to.c));
+        dis.forEach((e,i)=>{
+          if(i<to.nd&&i<from.nd){e.setAttribute('visibility','visible');e.setAttribute('opacity',1);}
+          else if(i<to.nd){e.setAttribute('visibility','visible');e.setAttribute('opacity',k);}
+          else if(i<from.nd){e.setAttribute('visibility','visible');e.setAttribute('cy',(dp[i].y+(140-dp[i].y)*k).toFixed(1));e.setAttribute('opacity',1-k);}
+          else e.setAttribute('visibility','hidden');
+        });
+        gas.forEach((e,i)=>{
+          if(i<to.ng&&i<from.ng){e.setAttribute('visibility','visible');e.setAttribute('opacity',1);}
+          else if(i<to.ng){e.setAttribute('visibility','visible');e.setAttribute('opacity',k);}
+          else if(i<from.ng){e.setAttribute('visibility','visible');e.setAttribute('cy',(gp[i].y+(4-gp[i].y)*k).toFixed(1));e.setAttribute('opacity',1-k);}
+          else e.setAttribute('visibility','hidden');
+        });
+      },()=>{if(g!==gen)return;setDots(dis,dp,to.nd);setDots(gas,gp,to.ng);marker(to.p,to.c);ptl.setAttribute('visibility','visible');});
+    }else{
+      setDots(dis,dp,to.nd);setDots(gas,gp,to.ng);marker(p,c);ptl.setAttribute('visibility','visible');
+    }
+  }
+  s.addEventListener('input',()=>{open=false;render(false);});
+  root.querySelectorAll('[data-x]').forEach(b=>b.addEventListener('click',()=>{
+    const x=b.dataset.x;
+    if(x==='2'){s.value=(+s.value*2).toFixed(1);open=false;}
+    if(x==='o')open=true;
+    if(x==='0'){s.value=P0;open=false;}
+    render(true);
+  }));
+  render(false);
+})();
+/* w12lab2 */
+(function(){
+  const root=$('w12lab2');if(!root)return;
+  /* 數值全部取自 deck:K_f(水)= 1.86 °C/m;理想 i 1 / 2 / 3、實測 i(0.05 m)1.0 / 1.9 / 2.7(van't Hoff 因子那一張的表) */
+  const KF=1.86;
+  const SOL={
+    g:{nm:'葡萄糖',ii:1,im:1.0,ions:['g'],t0:'理想:葡萄糖不解離,i = 1',t1:'實測 i = 1.0(非電解質)'},
+    n:{nm:'NaCl',ii:2,im:1.9,ions:['c','a'],t0:'理想:NaCl → Na⁺ + Cl⁻,i = 2',t1:'實測 i = 1.9(部分 Na⁺ 與 Cl⁻ 成對)'},
+    m:{nm:'MgCl₂',ii:3,im:2.7,ions:['c','a','a'],t0:'理想:MgCl₂ → Mg²⁺ + 2Cl⁻,i = 3',t1:'實測 i = 2.7(部分 Mg²⁺ 與 Cl⁻ 成對)'}
+  };
+  const COL={g:'#8a6d00',c:'#a04c08',a:'#117a65'};
+  const s=$('w12lab2-m'),gd=root.querySelector('.dots'),lg=root.querySelector('.leg');
+  const col=root.querySelector('.col'),fl=root.querySelector('.fl'),pc=root.querySelector('.pc');
+  const Y=t=>80+t*60;                       /* t = ΔT_f(°C),0 → y 80,4 → y 320 */
+  const r2=x=>(Math.round(x*100+1e-7)/100).toFixed(2);   /* 四捨五入到 0.01(避免 0.465 這類浮點邊界捨錯) */
+  /* 9 × 8 個位置(抖動格點),順序打亂 → 先用到的位置散在整杯 */
+  const slots=[];
+  for(let r=0;r<8;r++)for(let c=0;c<9;c++)slots.push({x:46+c*22+(rnd()-.5)*6,y:134+r*24.6+(rnd()-.5)*6});
+  for(let i=slots.length-1;i>0;i--){const j=Math.floor(rnd()*(i+1));[slots[i],slots[j]]=[slots[j],slots[i]];}
+  let k='n',meas=false,shown=0,gen=0;
+  function legend(S){
+    lg.innerHTML='';
+    const item=(x,c,t)=>{el('circle',{cx:x,cy:356,r:6,fill:c},lg);const e=el('text',{x:x+11,y:362},lg);e.textContent=t;};
+    if(k==='g')item(32,COL.g,'葡萄糖分子');
+    else{
+      item(32,COL.c,k==='n'?'Na⁺':'Mg²⁺');item(k==='n'?92:104,COL.a,'Cl⁻');
+      if(meas){const x=k==='n'?146:158;el('circle',{cx:x,cy:356,r:5.5,fill:COL.c},lg);el('circle',{cx:x+10,cy:356,r:5.5,fill:COL.a},lg);
+        const e=el('text',{x:x+21,y:362},lg);e.textContent='離子對 = 1 個粒子';}
+    }
+  }
+  function render(){
+    const S=SOL[k],m=+s.value,i=meas?S.im:S.ii,dT=i*KF*m;
+    const is=meas?S.im.toFixed(1):String(S.ii),ds=r2(dT);
+    $('w12lab2-mv').textContent=m.toFixed(2)+' m';
+    $('w12lab2-l1').textContent=meas?S.t1:S.t0;
+    $('w12lab2-l2').innerHTML='ΔT<sub>f</sub> = i·K<sub>f</sub>·m = '+is+' × 1.86 × '+m.toFixed(2)+' = '+ds+' °C';
+    $('w12lab2-l3').textContent='凝固點 = 0.00 − '+ds+' = ';
+    $('w12lab2-o').textContent='−'+ds+' °C';
+    pc.textContent='粒子濃度 i·m = '+r2(i*m)+' m';
+    /* 燒杯:N = 40 m 個式單位(示意);實測 i 時,round(N·(理想 i − 實測 i)) 個單位畫成離子對 */
+    const N=Math.round(m*40),p=meas?Math.round(N*(S.ii-S.im)):0,items=[];
+    for(let u=0;u<N;u++){
+      if(u<p){items.push(['pair']);S.ions.slice(2).forEach(t=>items.push([t]));}
+      else S.ions.forEach(t=>items.push([t]));
+    }
+    gd.innerHTML='';
+    items.forEach((it,j)=>{
+      const q=slots[j];if(!q)return;
+      if(it[0]==='pair'){el('circle',{cx:(q.x-5).toFixed(1),cy:q.y.toFixed(1),r:5.5,fill:COL.c},gd);el('circle',{cx:(q.x+5).toFixed(1),cy:q.y.toFixed(1),r:5.5,fill:COL.a},gd);}
+      else el('circle',{cx:q.x.toFixed(1),cy:q.y.toFixed(1),r:6,fill:COL[it[0]]},gd);
+    });
+    legend(S);
+    /* 溫度計:液柱頂端 = 凝固點 */
+    const from=shown,to=dT;shown=dT;
+    const set=t=>{const y=Y(t);col.setAttribute('d','M366,'+y.toFixed(1)+'H374V334H366Z');fl.setAttribute('y',Math.max(y+6,100).toFixed(1));};
+    fl.textContent='−'+ds+' °C';
+    const g=++gen;
+    tw(400,e=>{if(g===gen)set(from+(to-from)*e);});
+  }
+  s.addEventListener('input',render);
+  root.querySelectorAll('[data-s]').forEach(b=>b.addEventListener('click',()=>{
+    k=b.dataset.s;root.querySelectorAll('[data-s]').forEach(o=>o.classList.toggle('sel',o===b));render();
+  }));
+  root.querySelectorAll('[data-i]').forEach(b=>b.addEventListener('click',()=>{
+    meas=b.dataset.i==='1';root.querySelectorAll('[data-i]').forEach(o=>o.classList.toggle('sel',o===b));render();
+  }));
+  render();
+})();
+/* w12lab3 */
+(function(){
+  const root=$('w12lab3');if(!root)return;
+  /* 定性示意(deck「冰淇淋:一個沒有完全凍結的系統」):水結冰 → 糖液變濃 → 凝固點更低 → 永遠有一部分不結冰。
+     格數只用來畫圖:液態格數 = 40 ÷ u(u = 低於 0 °C 的示意刻度,糖液起始凝固點在 u = 1),不顯示任何比例數字。 */
+  const U=[0,1.5,2,2.5,3,3.5,4,4.5],NC=40,NS=12,C=35,GX=16,GY=44;
+  const liq=u=>u<1?NC:Math.round(NC/u);
+  const Y=u=>64+u*40;
+  const gc=root.querySelector('.cells'),gs=root.querySelector('.sug'),gp=root.querySelector('.pure');
+  const col=root.querySelector('.col'),tl=root.querySelector('.tl'),fpg=root.querySelector('.fpg');
+  const sq=(x,y)=>'M'+(x+2)+','+(y+2)+'h31v31h-31Z';
+  const cells=[];
+  for(let r=0;r<5;r++)for(let c=0;c<8;c++)cells.push(el('path',{d:sq(GX+c*C,GY+r*C)},gc));
+  /* 結冰的先後順序:固定種子打亂 */
+  const order=cells.map((_,i)=>i);
+  for(let i=order.length-1;i>0;i--){const j=Math.floor(rnd()*(i+1));[order[i],order[j]]=[order[j],order[i]];}
+  const pure=[];
+  for(let c=0;c<6;c++)pure.push(el('path',{d:sq(86+c*C,250)},gp));
+  const OFF=[[[0,0]],[[-7,-6],[7,6]],[[-8,-7],[8,-7],[0,8]]];
+  const ICE={fill:'#ffffff',stroke:'#1a5276','stroke-width':2},LIQ={fill:'#d5dbdb',stroke:'none','stroke-width':0};
+  const paint=(e,a)=>{for(const k in a)e.setAttribute(k,a[k]);};
+  let st=0,busy=false;
+  function drawCells(s){
+    const nIce=NC-liq(U[s]),frozen=new Set(order.slice(0,nIce));
+    cells.forEach((e,i)=>paint(e,frozen.has(i)?ICE:LIQ));
+    pure.forEach(e=>paint(e,s>0?ICE:LIQ));
+    /* 糖:平均分到還是液態的格子裡(同一格最多 3 顆) */
+    const L=cells.map((_,i)=>i).filter(i=>!frozen.has(i)),cnt={};
+    gs.innerHTML='';
+    const pos=[];
+    for(let j=0;j<NS;j++){const ci=L[Math.floor(j*L.length/NS)];cnt[ci]=(cnt[ci]||0)+1;pos.push(ci);}
+    const used={};
+    pos.forEach(ci=>{
+      const n=cnt[ci],k=used[ci]=(used[ci]||0)+1,o=OFF[Math.min(n,3)-1][Math.min(k,3)-1];
+      const x=GX+(ci%8)*C+C/2+o[0],y=GY+Math.floor(ci/8)*C+C/2+o[1];
+      el('circle',{cx:x,cy:y,r:5},gs);
+    });
+  }
+  function setT(u){const y=Y(u);col.setAttribute('d','M396,'+y.toFixed(1)+'H404V274H396Z');tl.setAttribute('y',(y+6).toFixed(1));}
+  function setF(u){fpg.setAttribute('transform','translate(0,'+Y(u).toFixed(1)+')');}
+  const fpOf=s=>s===0?1:U[s];
+  function text(s){
+    const l1=$('w12lab3-l1'),l2=$('w12lab3-l2');
+    if(s===0){
+      l1.innerHTML='<b>剛放進冷凍庫:溫度 0 °C</b>';
+      l2.textContent='純水到 0 °C 就開始結冰;冰淇淋裡有糖,凝固點比 0 °C 低,所以還是液態。';
+    }else{
+      l1.innerHTML='<b>降溫第 '+s+' 步</b>'+(s===1?':第一批冰晶':':新結的冰比上一步少')+(s===U.length-1?'(示意到此為止)':'');
+      l2.textContent='溫度低於糖液凝固點 → 一部分水結成冰 → 糖留在液體裡,糖液變濃 → 凝固點降到和溫度一樣,結冰停住。';
+    }
+    root.querySelector('[data-x="n"]').disabled=s>=U.length-1;
+  }
+  let gen=0;
+  function go(s,anim){
+    const a=st,g=++gen;st=s;text(s);
+    if(!anim||s!==a+1){busy=false;drawCells(s);setT(U[s]);setF(fpOf(s));return;}
+    busy=true;let swapped=false;
+    tw(1000,k=>{
+      if(g!==gen)return;
+      if(k<.45){setT(U[a]+(U[s]-U[a])*k/.45);return;}
+      setT(U[s]);
+      if(!swapped){swapped=true;drawCells(s);}
+      setF(fpOf(a)+(fpOf(s)-fpOf(a))*(k-.45)/.55);
+    },()=>{if(g!==gen)return;busy=false;setT(U[s]);setF(fpOf(s));drawCells(s);});
+  }
+  root.querySelectorAll('[data-x]').forEach(b=>b.addEventListener('click',()=>{
+    if(b.dataset.x==='n'){if(!busy&&st<U.length-1)go(st+1,true);}
+    else go(0,false);
+  }));
+  /* 講義:印最後一步 */
+  let saved=0;
+  addEventListener('beforeprint',()=>{saved=st;go(U.length-1,false);});
+  addEventListener('afterprint',()=>go(saved,false));
+  go(0,false);
+})();
+})();
 </script>
 <script id="mobile-js">
 (function(){

@@ -155,6 +155,41 @@ body.scroll .animation-layout{grid-template-columns:1fr}
 body.scroll .animation-layout video{max-height:none}
 @media(max-width:720px){.animation-layout{grid-template-columns:1fr}}
 </style>
+<style id="lab-css">
+/* ── 互動實驗台(先預測、再動手)──────────────────────── */
+.lab{display:flex;gap:30px;align-items:flex-start}
+.labfig{flex:0 0 auto}
+.labfig .fig{margin:0 auto}
+.labside{flex:1;min-width:0}
+.labside .box{margin:0 0 8px;font-size:21px;line-height:1.45;padding:9px 18px}
+.labside .eq{margin:6px 0;font-size:26px}
+.labctl{display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:center;font-size:20px;margin:6px 0}
+.labctl input[type=range]{width:100%;height:28px;accent-color:var(--primary);cursor:pointer}
+.labctl output{font-weight:700;color:var(--primary);min-width:96px;text-align:right}
+.labread{font-size:21px;line-height:1.5;background:#f4f6f7;border-radius:8px;padding:7px 16px;margin:6px 0}
+.labread .M{font-size:27px}
+.lbtn{font-family:inherit;font-size:19px;font-weight:700;padding:6px 16px;border-radius:8px;border:2px solid var(--primary);background:#fff;color:var(--primary);cursor:pointer;margin:2px 8px 2px 0}
+.lbtn:hover{background:var(--def-bg)}
+.lbtn:disabled{color:var(--muted);border-color:#aab7b8;background:#f4f6f7;cursor:default}
+.lbtn.bad{border-color:#c0392b;color:#c0392b}
+.labmsg{font-size:20px;line-height:1.42;min-height:86px;margin:6px 0;padding:7px 16px;border-radius:8px;background:#f4f6f7}
+.labmsg.bad{background:var(--warn-bg);color:#922b21}
+.slide ol.steps{font-size:21px;line-height:1.4;margin:0 0 6px 30px}
+.steps li{margin:4px 0;color:var(--muted)}
+.steps li.on{color:var(--ink)}
+.steps li.now{color:var(--primary);font-weight:700}
+.lab.labcol{display:block}
+.lbtn.sel{background:var(--primary);color:#fff}
+.labrow{display:flex;gap:10px;align-items:center;font-size:20px;margin:4px 0}
+.labrow input[type=range]{flex:1;min-width:120px;height:28px;accent-color:var(--primary);cursor:pointer}
+.labrow .lbtn{margin:0;font-size:17px;padding:5px 11px;white-space:nowrap}
+body.scroll .labrow{flex-wrap:wrap}
+body.scroll .lab{flex-direction:column;align-items:stretch;gap:12px}
+/* 閱讀模式:圖釘在上方,按按鈕時動畫才看得到 */
+body.scroll .labfig{position:sticky;top:50px;z-index:2;background:var(--card);border-bottom:1px solid #d5dbdb}
+body.scroll .labfig svg.fig{max-height:36vh;width:auto;min-width:0!important}
+@media print{.steps li{color:var(--ink)!important;font-weight:400!important}.noprint{display:none!important}}
+</style>
 <style id="mobile-css">
 /* ── 行動裝置閱讀模式（body.scroll）與工具列 ─────────────── */
 #mtb{position:fixed;top:8px;right:8px;z-index:20;display:flex;gap:6px;align-items:center}
@@ -309,6 +344,54 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   </div>
   <div class="box key" style="margin:4px 0;padding:6px 18px;font-size:18px;line-height:1.35"><span class="tag">為什麼會這樣</span>Na 只要丟掉 1 個電子,就跟 Ne 一樣穩定;Cl 只要撿 1 個,就跟 Ar 一樣。丟掉的與撿到的剛好是同一個電子,於是變成一對正負離子互相吸住。</div>
   <p class="small" style="margin:4px 0;line-height:1.4">注意:固態 NaCl 中沒有「NaCl 分子」,化學式代表離子的最簡整數比(式量單位 formula unit;離子化合物沒有獨立分子,用最簡比 NaCl 當計數單位)。</p>
+</section>
+
+<!-- LAB w9lab1 -->
+<section class="slide">
+  <h2>動手試:NaCl 是怎麼「黏」起來的? <span class="en">NaCl Lab — from one electron to a crystal</span></h2>
+  <div class="lab" id="w9lab1">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 440 360" width="440" height="360" role="img" aria-labelledby="w9lab1-t w9lab1-d">
+        <title id="w9lab1-t">Na 與 Cl 形成離子晶體的過程(示意)</title>
+        <desc id="w9lab1-d">第一階段是 Na 原子與 Cl 原子,虛線圓上的點是最外層電子:Na 有 1 個、Cl 有 7 個。第二階段 Na 的那個電子移到 Cl,成為 Na 正離子與 Cl 負離子。第三階段兩個離子以靜電吸引靠近。第四階段大量正負離子交錯排成晶格,圖中畫出其中一層;圈出一個 Na 正離子時,同一層有 4 個 Cl 負離子緊鄰,加上上下兩層各 1 個,共 6 個。</desc>
+        <text class="ttl" x="220" y="26" font-size="19" font-weight="700" fill="#1a5276" text-anchor="middle"></text>
+        <g class="mol">
+          <g class="na">
+            <circle class="nar" cx="130" cy="150" r="58" fill="none" stroke="#5a6a6b" stroke-width="2" stroke-dasharray="5 5"/>
+            <circle cx="130" cy="150" r="30" fill="#8a6d00"/>
+            <text class="nas" x="130" y="157" font-size="20" font-weight="700" fill="#ffffff" text-anchor="middle">Na</text>
+            <text class="nac" x="130" y="236" font-size="17" fill="#2c3e50" text-anchor="middle">[Ne]3s¹</text>
+          </g>
+          <g class="cl">
+            <circle cx="310" cy="150" r="58" fill="none" stroke="#5a6a6b" stroke-width="2" stroke-dasharray="5 5"/>
+            <circle cx="310" cy="150" r="30" fill="#117a65"/>
+            <text class="cls" x="310" y="157" font-size="20" font-weight="700" fill="#ffffff" text-anchor="middle">Cl</text>
+            <text class="clc" x="310" y="236" font-size="17" fill="#2c3e50" text-anchor="middle">[Ne]3s²3p⁵</text>
+            <g class="cld" fill="#1a5276"></g>
+            <circle class="e1" cx="188" cy="150" r="7" fill="#a04c08"/>
+          </g>
+          <g class="pull" visibility="hidden">
+            <path d="M190,272 H208 M232,272 H250" stroke="#c0392b" stroke-width="3" fill="none"/>
+            <path d="M208,265 L220,272 L208,279 Z M232,265 L220,272 L232,279 Z" fill="#c0392b"/>
+            <text x="220" y="302" font-size="17" font-weight="700" fill="#c0392b" text-anchor="middle">靜電吸引</text>
+          </g>
+          <text x="220" y="340" font-size="16" fill="#5a6a6b" text-anchor="middle">虛線圓上的點 = 最外層電子(示意)</text>
+        </g>
+        <g class="lat" visibility="hidden" opacity="0">
+          <g class="ions" font-size="16" font-weight="700" text-anchor="middle"></g>
+          <g class="hil" visibility="hidden" fill="none" stroke="#a04c08"></g>
+          <text class="cnt" x="220" y="318" font-size="18" font-weight="700" fill="#a04c08" text-anchor="middle"></text>
+          <text x="220" y="346" font-size="16" fill="#5a6a6b" text-anchor="middle">只畫出一層(實際是立體堆疊,示意)</text>
+        </g>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 晶體裡任挑一個 Na<sup>+</sup>:它緊鄰<b>幾個</b> Cl<sup>−</sup>?其中哪一個是「它的」那個 Cl<sup>−</sup>?<br>② 整塊晶體裡 Na<sup>+</sup> 與 Cl<sup>−</sup> 的<b>個數比</b>是多少?晶體帶電嗎?</div>
+      <div class="labrow noprint"><button type="button" class="lbtn" id="w9lab1-prev">◀ 上一步</button><button type="button" class="lbtn" id="w9lab1-next">下一步 ▶</button></div>
+      <div class="labmsg" id="w9lab1-msg">Na 最外層 1 個電子、Cl 最外層 7 個。按「下一步」。</div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① <span class="hl">6 個</span>,而且一樣近——沒有哪一個是它專屬的,所以晶體裡找不到一個一個的 NaCl 分子。② <span class="hl">1 : 1、整體不帶電</span>:每轉移 1 個電子,就同時產生 1 個 Na<sup>+</sup> 與 1 個 Cl<sup>−</sup>。<b>化學式 NaCl 是離子的最簡整數比,不是一個分子。</b></div>
+    </div>
+  </div>
 </section>
 
 <!-- 9 -->
@@ -468,6 +551,41 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
     <tr><td>&gt; 1.8</td><td>離子鍵(為主)</td><td>NaCl (2.1)、MgO (2.3)</td></tr>
   </table>
   <div class="box warn"><span class="tag">注意</span>界線是<b>人為的近似</b>,並非絕對。最可靠的經驗判斷:金屬+非金屬 → 傾向離子鍵;非金屬+非金屬 → 共價鍵。HF(ΔEN 1.9)仍是共價分子!</div>
+</section>
+
+<!-- LAB w9lab2 -->
+<section class="slide">
+  <h2>動手試:電子偏向哪一邊? <span class="en">Bond Polarity Lab — sharing is not always equal</span></h2>
+  <div class="lab" id="w9lab2">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 440 360" width="440" height="360" role="img" aria-labelledby="w9lab2-t w9lab2-d">
+        <title id="w9lab2-t">兩個原子之間的電子雲偏移與 ΔEN 光譜尺(示意)</title>
+        <desc id="w9lab2-d">上半部是兩個原子,橘色的橢圓是共享的電子雲,兩個橘點是共享電子對。電負度差越大,電子雲越偏向電負度大的原子,該端標 δ−、另一端標 δ+;電負度差為零時電子雲置中。金屬與非金屬時電子轉移到非金屬,標正負號。下半部是一條 ΔEN 光譜尺,0 到 0.4 為非極性共價、0.4 到 1.8 為極性共價、大於 1.8 為離子鍵,三角形標出目前這一對原子的位置。</desc>
+        <text class="bond" x="220" y="28" font-size="21" font-weight="700" fill="#2c3e50" text-anchor="middle"></text>
+        <ellipse class="cloud" cx="220" cy="125" rx="150" ry="50" fill="#a04c08" fill-opacity=".16" stroke="#a04c08" stroke-width="2" stroke-dasharray="6 5"/>
+        <circle cx="130" cy="125" r="34" fill="#1a5276"/>
+        <circle cx="310" cy="125" r="34" fill="#117a65"/>
+        <g font-size="22" font-weight="700" fill="#ffffff" text-anchor="middle"><text class="sa" x="130" y="133"></text><text class="sb" x="310" y="133"></text></g>
+        <g class="pair" fill="#a04c08"><circle class="p1" cx="220" cy="117" r="6"/><circle class="p2" cx="220" cy="133" r="6"/></g>
+        <g font-size="22" font-weight="700" text-anchor="middle"><text class="da" x="130" y="62"></text><text class="db" x="310" y="62"></text><text class="dm" x="220" y="62" font-size="18" fill="#117a65"></text></g>
+        <g font-size="17" fill="#2c3e50" text-anchor="middle"><text class="ea" x="130" y="200"></text><text class="eb" x="310" y="200"></text></g>
+        <path d="M30,256 H77.5 V274 H30 Z" fill="#d5dbdb"/>
+        <path d="M77.5,256 H243.8 V274 H77.5 Z" fill="#8a6d00" fill-opacity=".32"/>
+        <path d="M243.8,256 H410 V274 H243.8 Z" fill="#c0392b" fill-opacity=".32"/>
+        <g font-size="16" fill="#2c3e50" text-anchor="middle"><text x="30" y="294">0</text><text x="77.5" y="294">0.4</text><text x="243.8" y="294">1.8</text><text x="398" y="294">ΔEN</text></g>
+        <g font-size="17" font-weight="700"><text x="30" y="318" fill="#5a6a6b">非極性</text><text x="160" y="318" fill="#8a6d00" text-anchor="middle">極性共價</text><text x="327" y="318" fill="#c0392b" text-anchor="middle">離子</text></g>
+        <g class="mk"><path d="M-9,236 L9,236 L0,252 Z" fill="#2c3e50"/><text class="mv" x="0" y="230" font-size="17" font-weight="700" fill="#2c3e50" text-anchor="middle"></text></g>
+        <text x="220" y="348" font-size="16" fill="#5a6a6b" text-anchor="middle">電子雲偏移的程度只是定性示意</text>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 醇和糖裡到處都是 <b>C–O 鍵</b>。C 和 O 都是非金屬、以共價鍵結合——電子是兩邊<b>平均</b>共享嗎?<br>② N 和 Cl 是<b>兩種不同的元素</b>。N–Cl 鍵一定有極性嗎?</div>
+      <div class="labrow noprint"><span style="min-width:72px">原子 1</span><button type="button" class="lbtn" data-a="H">H 2.1</button><button type="button" class="lbtn sel" data-a="C">C 2.5</button><button type="button" class="lbtn" data-a="N">N 3.0</button><button type="button" class="lbtn" data-a="Na">Na 0.9</button></div>
+      <div class="labrow noprint"><span style="min-width:72px">原子 2</span><button type="button" class="lbtn sel" data-b="C">C 2.5</button><button type="button" class="lbtn" data-b="O">O 3.5</button><button type="button" class="lbtn" data-b="F">F 4.0</button><button type="button" class="lbtn" data-b="Cl">Cl 3.0</button></div>
+      <div class="labread"><span id="w9lab2-l1"></span><br><span id="w9lab2-l2"></span><span id="w9lab2-l3" class="small" style="display:block;line-height:1.35"></span></div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① 不是。ΔEN = 3.5 − 2.5 = <span class="hl">1.0</span>,落在極性共價區:電子偏向 O(δ−),C 端 δ+。② 不一定。N ≈ Cl ≈ 3.0,ΔEN ≈ 0 → <span class="hl">非極性共價</span>。極性看的是電負度差,不是「是不是同一種元素」。<b>「共價」只說共享,沒說平均:只有 ΔEN ≈ 0 才平均分,差越大電子越偏向電負度大的一端。</b></div>
+    </div>
+  </div>
 </section>
 
 <!-- 20 -->
@@ -1015,6 +1133,165 @@ addEventListener('touchend',e=>{
 });
 fit();
 show(parseInt(location.hash.slice(1))-1||0);
+</script>
+<script id="lab-js">
+(function(){
+/* 共用工具(每支 deck 相同,不要改) */
+  const NS='http://www.w3.org/2000/svg',$=id=>document.getElementById(id);
+  const el=(n,a,p)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;};
+  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let seed=7;const rnd=()=>(seed=seed*16807%2147483647)/2147483647;
+  function tw(ms,fn,done){
+    if(still||ms<=0){fn(1);if(done)done();return;}
+    let t0=null;
+    requestAnimationFrame(function f(t){
+      if(t0===null)t0=t;
+      const k=Math.min(1,(t-t0)/ms),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+      fn(e);if(k<1)requestAnimationFrame(f);else if(done)done();
+    });
+  }
+  // 控制項上的點擊、觸控、方向鍵不可觸發翻頁
+  document.querySelectorAll('.lab').forEach(l=>{
+    ['click','touchstart','touchend'].forEach(t=>l.addEventListener(t,e=>{if(e.target.closest('button,input,label'))e.stopPropagation();}));
+    l.addEventListener('keydown',e=>{if(e.target.matches('input'))e.stopPropagation();});
+    l.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>b.blur()));
+    l.querySelectorAll('input[type=range]').forEach(r=>r.addEventListener('pointerup',()=>r.blur()));
+  });
+/* w9lab1 */
+(function(){
+  const root=$('w9lab1');if(!root)return;
+  const q=s=>root.querySelector(s);
+  const ttl=q('.ttl'),mol=q('.mol'),lat=q('.lat'),gNa=q('.na'),gCl=q('.cl'),nar=q('.nar'),e1=q('.e1');
+  const msg=$('w9lab1-msg');
+  /* Cl 的 7 個最外層電子:8 個位置去掉朝向 Na 的那一個(左側),留給 Na 轉來的電子 */
+  for(let i=0;i<8;i++){
+    if(i===4)continue;
+    const a=i*Math.PI/4;
+    el('circle',{cx:(310+58*Math.cos(a)).toFixed(1),cy:(150+58*Math.sin(a)).toFixed(1),r:7},q('.cld'));
+  }
+  /* 晶格(一層):6 欄 × 4 列,(列+欄)為偶數 = Na⁺ */
+  const ions=q('.ions'),hil=q('.hil'),X=c=>60+64*c,Y=r=>70+64*r;
+  for(let r=0;r<4;r++)for(let c=0;c<6;c++){
+    const na=(r+c)%2===0;
+    el('circle',{cx:X(c),cy:Y(r),r:27,fill:na?'#8a6d00':'#117a65'},ions);
+    el('text',{x:X(c),y:Y(r)+6,fill:'#ffffff'},ions).textContent=na?'Na⁺':'Cl⁻';
+  }
+  const CR=2,CC=2;   /* 被圈出的 Na⁺ */
+  el('circle',{cx:X(CC),cy:Y(CR),r:31,'stroke-width':5},hil);
+  [[-1,0],[1,0],[0,-1],[0,1]].forEach(([dr,dc])=>el('circle',{cx:X(CC+dc),cy:Y(CR+dr),r:30,'stroke-width':3,'stroke-dasharray':'6 4'},hil));
+  const TTL=['① 兩個原子','② 電子轉移 Na → Cl','③ 正負離子互相吸引 = 離子鍵','④ 排成離子晶體','⑤ 一個 Na⁺ 周圍有誰?'];
+  const MSG=['Na 最外層 1 個電子、Cl 最外層 7 個。按「下一步」。',
+    'Na 丟掉 1 個電子 → Na<sup>+</sup>,組態和 Ne 一樣;Cl 撿到這 1 個 → Cl<sup>−</sup>,和 Ar 一樣。<b>丟掉的與撿到的是同一個電子。</b>',
+    '一正一負,靠<b>靜電吸引</b>互相吸住——這就是離子鍵。',
+    '真實的食鹽是大量 Na<sup>+</sup> 與 Cl<sup>−</sup> <b>交錯排列</b>成的離子晶體(圖中只畫一層)。',
+    '圈出一個 Na<sup>+</sup>:它的鄰居全是 Cl<sup>−</sup>,而且每一個都一樣近。'];
+  const tgt=n=>({ex:n>=1?252:188,nr:n>=1?0:1,dx:n>=2?28:0,mo:n>=3?0:1,lo:n>=3?1:0});
+  let s=0,P=tgt(0),run=0;
+  function paint(p){
+    P=p;
+    nar.setAttribute('opacity',p.nr);
+    e1.setAttribute('cx',p.ex);
+    gNa.setAttribute('transform','translate('+p.dx+',0)');
+    gCl.setAttribute('transform','translate('+(-p.dx)+',0)');
+    mol.setAttribute('opacity',p.mo);mol.setAttribute('visibility',p.mo>0.001?'visible':'hidden');
+    lat.setAttribute('opacity',p.lo);lat.setAttribute('visibility',p.lo>0.001?'visible':'hidden');
+  }
+  function go(n,fast){
+    const my=++run;s=n;
+    ttl.textContent=TTL[n];msg.innerHTML=MSG[n];
+    q('.nas').textContent=n>=1?'Na⁺':'Na';q('.cls').textContent=n>=1?'Cl⁻':'Cl';
+    q('.nac').textContent=n>=1?'[Ne]':'[Ne]3s¹';q('.clc').textContent=n>=1?'[Ar]':'[Ne]3s²3p⁵';
+    q('.pull').setAttribute('visibility',n===2?'visible':'hidden');
+    hil.setAttribute('visibility',n===4?'visible':'hidden');
+    q('.cnt').textContent=n===4?'同一層 4 個 + 上、下層各 1 個 = 6 個 Cl⁻':'';
+    $('w9lab1-prev').disabled=n===0;$('w9lab1-next').disabled=n===4;
+    const A=P,B=tgt(n);
+    tw(fast?0:700,k=>{
+      if(my!==run)return;
+      const o={};for(const key in B)o[key]=A[key]+(B[key]-A[key])*k;
+      paint(o);
+    });
+  }
+  $('w9lab1-next').addEventListener('click',()=>go(Math.min(4,s+1)));
+  $('w9lab1-prev').addEventListener('click',()=>go(Math.max(0,s-1)));
+  let keep=0;
+  addEventListener('beforeprint',()=>{keep=s;go(4,true);});
+  addEventListener('afterprint',()=>go(keep,true));
+  go(0,true);
+})();
+/* w9lab2 */
+(function(){
+  const root=$('w9lab2');if(!root)return;
+  const q=s=>root.querySelector(s);
+  /* 電負度:全部取自本週「電負度」與例題 4 的投影片 */
+  const EN={H:2.1,C:2.5,N:3.0,O:3.5,F:4.0,Cl:3.0,Na:0.9};
+  const METAL={Na:true};
+  const XA=130,XB=310,X0=30,PX=118.75;   /* 光譜尺:ΔEN 0–3.2 對應 x 30–410 */
+  const cloud=q('.cloud'),p1=q('.p1'),p2=q('.p2'),mk=q('.mk');
+  let a='C',b='C',cur=null;
+  const f1=x=>x.toFixed(1);
+  function geo(o){
+    if(o.ion){const ax=o.dir>0?XB:XA;return {cx:ax,rx:52,ry:50,px:ax-o.dir*44,mx:X0+o.d*PX};}
+    const f=Math.min(o.d,1.9)/1.9,sh=60*f;
+    return {cx:220+o.dir*sh,rx:150-20*f,ry:50,px:220+o.dir*sh*0.75,mx:X0+o.d*PX};
+  }
+  function paint(g){
+    cloud.setAttribute('cx',g.cx.toFixed(1));cloud.setAttribute('rx',g.rx.toFixed(1));cloud.setAttribute('ry',g.ry.toFixed(1));
+    p1.setAttribute('cx',g.px.toFixed(1));p2.setAttribute('cx',g.px.toFixed(1));
+    mk.setAttribute('transform','translate('+g.mx.toFixed(1)+',0)');
+  }
+  function render(anim){
+    const ea=EN[a],eb=EN[b],d=Math.round(Math.abs(ea-eb)*10)/10;
+    const metal=!!(METAL[a]||METAL[b]),dir=d===0?0:(eb>ea?1:-1);
+    const hi=dir>0?b:dir<0?a:b,lo=dir>0?a:dir<0?b:a;
+    /* 分類:≤ 0.4 非極性(本週表格把 C–H 0.4 列為非極性)、0.4–1.8 極性共價、> 1.8 離子 */
+    const zone=d<=0.4?0:d<=1.8?1:2;
+    const ion=metal;   /* 金屬 + 非金屬:依本週準則傾向離子鍵 */
+    const o={d,dir,ion};
+    q('.bond').textContent=a+'–'+b;
+    q('.sa').textContent=a;q('.sb').textContent=b;
+    q('.ea').textContent='EN '+f1(ea);q('.eb').textContent='EN '+f1(eb);
+    q('.mv').textContent=f1(d);
+    const da=q('.da'),db=q('.db'),dm=q('.dm');
+    da.textContent='';db.textContent='';dm.textContent='';
+    if(d===0)dm.textContent=a===b?'均等共享':'幾乎均等共享';
+    else if(zone===0&&!ion)dm.textContent='幾乎均等共享';
+    else{
+      const [neg,pos]=dir>0?[db,da]:[da,db];
+      neg.textContent=ion?'−':'δ−';pos.textContent=ion?'+':'δ+';
+      neg.setAttribute('fill','#c0392b');pos.setAttribute('fill','#1a5276');
+    }
+    $('w9lab2-l1').textContent=(a===b?a+' 與 '+b+' 都是 '+f1(ea):lo+' '+f1(EN[lo])+'、'+hi+' '+f1(EN[hi]))+' → ΔEN = '+(d===0?f1(Math.max(ea,eb))+' − '+f1(Math.min(ea,eb))+' = 0.0':f1(EN[hi])+' − '+f1(EN[lo])+' = '+f1(d));
+    let kind,note='';
+    if(ion){
+      kind=zone<2?'傾向離子鍵':'離子鍵';
+      if(zone<2)note='ΔEN 落在極性共價區,但 Na 是金屬:<b>金屬 + 非金屬傾向離子鍵</b>。界線是人為的近似。';
+      else note='電子(近乎)完全轉移:'+lo+' 成為正離子、'+hi+' 成為負離子。';
+    }else if(zone===0){
+      kind='非極性共價鍵';
+      note=d===0?(a===b?'同一種原子,兩邊平均分。':a+' ≈ '+b+'(本週的數值都是 '+f1(ea)+')→ 幾乎平均分。'):'ΔEN 0.4 正好在分界上;本週的表把 C–H 列為非極性。';
+    }else if(zone===1){
+      kind='極性共價鍵';
+    }else{
+      kind='極性共價鍵';
+      note='ΔEN 1.9 已超過 1.8,但 H、F 都是非金屬:<b>HF 仍是共價分子</b>。界線是人為的近似。';
+    }
+    const where=d===0||ion?'':zone===0?':電子只略偏向 '+hi:':電子偏向 '+hi;
+    $('w9lab2-l2').innerHTML='→ <span class="hl M">'+kind+'</span>'+where;
+    $('w9lab2-l3').innerHTML=note;
+    const g=geo(o),from=cur;cur=g;
+    if(anim&&from)tw(450,k=>{const L=(x,y)=>x+(y-x)*k;paint({cx:L(from.cx,g.cx),rx:L(from.rx,g.rx),ry:L(from.ry,g.ry),px:L(from.px,g.px),mx:L(from.mx,g.mx)});});
+    else paint(g);
+  }
+  root.querySelectorAll('[data-a]').forEach(btn=>btn.addEventListener('click',()=>{
+    a=btn.dataset.a;root.querySelectorAll('[data-a]').forEach(o=>o.classList.toggle('sel',o===btn));render(true);
+  }));
+  root.querySelectorAll('[data-b]').forEach(btn=>btn.addEventListener('click',()=>{
+    b=btn.dataset.b;root.querySelectorAll('[data-b]').forEach(o=>o.classList.toggle('sel',o===btn));render(true);
+  }));
+  render(false);
+})();
+})();
 </script>
 <script id="mobile-js">
 (function(){

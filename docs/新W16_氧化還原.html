@@ -155,6 +155,41 @@ body.scroll .animation-layout{grid-template-columns:1fr}
 body.scroll .animation-layout video{max-height:none}
 @media(max-width:720px){.animation-layout{grid-template-columns:1fr}}
 </style>
+<style id="lab-css">
+/* ── 互動實驗台(先預測、再動手)──────────────────────── */
+.lab{display:flex;gap:30px;align-items:flex-start}
+.labfig{flex:0 0 auto}
+.labfig .fig{margin:0 auto}
+.labside{flex:1;min-width:0}
+.labside .box{margin:0 0 8px;font-size:21px;line-height:1.45;padding:9px 18px}
+.labside .eq{margin:6px 0;font-size:26px}
+.labctl{display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:center;font-size:20px;margin:6px 0}
+.labctl input[type=range]{width:100%;height:28px;accent-color:var(--primary);cursor:pointer}
+.labctl output{font-weight:700;color:var(--primary);min-width:96px;text-align:right}
+.labread{font-size:21px;line-height:1.5;background:#f4f6f7;border-radius:8px;padding:7px 16px;margin:6px 0}
+.labread .M{font-size:27px}
+.lbtn{font-family:inherit;font-size:19px;font-weight:700;padding:6px 16px;border-radius:8px;border:2px solid var(--primary);background:#fff;color:var(--primary);cursor:pointer;margin:2px 8px 2px 0}
+.lbtn:hover{background:var(--def-bg)}
+.lbtn:disabled{color:var(--muted);border-color:#aab7b8;background:#f4f6f7;cursor:default}
+.lbtn.bad{border-color:#c0392b;color:#c0392b}
+.labmsg{font-size:20px;line-height:1.42;min-height:86px;margin:6px 0;padding:7px 16px;border-radius:8px;background:#f4f6f7}
+.labmsg.bad{background:var(--warn-bg);color:#922b21}
+.slide ol.steps{font-size:21px;line-height:1.4;margin:0 0 6px 30px}
+.steps li{margin:4px 0;color:var(--muted)}
+.steps li.on{color:var(--ink)}
+.steps li.now{color:var(--primary);font-weight:700}
+.lab.labcol{display:block}
+.lbtn.sel{background:var(--primary);color:#fff}
+.labrow{display:flex;gap:10px;align-items:center;font-size:20px;margin:4px 0}
+.labrow input[type=range]{flex:1;min-width:120px;height:28px;accent-color:var(--primary);cursor:pointer}
+.labrow .lbtn{margin:0;font-size:17px;padding:5px 11px;white-space:nowrap}
+body.scroll .labrow{flex-wrap:wrap}
+body.scroll .lab{flex-direction:column;align-items:stretch;gap:12px}
+/* 閱讀模式:圖釘在上方,按按鈕時動畫才看得到 */
+body.scroll .labfig{position:sticky;top:50px;z-index:2;background:var(--card);border-bottom:1px solid #d5dbdb}
+body.scroll .labfig svg.fig{max-height:36vh;width:auto;min-width:0!important}
+@media print{.steps li{color:var(--ink)!important;font-weight:400!important}.noprint{display:none!important}}
+</style>
 <style id="mobile-css">
 /* ── 行動裝置閱讀模式（body.scroll）與工具列 ─────────────── */
 #mtb{position:fixed;top:8px;right:8px;z-index:20;display:flex;gap:6px;align-items:center}
@@ -356,7 +391,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <h2>金屬離子:最常見的起始者 <span class="en">Metals as Initiators</span></h2>
   <ul>
     <li>微量的 <b>Fe</b>、<b>Cu</b> 就足以催化(ppm 等級)</li>
-    <li>油氧化的半成品叫<b>氫過氧化物 ROOH</b>(R 是脂肪酸的碳鏈;第 18 頁會完整講)。金屬離子能把它劈開、變出新的自由基,等於一次多開了好幾個頭</li>
+    <li>油氧化的半成品叫<b>氫過氧化物 ROOH</b>(R 是脂肪酸的碳鏈;第 19 頁會完整講)。金屬離子能把它劈開、變出新的自由基,等於一次多開了好幾個頭</li>
     <li>來源:原料本身、加工設備、水質、包裝</li>
   </ul>
   <div class="eq">Fe<sup>2+</sup> + ROOH → Fe<sup>3+</sup> + RO• + OH<sup>−</sup></div>
@@ -504,6 +539,36 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <div class="box key"><span class="tag">所以維生素 E 是「犧牲打」</span>它保護脂質的方式是<b>讓自己先被氧化</b>。這也是為什麼抗氧化劑會被消耗完,保護就結束了。</div>
 </section>
 
+<!-- LAB w16lab1 -->
+<section class="slide">
+  <h2>動手試:一個自由基能毀掉幾個分子? <span class="en">Radical Chain Lab — and where AH cuts it</span></h2>
+  <div class="lab" id="w16lab1">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 480 370" width="480" height="370" role="img" aria-labelledby="w16lab1-t w16lab1-d">
+        <title id="w16lab1-t">脂質氧化自由基鏈鎖的逐步示意,以及抗氧化劑 AH 截斷鏈鎖</title>
+        <desc id="w16lab1-d">兩排共 10 個圓圈,每個代表一個脂肪酸分子 RH。起始時其中一個被奪走一個氫成為自由基 R•。每按一次下一步就跑一輪傳遞:R• 與 O₂ 結合成 ROO•,ROO• 再從下一個 RH 奪氫,自己成為 ROOH,並生出新的 R•。左下方的計數器顯示已生成的 ROOH 個數與鏈鎖自由基個數。加入抗氧化劑 AH 後,ROO• 從 AH 取得一個氫成為 ROOH,AH 成為穩定的 A•,鏈鎖停止,計數器不再增加。</desc>
+        <text class="eq1" x="240" y="30" font-size="19" font-weight="700" fill="#1a5276" text-anchor="middle"></text>
+        <text class="eq2" x="240" y="58" font-size="19" font-weight="700" fill="#1a5276" text-anchor="middle"></text>
+        <circle class="ring" cx="56" cy="125" r="39" fill="none" stroke="#a04c08" stroke-width="4" stroke-dasharray="7 5" visibility="hidden"/>
+        <g class="mols" font-size="17" font-weight="700" text-anchor="middle"></g>
+        <text class="c1" x="24" y="292" font-size="20" font-weight="700" fill="#a04c08"></text>
+        <text class="c2" x="24" y="322" font-size="18" font-weight="700" fill="#c0392b"></text>
+        <g class="ahg" visibility="hidden" font-size="17" font-weight="700" text-anchor="middle">
+          <circle class="ahc" cx="424" cy="300" r="32" fill="#117a65"/>
+          <text class="aht" x="424" y="306" fill="#ffffff">AH</text>
+        </g>
+        <text x="24" y="356" font-size="16" fill="#5a6a6b">示意:只畫出 10 個脂肪酸分子 RH</text>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 起始只做出<b>一個</b> R•。沒有人擋的話,它最後會讓<b>幾個</b>脂肪酸被氧化——就 1 個嗎?<br>② 傳遞跑了幾輪之後才加入抗氧化劑 AH:已經變成 ROOH 的那幾個,會<b>變回</b> RH 嗎?</div>
+      <div class="labrow noprint"><button type="button" class="lbtn" id="w16lab1-next">下一步 ▶</button><button type="button" class="lbtn" id="w16lab1-ah">加入抗氧化劑 AH</button><button type="button" class="lbtn" id="w16lab1-reset">重來</button></div>
+      <div class="labmsg" id="w16lab1-msg"></div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① <span class="hl">不只 1 個</span>。每一輪傳遞用掉一個 RH、又生出一個新的 R•——自由基始終是 1 個,ROOH 卻一直增加;真實的油裡,一次起始可引發上千次。② <span class="hl">不會</span>。AH 供出一個 H,ROO• 變成 ROOH、AH 變成穩定的 A•,鏈斷了,計數器停住——但已經生成的 ROOH 一個也沒少。<b>抗氧化劑只能擋住還沒發生的氧化,不能把已經氧化的油修回來;而且它自己會被消耗。</b></div>
+    </div>
+  </div>
+</section>
+
 <!-- 25 -->
 <section class="slide">
   <h2>螯合型與清除氧型 <span class="en">Chelators and Scavengers</span></h2>
@@ -612,6 +677,37 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
         <text x="510" y="34" font-size="19" fill="#2c3e50" text-anchor="middle" font-weight="700">三種做法，三個不同的原理 —— 不是同一招的三種版本</text>
       </svg>
 <div class="box warn"><span class="tag">這是本週最值得想清楚的一張</span>三種家常做法看起來都是「防止變色」,但一個是<b>改變環境</b>、一個是<b>破壞酵素</b>、一個是<b>移除受質</b>。把它們當成「同一招的三種版本」,就錯過了整個重點。</div>
+</section>
+
+<!-- LAB w16lab2 -->
+<section class="slide">
+  <h2>動手試:切開的蘋果,三招各擋在哪裡? <span class="en">Browning Lab — which condition does each method remove?</span></h2>
+  <div class="lab" id="w16lab2">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 460 370" width="460" height="370" role="img" aria-labelledby="w16lab2-t w16lab2-d">
+        <title id="w16lab2-t">切開的蘋果片隨時間褐變,以及三種抑制法各自拿掉的條件(示意)</title>
+        <desc id="w16lab2-d">左邊是一片切開的蘋果,褐色越深代表褐變越多。右邊三個框是酵素性褐變必須同時在場的三個條件:受質多酚、酵素 PPO、氧氣 O₂,各標出目前的狀態。泡檸檬汁時 PPO 因 pH 降到 3 以下而活性大幅下降但沒壞;燙漂時 PPO 變性失活;泡水或真空時隔絕了 O₂,但酵素還在。三個條件都在場時,每經過 10 分鐘顏色就再加深;缺任何一個,顏色就不再加深。顏色深淺只是示意。</desc>
+        <text x="140" y="28" font-size="19" font-weight="700" fill="#1a5276" text-anchor="middle">切開的蘋果片</text>
+        <text class="tm" x="140" y="56" font-size="18" fill="#2c3e50" text-anchor="middle"></text>
+        <circle cx="140" cy="175" r="100" fill="#ffffff" stroke="#c0392b" stroke-width="7"/>
+        <circle class="brown" cx="140" cy="175" r="96" fill="#a04c08" fill-opacity="0"/>
+        <ellipse cx="140" cy="175" rx="28" ry="36" fill="none" stroke="#5a6a6b" stroke-width="2" stroke-dasharray="5 4"/>
+        <ellipse cx="129" cy="172" rx="6" ry="11" fill="#2c3e50" transform="rotate(-15 129 172)"/>
+        <ellipse cx="151" cy="172" rx="6" ry="11" fill="#2c3e50" transform="rotate(15 151 172)"/>
+        <text class="vd" x="140" y="314" font-size="20" font-weight="700" text-anchor="middle"></text>
+        <text x="360" y="54" font-size="17" font-weight="700" fill="#2c3e50" text-anchor="middle">三個要同時在場</text>
+        <g class="chips"></g>
+        <text x="230" y="356" font-size="16" fill="#5a6a6b" text-anchor="middle">示意:顏色深淺只表示趨勢,不是真實速率</text>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 蘋果片泡在水裡(或真空包裝)不會變褐。它拿掉的是哪一個條件?<b>撈出來放回空氣中</b>之後呢?<br>② 切開放了 20 分鐘、已經有點褐了才處理:已經褐的地方會<b>變回白色</b>嗎?</div>
+      <div class="labrow noprint"><button type="button" class="lbtn" id="w16lab2-time">+10 分鐘 ▶</button><button type="button" class="lbtn" id="w16lab2-reset">重來(剛切開)</button></div>
+      <div class="labrow noprint"><button type="button" class="lbtn" id="w16lab2-lemon">泡檸檬汁</button><button type="button" class="lbtn" id="w16lab2-blanch">燙漂</button><button type="button" class="lbtn" id="w16lab2-seal">泡水／真空</button></div>
+      <div class="labmsg" id="w16lab2-msg"></div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① 拿掉的是 <b>O₂</b>——多酚和 PPO 都還在。撈出來放回空氣,三個條件又湊齊,<span class="hl">褐變重新開始</span>。② <span class="hl">不會</span>。三招都只讓顏色<b>不再加深</b>:醌自行聚合成的褐色素,已經生成的,沒有一招拿得掉。<b>拿掉三個條件中的任何一個,褐變就停;但三招擋的位置不同,而且都只能防止、不能逆轉。</b></div>
+    </div>
+  </div>
 </section>
 
 <!-- 32 -->
@@ -776,6 +872,175 @@ addEventListener('touchend',e=>{
 });
 fit();
 show(parseInt(location.hash.slice(1))-1||0);
+</script>
+<script id="lab-js">
+(function(){
+/* 共用工具(每支 deck 相同,不要改) */
+  const NS='http://www.w3.org/2000/svg',$=id=>document.getElementById(id);
+  const el=(n,a,p)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;};
+  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let seed=7;const rnd=()=>(seed=seed*16807%2147483647)/2147483647;
+  function tw(ms,fn,done){
+    if(still||ms<=0){fn(1);if(done)done();return;}
+    let t0=null;
+    requestAnimationFrame(function f(t){
+      if(t0===null)t0=t;
+      const k=Math.min(1,(t-t0)/ms),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+      fn(e);if(k<1)requestAnimationFrame(f);else if(done)done();
+    });
+  }
+  // 控制項上的點擊、觸控、方向鍵不可觸發翻頁
+  document.querySelectorAll('.lab').forEach(l=>{
+    ['click','touchstart','touchend'].forEach(t=>l.addEventListener(t,e=>{if(e.target.closest('button,input,label'))e.stopPropagation();}));
+    l.addEventListener('keydown',e=>{if(e.target.matches('input'))e.stopPropagation();});
+    l.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>b.blur()));
+    l.querySelectorAll('input[type=range]').forEach(r=>r.addEventListener('pointerup',()=>r.blur()));
+  });
+/* w16lab1 */
+(function(){
+  const root=$('w16lab1');if(!root)return;
+  const q=s=>root.querySelector(s);
+  /* 記號與反應式全部照本週「自由基鏈鎖反應」與「鏈鎖終止型:供出一個氫」兩張:
+     起始 RH → R•;傳遞 R• + O₂ → ROO•、ROO• + RH → ROOH + R•;終止型 ROO• + AH → ROOH + A• */
+  const N=10,X=i=>56+92*(i%5),Y=i=>i<5?125:210;
+  const mols=q('.mols'),ring=q('.ring'),msg=$('w16lab1-msg');
+  const C=[],T=[];
+  for(let i=0;i<N;i++){
+    C.push(el('circle',{cx:X(i),cy:Y(i),r:32,'stroke-width':2.5},mols));
+    T.push(el('text',{x:X(i),y:Y(i)+6},mols));
+  }
+  const STY={RH:['#ffffff','#5a6a6b','#2c3e50'],'R•':['#c0392b','#c0392b','#ffffff'],
+             'ROO•':['#c0392b','#c0392b','#ffffff'],ROOH:['#a04c08','#a04c08','#ffffff']};
+  /* n = 已完成的傳遞輪數(-1 = 還沒起始);ah = 是否已加入 AH */
+  let n=-1,ah=false,stuck=false;
+  function kind(i){
+    if(n<0)return 'RH';
+    if(ah)return i<=n?'ROOH':'RH';
+    return i<n?'ROOH':i===n?'R•':'RH';
+  }
+  function render(anim){
+    for(let i=0;i<N;i++){
+      const k=kind(i),s=STY[k];
+      C[i].setAttribute('fill',s[0]);C[i].setAttribute('stroke',s[1]);
+      T[i].setAttribute('fill',s[2]);T[i].textContent=k;
+    }
+    const rooh=n<0?0:ah?n+1:n,rad=n>=0&&!ah?1:0;
+    q('.c1').textContent='ROOH(已被氧化):'+rooh+' 個';
+    q('.c2').textContent='鏈鎖自由基 R•:'+rad+' 個';
+    const e1=q('.eq1'),e2=q('.eq2');
+    if(n<0){e1.textContent='油裡的脂肪酸 RH';e2.textContent='';}
+    else if(ah){e1.textContent='R• + O₂ → ROO•';e2.textContent='ROO• + AH → ROOH + A•';}
+    else if(n===0){e1.textContent='① 起始(金屬離子・光・熱奪走一個 H)';e2.textContent='RH → R•';}
+    else{e1.textContent='② 傳遞:R• + O₂ → ROO•';e2.textContent='ROO• + RH → ROOH + R•';}
+    q('.ahg').setAttribute('visibility',ah?'visible':'hidden');
+    q('.aht').textContent='A•';
+    /* 圈出「剛被奪氫」的那一個 */
+    const show=n>=0&&!ah;
+    ring.setAttribute('visibility',show?'visible':'hidden');
+    if(show){
+      const x1=X(n),y1=Y(n),x0=+ring.getAttribute('cx'),y0=+ring.getAttribute('cy');
+      tw(anim?400:0,k=>{ring.setAttribute('cx',(x0+(x1-x0)*k).toFixed(1));ring.setAttribute('cy',(y0+(y1-y0)*k).toFixed(1));});
+    }
+    let m;
+    if(n<0)m='每個圓圈是一個脂肪酸分子 RH(R = 長碳鏈)。按「下一步」開始。';
+    else if(ah&&stuck)m='沒有自由基可以去奪氫了:再按「下一步」,ROOH 仍停在 '+rooh+' 個。';
+    else if(ah)m='AH 供出一個 H 給 ROO•,自己變成 <b>A•</b>。A• 很穩定,不再去奪氫 → <b>鏈斷了</b>。';
+    else if(n===0)m='① 起始:一個 RH 被奪走一個 H,變成自由基 <b>R•</b>(• = 落單的電子)。';
+    else if(n<N-1)m='② 傳遞第 '+n+' 輪:ROO• 從<b>下一個</b> RH 奪氫 → 自己變成 ROOH,同時生出<b>新的 R•</b>。';
+    else m='② 傳遞第 '+n+' 輪:示意圖的 RH 畫完了。真實的油裡 RH 多得多,傳遞會繼續循環下去。';
+    msg.innerHTML=m;
+    $('w16lab1-next').disabled=!ah&&n>=N-1;
+    $('w16lab1-ah').disabled=n<0||ah;
+  }
+  $('w16lab1-next').addEventListener('click',()=>{
+    if(ah){stuck=true;render(false);return;}
+    n=Math.min(N-1,n+1);render(true);
+  });
+  $('w16lab1-ah').addEventListener('click',()=>{if(n>=0&&!ah){ah=true;stuck=false;render(false);}});
+  $('w16lab1-reset').addEventListener('click',()=>{n=-1;ah=false;stuck=false;render(false);});
+  /* 列印講義:跑 4 輪傳遞後加入 AH 的狀態 */
+  let keep=null;
+  addEventListener('beforeprint',()=>{keep=[n,ah,stuck];n=4;ah=true;stuck=false;render(false);});
+  addEventListener('afterprint',()=>{if(keep){[n,ah,stuck]=keep;render(false);}});
+  render(false);
+})();
+/* w16lab2 */
+(function(){
+  const root=$('w16lab2');if(!root)return;
+  const q=s=>root.querySelector(s);
+  /* 三個條件與三種抑制法全部照本週「酵素性褐變」與「三種抑制法,三個不同的原理」兩張;
+     不給速率數字,顏色只表示趨勢。10 分鐘的間隔取自課後練習 ③ 的記錄方式。 */
+  const TMAX=6,LMAX=5;
+  const chips=q('.chips'),msg=$('w16lab2-msg');
+  const CH=[];
+  ['受質:多酚','酵素:PPO','氧氣:O₂'].forEach((name,i)=>{
+    const y=70+90*i;
+    const r=el('rect',{x:270,y:y,width:180,height:80,rx:8,fill:'#f4f6f7','stroke-width':2.5},chips);
+    const t0=el('text',{x:360,y:y+27,'font-size':18,'font-weight':700,fill:'#2c3e50','text-anchor':'middle'},chips);
+    const t1=el('text',{x:360,y:y+51,'font-size':16,'font-weight':700,'text-anchor':'middle'},chips);
+    const t2=el('text',{x:360,y:y+72,'font-size':16,fill:'#2c3e50','text-anchor':'middle'},chips);
+    t0.textContent=name;CH.push([r,t1,t2]);
+  });
+  let t=0,lv=0,lemon=false,blanch=false,seal=false,last='';
+  const running=()=>!lemon&&!blanch&&!seal;
+  function chip(i,ok,s1,s2){
+    const [r,t1,t2]=CH[i];
+    r.setAttribute('stroke',ok?'#5a6a6b':'#117a65');r.setAttribute('stroke-width',ok?2.5:4);
+    t1.setAttribute('fill',ok?'#c0392b':'#117a65');t1.textContent=s1;t2.textContent=s2;
+  }
+  function render(anim){
+    chip(0,true,'在場 ✓','(三招都沒動它)');
+    if(blanch)chip(1,false,'變性失活 ✕','(真的壞了)');
+    else if(lemon)chip(1,false,'活性大幅下降 ✕','(沒壞;pH < 3)');
+    else chip(1,true,'有活性 ✓','');
+    if(seal)chip(2,false,'隔絕 ✕','(酵素還在)');
+    else chip(2,true,'在場 ✓','');
+    q('.tm').textContent='經過 '+(t*10)+' 分鐘';
+    const vd=q('.vd');
+    if(running()){vd.textContent='褐變進行中';vd.setAttribute('fill','#c0392b');}
+    else{vd.textContent=(lemon&&!blanch&&!seal)?'褐變幾乎停住':'褐變停住';vd.setAttribute('fill','#117a65');}
+    const br=q('.brown'),o0=+br.getAttribute('fill-opacity'),o1=0.13*lv;
+    tw(anim?500:0,k=>br.setAttribute('fill-opacity',(o0+(o1-o0)*k).toFixed(3)));
+    msg.innerHTML=last||'剛切開:細胞破了,多酚、PPO、O₂ 三個都在場。按「+10 分鐘」讓時間前進,也可以隨時用下面三招處理。';
+    $('w16lab2-time').disabled=t>=TMAX;
+    $('w16lab2-blanch').disabled=blanch;
+    $('w16lab2-lemon').classList.toggle('sel',lemon);
+    $('w16lab2-blanch').classList.toggle('sel',blanch);
+    $('w16lab2-seal').classList.toggle('sel',seal);
+    $('w16lab2-lemon').textContent=lemon?'把酸洗掉':'泡檸檬汁';
+    $('w16lab2-seal').textContent=seal?'撈出來(回到空氣)':'泡水／真空';
+  }
+  function step(){
+    if(t>=TMAX)return;
+    t++;
+    if(running()){lv=Math.min(LMAX,lv+1);last='經過 '+(t*10)+' 分鐘:三個條件都在場 → 顏色<b>又加深</b>了一些。';}
+    else last='經過 '+(t*10)+' 分鐘:缺了一個條件 → 顏色<b>沒有再加深</b>。';
+  }
+  $('w16lab2-time').addEventListener('click',()=>{step();render(true);});
+  $('w16lab2-reset').addEventListener('click',()=>{t=0;lv=0;lemon=false;blanch=false;seal=false;last='';render(false);});
+  $('w16lab2-lemon').addEventListener('click',()=>{
+    lemon=!lemon;
+    last=lemon?'泡檸檬汁:pH 降到 3 以下,PPO 離開最適 pH、活性大幅下降——<b>酵素沒壞</b>,只是環境變了。'
+              :'把酸洗掉:pH 回升,PPO 又回到能作用的環境。'+(blanch?'(但它已經燙漂變性了。)':'');
+    render(false);
+  });
+  $('w16lab2-blanch').addEventListener('click',()=>{
+    blanch=true;last='燙漂:短時間高溫,PPO 蛋白<b>變性</b>——真的壞了,不會復原。';render(false);
+  });
+  $('w16lab2-seal').addEventListener('click',()=>{
+    seal=!seal;
+    last=seal?'泡水／真空:隔絕空氣,拿掉 O₂——<b>酵素還在</b>。':'撈出來、放回空氣中:O₂ 又碰得到切面了。';
+    render(false);
+  });
+  /* 列印講義:放 20 分鐘後泡水,再過 20 分鐘 */
+  let keep=null;
+  addEventListener('beforeprint',()=>{keep=[t,lv,lemon,blanch,seal,last];
+    t=0;lv=0;lemon=false;blanch=false;seal=false;step();step();seal=true;step();step();
+    last='放了 20 分鐘後泡水:顏色停在那時候的深度,不再加深,也沒有變回白色。';render(false);});
+  addEventListener('afterprint',()=>{if(keep){[t,lv,lemon,blanch,seal,last]=keep;render(false);}});
+  render(false);
+})();
+})();
 </script>
 <script id="mobile-js">
 (function(){

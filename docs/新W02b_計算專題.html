@@ -146,6 +146,41 @@ tr:nth-child(even) td{background:#f4f6f7}
   #bar{display:none}
 }
 </style>
+<style id="lab-css">
+/* ── 互動實驗台(先預測、再動手)──────────────────────── */
+.lab{display:flex;gap:30px;align-items:flex-start}
+.labfig{flex:0 0 auto}
+.labfig .fig{margin:0 auto}
+.labside{flex:1;min-width:0}
+.labside .box{margin:0 0 8px;font-size:21px;line-height:1.45;padding:9px 18px}
+.labside .eq{margin:6px 0;font-size:26px}
+.labctl{display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:center;font-size:20px;margin:6px 0}
+.labctl input[type=range]{width:100%;height:28px;accent-color:var(--primary);cursor:pointer}
+.labctl output{font-weight:700;color:var(--primary);min-width:96px;text-align:right}
+.labread{font-size:21px;line-height:1.5;background:#f4f6f7;border-radius:8px;padding:7px 16px;margin:6px 0}
+.labread .M{font-size:27px}
+.lbtn{font-family:inherit;font-size:19px;font-weight:700;padding:6px 16px;border-radius:8px;border:2px solid var(--primary);background:#fff;color:var(--primary);cursor:pointer;margin:2px 8px 2px 0}
+.lbtn:hover{background:var(--def-bg)}
+.lbtn:disabled{color:var(--muted);border-color:#aab7b8;background:#f4f6f7;cursor:default}
+.lbtn.bad{border-color:#c0392b;color:#c0392b}
+.labmsg{font-size:20px;line-height:1.42;min-height:86px;margin:6px 0;padding:7px 16px;border-radius:8px;background:#f4f6f7}
+.labmsg.bad{background:var(--warn-bg);color:#922b21}
+.slide ol.steps{font-size:21px;line-height:1.4;margin:0 0 6px 30px}
+.steps li{margin:4px 0;color:var(--muted)}
+.steps li.on{color:var(--ink)}
+.steps li.now{color:var(--primary);font-weight:700}
+.lab.labcol{display:block}
+.lbtn.sel{background:var(--primary);color:#fff}
+.labrow{display:flex;gap:10px;align-items:center;font-size:20px;margin:4px 0}
+.labrow input[type=range]{flex:1;min-width:120px;height:28px;accent-color:var(--primary);cursor:pointer}
+.labrow .lbtn{margin:0;font-size:17px;padding:5px 11px;white-space:nowrap}
+body.scroll .labrow{flex-wrap:wrap}
+body.scroll .lab{flex-direction:column;align-items:stretch;gap:12px}
+/* 閱讀模式:圖釘在上方,按按鈕時動畫才看得到 */
+body.scroll .labfig{position:sticky;top:50px;z-index:2;background:var(--card);border-bottom:1px solid #d5dbdb}
+body.scroll .labfig svg.fig{max-height:36vh;width:auto;min-width:0!important}
+@media print{.steps li{color:var(--ink)!important;font-weight:400!important}.noprint{display:none!important}}
+</style>
 <style id="mobile-css">
 /* ── 行動裝置閱讀模式（body.scroll）與工具列 ─────────────── */
 #mtb{position:fixed;top:8px;right:8px;z-index:20;display:flex;gap:6px;align-items:center}
@@ -352,6 +387,33 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <div class="box warn"><span class="tag">同樣寫「1000 mg」,差 4.3 倍</span>碳酸鈣 400 mg vs 葡萄糖酸鈣 93 mg。<b>比價之前要先換算成元素鈣,否則比的是兩個不同的東西。</b>正規標示會另外標「元素鈣 XXX mg」——<b>那一欄才是你要看的。</b></div>
 </section>
 
+<!-- LAB w2blab1 -->
+<section class="slide">
+  <h2>動手試:錠劑裡,鈣只占一段 <span class="en">Calcium Lab — the label weighs the whole compound</span></h2>
+  <div class="lab" id="w2blab1">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 430 372" width="430" height="372" role="img" aria-labelledby="w2blab1-t w2blab1-d">
+        <title id="w2blab1-t">化合物的質量與其中元素鈣的質量</title>
+        <desc id="w2blab1-d">左邊一條是化合物的總質量,由下往上分成元素鈣、結晶水(只有乳酸鈣有)與其餘部分;一個單位含三個鈣的鈣鹽,鈣那一段以白線分成三格。右邊一條只畫元素鈣,與左邊同一個刻度。上方寫著目前的鈣鹽與化學式。</desc>
+        <text class="nm" x="215" y="24" font-size="19" font-weight="700" fill="#2c3e50" text-anchor="middle"></text>
+        <g class="ax" font-size="16" fill="#5a6a6b" text-anchor="end"></g>
+        <line x1="80" y1="300" x2="420" y2="300" stroke="#2c3e50" stroke-width="2"/>
+        <g class="bars" font-size="16" text-anchor="middle"></g>
+        <g font-size="16" text-anchor="middle" fill="#2c3e50"><text x="175" y="322">化合物</text><text x="335" y="322">元素鈣</text></g>
+        <g font-size="16"><circle cx="22" cy="351" r="7" fill="#1a5276"/><text x="34" y="357" fill="#2c3e50">鈣</text><circle cx="86" cy="351" r="7" fill="#117a65"/><text x="98" y="357" fill="#2c3e50">結晶水</text><circle cx="182" cy="351" r="7" fill="#d5dbdb" stroke="#5a6a6b" stroke-width="1.5"/><text x="194" y="357" fill="#2c3e50">其餘(酸根等)</text></g>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 乳酸鈣錠(五水合)裡,<b>結晶水</b>和<b>鈣</b>哪一個比較重?<br>② 磷酸三鈣一個單位有 <b>3 個鈣</b>,碳酸鈣只有 1 個。要補到同樣多的鈣,磷酸三鈣要吃的量會比碳酸鈣<b>少很多</b>嗎?</div>
+      <div class="labrow noprint"><button type="button" class="lbtn sel" data-s="0">碳酸鈣</button><button type="button" class="lbtn" data-s="1">磷酸三鈣</button><button type="button" class="lbtn" data-s="2">檸檬酸鈣</button><button type="button" class="lbtn" data-s="3">乳酸鈣</button><button type="button" class="lbtn" data-s="4">葡萄糖酸鈣</button></div>
+      <div class="labrow noprint"><button type="button" class="lbtn sel" data-m="f">化合物 → 元素鈣</button><button type="button" class="lbtn" data-m="r">要補多少鈣 → 化合物</button></div>
+      <div class="labrow noprint"><label for="w2blab1-s" id="w2blab1-sl" style="min-width:96px">化合物</label><input type="range" id="w2blab1-s" min="100" max="2000" step="20" value="800"><b id="w2blab1-sv" style="min-width:96px;text-align:right;color:var(--primary)">800 mg</b></div>
+      <div class="labread"><span id="w2blab1-l1">800 mg 碳酸鈣 × (40.078 mg 鈣 / 100.09 mg 碳酸鈣)</span><br>= <span class="hl M" id="w2blab1-o">320 mg 鈣</span><br><span id="w2blab1-l2">鈣占 40.04%</span></div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① <span class="hl">結晶水比較重</span>:每 308.29 份乳酸鈣裡,5 個水占 90.08(29.2%),鈣只有 40.078(13.0%),水約是鈣的 2.2 倍。② 不會,反而<span class="hl">多一點(約 1.03 倍)</span>:3 個鈣,但式量 310.17 也約是碳酸鈣的 3 倍,鈣只占 38.76%。<b>比的是質量分率(鈣的總質量 ÷ 整個式量),不是原子個數,也不是包裝寫幾 mg。</b></div>
+    </div>
+  </div>
+</section>
+
 <!-- 20 -->
 <section class="slide">
   <h2>例題 11:換一個元素,同一套方法 <span class="en">Example 11 — Iron</span></h2>
@@ -394,7 +456,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <!-- 25 -->
 <section class="slide">
   <h2>例題 14:混合之後會變成多少 <span class="en">Example 14 — Mass Balance</span></h2>
-  <p>把 <b>13.1%</b> 的甘蔗糖(−9.7‰)摻進 δ<sup>13</sup>C = −25.0‰ 的真蜜。混合後的 δ 是多少?<span class="small">(AOAC 方法統一用 −9.7‰ 代表純 C4 糖;第 24 頁的 −11.0 是甘蔗糖的實測典型值)</span></p>
+  <p>把 <b>13.1%</b> 的甘蔗糖(−9.7‰)摻進 δ<sup>13</sup>C = −25.0‰ 的真蜜。混合後的 δ 是多少?<span class="small">(AOAC 方法統一用 −9.7‰ 代表純 C4 糖;第 25 頁的 −11.0 是甘蔗糖的實測典型值)</span></p>
   <div class="sol"><b>解答(碳的質量平衡):</b><br>混合物裡 13.1% 的碳來自甘蔗糖、86.9% 來自真蜜,所以混合後的 δ 就是兩者按碳比例的加權平均——和第 2 週平均原子量是同一種算法。<br>δ<sub>混</sub> = 0.131 × (−9.7) + 0.869 × (−25.0) = −1.27 + (−21.73) = <span class="hl">−23.0‰</span><br><br><b>現在把它反過來解 —— 這就是判定式的來源:</b><br>設摻入的 C4 糖比例為 x,真蜜原本的值用<b>蛋白質</b>的 δ 代表:<br>　δ<sub>蜂蜜</sub> = x·δ<sub>C4</sub> + (1 − x)·δ<sub>蛋白</sub><br>　δ<sub>蜂蜜</sub> − δ<sub>蛋白</sub> = x(δ<sub>C4</sub> − δ<sub>蛋白</sub>)<br>　<span class="hl">x = (δ<sub>蛋白</sub> − δ<sub>蜂蜜</sub>) ÷ (δ<sub>蛋白</sub> − (−9.7))</span><br><b>這正是 AOAC(國際公定分析化學家協會,Association of Official Analytical Chemists)官方方法 998.12 的公式。</b>它不是一條要背的式子,<b>它是一行質量平衡解出來的</b>——忘了就重推一次。</div>
 </section>
 
@@ -538,6 +600,114 @@ addEventListener('touchend',e=>{
 });
 fit();
 show(parseInt(location.hash.slice(1))-1||0);
+</script>
+<script id="lab-js">
+(function(){
+/* 共用工具(每支 deck 相同,不要改) */
+  const NS='http://www.w3.org/2000/svg',$=id=>document.getElementById(id);
+  const el=(n,a,p)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;};
+  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let seed=7;const rnd=()=>(seed=seed*16807%2147483647)/2147483647;
+  function tw(ms,fn,done){
+    if(still||ms<=0){fn(1);if(done)done();return;}
+    let t0=null;
+    requestAnimationFrame(function f(t){
+      if(t0===null)t0=t;
+      const k=Math.min(1,(t-t0)/ms),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+      fn(e);if(k<1)requestAnimationFrame(f);else if(done)done();
+    });
+  }
+  // 控制項上的點擊、觸控、方向鍵不可觸發翻頁
+  document.querySelectorAll('.lab').forEach(l=>{
+    ['click','touchstart','touchend'].forEach(t=>l.addEventListener(t,e=>{if(e.target.closest('button,input,label'))e.stopPropagation();}));
+    l.addEventListener('keydown',e=>{if(e.target.matches('input'))e.stopPropagation();});
+    l.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>b.blur()));
+    l.querySelectorAll('input[type=range]').forEach(r=>r.addEventListener('pointerup',()=>r.blur()));
+  });
+/* w2blab1 */
+(function(){
+  const root=$('w2blab1');if(!root)return;
+  /* 全部取自例題 7、8、10:Ca 40.078;莫耳質量 100.09 / 310.17 / 498.43 / 308.29 / 430.37;水 18.015 */
+  const CA=40.078,H2O=18.015;
+  const SALT=[
+    {nm:'碳酸鈣',f:'CaCO₃',n:1,M:100.09,w:0},
+    {nm:'磷酸三鈣',f:'Ca₃(PO₄)₂',n:3,M:310.17,w:0},
+    {nm:'檸檬酸鈣',f:'Ca₃(C₆H₅O₇)₂',n:3,M:498.43,w:0},
+    {nm:'乳酸鈣',f:'Ca(C₃H₅O₃)₂·5H₂O',n:1,M:308.29,w:5},
+    {nm:'葡萄糖酸鈣',f:'Ca(C₆H₁₁O₇)₂',n:1,M:430.37,w:0}
+  ];
+  const MODE={f:{lab:'化合物',min:100,max:2000,step:20,v:800},r:{lab:'要補的鈣',min:70,max:1190,step:20,v:350}};
+  const s=$('w2blab1-s'),g=root.querySelector('.bars'),ax=root.querySelector('.ax'),nm=root.querySelector('.nm');
+  const BASE=300,H=240,W=90,XC=175,XA=335,NICE=[500,1000,2000,3000,5000,10000,15000];
+  let k=0,m='f',shown=null,gen=0;
+  const bar=(cx,y0,h)=>'M'+(cx-W/2)+','+y0+'h'+W+'v'+(-h)+'h'+(-W)+'Z';
+  function calc(){
+    const S=SALT[k],fr=S.n*CA/S.M,v=+s.value;
+    const comp=m==='f'?v:v/fr,ca=m==='f'?v*fr:v,wat=comp*S.w*H2O/S.M;
+    return {S,fr,v,comp,ca,wat};
+  }
+  function axis(top){
+    ax.innerHTML='';
+    [0,top/2,top].forEach(t=>{
+      const y=BASE-t/top*H;
+      if(t>0)el('line',{x1:80,y1:y,x2:420,y2:y,stroke:'#d5dbdb','stroke-width':1.5},ax);
+      el('text',{x:72,y:y+6},ax).textContent=String(t);
+    });
+    el('text',{x:72,y:BASE-H-16},ax).textContent='mg';
+  }
+  function draw(o,top){
+    g.innerHTML='';
+    const sc=H/top,hc=o.ca*sc,hw=o.wat*sc,ht=o.comp*sc;
+    /* 化合物:鈣 / 結晶水 / 其餘 */
+    if(hc>0)el('path',{d:bar(XC,BASE,hc),fill:'#1a5276'},g);
+    if(hw>0)el('path',{d:bar(XC,BASE-hc,hw),fill:'#117a65'},g);
+    if(ht-hc-hw>0)el('path',{d:bar(XC,BASE-hc-hw,ht-hc-hw),fill:'#d5dbdb',stroke:'#5a6a6b','stroke-width':1.5},g);
+    /* 元素鈣 */
+    if(hc>0)el('path',{d:bar(XA,BASE,hc),fill:'#1a5276'},g);
+    if(o.S.n===3&&hc>9){
+      let d='';for(let i=1;i<3;i++){d+='M'+(XC-W/2)+','+(BASE-hc*i/3)+'h'+W+'M'+(XA-W/2)+','+(BASE-hc*i/3)+'h'+W;}
+      el('path',{d:d,stroke:'#ffffff','stroke-width':2},g);
+    }
+    el('text',{x:XC,y:BASE-ht-8,fill:'#2c3e50','font-weight':700},g).textContent=Math.round(o.comp)+' mg';
+    el('text',{x:XA,y:BASE-hc-8,fill:'#1a5276','font-weight':700},g).textContent=Math.round(o.ca)+' mg';
+    if(hc>=24&&o.S.n===1)el('text',{x:XC,y:BASE-hc/2+6,fill:'#ffffff','font-weight':700},g).textContent='鈣';
+    if(hw>=24)el('text',{x:XC,y:BASE-hc-hw/2+6,fill:'#ffffff','font-weight':700},g).textContent='水';
+    if(o.S.n===3&&hc>=72)el('text',{x:XA,y:BASE-hc/6+6,fill:'#ffffff'},g).textContent='3 個鈣';
+  }
+  function render(anim){
+    const o=calc(),S=o.S,pct=(o.fr*100).toFixed(2);
+    const top=NICE.find(t=>t>=o.comp*1.04)||15000;
+    nm.textContent=S.nm+' '+S.f+'  M = '+S.M;
+    $('w2blab1-sl').textContent=MODE[m].lab;
+    $('w2blab1-sv').textContent=o.v+' mg';
+    const fac=S.n===3?'(3 × '+CA+')':String(CA);
+    if(m==='f'){
+      $('w2blab1-l1').textContent=o.v+' mg '+S.nm+' × ('+fac+' mg 鈣 / '+S.M+' mg '+S.nm+')';
+      $('w2blab1-o').textContent=Math.round(o.ca)+' mg 鈣';
+    }else{
+      $('w2blab1-l1').textContent=o.v+' mg 鈣 × ('+S.M+' mg '+S.nm+' / '+fac+' mg 鈣)';
+      const c=Math.round(o.comp);
+      $('w2blab1-o').textContent=c+' mg '+S.nm+(c>=2000?'(約 '+(c/1000).toFixed(1)+' g)':'');
+    }
+    $('w2blab1-l2').textContent='鈣占 '+pct+'%'+(S.w?';結晶水占 '+(S.w*H2O/S.M*100).toFixed(1)+'%('+Math.round(o.wat)+' mg)':'');
+    axis(top);
+    const from=shown,my=++gen;shown={o,top};
+    if(anim&&from&&from.top===top)tw(400,e=>{if(my!==gen)return;const L=(a,b)=>a+(b-a)*e;
+      draw({S:o.S,comp:L(from.o.comp,o.comp),ca:L(from.o.ca,o.ca),wat:L(from.o.wat,o.wat)},top);});
+    else draw(o,top);
+  }
+  s.addEventListener('input',()=>{MODE[m].v=+s.value;render(false);});
+  root.querySelectorAll('[data-s]').forEach(b=>b.addEventListener('click',()=>{
+    k=+b.dataset.s;root.querySelectorAll('[data-s]').forEach(x=>x.classList.toggle('sel',x===b));render(true);
+  }));
+  root.querySelectorAll('[data-m]').forEach(b=>b.addEventListener('click',()=>{
+    if(b.dataset.m===m)return;m=b.dataset.m;
+    root.querySelectorAll('[data-m]').forEach(x=>x.classList.toggle('sel',x===b));
+    const M=MODE[m];s.min=M.min;s.max=M.max;s.step=M.step;s.value=M.v;render(false);
+  }));
+  render(false);
+})();
+})();
 </script>
 <script id="mobile-js">
 (function(){

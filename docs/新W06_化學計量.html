@@ -155,6 +155,41 @@ body.scroll .animation-layout{grid-template-columns:1fr}
 body.scroll .animation-layout video{max-height:none}
 @media(max-width:720px){.animation-layout{grid-template-columns:1fr}}
 </style>
+<style id="lab-css">
+/* ── 互動實驗台(先預測、再動手)──────────────────────── */
+.lab{display:flex;gap:30px;align-items:flex-start}
+.labfig{flex:0 0 auto}
+.labfig .fig{margin:0 auto}
+.labside{flex:1;min-width:0}
+.labside .box{margin:0 0 8px;font-size:21px;line-height:1.45;padding:9px 18px}
+.labside .eq{margin:6px 0;font-size:26px}
+.labctl{display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:center;font-size:20px;margin:6px 0}
+.labctl input[type=range]{width:100%;height:28px;accent-color:var(--primary);cursor:pointer}
+.labctl output{font-weight:700;color:var(--primary);min-width:96px;text-align:right}
+.labread{font-size:21px;line-height:1.5;background:#f4f6f7;border-radius:8px;padding:7px 16px;margin:6px 0}
+.labread .M{font-size:27px}
+.lbtn{font-family:inherit;font-size:19px;font-weight:700;padding:6px 16px;border-radius:8px;border:2px solid var(--primary);background:#fff;color:var(--primary);cursor:pointer;margin:2px 8px 2px 0}
+.lbtn:hover{background:var(--def-bg)}
+.lbtn:disabled{color:var(--muted);border-color:#aab7b8;background:#f4f6f7;cursor:default}
+.lbtn.bad{border-color:#c0392b;color:#c0392b}
+.labmsg{font-size:20px;line-height:1.42;min-height:86px;margin:6px 0;padding:7px 16px;border-radius:8px;background:#f4f6f7}
+.labmsg.bad{background:var(--warn-bg);color:#922b21}
+.slide ol.steps{font-size:21px;line-height:1.4;margin:0 0 6px 30px}
+.steps li{margin:4px 0;color:var(--muted)}
+.steps li.on{color:var(--ink)}
+.steps li.now{color:var(--primary);font-weight:700}
+.lab.labcol{display:block}
+.lbtn.sel{background:var(--primary);color:#fff}
+.labrow{display:flex;gap:10px;align-items:center;font-size:20px;margin:4px 0}
+.labrow input[type=range]{flex:1;min-width:120px;height:28px;accent-color:var(--primary);cursor:pointer}
+.labrow .lbtn{margin:0;font-size:17px;padding:5px 11px;white-space:nowrap}
+body.scroll .labrow{flex-wrap:wrap}
+body.scroll .lab{flex-direction:column;align-items:stretch;gap:12px}
+/* 閱讀模式:圖釘在上方,按按鈕時動畫才看得到 */
+body.scroll .labfig{position:sticky;top:50px;z-index:2;background:var(--card);border-bottom:1px solid #d5dbdb}
+body.scroll .labfig svg.fig{max-height:36vh;width:auto;min-width:0!important}
+@media print{.steps li{color:var(--ink)!important;font-weight:400!important}.noprint{display:none!important}}
+</style>
 <style id="mobile-css">
 /* ── 行動裝置閱讀模式（body.scroll）與工具列 ─────────────── */
 #mtb{position:fixed;top:8px;right:8px;z-index:20;display:flex;gap:6px;align-items:center}
@@ -373,6 +408,33 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <div class="box key"><span class="tag">重點</span>起司 = <b>限量試劑</b>(先用完、決定產量);吐司 = <b>過量試劑</b>(有剩)。</div>
 </section>
 
+<!-- LAB w6lab1 -->
+<section class="slide">
+  <h2>動手試:誰先用完? <span class="en">Limiting Lab — divide by the coefficient first</span></h2>
+  <div class="lab" id="w6lab1">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 440 344" width="440" height="344" role="img" aria-labelledby="w6lab1-t w6lab1-d">
+        <title id="w6lab1-t">手上的量與「除以係數後夠做幾份」的比較</title>
+        <desc id="w6lab1-d">左半邊是兩種材料手上各有多少,實心部分是會被用掉的、灰色虛線框是剩下的。右半邊是各自除以係數之後夠做幾份,較矮的那一條以綠色標示,它就是先用完的限量試劑。上方寫著目前的配方或反應式。</desc>
+        <text class="eq1" x="220" y="26" font-size="20" font-weight="700" fill="#2c3e50" text-anchor="middle"></text>
+        <g font-size="17" font-weight="700" fill="#1a5276" text-anchor="middle"><text x="115" y="54">① 手上有</text><text x="345" y="54">② ÷ 係數 = 夠做幾份</text></g>
+        <line x1="230" y1="40" x2="230" y2="300" stroke="#d5dbdb" stroke-width="2" stroke-dasharray="6 5"/>
+        <line x1="20" y1="280" x2="440" y2="280" stroke="#2c3e50" stroke-width="2"/>
+        <g class="bars" font-size="16" text-anchor="middle"></g>
+        <text x="20" y="336" font-size="16" fill="#5a6a6b">灰色虛線框 = 反應完剩下的</text>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 有 <b>6 片吐司、4 片起司</b>:起司比較少,所以是起司先用完嗎?<br>② 換成 2Mg + O<sub>2</sub> → 2MgO,O<sub>2</sub> 固定 2.0 mol:Mg 要<b>超過幾 mol</b>,先用完的才換成 O<sub>2</sub>?</div>
+      <div class="labrow noprint"><button type="button" class="lbtn sel" data-m="s">三明治</button><button type="button" class="lbtn" data-m="r">2Mg + O<sub>2</sub> → 2MgO(mol)</button></div>
+      <div class="labrow noprint"><label for="w6lab1-a" id="w6lab1-la" style="min-width:64px">吐司</label><input type="range" id="w6lab1-a" min="0" max="20" step="2" value="10"><b id="w6lab1-av" style="min-width:92px;text-align:right;color:var(--primary)">10 片</b></div>
+      <div class="labrow noprint"><label for="w6lab1-b" id="w6lab1-lb" style="min-width:64px">起司</label><input type="range" id="w6lab1-b" min="0" max="10" step="1" value="3"><b id="w6lab1-bv" style="min-width:92px;text-align:right;color:var(--primary)">3 片</b></div>
+      <div class="labread"><span id="w6lab1-l1">吐司 10 片 ÷ 2 = 5 份　起司 3 片 ÷ 1 = 3 份</span><br><span id="w6lab1-l2">→ 起司先用完:做 3 份,吐司剩 4 片</span></div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① 不是:吐司 6 ÷ 2 = 3 份、起司 4 ÷ 1 = 4 份,<span class="hl">吐司</span>先用完,起司剩 1 片。② 超過 <span class="hl">4.0 mol</span>(= 2.0 × 2);Mg 有 3 mol 時雖比 O<sub>2</sub> 多,仍是 Mg 先用完。<b>比的不是「有幾個」,是「除以係數後夠做幾份」。</b></div>
+    </div>
+  </div>
+</section>
+
 <!-- 15 -->
 <section class="slide">
   <h2>限量試劑與過量試劑 <span class="en">Limiting &amp; Excess Reactants</span></h2>
@@ -549,6 +611,31 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
 <div class="box key"><span class="tag">所以「配方放大」的關鍵在哪</span>化學計量本身<b>是線性的</b>:每一項乘以 20,莫耳比不變。真正出問題的是<b>沒有一起放大的東西</b>——自製配方常用「一茶匙小蘇打 + 一杯優格」,優格的酸度會隨品牌與批次變動,乘以 20 之後誤差也放大 20 倍,很容易讓酸變成<b>限量試劑</b>。</div>
 </section>
 
+<!-- LAB w6lab2 -->
+<section class="slide">
+  <h2>動手試:泡打粉的酸夠不夠? <span class="en">Baking Powder Lab — grams are not moles</span></h2>
+  <div class="lab" id="w6lab2">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 440 370" width="440" height="370" role="img" aria-labelledby="w6lab2-t w6lab2-d">
+        <title id="w6lab2-t">小蘇打與塔塔粉的莫耳數、反應掉的量與剩下的量</title>
+        <desc id="w6lab2-d">兩條直條分別是小蘇打與塔塔粉的莫耳數,刻度相同。因為兩者以 1 比 1 反應,一條橫的虛線標出兩者都反應掉的高度,實心部分是反應掉的,虛線框是剩下的。最下方說明剩下的是哪一個以及會造成什麼結果:小蘇打剩下會受熱變成碳酸鈉而有鹼味、偏黃,塔塔粉剩下則成品偏酸、氣體提早跑光。</desc>
+        <g font-size="16" fill="#2c3e50"><text x="20" y="22">小蘇打 NaHCO₃:84.01 g/mol</text><text x="20" y="44">塔塔粉 KHC₄H₄O₆:188.2 g/mol</text><text x="20" y="66" font-weight="700" fill="#1a5276">兩者反應的莫耳比 = 1 : 1</text></g>
+        <line x1="96" y1="262" x2="420" y2="262" stroke="#2c3e50" stroke-width="2"/>
+        <g class="bars" font-size="16" text-anchor="middle"></g>
+        <g class="res" font-size="18" font-weight="700" text-anchor="middle"><text class="r1" x="220" y="326"></text><text class="r2" x="220" y="354"></text></g>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 小蘇打與塔塔粉<b>各秤 10.0 g</b>,誰會剩下?<br>② 5.0 g 小蘇打配 11.2 g 塔塔粉剛好用完。<b>只把小蘇打加倍</b>,和酸反應掉的小蘇打也會加倍嗎?</div>
+      <div class="labrow noprint"><button type="button" class="lbtn" data-x="s">小蘇打 ×2</button><button type="button" class="lbtn" data-x="t">塔塔粉 ×2</button><button type="button" class="lbtn" data-x="st">兩者都 ×2</button><button type="button" class="lbtn" data-x="0">回到 5.0 g + 11.2 g</button></div>
+      <div class="labrow noprint"><label for="w6lab2-gs" style="min-width:64px">小蘇打</label><input type="range" id="w6lab2-gs" min="0.5" max="15" step="0.1" value="5"><b id="w6lab2-sv" style="min-width:80px;text-align:right;color:var(--primary)">5.0 g</b></div>
+      <div class="labrow noprint"><label for="w6lab2-gt" style="min-width:64px">塔塔粉</label><input type="range" id="w6lab2-gt" min="0.5" max="30" step="0.1" value="11.2"><b id="w6lab2-tv" style="min-width:80px;text-align:right;color:var(--primary)">11.2 g</b></div>
+      <div class="labread"><span id="w6lab2-l1">小蘇打 5.0 g ÷ 84.01 = 0.0595 mol</span><br><span id="w6lab2-l2">塔塔粉 11.2 g ÷ 188.2 = 0.0595 mol</span><br><span id="w6lab2-l3">→ 兩者同時用完</span></div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① 塔塔粉先用完。同樣 10.0 g,小蘇打是 0.1190 mol,塔塔粉只有 0.0531 mol;小蘇打剩 0.0659 mol,受熱變成 Na<sub>2</sub>CO<sub>3</sub> → 鹼味。② 不會。酸沒變,反應掉的仍是 0.0595 mol;多加的那一份<span class="hl">全部剩下</span>。<b>配方要每一項一起放大;只放大一種,多出來的就是過量試劑。</b></div>
+    </div>
+  </div>
+</section>
+
 <!-- 29 -->
 <section class="slide">
   <h2>例題 7:放大後誰是限量試劑 <span class="en">Example 7: Scaling Up</span></h2>
@@ -715,6 +802,154 @@ addEventListener('touchend',e=>{
 });
 fit();
 show(parseInt(location.hash.slice(1))-1||0);
+</script>
+<script id="lab-js">
+(function(){
+/* 共用工具(每支 deck 相同,不要改) */
+  const NS='http://www.w3.org/2000/svg',$=id=>document.getElementById(id);
+  const el=(n,a,p)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;};
+  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let seed=7;const rnd=()=>(seed=seed*16807%2147483647)/2147483647;
+  function tw(ms,fn,done){
+    if(still||ms<=0){fn(1);if(done)done();return;}
+    let t0=null;
+    requestAnimationFrame(function f(t){
+      if(t0===null)t0=t;
+      const k=Math.min(1,(t-t0)/ms),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+      fn(e);if(k<1)requestAnimationFrame(f);else if(done)done();
+    });
+  }
+  // 控制項上的點擊、觸控、方向鍵不可觸發翻頁
+  document.querySelectorAll('.lab').forEach(l=>{
+    ['click','touchstart','touchend'].forEach(t=>l.addEventListener(t,e=>{if(e.target.closest('button,input,label'))e.stopPropagation();}));
+    l.addEventListener('keydown',e=>{if(e.target.matches('input'))e.stopPropagation();});
+    l.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>b.blur()));
+    l.querySelectorAll('input[type=range]').forEach(r=>r.addEventListener('pointerup',()=>r.blur()));
+  });
+/* w6lab1 */
+(function(){
+  const root=$('w6lab1');if(!root)return;
+  const sa=$('w6lab1-a'),sb=$('w6lab1-b'),g=root.querySelector('.bars'),eq=root.querySelector('.eq1');
+  /* 係數一律 2 : 1(配方 2 吐司 + 1 起司;反應 2Mg + O₂ → 2MgO),兩種模式共用同一張圖 */
+  const MODE={
+    s:{eq:'2 吐司 + 1 起司 → 1 份三明治',A:'吐司',B:'起司',sa:2,sb:1,
+       f:x=>String(x),u:' 片',k:' 份',ca:'#8a6d00',cb:'#a04c08',tick:true},
+    r:{eq:'2Mg + O₂ → 2MgO(單位:mol)',A:'Mg',B:'O₂',sa:1,sb:0.5,
+       f:x=>x.toFixed(1),u:' mol',k:'',ca:'#1a5276',cb:'#a04c08',tick:false}
+  };
+  let m='s';
+  const BASE=280,SC=10,W=64;
+  const bar=(cx,y0,h)=>'M'+(cx-W/2)+','+y0+'h'+W+'v'+(-h)+'h'+(-W)+'Z';
+  function render(){
+    const M=MODE[m],a=+sa.value,b=+sb.value,ka=a/2,kb=b,k=Math.min(ka,kb);
+    const lim=Math.abs(ka-kb)<1e-9?'=':ka<kb?'A':'B';
+    const ua=2*k,ub=k,la=a-ua,lb=b-ub;
+    eq.textContent=M.eq;
+    $('w6lab1-la').textContent=M.A;$('w6lab1-lb').textContent=M.B;
+    $('w6lab1-av').textContent=M.f(a)+M.u;$('w6lab1-bv').textContent=M.f(b)+M.u;
+    /* 圖 */
+    g.innerHTML='';
+    [[70,a,ua,M.ca,M.A],[160,b,ub,M.cb,M.B]].forEach(([cx,tot,used,c,nm])=>{
+      if(used>0)el('path',{d:bar(cx,BASE,used*SC),fill:c},g);
+      if(tot-used>0)el('path',{d:bar(cx,BASE-used*SC,(tot-used)*SC),fill:'#f4f6f7',stroke:'#5a6a6b','stroke-width':2,'stroke-dasharray':'5 4'},g);
+      if(M.tick&&tot>1){let d='';for(let i=1;i<tot;i++)d+='M'+(cx-W/2+3)+','+(BASE-i*SC)+'h'+(W-6);el('path',{d:d,stroke:'#ffffff','stroke-width':1.5},g);}
+      el('text',{x:cx,y:BASE-tot*SC-7,fill:'#2c3e50','font-weight':700},g).textContent=M.f(tot);
+      el('text',{x:cx,y:BASE+22,fill:'#2c3e50'},g).textContent=nm;
+    });
+    [[300,ka,'A',M.A],[390,kb,'B',M.B]].forEach(([cx,v,key,nm])=>{
+      const first=lim==='='||lim===key,c=first?'#117a65':'#5a6a6b';
+      if(v>0)el('path',{d:bar(cx,BASE,v*SC),fill:c},g);
+      el('text',{x:cx,y:BASE-v*SC-7,fill:c,'font-weight':700},g).textContent=m==='s'?M.f(v)+' 份':M.f(v);
+      el('text',{x:cx,y:BASE+22,fill:'#2c3e50'},g).textContent=nm+(key==='A'?' ÷ 2':' ÷ 1');
+      if(first&&(a>0||b>0))el('text',{x:cx,y:BASE+44,fill:'#117a65','font-weight':700},g).textContent='先用完';
+    });
+    /* 讀數 */
+    $('w6lab1-l1').textContent=M.A+' '+M.f(a)+M.u+' ÷ 2 = '+M.f(ka)+M.k+'　'+M.B+' '+M.f(b)+M.u+' ÷ 1 = '+M.f(kb)+M.k;
+    const out=m==='s'?'做 '+k+' 份':'生成 MgO '+M.f(2*k)+' mol';
+    let h;
+    if(a===0&&b===0)h='→ <span class="hl M">還沒有材料</span>';
+    else if(lim==='=')h='→ <span class="hl M">兩者同時用完</span>:'+out+',都沒剩';
+    else{
+      const A=lim==='A'?M.A:M.B,O=lim==='A'?M.B:M.A,left=lim==='A'?lb:la,sp=m==='s'?'':' ';
+      h='→ <span class="hl M">'+(k===0?'沒有'+sp+A:A+sp+'先用完')+'</span>:'+out+','+O+sp+'剩 '+M.f(left)+M.u;
+    }
+    $('w6lab1-l2').innerHTML=h;
+  }
+  sa.addEventListener('input',render);sb.addEventListener('input',render);
+  root.querySelectorAll('[data-m]').forEach(btn=>btn.addEventListener('click',()=>{
+    const nm=btn.dataset.m;if(nm===m)return;
+    const a=+sa.value,b=+sb.value;m=nm;
+    root.querySelectorAll('[data-m]').forEach(o=>o.classList.toggle('sel',o===btn));
+    sa.step=MODE[m].sa;sb.step=MODE[m].sb;
+    if(m==='s'){sa.value=2*Math.floor(a/2);sb.value=Math.floor(b);}else{sa.value=a;sb.value=b;}
+    render();
+  }));
+  render();
+})();
+/* w6lab2 */
+(function(){
+  const root=$('w6lab2');if(!root)return;
+  const MS=84.01,MT=188.2,BASE=262,SC=900,W=90,XS=180,XT=320;
+  const ss=$('w6lab2-gs'),st=$('w6lab2-gt'),g=root.querySelector('.bars'),r1=root.querySelector('.r1'),r2=root.querySelector('.r2');
+  const f4=u=>(u/1e4).toFixed(4);
+  const bar=(cx,y0,h)=>'M'+(cx-W/2)+','+y0+'h'+W+'v'+(-h)+'h'+(-W)+'Z';
+  let shown=null;
+  /* 莫耳數先捨入到顯示的 4 位小數(單位 1e-4 mol),判定與剩餘量都由顯示值算,讀數才會自洽 */
+  function state(){
+    const s=+ss.value,t=+st.value,S=Math.round(s/MS*1e4),T=Math.round(t/MT*1e4);
+    return {s,t,S,T,R:Math.min(S,T),L:Math.abs(S-T)};
+  }
+  function draw(S,T,R,Z){
+    g.innerHTML='';
+    [[XS,S,'#1a5276','小蘇打'],[XT,T,'#8a6d00','塔塔粉']].forEach(([cx,n,c,nm])=>{
+      const used=Math.min(n,R);
+      if(used>0)el('path',{d:bar(cx,BASE,used/1e4*SC),fill:c},g);
+      if(n-used>0)el('path',{d:bar(cx,BASE-used/1e4*SC,(n-used)/1e4*SC),fill:'#f4f6f7',stroke:c,'stroke-width':2.5,'stroke-dasharray':'6 4'},g);
+      el('text',{x:cx,y:BASE-n/1e4*SC-8,fill:c,'font-weight':700},g).textContent=f4(Z[cx===XS?0:1])+' mol';
+      el('text',{x:cx,y:BASE+22,fill:'#2c3e50'},g).textContent=nm;
+    });
+    const y=BASE-R/1e4*SC;
+    el('path',{d:'M118,'+y+'H382',stroke:'#2c3e50','stroke-width':2,'stroke-dasharray':'7 5',fill:'none'},g);
+    el('text',{x:112,y:y+6,fill:'#2c3e50','text-anchor':'end'},g).textContent='反應掉';
+  }
+  function render(anim){
+    const o=state();
+    $('w6lab2-sv').textContent=o.s.toFixed(1)+' g';$('w6lab2-tv').textContent=o.t.toFixed(1)+' g';
+    $('w6lab2-l1').textContent='小蘇打 '+o.s.toFixed(1)+' g ÷ '+MS+' = '+f4(o.S)+' mol';
+    $('w6lab2-l2').textContent='塔塔粉 '+o.t.toFixed(1)+' g ÷ '+MT+' = '+f4(o.T)+' mol';
+    let who,c;
+    if(o.S===o.T){
+      who='兩者同時用完';c='#117a65';
+      r1.textContent='兩者同時用完';r2.textContent='按莫耳比配好:沒有剩下的';
+    }else if(o.S>o.T){
+      who='塔塔粉先用完';c='#c0392b';
+      r1.textContent='小蘇打剩 '+f4(o.L)+' mol('+(o.L/1e4*MS).toFixed(2)+' g)';
+      r2.textContent='受熱變成 Na₂CO₃ '+f4(Math.round(o.L/2))+' mol → 鹼味、偏黃';
+    }else{
+      who='小蘇打先用完';c='#a04c08';
+      r1.textContent='塔塔粉剩 '+f4(o.L)+' mol('+(o.L/1e4*MT).toFixed(2)+' g)';
+      r2.textContent='→ 成品偏酸、氣體提早跑光';
+    }
+    r1.setAttribute('fill',c);r2.setAttribute('fill',c);
+    $('w6lab2-l3').innerHTML='→ <span class="hl M">'+who+'</span>,反應掉 '+f4(o.R)+' mol';
+    root.querySelector('[data-x="s"]').disabled=o.s*2>15.001;
+    root.querySelector('[data-x="t"]').disabled=o.t*2>30.001;
+    root.querySelector('[data-x="st"]').disabled=o.s*2>15.001||o.t*2>30.001;
+    const Z=[o.S,o.T],from=shown;shown=o;
+    if(anim&&from)tw(450,k=>{const L=(a,b)=>a+(b-a)*k;draw(L(from.S,o.S),L(from.T,o.T),L(from.R,o.R),Z);});
+    else draw(o.S,o.T,o.R,Z);
+  }
+  ss.addEventListener('input',()=>render(false));st.addEventListener('input',()=>render(false));
+  root.querySelectorAll('[data-x]').forEach(b=>b.addEventListener('click',()=>{
+    const x=b.dataset.x;
+    if(x==='0'){ss.value=5;st.value=11.2;}
+    if(x.includes('s'))ss.value=(+ss.value*2).toFixed(1);
+    if(x.includes('t'))st.value=(+st.value*2).toFixed(1);
+    render(true);
+  }));
+  render(false);
+})();
+})();
 </script>
 <script id="mobile-js">
 (function(){

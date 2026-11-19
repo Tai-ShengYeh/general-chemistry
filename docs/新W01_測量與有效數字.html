@@ -151,6 +151,41 @@ tr:nth-child(even) td{background:#f4f6f7}
   #bar{display:none}
 }
 </style>
+<style id="lab-css">
+/* ── 互動實驗台(先預測、再動手)──────────────────────── */
+.lab{display:flex;gap:30px;align-items:flex-start}
+.labfig{flex:0 0 auto}
+.labfig .fig{margin:0 auto}
+.labside{flex:1;min-width:0}
+.labside .box{margin:0 0 8px;font-size:21px;line-height:1.45;padding:9px 18px}
+.labside .eq{margin:6px 0;font-size:26px}
+.labctl{display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:center;font-size:20px;margin:6px 0}
+.labctl input[type=range]{width:100%;height:28px;accent-color:var(--primary);cursor:pointer}
+.labctl output{font-weight:700;color:var(--primary);min-width:96px;text-align:right}
+.labread{font-size:21px;line-height:1.5;background:#f4f6f7;border-radius:8px;padding:7px 16px;margin:6px 0}
+.labread .M{font-size:27px}
+.lbtn{font-family:inherit;font-size:19px;font-weight:700;padding:6px 16px;border-radius:8px;border:2px solid var(--primary);background:#fff;color:var(--primary);cursor:pointer;margin:2px 8px 2px 0}
+.lbtn:hover{background:var(--def-bg)}
+.lbtn:disabled{color:var(--muted);border-color:#aab7b8;background:#f4f6f7;cursor:default}
+.lbtn.bad{border-color:#c0392b;color:#c0392b}
+.labmsg{font-size:20px;line-height:1.42;min-height:86px;margin:6px 0;padding:7px 16px;border-radius:8px;background:#f4f6f7}
+.labmsg.bad{background:var(--warn-bg);color:#922b21}
+.slide ol.steps{font-size:21px;line-height:1.4;margin:0 0 6px 30px}
+.steps li{margin:4px 0;color:var(--muted)}
+.steps li.on{color:var(--ink)}
+.steps li.now{color:var(--primary);font-weight:700}
+.lab.labcol{display:block}
+.lbtn.sel{background:var(--primary);color:#fff}
+.labrow{display:flex;gap:10px;align-items:center;font-size:20px;margin:4px 0}
+.labrow input[type=range]{flex:1;min-width:120px;height:28px;accent-color:var(--primary);cursor:pointer}
+.labrow .lbtn{margin:0;font-size:17px;padding:5px 11px;white-space:nowrap}
+body.scroll .labrow{flex-wrap:wrap}
+body.scroll .lab{flex-direction:column;align-items:stretch;gap:12px}
+/* 閱讀模式:圖釘在上方,按按鈕時動畫才看得到 */
+body.scroll .labfig{position:sticky;top:50px;z-index:2;background:var(--card);border-bottom:1px solid #d5dbdb}
+body.scroll .labfig svg.fig{max-height:36vh;width:auto;min-width:0!important}
+@media print{.steps li{color:var(--ink)!important;font-weight:400!important}.noprint{display:none!important}}
+</style>
 <style id="mobile-css">
 /* ── 行動裝置閱讀模式（body.scroll）與工具列 ─────────────── */
 #mtb{position:fixed;top:8px;right:8px;z-index:20;display:flex;gap:6px;align-items:center}
@@ -321,6 +356,48 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
     <div class="fbox" style="flex:1"><b>氣體</b><br>●&nbsp;&nbsp;&nbsp;&nbsp;●<br>&nbsp;&nbsp;●<br><span class="small">粒子相距甚遠<br>高速隨機運動</span></div>
   </div>
   <div class="box key" style="margin-top:24px"><span class="tag">重點</span>三態的差別在於<span class="hl">粒子間距離與運動自由度</span>,而非粒子本身改變。冰、水、水蒸氣都是 H<sub>2</sub>O 分子。</div>
+</section>
+
+<!-- LAB w1lab1 -->
+<section class="slide">
+  <h2>動手試:把冰一路加熱 <span class="en">Heating Lab — the particles move apart, they do not change</span></h2>
+  <div class="lab" id="w1lab1">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 460 380" width="460" height="380" role="img" aria-labelledby="w1lab1-t w1lab1-d">
+        <title id="w1lab1-t">冰、液態水、水蒸氣的粒子示意圖</title>
+        <desc id="w1lab1-d">左邊方框是 16 個水分子的示意圖,每個分子畫成一個紅色的 O 接兩個白色的 H。隨著加熱,分子從整齊緊密的排列(冰),變成緊密但無序(液態水),沸騰時液體中出現氣泡,最後全部分散到整個方框裡(水蒸氣)。右邊是放大的一個分子。下方的溫度軸只標出 0 °C 與 100 °C。</desc>
+        <text class="stt" x="160" y="26" font-size="19" font-weight="700" fill="#1a5276" text-anchor="middle"></text>
+        <path d="M48,40 V300 H272 V40" fill="none" stroke="#5a6a6b" stroke-width="2.5"/>
+        <circle class="bub" cx="214" cy="250" r="21" fill="#ffffff" stroke="#1a5276" stroke-width="2" stroke-dasharray="4 3" opacity="0"/>
+        <g class="mols"></g>
+        <text x="160" y="320" font-size="16" fill="#5a6a6b" text-anchor="middle">粒子示意圖(16 個分子)</text>
+        <path d="M296,40 H450 V250 H296 Z" fill="#f4f6f7" stroke="#d5dbdb" stroke-width="2"/>
+        <text x="373" y="64" font-size="16" fill="#2c3e50" text-anchor="middle">放大一個分子</text>
+        <g transform="translate(373,138)">
+          <circle cx="-26" cy="20" r="14" fill="#ffffff" stroke="#5a6a6b" stroke-width="2"/>
+          <circle cx="26" cy="20" r="14" fill="#ffffff" stroke="#5a6a6b" stroke-width="2"/>
+          <circle cx="0" cy="0" r="22" fill="#c0392b"/>
+          <text x="0" y="7" font-size="20" font-weight="700" fill="#ffffff" text-anchor="middle">O</text>
+          <text x="-26" y="26" font-size="17" font-weight="700" fill="#2c3e50" text-anchor="middle">H</text>
+          <text x="26" y="26" font-size="17" font-weight="700" fill="#2c3e50" text-anchor="middle">H</text>
+        </g>
+        <text x="373" y="208" font-size="20" font-weight="700" fill="#2c3e50" text-anchor="middle">H₂O</text>
+        <text class="hint" x="373" y="236" font-size="16" fill="#a04c08" text-anchor="middle" opacity="0">= 橘色圈的那一個</text>
+        <line x1="30" y1="350" x2="440" y2="350" stroke="#2c3e50" stroke-width="2"/>
+        <g stroke="#2c3e50" stroke-width="2"><line x1="150" y1="344" x2="150" y2="356"/><line x1="320" y1="344" x2="320" y2="356"/></g>
+        <g font-size="16" fill="#2c3e50" text-anchor="middle"><text x="150" y="374">0 °C</text><text x="320" y="374">100 °C</text></g>
+        <text x="440" y="374" font-size="16" fill="#5a6a6b" text-anchor="end">加熱 →</text>
+        <path class="ptr" d="M-8,330 L8,330 L0,343 Z" fill="#a04c08"/>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 一直加熱到全部變成氣體:粒子會不會變成別的東西(例如 H<sub>2</sub> 和 O<sub>2</sub>)?每個分子會不會變大?<br>② 熔化(冰 → 水)和沸騰(水 → 水蒸氣),<b>哪一步</b>讓分子之間的距離拉開最多?</div>
+      <div class="labrow noprint"><label for="w1lab1-s" style="min-width:48px">加熱</label><input type="range" id="w1lab1-s" min="0" max="4" step="1" value="0"><b id="w1lab1-sv" style="min-width:120px;text-align:right;color:var(--primary)">低於 0 °C</b></div>
+      <div class="labrow noprint"><button type="button" class="lbtn" data-h="1">標出一個分子</button></div>
+      <div class="labread"><span id="w1lab1-l1">間距:緊密、規則排列;運動:僅能原地振動</span><br><span id="w1lab1-l2">圖中:16 個 H<sub>2</sub>O 分子</span></div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① 都不會。從冰到水蒸氣,圖裡始終是同樣 16 個完整的 H<sub>2</sub>O,大小也不變;沸騰時跑出去的仍是 H<sub>2</sub>O,要拆成 H<sub>2</sub> 和 O<sub>2</sub> 得靠化學變化(電解)。② <span class="hl">沸騰</span>。冰和液態水的粒子都緊密,只差規不規則;變成氣體時,間距才大幅拉開。<b>三態改變的是粒子間的距離與運動,不是粒子本身。</b></div>
+    </div>
+  </div>
 </section>
 
 <!-- 10 -->
@@ -619,6 +696,34 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <p style="font-size:15.5px;color:#5d6d6e;line-height:1.32;margin:4px 0 0">現代方法仍以密度為效標 — <b>DXA</b>(dual-energy X-ray absorptiometry,雙能量 X 光吸收儀):骨、瘦體組織、脂肪吸收 X 光的程度不同,可分別定量;<b>BIA</b>(bioelectrical impedance analysis,生物電阻抗分析):電流走含水的瘦體組織、脂肪幾乎不導電,家用體脂計即此原理。文獻:Siri, W. E. (1961). In Brožek &amp; Henschel (Eds.), <i>Techniques for Measuring Body Composition</i>, 223–244. NAS–NRC.</p>
 </section>
 
+<!-- LAB w1lab2 -->
+<section class="slide">
+  <h2>動手試:丟進水裡,誰會沉? <span class="en">Density Lab — heavy is not the same as dense</span></h2>
+  <div class="lab" id="w1lab2">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 460 380" width="460" height="380" role="img" aria-labelledby="w1lab2-t w1lab2-d">
+        <title id="w1lab2-t">兩個物體放進水中的浮沉(示意)</title>
+        <desc id="w1lab2-d">一個水槽裡放著物體 A(左)與物體 B(右),方塊大小依體積縮放。密度大於水的 1.00 g/cm³ 者沉到槽底,小於水者浮在水面。下方標出每個物體的材料、體積、質量,以及浮或沉。</desc>
+        <text x="230" y="26" font-size="18" font-weight="700" fill="#2c3e50" text-anchor="middle">水的密度 1.00 g/cm³(示意)</text>
+        <path d="M20,90 H440 V300 H20 Z" fill="#1a5276" fill-opacity=".12"/>
+        <line x1="20" y1="90" x2="440" y2="90" stroke="#1a5276" stroke-width="2.5"/>
+        <path d="M20,48 V300 H440 V48" fill="none" stroke="#5a6a6b" stroke-width="2.5"/>
+        <line x1="230" y1="100" x2="230" y2="296" stroke="#d5dbdb" stroke-width="2" stroke-dasharray="6 5"/>
+        <g class="objs"></g>
+        <g class="labs" font-size="17" text-anchor="middle"></g>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 1000 cm<sup>3</sup> 的脂肪(9.0 × 10<sup>2</sup> g)比 1 cm<sup>3</sup> 的鐵(7.87 g)重一百多倍。丟進水裡,<b>哪一個會沉</b>?<br>② 1 cm<sup>3</sup> 的金和 100 cm<sup>3</sup> 的鋁:哪一個<b>比較重</b>?哪一個<b>密度比較大</b>?</div>
+      <div class="labrow noprint"><span style="min-width:22px;font-weight:700">A</span><button type="button" class="lbtn" data-o="a" data-k="fat">脂肪</button><button type="button" class="lbtn" data-o="a" data-k="al">鋁</button><button type="button" class="lbtn sel" data-o="a" data-k="fe">鐵</button><button type="button" class="lbtn" data-o="a" data-k="au">金</button><label for="w1lab2-va">體積</label><input type="range" id="w1lab2-va" min="0" max="3" step="1" value="1"><b id="w1lab2-ta" style="min-width:96px;text-align:right;color:var(--primary)">10 cm³</b></div>
+      <div class="labrow noprint"><span style="min-width:22px;font-weight:700">B</span><button type="button" class="lbtn" data-o="b" data-k="fat">脂肪</button><button type="button" class="lbtn" data-o="b" data-k="al">鋁</button><button type="button" class="lbtn" data-o="b" data-k="fe">鐵</button><button type="button" class="lbtn sel" data-o="b" data-k="au">金</button><label for="w1lab2-vb">體積</label><input type="range" id="w1lab2-vb" min="0" max="3" step="1" value="1"><b id="w1lab2-tb" style="min-width:96px;text-align:right;color:var(--primary)">10 cm³</b></div>
+      <div class="labread"><span id="w1lab2-l1">A 鐵:78.7 g ÷ 10 cm³ = 7.87 g/cm³ → 沉</span><br><span id="w1lab2-l2">B 金:193 g ÷ 10 cm³ = 19.3 g/cm³ → 沉</span></div>
+      <div class="small">體積是切好的定值,視為精確數(不限制位數);脂肪約 0.90 g/cm³。</div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① <span class="hl">鐵沉、脂肪浮</span>。脂肪重得多,但密度約 0.90 仍小於水的 1.00;鐵 7.87 大於 1.00,再小一塊也沉。② 鋁比較重(2.70 × 10<sup>2</sup> g,約是金的 14 倍),但<span class="hl">金的密度大</span>(19.3 對 2.70)。<b>浮或沉、能不能用來鑑定物質,看的是 m/V,不是有多重、有多大。</b></div>
+    </div>
+  </div>
+</section>
+
 <!-- 29 -->
 <section class="slide">
   <h2>溫度尺度 <span class="en">Temperature Scales</span></h2>
@@ -774,6 +879,43 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
     <li>4 位 × 2 位 → 結果取 2 位</li>
     <li>精確數(如換算定義 1 m = 100 cm)不參與位數限制</li>
   </ul>
+</section>
+
+<!-- LAB w1lab3 -->
+<section class="slide">
+  <h2>動手試:換一台更好的天平 <span class="en">Balance Lab — the weakest measurement sets the digits</span></h2>
+  <div class="lab" id="w1lab3">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 440 352" width="440" height="352" role="img" aria-labelledby="w1lab3-t w1lab3-d">
+        <title id="w1lab3-t">同一塊金屬在不同天平上的讀數,以及算出密度時的有效位數</title>
+        <desc id="w1lab3-d">左邊是電子天平,秤盤上放著例題 2 的金屬塊,螢幕顯示讀數,最後一位以橘色標示為不確定的那一位。右邊是量筒,排水法讀到 25.0 mL 與 32.3 mL,體積為 7.3 mL。下方用圓點表示質量、體積與密度各有幾位有效數字:密度的位數等於兩者中較少的那一個。</desc>
+        <text x="130" y="24" font-size="17" font-weight="700" fill="#1a5276" text-anchor="middle">例題 2 的金屬塊(示意)</text>
+        <path d="M108,62 h44 v34 h-44 Z" fill="#5a6a6b"/>
+        <path d="M60,96 h140 l-8,10 h-124 Z" fill="#d5dbdb" stroke="#5a6a6b" stroke-width="2"/>
+        <line x1="130" y1="106" x2="130" y2="124" stroke="#5a6a6b" stroke-width="6"/>
+        <path d="M24,124 h212 l10,96 h-232 Z" fill="#f4f6f7" stroke="#2c3e50" stroke-width="2.5"/>
+        <path d="M44,138 h172 v48 h-172 Z" fill="#ffffff" stroke="#2c3e50" stroke-width="2"/>
+        <text class="disp" x="130" y="173" font-size="30" font-weight="700" fill="#1a5276" text-anchor="middle" font-family="Consolas, 'Courier New', monospace"></text>
+        <text class="cap" x="130" y="208" font-size="17" fill="#2c3e50" text-anchor="middle"></text>
+        <path d="M300,40 v186 a12,12 0 0 0 12,12 h28 a12,12 0 0 0 12,-12 v-186" fill="none" stroke="#2c3e50" stroke-width="2.5"/>
+        <path d="M302,92 h48 v134 a10,10 0 0 1 -10,10 h-28 a10,10 0 0 1 -10,-10 Z" fill="#1a5276" fill-opacity=".14"/>
+        <path d="M309,196 h34 v38 h-34 Z" fill="#5a6a6b"/>
+        <g stroke="#1a5276" stroke-width="2.5"><line x1="300" y1="92" x2="352" y2="92"/><line x1="300" y1="122" x2="352" y2="122" stroke-dasharray="5 4"/></g>
+        <g font-size="16" fill="#2c3e50"><text x="358" y="98">32.3 mL</text><text x="358" y="128">25.0 mL</text><text x="358" y="150" fill="#5a6a6b">(放入前)</text></g>
+        <text x="326" y="264" font-size="17" font-weight="700" fill="#2c3e50" text-anchor="middle">V = 32.3 − 25.0 = 7.3 mL</text>
+        <g font-size="17" font-weight="700" fill="#2c3e50"><text x="20" y="298">質量 m</text><text x="190" y="298">體積 V</text><text x="306" y="298">密度 d</text></g>
+        <g class="dots"></g>
+        <text x="20" y="346" font-size="16" fill="#5a6a6b"><tspan fill="#1a5276">●</tspan> = 一位有效數字　<tspan fill="#a04c08">橘色 = 最後一位(不確定)</tspan></text>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>例題 2:金屬 57.3 g ÷ 7.3 mL = 7.8 g/mL。<br>① 同一塊金屬改放到<b>可讀到 0.001 g</b> 的天平,讀數有幾位有效數字?<br>② 算出來的密度,可以從 7.8 g/mL <b>多寫幾位</b>嗎?</div>
+      <div class="labrow noprint"><span>天平可讀到</span><button type="button" class="lbtn sel" data-r="1">0.1 g</button><button type="button" class="lbtn" data-r="2">0.01 g</button><button type="button" class="lbtn" data-r="3">0.001 g</button></div>
+      <div class="labread"><span id="w1lab3-l1">m = 57.3 g(3 位)　V = 7.3 mL(2 位)</span><br><span id="w1lab3-l2">57.3 ÷ 7.3 = 7.849315… → 取 2 位 → 7.8 g/mL</span></div>
+      <div class="small">讀數為示意;天平顯示幾位,就記錄到那一位,最後一位是不確定的。</div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① <span class="hl">5 位</span>(57.284 g)。天平越好,質量的位數越多。② 不行,還是 <span class="hl">7.8 g/mL</span>。乘除取有效位數最少者,體積 7.3 mL 只有 2 位,天平再好也補不回體積沒量到的那一位。<b>結果能寫到幾位,由位數最少的那個測量決定;想多一位,要改善的是那一環。</b></div>
+    </div>
+  </div>
 </section>
 
 <!-- 38 -->
@@ -1136,6 +1278,184 @@ addEventListener('touchend',e=>{
 });
 fit();
 show(parseInt(location.hash.slice(1))-1||0);
+</script>
+<script id="lab-js">
+(function(){
+/* 共用工具(每支 deck 相同,不要改) */
+  const NS='http://www.w3.org/2000/svg',$=id=>document.getElementById(id);
+  const el=(n,a,p)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;};
+  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let seed=7;const rnd=()=>(seed=seed*16807%2147483647)/2147483647;
+  function tw(ms,fn,done){
+    if(still||ms<=0){fn(1);if(done)done();return;}
+    let t0=null;
+    requestAnimationFrame(function f(t){
+      if(t0===null)t0=t;
+      const k=Math.min(1,(t-t0)/ms),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+      fn(e);if(k<1)requestAnimationFrame(f);else if(done)done();
+    });
+  }
+  // 控制項上的點擊、觸控、方向鍵不可觸發翻頁
+  document.querySelectorAll('.lab').forEach(l=>{
+    ['click','touchstart','touchend'].forEach(t=>l.addEventListener(t,e=>{if(e.target.closest('button,input,label'))e.stopPropagation();}));
+    l.addEventListener('keydown',e=>{if(e.target.matches('input'))e.stopPropagation();});
+    l.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>b.blur()));
+    l.querySelectorAll('input[type=range]').forEach(r=>r.addEventListener('pointerup',()=>r.blur()));
+  });
+/* w1lab1 */
+(function(){
+  const root=$('w1lab1');if(!root)return;
+  const s=$('w1lab1-s'),g=root.querySelector('.mols'),bub=root.querySelector('.bub'),stt=root.querySelector('.stt'),
+        ptr=root.querySelector('.ptr'),hint=root.querySelector('.hint'),hb=root.querySelector('[data-h]');
+  /* 分子:O 在原點,兩個 H 在下方 ±52°(H–O–H 約 104.5°)。旋轉後半徑 ≤ 14 px,所有位置都留在框內 48–272 × 40–300 */
+  const N=16,ang=()=>Math.round((rnd()*2-1)*180);
+  const SOLID=[],LIQ=[],MELT=[],BOIL=[],GAS=[];
+  for(let r=0;r<4;r++)for(let c=0;c<4;c++)SOLID.push([121+26*c,286-26*r,0]);
+  for(let r=0;r<2;r++)for(let j=0;j<8;j++)LIQ.push([64+27.5*j+(rnd()*3-1.5),(r?257:284)-rnd()*2.5,ang()]);
+  [76,102].forEach(x=>[286,260,234,208].forEach(y=>MELT.push([x,y,0])));
+  [136,164,192,220,248].forEach(x=>MELT.push([x+(rnd()*3-1.5),284-rnd()*2.5,ang()]));
+  [150,178,206].forEach(x=>MELT.push([x+(rnd()*3-1.5),257-rnd()*2.5,ang()]));
+  BOIL.push([214,250,ang()]);                                   /* 氣泡裡那一個(稍後換到 HI 號) */
+  [[90,150],[168,108],[238,168]].forEach(([x,y])=>BOIL.push([x,y,ang()]));
+  for(let j=0;j<8;j++)BOIL.push([64+27.5*j+(rnd()*3-1.5),284-rnd()*2.5,ang()]);
+  [64,91.5,119,146.5].forEach(x=>BOIL.push([x+(rnd()*3-1.5),257-rnd()*2.5,ang()]));
+  [66,138,210,276].forEach((y,r)=>[80,135,190,245].forEach(x=>GAS.push([x+(rnd()*20-10),y+(rnd()*16-8)*(r===3?.5:1),ang()])));
+  /* 被標示的是 9 號:各狀態都不貼牆、不貼底(圈半徑 16),沸騰時就是氣泡裡那一個 */
+  const HI=9,sw=(A,i,j)=>{const t=A[i];A[i]=A[j];A[j]=t;};
+  sw(BOIL,0,HI);sw(MELT,2,HI);
+  const LAY=[SOLID,MELT,LIQ,BOIL,GAS];
+  const ST=[
+    {t:'冰(固體)',v:'低於 0 °C',l1:'間距:緊密、規則排列;運動:僅能原地振動',l2:'圖中:16 個 H₂O 分子'},
+    {t:'0 °C:冰正在熔化',v:'0 °C',l1:'規則的冰周圍,出現可流動的液體',l2:'圖中:16 個 H₂O 分子(固體 8、液體 8)'},
+    {t:'液態水',v:'0–100 °C 之間',l1:'間距:緊密但無序;運動:可滑動、流動',l2:'圖中:16 個 H₂O 分子'},
+    {t:'100 °C:沸騰',v:'100 °C',l1:'液體內部生成氣泡,分子離開成為氣體',l2:'圖中:16 個 H₂O 分子(液體 12、氣體 4)'},
+    {t:'水蒸氣(氣體)',v:'高於 100 °C',l1:'間距:相距甚遠;運動:高速隨機運動',l2:'圖中:16 個 H₂O 分子,全部是氣體'}];
+  const PX=[70,150,235,320,400];
+  const mols=[];
+  for(let i=0;i<N;i++){
+    const m=el('g',{},g);
+    el('circle',{cx:-7.5,cy:5.9,r:4.5,fill:'#ffffff',stroke:'#5a6a6b','stroke-width':1.5},m);
+    el('circle',{cx:7.5,cy:5.9,r:4.5,fill:'#ffffff',stroke:'#5a6a6b','stroke-width':1.5},m);
+    el('circle',{cx:0,cy:0,r:7,fill:'#c0392b'},m);
+    const ring=i===HI?el('circle',{cx:0,cy:2,r:16,fill:'none',stroke:'#a04c08','stroke-width':3,opacity:0},m):null;
+    mols.push({g:m,ring});
+  }
+  let cur=SOLID.map(p=>p.slice()),stage=0,mark=false;
+  function place(P){mols.forEach((o,i)=>o.g.setAttribute('transform','translate('+P[i][0].toFixed(1)+','+P[i][1].toFixed(1)+') rotate('+P[i][2].toFixed(0)+')'));}
+  function render(anim){
+    const k=+s.value,S=ST[k],to=LAY[k],from=cur.map(p=>p.slice());
+    stt.textContent=S.t;$('w1lab1-sv').textContent=S.v;
+    $('w1lab1-l1').textContent=S.l1;$('w1lab1-l2').textContent=S.l2;
+    ptr.setAttribute('transform','translate('+PX[k]+',0)');
+    bub.setAttribute('opacity',k===3?1:0);
+    const go=f=>{cur=from.map((p,i)=>[p[0]+(to[i][0]-p[0])*f,p[1]+(to[i][1]-p[1])*f,p[2]+(to[i][2]-p[2])*f]);place(cur);};
+    if(anim&&k!==stage)tw(250,go);else go(1);
+    stage=k;
+  }
+  function setMark(){
+    mols[HI].ring.setAttribute('opacity',mark?1:0);hint.setAttribute('opacity',mark?1:0);
+    hb.classList.toggle('sel',mark);hb.textContent=mark?'取消標示':'標出一個分子';
+  }
+  s.addEventListener('input',()=>render(true));
+  hb.addEventListener('click',()=>{mark=!mark;setMark();});
+  render(false);setMark();
+})();
+/* w1lab2 */
+(function(){
+  const root=$('w1lab2');if(!root)return;
+  /* 密度只用本週投影片:密度表(鋁 2.70、鐵 7.87、金 19.3、水 1.00)與體脂肪頁(脂肪約 0.90) */
+  const MAT={fat:{n:'脂肪',d:0.90,sf:2,ds:'0.90',c:'#f4f6f7',st:'#8a6d00'},
+             al:{n:'鋁',d:2.70,sf:3,ds:'2.70',c:'#d5dbdb',st:'#5a6a6b'},
+             fe:{n:'鐵',d:7.87,sf:3,ds:'7.87',c:'#2c3e50',st:'#2c3e50'},
+             au:{n:'金',d:19.3,sf:3,ds:'19.3',c:'#a04c08',st:'#922b21'}};
+  const VOL=[1,10,100,1000],SUP='⁰¹²³⁴⁵',WATER=90,FLOOR=300;
+  const objs=root.querySelector('.objs'),labs=root.querySelector('.labs');
+  const st={a:{k:'fe',r:$('w1lab2-va'),t:$('w1lab2-ta'),x:125},b:{k:'au',r:$('w1lab2-vb'),t:$('w1lab2-tb'),x:335}};
+  /* 質量 = d × V(V 取 1、10、100、1000,乘積沒有捨入);整數結尾的 0 一律改寫成科學記號,位數才不模糊 */
+  function fmtM(d,V,sf){
+    const m=Math.round(d*V*1000)/1000,n=Math.floor(Math.log10(m)+1e-9);
+    const sci=()=>(m/Math.pow(10,n)).toFixed(sf-1)+' × 10'+SUP[n];
+    if(n>=sf)return sci();
+    if(n===sf-1){const t=m.toFixed(0);return t.endsWith('0')?sci():t;}
+    return m.toFixed(sf-1-n);
+  }
+  function geo(o){
+    const M=MAT[o.k],V=VOL[+o.r.value],s=14*Math.cbrt(V);
+    return {s,top:M.d<1?WATER-(1-M.d)*s:FLOOR-s};
+  }
+  const shown={};
+  function draw(G){
+    objs.innerHTML='';
+    ['a','b'].forEach(w=>{
+      const o=st[w],M=MAT[o.k],{s,top}=G[w];
+      el('path',{d:'M'+(o.x-s/2).toFixed(1)+','+top.toFixed(1)+'h'+s.toFixed(1)+'v'+s.toFixed(1)+'h'+(-s).toFixed(1)+'Z',fill:M.c,stroke:M.st,'stroke-width':2.5},objs);
+    });
+  }
+  function render(anim){
+    labs.innerHTML='';
+    const G={};
+    ['a','b'].forEach((w,i)=>{
+      const o=st[w],M=MAT[o.k],V=VOL[+o.r.value],m=fmtM(M.d,V,M.sf),sink=M.d>1;
+      o.t.textContent=V+' cm³';
+      $('w1lab2-l'+(i+1)).textContent=w.toUpperCase()+' '+M.n+':'+m+' g ÷ '+V+' cm³ = '+M.ds+' g/cm³ → '+(sink?'沉':'浮');
+      el('text',{x:o.x,y:324,fill:'#2c3e50','font-weight':700},labs).textContent=w.toUpperCase()+' '+M.n+' '+V+' cm³';
+      el('text',{x:o.x,y:346,fill:'#2c3e50'},labs).textContent=m+' g';
+      el('text',{x:o.x,y:370,fill:sink?'#c0392b':'#117a65','font-weight':700,'font-size':18},labs).textContent=sink?'沉 ↓':'浮 ↑';
+      G[w]=geo(o);
+    });
+    const from={a:shown.a||G.a,b:shown.b||G.b};
+    shown.a=G.a;shown.b=G.b;
+    if(anim)tw(450,f=>{const L=(p,q)=>({s:p.s+(q.s-p.s)*f,top:p.top+(q.top-p.top)*f});draw({a:L(from.a,G.a),b:L(from.b,G.b)});});
+    else draw(G);
+  }
+  ['a','b'].forEach(w=>st[w].r.addEventListener('input',()=>render(true)));
+  root.querySelectorAll('[data-o]').forEach(b=>b.addEventListener('click',()=>{
+    const w=b.dataset.o;st[w].k=b.dataset.k;
+    root.querySelectorAll('[data-o="'+w+'"]').forEach(x=>x.classList.toggle('sel',x===b));
+    render(true);
+  }));
+  render(false);
+})();
+/* w1lab3 */
+(function(){
+  const root=$('w1lab3');if(!root)return;
+  /* 例題 2:57.3 g、量筒 25.0 → 32.3 mL(V = 7.3 mL)。0.01 / 0.001 g 的讀數是示意值,
+     必須四捨五入回 57.3,且 ÷ 7.3 仍得 7.8(< 57.305 才不會跳成 7.9) */
+  const R={1:{m:'57.3',cap:'可讀到 0.1 g'},2:{m:'57.28',cap:'可讀到 0.01 g'},3:{m:'57.284',cap:'可讀到 0.001 g'}};
+  const V='7.3',VS=2,disp=root.querySelector('.disp'),cap=root.querySelector('.cap'),dots=root.querySelector('.dots');
+  const sig=s=>s.replace('.','').replace(/^0+/,'').length;
+  let r='1',prevN=0;
+  function row(x,n,c,grow){
+    const out=[];
+    for(let i=0;i<n;i++)out.push(el('circle',{cx:x+8+20*i,cy:318,r:grow&&i>=prevN?0:7,fill:i===n-1?'#a04c08':c},dots));
+    return out;
+  }
+  function render(anim){
+    const o=R[r],n=sig(o.m),q=parseFloat(o.m)/parseFloat(V),d=q.toPrecision(Math.min(n,VS));
+    disp.innerHTML='';
+    el('tspan',{},disp).textContent=o.m.slice(0,-1);
+    el('tspan',{fill:'#a04c08'},disp).textContent=o.m.slice(-1);
+    el('tspan',{},disp).textContent=' g';
+    cap.textContent=o.cap;
+    dots.innerHTML='';
+    const md=row(20,n,'#1a5276',anim);
+    el('text',{x:160,y:324,'font-size':20,fill:'#2c3e50','text-anchor':'middle'},dots).textContent='÷';
+    row(190,VS,'#1a5276',false);
+    el('text',{x:282,y:324,'font-size':20,fill:'#2c3e50','text-anchor':'middle'},dots).textContent='=';
+    row(306,Math.min(n,VS),'#117a65',false);
+    if(anim){const start=prevN;tw(400,f=>md.forEach((c,i)=>{if(i>=start)c.setAttribute('r',(7*f).toFixed(2));}));}
+    prevN=n;
+    $('w1lab3-l1').textContent='m = '+o.m+' g('+n+' 位)　V = '+V+' mL('+VS+' 位)';
+    $('w1lab3-l2').textContent=o.m+' ÷ '+V+' = '+q.toFixed(6)+'… → 取 '+Math.min(n,VS)+' 位 → '+d+' g/mL';
+  }
+  root.querySelectorAll('[data-r]').forEach(b=>b.addEventListener('click',()=>{
+    if(b.dataset.r===r)return;
+    r=b.dataset.r;root.querySelectorAll('[data-r]').forEach(x=>x.classList.toggle('sel',x===b));
+    render(true);
+  }));
+  render(false);
+})();
+})();
 </script>
 <script id="mobile-js">
 (function(){

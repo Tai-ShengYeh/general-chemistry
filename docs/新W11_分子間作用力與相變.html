@@ -155,6 +155,41 @@ body.scroll .animation-layout{grid-template-columns:1fr}
 body.scroll .animation-layout video{max-height:none}
 @media(max-width:720px){.animation-layout{grid-template-columns:1fr}}
 </style>
+<style id="lab-css">
+/* ── 互動實驗台(先預測、再動手)──────────────────────── */
+.lab{display:flex;gap:30px;align-items:flex-start}
+.labfig{flex:0 0 auto}
+.labfig .fig{margin:0 auto}
+.labside{flex:1;min-width:0}
+.labside .box{margin:0 0 8px;font-size:21px;line-height:1.45;padding:9px 18px}
+.labside .eq{margin:6px 0;font-size:26px}
+.labctl{display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:center;font-size:20px;margin:6px 0}
+.labctl input[type=range]{width:100%;height:28px;accent-color:var(--primary);cursor:pointer}
+.labctl output{font-weight:700;color:var(--primary);min-width:96px;text-align:right}
+.labread{font-size:21px;line-height:1.5;background:#f4f6f7;border-radius:8px;padding:7px 16px;margin:6px 0}
+.labread .M{font-size:27px}
+.lbtn{font-family:inherit;font-size:19px;font-weight:700;padding:6px 16px;border-radius:8px;border:2px solid var(--primary);background:#fff;color:var(--primary);cursor:pointer;margin:2px 8px 2px 0}
+.lbtn:hover{background:var(--def-bg)}
+.lbtn:disabled{color:var(--muted);border-color:#aab7b8;background:#f4f6f7;cursor:default}
+.lbtn.bad{border-color:#c0392b;color:#c0392b}
+.labmsg{font-size:20px;line-height:1.42;min-height:86px;margin:6px 0;padding:7px 16px;border-radius:8px;background:#f4f6f7}
+.labmsg.bad{background:var(--warn-bg);color:#922b21}
+.slide ol.steps{font-size:21px;line-height:1.4;margin:0 0 6px 30px}
+.steps li{margin:4px 0;color:var(--muted)}
+.steps li.on{color:var(--ink)}
+.steps li.now{color:var(--primary);font-weight:700}
+.lab.labcol{display:block}
+.lbtn.sel{background:var(--primary);color:#fff}
+.labrow{display:flex;gap:10px;align-items:center;font-size:20px;margin:4px 0}
+.labrow input[type=range]{flex:1;min-width:120px;height:28px;accent-color:var(--primary);cursor:pointer}
+.labrow .lbtn{margin:0;font-size:17px;padding:5px 11px;white-space:nowrap}
+body.scroll .labrow{flex-wrap:wrap}
+body.scroll .lab{flex-direction:column;align-items:stretch;gap:12px}
+/* 閱讀模式:圖釘在上方,按按鈕時動畫才看得到 */
+body.scroll .labfig{position:sticky;top:50px;z-index:2;background:var(--card);border-bottom:1px solid #d5dbdb}
+body.scroll .labfig svg.fig{max-height:36vh;width:auto;min-width:0!important}
+@media print{.steps li{color:var(--ink)!important;font-weight:400!important}.noprint{display:none!important}}
+</style>
 <style id="mobile-css">
 /* ── 行動裝置閱讀模式（body.scroll）與工具列 ─────────────── */
 #mtb{position:fixed;top:8px;right:8px;z-index:20;display:flex;gap:6px;align-items:center}
@@ -530,6 +565,38 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   </ul>
 </section>
 
+<!-- LAB w11lab1 -->
+<section class="slide">
+  <h2>動手試:熱一直給,溫度為什麼不動? <span class="en">Heating Curve Lab — where does the heat go?</span></h2>
+  <div class="lab" id="w11lab1">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 480 392" width="480" height="392" role="img" aria-labelledby="w11lab1-t w11lab1-d">
+        <title id="w11lab1-t">30.0 g 冰加熱成水蒸氣的加熱曲線</title>
+        <desc id="w11lab1-d">橫軸是已加入的熱量(kJ),縱軸是溫度。曲線隨著加入的熱量一段一段畫出來:冰升溫、0 °C 熔化平台、液態水升溫、100 °C 沸騰平台、水蒸氣升溫。各段的寬度依比熱、熔化熱、汽化熱按比例計算。升溫的段落畫成藍色,溫度不變的相變平台畫成綠色;沸騰平台遠比其他段長。</desc>
+        <text x="270" y="22" font-size="17" font-weight="700" fill="#2c3e50" text-anchor="middle">30.0 g 冰 −40.0 °C → 140.0 °C 水蒸氣(1 atm)</text>
+        <path d="M72,258H460M72,108H460" stroke="#d5dbdb" stroke-width="2" stroke-dasharray="6 5" fill="none"/>
+        <path d="M72,40V318H462" stroke="#2c3e50" stroke-width="2" fill="none"/>
+        <g font-size="16" fill="#2c3e50" text-anchor="end"><text x="64" y="54">140</text><text x="64" y="114">100</text><text x="64" y="264">0</text><text x="64" y="324">−40</text><text x="64" y="34">°C</text></g>
+        <g font-size="16" fill="#2c3e50" text-anchor="middle"><text x="72" y="340">0</text><text x="153.5" y="340">20</text><text x="235.0" y="340">40</text><text x="316.5" y="340">60</text><text x="398.0" y="340">80</text></g>
+        <path d="M153.5,318v6M235,318v6M316.5,318v6M398,318v6" stroke="#2c3e50" stroke-width="2"/>
+        <text x="462" y="362" font-size="16" fill="#2c3e50" text-anchor="end">已加入的熱量(kJ)</text>
+        <path d="M24,380h26" stroke="#1a5276" stroke-width="5"/><text x="56" y="386" font-size="16" fill="#2c3e50">升溫</text>
+        <path d="M112,380h26" stroke="#117a65" stroke-width="5"/><text x="144" y="386" font-size="16" fill="#2c3e50">相變(溫度不變)</text>
+        <g class="crv" fill="none" stroke-width="4.5" stroke-linejoin="round"></g>
+        <g class="lbl" font-size="16" font-weight="700"></g>
+        <circle class="dot" cx="72" cy="318" r="7" fill="#a04c08"/>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 30.0 g 水:0 → 100 °C 升溫,和在 100 °C 全部汽化(溫度不動),哪一段要的熱多?<br>② 從 −40.0 °C 的冰開始,熱加到總量的<b>一半</b>時,溫度大約幾度?</div>
+      <div class="labrow noprint"><label for="w11lab1-q" style="min-width:84px">加入熱量</label><input type="range" id="w11lab1-q" min="0" max="95.2" step="0.1" value="0"><b id="w11lab1-qv" style="min-width:92px;text-align:right;color:var(--primary)">0.0 kJ</b></div>
+      <div class="labrow noprint"><button type="button" class="lbtn" data-j="n">下一個轉折點 ▶</button><button type="button" class="lbtn" data-j="0">回到起點</button></div>
+      <div class="labread"><span id="w11lab1-l1">加入 0.0 / 95.2 kJ → <span class="hl M">−40.0 °C</span></span><br><span id="w11lab1-l2">冰(固態)升溫:分子振動加快</span><br><span id="w11lab1-l3" class="small">這一段 q = m·c<sub>冰</sub>·ΔT = 30.0 × 2.09 × 40.0 = 2.51 kJ</span></div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① 汽化:67.8 kJ,是 0 → 100 °C 升溫(12.5 kJ)的約 5.4 倍。② 還是 100 °C:前三段只用掉 25.1 kJ,加到 47.6 kJ 時才汽化了 10.0 g。平台上拉開的是<span class="hl">分子間的氫鍵</span>;拆 O–H 鍵約要 460 kJ/mol,40.7 kJ/mol 遠遠不夠。<b>溫度計量不到的熱,才是最大的一筆。</b></div>
+    </div>
+  </div>
+</section>
+
 <!-- 26 -->
 <section class="slide">
   <h2>例題 3:加熱曲線計算 <span class="en">Example 3</span></h2>
@@ -633,7 +700,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
     <li><b>三相點 (triple point)</b>:三相共存的唯一 (P, T) 點</li>
     <li><b>臨界點 (critical point)</b>:液氣線的終點 (T<sub>c</sub>, P<sub>c</sub>);超過後液氣不分</li>
   </ul>
-  <div class="box key"><span class="tag">判讀要領</span>在圖上水平往右移動 = 固定壓力加熱;垂直往上移動 = 固定溫度加壓;跨越曲線就發生相變。(圖在第 36 頁,先翻過去看一眼再回來)</div>
+  <div class="box key"><span class="tag">判讀要領</span>在圖上水平往右移動 = 固定壓力加熱;垂直往上移動 = 固定溫度加壓;跨越曲線就發生相變。(圖在第 38 頁「相圖判讀」,先翻過去看一眼再回來)</div>
 </section>
 
 <!-- 35 -->
@@ -700,6 +767,50 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
         <rect x="120" y="384" width="780" height="0" fill="#fff" rx="0"/>
         <text x="510" y="404" font-size="18" fill="#2c3e50" text-anchor="middle" font-weight="700">水是少數固相密度小於液相的物質 —— 這也是冰浮在水上、以及乾冰只昇華不熔化的原因</text>
       </svg>
+</section>
+
+<!-- LAB w11lab2 -->
+<section class="slide">
+  <h2>動手試:在水的相圖上走一走 <span class="en">Phase Diagram Walk — which line do you cross?</span></h2>
+  <div class="lab" id="w11lab2">
+    <div class="labfig">
+      <svg class="fig" viewBox="0 0 480 400" width="480" height="400" role="img" aria-labelledby="w11lab2-t w11lab2-d">
+        <title id="w11lab2-t">水的相圖(示意)與四條路徑</title>
+        <desc id="w11lab2-d">示意的水相圖,座標未按比例。固液線從三相點往左上傾斜(斜率為負),液氣線從三相點往右上延伸到臨界點就結束,固氣線從三相點往左下延伸。標出三相點 0.01 °C、0.006 atm,臨界點 374 °C、218 atm,以及 1 atm 下的 0 °C 與 100 °C。一個橘色圓點沿著選定的路徑移動:1 atm 加熱、25 °C 抽氣減壓、略低於 0 °C 加壓、218 atm 以上加熱,並顯示目前所在的相區。</desc>
+        <defs><marker id="w11lab2-ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="#5a6a6b"/></marker></defs>
+        <text x="64" y="18" font-size="16" fill="#2c3e50">壓力 P</text>
+        <text x="472" y="18" font-size="16" fill="#5a6a6b" text-anchor="end">示意圖,座標未按比例</text>
+        <path d="M56,360V26M56,360H472" stroke="#2c3e50" stroke-width="2" fill="none"/>
+        <text x="472" y="384" font-size="16" fill="#2c3e50" text-anchor="end">溫度 T</text>
+        <path d="M56,200H472" stroke="#d5dbdb" stroke-width="2" stroke-dasharray="6 5" fill="none"/>
+        <text x="50" y="205" font-size="16" fill="#5a6a6b" text-anchor="end">1 atm</text>
+        <path d="M380,90V26M380,90H472" stroke="#5a6a6b" stroke-width="1.5" stroke-dasharray="5 4" fill="none"/>
+        <g class="path"></g>
+        <g fill="none" stroke="#1a5276" stroke-width="3.4" stroke-linecap="round">
+          <path d="M170,310L130,26"/>
+          <path d="M170,310L60,352"/>
+          <path d="M170,310C175.83,303.67 185.83,290.33 205,272C224.17,253.67 255.83,230.33 285,200C314.17,169.67 364.17,108.33 380,90"/>
+        </g>
+        <g font-size="22" font-weight="700" fill="#2c3e50" text-anchor="middle"><text x="92" y="122">固</text><text x="240" y="132">液</text><text x="372" y="252">氣</text></g>
+        <text x="426" y="44" font-size="16" font-weight="700" fill="#117a65" text-anchor="middle">超臨界流體</text>
+        <circle cx="170" cy="310" r="6" fill="#a04c08"/><circle cx="380" cy="90" r="6" fill="#c0392b"/>
+        <circle cx="154.5" cy="200" r="5" fill="#1a5276"/><circle cx="285" cy="200" r="5" fill="#1a5276"/>
+        <text x="180" y="350" font-size="16" fill="#a04c08" font-weight="700">三相點 0.01 °C, 0.006 atm</text>
+        <text x="372" y="82" font-size="16" fill="#c0392b" font-weight="700" text-anchor="end">臨界點 374 °C, 218 atm</text>
+        <text x="162" y="224" font-size="16" fill="#1a5276">0 °C</text><text x="291" y="224" font-size="16" fill="#1a5276">100 °C</text>
+        <g class="ev" font-size="16" font-weight="700" fill="#117a65"></g>
+        <circle class="dot" cx="102" cy="200" r="8" fill="#a04c08" stroke="#ffffff" stroke-width="2"/>
+      </svg>
+    </div>
+    <div class="labside">
+      <div class="box exbox"><span class="tag">先預測,再動手</span>① 一杯 25 °C 的水,<b>不加熱</b>、只用幫浦把上方的氣體抽掉,它會沸騰嗎?壓力要降到多少?<br>② 先把壓力加到<b>高於 218 atm</b>,再一路加熱:水會在幾度沸騰?</div>
+      <div class="labrow noprint"><button type="button" class="lbtn sel" data-p="a">1 atm 加熱</button><button type="button" class="lbtn" data-p="b">25 °C 抽氣減壓</button></div>
+      <div class="labrow noprint"><button type="button" class="lbtn" data-p="c">略低於 0 °C 加壓</button><button type="button" class="lbtn" data-p="d">218 atm 以上加熱</button></div>
+      <div class="labrow noprint"><label for="w11lab2-v" style="min-width:84px">沿路徑走</label><input type="range" id="w11lab2-v" min="0" max="100" step="1" value="0"></div>
+      <div class="labread"><span id="w11lab2-l1">路徑:壓力固定 1 atm,加熱 →</span><br><span id="w11lab2-l2"><span class="hl M">固相(冰)</span></span><br><span id="w11lab2-l3">1 atm、溫度低於 0 °C</span></div>
+      <div class="sol" style="font-size:20px;line-height:1.42"><b>你剛剛看到的:</b>① 會。外壓降到 <span class="hl">23.8 torr</span>(25 °C 時水的蒸氣壓)就跨過液氣線,室溫就沸騰:沸點是「蒸氣壓 = 外壓」的溫度。② <span class="hl">不會沸騰</span>:液氣線到臨界點(374 °C、218 atm)就結束,這條路徑碰不到它;過了 374 °C 就是超臨界流體。<b>相變只發生在跨過曲線的地方。</b></div>
+    </div>
+  </div>
 </section>
 
 <!-- 37 -->
@@ -906,6 +1017,153 @@ addEventListener('touchend',e=>{
 });
 fit();
 show(parseInt(location.hash.slice(1))-1||0);
+</script>
+<script id="lab-js">
+(function(){
+/* 共用工具(每支 deck 相同,不要改) */
+  const NS='http://www.w3.org/2000/svg',$=id=>document.getElementById(id);
+  const el=(n,a,p)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;};
+  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let seed=7;const rnd=()=>(seed=seed*16807%2147483647)/2147483647;
+  function tw(ms,fn,done){
+    if(still||ms<=0){fn(1);if(done)done();return;}
+    let t0=null;
+    requestAnimationFrame(function f(t){
+      if(t0===null)t0=t;
+      const k=Math.min(1,(t-t0)/ms),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+      fn(e);if(k<1)requestAnimationFrame(f);else if(done)done();
+    });
+  }
+  // 控制項上的點擊、觸控、方向鍵不可觸發翻頁
+  document.querySelectorAll('.lab').forEach(l=>{
+    ['click','touchstart','touchend'].forEach(t=>l.addEventListener(t,e=>{if(e.target.closest('button,input,label'))e.stopPropagation();}));
+    l.addEventListener('keydown',e=>{if(e.target.matches('input'))e.stopPropagation();});
+    l.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>b.blur()));
+    l.querySelectorAll('input[type=range]').forEach(r=>r.addEventListener('pointerup',()=>r.blur()));
+  });
+/* w11lab1 */
+(function(){
+  const root=$('w11lab1');if(!root)return;
+  /* 數值全部取自本週 deck:比熱 冰 2.09、水 4.18、水蒸氣 2.01 J/(g·°C);ΔHfus 6.01、ΔHvap 40.7 kJ/mol;H2O 18.02 g/mol */
+  const m=30.0,n=m/18.02,T0=-40,T1=140;
+  const SEG=[ // 每段:熱量(kJ)、起訖溫度、比熱或相變
+    {q:m*2.09*(0-T0)/1000,a:T0,b:0,c:2.09,ramp:1},
+    {q:n*6.01,a:0,b:0,ramp:0},
+    {q:m*4.18*100/1000,a:0,b:100,c:4.18,ramp:1},
+    {q:n*40.7,a:100,b:100,ramp:0},
+    {q:m*2.01*(T1-100)/1000,a:100,b:T1,c:2.01,ramp:1}];
+  let acc=0;SEG.forEach(s=>{s.s=acc;acc+=s.q;s.e=acc;});
+  const Q=acc,X0=72,SX=388/Q,Y=T=>318-(T-T0)*1.5;
+  const sl=$('w11lab1-q'),crv=root.querySelector('.crv'),lbl=root.querySelector('.lbl'),dot=root.querySelector('.dot');
+  const fT=t=>{const v=Math.abs(t)<0.05?0:t;return v.toFixed(1).replace('-','−');};
+  let q=0;
+  function at(qq){ // 回傳 [段落索引, 溫度]
+    qq=Math.max(0,Math.min(Q,qq));
+    let i=0;while(i<4&&qq>SEG[i].e+1e-9)i++;
+    const s=SEG[i];return [i,s.ramp?s.a+(qq-s.s)*1000/(m*s.c):s.a];
+  }
+  const P=(qq,T)=>(X0+qq*SX).toFixed(1)+','+Y(T).toFixed(1);
+  function draw(){
+    crv.innerHTML='';lbl.innerHTML='';
+    const [k,T]=at(q);
+    for(let i=0;i<=k;i++){
+      const s=SEG[i],e=i<k?s.e:Math.min(q,Q),Te=i<k?s.b:T;
+      if(e<=s.s)continue;
+      el('path',{d:'M'+P(s.s,s.a)+'L'+P(e,Te),stroke:s.ramp?'#1a5276':'#117a65'},crv);
+    }
+    const done=i=>q>=SEG[i].e-1e-9;
+    if(done(1))el('text',{x:86,y:282,fill:'#117a65'},lbl).textContent='熔化 '+SEG[1].q.toFixed(1)+' kJ';
+    if(done(2))el('text',{x:138,y:190,fill:'#1a5276','text-anchor':'end'},lbl).textContent=SEG[2].q.toFixed(1)+' kJ';
+    if(done(3))el('text',{x:312,y:98,fill:'#117a65','text-anchor':'middle'},lbl).textContent='沸騰 '+SEG[3].q.toFixed(1)+' kJ';
+    dot.setAttribute('cx',(X0+Math.min(q,Q)*SX).toFixed(1));dot.setAttribute('cy',Y(T).toFixed(1));
+  }
+  function render(){
+    const [k,T]=at(q),qs=Math.min(q,Q);
+    $('w11lab1-qv').textContent=qs.toFixed(1)+' kJ';
+    $('w11lab1-l1').innerHTML='加入 '+qs.toFixed(1)+' / '+Q.toFixed(1)+' kJ → <span class="hl M">'+fT(T)+' °C</span>';
+    const s=SEG[k],part=(qs-s.s)/s.q*m;
+    let t2,t3;
+    if(k===0){t2=qs>=s.e-1e-9?'冰到 0 °C 了,再加熱就開始熔化':'冰(固態)升溫:分子振動加快';
+      t3='這一段 q = m·c<sub>冰</sub>·ΔT = 30.0 × 2.09 × 40.0 = '+s.q.toFixed(2)+' kJ';}
+    else if(k===1){t2='冰 + 水,熔化中:已熔化 '+part.toFixed(1)+' g / 30.0 g';
+      t3='這一段 q = n·ΔH<sub>fus</sub> = 1.665 × 6.01 = '+s.q.toFixed(1)+' kJ:拉開分子,溫度不變';}
+    else if(k===2){t2=qs>=s.e-1e-9?'水到 100 °C 了,再加熱就開始沸騰':'液態水升溫:分子動得更快';
+      t3='這一段 q = m·c<sub>水</sub>·ΔT = 30.0 × 4.18 × 100.0 = '+s.q.toFixed(1)+' kJ';}
+    else if(k===3){t2='水 + 水蒸氣,沸騰中:已汽化 '+part.toFixed(1)+' g / 30.0 g';
+      t3='這一段 q = n·ΔH<sub>vap</sub> = 1.665 × 40.7 = '+s.q.toFixed(1)+' kJ:拉開分子,溫度不變';}
+    else{t2='水蒸氣(氣態)升溫';
+      t3='這一段 q = m·c<sub>汽</sub>·ΔT = 30.0 × 2.01 × 40.0 = '+s.q.toFixed(2)+' kJ';}
+    $('w11lab1-l2').textContent=t2;$('w11lab1-l3').innerHTML=t3;
+    root.querySelector('[data-j="n"]').disabled=q>=Q-1e-9;
+    draw();
+  }
+  sl.addEventListener('input',()=>{const v=+sl.value;q=v>=+Q.toFixed(1)-1e-9?Q:v;render();});
+  root.querySelectorAll('[data-j]').forEach(b=>b.addEventListener('click',()=>{
+    const from=q;let to=0;
+    if(b.dataset.j==='n'){const nx=SEG.find(s=>s.e>q+1e-6);to=nx?nx.e:Q;}
+    sl.value=to.toFixed(1);
+    tw(500,k=>{q=from+(to-from)*k;render();},()=>{q=to;render();});
+  }));
+  let saved=null;
+  addEventListener('beforeprint',()=>{saved=q;q=Q;render();});
+  addEventListener('afterprint',()=>{if(saved!==null){q=saved;saved=null;render();}});
+  render();
+})();
+/* w11lab2 */
+(function(){
+  const root=$('w11lab2');if(!root)return;
+  /* 示意相圖:只有 deck 寫出數值的點有數字(三相點 0.01 °C/0.006 atm、臨界點 374 °C/218 atm、
+     1 atm 的 0 °C 與 100 °C、25 °C 蒸氣壓 23.8 torr)。每條路徑的跨線位置就是圖上曲線與路徑的交點。
+     K = [滑桿值, x, y];Z = 各區段 [到哪個滑桿值為止, 相, 說明];滑桿值剛好等於事件點時顯示 E */
+  const PATH={
+    a:{t:'路徑:壓力固定 1 atm,加熱 →',K:[[0,102.3,200],[100,363.3,200]],
+       Z:[[20,'固相(冰)','1 atm、溫度低於 0 °C'],[70,'液相(水)','1 atm、0 °C 到 100 °C 之間'],[100,'氣相(水蒸氣)','1 atm、溫度高於 100 °C']],
+       E:{20:['冰 + 水共存','到 0 °C:跨過固液線 → 熔化'],70:['水 + 水蒸氣共存','到 100 °C:跨過液氣線 → 沸騰']}},
+    b:{t:'路徑:溫度固定 25 °C,抽氣減壓 ↓',K:[[0,205,200],[60,205,272],[100,205,320]],
+       Z:[[60,'液相(水)','25 °C,壓力從 1 atm 往下降'],[100,'氣相(水蒸氣)','25 °C,壓力已低於液氣線']],
+       E:{0:['液相(水)','25 °C、1 atm 的一杯水'],60:['水 + 水蒸氣共存','跨過液氣線 → 沸騰(沒有加熱)']},lab:60},
+    c:{t:'路徑:溫度固定、略低於 0 °C,加壓 ↑',K:[[0,146,348],[15,146,319.2],[55,146,200],[75,146,139.6],[100,146,40]],
+       Z:[[15,'氣相(水蒸氣)','壓力很低,低於固氣線'],[75,'固相(冰)','加壓後變成冰'],[100,'液相(水)','繼續加壓,冰反而熔化']],
+       E:{15:['水蒸氣 + 冰共存','跨過固氣線 → 凝華成冰'],55:['固相(冰)','1 atm、略低於 0 °C:還是冰'],75:['冰 + 水共存','跨過固液線 → 熔化']}},
+    d:{t:'路徑:壓力固定、高於 218 atm,加熱 →',K:[[0,190,58],[70,380,58],[100,465,58]],
+       Z:[[70,'液相(水)','壓力高於 218 atm,加熱中'],[100,'超臨界流體','溫度高於 374 °C、壓力高於 218 atm']],
+       E:{70:['到達 374 °C','液、氣的界線在這裡消失']}}
+  };
+  const sl=$('w11lab2-v'),pg=root.querySelector('.path'),ev=root.querySelector('.ev'),dot=root.querySelector('.dot');
+  let p='a';
+  function pos(P,v){
+    const K=P.K;let i=0;while(i<K.length-2&&v>K[i+1][0])i++;
+    const a=K[i],b=K[i+1],k=(v-a[0])/(b[0]-a[0]);
+    return [a[1]+(b[1]-a[1])*k,a[2]+(b[2]-a[2])*k];
+  }
+  function guide(){
+    pg.innerHTML='';const K=PATH[p].K,a=K[0],b=K[K.length-1];
+    el('path',{d:'M'+a[1]+','+a[2]+'L'+b[1]+','+b[2],stroke:'#5a6a6b','stroke-width':2.5,'stroke-dasharray':'7 5',fill:'none','marker-end':'url(#w11lab2-ar)'},pg);
+  }
+  function render(){
+    const P=PATH[p],v=+sl.value,[x,y]=pos(P,v);
+    dot.setAttribute('cx',x.toFixed(1));dot.setAttribute('cy',y.toFixed(1));
+    let ph,ds;
+    if(P.E[v]){[ph,ds]=P.E[v];}
+    else{const z=P.Z.find(z=>v<z[0])||P.Z[P.Z.length-1];ph=z[1];ds=z[2];}
+    $('w11lab2-l1').textContent=P.t;
+    $('w11lab2-l2').innerHTML='<span class="hl M">'+ph+'</span>';
+    $('w11lab2-l3').textContent=ds;
+    ev.innerHTML='';
+    if(P.lab&&v>=P.lab)el('text',{x:213,y:292},ev).textContent='25 °C 時蒸氣壓 23.8 torr';
+  }
+  sl.addEventListener('input',render);
+  root.querySelectorAll('[data-p]').forEach(b=>b.addEventListener('click',()=>{
+    if(b.dataset.p===p)return;p=b.dataset.p;
+    root.querySelectorAll('[data-p]').forEach(o=>o.classList.toggle('sel',o===b));
+    sl.value=0;guide();render();
+  }));
+  let saved=null;
+  addEventListener('beforeprint',()=>{saved=[p,sl.value];p='b';sl.value=100;guide();render();});
+  addEventListener('afterprint',()=>{if(saved){[p,sl.value]=saved;saved=null;guide();render();}});
+  guide();render();
+})();
+})();
 </script>
 <script id="mobile-js">
 (function(){

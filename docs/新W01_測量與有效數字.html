@@ -142,6 +142,14 @@ tr:nth-child(even) td{background:#f4f6f7}
 .animnote{background:#eaf2f8;border-left:6px solid var(--primary);border-radius:10px;padding:14px 18px;font-size:21px;line-height:1.45}
 .animnote ul{font-size:20px;line-height:1.42;margin-left:22px}.animnote li{margin:5px 0}
 .animlinks{font-size:18px;margin-top:10px;color:var(--muted)}.animlinks a{color:var(--primary);font-weight:700;text-decoration:none}
+.lesson-video-link{align-self:flex-start;margin-top:4px;padding:7px 14px;border:1px solid var(--primary);border-radius:8px;background:#eaf2f8;color:var(--primary);font-size:19px;font-weight:700;text-decoration:none;line-height:1.4}
+.lesson-video-link:hover,.lesson-video-link:focus-visible{background:#dbeaf4;text-decoration:underline}
+.lesson-video{box-sizing:border-box;width:min(900px,calc(100vw - 24px));max-height:calc(100dvh - 24px);margin:auto;padding:12px;border:1px solid #c8dce8;border-radius:12px;color:var(--ink);background:#fff}
+.lesson-video::backdrop{background:#0c202bd9}
+.lesson-video-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;font-size:19px;line-height:1.3}
+.lesson-video-head button{box-sizing:border-box;min-height:44px;padding:5px 12px;border:1px solid var(--primary);border-radius:7px;color:var(--primary);background:#eaf2f8;font:inherit;font-size:16px;white-space:nowrap;cursor:pointer}
+.lesson-video video{display:block;width:100%;aspect-ratio:16/9;max-height:calc(100dvh - 112px);background:#153039;object-fit:contain}
+body.scroll .lesson-video-link{font-size:17px}
 @media print{
   @page{size:1280px 720px;margin:0}
   html,body{background:#fff}
@@ -854,6 +862,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
     <li>整數結尾的 0 <b>視情況</b>而定:100 → 不明確,建議用科學記號 1.00 × 10<sup>2</sup>(3 位)</li>
   </ol>
   <div class="box key"><span class="tag">建議</span>報告數據時使用<b>科學記號 (scientific notation)</b> 可避免有效數字的模糊。</div>
+  <a class="lesson-video-link noprint" href="animations/w01_calculation/significant-figures.mp4" data-video-title="有效數字" aria-haspopup="dialog" aria-controls="lesson-video-dialog">▶ 播放有效數字影片（1 分 25 秒）</a>
 </section>
 
 <!-- 36 -->
@@ -979,6 +988,7 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
     <li>選擇換算因子的原則:<span class="hlb">要消去的單位放分母,要得到的單位放分子</span></li>
     <li>優點:單位對了,計算路徑通常就對了</li>
   </ul>
+  <a class="lesson-video-link noprint" href="animations/w01_calculation/dimensional-analysis.mp4" data-video-title="因次分析與單位換算" aria-haspopup="dialog" aria-controls="lesson-video-dialog">▶ 播放因次分析與單位換算影片（1 分 37 秒）</a>
 </section>
 
 <!-- 44 -->
@@ -1219,8 +1229,29 @@ body.scroll .slide.reveal .sol-hint::before{content:"▼ 收起解答"}
   <p class="small center" style="margin-top:20px">操作提示:空白鍵/→ 先顯示解答、再翻下一張|← 上一張|Home/End 跳至首末頁|Ctrl+P 列印(解答全印,供教師備課)</p>
 </section>
 <!-- HANDWRITE:BEGIN --><section class="slide handwrite-slide" id="handwrite"><h2>手寫動畫：先想，再核對</h2><p>題目會自動停下；準備好再按「繼續」。</p><div class="handwrite-cards"><a class="handwrite-chapter" href="handwrite/w01-01-measure/player.html">1．測量、分類與可信位數</a><a class="handwrite-chapter" href="handwrite/w01-02-units/player.html">2．單位相消與密度判斷</a></div><p><a href="handwrite/w01.html">本主題動畫目錄 →</a>　<a href="handwrite/index.html">全部動畫</a></p></section><!-- HANDWRITE:END --></div></div>
+<dialog id="lesson-video-dialog" class="lesson-video noprint" aria-labelledby="lesson-video-title">
+  <div class="lesson-video-head">
+    <strong id="lesson-video-title">教學影片</strong>
+    <form method="dialog"><button type="submit" autofocus>返回投影片</button></form>
+  </div>
+  <video controls playsinline preload="none" aria-labelledby="lesson-video-title"></video>
+</dialog>
 <script>
 const slides=[...document.querySelectorAll('.slide')];
+const lessonVideoDialog=document.getElementById('lesson-video-dialog');
+const lessonVideoTitle=document.getElementById('lesson-video-title');
+const lessonVideo=lessonVideoDialog.querySelector('video');
+document.querySelectorAll('.lesson-video-link').forEach(link=>{
+  link.addEventListener('click',e=>{
+    if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||!lessonVideoDialog.showModal)return;
+    e.preventDefault();
+    lessonVideoTitle.textContent=link.dataset.videoTitle;
+    if(lessonVideo.src!==link.href)lessonVideo.src=link.href;
+    lessonVideoDialog.showModal();
+    lessonVideo.play().catch(()=>{});
+  });
+});
+lessonVideoDialog.addEventListener('close',()=>lessonVideo.pause());
 const DECK_INFO='普通化學|第 1 週:測量與有效數字';
 let cur=0;
 slides.forEach((s,i)=>{
@@ -1259,20 +1290,20 @@ function fit(){
 }
 addEventListener('resize',fit);
 addEventListener('keydown',e=>{
-  if(document.body.classList.contains('scroll'))return;
+  if(lessonVideoDialog.open||document.body.classList.contains('scroll'))return;
   if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();next();}
   else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev();}
   else if(e.key==='Home')show(0);
   else if(e.key==='End')show(slides.length-1);
 });
 addEventListener('click',e=>{
-  if(document.body.classList.contains('scroll')||e.target.closest('a,#mtb'))return;
+  if(lessonVideoDialog.open||document.body.classList.contains('scroll')||e.target.closest('a,#mtb'))return;
   (e.clientX>innerWidth/3)?next():prev();
 });
 let tx=null;
 addEventListener('touchstart',e=>tx=e.touches[0].clientX);
 addEventListener('touchend',e=>{
-  if(document.body.classList.contains('scroll')){tx=null;return;}
+  if(lessonVideoDialog.open||document.body.classList.contains('scroll')){tx=null;return;}
   if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;
   if(dx<-40)next();else if(dx>40)prev();tx=null;
 });
